@@ -5,6 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bluetext.in | 900+ Free Online Tools</title>
     <link rel="stylesheet" href="/assets/css/main.css">
+ <!-- 1. Initialise DataLayer -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  // 2. Set DEFAULT consent to 'denied' (Prioritizes Privacy/Compliance)
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'wait_for_update': 500 // Wait for the banner to load
+  });
+</script>
+
+<!-- 3. Load your Google Tag (G-K4KGMMJ1YY) -->
+<script async src="https://googletagmanager.com"></script>
+<script>
+  gtag('js', new Date());
+  gtag('config', 'G-K4KGMMJ1YY');
+</script>
+
+<!-- 4. Load Silktide Assets (Ensure paths are correct) -->
+<link rel="stylesheet" id="silktide-consent-manager-css" href="/path-to-css/silktide-consent-manager.css">
+<script src="/path-to-js/silktide-consent-manager.js"></script>
+
+<!-- 5. Silktide Configuration -->
+<script>
+silktideCookieBannerManager.updateCookieBannerConfig({
+  background: { showBackground: true },
+  cookieIcon: { position: "bottomLeft" },
+  cookieTypes: [
+    {
+      id: "necessary",
+      name: "Necessary",
+      description: "<p>Required for the site to function properly.</p>",
+      required: true
+    },
+    {
+      id: "analytics",
+      name: "Analytics",
+      description: "<p>Helps us understand how you use BlueText.in.</p>",
+      defaultValue: false,
+      onAccept: function() {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      },
+      onReject: function() {
+        gtag('consent', 'update', { 'analytics_storage': 'denied' });
+      }
+    },
+    {
+      id: "advertising",
+      name: "Advertising",
+      description: "<p>Used for personalized ads and marketing.</p>",
+      onAccept: function() {
+        gtag('consent', 'update', {
+          'ad_storage': 'granted',
+          'ad_user_data': 'granted',
+          'ad_personalization': 'granted'
+        });
+      },
+      onReject: function() {
+        gtag('consent', 'update', {
+          'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied'
+        });
+      }
+    }
+  ],
+  text: {
+    banner: {
+      description: "<p>We use cookies on BlueText.in to analyze traffic and personalize content. <a href='/cookie-policy'>Cookie Policy.</a></p>",
+      acceptAllButtonText: "Accept all",
+      rejectNonEssentialButtonText: "Reject non-essential",
+      preferencesButtonText: "Preferences"
+    }
+  },
+  position: { banner: "bottomCenter" }
+});
+</script>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K4KGMMJ1YY"></script>
 <script>
