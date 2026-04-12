@@ -1,0 +1,4 @@
+ads.txt: Add your Google AdSense publisher info to this file for ad monetization compliance. Once you create an AdSense account and add your site, you’ll get a unique publisher ID (format: pub-XXXXXXXXXXXXXXXX). Add a line in ads.txt with Google’s info, for example:
+google.com, pub-1234567890123456, DIRECT, f08c47fec0942fa0
+
+(Replace the pub-ID with your own.) This line is the standard format as per Google’s ads.txt guide【5†L31-L39】. Make sure ads.txt is in the repository root so it will be served at https://bluetext.in/ads.txt【5†L39-L42】.
