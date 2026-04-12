@@ -3,85 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2549187779179978"
+     crossorigin="anonymous"></script>
+     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22><rect width=%22512%22 height=%22512%22 rx=%22100%22 fill=%22%230056D2%22/><text x=%22256%22 y=%22220%22 text-anchor=%22middle%22 font-family=%22Arial, sans-serif%22 font-size=%22160%22 font-weight=%22900%22 fill=%22%23FFFFFF%22 letter-spacing=%22-5%22>BLUE</text><text x=%22256%22 y=%22370%22 text-anchor=%22middle%22 font-family=%22Arial, sans-serif%22 font-size=%22160%22 font-weight=%22900%22 fill=%22%23FFFFFF%22 letter-spacing=%22-5%22>TEXT</text><g transform=%22translate(320, 390)%22><rect width=%22140%22 height=%2270%22 rx=%2235%22 fill=%22%23FFEB00%22/><text x=%2270%22 y=%2252%22 text-anchor=%22middle%22 font-family=%22Arial, sans-serif%22 font-size=%2255%22 font-weight=%22940%22 fill=%22%230056D2%22>.in</text></g></svg>">
+    <!-- SEO and Social Sharing Tags -->
     <title>Bluetext.in | 900+ Free Online Tools</title>
+    <meta name="description" content="The ultimate suite of 900+ free online tools for developers, creators, and professionals. Find utilities for images, text, SEO, and more.">
+    <link rel="canonical" href="https://www.bluetext.in/" />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Bluetext.in – 900+ Free Online Tools" />
+    <meta property="og:description" content="All-in-one utility suite with 938 free online tools for developers, creators, and more." />
+    <meta property="og:image" content="https://www.bluetext.in/assets/img/logo.png" />
+    <meta property="og:url" content="https://www.bluetext.in/" />
+
+    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="/assets/css/main.css">
-
-    <!-- 1. Initialise DataLayer & Set DEFAULT Consent (Must be first) -->
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-
-      // Default all to 'denied' for Consent Mode v2 compliance
-      gtag('consent', 'default', {
-        'analytics_storage': 'denied',
-        'ad_storage': 'denied',
-        'ad_user_data': 'denied',
-        'ad_personalization': 'denied',
-        'wait_for_update': 500 
-      });
-      gtag('js', new Date());
-  gtag('config', 'G-K4KGMMJ1YY', {
-    'allow_enhanced_conversions': true
-  });
-  // Example: Add this to your form submission script
-gtag('set', 'user_data', {
-  "email": "user@example.com" // Google will automatically hash this for privacy
-});
-
-    </script>
-
-    <!-- 2. Load Google Tag -->
-    <script async src="https://googletagmanager.com"></script>
-    <script>
-      gtag('js', new Date());
-      gtag('config', 'G-K4KGMMJ1YY');
-    </script>
-
-    <!-- 3. Load Silktide Assets (Update paths to your actual folders) -->
-    <link rel="stylesheet" id="silktide-consent-manager-css" href="/assets/css/silktide-consent-manager.css">
-    <script src="/assets/js/silktide-consent-manager.js"></script>
-
-    <!-- 4. Silktide Configuration -->
-    <script>
-    silktideCookieBannerManager.updateCookieBannerConfig({
-      background: { showBackground: true },
-      cookieIcon: { position: "bottomLeft" },
-      cookieTypes: [
-        {
-          id: "necessary",
-          name: "Necessary",
-          description: "<p>Required for the site to function properly.</p>",
-          required: true
-        },
-        {
-          id: "analytics",
-          name: "Analytics",
-          description: "<p>Helps us understand how you use BlueText.in.</p>",
-          onAccept: function() {
-            gtag('consent', 'update', { 'analytics_storage': 'granted' });
-          }
-        },
-        {
-          id: "advertising",
-          name: "Advertising",
-          description: "<p>Used for Google Ads and personalized marketing.</p>",
-          onAccept: function() {
-            gtag('consent', 'update', {
-              'ad_storage': 'granted',
-              'ad_user_data': 'granted',
-              'ad_personalization': 'granted'
-            });
-          }
-        }
-      ],
-      text: {
-        banner: {
-          description: "<p>We use cookies on BlueText.in to enhance your experience. <a href='/cookie-policy'>Cookie Policy.</a></p>",
-          acceptAllButtonText: "Accept all",
-          rejectNonEssentialButtonText: "Reject non-essential"
-        }
-      },
-      position: { banner: "bottomCenter" }
-    });
-    </script>
 </head>
+<body>
+
+    <!-- Header will be dynamically injected here -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content Area -->
+    <main>
+        <!-- Hero Section with Search Bar -->
+        <section class="hero">
+            <h1>Your Go-To Collection of Online Tools</h1>
+            <p>Discover over 900+ free and easy-to-use utilities for developers, designers, and creators.</p>
+            <div class="search-box">
+                <input type="text" id="mainSearch" placeholder="Search 900+ tools...">
+                <button>Search</button>
+            </div>
+        </section>
+
+        <!-- Category Grid Section -->
+        <div class="category-grid-container">
+            <h2>Explore by Category</h2>
+            <!-- The category cards will be dynamically inserted here by main.js -->
+            <div id="categoryGrid" class="category-grid"></div>
+        </div>
+    </main>
+
+    <!-- Footer will be dynamically injected here -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Main JavaScript File -->
+    <script src="/assets/js/main.js"></script>
+
+</body>
+</html>
