@@ -1,0 +1,1 @@
+console.log("Bluetext main.js loaded");
