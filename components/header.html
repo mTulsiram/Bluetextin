@@ -1,16 +1,40 @@
 <header class="site-header">
-  <div class="header-content">
-    <a href="/" class="logo-text">BLUETEXT<span style="color: #FFEB00;">.in</span></a>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="/tools-platform/all-tools.html">All Tools</a></li>
-        <li><a href="/nav/about.html">About</a></li>
-        <li><a href="/nav/contact.html">Contact</a></li>
-      </ul>
-    </nav>
-    <div class="header-search">
-      <input type="text" id="toolSearch" placeholder="Search tools..."/>
+    <div class="header-content">
+        <!-- Logo -->
+        <a href="/" class="logo-text" aria-label="Bluetext Home">
+            BLUETEXT<span style="color: var(--brand-yellow);">.in</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="main-nav">
+            <ul>
+                <li><a href="/tools-platform/all-tools.html">All Tools</a></li>
+                <li><a href="/wiki/">Wiki</a></li>
+                <li><a href="/nav/about.html">About</a></li>
+                <li><a href="/nav/contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Desktop Actions: Search and Theme Toggle -->
+        <div class="desktop-header-actions">
+            <div class="header-search search-wrapper">
+                <input
+                    type="text"
+                    id="headerSearch"
+                    placeholder="Search tools..."
+                    aria-label="Search through tools"
+                    autocomplete="off"
+                />
+                <div id="headerSearchResults"></div>
+            </div>
+            <button class="dark-mode-toggle" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">🌙</button>
+        </div>
+
+        <!-- Mobile Header Icons -->
+        <div class="mobile-header-icons">
+            <button class="dark-mode-toggle" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">🌙</button>
+            <button class="mobile-search-icon" title="Search" aria-label="Open Search">🔍</button>
+            <button class="hamburger-menu" title="Menu" aria-label="Open Navigation Menu">☰</button>
+        </div>
     </div>
-  </div>
- 
 </header>
