@@ -7,16 +7,38 @@
     <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 <body>
-    <!-- Header -->
-    <header id="header"></header>
 
-    <!-- Navigation -->
-    <nav id="navigation"></nav>
+    <!-- 1. Header Placeholder -->
+    <!-- CORRECTED: The unnecessary 'src' attribute has been removed. -->
+    <div id="header-placeholder"></div>
 
     <!-- Main Content -->
-    <main id="main-content"></main>
-    <!-- Footer -->
-    <footer id="footer"></footer>
+    <main>
+        <!-- 2. Hero Section with Search -->
+        <section class="hero">
+            <h1>Your Go-To Collection of Online Tools</h1>
+            <p>Discover over 900+ free and easy-to-use utilities for developers, designers, and creators.</p>
+            <div class="search-box">
+                <input type="text" id="mainSearch" placeholder="Search 900+ tools...">
+                <button>Search</button>
+            </div>
+        </section>
+
+        <!-- 3. Category Grid -->
+        <div class="category-grid-container">
+            <h2>Explore by Category</h2>
+            <div id="categoryGrid" class="category-grid">
+                <!-- Category cards will be dynamically inserted here by main.js -->
+            </div>
+        </div>
+    </main>
+
+    <!-- 4. Footer Placeholder -->
+    <!-- CORRECTED: The unnecessary 'src' attribute has been removed. -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Your script remains at the bottom -->
     <script src="/assets/js/main.js"></script>
+
 </body>
 </html>
