@@ -128,3 +128,59 @@ main {
         flex-direction: column; /* Stack input and button vertically */
     }
 }
+
+/* --- All Tools Directory Page Styles --- */
+.directory-header {
+    text-align: center;
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 40px;
+}
+
+.directory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 0 20px 40px 20px;
+}
+
+.silo-box {
+  background: #fff;
+  border-top: 5px solid var(--primary-blue);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.silo-box h3 {
+  color: var(--primary-blue);
+  font-weight: 700;
+  border-bottom: 2px solid var(--brand-yellow);
+  display: inline-block;
+  padding-bottom: 5px;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.silo-box ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.silo-box li {
+  margin: 8px 0;
+}
+
+.silo-box a {
+  text-decoration: none;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.silo-box a:hover {
+  color: var(--primary-blue);
+  text-decoration: underline;
+}
+
+
