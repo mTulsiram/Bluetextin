@@ -21,6 +21,56 @@ The entire platform is designed to be a single, trusted destination for common o
 
 ---
 
+## 👨‍💻 About The Creator: Tulsiram Methre
+
+# Hi, I'm Tulsiram Methre! 👋
+
+**AWS Solution Architect | Cloud Architect | Creator of [BlueTEXT.in](https://www.bluetext.in)**
+
+I am obsessed with helping developers build high-quality apps as fast as possible ⚡. I simplify complex code so that the open-source world can build better products together.
+
+### 🚀 More About Me
+
+- 🏢 **Working at:** Tata Consultancy Services (Hyderabad)
+- 📺 **YouTube:** [CodeOn](https://www.youtube.com/@CodeOn) (700+ Subscribers | 590k+ Views)
+- 🎓 **Expertise:** Java, Flutter, AWS, C, and Modern App Development.
+- ⚽ **Passions:** Football, Table-Tennis.
+
+### 🌐 Connect With Me
+
+[LinkedIn](https://linkedin.com/in/tulsiram-methre) | [Twitter](https://twitter.com/Tulsiram_Methre) | [Instagram](https://instagram.com/CodeOnOriginal) | [Facebook](https://facebook.com/CodeOnYT) | [Discord](https://discord.gg/6gNUAaHaPw) | [Reddit](https://reddit.com/user/BlueTEXTin)
+
+### 💎 Support My Work
+
+- **Buy Me A Coffee:** [https://www.buymeacoffee.com/BlueTEXT.in](https://www.buymeacoffee.com/BlueTEXT.in) **(Preferred)**
+- **Support Us:** [https://bluetextin.stck.me](https://bluetextin.stck.me)
+- **Patreon:** [https://www.patreon.com/BlueTEXT](https://www.patreon.com/BlueTEXT)
+- **Ko-fi:** [https://ko-fi.com/bluetextin](https://ko-fi.com/bluetextin)
+- **UPI:** `Bluetext.in@UPI`
+
+### 🛠️ More Links
+
+- **Twitch:** [https://twitch.tv/codeonyt](https://twitch.tv/codeonyt)
+- **Pinterest:** [https://pinterest.com/CodeOnYT](https://pinterest.com/CodeOnYT)
+- **Slack:** [https://bluetextin.slack.com](https://bluetextin.slack.com)
+- **GitHub:** [https://github.com/CodeOnYT](https://github.com/CodeOnYT)
+- **Email:** `codeon@bluetext.in`
+- **ORCID:** [https://orcid.org/0009-0007-8869-1617](https://orcid.org/0009-0007-8869-1617)
+- **c/codeon:** c/codeon
+- **in/tulsiram-methre:** [https://linkedin.com/in/tulsiram-methre](https://linkedin.com/in/tulsiram-methre)
+- **tulsiram09:** tulsiram09
+
+### 🏷️ BlueTEXT.in Metadata
+
+- **Location:** HYDERABAD
+- **Website:** [https://www.bluetext.in](https://www.bluetext.in)
+
+### 📝 Website Logs
+
+_Last updated: Sat Mar 28 2026 12:54:59 GMT+0530 (India Standard Time)_
+
+---
+
 ## 🛠️ Tech Stack & Architecture
 
 This project is intentionally built with a simple, robust, and highly scalable static architecture.
@@ -86,7 +136,7 @@ The repository is organized as follows:
 
 ---
 
-##  automating Tasks
+##  Automation Tasks
 
 Several tasks in this project are automated via PowerShell scripts located in the (optional) `/scripts-dev/` directory.
 
@@ -108,5 +158,3 @@ This site is configured for **Continuous Deployment** on **Cloudflare Pages**.
 Any push or merge to the `main` branch will automatically trigger a new deployment to `https://www.bluetext.in`.
 
 ---
-
-> "Simplifying complex code for everyone." - Tulsiram Methre
