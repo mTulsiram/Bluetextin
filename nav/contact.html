@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Meta Tags -->
+    <title>Contact Us – Bluetext.in</title>
+    <meta name="description" content="Have a question, feedback, or a suggestion for a new tool? Get in touch with the team at Bluetext.in. We'd love to hear from you." />
+    <link rel="canonical" href="https://www.bluetext.in/nav/contact.html" />
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="/assets/css/main.css" />
+
+    <!-- Page-Specific Styles for the "Contact" page -->
+    <style>
+        .contact-header {
+            text-align: center;
+            padding: 80px 20px;
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+        .contact-header h1 {
+            color: var(--white);
+            font-size: 2.8rem;
+        }
+        .contact-header p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 15px auto 0;
+            opacity: 0.9;
+        }
+        .contact-layout {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 50px;
+            align-items: flex-start;
+        }
+
+        /* --- Embedded Form Styles --- */
+        .embedded-form-container h2 {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin-bottom: 25px;
+        }
+        body[data-theme="dark"] .embedded-form-container h2 {
+            color: var(--text-primary);
+        }
+        
+        /* This wrapper makes the iframe responsive */
+        .iframe-wrapper {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            min-height: 700px; /* Give it a default height */
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+        }
+        .iframe-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* --- Contact Info Styles --- */
+        .contact-info {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 25px;
+            position: sticky;
+            top: 100px;
+        }
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .contact-info p {
+            margin: 0 0 20px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+        .contact-detail span { /* Icon */
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+        }
+
+        /* Responsive */
+        @media (max-width: 800px) {
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+            .contact-info {
+                position: static;
+                margin-top: 50px;
+            }
+            .iframe-wrapper {
+                min-height: 80vh; /* Adjust height for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header injected by main.js -->
+    <div id="header-placeholder"></div>
+
+    <main>
+        <section class="contact-header">
+            <h1>Get In Touch</h1>
+            <p>We're always happy to hear from our users. Whether you have a question, a tool suggestion, or just want to say hello, feel free to reach out.</p>
+        </section>
+
+        <div class="contact-layout">
+            <!-- Left Side: Embedded Microsoft Form -->
+            <section class="embedded-form-container">
+                <h2>Send a Direct Message</h2>
+                <div class="iframe-wrapper">
+                    <iframe 
+                        src="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__lS2C6pUQU5ZSlcyWk9HNllQNlRTNTlXRkJPWUhYSC4u&embed=true" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </section>
+
+            <!-- Right Side: Contact Details -->
+            <aside class="contact-info">
+                <h3>Contact Information</h3>
+                <p>For direct inquiries, suggestions, or support, here are the best ways to connect.</p>
+                <div class="contact-detail">
+                    <span>📧</span>
+                    <div>
+                        <strong>Email</strong><br>
+                        <a href="mailto:codeon@bluetext.in">codeon@bluetext.in</a>
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <span>🐦</span>
+                    <div>
+                        <strong>Twitter / X</strong><br>
+                        <a href="https://twitter.com/Tulsiram_Methre" target="_blank" rel="noopener noreferrer">@Tulsiram_Methre</a>
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <span>💼</span>
+                    <div>
+                        <strong>LinkedIn</strong><br>
+                        <a href="https://linkedin.com/in/tulsiram-methre" target="_blank" rel="noopener noreferrer">in/tulsiram-methre</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer injected by main.js -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Core JavaScript -->
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>
