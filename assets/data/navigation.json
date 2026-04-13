@@ -1,3871 +1,836 @@
 {
   "siteName": "Bluetext.in",
-  "totalTools": 937,
-  "categories": [
+  "totalTools": 0,
+  "navigation": [
     {
-      "id": "developer",
-      "name": "Developer Tools",
-      "icon": "💻",
-      "tools": [
-        {
-          "name": "Api Response Formatter",
-          "url": "/tools/developer/api-response-formatter.html"
-        },
-        {
-          "name": "Ascii To Text",
-          "url": "/tools/developer/ascii-to-text.html"
-        },
-        {
-          "name": "Base64 Decoder",
-          "url": "/tools/developer/base64-decoder.html"
-        },
-        {
-          "name": "Base64 Encoder",
-          "url": "/tools/developer/base64-encoder.html"
-        },
-        {
-          "name": "Bcrypt Generator",
-          "url": "/tools/developer/bcrypt-generator.html"
-        },
-        {
-          "name": "Binary To Text",
-          "url": "/tools/developer/binary-to-text.html"
-        },
-        {
-          "name": "Code Diff Viewer",
-          "url": "/tools/developer/code-diff-viewer.html"
-        },
-        {
-          "name": "Code Snippet Formatter",
-          "url": "/tools/developer/code-snippet-formatter.html"
-        },
-        {
-          "name": "Compare Files",
-          "url": "/tools/developer/compare-files.html"
-        },
-        {
-          "name": "Cron Expression Generator",
-          "url": "/tools/developer/cron-expression-generator.html"
-        },
-        {
-          "name": "Cron Expression Parser",
-          "url": "/tools/developer/cron-expression-parser.html"
-        },
-        {
-          "name": "Css Beautifier",
-          "url": "/tools/developer/css-beautifier.html"
-        },
-        {
-          "name": "Css Inliner",
-          "url": "/tools/developer/css-inliner.html"
-        },
-        {
-          "name": "Css Minifier",
-          "url": "/tools/developer/css-minifier.html"
-        },
-        {
-          "name": "Csv Formatter",
-          "url": "/tools/developer/csv-formatter.html"
-        },
-        {
-          "name": "Csv To Json",
-          "url": "/tools/developer/csv-to-json.html"
-        },
-        {
-          "name": "Csv To Tsv",
-          "url": "/tools/developer/csv-to-tsv.html"
-        },
-        {
-          "name": "Csv Validator",
-          "url": "/tools/developer/csv-validator.html"
-        },
-        {
-          "name": "Csv Viewer",
-          "url": "/tools/developer/csv-viewer.html"
-        },
-        {
-          "name": "Date To Unix Timestamp",
-          "url": "/tools/developer/date-to-unix-timestamp.html"
-        },
-        {
-          "name": "Diff Checker",
-          "url": "/tools/developer/diff-checker.html"
-        },
-        {
-          "name": "Escape Unescape String",
-          "url": "/tools/developer/escape-unescape-string.html"
-        },
-        {
-          "name": "Faq Schema Generator",
-          "url": "/tools/developer/faq-schema-generator.html"
-        },
-        {
-          "name": "Favicon Generator",
-          "url": "/tools/developer/favicon-generator.html"
-        },
-        {
-          "name": "Graphql Formatter",
-          "url": "/tools/developer/graphql-formatter.html"
-        },
-        {
-          "name": "Hex To Text",
-          "url": "/tools/developer/hex-to-text.html"
-        },
-        {
-          "name": "Htaccess Generator",
-          "url": "/tools/developer/htaccess-generator.html"
-        },
-        {
-          "name": "Html Beautifier",
-          "url": "/tools/developer/html-beautifier.html"
-        },
-        {
-          "name": "Html Decoder",
-          "url": "/tools/developer/html-decoder.html"
-        },
-        {
-          "name": "Html Encoder",
-          "url": "/tools/developer/html-encoder.html"
-        },
-        {
-          "name": "Html Minifier",
-          "url": "/tools/developer/html-minifier.html"
-        },
-        {
-          "name": "Http Headers Checker",
-          "url": "/tools/developer/http-headers-checker.html"
-        },
-        {
-          "name": "Javascript Beautifier",
-          "url": "/tools/developer/javascript-beautifier.html"
-        },
-        {
-          "name": "Javascript Minifier",
-          "url": "/tools/developer/javascript-minifier.html"
-        },
-        {
-          "name": "Json Formatter",
-          "url": "/tools/developer/json-formatter.html"
-        },
-        {
-          "name": "Json To Csv",
-          "url": "/tools/developer/json-to-csv.html"
-        },
-        {
-          "name": "Json To Xml",
-          "url": "/tools/developer/json-to-xml.html"
-        },
-        {
-          "name": "Json To Yaml",
-          "url": "/tools/developer/json-to-yaml.html"
-        },
-        {
-          "name": "Json Validator",
-          "url": "/tools/developer/json-validator.html"
-        },
-        {
-          "name": "Jwt Encoder Decoder",
-          "url": "/tools/developer/jwt-encoder-decoder.html"
-        },
-        {
-          "name": "Line Ending Converter",
-          "url": "/tools/developer/line-ending-converter.html"
-        },
-        {
-          "name": "Md5 Generator",
-          "url": "/tools/developer/md5-generator.html"
-        },
-        {
-          "name": "Meta Tag Generator",
-          "url": "/tools/developer/meta-tag-generator.html"
-        },
-        {
-          "name": "Mime Type Checker",
-          "url": "/tools/developer/mime-type-checker.html"
-        },
-        {
-          "name": "Nanoid Generator",
-          "url": "/tools/developer/nanoid-generator.html"
-        },
-        {
-          "name": "Open Graph Generator",
-          "url": "/tools/developer/open-graph-generator.html"
-        },
-        {
-          "name": "Password Generator",
-          "url": "/tools/developer/password-generator.html"
-        },
-        {
-          "name": "Password Strength Checker",
-          "url": "/tools/developer/password-strength-checker.html"
-        },
-        {
-          "name": "Php Serializer",
-          "url": "/tools/developer/php-serializer.html"
-        },
-        {
-          "name": "Php Unserializer",
-          "url": "/tools/developer/php-unserializer.html"
-        },
-        {
-          "name": "Programming Language Detector",
-          "url": "/tools/developer/programming-language-detector.html"
-        },
-        {
-          "name": "Python Playground",
-          "url": "/tools/developer/python-playground.html"
-        },
-        {
-          "name": "Qr Code Decoder",
-          "url": "/tools/developer/qr-code-decoder.html"
-        },
-        {
-          "name": "Qr Code Generator",
-          "url": "/tools/developer/qr-code-generator.html"
-        },
-        {
-          "name": "Robots Txt Generator",
-          "url": "/tools/developer/robots-txt-generator.html"
-        },
-        {
-          "name": "Schema Markup Generator",
-          "url": "/tools/developer/schema-markup-generator.html"
-        },
-        {
-          "name": "Sha1 Generator",
-          "url": "/tools/developer/sha1-generator.html"
-        },
-        {
-          "name": "Sha256 Generator",
-          "url": "/tools/developer/sha256-generator.html"
-        },
-        {
-          "name": "Sha512 Generator",
-          "url": "/tools/developer/sha512-generator.html"
-        },
-        {
-          "name": "Sitemap Xml Generator",
-          "url": "/tools/developer/sitemap-xml-generator.html"
-        },
-        {
-          "name": "Sql Formatter",
-          "url": "/tools/developer/sql-formatter.html"
-        },
-        {
-          "name": "Sql Playground",
-          "url": "/tools/developer/sql-playground.html"
-        },
-        {
-          "name": "Syntax Highlighter",
-          "url": "/tools/developer/syntax-highlighter.html"
-        },
-        {
-          "name": "Text To Ascii",
-          "url": "/tools/developer/text-to-ascii.html"
-        },
-        {
-          "name": "Text To Binary",
-          "url": "/tools/developer/text-to-binary.html"
-        },
-        {
-          "name": "Text To Hex",
-          "url": "/tools/developer/text-to-hex.html"
-        },
-        {
-          "name": "Text To Unicode",
-          "url": "/tools/developer/text-to-unicode.html"
-        },
-        {
-          "name": "Timestamp To Date",
-          "url": "/tools/developer/timestamp-to-date.html"
-        },
-        {
-          "name": "Tsv To Csv",
-          "url": "/tools/developer/tsv-to-csv.html"
-        },
-        {
-          "name": "Tsv Viewer",
-          "url": "/tools/developer/tsv-viewer.html"
-        },
-        {
-          "name": "Twitter Card Generator",
-          "url": "/tools/developer/twitter-card-generator.html"
-        },
-        {
-          "name": "Ulid Generator",
-          "url": "/tools/developer/ulid-generator.html"
-        },
-        {
-          "name": "Unicode To Text",
-          "url": "/tools/developer/unicode-to-text.html"
-        }
-      ]
+      "name": "Media",
+      "id": "media",
+      "subcategories": []
     },
     {
-      "id": "youtube",
-      "name": "YouTube Tools",
-      "icon": "▶️",
-      "tools": [
-        {
-          "name": "Youtube Audio Extractor",
-          "url": "/tools/youtube/youtube-audio-extractor.html"
-        },
-        {
-          "name": "Youtube Channel Id Finder",
-          "url": "/tools/youtube/youtube-channel-id-finder.html"
-        },
-        {
-          "name": "Youtube Channel Logo Downloader",
-          "url": "/tools/youtube/youtube-channel-logo-downloader.html"
-        },
-        {
-          "name": "Youtube Channel Search",
-          "url": "/tools/youtube/youtube-channel-search.html"
-        },
-        {
-          "name": "Youtube Channel Statistics",
-          "url": "/tools/youtube/youtube-channel-statistics.html"
-        },
-        {
-          "name": "Youtube Chapter Generator",
-          "url": "/tools/youtube/youtube-chapter-generator.html"
-        },
-        {
-          "name": "Youtube Comment Picker",
-          "url": "/tools/youtube/youtube-comment-picker.html"
-        },
-        {
-          "name": "Youtube Data Viewer",
-          "url": "/tools/youtube/youtube-data-viewer.html"
-        },
-        {
-          "name": "Youtube Description Extractor",
-          "url": "/tools/youtube/youtube-description-extractor.html"
-        },
-        {
-          "name": "Youtube Description Generator",
-          "url": "/tools/youtube/youtube-description-generator.html"
-        },
-        {
-          "name": "Youtube Embed Code Generator",
-          "url": "/tools/youtube/youtube-embed-code-generator.html"
-        },
-        {
-          "name": "Youtube Engagement Calculator",
-          "url": "/tools/youtube/youtube-engagement-calculator.html"
-        },
-        {
-          "name": "Youtube Hashtag Extractor",
-          "url": "/tools/youtube/youtube-hashtag-extractor.html"
-        },
-        {
-          "name": "Youtube Hashtag Generator",
-          "url": "/tools/youtube/youtube-hashtag-generator.html"
-        },
-        {
-          "name": "Youtube Keyword Idea Tool",
-          "url": "/tools/youtube/youtube-keyword-idea-tool.html"
-        },
-        {
-          "name": "Youtube Monetization Checker",
-          "url": "/tools/youtube/youtube-monetization-checker.html"
-        },
-        {
-          "name": "Youtube Money Calculator",
-          "url": "/tools/youtube/youtube-money-calculator.html"
-        },
-        {
-          "name": "Youtube Playlist Analyzer",
-          "url": "/tools/youtube/youtube-playlist-analyzer.html"
-        },
-        {
-          "name": "Youtube Region Restriction Checker",
-          "url": "/tools/youtube/youtube-region-restriction-checker.html"
-        },
-        {
-          "name": "Youtube Shorts Metadata Viewer",
-          "url": "/tools/youtube/youtube-shorts-metadata-viewer.html"
-        },
-        {
-          "name": "Youtube Subscribe Link Generator",
-          "url": "/tools/youtube/youtube-subscribe-link-generator.html"
-        },
-        {
-          "name": "Youtube Tag Generator",
-          "url": "/tools/youtube/youtube-tag-generator.html"
-        },
-        {
-          "name": "Youtube Tags Extractor",
-          "url": "/tools/youtube/youtube-tags-extractor.html"
-        },
-        {
-          "name": "Youtube Thumbnail Downloader",
-          "url": "/tools/youtube/youtube-thumbnail-downloader.html"
-        },
-        {
-          "name": "Youtube Thumbnail Extractor",
-          "url": "/tools/youtube/youtube-thumbnail-extractor.html"
-        },
-        {
-          "name": "Youtube Timestamp Link Generator",
-          "url": "/tools/youtube/youtube-timestamp-link-generator.html"
-        },
-        {
-          "name": "Youtube Title Generator",
-          "url": "/tools/youtube/youtube-title-generator.html"
-        },
-        {
-          "name": "Youtube Title Length Checker",
-          "url": "/tools/youtube/youtube-title-length-checker.html"
-        },
-        {
-          "name": "Youtube Trend Finder",
-          "url": "/tools/youtube/youtube-trend-finder.html"
-        },
-        {
-          "name": "Youtube Video Count Checker",
-          "url": "/tools/youtube/youtube-video-count-checker.html"
-        },
-        {
-          "name": "Youtube Video Statistics",
-          "url": "/tools/youtube/youtube-video-statistics.html"
-        },
-        {
-          "name": "Youtube Banner Downloader",
-          "url": "/tools/youtube/youtube-banner-downloader.html"
-        },
-        {
-          "name": "Youtube Comment Sentiment Analysis",
-          "url": "/tools/youtube/youtube-comment-sentiment-analysis.html"
-        },
-        {
-          "name": "Youtube Transcript Extractor",
-          "url": "/tools/youtube/youtube-transcript-extractor.html"
-        },
-        {
-          "name": "Youtube Live Subscriber Count",
-          "url": "/tools/youtube/youtube-live-subscriber-count.html"
-        },
-        {
-          "name": "Youtube Video Audit",
-          "url": "/tools/youtube/youtube-video-audit.html"
-        },
-        {
-          "name": "Youtube Competitor Checker",
-          "url": "/tools/youtube/youtube-competitor-checker.html"
-        },
-        {
-          "name": "Youtube Thumbnail Ab Tester",
-          "url": "/tools/youtube/youtube-thumbnail-ab-tester.html"
-        },
-        {
-          "name": "Youtube Video Metadata Gen",
-          "url": "/tools/youtube/youtube-video-metadata-gen.html"
-        },
-        {
-          "name": "Youtube Playlist Duration Calc",
-          "url": "/tools/youtube/youtube-playlist-duration-calc.html"
-        },
-        {
-          "name": "Youtube End Screen Gen",
-          "url": "/tools/youtube/youtube-end-screen-gen.html"
-        },
-        {
-          "name": "Youtube Outro Maker",
-          "url": "/tools/youtube/youtube-outro-maker.html"
-        },
-        {
-          "name": "Youtube Keyword Rank Tracker",
-          "url": "/tools/youtube/youtube-keyword-rank-tracker.html"
-        },
-        {
-          "name": "Youtube Upload Checklist",
-          "url": "/tools/youtube/youtube-upload-checklist.html"
-        },
-        {
-          "name": "Youtube Ad Revenue Estimator",
-          "url": "/tools/youtube/youtube-ad-revenue-estimator.html"
-        },
-        {
-          "name": "Youtube Top Videos Finder",
-          "url": "/tools/youtube/youtube-top-videos-finder.html"
-        },
-        {
-          "name": "Youtube Subscriber Growth Chart",
-          "url": "/tools/youtube/youtube-subscriber-growth-chart.html"
-        },
-        {
-          "name": "Youtube To Social Clip Gen",
-          "url": "/tools/youtube/youtube-to-social-clip-gen.html"
-        },
-        {
-          "name": "Youtube Video Tag Optimizer",
-          "url": "/tools/youtube/youtube-video-tag-optimizer.html"
-        },
-        {
-          "name": "Youtube Api Explorer",
-          "url": "/tools/youtube/youtube-api-explorer.html"
-        }
-      ]
+      "name": "Creator Tools",
+      "id": "creator",
+      "subcategories": []
     },
     {
-      "id": "ai-utilities",
-      "name": "AI Utilities",
-      "icon": "🤖",
-      "tools": [
-        {
-          "name": "Ai Background Remover",
-          "url": "/tools/ai-utilities/ai-background-remover.html"
-        },
-        {
-          "name": "Ai Bio Generator",
-          "url": "/tools/ai-utilities/ai-bio-generator.html"
-        },
-        {
-          "name": "Ai Cover Letter Generator",
-          "url": "/tools/ai-utilities/ai-cover-letter-generator.html"
-        },
-        {
-          "name": "Ai Description Generator",
-          "url": "/tools/ai-utilities/ai-description-generator.html"
-        },
-        {
-          "name": "Ai Document Cleaner",
-          "url": "/tools/ai-utilities/ai-document-cleaner.html"
-        },
-        {
-          "name": "Ai Email Writer",
-          "url": "/tools/ai-utilities/ai-email-writer.html"
-        },
-        {
-          "name": "Ai Hashtag Generator Ai",
-          "url": "/tools/ai-utilities/ai-hashtag-generator-ai.html"
-        },
-        {
-          "name": "Ai Image Enhancer Ai",
-          "url": "/tools/ai-utilities/ai-image-enhancer-ai.html"
-        },
-        {
-          "name": "Ai Image Upscaler Ai",
-          "url": "/tools/ai-utilities/ai-image-upscaler-ai.html"
-        },
-        {
-          "name": "Ai Keyword Clustering",
-          "url": "/tools/ai-utilities/ai-keyword-clustering.html"
-        },
-        {
-          "name": "Ai Meta Description Gen",
-          "url": "/tools/ai-utilities/ai-meta-description-gen.html"
-        },
-        {
-          "name": "Ai Paraphrasing Tool",
-          "url": "/tools/ai-utilities/ai-paraphrasing-tool.html"
-        },
-        {
-          "name": "Ai Product Description Gen",
-          "url": "/tools/ai-utilities/ai-product-description-gen.html"
-        },
-        {
-          "name": "Ai Proposal Writer",
-          "url": "/tools/ai-utilities/ai-proposal-writer.html"
-        },
-        {
-          "name": "Ai Resume Maker",
-          "url": "/tools/ai-utilities/ai-resume-maker.html"
-        },
-        {
-          "name": "Ai Tag Generator",
-          "url": "/tools/ai-utilities/ai-tag-generator.html"
-        },
-        {
-          "name": "Ai Text Summarizer",
-          "url": "/tools/ai-utilities/ai-text-summarizer.html"
-        },
-        {
-          "name": "Ai Thumbnail Idea Gen",
-          "url": "/tools/ai-utilities/ai-thumbnail-idea-gen.html"
-        },
-        {
-          "name": "Ai Title Generator",
-          "url": "/tools/ai-utilities/ai-title-generator.html"
-        },
-        {
-          "name": "Ai Translator",
-          "url": "/tools/ai-utilities/ai-translator.html"
-        },
-        {
-          "name": "Ai Youtube Script Gen",
-          "url": "/tools/ai-utilities/ai-youtube-script-gen.html"
-        },
-        {
-          "name": "Ai Chat Prompt Optimizer",
-          "url": "/tools/ai-utilities/ai-chat-prompt-optimizer.html"
-        },
-        {
-          "name": "Ai Grammar Checker",
-          "url": "/tools/ai-utilities/ai-grammar-checker.html"
-        },
-        {
-          "name": "Ai Article Outline Gen",
-          "url": "/tools/ai-utilities/ai-article-outline-gen.html"
-        },
-        {
-          "name": "Ai Code Explainer",
-          "url": "/tools/ai-utilities/ai-code-explainer.html"
-        },
-        {
-          "name": "Ai Joke Generator",
-          "url": "/tools/ai-utilities/ai-joke-generator.html"
-        },
-        {
-          "name": "Ai Business Name Gen",
-          "url": "/tools/ai-utilities/ai-business-name-gen.html"
-        },
-        {
-          "name": "Ai Slogan Generator",
-          "url": "/tools/ai-utilities/ai-slogan-generator.html"
-        },
-        {
-          "name": "Ai Content Detector",
-          "url": "/tools/ai-utilities/ai-content-detector.html"
-        },
-        {
-          "name": "Ai Voice Over Script Gen",
-          "url": "/tools/ai-utilities/ai-voice-over-script-gen.html"
-        },
-        {
-          "name": "Ai Story Generator",
-          "url": "/tools/ai-utilities/ai-story-generator.html"
-        },
-        {
-          "name": "Ai Poem Generator",
-          "url": "/tools/ai-utilities/ai-poem-generator.html"
-        },
-        {
-          "name": "Ai Lyrics Generator",
-          "url": "/tools/ai-utilities/ai-lyrics-generator.html"
-        },
-        {
-          "name": "Ai Code Refactorer",
-          "url": "/tools/ai-utilities/ai-code-refactorer.html"
-        },
-        {
-          "name": "Ai Bug Finder",
-          "url": "/tools/ai-utilities/ai-bug-finder.html"
-        },
-        {
-          "name": "Ai Sql Query Gen",
-          "url": "/tools/ai-utilities/ai-sql-query-gen.html"
-        },
-        {
-          "name": "Ai Regex Explainer",
-          "url": "/tools/ai-utilities/ai-regex-explainer.html"
-        },
-        {
-          "name": "Ai Json Data Gen",
-          "url": "/tools/ai-utilities/ai-json-data-gen.html"
-        },
-        {
-          "name": "Ai User Persona Gen",
-          "url": "/tools/ai-utilities/ai-user-persona-gen.html"
-        },
-        {
-          "name": "Ai Market Research Helper",
-          "url": "/tools/ai-utilities/ai-market-research-helper.html"
-        },
-        {
-          "name": "Ai Swot Analysis Tool",
-          "url": "/tools/ai-utilities/ai-swot-analysis-tool.html"
-        },
-        {
-          "name": "Ai Business Plan Draft",
-          "url": "/tools/ai-utilities/ai-business-plan-draft.html"
-        },
-        {
-          "name": "Ai Financial Projection",
-          "url": "/tools/ai-utilities/ai-financial-projection.html"
-        },
-        {
-          "name": "Ai Investment Analyzer",
-          "url": "/tools/ai-utilities/ai-investment-analyzer.html"
-        },
-        {
-          "name": "Ai Stock Price Predictor Demo",
-          "url": "/tools/ai-utilities/ai-stock-price-predictor-demo.html"
-        },
-        {
-          "name": "Ai Crypto Sentiment Analyzer",
-          "url": "/tools/ai-utilities/ai-crypto-sentiment-analyzer.html"
-        },
-        {
-          "name": "Ai News Summarizer",
-          "url": "/tools/ai-utilities/ai-news-summarizer.html"
-        },
-        {
-          "name": "Ai Translation Pro",
-          "url": "/tools/ai-utilities/ai-translation-pro.html"
-        },
-        {
-          "name": "Ai Language Tutor",
-          "url": "/tools/ai-utilities/ai-language-tutor.html"
-        },
-        {
-          "name": "Ai Vocabulary Builder",
-          "url": "/tools/ai-utilities/ai-vocabulary-builder.html"
-        },
-        {
-          "name": "Ai Grammar Pro",
-          "url": "/tools/ai-utilities/ai-grammar-pro.html"
-        },
-        {
-          "name": "Ai Plagiarism Checker Demo",
-          "url": "/tools/ai-utilities/ai-plagiarism-checker-demo.html"
-        },
-        {
-          "name": "Ai Citation Generator",
-          "url": "/tools/ai-utilities/ai-citation-generator.html"
-        },
-        {
-          "name": "Ai Bibliography Gen",
-          "url": "/tools/ai-utilities/ai-bibliography-gen.html"
-        },
-        {
-          "name": "Ai Study Planner",
-          "url": "/tools/ai-utilities/ai-study-planner.html"
-        },
-        {
-          "name": "Ai Quiz Generator",
-          "url": "/tools/ai-utilities/ai-quiz-generator.html"
-        },
-        {
-          "name": "Ai Flashcard Maker",
-          "url": "/tools/ai-utilities/ai-flashcard-maker.html"
-        },
-        {
-          "name": "Ai Lesson Plan Gen",
-          "url": "/tools/ai-utilities/ai-lesson-plan-gen.html"
-        },
-        {
-          "name": "Ai Rubric Creator",
-          "url": "/tools/ai-utilities/ai-rubric-creator.html"
-        },
-        {
-          "name": "Ai Grading Assistant",
-          "url": "/tools/ai-utilities/ai-grading-assistant.html"
-        },
-        {
-          "name": "Ai Feedback Gen",
-          "url": "/tools/ai-utilities/ai-feedback-gen.html"
-        },
-        {
-          "name": "Ai Parent Communication Gen",
-          "url": "/tools/ai-utilities/ai-parent-communication-gen.html"
-        },
-        {
-          "name": "Ai School Report Gen",
-          "url": "/tools/ai-utilities/ai-school-report-gen.html"
-        },
-        {
-          "name": "Ai Curriculum Mapper",
-          "url": "/tools/ai-utilities/ai-curriculum-mapper.html"
-        },
-        {
-          "name": "Ai Special Ed Helper",
-          "url": "/tools/ai-utilities/ai-special-ed-helper.html"
-        },
-        {
-          "name": "Ai Esl Resource Gen",
-          "url": "/tools/ai-utilities/ai-esl-resource-gen.html"
-        },
-        {
-          "name": "Ai Preschool Activity Gen",
-          "url": "/tools/ai-utilities/ai-preschool-activity-gen.html"
-        },
-        {
-          "name": "Ai Stem Project Idea Gen",
-          "url": "/tools/ai-utilities/ai-stem-project-idea-gen.html"
-        },
-        {
-          "name": "Ai Art History Helper",
-          "url": "/tools/ai-utilities/ai-art-history-helper.html"
-        },
-        {
-          "name": "Ai Music Theory Assistant",
-          "url": "/tools/ai-utilities/ai-music-theory-assistant.html"
-        }
-      ]
-    },
-    {
-      "id": "image",
-      "name": "Image Tools",
-      "icon": "🖼️",
-      "tools": [
-        {
-          "name": "Add Noise Image",
-          "url": "/tools/image/add-noise-image.html"
-        },
-        {
-          "name": "Adjust Image Brightness",
-          "url": "/tools/image/adjust-image-brightness.html"
-        },
-        {
-          "name": "Adjust Image Channels",
-          "url": "/tools/image/adjust-image-channels.html"
-        },
-        {
-          "name": "Adjust Image Contrast",
-          "url": "/tools/image/adjust-image-contrast.html"
-        },
-        {
-          "name": "Adjust Image Exposure",
-          "url": "/tools/image/adjust-image-exposure.html"
-        },
-        {
-          "name": "Adjust Image Saturation",
-          "url": "/tools/image/adjust-image-saturation.html"
-        },
-        {
-          "name": "Adjust Image Vibrance",
-          "url": "/tools/image/adjust-image-vibrance.html"
-        },
-        {
-          "name": "Ai Image Enhancer",
-          "url": "/tools/image/ai-image-enhancer.html"
-        },
-        {
-          "name": "Ai Image Upscaler",
-          "url": "/tools/image/ai-image-upscaler.html"
-        },
-        {
-          "name": "Auto Image Resizer",
-          "url": "/tools/image/auto-image-resizer.html"
-        },
-        {
-          "name": "Avif Converter",
-          "url": "/tools/image/avif-converter.html"
-        },
-        {
-          "name": "Base64 To Image",
-          "url": "/tools/image/base64-to-image.html"
-        },
-        {
-          "name": "Blur Frame Generator",
-          "url": "/tools/image/blur-frame-generator.html"
-        },
-        {
-          "name": "Blur Image",
-          "url": "/tools/image/blur-image.html"
-        },
-        {
-          "name": "Bmp To Png",
-          "url": "/tools/image/bmp-to-png.html"
-        },
-        {
-          "name": "Bulk Add Noise",
-          "url": "/tools/image/bulk-add-noise.html"
-        },
-        {
-          "name": "Bulk Blur Image",
-          "url": "/tools/image/bulk-blur-image.html"
-        },
-        {
-          "name": "Bulk Crop Image",
-          "url": "/tools/image/bulk-crop-image.html"
-        },
-        {
-          "name": "Bulk Flip Image",
-          "url": "/tools/image/bulk-flip-image.html"
-        },
-        {
-          "name": "Bulk Grayscale Image",
-          "url": "/tools/image/bulk-grayscale-image.html"
-        },
-        {
-          "name": "Bulk Image Compressor",
-          "url": "/tools/image/bulk-image-compressor.html"
-        },
-        {
-          "name": "Bulk Invert Colors",
-          "url": "/tools/image/bulk-invert-colors.html"
-        },
-        {
-          "name": "Bulk Resize Image",
-          "url": "/tools/image/bulk-resize-image.html"
-        },
-        {
-          "name": "Bulk Rotate Image",
-          "url": "/tools/image/bulk-rotate-image.html"
-        },
-        {
-          "name": "Bulk Sepia Image",
-          "url": "/tools/image/bulk-sepia-image.html"
-        },
-        {
-          "name": "Clip Image",
-          "url": "/tools/image/clip-image.html"
-        },
-        {
-          "name": "Color Emboss Image",
-          "url": "/tools/image/color-emboss-image.html"
-        },
-        {
-          "name": "Colorize Image",
-          "url": "/tools/image/colorize-image.html"
-        },
-        {
-          "name": "Crop Image",
-          "url": "/tools/image/crop-image.html"
-        },
-        {
-          "name": "Cut Corners Image",
-          "url": "/tools/image/cut-corners-image.html"
-        },
-        {
-          "name": "Darken Image",
-          "url": "/tools/image/darken-image.html"
-        },
-        {
-          "name": "Duotone Image",
-          "url": "/tools/image/duotone-image.html"
-        },
-        {
-          "name": "Edge Detection",
-          "url": "/tools/image/edge-detection.html"
-        },
-        {
-          "name": "Emboss Image",
-          "url": "/tools/image/emboss-image.html"
-        },
-        {
-          "name": "Extract Colors",
-          "url": "/tools/image/extract-colors.html"
-        },
-        {
-          "name": "Flip Image",
-          "url": "/tools/image/flip-image.html"
-        },
-        {
-          "name": "Gif To Png",
-          "url": "/tools/image/gif-to-png.html"
-        },
-        {
-          "name": "Glow Effect",
-          "url": "/tools/image/glow-effect.html"
-        },
-        {
-          "name": "Grayscale Image",
-          "url": "/tools/image/grayscale-image.html"
-        },
-        {
-          "name": "Heic To Jpg",
-          "url": "/tools/image/heic-to-jpg.html"
-        },
-        {
-          "name": "Heic To Png",
-          "url": "/tools/image/heic-to-png.html"
-        },
-        {
-          "name": "Hsl Adjust",
-          "url": "/tools/image/hsl-adjust.html"
-        },
-        {
-          "name": "Hue Shift",
-          "url": "/tools/image/hue-shift.html"
-        },
-        {
-          "name": "Ico Converter",
-          "url": "/tools/image/ico-converter.html"
-        },
-        {
-          "name": "Image Color Picker",
-          "url": "/tools/image/image-color-picker.html"
-        },
-        {
-          "name": "Image Compressor",
-          "url": "/tools/image/image-compressor.html"
-        },
-        {
-          "name": "Image Converter",
-          "url": "/tools/image/image-converter.html"
-        },
-        {
-          "name": "Image Cropper",
-          "url": "/tools/image/image-cropper.html"
-        },
-        {
-          "name": "Image Gradient Gen",
-          "url": "/tools/image/image-gradient-gen.html"
-        },
-        {
-          "name": "Image Histogram",
-          "url": "/tools/image/image-histogram.html"
-        },
-        {
-          "name": "Image To Base64",
-          "url": "/tools/image/image-to-base64.html"
-        },
-        {
-          "name": "Image To Video",
-          "url": "/tools/image/image-to-video.html"
-        },
-        {
-          "name": "Invert Colors",
-          "url": "/tools/image/invert-colors.html"
-        },
-        {
-          "name": "Jpg To Png",
-          "url": "/tools/image/jpg-to-png.html"
-        },
-        {
-          "name": "Jpg To Webp",
-          "url": "/tools/image/jpg-to-webp.html"
-        },
-        {
-          "name": "Lighten Image",
-          "url": "/tools/image/lighten-image.html"
-        },
-        {
-          "name": "Merge Images",
-          "url": "/tools/image/merge-images.html"
-        },
-        {
-          "name": "Overlay Images",
-          "url": "/tools/image/overlay-images.html"
-        },
-        {
-          "name": "Passport Photo Tool",
-          "url": "/tools/image/passport-photo-tool.html"
-        },
-        {
-          "name": "Photo Bg Remover",
-          "url": "/tools/image/photo-bg-remover.html"
-        },
-        {
-          "name": "Pixelate Image",
-          "url": "/tools/image/pixelate-image.html"
-        },
-        {
-          "name": "Png To Jpg",
-          "url": "/tools/image/png-to-jpg.html"
-        },
-        {
-          "name": "Png To Svg",
-          "url": "/tools/image/png-to-svg.html"
-        },
-        {
-          "name": "Png To Webp",
-          "url": "/tools/image/png-to-webp.html"
-        },
-        {
-          "name": "Posterize Image",
-          "url": "/tools/image/posterize-image.html"
-        },
-        {
-          "name": "Qr Scanner",
-          "url": "/tools/image/qr-scanner.html"
-        },
-        {
-          "name": "Remove Noise",
-          "url": "/tools/image/remove-noise.html"
-        },
-        {
-          "name": "Resize Image",
-          "url": "/tools/image/resize-image.html"
-        },
-        {
-          "name": "Rotate Image",
-          "url": "/tools/image/rotate-image.html"
-        },
-        {
-          "name": "Sepia Image",
-          "url": "/tools/image/sepia-image.html"
-        },
-        {
-          "name": "Bulk Add Noise Image",
-          "url": "/tools/image/bulk-add-noise-image.html"
-        },
-        {
-          "name": "Bulk Adjust Image Brightness",
-          "url": "/tools/image/bulk-adjust-image-brightness.html"
-        },
-        {
-          "name": "Bulk Adjust Image Channels",
-          "url": "/tools/image/bulk-adjust-image-channels.html"
-        },
-        {
-          "name": "Bulk Adjust Image Contrast",
-          "url": "/tools/image/bulk-adjust-image-contrast.html"
-        },
-        {
-          "name": "Bulk Adjust Image Exposure",
-          "url": "/tools/image/bulk-adjust-image-exposure.html"
-        },
-        {
-          "name": "Bulk Adjust Image Saturation",
-          "url": "/tools/image/bulk-adjust-image-saturation.html"
-        },
-        {
-          "name": "Bulk Adjust Image Vibrance",
-          "url": "/tools/image/bulk-adjust-image-vibrance.html"
-        },
-        {
-          "name": "Bulk Blur Frame Generator",
-          "url": "/tools/image/bulk-blur-frame-generator.html"
-        },
-        {
-          "name": "Bulk Blur Image Pro",
-          "url": "/tools/image/bulk-blur-image-pro.html"
-        },
-        {
-          "name": "Bulk Clip Image",
-          "url": "/tools/image/bulk-clip-image.html"
-        },
-        {
-          "name": "Bulk Color Emboss Image",
-          "url": "/tools/image/bulk-color-emboss-image.html"
-        },
-        {
-          "name": "Bulk Colorize Image",
-          "url": "/tools/image/bulk-colorize-image.html"
-        },
-        {
-          "name": "Bulk Crop Image Pro",
-          "url": "/tools/image/bulk-crop-image-pro.html"
-        },
-        {
-          "name": "Bulk Duotone Image",
-          "url": "/tools/image/bulk-duotone-image.html"
-        },
-        {
-          "name": "Bulk Edge Detection Image",
-          "url": "/tools/image/bulk-edge-detection-image.html"
-        },
-        {
-          "name": "Bulk Edge Enhancement Image",
-          "url": "/tools/image/bulk-edge-enhancement-image.html"
-        },
-        {
-          "name": "Bulk Emboss Image",
-          "url": "/tools/image/bulk-emboss-image.html"
-        },
-        {
-          "name": "Bulk Extract Colors From Image",
-          "url": "/tools/image/bulk-extract-colors-from-image.html"
-        },
-        {
-          "name": "Bulk Flip Image Pro",
-          "url": "/tools/image/bulk-flip-image-pro.html"
-        },
-        {
-          "name": "Bulk Gamma Correction Image",
-          "url": "/tools/image/bulk-gamma-correction-image.html"
-        },
-        {
-          "name": "Bulk Glow Effect Image",
-          "url": "/tools/image/bulk-glow-effect-image.html"
-        },
-        {
-          "name": "Bulk Grayscale Image Pro",
-          "url": "/tools/image/bulk-grayscale-image-pro.html"
-        },
-        {
-          "name": "Bulk Hsl Adjust Image",
-          "url": "/tools/image/bulk-hsl-adjust-image.html"
-        },
-        {
-          "name": "Bulk Hue Shift Image",
-          "url": "/tools/image/bulk-hue-shift-image.html"
-        },
-        {
-          "name": "Bulk Image Compressor Pro",
-          "url": "/tools/image/bulk-image-compressor-pro.html"
-        },
-        {
-          "name": "Bulk Image Histogram",
-          "url": "/tools/image/bulk-image-histogram.html"
-        },
-        {
-          "name": "Bulk Invert Image Colors",
-          "url": "/tools/image/bulk-invert-image-colors.html"
-        },
-        {
-          "name": "Bulk Merge Images",
-          "url": "/tools/image/bulk-merge-images.html"
-        },
-        {
-          "name": "Bulk Overlay Images",
-          "url": "/tools/image/bulk-overlay-images.html"
-        },
-        {
-          "name": "Bulk Pixelate Image",
-          "url": "/tools/image/bulk-pixelate-image.html"
-        },
-        {
-          "name": "Bulk Posterize Image",
-          "url": "/tools/image/bulk-posterize-image.html"
-        },
-        {
-          "name": "Bulk Random Bitmap Generator",
-          "url": "/tools/image/bulk-random-bitmap-generator.html"
-        },
-        {
-          "name": "Bulk Remove Noise Image",
-          "url": "/tools/image/bulk-remove-noise-image.html"
-        },
-        {
-          "name": "Bulk Resize Image Pro",
-          "url": "/tools/image/bulk-resize-image-pro.html"
-        },
-        {
-          "name": "Bulk Rgb Channels Image",
-          "url": "/tools/image/bulk-rgb-channels-image.html"
-        },
-        {
-          "name": "Bulk Rotate Image Pro",
-          "url": "/tools/image/bulk-rotate-image-pro.html"
-        },
-        {
-          "name": "Bulk Round Corners Image",
-          "url": "/tools/image/bulk-round-corners-image.html"
-        },
-        {
-          "name": "Bulk Sepia Image Pro",
-          "url": "/tools/image/bulk-sepia-image-pro.html"
-        },
-        {
-          "name": "Bulk Solarize Image",
-          "url": "/tools/image/bulk-solarize-image.html"
-        },
-        {
-          "name": "Bulk Split Image",
-          "url": "/tools/image/bulk-split-image.html"
-        },
-        {
-          "name": "Bulk Svg Converter",
-          "url": "/tools/image/bulk-svg-converter.html"
-        },
-        {
-          "name": "Bulk Threshold Image",
-          "url": "/tools/image/bulk-threshold-image.html"
-        },
-        {
-          "name": "Bulk Tilt Shift Image",
-          "url": "/tools/image/bulk-tilt-shift-image.html"
-        },
-        {
-          "name": "Bulk Vignette Effect Image",
-          "url": "/tools/image/bulk-vignette-effect-image.html"
-        },
-        {
-          "name": "Bulk Watermark Image",
-          "url": "/tools/image/bulk-watermark-image.html"
-        },
-        {
-          "name": "Bulk Webp Converter",
-          "url": "/tools/image/bulk-webp-converter.html"
-        },
-        {
-          "name": "Bulk Png To Jpg",
-          "url": "/tools/image/bulk-png-to-jpg.html"
-        },
-        {
-          "name": "Bulk Jpg To Png",
-          "url": "/tools/image/bulk-jpg-to-png.html"
-        },
-        {
-          "name": "Bulk Image Rename",
-          "url": "/tools/image/bulk-image-rename.html"
-        },
-        {
-          "name": "Bulk Exif Remover",
-          "url": "/tools/image/bulk-exif-remover.html"
-        },
-        {
-          "name": "Add Text To Image",
-          "url": "/tools/image/add-text-to-image.html"
-        },
-        {
-          "name": "Image Border Generator",
-          "url": "/tools/image/image-border-generator.html"
-        },
-        {
-          "name": "Polaroid Filter",
-          "url": "/tools/image/polaroid-filter.html"
-        },
-        {
-          "name": "Vintage Photo Effect",
-          "url": "/tools/image/vintage-photo-effect.html"
-        },
-        {
-          "name": "Image Noise Reduction",
-          "url": "/tools/image/image-noise-reduction.html"
-        },
-        {
-          "name": "Pixel Art Converter",
-          "url": "/tools/image/pixel-art-converter.html"
-        },
-        {
-          "name": "Image Reflection Gen",
-          "url": "/tools/image/image-reflection-gen.html"
-        },
-        {
-          "name": "Round Image Cropper",
-          "url": "/tools/image/round-image-cropper.html"
-        },
-        {
-          "name": "Image Shadow Generator",
-          "url": "/tools/image/image-shadow-generator.html"
-        },
-        {
-          "name": "Photo Filter Pro",
-          "url": "/tools/image/photo-filter-pro.html"
-        },
-        {
-          "name": "Image Color Shifter",
-          "url": "/tools/image/image-color-shifter.html"
-        },
-        {
-          "name": "Image Opacity Adjuster",
-          "url": "/tools/image/image-opacity-adjuster.html"
-        },
-        {
-          "name": "Image To Ascii Art",
-          "url": "/tools/image/image-to-ascii-art.html"
-        },
-        {
-          "name": "Image Vignette Pro",
-          "url": "/tools/image/image-vignette-pro.html"
-        },
-        {
-          "name": "Image Tilt Shift",
-          "url": "/tools/image/image-tilt-shift.html"
-        },
-        {
-          "name": "Image Threshold Pro",
-          "url": "/tools/image/image-threshold-pro.html"
-        },
-        {
-          "name": "Image Solarizer",
-          "url": "/tools/image/image-solarizer.html"
-        },
-        {
-          "name": "Image Posterizer",
-          "url": "/tools/image/image-posterizer.html"
-        },
-        {
-          "name": "Image Emboss Pro",
-          "url": "/tools/image/image-emboss-pro.html"
-        },
-        {
-          "name": "Image Edge Enhancer",
-          "url": "/tools/image/image-edge-enhancer.html"
-        },
-        {
-          "name": "Image Duotone Pro",
-          "url": "/tools/image/image-duotone-pro.html"
-        },
-        {
-          "name": "Image Colorize Pro",
-          "url": "/tools/image/image-colorize-pro.html"
-        },
-        {
-          "name": "Image Brightness Pro",
-          "url": "/tools/image/image-brightness-pro.html"
-        },
-        {
-          "name": "Image Contrast Pro",
-          "url": "/tools/image/image-contrast-pro.html"
-        },
-        {
-          "name": "Image Saturation Pro",
-          "url": "/tools/image/image-saturation-pro.html"
-        },
-        {
-          "name": "Image Exposure Pro",
-          "url": "/tools/image/image-exposure-pro.html"
-        },
-        {
-          "name": "Image Vibrance Pro",
-          "url": "/tools/image/image-vibrance-pro.html"
-        },
-        {
-          "name": "Image Blur Pro",
-          "url": "/tools/image/image-blur-pro.html"
-        },
-        {
-          "name": "Image Sharpen Pro",
-          "url": "/tools/image/image-sharpen-pro.html"
-        },
-        {
-          "name": "Image Flip Pro",
-          "url": "/tools/image/image-flip-pro.html"
-        },
-        {
-          "name": "Image Rotate Pro",
-          "url": "/tools/image/image-rotate-pro.html"
-        },
-        {
-          "name": "Image Grayscale Pro",
-          "url": "/tools/image/image-grayscale-pro.html"
-        },
-        {
-          "name": "Image Invert Pro",
-          "url": "/tools/image/image-invert-pro.html"
-        },
-        {
-          "name": "Image Sepia Pro",
-          "url": "/tools/image/image-sepia-pro.html"
-        },
-        {
-          "name": "Image Gamma Pro",
-          "url": "/tools/image/image-gamma-pro.html"
-        },
-        {
-          "name": "Image Hsl Pro",
-          "url": "/tools/image/image-hsl-pro.html"
-        },
-        {
-          "name": "Image Rgb Pro",
-          "url": "/tools/image/image-rgb-pro.html"
-        },
-        {
-          "name": "Image Histogram Pro",
-          "url": "/tools/image/image-histogram-pro.html"
-        },
-        {
-          "name": "Image Metadata Pro",
-          "url": "/tools/image/image-metadata-pro.html"
-        },
-        {
-          "name": "Image Color Extractor Pro",
-          "url": "/tools/image/image-color-extractor-pro.html"
-        },
-        {
-          "name": "Image Gradient Map",
-          "url": "/tools/image/image-gradient-map.html"
-        },
-        {
-          "name": "Image Blend Modes",
-          "url": "/tools/image/image-blend-modes.html"
-        },
-        {
-          "name": "Image Layers Demo",
-          "url": "/tools/image/image-layers-demo.html"
-        },
-        {
-          "name": "Image Masking Tool",
-          "url": "/tools/image/image-masking-tool.html"
-        },
-        {
-          "name": "Image Canvas Editor",
-          "url": "/tools/image/image-canvas-editor.html"
-        },
-        {
-          "name": "Image Brushes Pro",
-          "url": "/tools/image/image-brushes-pro.html"
-        },
-        {
-          "name": "Image Shapes Gen",
-          "url": "/tools/image/image-shapes-gen.html"
-        },
-        {
-          "name": "Image Text Styles",
-          "url": "/tools/image/image-text-styles.html"
-        },
-        {
-          "name": "Image Clipart Library",
-          "url": "/tools/image/image-clipart-library.html"
-        },
-        {
-          "name": "Image Stock Search Tool",
-          "url": "/tools/image/image-stock-search-tool.html"
-        }
-      ]
-    },
-    {
-      "id": "programming",
-      "name": "Programming",
-      "icon": "👨‍💻",
-      "tools": [
-        {
-          "name": "Bash Script Formatter",
-          "url": "/tools/programming/bash-script-formatter.html"
-        },
-        {
-          "name": "Bash Tools",
-          "url": "/tools/programming/bash-tools.html"
-        },
-        {
-          "name": "C Code Formatter",
-          "url": "/tools/programming/c-code-formatter.html"
-        },
-        {
-          "name": "C Tools",
-          "url": "/tools/programming/c-tools.html"
-        },
-        {
-          "name": "Cpp Code Formatter",
-          "url": "/tools/programming/cpp-code-formatter.html"
-        },
-        {
-          "name": "Cpp Tools",
-          "url": "/tools/programming/cpp-tools.html"
-        },
-        {
-          "name": "Csharp Code Formatter",
-          "url": "/tools/programming/csharp-code-formatter.html"
-        },
-        {
-          "name": "Csharp Tools",
-          "url": "/tools/programming/csharp-tools.html"
-        },
-        {
-          "name": "Css Selector Tester",
-          "url": "/tools/programming/css-selector-tester.html"
-        },
-        {
-          "name": "Css Tools",
-          "url": "/tools/programming/css-tools.html"
-        },
-        {
-          "name": "Go Code Formatter",
-          "url": "/tools/programming/go-code-formatter.html"
-        },
-        {
-          "name": "Go Tools",
-          "url": "/tools/programming/go-tools.html"
-        },
-        {
-          "name": "Html Entity Helper",
-          "url": "/tools/programming/html-entity-helper.html"
-        },
-        {
-          "name": "Html Tools",
-          "url": "/tools/programming/html-tools.html"
-        },
-        {
-          "name": "Java Code Formatter",
-          "url": "/tools/programming/java-code-formatter.html"
-        },
-        {
-          "name": "Java Tools",
-          "url": "/tools/programming/java-tools.html"
-        },
-        {
-          "name": "Javascript Minify Format",
-          "url": "/tools/programming/javascript-minify-format.html"
-        },
-        {
-          "name": "Javascript Tools",
-          "url": "/tools/programming/javascript-tools.html"
-        },
-        {
-          "name": "Json Tools",
-          "url": "/tools/programming/json-tools.html"
-        },
-        {
-          "name": "Kotlin Tools",
-          "url": "/tools/programming/kotlin-tools.html"
-        },
-        {
-          "name": "Markdown Tools",
-          "url": "/tools/programming/markdown-tools.html"
-        },
-        {
-          "name": "Php Code Formatter",
-          "url": "/tools/programming/php-code-formatter.html"
-        },
-        {
-          "name": "Php Tools",
-          "url": "/tools/programming/php-tools.html"
-        },
-        {
-          "name": "Powershell Tools",
-          "url": "/tools/programming/powershell-tools.html"
-        },
-        {
-          "name": "Python Code Formatter",
-          "url": "/tools/programming/python-code-formatter.html"
-        },
-        {
-          "name": "Python Tools",
-          "url": "/tools/programming/python-tools.html"
-        },
-        {
-          "name": "Regex Tools",
-          "url": "/tools/programming/regex-tools.html"
-        },
-        {
-          "name": "Ruby Tools",
-          "url": "/tools/programming/ruby-tools.html"
-        },
-        {
-          "name": "Rust Code Formatter",
-          "url": "/tools/programming/rust-code-formatter.html"
-        },
-        {
-          "name": "Rust Tools",
-          "url": "/tools/programming/rust-tools.html"
-        },
-        {
-          "name": "Shell Command Cheatsheet",
-          "url": "/tools/programming/shell-command-cheatsheet.html"
-        },
-        {
-          "name": "Sql Query Formatter",
-          "url": "/tools/programming/sql-query-formatter.html"
-        },
-        {
-          "name": "Sql Tools",
-          "url": "/tools/programming/sql-tools.html"
-        },
-        {
-          "name": "Swift Tools",
-          "url": "/tools/programming/swift-tools.html"
-        },
-        {
-          "name": "Typescript Tools",
-          "url": "/tools/programming/typescript-tools.html"
-        },
-        {
-          "name": "Typescript Type Check Helper",
-          "url": "/tools/programming/typescript-type-check-helper.html"
-        },
-        {
-          "name": "Xml Tools",
-          "url": "/tools/programming/xml-tools.html"
-        },
-        {
-          "name": "Xml Xpath Tester",
-          "url": "/tools/programming/xml-xpath-tester.html"
-        },
-        {
-          "name": "Yaml Linter",
-          "url": "/tools/programming/yaml-linter.html"
-        },
-        {
-          "name": "Yaml Tools",
-          "url": "/tools/programming/yaml-tools.html"
-        }
-      ]
-    },
-    {
-      "id": "calculators",
-      "name": "Calculators",
-      "icon": "🧮",
-      "tools": [
-        {
-          "name": "Adsense Calculator",
-          "url": "/tools/calculators/adsense-calculator.html"
-        },
-        {
-          "name": "Age Calculator",
-          "url": "/tools/calculators/age-calculator.html"
-        },
-        {
-          "name": "Angle Converter",
-          "url": "/tools/calculators/angle-converter.html"
-        },
-        {
-          "name": "Area Calculator",
-          "url": "/tools/calculators/area-calculator.html"
-        },
-        {
-          "name": "Average Calculator",
-          "url": "/tools/calculators/average-calculator.html"
-        },
-        {
-          "name": "Binary Calculator",
-          "url": "/tools/calculators/binary-calculator.html"
-        },
-        {
-          "name": "Bmi Calculator",
-          "url": "/tools/calculators/bmi-calculator.html"
-        },
-        {
-          "name": "Bmr Calculator",
-          "url": "/tools/calculators/bmr-calculator.html"
-        },
-        {
-          "name": "Body Fat Calculator",
-          "url": "/tools/calculators/body-fat-calculator.html"
-        },
-        {
-          "name": "Break Even Calculator",
-          "url": "/tools/calculators/break-even-calculator.html"
-        },
-        {
-          "name": "Calorie Calculator",
-          "url": "/tools/calculators/calorie-calculator.html"
-        },
-        {
-          "name": "Compound Interest Calculator",
-          "url": "/tools/calculators/compound-interest-calculator.html"
-        },
-        {
-          "name": "Cpm Calculator",
-          "url": "/tools/calculators/cpm-calculator.html"
-        },
-        {
-          "name": "Currency Converter",
-          "url": "/tools/calculators/currency-converter.html"
-        },
-        {
-          "name": "Data Storage Converter",
-          "url": "/tools/calculators/data-storage-converter.html"
-        },
-        {
-          "name": "Date Difference Calculator",
-          "url": "/tools/calculators/date-difference-calculator.html"
-        },
-        {
-          "name": "Direct Proportion Calculator",
-          "url": "/tools/calculators/direct-proportion-calculator.html"
-        },
-        {
-          "name": "Discount Calculator",
-          "url": "/tools/calculators/discount-calculator.html"
-        },
-        {
-          "name": "Due Date Calculator",
-          "url": "/tools/calculators/due-date-calculator.html"
-        },
-        {
-          "name": "Electricity Bill Calculator",
-          "url": "/tools/calculators/electricity-bill-calculator.html"
-        },
-        {
-          "name": "Emi Calculator",
-          "url": "/tools/calculators/emi-calculator.html"
-        },
-        {
-          "name": "Energy Converter",
-          "url": "/tools/calculators/energy-converter.html"
-        },
-        {
-          "name": "Fraction Calculator",
-          "url": "/tools/calculators/fraction-calculator.html"
-        },
-        {
-          "name": "Fuel Cost Calculator",
-          "url": "/tools/calculators/fuel-cost-calculator.html"
-        },
-        {
-          "name": "Gst Calculator",
-          "url": "/tools/calculators/gst-calculator.html"
-        },
-        {
-          "name": "Hexadecimal Calculator",
-          "url": "/tools/calculators/hexadecimal-calculator.html"
-        },
-        {
-          "name": "Inflation Calculator",
-          "url": "/tools/calculators/inflation-calculator.html"
-        },
-        {
-          "name": "Inverse Proportion Calculator",
-          "url": "/tools/calculators/inverse-proportion-calculator.html"
-        },
-        {
-          "name": "Length Converter",
-          "url": "/tools/calculators/length-converter.html"
-        },
-        {
-          "name": "Loan Calculator",
-          "url": "/tools/calculators/loan-calculator.html"
-        },
-        {
-          "name": "Margin Calculator",
-          "url": "/tools/calculators/margin-calculator.html"
-        },
-        {
-          "name": "Mass Converter",
-          "url": "/tools/calculators/mass-converter.html"
-        },
-        {
-          "name": "Mortgage Calculator",
-          "url": "/tools/calculators/mortgage-calculator.html"
-        },
-        {
-          "name": "Ovulation Calculator",
-          "url": "/tools/calculators/ovulation-calculator.html"
-        },
-        {
-          "name": "Pace Calculator",
-          "url": "/tools/calculators/pace-calculator.html"
-        },
-        {
-          "name": "Paypal Fee Calculator",
-          "url": "/tools/calculators/paypal-fee-calculator.html"
-        },
-        {
-          "name": "Percentage Calculator",
-          "url": "/tools/calculators/percentage-calculator.html"
-        },
-        {
-          "name": "Power Converter",
-          "url": "/tools/calculators/power-converter.html"
-        },
-        {
-          "name": "Pressure Converter",
-          "url": "/tools/calculators/pressure-converter.html"
-        },
-        {
-          "name": "Probability Calculator",
-          "url": "/tools/calculators/probability-calculator.html"
-        },
-        {
-          "name": "Radians Degrees Converter",
-          "url": "/tools/calculators/radians-degrees-converter.html"
-        },
-        {
-          "name": "Retirement Calculator",
-          "url": "/tools/calculators/retirement-calculator.html"
-        },
-        {
-          "name": "Roi Calculator",
-          "url": "/tools/calculators/roi-calculator.html"
-        },
-        {
-          "name": "Sales Tax Calculator",
-          "url": "/tools/calculators/sales-tax-calculator.html"
-        },
-        {
-          "name": "Savings Calculator",
-          "url": "/tools/calculators/savings-calculator.html"
-        },
-        {
-          "name": "Scientific Calculator",
-          "url": "/tools/calculators/scientific-calculator.html"
-        },
-        {
-          "name": "Simple Calculator",
-          "url": "/tools/calculators/simple-calculator.html"
-        },
-        {
-          "name": "Simple Interest Calculator",
-          "url": "/tools/calculators/simple-interest-calculator.html"
-        },
-        {
-          "name": "Speed Converter",
-          "url": "/tools/calculators/speed-converter.html"
-        },
-        {
-          "name": "Temperature Converter",
-          "url": "/tools/calculators/temperature-converter.html"
-        },
-        {
-          "name": "Time Converter",
-          "url": "/tools/calculators/time-converter.html"
-        },
-        {
-          "name": "Timezone Converter",
-          "url": "/tools/calculators/timezone-converter.html"
-        },
-        {
-          "name": "Tip Calculator",
-          "url": "/tools/calculators/tip-calculator.html"
-        },
-        {
-          "name": "Trigonometric Functions",
-          "url": "/tools/calculators/trigonometric-functions.html"
-        },
-        {
-          "name": "Vat Calculator",
-          "url": "/tools/calculators/vat-calculator.html"
-        },
-        {
-          "name": "Volume Converter",
-          "url": "/tools/calculators/volume-converter.html"
-        },
-        {
-          "name": "Weight Converter",
-          "url": "/tools/calculators/weight-converter.html"
-        },
-        {
-          "name": "Z Score Calculator",
-          "url": "/tools/calculators/z-score-calculator.html"
-        }
-      ]
-    },
-    {
+      "name": "Text",
       "id": "text",
-      "name": "Text Tools",
-      "icon": "✍️",
-      "tools": [
+      "subcategories": [
         {
-          "name": "Alternating Case Converter",
-          "url": "/tools/text/alternating-case-converter.html"
+          "name": "Lists",
+          "id": "lists",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/text/lists/text-sorter.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/lists/list-randomizer.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/lists/filter-lines.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/lists/remove-duplicate-lines.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/lists/alphabetical-sorter.html"
+            }
+          ]
         },
         {
-          "name": "Backwards Text Generator",
-          "url": "/tools/text/backwards-text-generator.html"
+          "name": "Slugs",
+          "id": "slugs",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/text/slugs/text-to-slug.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/slugs/url-slug-generator.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/slugs/text-to-tags.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/slugs/text-to-hashtags.html"
+            }
+          ]
         },
         {
-          "name": "Case Converter",
-          "url": "/tools/text/case-converter.html"
+          "name": "Format",
+          "id": "format",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/text/format/text-cleaner.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/format/whitespace-remover.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/format/remove-empty-lines.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/format/remove-line-breaks.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/format/remove-extra-whitespaces.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/format/rich-text-cleaner.html"
+            }
+          ]
         },
         {
-          "name": "Character Counter",
-          "url": "/tools/text/character-counter.html"
+          "name": "Case",
+          "id": "case",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/text/case/case-converter.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/case/uppercase-converter.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/case/lowercase-converter.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/case/title-case-converter.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/case/sentence-case-converter.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/case/alternating-case-converter.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/case/inverse-case-converter.html"
+            }
+          ]
         },
         {
-          "name": "Comma Separator",
-          "url": "/tools/text/comma-separator.html"
+          "name": "Compare",
+          "id": "compare",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/text/compare/text-compare.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/compare/text-diff-checker.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/compare/find-and-replace-text.html"
+            }
+          ]
         },
         {
-          "name": "Convert Spaces To Tabs",
-          "url": "/tools/text/convert-spaces-to-tabs.html"
+          "name": "Generators",
+          "id": "generators",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/text/generators/lorem-ipsum-generator.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/generators/random-quote-generator.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/generators/random-word-generator.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/generators/fake-name-generator.html"
+            }
+          ]
         },
         {
-          "name": "Convert Tabs To Spaces",
-          "url": "/tools/text/convert-tabs-to-spaces.html"
+          "name": "Analyze",
+          "id": "analyze",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/text/analyze/word-counter.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/analyze/character-counter.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/analyze/line-counter.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/analyze/paragraph-counter.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/analyze/reading-time-calculator.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/analyze/keyword-density-checker.html"
+            }
+          ]
         },
         {
-          "name": "Count Letters",
-          "url": "/tools/text/count-letters.html"
+          "name": "Markdown",
+          "id": "markdown",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/text/markdown/markdown-editor.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/markdown/markdown-preview.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/markdown/markdown-to-html.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/markdown/html-to-markdown.html"
+            }
+          ]
         },
         {
-          "name": "Count Lines",
-          "url": "/tools/text/count-lines.html"
-        },
-        {
-          "name": "Fake Name Generator",
-          "url": "/tools/text/fake-name-generator.html"
-        },
-        {
-          "name": "Filter Lines",
-          "url": "/tools/text/filter-lines.html"
-        },
-        {
-          "name": "Find And Replace Text",
-          "url": "/tools/text/find-and-replace-text.html"
-        },
-        {
-          "name": "Html To Markdown",
-          "url": "/tools/text/html-to-markdown.html"
-        },
-        {
-          "name": "Inverse Case Converter",
-          "url": "/tools/text/inverse-case-converter.html"
-        },
-        {
-          "name": "Keyword Density Checker",
-          "url": "/tools/text/keyword-density-checker.html"
-        },
-        {
-          "name": "Language Translator",
-          "url": "/tools/text/language-translator.html"
-        },
-        {
-          "name": "Lorem Ipsum Generator",
-          "url": "/tools/text/lorem-ipsum-generator.html"
-        },
-        {
-          "name": "Lowercase Converter",
-          "url": "/tools/text/lowercase-converter.html"
-        },
-        {
-          "name": "Markdown Editor",
-          "url": "/tools/text/markdown-editor.html"
-        },
-        {
-          "name": "Markdown Preview",
-          "url": "/tools/text/markdown-preview.html"
-        },
-        {
-          "name": "Markdown To Html",
-          "url": "/tools/text/markdown-to-html.html"
-        },
-        {
-          "name": "Number To Word",
-          "url": "/tools/text/number-to-word.html"
-        },
-        {
-          "name": "Paragraph Counter",
-          "url": "/tools/text/paragraph-counter.html"
-        },
-        {
-          "name": "Paraphrasing Tool",
-          "url": "/tools/text/paraphrasing-tool.html"
-        },
-        {
-          "name": "Phonetic Language Converter",
-          "url": "/tools/text/phonetic-language-converter.html"
-        },
-        {
-          "name": "Random Quote Generator",
-          "url": "/tools/text/random-quote-generator.html"
-        },
-        {
-          "name": "Random Word Generator",
-          "url": "/tools/text/random-word-generator.html"
-        },
-        {
-          "name": "Reading Time Calculator",
-          "url": "/tools/text/reading-time-calculator.html"
-        },
-        {
-          "name": "Remove Diacritics",
-          "url": "/tools/text/remove-diacritics.html"
-        },
-        {
-          "name": "Remove Duplicate Lines",
-          "url": "/tools/text/remove-duplicate-lines.html"
-        },
-        {
-          "name": "Remove Empty Lines",
-          "url": "/tools/text/remove-empty-lines.html"
-        },
-        {
-          "name": "Remove Extra Whitespaces",
-          "url": "/tools/text/remove-extra-whitespaces.html"
-        },
-        {
-          "name": "Remove Line Breaks",
-          "url": "/tools/text/remove-line-breaks.html"
-        },
-        {
-          "name": "Repeat Text",
-          "url": "/tools/text/repeat-text.html"
-        },
-        {
-          "name": "Rich Text Cleaner",
-          "url": "/tools/text/rich-text-cleaner.html"
-        },
-        {
-          "name": "Sentence Case Converter",
-          "url": "/tools/text/sentence-case-converter.html"
-        },
-        {
-          "name": "Sentence Counter",
-          "url": "/tools/text/sentence-counter.html"
-        },
-        {
-          "name": "Speaking Time Calculator",
-          "url": "/tools/text/speaking-time-calculator.html"
-        },
-        {
-          "name": "Text Cleaner",
-          "url": "/tools/text/text-cleaner.html"
-        },
-        {
-          "name": "Text Compare",
-          "url": "/tools/text/text-compare.html"
-        },
-        {
-          "name": "Text Deduplicator",
-          "url": "/tools/text/text-deduplicator.html"
-        },
-        {
-          "name": "Text Diff Checker",
-          "url": "/tools/text/text-diff-checker.html"
-        },
-        {
-          "name": "Text Formatter",
-          "url": "/tools/text/text-formatter.html"
-        },
-        {
-          "name": "Text Repeater",
-          "url": "/tools/text/text-repeater.html"
-        },
-        {
-          "name": "Text Sorter",
-          "url": "/tools/text/text-sorter.html"
-        },
-        {
-          "name": "Text To Hashtags",
-          "url": "/tools/text/text-to-hashtags.html"
-        },
-        {
-          "name": "Text To Slug",
-          "url": "/tools/text/text-to-slug.html"
-        },
-        {
-          "name": "Text To Speech",
-          "url": "/tools/text/text-to-speech.html"
-        },
-        {
-          "name": "Text To Tags",
-          "url": "/tools/text/text-to-tags.html"
-        },
-        {
-          "name": "Title Case Converter",
-          "url": "/tools/text/title-case-converter.html"
-        },
-        {
-          "name": "Unicode Normalizer",
-          "url": "/tools/text/unicode-normalizer.html"
-        },
-        {
-          "name": "Uppercase Converter",
-          "url": "/tools/text/uppercase-converter.html"
-        },
-        {
-          "name": "Url Slug Generator",
-          "url": "/tools/text/url-slug-generator.html"
-        },
-        {
-          "name": "Word Counter",
-          "url": "/tools/text/word-counter.html"
-        },
-        {
-          "name": "Word To Number",
-          "url": "/tools/text/word-to-number.html"
-        },
-        {
-          "name": "Whitespace Remover",
-          "url": "/tools/text/whitespace-remover.html"
+          "name": "Language",
+          "id": "language",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/text/language/language-translator.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/language/phonetic-language-converter.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/text/language/paraphrasing-tool.html"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "pdf",
-      "name": "PDF Tools",
-      "icon": "📄",
-      "tools": [
-        {
-          "name": "Add Pdf Page Numbers",
-          "url": "/tools/pdf/add-pdf-page-numbers.html"
-        },
-        {
-          "name": "Annotate Pdf",
-          "url": "/tools/pdf/annotate-pdf.html"
-        },
-        {
-          "name": "Bmp To Pdf",
-          "url": "/tools/pdf/bmp-to-pdf.html"
-        },
-        {
-          "name": "Compare Pdf",
-          "url": "/tools/pdf/compare-pdf.html"
-        },
-        {
-          "name": "Compress Pdf",
-          "url": "/tools/pdf/compress-pdf.html"
-        },
-        {
-          "name": "Crop Pdf",
-          "url": "/tools/pdf/crop-pdf.html"
-        },
-        {
-          "name": "Delete Pdf Pages",
-          "url": "/tools/pdf/delete-pdf-pages.html"
-        },
-        {
-          "name": "Edit Pdf",
-          "url": "/tools/pdf/edit-pdf.html"
-        },
-        {
-          "name": "Excel To Pdf",
-          "url": "/tools/pdf/excel-to-pdf.html"
-        },
-        {
-          "name": "Extract Pdf Pages",
-          "url": "/tools/pdf/extract-pdf-pages.html"
-        },
-        {
-          "name": "Flatten Pdf",
-          "url": "/tools/pdf/flatten-pdf.html"
-        },
-        {
-          "name": "Gif To Pdf",
-          "url": "/tools/pdf/gif-to-pdf.html"
-        },
-        {
-          "name": "Html To Pdf",
-          "url": "/tools/pdf/html-to-pdf.html"
-        },
-        {
-          "name": "Image To Pdf",
-          "url": "/tools/pdf/image-to-pdf.html"
-        },
-        {
-          "name": "Jpg To Pdf",
-          "url": "/tools/pdf/jpg-to-pdf.html"
-        },
-        {
-          "name": "Markdown To Pdf",
-          "url": "/tools/pdf/markdown-to-pdf.html"
-        },
-        {
-          "name": "Merge Pdf",
-          "url": "/tools/pdf/merge-pdf.html"
-        },
-        {
-          "name": "Ocr Pdf",
-          "url": "/tools/pdf/ocr-pdf.html"
-        },
-        {
-          "name": "Optimize Pdf",
-          "url": "/tools/pdf/optimize-pdf.html"
-        },
-        {
-          "name": "Pdf Metadata Editor",
-          "url": "/tools/pdf/pdf-metadata-editor.html"
-        },
-        {
-          "name": "Pdf To Bmp",
-          "url": "/tools/pdf/pdf-to-bmp.html"
-        },
-        {
-          "name": "Pdf To Csv",
-          "url": "/tools/pdf/pdf-to-csv.html"
-        },
-        {
-          "name": "Pdf To Excel",
-          "url": "/tools/pdf/pdf-to-excel.html"
-        },
-        {
-          "name": "Pdf To Gif",
-          "url": "/tools/pdf/pdf-to-gif.html"
-        },
-        {
-          "name": "Pdf To Html",
-          "url": "/tools/pdf/pdf-to-html.html"
-        },
-        {
-          "name": "Pdf To Jpg",
-          "url": "/tools/pdf/pdf-to-jpg.html"
-        },
-        {
-          "name": "Pdf To Png",
-          "url": "/tools/pdf/pdf-to-png.html"
-        },
-        {
-          "name": "Pdf To Word",
-          "url": "/tools/pdf/pdf-to-word.html"
-        },
-        {
-          "name": "Protect Pdf",
-          "url": "/tools/pdf/protect-pdf.html"
-        },
-        {
-          "name": "Unlock Pdf",
-          "url": "/tools/pdf/unlock-pdf.html"
-        },
-        {
-          "name": "Rearrange Pdf Pages",
-          "url": "/tools/pdf/rearrange-pdf-pages.html"
-        },
-        {
-          "name": "Redact Pdf",
-          "url": "/tools/pdf/redact-pdf.html"
-        },
-        {
-          "name": "Repair Pdf",
-          "url": "/tools/pdf/repair-pdf.html"
-        },
-        {
-          "name": "Rotate Pdf Pro",
-          "url": "/tools/pdf/rotate-pdf-pro.html"
-        },
-        {
-          "name": "Scanned Pdf To Text",
-          "url": "/tools/pdf/scanned-pdf-to-text.html"
-        },
-        {
-          "name": "Searchable Pdf",
-          "url": "/tools/pdf/searchable-pdf.html"
-        },
-        {
-          "name": "Sign Pdf",
-          "url": "/tools/pdf/sign-pdf.html"
-        },
-        {
-          "name": "Split Pdf Pro",
-          "url": "/tools/pdf/split-pdf-pro.html"
-        },
-        {
-          "name": "Svg To Pdf",
-          "url": "/tools/pdf/svg-to-pdf.html"
-        },
-        {
-          "name": "Tiff To Pdf",
-          "url": "/tools/pdf/tiff-to-pdf.html"
-        },
-        {
-          "name": "Unlock Pdf Pro",
-          "url": "/tools/pdf/unlock-pdf-pro.html"
-        },
-        {
-          "name": "Url To Pdf",
-          "url": "/tools/pdf/url-to-pdf.html"
-        },
-        {
-          "name": "Watermark Pdf",
-          "url": "/tools/pdf/watermark-pdf.html"
-        },
-        {
-          "name": "Webp To Pdf",
-          "url": "/tools/pdf/webp-to-pdf.html"
-        },
-        {
-          "name": "Word To Pdf Pro",
-          "url": "/tools/pdf/word-to-pdf-pro.html"
-        },
-        {
-          "name": "Pdf To Powerpoint",
-          "url": "/tools/pdf/pdf-to-powerpoint.html"
-        },
-        {
-          "name": "Powerpoint To Pdf",
-          "url": "/tools/pdf/powerpoint-to-pdf.html"
-        },
-        {
-          "name": "Pdf To Speech",
-          "url": "/tools/pdf/pdf-to-speech.html"
-        },
-        {
-          "name": "Pdf To Svg",
-          "url": "/tools/pdf/pdf-to-svg.html"
-        },
-        {
-          "name": "Pdf To Text",
-          "url": "/tools/pdf/pdf-to-text.html"
-        },
-        {
-          "name": "Pdf To Tiff",
-          "url": "/tools/pdf/pdf-to-tiff.html"
-        },
-        {
-          "name": "Pdf To Webp",
-          "url": "/tools/pdf/pdf-to-webp.html"
-        },
-        {
-          "name": "Pdf To Json",
-          "url": "/tools/pdf/pdf-to-json.html"
-        },
-        {
-          "name": "Pdf To Xml",
-          "url": "/tools/pdf/pdf-to-xml.html"
-        },
-        {
-          "name": "Pdf Table Extractor",
-          "url": "/tools/pdf/pdf-table-extractor.html"
-        },
-        {
-          "name": "Pdf Page Rotator",
-          "url": "/tools/pdf/pdf-page-rotator.html"
-        },
-        {
-          "name": "Pdf Grayscale Converter",
-          "url": "/tools/pdf/pdf-grayscale-converter.html"
-        },
-        {
-          "name": "Pdf Font Extractor",
-          "url": "/tools/pdf/pdf-font-extractor.html"
-        },
-        {
-          "name": "Pdf Image Extractor",
-          "url": "/tools/pdf/pdf-image-extractor.html"
-        },
-        {
-          "name": "Pdf To Markdown",
-          "url": "/tools/pdf/pdf-to-markdown.html"
-        },
-        {
-          "name": "Epub To Pdf",
-          "url": "/tools/pdf/epub-to-pdf.html"
-        },
-        {
-          "name": "Pdf To Epub",
-          "url": "/tools/pdf/pdf-to-epub.html"
-        },
-        {
-          "name": "Mobi To Pdf",
-          "url": "/tools/pdf/mobi-to-pdf.html"
-        },
-        {
-          "name": "Pdf Password Remover",
-          "url": "/tools/pdf/pdf-password-remover.html"
-        },
-        {
-          "name": "Pdf Permission Checker",
-          "url": "/tools/pdf/pdf-permission-checker.html"
-        },
-        {
-          "name": "Pdf Overlay Tool",
-          "url": "/tools/pdf/pdf-overlay-tool.html"
-        },
-        {
-          "name": "Pdf Size Checker",
-          "url": "/tools/pdf/pdf-size-checker.html"
-        },
-        {
-          "name": "Pdf Viewer Online",
-          "url": "/tools/pdf/pdf-viewer-online.html"
-        },
-        {
-          "name": "Pdf Bookmark Editor",
-          "url": "/tools/pdf/pdf-bookmark-editor.html"
+      "name": "AI Studio",
+      "id": "ai",
+      "subcategories": [
+        {
+          "name": "Education",
+          "id": "education",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/ai/education/ai-study-planner.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/education/ai-quiz-generator.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/education/ai-flashcard-maker.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/education/ai-lesson-plan-gen.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/education/ai-rubric-creator.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/education/ai-grading-assistant.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/education/ai-special-ed-helper.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/education/ai-esl-resource-gen.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/education/ai-preschool-activity-gen.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/education/ai-stem-project-idea-gen.html"
+            }
+          ]
+        },
+        {
+          "name": "Code",
+          "id": "code-data",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/ai/code-data/ai-code-explainer.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/code-data/ai-code-refactorer.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/code-data/ai-bug-finder.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/code-data/ai-sql-query-gen.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/code-data/ai-regex-explainer.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/code-data/ai-json-data-gen.html"
+            }
+          ]
+        },
+        {
+          "name": "Creative",
+          "id": "creative",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/ai/creative/ai-story-generator.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/creative/ai-poem-generator.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/creative/ai-lyrics-generator.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/creative/ai-joke-generator.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/creative/ai-art-history-helper.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/creative/ai-music-theory-assistant.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/creative/ai-news-summarizer.html"
+            }
+          ]
+        },
+        {
+          "name": "Finance",
+          "id": "finance",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/ai/finance/ai-financial-projection.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/finance/ai-investment-analyzer.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/finance/ai-stock-price-predictor-demo.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/finance/ai-crypto-sentiment-analyzer.html"
+            }
+          ]
+        },
+        {
+          "name": "SEO",
+          "id": "seo-social",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/ai/seo-social/ai-hashtag-generator-ai.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/seo-social/ai-title-generator.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/seo-social/ai-meta-description-gen.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/seo-social/ai-product-description-gen.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/seo-social/ai-description-generator.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/seo-social/ai-tag-generator.html"
+            }
+          ]
+        },
+        {
+          "name": "Business",
+          "id": "business",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/ai/business/ai-business-name-gen.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/business/ai-slogan-generator.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/business/ai-business-plan-draft.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/business/ai-swot-analysis-tool.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/business/ai-market-research-helper.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/business/ai-user-persona-gen.html"
+            }
+          ]
+        },
+        {
+          "name": "Writing",
+          "id": "writing",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/ai/writing/ai-bio-generator.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/writing/ai-cover-letter-generator.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/writing/ai-email-writer.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/writing/ai-proposal-writer.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/writing/ai-resume-maker.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/writing/resume-maker.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/writing/ai-youtube-script-gen.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/writing/ai-voice-over-script-gen.html"
+            }
+          ]
+        },
+        {
+          "name": "Language",
+          "id": "language",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/ai/language/ai-translator.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/language/ai-translation-pro.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/language/ai-language-tutor.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/language/ai-vocabulary-builder.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/language/ai-grammar-pro.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/language/ai-grammar-checker.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/ai/language/ai-plagiarism-checker-demo.html"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "encoding",
-      "name": "Encoding & Security",
-      "icon": "🔒",
-      "tools": [
-        {
-          "name": "Ascii To Text Enc",
-          "url": "/tools/encoding/ascii-to-text-enc.html"
-        },
-        {
-          "name": "Base64 Decoder Enc",
-          "url": "/tools/encoding/base64-decoder-enc.html"
-        },
-        {
-          "name": "Base64 Encoder Enc",
-          "url": "/tools/encoding/base64-encoder-enc.html"
-        },
-        {
-          "name": "Binary To Text Enc",
-          "url": "/tools/encoding/binary-to-text-enc.html"
-        },
-        {
-          "name": "Escape Unescape Text",
-          "url": "/tools/encoding/escape-unescape-text.html"
-        },
-        {
-          "name": "Hex To Text Enc",
-          "url": "/tools/encoding/hex-to-text-enc.html"
-        },
-        {
-          "name": "Html Decoder Enc",
-          "url": "/tools/encoding/html-decoder-enc.html"
-        },
-        {
-          "name": "Html Encoder Enc",
-          "url": "/tools/encoding/html-encoder-enc.html"
-        },
-        {
-          "name": "Jwt Decoder Enc",
-          "url": "/tools/encoding/jwt-decoder-enc.html"
-        },
-        {
-          "name": "Jwt Encoder Enc",
-          "url": "/tools/encoding/jwt-encoder-enc.html"
-        },
-        {
-          "name": "Morse Code Decoder",
-          "url": "/tools/encoding/morse-code-decoder.html"
-        },
-        {
-          "name": "Morse Code Encoder",
-          "url": "/tools/encoding/morse-code-encoder.html"
-        },
-        {
-          "name": "Punycode Decoder",
-          "url": "/tools/encoding/punycode-decoder.html"
-        },
-        {
-          "name": "Punycode Encoder",
-          "url": "/tools/encoding/punycode-encoder.html"
-        },
-        {
-          "name": "Quoted Printable Decoder",
-          "url": "/tools/encoding/quoted-printable-decoder.html"
-        },
-        {
-          "name": "Quoted Printable Encoder",
-          "url": "/tools/encoding/quoted-printable-encoder.html"
-        },
-        {
-          "name": "Rot13 Encoder",
-          "url": "/tools/encoding/rot13-encoder.html"
-        },
-        {
-          "name": "Text To Ascii Enc",
-          "url": "/tools/encoding/text-to-ascii-enc.html"
-        },
-        {
-          "name": "Text To Binary Enc",
-          "url": "/tools/encoding/text-to-binary-enc.html"
-        },
-        {
-          "name": "Text To Hex Enc",
-          "url": "/tools/encoding/text-to-hex-enc.html"
-        },
-        {
-          "name": "Text To Unicode Enc",
-          "url": "/tools/encoding/text-to-unicode-enc.html"
-        },
-        {
-          "name": "Unicode To Text Enc",
-          "url": "/tools/encoding/unicode-to-text-enc.html"
-        },
-        {
-          "name": "Url Decoder Enc",
-          "url": "/tools/encoding/url-decoder-enc.html"
-        },
-        {
-          "name": "Url Encoder Enc",
-          "url": "/tools/encoding/url-encoder-enc.html"
-        },
-        {
-          "name": "Utf8 Decoder",
-          "url": "/tools/encoding/utf8-decoder.html"
-        },
-        {
-          "name": "Utf8 Encoder",
-          "url": "/tools/encoding/utf8-encoder.html"
-        },
-        {
-          "name": "Vigenere Cipher",
-          "url": "/tools/encoding/vigenere-cipher.html"
-        },
-        {
-          "name": "Random Password Pro",
-          "url": "/tools/encoding/random-password-pro.html"
-        },
-        {
-          "name": "Secure Note Generator",
-          "url": "/tools/encoding/secure-note-generator.html"
-        },
-        {
-          "name": "Digital Signature Demo",
-          "url": "/tools/encoding/digital-signature-demo.html"
-        },
-        {
-          "name": "Steganography Tool",
-          "url": "/tools/encoding/steganography-tool.html"
-        },
-        {
-          "name": "Password Strength Pro",
-          "url": "/tools/encoding/password-strength-pro.html"
-        },
-        {
-          "name": "Hashing Speed Test",
-          "url": "/tools/encoding/hashing-speed-test.html"
-        },
-        {
-          "name": "Encryption Algorithm Demo",
-          "url": "/tools/encoding/encryption-algorithm-demo.html"
-        },
-        {
-          "name": "Public Private Key Gen",
-          "url": "/tools/encoding/public-private-key-gen.html"
-        },
-        {
-          "name": "Certificate Signing Request Gen",
-          "url": "/tools/encoding/certificate-signing-request-gen.html"
-        },
-        {
-          "name": "Self Signed Cert Gen",
-          "url": "/tools/encoding/self-signed-cert-gen.html"
-        },
-        {
-          "name": "Ssh Key Generator",
-          "url": "/tools/encoding/ssh-key-generator.html"
-        },
-        {
-          "name": "Api Key Generator",
-          "url": "/tools/encoding/api-key-generator.html"
-        },
-        {
-          "name": "Uuid V4 Gen",
-          "url": "/tools/encoding/uuid-v4-gen.html"
-        },
-        {
-          "name": "Nanoid Pro",
-          "url": "/tools/encoding/nanoid-pro.html"
-        },
-        {
-          "name": "Ulid Pro",
-          "url": "/tools/encoding/ulid-pro.html"
-        },
-        {
-          "name": "Object Id Gen",
-          "url": "/tools/encoding/object-id-gen.html"
-        },
-        {
-          "name": "Guid Generator",
-          "url": "/tools/encoding/guid-generator.html"
-        },
-        {
-          "name": "Snowflake Id Gen",
-          "url": "/tools/encoding/snowflake-id-gen.html"
-        },
-        {
-          "name": "Short Id Generator",
-          "url": "/tools/encoding/short-id-generator.html"
-        },
-        {
-          "name": "Random String Gen",
-          "url": "/tools/encoding/random-string-gen.html"
-        },
-        {
-          "name": "Random Date Gen",
-          "url": "/tools/encoding/random-date-gen.html"
-        },
-        {
-          "name": "Random Color Gen Pro",
-          "url": "/tools/encoding/random-color-gen-pro.html"
-        },
-        {
-          "name": "Final Test Tool",
-          "url": "/tools/encoding/final-test-tool.html"
-        }
-      ]
-    },
-    {
-      "id": "miscellaneous",
-      "name": "Miscellaneous",
-      "icon": "⚙️",
-      "tools": [
-        {
-          "name": "All Esb Mp Online Tools",
-          "url": "/tools/miscellaneous/all-esb-mp-online-tools.html"
-        },
-        {
-          "name": "All In One Image Converter",
-          "url": "/tools/miscellaneous/all-in-one-image-converter.html"
-        },
-        {
-          "name": "Bio Data Generator",
-          "url": "/tools/miscellaneous/bio-data-generator.html"
-        },
-        {
-          "name": "Browser Detector",
-          "url": "/tools/miscellaneous/browser-detector.html"
-        },
-        {
-          "name": "Browser Info Checker",
-          "url": "/tools/miscellaneous/browser-info-checker.html"
-        },
-        {
-          "name": "Credit Card Validator",
-          "url": "/tools/miscellaneous/credit-card-validator.html"
-        },
-        {
-          "name": "Disclaimer Generator",
-          "url": "/tools/miscellaneous/disclaimer-generator.html"
-        },
-        {
-          "name": "Email Validator",
-          "url": "/tools/miscellaneous/email-validator.html"
-        },
-        {
-          "name": "Ip Subnet Calculator",
-          "url": "/tools/miscellaneous/ip-subnet-calculator.html"
-        },
-        {
-          "name": "Legal Policy Generator",
-          "url": "/tools/miscellaneous/legal-policy-generator.html"
-        },
-        {
-          "name": "Lorem Pixel Generator",
-          "url": "/tools/miscellaneous/lorem-pixel-generator.html"
-        },
-        {
-          "name": "New Tools",
-          "url": "/tools/miscellaneous/new-tools.html"
-        },
-        {
-          "name": "Notes Tool",
-          "url": "/tools/miscellaneous/notes-tool.html"
-        },
-        {
-          "name": "Page Screenshot",
-          "url": "/tools/miscellaneous/page-screenshot.html"
-        },
-        {
-          "name": "Phone Validator",
-          "url": "/tools/miscellaneous/phone-validator.html"
-        },
-        {
-          "name": "Popular Tools",
-          "url": "/tools/miscellaneous/popular-tools.html"
-        },
-        {
-          "name": "Privacy Policy Generator",
-          "url": "/tools/miscellaneous/privacy-policy-generator.html"
-        },
-        {
-          "name": "Quick Links",
-          "url": "/tools/miscellaneous/quick-links.html"
-        },
-        {
-          "name": "Recently Added Tools",
-          "url": "/tools/miscellaneous/recently-added-tools.html"
-        },
-        {
-          "name": "Resume Maker",
-          "url": "/tools/miscellaneous/resume-maker.html"
-        },
-        {
-          "name": "Save Tool",
-          "url": "/tools/miscellaneous/save-tool.html"
-        },
-        {
-          "name": "Screen Resolution Checker",
-          "url": "/tools/miscellaneous/screen-resolution-checker.html"
-        },
-        {
-          "name": "Terms And Conditions Generator",
-          "url": "/tools/miscellaneous/terms-and-conditions-generator.html"
-        },
-        {
-          "name": "Top Tools",
-          "url": "/tools/miscellaneous/top-tools.html"
-        },
-        {
-          "name": "Trending Tools",
-          "url": "/tools/miscellaneous/trending-tools.html"
-        },
-        {
-          "name": "Typing Practice Mobile",
-          "url": "/tools/miscellaneous/typing-practice-mobile.html"
-        },
-        {
-          "name": "Typing Practice Pc",
-          "url": "/tools/miscellaneous/typing-practice-pc.html"
-        },
-        {
-          "name": "Url Opener",
-          "url": "/tools/miscellaneous/url-opener.html"
-        },
-        {
-          "name": "User Agent Checker",
-          "url": "/tools/miscellaneous/user-agent-checker.html"
-        },
-        {
-          "name": "Password Vault Demo",
-          "url": "/tools/miscellaneous/password-vault-demo.html"
-        },
-        {
-          "name": "Unit Cost Calculator",
-          "url": "/tools/miscellaneous/unit-cost-calculator.html"
-        },
-        {
-          "name": "Gas Mileage Calc",
-          "url": "/tools/miscellaneous/gas-mileage-calc.html"
-        },
-        {
-          "name": "Random Number Gen",
-          "url": "/tools/miscellaneous/random-number-gen.html"
-        },
-        {
-          "name": "List Randomizer",
-          "url": "/tools/miscellaneous/list-randomizer.html"
-        },
-        {
-          "name": "Alphabetical Sorter",
-          "url": "/tools/miscellaneous/alphabetical-sorter.html"
-        },
-        {
-          "name": "Stopwatch Online",
-          "url": "/tools/miscellaneous/stopwatch-online.html"
-        },
-        {
-          "name": "World Clock Utility",
-          "url": "/tools/miscellaneous/world-clock-utility.html"
-        },
-        {
-          "name": "Countdown Timer Pro",
-          "url": "/tools/miscellaneous/countdown-timer-pro.html"
-        },
-        {
-          "name": "Holiday Calendar",
-          "url": "/tools/miscellaneous/holiday-calendar.html"
-        },
-        {
-          "name": "Task Priority Matrix",
-          "url": "/tools/miscellaneous/task-priority-matrix.html"
-        }
-      ]
-    },
-    {
-      "id": "domain-network",
-      "name": "Domain & Network Tools",
-      "icon": "🌐",
-      "tools": [
-        {
-          "name": "Cache Header Checker",
-          "url": "/tools/domain-network/cache-header-checker.html"
-        },
-        {
-          "name": "Cors Checker",
-          "url": "/tools/domain-network/cors-checker.html"
-        },
-        {
-          "name": "Dns Propagation Checker",
-          "url": "/tools/domain-network/dns-propagation-checker.html"
-        },
-        {
-          "name": "Dns Records Checker",
-          "url": "/tools/domain-network/dns-records-checker.html"
-        },
-        {
-          "name": "Domain Age Checker",
-          "url": "/tools/domain-network/domain-age-checker.html"
-        },
-        {
-          "name": "Domain To Ip",
-          "url": "/tools/domain-network/domain-to-ip.html"
-        },
-        {
-          "name": "Geo Ip Lookup",
-          "url": "/tools/domain-network/geo-ip-lookup.html"
-        },
-        {
-          "name": "Gzip Compression Checker",
-          "url": "/tools/domain-network/gzip-compression-checker.html"
-        },
-        {
-          "name": "Hosting Checker",
-          "url": "/tools/domain-network/hosting-checker.html"
-        },
-        {
-          "name": "Http Headers Checker Net",
-          "url": "/tools/domain-network/http-headers-checker-net.html"
-        },
-        {
-          "name": "Http Status Code Checker",
-          "url": "/tools/domain-network/http-status-code-checker.html"
-        },
-        {
-          "name": "Ip Address Lookup",
-          "url": "/tools/domain-network/ip-address-lookup.html"
-        },
-        {
-          "name": "Ip Whois Checker",
-          "url": "/tools/domain-network/ip-whois-checker.html"
-        },
-        {
-          "name": "Nameserver Lookup",
-          "url": "/tools/domain-network/nameserver-lookup.html"
-        },
-        {
-          "name": "Page Size Checker",
-          "url": "/tools/domain-network/page-size-checker.html"
-        },
-        {
-          "name": "Ping Website",
-          "url": "/tools/domain-network/ping-website.html"
-        },
-        {
-          "name": "Redirect Checker",
-          "url": "/tools/domain-network/redirect-checker.html"
-        },
-        {
-          "name": "Response Time Checker",
-          "url": "/tools/domain-network/response-time-checker.html"
-        },
-        {
-          "name": "Reverse Ip Lookup",
-          "url": "/tools/domain-network/reverse-ip-lookup.html"
-        },
-        {
-          "name": "Robots Txt Tester",
-          "url": "/tools/domain-network/robots-txt-tester.html"
-        },
-        {
-          "name": "Server Status Checker",
-          "url": "/tools/domain-network/server-status-checker.html"
-        },
-        {
-          "name": "Ssl Certificate Checker",
-          "url": "/tools/domain-network/ssl-certificate-checker.html"
-        },
-        {
-          "name": "Subdomain Finder",
-          "url": "/tools/domain-network/subdomain-finder.html"
-        },
-        {
-          "name": "Tcp Port Checker",
-          "url": "/tools/domain-network/tcp-port-checker.html"
-        },
-        {
-          "name": "Traceroute Tool",
-          "url": "/tools/domain-network/traceroute-tool.html"
-        },
-        {
-          "name": "Website Down Checker",
-          "url": "/tools/domain-network/website-down-checker.html"
-        },
-        {
-          "name": "Website Screenshot",
-          "url": "/tools/domain-network/website-screenshot.html"
-        },
-        {
-          "name": "What Is My Ip",
-          "url": "/tools/domain-network/what-is-my-ip.html"
-        },
-        {
-          "name": "Whois Domain Lookup",
-          "url": "/tools/domain-network/whois-domain-lookup.html"
-        },
-        {
-          "name": "Whois History",
-          "url": "/tools/domain-network/whois-history.html"
-        },
-        {
-          "name": "Wordpress Theme Detector",
-          "url": "/tools/domain-network/wordpress-theme-detector.html"
-        },
-        {
-          "name": "Mx Record Lookup",
-          "url": "/tools/domain-network/mx-record-lookup.html"
-        },
-        {
-          "name": "Txt Record Lookup",
-          "url": "/tools/domain-network/txt-record-lookup.html"
-        },
-        {
-          "name": "Black List Checker",
-          "url": "/tools/domain-network/black-list-checker.html"
-        },
-        {
-          "name": "Dmarc Lookup",
-          "url": "/tools/domain-network/dmarc-lookup.html"
-        },
-        {
-          "name": "Spf Record Checker",
-          "url": "/tools/domain-network/spf-record-checker.html"
-        },
-        {
-          "name": "Ipv6 Checker",
-          "url": "/tools/domain-network/ipv6-checker.html"
-        },
-        {
-          "name": "Website Malware Scanner",
-          "url": "/tools/domain-network/website-malware-scanner.html"
-        },
-        {
-          "name": "Security Headers Checker",
-          "url": "/tools/domain-network/security-headers-checker.html"
-        },
-        {
-          "name": "Link Analyzer",
-          "url": "/tools/domain-network/link-analyzer.html"
-        },
-        {
-          "name": "Server Location Finder",
-          "url": "/tools/domain-network/server-location-finder.html"
-        },
-        {
-          "name": "Website Load Timer",
-          "url": "/tools/domain-network/website-load-timer.html"
-        },
-        {
-          "name": "Favicon Checker",
-          "url": "/tools/domain-network/favicon-checker.html"
-        },
-        {
-          "name": "Ssl Expiry Reminder",
-          "url": "/tools/domain-network/ssl-expiry-reminder.html"
-        }
-      ]
-    },
-    {
-      "id": "audio-video",
-      "name": "Audio & Video",
-      "icon": "🎬",
-      "tools": [
-        {
-          "name": "Audio Converter",
-          "url": "/tools/audio-video/audio-converter.html"
-        },
-        {
-          "name": "Audio Extractor",
-          "url": "/tools/audio-video/audio-extractor.html"
-        },
-        {
-          "name": "Audio Speed Changer",
-          "url": "/tools/audio-video/audio-speed-changer.html"
-        },
-        {
-          "name": "Audio Trimmer",
-          "url": "/tools/audio-video/audio-trimmer.html"
-        },
-        {
-          "name": "Audio Volume Booster",
-          "url": "/tools/audio-video/audio-volume-booster.html"
-        },
-        {
-          "name": "Audio Waveform Generator",
-          "url": "/tools/audio-video/audio-waveform-generator.html"
-        },
-        {
-          "name": "Gif To Video",
-          "url": "/tools/audio-video/gif-to-video.html"
-        },
-        {
-          "name": "Mp3 Converter Pro",
-          "url": "/tools/audio-video/mp3-converter-pro.html"
-        },
-        {
-          "name": "Podcast Clipper",
-          "url": "/tools/audio-video/podcast-clipper.html"
-        },
-        {
-          "name": "Screen Recorder Web",
-          "url": "/tools/audio-video/screen-recorder-web.html"
-        },
-        {
-          "name": "Speech To Text Gen",
-          "url": "/tools/audio-video/speech-to-text-gen.html"
-        },
-        {
-          "name": "Subtitle Generator Pro",
-          "url": "/tools/audio-video/subtitle-generator-pro.html"
-        },
-        {
-          "name": "Subtitle Sync Tool",
-          "url": "/tools/audio-video/subtitle-sync-tool.html"
-        },
-        {
-          "name": "Text To Speech Media",
-          "url": "/tools/audio-video/text-to-speech-media.html"
-        },
-        {
-          "name": "Video Compressor Pro",
-          "url": "/tools/audio-video/video-compressor-pro.html"
-        },
-        {
-          "name": "Video Cropper Pro",
-          "url": "/tools/audio-video/video-cropper-pro.html"
-        },
-        {
-          "name": "Video Merger Pro",
-          "url": "/tools/audio-video/video-merger-pro.html"
-        },
-        {
-          "name": "Video Metadata Viewer",
-          "url": "/tools/audio-video/video-metadata-viewer.html"
-        },
-        {
-          "name": "Video Thumbnail Gen",
-          "url": "/tools/audio-video/video-thumbnail-gen.html"
-        },
-        {
-          "name": "Video To Audio Conv",
-          "url": "/tools/audio-video/video-to-audio-conv.html"
-        }
-      ]
-    },
-    {
-      "id": "file-data",
-      "name": "File & Data Tools",
-      "icon": "📁",
-      "tools": [
-        {
-          "name": "Base64 To File",
-          "url": "/tools/file-data/base64-to-file.html"
-        },
-        {
-          "name": "Checksum Verifier",
-          "url": "/tools/file-data/checksum-verifier.html"
-        },
-        {
-          "name": "Compare Files Data",
-          "url": "/tools/file-data/compare-files-data.html"
-        },
-        {
-          "name": "Corrupt Existing File",
-          "url": "/tools/file-data/corrupt-existing-file.html"
-        },
-        {
-          "name": "Corrupt File Generator",
-          "url": "/tools/file-data/corrupt-file-generator.html"
-        },
-        {
-          "name": "Create Tar File",
-          "url": "/tools/file-data/create-tar-file.html"
-        },
-        {
-          "name": "Create Zip File",
-          "url": "/tools/file-data/create-zip-file.html"
-        },
-        {
-          "name": "Csv Merger",
-          "url": "/tools/file-data/csv-merger.html"
-        },
-        {
-          "name": "Csv To Json Data",
-          "url": "/tools/file-data/csv-to-json-data.html"
-        },
-        {
-          "name": "Csv To Tsv Data",
-          "url": "/tools/file-data/csv-to-tsv-data.html"
-        },
-        {
-          "name": "Deduplicate Files",
-          "url": "/tools/file-data/deduplicate-files.html"
-        },
-        {
-          "name": "Diff Files Data",
-          "url": "/tools/file-data/diff-files-data.html"
-        },
-        {
-          "name": "Duplicate Line Remover",
-          "url": "/tools/file-data/duplicate-line-remover.html"
-        },
-        {
-          "name": "File Hash Generator",
-          "url": "/tools/file-data/file-hash-generator.html"
-        },
-        {
-          "name": "File Metadata Viewer",
-          "url": "/tools/file-data/file-metadata-viewer.html"
-        },
-        {
-          "name": "File Size Converter",
-          "url": "/tools/file-data/file-size-converter.html"
-        },
-        {
-          "name": "File To Base64",
-          "url": "/tools/file-data/file-to-base64.html"
-        },
-        {
-          "name": "Join Files Data",
-          "url": "/tools/file-data/join-files-data.html"
-        },
-        {
-          "name": "Json To Csv Data",
-          "url": "/tools/file-data/json-to-csv-data.html"
-        },
-        {
-          "name": "Json To Xml Data",
-          "url": "/tools/file-data/json-to-xml-data.html"
-        },
-        {
-          "name": "Json To Yaml Data",
-          "url": "/tools/file-data/json-to-yaml-data.html"
-        },
-        {
-          "name": "Mime Type Detector",
-          "url": "/tools/file-data/mime-type-detector.html"
-        },
-        {
-          "name": "Random File Generator",
-          "url": "/tools/file-data/random-file-generator.html"
-        },
-        {
-          "name": "Rename Files Batch",
-          "url": "/tools/file-data/rename-files-batch.html"
-        },
-        {
-          "name": "Split Files Data",
-          "url": "/tools/file-data/split-files-data.html"
-        },
-        {
-          "name": "Spreadsheet Column Splitter",
-          "url": "/tools/file-data/spreadsheet-column-splitter.html"
-        },
-        {
-          "name": "Table Generator",
-          "url": "/tools/file-data/table-generator.html"
-        },
-        {
-          "name": "Tar File Extractor",
-          "url": "/tools/file-data/tar-file-extractor.html"
-        },
-        {
-          "name": "Tsv To Csv Data",
-          "url": "/tools/file-data/tsv-to-csv-data.html"
-        },
-        {
-          "name": "Xml To Json Data",
-          "url": "/tools/file-data/xml-to-json-data.html"
-        },
-        {
-          "name": "Yaml To Json Data",
-          "url": "/tools/file-data/yaml-to-json-data.html"
-        },
-        {
-          "name": "Zip File Extractor",
-          "url": "/tools/file-data/zip-file-extractor.html"
-        },
-        {
-          "name": "Excel To Json Conv",
-          "url": "/tools/file-data/excel-to-json-conv.html"
-        },
-        {
-          "name": "Json To Excel Conv",
-          "url": "/tools/file-data/json-to-excel-conv.html"
-        },
-        {
-          "name": "Sql To Csv Conv",
-          "url": "/tools/file-data/sql-to-csv-conv.html"
-        },
-        {
-          "name": "Html Table To Csv",
-          "url": "/tools/file-data/html-table-to-csv.html"
-        },
-        {
-          "name": "File Byte Viewer",
-          "url": "/tools/file-data/file-byte-viewer.html"
-        },
-        {
-          "name": "Binary File Reader",
-          "url": "/tools/file-data/binary-file-reader.html"
-        },
-        {
-          "name": "Large File Splitter",
-          "url": "/tools/file-data/large-file-splitter.html"
-        },
-        {
-          "name": "Text File Merger",
-          "url": "/tools/file-data/text-file-merger.html"
-        }
-      ]
-    },
-    {
-      "id": "social-media",
-      "name": "Social Media",
-      "icon": "📱",
-      "tools": [
-        {
-          "name": "Anonymous Chat",
-          "url": "/tools/social-media/anonymous-chat.html"
-        },
-        {
-          "name": "Comment Picker",
-          "url": "/tools/social-media/comment-picker.html"
-        },
-        {
-          "name": "Facebook Id Finder",
-          "url": "/tools/social-media/facebook-id-finder.html"
-        },
-        {
-          "name": "Hashtag Extractor",
-          "url": "/tools/social-media/hashtag-extractor.html"
-        },
-        {
-          "name": "Hashtag Generator Social",
-          "url": "/tools/social-media/hashtag-generator-social.html"
-        },
-        {
-          "name": "Instagram Auto Liker",
-          "url": "/tools/social-media/instagram-auto-liker.html"
-        },
-        {
-          "name": "Instagram Bio Generator",
-          "url": "/tools/social-media/instagram-bio-generator.html"
-        },
-        {
-          "name": "Instagram Profile Downloader",
-          "url": "/tools/social-media/instagram-profile-downloader.html"
-        },
-        {
-          "name": "Instagram Reel Downloader",
-          "url": "/tools/social-media/instagram-reel-downloader.html"
-        },
-        {
-          "name": "Link In Bio Generator",
-          "url": "/tools/social-media/link-in-bio-generator.html"
-        },
-        {
-          "name": "Linkedin Post Formatter",
-          "url": "/tools/social-media/linkedin-post-formatter.html"
-        },
-        {
-          "name": "Marriage Bio Data Generator",
-          "url": "/tools/social-media/marriage-bio-data-generator.html"
-        },
-        {
-          "name": "Proposal Link Creator",
-          "url": "/tools/social-media/proposal-link-creator.html"
-        },
-        {
-          "name": "Secret Santa Gen",
-          "url": "/tools/social-media/secret-santa-gen.html"
-        },
-        {
-          "name": "Social Caption Generator",
-          "url": "/tools/social-media/social-caption-generator.html"
-        },
-        {
-          "name": "Social Profile Link Gen",
-          "url": "/tools/social-media/social-profile-link-gen.html"
-        },
-        {
-          "name": "Telegram Link Generator",
-          "url": "/tools/social-media/telegram-link-generator.html"
-        },
-        {
-          "name": "Twitter Thread Formatter",
-          "url": "/tools/social-media/twitter-thread-formatter.html"
-        },
-        {
-          "name": "Whatsapp Link Generator Social",
-          "url": "/tools/social-media/whatsapp-link-generator-social.html"
-        },
-        {
-          "name": "Youtube Subscribe Link Gen",
-          "url": "/tools/social-media/youtube-subscribe-link-gen.html"
-        },
-        {
-          "name": "Tiktok Video Downloader",
-          "url": "/tools/social-media/tiktok-video-downloader.html"
-        },
-        {
-          "name": "Pinterest Image Downloader",
-          "url": "/tools/social-media/pinterest-image-downloader.html"
-        },
-        {
-          "name": "Twitter Video Downloader",
-          "url": "/tools/social-media/twitter-video-downloader.html"
-        },
-        {
-          "name": "Social Media Audit Tool",
-          "url": "/tools/social-media/social-media-audit-tool.html"
-        },
-        {
-          "name": "Profile Picture Border Gen",
-          "url": "/tools/social-media/profile-picture-border-gen.html"
-        },
-        {
-          "name": "Fancy Font Generator",
-          "url": "/tools/social-media/fancy-font-generator.html"
-        },
-        {
-          "name": "Emoji Copy Paste",
-          "url": "/tools/social-media/emoji-copy-paste.html"
-        },
-        {
-          "name": "Twitch Emotes Viewer",
-          "url": "/tools/social-media/twitch-emotes-viewer.html"
-        },
-        {
-          "name": "Discord Webhook Tester",
-          "url": "/tools/social-media/discord-webhook-tester.html"
-        },
-        {
-          "name": "Reddit Post Analyzer",
-          "url": "/tools/social-media/reddit-post-analyzer.html"
-        }
-      ]
-    },
-    {
-      "id": "seo",
-      "name": "SEO Tools",
-      "icon": "📈",
-      "tools": [
-        {
-          "name": "Alt Text Checker",
-          "url": "/tools/seo/alt-text-checker.html"
-        },
-        {
-          "name": "Article Rewriter",
-          "url": "/tools/seo/article-rewriter.html"
-        },
-        {
-          "name": "Article Schema Generator",
-          "url": "/tools/seo/article-schema-generator.html"
-        },
-        {
-          "name": "Breadcrumb Schema Generator",
-          "url": "/tools/seo/breadcrumb-schema-generator.html"
-        },
-        {
-          "name": "Broken Links Checker",
-          "url": "/tools/seo/broken-links-checker.html"
-        },
-        {
-          "name": "Canonical Tag Generator",
-          "url": "/tools/seo/canonical-tag-generator.html"
-        },
-        {
-          "name": "Faq Schema Generator Seo",
-          "url": "/tools/seo/faq-schema-generator-seo.html"
-        },
-        {
-          "name": "Favicon Generator Seo",
-          "url": "/tools/seo/favicon-generator-seo.html"
-        },
-        {
-          "name": "Google Index Checker",
-          "url": "/tools/seo/google-index-checker.html"
-        },
-        {
-          "name": "Heading Structure Checker",
-          "url": "/tools/seo/heading-structure-checker.html"
-        },
-        {
-          "name": "Hreflang Generator",
-          "url": "/tools/seo/hreflang-generator.html"
-        },
-        {
-          "name": "Internal Link Checker",
-          "url": "/tools/seo/internal-link-checker.html"
-        },
-        {
-          "name": "Keyword Clustering Tool",
-          "url": "/tools/seo/keyword-clustering-tool.html"
-        },
-        {
-          "name": "Keyword Density Checker Seo",
-          "url": "/tools/seo/keyword-density-checker-seo.html"
-        },
-        {
-          "name": "Keywords Suggestion Tool",
-          "url": "/tools/seo/keywords-suggestion-tool.html"
-        },
-        {
-          "name": "Local Business Schema Generator",
-          "url": "/tools/seo/local-business-schema-generator.html"
-        },
-        {
-          "name": "Meta Description Generator",
-          "url": "/tools/seo/meta-description-generator.html"
-        },
-        {
-          "name": "Meta Tag Generator Seo",
-          "url": "/tools/seo/meta-tag-generator-seo.html"
-        },
-        {
-          "name": "Meta Tags Analyzer",
-          "url": "/tools/seo/meta-tags-analyzer.html"
-        },
-        {
-          "name": "Noindex Checker",
-          "url": "/tools/seo/noindex-checker.html"
-        },
-        {
-          "name": "Open Graph Generator Seo",
-          "url": "/tools/seo/open-graph-generator-seo.html"
-        },
-        {
-          "name": "Page Speed Checker",
-          "url": "/tools/seo/page-speed-checker.html"
-        },
-        {
-          "name": "Product Schema Generator",
-          "url": "/tools/seo/product-schema-generator.html"
-        },
-        {
-          "name": "Redirect Checker Seo",
-          "url": "/tools/seo/redirect-checker-seo.html"
-        },
-        {
-          "name": "Review Schema Generator",
-          "url": "/tools/seo/review-schema-generator.html"
-        },
-        {
-          "name": "Robots Txt Generator Seo",
-          "url": "/tools/seo/robots-txt-generator-seo.html"
-        },
-        {
-          "name": "Schema Markup Generator Seo",
-          "url": "/tools/seo/schema-markup-generator-seo.html"
-        },
-        {
-          "name": "Seo Title Generator",
-          "url": "/tools/seo/seo-title-generator.html"
-        },
-        {
-          "name": "Serp Snippet Preview",
-          "url": "/tools/seo/serp-snippet-preview.html"
-        },
-        {
-          "name": "Sitemap Generator",
-          "url": "/tools/seo/sitemap-generator.html"
-        },
-        {
-          "name": "Sitemap Validator",
-          "url": "/tools/seo/sitemap-validator.html"
-        },
-        {
-          "name": "Slug Generator Seo",
-          "url": "/tools/seo/slug-generator-seo.html"
-        },
-        {
-          "name": "Twitter Card Generator Seo",
-          "url": "/tools/seo/twitter-card-generator-seo.html"
-        },
-        {
-          "name": "Utm Builder",
-          "url": "/tools/seo/utm-builder.html"
-        },
-        {
-          "name": "Video Schema Generator",
-          "url": "/tools/seo/video-schema-generator.html"
-        },
-        {
-          "name": "Website Ranking Checker",
-          "url": "/tools/seo/website-ranking-checker.html"
-        },
-        {
-          "name": "Whatsapp Link Generator Seo",
-          "url": "/tools/seo/whatsapp-link-generator-seo.html"
-        },
-        {
-          "name": "H1 Tag Checker",
-          "url": "/tools/seo/h1-tag-checker.html"
-        },
-        {
-          "name": "Meta Robots Tag Gen",
-          "url": "/tools/seo/meta-robots-tag-gen.html"
-        },
-        {
-          "name": "Image Seo Optimizer",
-          "url": "/tools/seo/image-seo-optimizer.html"
-        },
-        {
-          "name": "Link Juice Calculator",
-          "url": "/tools/seo/link-juice-calculator.html"
-        },
-        {
-          "name": "Anchor Text Analyzer",
-          "url": "/tools/seo/anchor-text-analyzer.html"
-        },
-        {
-          "name": "Domain Authority Checker",
-          "url": "/tools/seo/domain-authority-checker.html"
-        },
-        {
-          "name": "Page Authority Checker",
-          "url": "/tools/seo/page-authority-checker.html"
-        },
-        {
-          "name": "Keyword Position Checker",
-          "url": "/tools/seo/keyword-position-checker.html"
-        },
-        {
-          "name": "Social Share Counter",
-          "url": "/tools/seo/social-share-counter.html"
-        },
-        {
-          "name": "Http To Https Checker",
-          "url": "/tools/seo/http-to-https-checker.html"
-        },
-        {
-          "name": "Broken Image Finder",
-          "url": "/tools/seo/broken-image-finder.html"
-        },
-        {
-          "name": "Text To Html Ratio Checker",
-          "url": "/tools/seo/text-to-html-ratio-checker.html"
-        },
-        {
-          "name": "Structured Data Tester",
-          "url": "/tools/seo/structured-data-tester.html"
-        }
-      ]
-    },
-    {
-      "id": "games",
       "name": "Games",
-      "icon": "🎮",
-      "tools": [
-        {
-          "name": "2048",
-          "url": "/games/2048.html"
-        },
-        {
-          "name": "Breakout",
-          "url": "/games/breakout.html"
-        },
-        {
-          "name": "Categories Game",
-          "url": "/games/categories-game.html"
-        },
-        {
-          "name": "Connect4",
-          "url": "/games/connect4.html"
-        },
-        {
-          "name": "Guess Number",
-          "url": "/games/guess-number.html"
-        },
-        {
-          "name": "Memory Game",
-          "url": "/games/memory-game.html"
-        },
-        {
-          "name": "Minesweeper",
-          "url": "/games/minesweeper.html"
-        },
-        {
-          "name": "Rock Paper Scissors",
-          "url": "/games/rock-paper-scissors.html"
-        },
-        {
-          "name": "Snake Game",
-          "url": "/games/snake-game.html"
-        },
-        {
-          "name": "Tictactoe",
-          "url": "/games/tictactoe.html"
-        }
-      ]
+      "id": "games",
+      "subcategories": []
     },
     {
-      "id": "unit-converters",
-      "name": "Unit Converters",
-      "icon": "📏",
-      "tools": [
-        {
-          "name": "Angle Unit Converter",
-          "url": "/tools/unit-converters/angle-unit-converter.html"
-        },
-        {
-          "name": "Area Unit Converter",
-          "url": "/tools/unit-converters/area-unit-converter.html"
-        },
-        {
-          "name": "Bitrate Converter",
-          "url": "/tools/unit-converters/bitrate-converter.html"
-        },
-        {
-          "name": "Bytes Converter",
-          "url": "/tools/unit-converters/bytes-converter.html"
-        },
-        {
-          "name": "Currency Unit Converter",
-          "url": "/tools/unit-converters/currency-unit-converter.html"
-        },
-        {
-          "name": "Data Transfer Converter",
-          "url": "/tools/unit-converters/data-transfer-converter.html"
-        },
-        {
-          "name": "Density Converter",
-          "url": "/tools/unit-converters/density-converter.html"
-        },
-        {
-          "name": "Energy Unit Converter",
-          "url": "/tools/unit-converters/energy-unit-converter.html"
-        },
-        {
-          "name": "Force Converter",
-          "url": "/tools/unit-converters/force-converter.html"
-        },
-        {
-          "name": "Frequency Converter",
-          "url": "/tools/unit-converters/frequency-converter.html"
-        },
-        {
-          "name": "Illuminance Converter",
-          "url": "/tools/unit-converters/illuminance-converter.html"
-        },
-        {
-          "name": "Length Unit Converter",
-          "url": "/tools/unit-converters/length-unit-converter.html"
-        },
-        {
-          "name": "Luminance Converter",
-          "url": "/tools/unit-converters/luminance-converter.html"
-        },
-        {
-          "name": "Mass Unit Converter",
-          "url": "/tools/unit-converters/mass-unit-converter.html"
-        },
-        {
-          "name": "Power Unit Converter",
-          "url": "/tools/unit-converters/power-unit-converter.html"
-        },
-        {
-          "name": "Pressure Unit Converter",
-          "url": "/tools/unit-converters/pressure-unit-converter.html"
-        },
-        {
-          "name": "Shoe Size Converter",
-          "url": "/tools/unit-converters/shoe-size-converter.html"
-        },
-        {
-          "name": "Speed Unit Converter",
-          "url": "/tools/unit-converters/speed-unit-converter.html"
-        },
-        {
-          "name": "Temperature Unit Converter",
-          "url": "/tools/unit-converters/temperature-unit-converter.html"
-        },
-        {
-          "name": "Time Unit Converter",
-          "url": "/tools/unit-converters/time-unit-converter.html"
-        },
-        {
-          "name": "Timezone Unit Converter",
-          "url": "/tools/unit-converters/timezone-unit-converter.html"
-        },
-        {
-          "name": "Torque Converter",
-          "url": "/tools/unit-converters/torque-converter.html"
-        },
-        {
-          "name": "Viscosity Converter",
-          "url": "/tools/unit-converters/viscosity-converter.html"
-        },
-        {
-          "name": "Volume Unit Converter",
-          "url": "/tools/unit-converters/volume-unit-converter.html"
-        },
-        {
-          "name": "Weight Unit Converter",
-          "url": "/tools/unit-converters/weight-unit-converter.html"
-        },
-        {
-          "name": "Acceleration Converter",
-          "url": "/tools/unit-converters/acceleration-converter.html"
-        },
-        {
-          "name": "Capacitance Converter",
-          "url": "/tools/unit-converters/capacitance-converter.html"
-        },
-        {
-          "name": "Conductance Converter",
-          "url": "/tools/unit-converters/conductance-converter.html"
-        },
-        {
-          "name": "Inductance Converter",
-          "url": "/tools/unit-converters/inductance-converter.html"
-        },
-        {
-          "name": "Magnetic Flux Converter",
-          "url": "/tools/unit-converters/magnetic-flux-converter.html"
-        },
-        {
-          "name": "Radiation Converter",
-          "url": "/tools/unit-converters/radiation-converter.html"
-        },
-        {
-          "name": "Resistance Converter",
-          "url": "/tools/unit-converters/resistance-converter.html"
-        },
-        {
-          "name": "Sound Converter",
-          "url": "/tools/unit-converters/sound-converter.html"
-        },
-        {
-          "name": "Torque Unit Converter",
-          "url": "/tools/unit-converters/torque-unit-converter.html"
-        },
-        {
-          "name": "Velocity Converter",
-          "url": "/tools/unit-converters/velocity-converter.html"
-        },
-        {
-          "name": "Volume Flow Converter",
-          "url": "/tools/unit-converters/volume-flow-converter.html"
-        },
-        {
-          "name": "Heat Converter",
-          "url": "/tools/unit-converters/heat-converter.html"
-        },
-        {
-          "name": "Luminous Intensity Converter",
-          "url": "/tools/unit-converters/luminous-intensity-converter.html"
-        },
-        {
-          "name": "Digital Storage Converter",
-          "url": "/tools/unit-converters/digital-storage-converter.html"
-        },
-        {
-          "name": "Cooking Converter",
-          "url": "/tools/unit-converters/cooking-converter.html"
-        },
-        {
-          "name": "Fuel Efficiency Converter",
-          "url": "/tools/unit-converters/fuel-efficiency-converter.html"
-        },
-        {
-          "name": "Angle Degrees Radians",
-          "url": "/tools/unit-converters/angle-degrees-radians.html"
-        },
-        {
-          "name": "Roman Numeral Converter",
-          "url": "/tools/unit-converters/roman-numeral-converter.html"
-        },
-        {
-          "name": "Morse Code Audio Gen",
-          "url": "/tools/unit-converters/morse-code-audio-gen.html"
-        },
-        {
-          "name": "Braille Translator",
-          "url": "/tools/unit-converters/braille-translator.html"
-        },
-        {
-          "name": "Nato Phonetic Alphabet",
-          "url": "/tools/unit-converters/nato-phonetic-alphabet.html"
-        },
-        {
-          "name": "Binary Subtraction Tool",
-          "url": "/tools/unit-converters/binary-subtraction-tool.html"
-        },
-        {
-          "name": "Octal To Decimal",
-          "url": "/tools/unit-converters/octal-to-decimal.html"
-        },
-        {
-          "name": "Decimal To Hex",
-          "url": "/tools/unit-converters/decimal-to-hex.html"
-        },
-        {
-          "name": "Base Converter Pro",
-          "url": "/tools/unit-converters/base-converter-pro.html"
-        },
-        {
-          "name": "Prime Number Checker",
-          "url": "/tools/unit-converters/prime-number-checker.html"
-        },
-        {
-          "name": "Fibonacci Sequence Gen",
-          "url": "/tools/unit-converters/fibonacci-sequence-gen.html"
-        },
-        {
-          "name": "Factorial Calculator",
-          "url": "/tools/unit-converters/factorial-calculator.html"
-        },
-        {
-          "name": "Gcd Lcm Calculator",
-          "url": "/tools/unit-converters/gcd-lcm-calculator.html"
-        },
-        {
-          "name": "Quadratic Equation Solver",
-          "url": "/tools/unit-converters/quadratic-equation-solver.html"
-        },
-        {
-          "name": "Matrix Calculator",
-          "url": "/tools/unit-converters/matrix-calculator.html"
-        },
-        {
-          "name": "Vector Calculator",
-          "url": "/tools/unit-converters/vector-calculator.html"
-        },
-        {
-          "name": "Set Theory Calculator",
-          "url": "/tools/unit-converters/set-theory-calculator.html"
-        },
-        {
-          "name": "Permutation Combination Calc",
-          "url": "/tools/unit-converters/permutation-combination-calc.html"
-        },
-        {
-          "name": "Standard Deviation Calc",
-          "url": "/tools/unit-converters/standard-deviation-calc.html"
-        },
-        {
-          "name": "Variance Calculator",
-          "url": "/tools/unit-converters/variance-calculator.html"
-        },
-        {
-          "name": "Correlation Calculator",
-          "url": "/tools/unit-converters/correlation-calculator.html"
-        },
-        {
-          "name": "Regression Analysis Tool",
-          "url": "/tools/unit-converters/regression-analysis-tool.html"
-        },
-        {
-          "name": "Chi Square Tester",
-          "url": "/tools/unit-converters/chi-square-tester.html"
-        },
-        {
-          "name": "T Test Calculator",
-          "url": "/tools/unit-converters/t-test-calculator.html"
-        },
-        {
-          "name": "Anova Calculator",
-          "url": "/tools/unit-converters/anova-calculator.html"
-        },
-        {
-          "name": "Probability Distribution Gen",
-          "url": "/tools/unit-converters/probability-distribution-gen.html"
+      "name": "Utilities",
+      "id": "utilities",
+      "subcategories": []
+    },
+    {
+      "name": "Developer",
+      "id": "developer",
+      "subcategories": []
+    },
+    {
+      "name": "PDF",
+      "id": "pdf",
+      "subcategories": []
+    },
+    {
+      "name": "Calculators",
+      "id": "calculators",
+      "subcategories": []
+    },
+    {
+      "name": "Web & SEO",
+      "id": "web-seo",
+      "subcategories": []
+    },
+    {
+      "name": "Images",
+      "id": "images",
+      "subcategories": [
+        {
+          "name": "Utilities",
+          "id": "utilities",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/images/utilities/base64-to-image.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/utilities/image-to-base64.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/utilities/image-to-ascii-art.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/utilities/qr-scanner.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/utilities/image-color-picker.html"
+            }
+          ]
+        },
+        {
+          "name": "Effects",
+          "id": "effects",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/images/effects/blur-image.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/effects/pixelate-image.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/effects/duotone-image.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/effects/vintage-photo-effect.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/effects/sepia-image.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/effects/grayscale-image.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/effects/posterize-image.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/effects/solarize-image.html"
+            }
+          ]
+        },
+        {
+          "name": "Metadata",
+          "id": "metadata",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/images/metadata/image-metadata-pro.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/metadata/bulk-exif-remover.html"
+            }
+          ]
+        },
+        {
+          "name": "Adjust",
+          "id": "adjust",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/images/adjust/adjust-image-brightness.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/adjust/adjust-image-contrast.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/adjust/adjust-image-saturation.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/adjust/adjust-image-exposure.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/adjust/adjust-image-vibrance.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/adjust/hsl-adjust.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/adjust/hue-shift.html"
+            }
+          ]
+        },
+        {
+          "name": "Create",
+          "id": "create",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/images/create/image-canvas-editor.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/create/image-shapes-gen.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/create/image-gradient-gen.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/create/image-border-generator.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/create/add-text-to-image.html"
+            }
+          ]
+        },
+        {
+          "name": "Resize",
+          "id": "resize",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/images/resize/resize-image.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/resize/auto-image-resizer.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/resize/image-cropper.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/resize/crop-image.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/resize/rotate-image.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/resize/flip-image.html"
+            }
+          ]
+        },
+        {
+          "name": "Remove",
+          "id": "remove",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/images/remove/photo-bg-remover.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/remove/remove-noise.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/remove/image-noise-reduction.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/remove/image-masking-tool.html"
+            }
+          ]
+        },
+        {
+          "name": "Convert",
+          "id": "convert",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/images/convert/image-converter.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/convert/png-to-jpg.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/convert/jpg-to-png.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/convert/png-to-webp.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/convert/jpg-to-webp.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/convert/heic-to-jpg.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/convert/heic-to-png.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/convert/avif-converter.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/convert/gif-to-png.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/convert/bmp-to-png.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/convert/png-to-svg.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/convert/ico-converter.html"
+            }
+          ]
+        },
+        {
+          "name": "Compress",
+          "id": "compress",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/images/compress/image-compressor.html"
+            }
+          ]
+        },
+        {
+          "name": "Bulk",
+          "id": "bulk",
+          "tools": [
+            {
+              "name": null,
+              "url": "/tools/images/bulk/bulk-resize-image.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/bulk/bulk-crop-image.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/bulk/bulk-image-compressor.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/bulk/bulk-watermark-image.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/bulk/bulk-flip-image.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/bulk/bulk-rotate-image.html"
+            },
+            {
+              "name": null,
+              "url": "/tools/images/bulk/bulk-add-noise.html"
+            }
+          ]
         }
       ]
     }
