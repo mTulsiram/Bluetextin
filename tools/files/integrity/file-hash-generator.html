@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>File Hash Generator | Bluetext.in</title>
+  <meta name="description" content="Generate MD5-equivalent SHA-256, SHA-512 checksums for any file in your browser.">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="doc-page" role="main">
+    <p class="doc-page__back"><a href="../../../index.html">Back to home</a></p>
+    <h1>File Hash Generator</h1>
+    <p>Generate SHA-256, SHA-512, and SHA-1 checksums for any file. Runs entirely in your browser — files are never uploaded.</p>
+
+    <section class="panel">
+      <div class="tool-form">
+        <label>Select file<input id="file-input" type="file"></label>
+      </div>
+      <div class="tool-actions" style="margin-top:0.75rem;">
+        <button id="btn-hash" class="btn btn--primary" type="button" disabled>Generate Hashes</button>
+      </div>
+    </section>
+
+    <section class="tool-output" aria-live="polite">
+      <p id="hash-status" style="margin:0 0 0.75rem;font-weight:600;">Upload a file to generate checksums.</p>
+      <div id="hash-results" style="display:flex;flex-direction:column;gap:0.6rem;"></div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script>
+    const fileInput = document.querySelector("#file-input");
+    const btnHash = document.querySelector("#btn-hash");
+    const statusEl = document.querySelector("#hash-status");
+    const resultsEl = document.querySelector("#hash-results");
+
+    fileInput.addEventListener("change", () => {
+      const file = fileInput.files && fileInput.files[0];
+      if (file) {
+        statusEl.textContent = `${file.name} — ${(file.size / 1024).toFixed(2)} KB`;
+        btnHash.disabled = false;
+        resultsEl.innerHTML = "";
+      }
+    });
+
+    async function hashFile(buffer, algo) {
+      const hashBuffer = await crypto.subtle.digest(algo, buffer);
+      return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, "0")).join("");
+    }
+
+    function hashRow(label, hash) {
+      const div = document.createElement("div");
+      div.style.cssText = "border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.6rem 0.85rem;";
+      div.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-bottom:0.3rem;">
+        <span style="font-weight:700;font-size:0.9rem;">${label}</span>
+        <button class="btn btn--ghost" style="padding:0.3rem 0.65rem;font-size:0.8rem;" data-hash="${hash}">Copy</button>
+      </div>
+      <span style="font-family:monospace;font-size:0.82rem;word-break:break-all;color:var(--text-soft);">${hash}</span>`;
+      div.querySelector("button").addEventListener("click", (e) => {
+        const h = e.target.dataset.hash;
+        navigator.clipboard.writeText(h).then(() => { e.target.textContent = "Copied!"; setTimeout(() => { e.target.textContent = "Copy"; }, 1500); });
+      });
+      return div;
+    }
+
+    btnHash.addEventListener("click", async () => {
+      const file = fileInput.files && fileInput.files[0];
+      if (!file) return;
+      statusEl.textContent = "Hashing…";
+      resultsEl.innerHTML = "";
+      btnHash.disabled = true;
+
+      try {
+        const buffer = await file.arrayBuffer();
+        const [sha1, sha256, sha512] = await Promise.all([
+          hashFile(buffer, "SHA-1"),
+          hashFile(buffer, "SHA-256"),
+          hashFile(buffer, "SHA-512"),
+        ]);
+
+        resultsEl.appendChild(hashRow("SHA-1", sha1));
+        resultsEl.appendChild(hashRow("SHA-256", sha256));
+        resultsEl.appendChild(hashRow("SHA-512", sha512));
+        statusEl.textContent = `Hashes for: ${file.name}`;
+      } catch (err) {
+        statusEl.textContent = "Error: " + err.message;
+      } finally {
+        btnHash.disabled = false;
+      }
+    });
+  </script>
+  <script src="/assets/js/partials.js"></script>
+</body>
+</html>

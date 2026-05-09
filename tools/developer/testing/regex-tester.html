@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Regex Tester | Bluetext.in</title>
+  <meta name="description" content="Test JavaScript regular expressions against text and see live matches.">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="doc-page" role="main">
+    <p class="doc-page__back"><a href="../../../index.html">Back to home</a></p>
+    <h1>Regex Tester</h1>
+    <p>Write a regular expression and test it against any text instantly.</p>
+
+    <section class="panel">
+      <div class="tool-form">
+        <div class="tool-grid-2">
+          <label>
+            Pattern
+            <input id="regex-pattern" type="text" class="mono" placeholder="e.g. \b\w{5}\b">
+          </label>
+          <label>
+            Flags
+            <input id="regex-flags" type="text" class="mono" placeholder="gi" maxlength="6" value="g">
+          </label>
+        </div>
+        <label>
+          Test string
+          <textarea id="regex-input" rows="7" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;" placeholder="Paste or type text to match against..."></textarea>
+        </label>
+      </div>
+    </section>
+
+    <section class="tool-output" aria-live="polite">
+      <p id="regex-status" style="margin:0 0 0.6rem;font-weight:600;"></p>
+      <div id="regex-matches" style="display:flex;flex-wrap:wrap;gap:0.4rem;"></div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script>
+    const patternEl = document.querySelector("#regex-pattern");
+    const flagsEl = document.querySelector("#regex-flags");
+    const inputEl = document.querySelector("#regex-input");
+    const statusEl = document.querySelector("#regex-status");
+    const matchesEl = document.querySelector("#regex-matches");
+
+    function run() {
+      const pattern = patternEl.value;
+      const flags = flagsEl.value.replace(/[^gimsuy]/g, "");
+      const text = inputEl.value;
+      matchesEl.innerHTML = "";
+
+      if (!pattern) { statusEl.textContent = ""; return; }
+
+      let regex;
+      try {
+        regex = new RegExp(pattern, flags);
+      } catch (err) {
+        statusEl.textContent = "Invalid regex: " + err.message;
+        return;
+      }
+
+      const matches = [...text.matchAll(new RegExp(pattern, flags.includes("g") ? flags : flags + "g"))];
+
+      if (matches.length === 0) {
+        statusEl.textContent = "No matches found.";
+        return;
+      }
+
+      statusEl.textContent = `${matches.length} match${matches.length > 1 ? "es" : ""} found.`;
+      matches.forEach((m) => {
+        const span = document.createElement("span");
+        span.className = "badge";
+        span.style.cssText = "background:#eef3ff;border:1px solid var(--stroke);color:var(--accent-strong);padding:0.25rem 0.6rem;border-radius:999px;font-family:monospace;font-size:0.85rem;";
+        span.textContent = JSON.stringify(m[0]);
+        matchesEl.appendChild(span);
+      });
+    }
+
+    patternEl.addEventListener("input", run);
+    flagsEl.addEventListener("input", run);
+    inputEl.addEventListener("input", run);
+  </script>
+  <script src="/assets/js/partials.js"></script>
+</body>
+</html>

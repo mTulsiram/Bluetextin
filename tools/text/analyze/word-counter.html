@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Word Counter | Bluetext.in</title>
+  <meta name="description" content="Count words, characters, sentences, and paragraphs instantly.">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="doc-page" role="main">
+    <p class="doc-page__back"><a href="../../../index.html">Back to home</a></p>
+    <h1>Word Counter</h1>
+    <p>Paste or type your text to instantly count words, characters, sentences, and paragraphs.</p>
+
+    <section class="panel">
+      <div class="tool-form">
+        <label class="search__label" for="text-input">Your text</label>
+        <textarea id="text-input" rows="10" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;" placeholder="Type or paste text here..."></textarea>
+      </div>
+    </section>
+
+    <section class="tool-output" aria-live="polite">
+      <div class="tool-grid-2" style="gap:0.6rem;">
+        <div class="card"><h3 id="stat-words">0</h3><p>Words</p></div>
+        <div class="card"><h3 id="stat-chars">0</h3><p>Characters (with spaces)</p></div>
+        <div class="card"><h3 id="stat-chars-no-space">0</h3><p>Characters (no spaces)</p></div>
+        <div class="card"><h3 id="stat-sentences">0</h3><p>Sentences</p></div>
+        <div class="card"><h3 id="stat-paragraphs">0</h3><p>Paragraphs</p></div>
+        <div class="card"><h3 id="stat-read-time">0 min</h3><p>Reading time</p></div>
+      </div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script>
+    const input = document.querySelector("#text-input");
+    const stats = {
+      words: document.querySelector("#stat-words"),
+      chars: document.querySelector("#stat-chars"),
+      charsNoSpace: document.querySelector("#stat-chars-no-space"),
+      sentences: document.querySelector("#stat-sentences"),
+      paragraphs: document.querySelector("#stat-paragraphs"),
+      readTime: document.querySelector("#stat-read-time"),
+    };
+
+    function update() {
+      const text = input.value;
+      const words = text.trim() === "" ? 0 : text.trim().split(/\s+/).length;
+      const chars = text.length;
+      const charsNoSpace = text.replace(/\s/g, "").length;
+      const sentences = text.trim() === "" ? 0 : (text.match(/[^.!?]*[.!?]+/g) || []).length;
+      const paragraphs = text.trim() === "" ? 0 : text.split(/\n\s*\n/).filter(p => p.trim()).length;
+      const readTime = Math.ceil(words / 200);
+
+      stats.words.textContent = words.toLocaleString("en-IN");
+      stats.chars.textContent = chars.toLocaleString("en-IN");
+      stats.charsNoSpace.textContent = charsNoSpace.toLocaleString("en-IN");
+      stats.sentences.textContent = sentences.toLocaleString("en-IN");
+      stats.paragraphs.textContent = paragraphs.toLocaleString("en-IN");
+      stats.readTime.textContent = readTime + " min";
+    }
+
+    input.addEventListener("input", update);
+  </script>
+  <script src="/assets/js/partials.js"></script>
+</body>
+</html>

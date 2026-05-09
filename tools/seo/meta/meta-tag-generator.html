@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meta Tag Generator | Bluetext.in</title>
+  <meta name="description" content="Generate HTML meta tags for SEO, social media (Open Graph, Twitter), and more.">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="doc-page" role="main">
+    <p class="doc-page__back"><a href="../../../index.html">Back to home</a></p>
+    <h1>Meta Tag Generator</h1>
+    <p>Fill in your page details to generate complete SEO and social media meta tags.</p>
+
+    <section class="panel">
+      <form id="meta-form" class="tool-form" novalidate>
+        <fieldset style="border:none;padding:0;margin:0 0 1rem;">
+          <legend style="font-weight:700;margin-bottom:0.5rem;font-size:1rem;">Basic SEO</legend>
+          <label>Page Title <span style="color:#888;font-size:0.8rem;">(50–60 chars)</span><input id="meta-title" type="text" maxlength="70" placeholder="My Awesome Page"></label>
+          <label>Meta Description <span style="color:#888;font-size:0.8rem;">(150–160 chars)</span><textarea id="meta-desc" rows="3" maxlength="200" style="resize:vertical;" placeholder="A short, compelling description of the page."></textarea></label>
+          <label>Canonical URL<input id="meta-url" type="url" placeholder="https://example.com/page"></label>
+          <label>Keywords <span style="color:#888;font-size:0.8rem;">(comma-separated)</span><input id="meta-keywords" type="text" placeholder="seo, tools, web"></label>
+        </fieldset>
+        <fieldset style="border:none;padding:0;margin:0 0 1rem;">
+          <legend style="font-weight:700;margin-bottom:0.5rem;font-size:1rem;">Open Graph (Facebook / LinkedIn)</legend>
+          <label>OG Title<input id="og-title" type="text" placeholder="My Awesome Page"></label>
+          <label>OG Description<input id="og-desc" type="text" placeholder="Page description for social sharing"></label>
+          <label>OG Image URL<input id="og-image" type="url" placeholder="https://example.com/image.jpg"></label>
+        </fieldset>
+        <fieldset style="border:none;padding:0;margin:0 0 1rem;">
+          <legend style="font-weight:700;margin-bottom:0.5rem;font-size:1rem;">Twitter Card</legend>
+          <label>
+            Card Type
+            <select id="twitter-card">
+              <option value="summary">Summary</option>
+              <option value="summary_large_image">Summary Large Image</option>
+            </select>
+          </label>
+          <label>Twitter Site (@handle)<input id="twitter-site" type="text" placeholder="@yourtwitterhandle"></label>
+        </fieldset>
+        <div class="tool-actions">
+          <button class="btn btn--primary" type="submit">Generate Tags</button>
+          <button class="btn btn--ghost" type="reset">Clear</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="tool-output" aria-live="polite">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-bottom:0.6rem;">
+        <p id="meta-label" style="margin:0;font-weight:600;"></p>
+        <button id="copy-btn" class="btn btn--ghost" type="button" style="padding:0.4rem 0.75rem;font-size:0.85rem;">Copy</button>
+      </div>
+      <pre id="meta-output" class="mono" style="overflow:auto;white-space:pre-wrap;font-size:0.85rem;"></pre>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script>
+    const form = document.querySelector("#meta-form");
+    const output = document.querySelector("#meta-output");
+    const label = document.querySelector("#meta-label");
+    const copyBtn = document.querySelector("#copy-btn");
+
+    function esc(str) { return str.replace(/"/g, "&quot;"); }
+    function line(tag) { return `  ${tag}`; }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const title = document.querySelector("#meta-title").value.trim();
+      const desc = document.querySelector("#meta-desc").value.trim();
+      const url = document.querySelector("#meta-url").value.trim();
+      const keywords = document.querySelector("#meta-keywords").value.trim();
+      const ogTitle = document.querySelector("#og-title").value.trim() || title;
+      const ogDesc = document.querySelector("#og-desc").value.trim() || desc;
+      const ogImage = document.querySelector("#og-image").value.trim();
+      const twitterCard = document.querySelector("#twitter-card").value;
+      const twitterSite = document.querySelector("#twitter-site").value.trim();
+
+      const lines = [`<!-- Basic SEO -->`];
+      if (title) lines.push(line(`<title>${esc(title)}</title>`));
+      if (desc) lines.push(line(`<meta name="description" content="${esc(desc)}">`));
+      if (keywords) lines.push(line(`<meta name="keywords" content="${esc(keywords)}">`));
+      if (url) lines.push(line(`<link rel="canonical" href="${esc(url)}">`));
+
+      lines.push(``, `<!-- Open Graph -->`);
+      if (ogTitle) lines.push(line(`<meta property="og:title" content="${esc(ogTitle)}">`));
+      if (ogDesc) lines.push(line(`<meta property="og:description" content="${esc(ogDesc)}">`));
+      if (url) lines.push(line(`<meta property="og:url" content="${esc(url)}">`));
+      if (ogImage) lines.push(line(`<meta property="og:image" content="${esc(ogImage)}">`));
+      lines.push(line(`<meta property="og:type" content="website">`));
+
+      lines.push(``, `<!-- Twitter Card -->`);
+      lines.push(line(`<meta name="twitter:card" content="${twitterCard}">`));
+      if (twitterSite) lines.push(line(`<meta name="twitter:site" content="${esc(twitterSite)}">`));
+      if (ogTitle) lines.push(line(`<meta name="twitter:title" content="${esc(ogTitle)}">`));
+      if (ogDesc) lines.push(line(`<meta name="twitter:description" content="${esc(ogDesc)}">`));
+      if (ogImage) lines.push(line(`<meta name="twitter:image" content="${esc(ogImage)}">`));
+
+      output.textContent = lines.join("\n");
+      label.textContent = "Meta tags generated.";
+    });
+
+    form.addEventListener("reset", () => { output.textContent = ""; label.textContent = ""; });
+
+    copyBtn.addEventListener("click", () => {
+      if (!output.textContent) return;
+      navigator.clipboard.writeText(output.textContent).then(() => { label.textContent = "Copied to clipboard."; });
+    });
+  </script>
+  <script src="/assets/js/partials.js"></script>
+</body>
+</html>

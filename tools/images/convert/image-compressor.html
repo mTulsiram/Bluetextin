@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Image Compressor | Bluetext.in</title>
+  <meta name="description" content="Compress JPG, PNG, and WebP images to reduce file size. Choose format and quality.">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="doc-page" role="main">
+    <p class="doc-page__back"><a href="../../../index.html">Back to home</a></p>
+    <h1>Image Compressor</h1>
+    <p>Compress images by adjusting quality and output format. All processing happens in your browser.</p>
+
+    <section class="panel">
+      <form id="comp-form" class="tool-form" novalidate>
+        <label>Upload image<input id="img-file" type="file" accept="image/*" required></label>
+        <div class="tool-grid-2" style="margin-top:0.6rem;">
+          <label>
+            Output format
+            <select id="out-format">
+              <option value="image/jpeg">JPEG</option>
+              <option value="image/webp">WebP</option>
+              <option value="image/png">PNG (lossless)</option>
+            </select>
+          </label>
+          <label>
+            Quality: <span id="quality-val">80</span>%
+            <input id="quality" type="range" min="1" max="100" value="80" step="1" style="width:100%;margin-top:0.35rem;">
+          </label>
+        </div>
+        <div class="tool-actions">
+          <button id="btn-compress" class="btn btn--primary" type="submit" disabled>Compress &amp; Download</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="tool-output" aria-live="polite">
+      <p id="status">Upload an image to begin.</p>
+      <div class="tool-grid-2" id="size-stats" style="gap:0.6rem;margin-top:0.75rem;"></div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script>
+    const fileInput = document.querySelector("#img-file");
+    const qualitySlider = document.querySelector("#quality");
+    const qualityVal = document.querySelector("#quality-val");
+    const btnCompress = document.querySelector("#btn-compress");
+    const status = document.querySelector("#status");
+    const statsEl = document.querySelector("#size-stats");
+    let imgEl = null, origFile = null;
+
+    qualitySlider.addEventListener("input", () => { qualityVal.textContent = qualitySlider.value; });
+
+    fileInput.addEventListener("change", () => {
+      origFile = fileInput.files && fileInput.files[0];
+      if (!origFile) return;
+      const url = URL.createObjectURL(origFile);
+      imgEl = new Image();
+      imgEl.onload = () => {
+        status.textContent = `${origFile.name} — ${(origFile.size / 1024).toFixed(1)} KB · ${imgEl.naturalWidth}×${imgEl.naturalHeight} px`;
+        btnCompress.disabled = false;
+        statsEl.innerHTML = "";
+      };
+      imgEl.src = url;
+    });
+
+    // Disable quality for PNG
+    document.querySelector("#out-format").addEventListener("change", e => {
+      qualitySlider.disabled = e.target.value === "image/png";
+    });
+
+    document.querySelector("#comp-form").addEventListener("submit", e => {
+      e.preventDefault();
+      if (!imgEl) return;
+      const format = document.querySelector("#out-format").value;
+      const quality = Number(qualitySlider.value) / 100;
+      const canvas = document.createElement("canvas");
+      canvas.width = imgEl.naturalWidth;
+      canvas.height = imgEl.naturalHeight;
+      canvas.getContext("2d").drawImage(imgEl, 0, 0);
+
+      canvas.toBlob(blob => {
+        if (!blob) { status.textContent = "Compression failed."; return; }
+        const ext = format.split("/")[1].replace("jpeg", "jpg");
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = (origFile.name.replace(/\.[^.]+$/, "") || "image") + "-compressed." + ext;
+        link.click();
+
+        const origKB = (origFile.size / 1024).toFixed(1);
+        const newKB = (blob.size / 1024).toFixed(1);
+        const saving = (((origFile.size - blob.size) / origFile.size) * 100).toFixed(1);
+
+        statsEl.innerHTML = "";
+        [["Original size", origKB + " KB"], ["Compressed size", newKB + " KB"], ["Saved", saving + "%"], ["Format", ext.toUpperCase()]].forEach(([label, val]) => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `<p style="font-size:0.8rem;color:var(--text-soft);margin:0 0 0.25rem;">${label}</p><p style="font-size:1.05rem;font-weight:700;margin:0;">${val}</p>`;
+          statsEl.appendChild(card);
+        });
+        status.textContent = "Compressed and downloaded.";
+      }, format, format === "image/png" ? undefined : quality);
+    });
+  </script>
+  <script src="/assets/js/partials.js"></script>
+</body>
+</html>

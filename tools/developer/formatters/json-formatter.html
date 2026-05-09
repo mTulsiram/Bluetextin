@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JSON Formatter | Bluetext.in</title>
+  <meta name="description" content="Validate, format, and minify JSON with syntax highlighting.">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="doc-page" role="main">
+    <p class="doc-page__back"><a href="../../../index.html">Back to home</a></p>
+    <h1>JSON Formatter</h1>
+    <p>Paste JSON to validate, pretty-print, or minify it instantly.</p>
+
+    <section class="panel">
+      <div class="tool-form">
+        <label class="search__label" for="json-input">Paste JSON</label>
+        <textarea id="json-input" rows="10" class="mono" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;" placeholder='{"key": "value"}'></textarea>
+      </div>
+      <div class="tool-actions" style="margin-top:0.75rem;">
+        <button id="btn-format" class="btn btn--primary" type="button">Format</button>
+        <button id="btn-minify" class="btn btn--ghost" type="button">Minify</button>
+        <button id="btn-copy" class="btn btn--ghost" type="button">Copy</button>
+        <button id="btn-clear" class="btn btn--ghost" type="button">Clear</button>
+      </div>
+    </section>
+
+    <section class="tool-output" aria-live="polite">
+      <p id="json-status" style="margin:0 0 0.6rem;font-weight:600;"></p>
+      <pre id="json-output" class="mono" style="overflow:auto;white-space:pre-wrap;"></pre>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script>
+    const input = document.querySelector("#json-input");
+    const output = document.querySelector("#json-output");
+    const status = document.querySelector("#json-status");
+
+    function parse() {
+      const text = input.value.trim();
+      if (!text) { status.textContent = ""; output.textContent = ""; return null; }
+      try {
+        return JSON.parse(text);
+      } catch (err) {
+        status.textContent = "Invalid JSON: " + err.message;
+        output.textContent = "";
+        return null;
+      }
+    }
+
+    document.querySelector("#btn-format").addEventListener("click", () => {
+      const parsed = parse();
+      if (!parsed) return;
+      output.textContent = JSON.stringify(parsed, null, 2);
+      status.textContent = "Formatted successfully.";
+    });
+
+    document.querySelector("#btn-minify").addEventListener("click", () => {
+      const parsed = parse();
+      if (!parsed) return;
+      output.textContent = JSON.stringify(parsed);
+      status.textContent = "Minified successfully.";
+    });
+
+    document.querySelector("#btn-copy").addEventListener("click", () => {
+      const text = output.textContent;
+      if (!text) return;
+      navigator.clipboard.writeText(text).then(() => {
+        status.textContent = "Copied to clipboard.";
+      });
+    });
+
+    document.querySelector("#btn-clear").addEventListener("click", () => {
+      input.value = "";
+      output.textContent = "";
+      status.textContent = "";
+    });
+  </script>
+  <script src="/assets/js/partials.js"></script>
+</body>
+</html>

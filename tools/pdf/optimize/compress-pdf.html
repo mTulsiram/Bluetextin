@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Compress PDF | Bluetext.in</title>
+	<meta name="description" content="Optimize and compress PDF documents in your browser.">
+	<link rel="stylesheet" href="../../../assets/css/main.css">
+</head>
+<body>
+  <div id="site-header"></div>
+	<main class="doc-page" role="main">
+		<p class="doc-page__back"><a href="../../../index.html">Back to home</a></p>
+		<h1>Compress PDF</h1>
+		<p>Upload a PDF and create an optimized version in-browser.</p>
+
+		<section class="panel">
+			<form id="compress-form" class="tool-form">
+				<label>
+					Choose PDF file
+					<input id="pdf-file" type="file" accept="application/pdf" required>
+				</label>
+
+				<div class="tool-actions">
+					<button class="btn btn--primary" type="submit">Compress and Download</button>
+					<button class="btn btn--ghost" type="reset">Reset</button>
+				</div>
+			</form>
+		</section>
+
+		<section class="tool-output" aria-live="polite">
+			<p id="compress-status">Select one PDF file to begin.</p>
+			<p id="compress-size" class="mono" style="margin-top:0.5rem;"></p>
+		</section>
+	</main>
+
+	<script src="https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.min.js"></script>
+	<script>
+		const form = document.querySelector("#compress-form");
+		const fileInput = document.querySelector("#pdf-file");
+		const status = document.querySelector("#compress-status");
+		const sizeInfo = document.querySelector("#compress-size");
+
+		function toKb(bytes) {
+			return `${(bytes / 1024).toFixed(2)} KB`;
+		}
+
+		form.addEventListener("submit", async (event) => {
+			event.preventDefault();
+			const file = fileInput.files && fileInput.files[0];
+			if (!file) {
+				status.textContent = "Please choose a PDF file.";
+				return;
+			}
+
+			if (!window.PDFLib) {
+				status.textContent = "PDF engine failed to load. Check network and retry.";
+				return;
+			}
+
+			try {
+				status.textContent = "Compressing PDF...";
+				sizeInfo.textContent = "";
+
+				const bytes = await file.arrayBuffer();
+				const { PDFDocument } = window.PDFLib;
+				const pdfDoc = await PDFDocument.load(bytes);
+				const compressedBytes = await pdfDoc.save({
+					useObjectStreams: true,
+					addDefaultPage: false
+				});
+
+				const blob = new Blob([compressedBytes], { type: "application/pdf" });
+				const url = URL.createObjectURL(blob);
+				const link = document.createElement("a");
+				link.href = url;
+				link.download = "compressed.pdf";
+				link.click();
+				URL.revokeObjectURL(url);
+
+				status.textContent = "Compression completed.";
+				sizeInfo.textContent = `Original: ${toKb(file.size)} | Compressed: ${toKb(blob.size)}`;
+			} catch (error) {
+				console.error(error);
+				status.textContent = "Could not compress this file. Ensure it is a valid PDF.";
+				sizeInfo.textContent = "";
+			}
+		});
+
+		form.addEventListener("reset", () => {
+			status.textContent = "Select one PDF file to begin.";
+			sizeInfo.textContent = "";
+		});
+	</script>
+  <div id="site-footer"></div>
+  <script src="/assets/js/partials.js"></script>
+</body>
+</html>
+
+

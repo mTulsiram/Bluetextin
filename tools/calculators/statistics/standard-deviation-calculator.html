@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Standard Deviation Calculator | Bluetext.in</title>
+  <meta name="description" content="Calculate population and sample standard deviation, variance, and statistical summary.">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="doc-page" role="main">
+    <p class="doc-page__back"><a href="../../../index.html">Back to home</a></p>
+    <h1>Standard Deviation Calculator</h1>
+    <p>Compute standard deviation, variance, mean, and sum for any dataset.</p>
+
+    <section class="panel">
+      <form id="sd-form" class="tool-form" novalidate>
+        <label>
+          Numbers <span style="color:#888;font-size:0.8rem;">(comma or space separated)</span>
+          <textarea id="num-input" rows="4" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;" placeholder="e.g. 2, 4, 4, 4, 5, 5, 7, 9"></textarea>
+        </label>
+        <div class="tool-actions">
+          <button class="btn btn--primary" type="submit">Calculate</button>
+          <button class="btn btn--ghost" type="reset">Clear</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="tool-output" aria-live="polite">
+      <p id="sd-error" style="color:#e11d48;margin:0 0 0.5rem;"></p>
+      <div class="tool-grid-2" id="sd-results" style="gap:0.6rem;"></div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script>
+    const form = document.querySelector("#sd-form");
+    const errorEl = document.querySelector("#sd-error");
+    const resultsEl = document.querySelector("#sd-results");
+
+    function statCard(label, value) {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `<p style="font-size:0.8rem;color:var(--text-soft);margin:0 0 0.25rem;">${label}</p><p style="font-size:1.05rem;font-weight:700;margin:0;word-break:break-all;">${value}</p>`;
+      return card;
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      errorEl.textContent = "";
+      resultsEl.innerHTML = "";
+
+      const raw = document.querySelector("#num-input").value;
+      const nums = raw.split(/[\s,]+/).filter(Boolean).map(Number);
+
+      if (nums.length === 0) { errorEl.textContent = "Enter at least one number."; return; }
+      if (nums.some(isNaN)) { errorEl.textContent = "All entries must be valid numbers."; return; }
+      if (nums.length < 2) { errorEl.textContent = "Enter at least 2 numbers for standard deviation."; return; }
+
+      const n = nums.length;
+      const sum = nums.reduce((a, b) => a + b, 0);
+      const mean = sum / n;
+      const sqDiffs = nums.map(x => Math.pow(x - mean, 2));
+      const varPop = sqDiffs.reduce((a, b) => a + b, 0) / n;
+      const varSample = sqDiffs.reduce((a, b) => a + b, 0) / (n - 1);
+      const sdPop = Math.sqrt(varPop);
+      const sdSample = Math.sqrt(varSample);
+      const sorted = [...nums].sort((a, b) => a - b);
+
+      resultsEl.appendChild(statCard("Count (N)", n));
+      resultsEl.appendChild(statCard("Sum", sum.toFixed(6)));
+      resultsEl.appendChild(statCard("Mean", mean.toFixed(6)));
+      resultsEl.appendChild(statCard("Population Std Dev (σ)", sdPop.toFixed(6)));
+      resultsEl.appendChild(statCard("Sample Std Dev (s)", sdSample.toFixed(6)));
+      resultsEl.appendChild(statCard("Population Variance (σ²)", varPop.toFixed(6)));
+      resultsEl.appendChild(statCard("Sample Variance (s²)", varSample.toFixed(6)));
+      resultsEl.appendChild(statCard("Min / Max", `${sorted[0]} / ${sorted[n-1]}`));
+    });
+
+    form.addEventListener("reset", () => { errorEl.textContent = ""; resultsEl.innerHTML = ""; });
+  </script>
+  <script src="/assets/js/partials.js"></script>
+</body>
+</html>

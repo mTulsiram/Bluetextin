@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>URL Encoder / Decoder | Bluetext.in</title>
+  <meta name="description" content="Encode or decode URL components and query strings instantly.">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="doc-page" role="main">
+    <p class="doc-page__back"><a href="../../../index.html">Back to home</a></p>
+    <h1>URL Encoder / Decoder</h1>
+    <p>Encode special characters for URLs or decode encoded query strings.</p>
+
+    <section class="panel">
+      <div class="tool-form">
+        <label class="search__label" for="url-input">Input</label>
+        <textarea id="url-input" rows="6" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;" placeholder="Enter URL or text to encode / encoded string to decode..."></textarea>
+      </div>
+      <div class="tool-actions" style="margin-top:0.75rem;">
+        <button id="btn-encode" class="btn btn--primary" type="button">Encode</button>
+        <button id="btn-decode" class="btn btn--ghost" type="button">Decode</button>
+        <button id="btn-copy" class="btn btn--ghost" type="button">Copy</button>
+        <button id="btn-clear" class="btn btn--ghost" type="button">Clear</button>
+      </div>
+    </section>
+
+    <section class="tool-output" aria-live="polite">
+      <p id="url-status" style="margin:0 0 0.6rem;font-weight:600;"></p>
+      <textarea id="url-output" rows="6" class="mono" readonly style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;background:var(--surface-soft);" placeholder="Output..."></textarea>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script>
+    const inputEl = document.querySelector("#url-input");
+    const outputEl = document.querySelector("#url-output");
+    const statusEl = document.querySelector("#url-status");
+
+    document.querySelector("#btn-encode").addEventListener("click", () => {
+      try { outputEl.value = encodeURIComponent(inputEl.value); statusEl.textContent = "Encoded."; }
+      catch { statusEl.textContent = "Encoding failed."; }
+    });
+
+    document.querySelector("#btn-decode").addEventListener("click", () => {
+      try { outputEl.value = decodeURIComponent(inputEl.value); statusEl.textContent = "Decoded."; }
+      catch { statusEl.textContent = "Invalid encoded string."; }
+    });
+
+    document.querySelector("#btn-copy").addEventListener("click", () => {
+      if (!outputEl.value) return;
+      navigator.clipboard.writeText(outputEl.value).then(() => { statusEl.textContent = "Copied."; });
+    });
+
+    document.querySelector("#btn-clear").addEventListener("click", () => {
+      inputEl.value = ""; outputEl.value = ""; statusEl.textContent = "";
+    });
+  </script>
+  <script src="/assets/js/partials.js"></script>
+</body>
+</html>

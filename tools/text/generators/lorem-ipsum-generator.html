@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lorem Ipsum Generator | Bluetext.in</title>
+  <meta name="description" content="Generate placeholder Lorem Ipsum text for design and development.">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="doc-page" role="main">
+    <p class="doc-page__back"><a href="../../../index.html">Back to home</a></p>
+    <h1>Lorem Ipsum Generator</h1>
+    <p>Generate placeholder text for layouts, designs, and mockups.</p>
+
+    <section class="panel">
+      <form id="lorem-form" class="tool-form" novalidate>
+        <div class="tool-grid-2">
+          <label>
+            Type
+            <select id="lorem-type">
+              <option value="paragraphs">Paragraphs</option>
+              <option value="sentences">Sentences</option>
+              <option value="words">Words</option>
+            </select>
+          </label>
+          <label>
+            Count
+            <input id="lorem-count" type="number" min="1" max="50" value="3" step="1">
+          </label>
+        </div>
+        <div class="tool-actions">
+          <button class="btn btn--primary" type="submit">Generate</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="tool-output" aria-live="polite">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-bottom:0.6rem;">
+        <p id="lorem-label" style="margin:0;font-weight:600;"></p>
+        <button id="copy-btn" class="btn btn--ghost" type="button" style="padding:0.4rem 0.75rem;font-size:0.85rem;">Copy</button>
+      </div>
+      <div id="lorem-output" class="mono" style="white-space:pre-wrap;color:var(--text-soft);"></div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script>
+    const WORDS = ["lorem","ipsum","dolor","sit","amet","consectetur","adipiscing","elit","sed","do","eiusmod","tempor","incididunt","ut","labore","et","dolore","magna","aliqua","enim","ad","minim","veniam","quis","nostrud","exercitation","ullamco","laboris","nisi","aliquip","ex","ea","commodo","consequat","duis","aute","irure","in","reprehenderit","voluptate","velit","esse","cillum","eu","fugiat","nulla","pariatur","excepteur","sint","occaecat","cupidatat","non","proident","sunt","culpa","qui","officia","deserunt","mollit","anim","id","est","laborum"];
+
+    function randWord() { return WORDS[Math.floor(Math.random() * WORDS.length)]; }
+    function randSentence(len = 8 + Math.floor(Math.random() * 8)) {
+      const words = Array.from({ length: len }, randWord);
+      words[0] = words[0].charAt(0).toUpperCase() + words[0].slice(1);
+      return words.join(" ") + ".";
+    }
+    function randParagraph() {
+      return Array.from({ length: 4 + Math.floor(Math.random() * 4) }, randSentence).join(" ");
+    }
+
+    const form = document.querySelector("#lorem-form");
+    const typeSelect = document.querySelector("#lorem-type");
+    const countInput = document.querySelector("#lorem-count");
+    const output = document.querySelector("#lorem-output");
+    const label = document.querySelector("#lorem-label");
+    const copyBtn = document.querySelector("#copy-btn");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const type = typeSelect.value;
+      const count = Math.max(1, Math.min(50, Number(countInput.value) || 3));
+      let text = "";
+
+      if (type === "words") {
+        text = Array.from({ length: count }, randWord).join(" ");
+      } else if (type === "sentences") {
+        text = Array.from({ length: count }, randSentence).join(" ");
+      } else {
+        text = Array.from({ length: count }, randParagraph).join("\n\n");
+      }
+
+      output.textContent = text;
+      label.textContent = `Generated ${count} ${type}`;
+    });
+
+    copyBtn.addEventListener("click", () => {
+      const text = output.textContent;
+      if (!text) return;
+      navigator.clipboard.writeText(text).then(() => {
+        copyBtn.textContent = "Copied!";
+        setTimeout(() => { copyBtn.textContent = "Copy"; }, 1800);
+      });
+    });
+  </script>
+  <script src="/assets/js/partials.js"></script>
+</body>
+</html>

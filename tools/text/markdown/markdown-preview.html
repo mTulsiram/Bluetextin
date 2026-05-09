@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Markdown Preview | Bluetext.in</title>
+  <meta name="description" content="Write Markdown and see a live HTML preview instantly in your browser.">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="doc-page" role="main">
+    <p class="doc-page__back"><a href="../../../index.html">Back to home</a></p>
+    <h1>Markdown Preview</h1>
+    <p>Write Markdown on the left and see a live rendered preview on the right.</p>
+
+    <section class="panel">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;" id="md-grid">
+        <div>
+          <p style="font-weight:700;margin:0 0 0.4rem;font-size:0.9rem;">Markdown</p>
+          <textarea id="md-input" rows="20" class="mono" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;" placeholder="# Hello world&#10;&#10;Write **Markdown** here..."></textarea>
+        </div>
+        <div>
+          <p style="font-weight:700;margin:0 0 0.4rem;font-size:0.9rem;">Preview</p>
+          <div id="md-preview" style="border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.75rem 1rem;min-height:200px;background:var(--surface);line-height:1.7;overflow:auto;"></div>
+        </div>
+      </div>
+      <div class="tool-actions" style="margin-top:0.75rem;">
+        <button id="copy-html" class="btn btn--ghost" type="button">Copy HTML</button>
+        <button id="btn-clear" class="btn btn--ghost" type="button">Clear</button>
+      </div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script>
+    const inputEl = document.querySelector("#md-input");
+    const previewEl = document.querySelector("#md-preview");
+
+    // Responsive: stack on small screens
+    if (window.innerWidth < 640) {
+      document.querySelector("#md-grid").style.gridTemplateColumns = "1fr";
+    }
+
+    function render() {
+      if (window.marked) {
+        previewEl.innerHTML = window.marked.parse(inputEl.value);
+      }
+    }
+
+    inputEl.addEventListener("input", render);
+
+    document.querySelector("#copy-html").addEventListener("click", () => {
+      if (window.marked) {
+        navigator.clipboard.writeText(window.marked.parse(inputEl.value)).then(() => {});
+      }
+    });
+
+    document.querySelector("#btn-clear").addEventListener("click", () => {
+      inputEl.value = "";
+      previewEl.innerHTML = "";
+    });
+
+    // Initial render if marked already loaded
+    if (window.marked) render();
+    else document.querySelector("script[src*='marked']").addEventListener("load", render);
+  </script>
+  <script src="/assets/js/partials.js"></script>
+</body>
+</html>

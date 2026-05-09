@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bluetext.in | 900+ Free Online Tools for Developers, Creators & Professionals</title>
+	<meta name="description" content="900+ free online tools for developers, creators, and professionals. Fast, simple, and privacy-first. Calculators, converters, PDF, images, SEO, AI, media, and more.">
+	<meta name="keywords" content="online tools, calculators, converters, PDF tools, image tools, SEO tools, developer tools, free tools, privacy">
+	<meta name="theme-color" content="#0e5bd8">
+	<meta name="creator" content="Tulsiram Methre">
+	<meta name="author" content="Tulsiram Methre, AWS Solution Architect">
+	
+	<!-- Open Graph / Social Media -->
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://www.bluetext.in/">
+	<meta property="og:title" content="Bluetext.in | 900+ Free Online Tools">
+	<meta property="og:description" content="900+ free, fast, and privacy-first online tools for developers, creators, and professionals.">
+	<meta property="og:image" content="https://www.bluetext.in/assets/img/og-image.png">
+	<meta property="og:image:alt" content="Bluetext.in - The Ultimate Online Utility Suite">
+	
+	<!-- Twitter -->
+	<meta property="twitter:card" content="summary_large_image">
+	<meta property="twitter:url" content="https://www.bluetext.in/">
+	<meta property="twitter:title" content="Bluetext.in | 900+ Free Online Tools">
+	<meta property="twitter:description" content="900+ free, fast, and privacy-first online tools for developers, creators, and professionals.">
+	<meta property="twitter:image" content="https://www.bluetext.in/assets/img/og-image.png">
+	<meta property="twitter:creator" content="@Tulsiram_Methre">
+	
+	<!-- Additional Meta Tags -->
+	<meta name="copyright" content="© 2026 Bluetext.in. All rights reserved.">
+	<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+	<link rel="canonical" href="https://www.bluetext.in/">
+	
+	<!-- Google Site Verification (update with your own) -->
+	<meta name="google-site-verification" content="">
+	
+	<!-- Preconnect for Performance -->
+	<link rel="dns-prefetch" href="https://www.google-analytics.com">
+	<link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+	<link rel="manifest" href="manifest.webmanifest">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<!-- Apply saved theme before first paint to avoid flash -->
+	<script>(function(){var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);})();</script>
+</head>
+<body>
+	<div id="site-header"></div>
+	<a class="skip-link" href="#main-content">Skip to content</a>
+
+	<div class="site-shell">
+		<header class="hero" role="banner">
+			<div class="hero__badge" data-i18n="home.heroBadge">Simple. Fast. Privacy-first.</div>
+			<h1 class="hero__title">
+				<span class="logo-text logo-text--hero" aria-label="BlueTEXT language code">
+					<span class="logo-wordmark" aria-label="BlueTEXT">BlueTEXT</span><span class="logo-in-badge" aria-label="Language code"></span>
+				</span>
+			</h1>
+			<p class="hero__subtitle" data-i18n="home.heroSubtitle">
+				900+ free online tools for developers, creators, and professionals. No tracking. No signup. Just pure utility.
+			</p>
+
+			<div class="hero__meta" aria-label="Platform highlights">
+				<div class="meta-chip">
+					<span class="meta-chip__label" data-i18n="home.meta.totalTools">Total tools</span>
+					<strong id="hero-total-tools">-</strong>
+				</div>
+				<div class="meta-chip">
+					<span class="meta-chip__label" data-i18n="home.meta.readyNow">Ready now</span>
+					<strong id="hero-ready-tools">-</strong>
+				</div>
+				<div class="meta-chip">
+					<span class="meta-chip__label" data-i18n="home.meta.categories">Categories</span>
+					<strong id="hero-total-categories">-</strong>
+				</div>
+			</div>
+
+			<div class="hero__actions">
+				<a class="btn btn--primary" href="tools-platform/all-tools.html" data-i18n="home.cta.explore">Explore All Tools</a>
+				<a class="btn btn--ghost" href="#category-section" data-i18n="home.cta.browse">Browse Categories</a>
+			</div>
+
+			<form class="search" id="tool-search-form" role="search" aria-label="Search tools">
+				<label class="search__label" for="mainSearch" data-i18n="search.label">Search tools</label>
+				<input
+					id="mainSearch"
+					class="search__input"
+					type="search"
+					placeholder="Try: BMI, PDF merge, image resize"
+					data-i18n-placeholder="home.search.placeholder"
+					autocomplete="off"
+					aria-describedby="search-help"
+					aria-controls="mainSearchResults"
+				>
+				<p id="search-help" class="search__help" data-i18n="home.search.help">Press Enter to jump to the first matching tool.</p>
+				<div id="mainSearchResults" class="live-search-results" aria-live="polite"></div>
+			</form>
+		</header>
+
+		<main id="main-content" class="content" role="main">
+			<section id="category-section" class="panel">
+				<div class="panel__head">
+					<h2 data-i18n="home.browse.title">Browse Categories</h2>
+					<p data-i18n="home.browse.desc">Explore the current tool catalog by workflow, format, and use case.</p>
+				</div>
+				<div id="categoryGrid" class="category-grid" aria-live="polite"></div>
+			</section>
+
+			<section class="panel">
+				<div class="panel__head">
+					<h2 data-i18n="home.snapshot.title">Platform Snapshot</h2>
+					<p data-i18n="home.snapshot.desc">Live catalog status generated from your current tool data.</p>
+				</div>
+				<div id="stats-grid" class="stats-grid" aria-live="polite"></div>
+			</section>
+
+			<section class="panel">
+				<div class="panel__head">
+					<h2 data-i18n="home.featured.title">Featured Tools</h2>
+					<p data-i18n="home.featured.desc">Handpicked utilities from the first launch wave.</p>
+				</div>
+				<div id="featured-tools" class="tool-grid" aria-live="polite"></div>
+			</section>
+
+			<section class="panel panel--split">
+				<div>
+					<h2 data-i18n="home.why.title">Why Bluetext?</h2>
+					<ul class="feature-list">
+						<li data-i18n="home.why.point1">Fast pages with lightweight UI and no sign-up friction.</li>
+						<li data-i18n="home.why.point2">Focused tool experiences with clear input-output flows.</li>
+						<li data-i18n="home.why.point3">Scalable, category-driven architecture for rapid expansion.</li>
+					</ul>
+				</div>
+				<div class="status-card">
+					<h3 data-i18n="home.build.title">Build Status</h3>
+					<p data-i18n="home.build.desc">Core platform foundation is now active.</p>
+					<dl>
+						<div><dt data-i18n="home.build.phaseLabel">Phase</dt><dd data-i18n="home.build.phaseValue">Catalog Expansion</dd></div>
+						<div><dt data-i18n="home.build.langLabel">Language</dt><dd data-i18n="home.build.langValue">English First</dd></div>
+						<div><dt data-i18n="home.build.focusLabel">Focus</dt><dd data-i18n="home.build.focusValue">Tools, listings, and category coverage</dd></div>
+					</dl>
+				</div>
+			</section>
+		</main>
+	</div>
+
+	<div id="site-footer"></div>
+
+	<script src="assets/js/partials.js"></script>
+	<script type="module" src="assets/js/main.js"></script>
+	<script>
+		// Unregister any existing service workers so caching does not block updates.
+		if ("serviceWorker" in navigator) {
+			navigator.serviceWorker.getRegistrations().then((registrations) => {
+				registrations.forEach((r) => r.unregister());
+			});
+		}
+	</script>
+</body>
+</html>

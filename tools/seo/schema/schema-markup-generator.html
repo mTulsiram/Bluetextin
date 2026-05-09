@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Schema Markup Generator | Bluetext.in</title>
+  <meta name="description" content="Generate JSON-LD schema markup for articles, FAQs, products, and local businesses.">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="doc-page" role="main">
+    <p class="doc-page__back"><a href="../../../index.html">Back to home</a></p>
+    <h1>Schema Markup Generator</h1>
+    <p>Generate valid JSON-LD structured data for Google Search rich results.</p>
+
+    <section class="panel">
+      <form id="schema-form" class="tool-form" novalidate>
+        <label>
+          Schema type
+          <select id="schema-type">
+            <option value="Article">Article</option>
+            <option value="FAQPage">FAQ Page</option>
+            <option value="Product">Product</option>
+            <option value="LocalBusiness">Local Business</option>
+            <option value="BreadcrumbList">Breadcrumb</option>
+            <option value="WebSite">WebSite (Sitelinks Searchbox)</option>
+          </select>
+        </label>
+
+        <!-- Article fields -->
+        <div id="fields-Article">
+          <label>Headline<input id="art-headline" type="text" placeholder="Your article title"></label>
+          <label>Author name<input id="art-author" type="text" placeholder="John Doe"></label>
+          <label>Date published <small>(YYYY-MM-DD)</small><input id="art-date" type="date"></label>
+          <label>Description<input id="art-desc" type="text" placeholder="Short description"></label>
+          <label>Image URL<input id="art-image" type="url" placeholder="https://example.com/image.jpg"></label>
+          <label>URL<input id="art-url" type="url" placeholder="https://example.com/article"></label>
+        </div>
+
+        <!-- FAQ fields -->
+        <div id="fields-FAQPage" style="display:none;">
+          <p style="font-size:0.9rem;color:var(--text-soft);">Add up to 5 Q&amp;A pairs.</p>
+          <div id="faq-pairs">
+            <div class="faq-pair" style="border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.75rem;margin-bottom:0.5rem;">
+              <label>Question 1<input type="text" class="faq-q" placeholder="What is ...?"></label>
+              <label>Answer 1<textarea class="faq-a" rows="2" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.5rem 0.6rem;font:inherit;resize:vertical;" placeholder="The answer is..."></textarea></label>
+            </div>
+          </div>
+          <button id="add-faq" class="btn btn--ghost" type="button" style="font-size:0.85rem;padding:0.35rem 0.75rem;">+ Add Q&amp;A</button>
+        </div>
+
+        <!-- Product fields -->
+        <div id="fields-Product" style="display:none;">
+          <label>Product name<input id="prod-name" type="text" placeholder="e.g. Blue Widget"></label>
+          <label>Description<input id="prod-desc" type="text" placeholder="Short product description"></label>
+          <label>Price<input id="prod-price" type="number" step="0.01" min="0" placeholder="e.g. 999"></label>
+          <label>Currency<input id="prod-currency" type="text" maxlength="3" value="INR" placeholder="INR"></label>
+          <label>Availability
+            <select id="prod-avail">
+              <option value="InStock">In Stock</option>
+              <option value="OutOfStock">Out of Stock</option>
+              <option value="PreOrder">Pre-order</option>
+            </select>
+          </label>
+          <label>Product URL<input id="prod-url" type="url" placeholder="https://example.com/product"></label>
+          <label>Image URL<input id="prod-image" type="url" placeholder="https://example.com/product.jpg"></label>
+        </div>
+
+        <!-- LocalBusiness fields -->
+        <div id="fields-LocalBusiness" style="display:none;">
+          <label>Business name<input id="biz-name" type="text" placeholder="e.g. Acme Pvt Ltd"></label>
+          <label>Business type <small>(e.g. Restaurant, Store)</small><input id="biz-type" type="text" value="LocalBusiness" placeholder="Restaurant"></label>
+          <label>Street address<input id="biz-street" type="text" placeholder="123 Main St"></label>
+          <label>City<input id="biz-city" type="text" placeholder="Mumbai"></label>
+          <label>Country<input id="biz-country" type="text" value="IN" placeholder="IN"></label>
+          <label>Phone<input id="biz-phone" type="tel" placeholder="+91-9000000000"></label>
+          <label>Website URL<input id="biz-url" type="url" placeholder="https://example.com"></label>
+        </div>
+
+        <!-- Breadcrumb fields -->
+        <div id="fields-BreadcrumbList" style="display:none;">
+          <p style="font-size:0.9rem;color:var(--text-soft);">Add breadcrumb items in order.</p>
+          <div id="bc-items">
+            <div class="bc-item" style="display:flex;gap:0.5rem;margin-bottom:0.4rem;">
+              <input class="bc-name" type="text" placeholder="Home" style="flex:1;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.5rem 0.65rem;">
+              <input class="bc-url" type="url" placeholder="https://example.com" style="flex:2;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.5rem 0.65rem;">
+            </div>
+            <div class="bc-item" style="display:flex;gap:0.5rem;margin-bottom:0.4rem;">
+              <input class="bc-name" type="text" placeholder="Tools" style="flex:1;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.5rem 0.65rem;">
+              <input class="bc-url" type="url" placeholder="https://example.com/tools" style="flex:2;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.5rem 0.65rem;">
+            </div>
+          </div>
+          <button id="add-bc" class="btn btn--ghost" type="button" style="font-size:0.85rem;padding:0.35rem 0.75rem;">+ Add item</button>
+        </div>
+
+        <!-- WebSite fields -->
+        <div id="fields-WebSite" style="display:none;">
+          <label>Site name<input id="ws-name" type="text" placeholder="My Website"></label>
+          <label>Site URL<input id="ws-url" type="url" placeholder="https://example.com"></label>
+          <label>Search URL template <small>(use {search_term_string})</small><input id="ws-search" type="text" placeholder="https://example.com/search?q={search_term_string}"></label>
+        </div>
+
+        <div class="tool-actions" style="margin-top:0.75rem;">
+          <button class="btn btn--primary" type="submit">Generate Schema</button>
+          <button class="btn btn--ghost" type="reset">Clear</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="tool-output" aria-live="polite">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-bottom:0.5rem;">
+        <p id="schema-label" style="margin:0;font-weight:600;"></p>
+        <button id="copy-btn" class="btn btn--ghost" type="button" style="padding:0.4rem 0.75rem;font-size:0.85rem;">Copy</button>
+      </div>
+      <p style="font-size:0.85rem;color:var(--text-soft);margin:0 0 0.5rem;">Add this inside a <code>&lt;script type="application/ld+json"&gt;</code> tag in your page <code>&lt;head&gt;</code>.</p>
+      <pre id="schema-output" class="mono" style="white-space:pre-wrap;background:var(--surface-soft);border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:1rem;font-size:0.85rem;overflow:auto;"></pre>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script>
+    const typeEl = document.querySelector("#schema-type");
+    const allFields = document.querySelectorAll("[id^='fields-']");
+
+    function showFields(type) {
+      allFields.forEach(el => { el.style.display = el.id === "fields-" + type ? "" : "none"; });
+    }
+    typeEl.addEventListener("change", () => showFields(typeEl.value));
+    showFields("Article");
+
+    // FAQ add row
+    document.querySelector("#add-faq").addEventListener("click", () => {
+      const pairs = document.querySelector("#faq-pairs");
+      if (pairs.children.length >= 5) return;
+      const n = pairs.children.length + 1;
+      const div = document.createElement("div");
+      div.className = "faq-pair";
+      div.style.cssText = "border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.75rem;margin-bottom:0.5rem;";
+      div.innerHTML = `<label>Question ${n}<input type="text" class="faq-q" placeholder="What is ...?"></label>
+        <label>Answer ${n}<textarea class="faq-a" rows="2" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.5rem 0.6rem;font:inherit;resize:vertical;" placeholder="The answer is..."></textarea></label>`;
+      pairs.appendChild(div);
+    });
+
+    // Breadcrumb add row
+    document.querySelector("#add-bc").addEventListener("click", () => {
+      const items = document.querySelector("#bc-items");
+      if (items.children.length >= 8) return;
+      const div = document.createElement("div");
+      div.className = "bc-item";
+      div.style.cssText = "display:flex;gap:0.5rem;margin-bottom:0.4rem;";
+      div.innerHTML = `<input class="bc-name" type="text" placeholder="Page" style="flex:1;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.5rem 0.65rem;">
+        <input class="bc-url" type="url" placeholder="https://example.com/page" style="flex:2;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.5rem 0.65rem;">`;
+      items.appendChild(div);
+    });
+
+    function g(id) { const el = document.querySelector("#" + id); return el ? el.value.trim() : ""; }
+
+    document.querySelector("#schema-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const type = typeEl.value;
+      let schema = {};
+
+      if (type === "Article") {
+        schema = { "@context": "https://schema.org", "@type": "Article", headline: g("art-headline"), author: { "@type": "Person", name: g("art-author") }, datePublished: g("art-date"), description: g("art-desc"), image: g("art-image"), url: g("art-url") };
+      } else if (type === "FAQPage") {
+        const qs = [...document.querySelectorAll(".faq-q")].map(el => el.value.trim());
+        const as = [...document.querySelectorAll(".faq-a")].map(el => el.value.trim());
+        schema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: qs.map((q, i) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: as[i] || "" } })).filter(item => item.name) };
+      } else if (type === "Product") {
+        schema = { "@context": "https://schema.org", "@type": "Product", name: g("prod-name"), description: g("prod-desc"), image: g("prod-image"), url: g("prod-url"), offers: { "@type": "Offer", price: g("prod-price"), priceCurrency: g("prod-currency") || "INR", availability: "https://schema.org/" + document.querySelector("#prod-avail").value } };
+      } else if (type === "LocalBusiness") {
+        schema = { "@context": "https://schema.org", "@type": g("biz-type") || "LocalBusiness", name: g("biz-name"), address: { "@type": "PostalAddress", streetAddress: g("biz-street"), addressLocality: g("biz-city"), addressCountry: g("biz-country") }, telephone: g("biz-phone"), url: g("biz-url") };
+      } else if (type === "BreadcrumbList") {
+        const names = [...document.querySelectorAll(".bc-name")].map(el => el.value.trim());
+        const urls = [...document.querySelectorAll(".bc-url")].map(el => el.value.trim());
+        schema = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: names.map((n, i) => ({ "@type": "ListItem", position: i + 1, name: n, item: urls[i] || "" })).filter(item => item.name) };
+      } else if (type === "WebSite") {
+        schema = { "@context": "https://schema.org", "@type": "WebSite", name: g("ws-name"), url: g("ws-url"), potentialAction: { "@type": "SearchAction", target: { "@type": "EntryPoint", urlTemplate: g("ws-search") }, "query-input": "required name=search_term_string" } };
+      }
+
+      // Remove empty string values
+      const clean = JSON.parse(JSON.stringify(schema, (k, v) => v === "" ? undefined : v));
+      const output = document.querySelector("#schema-output");
+      output.textContent = JSON.stringify(clean, null, 2);
+      document.querySelector("#schema-label").textContent = type + " schema generated.";
+    });
+
+    document.querySelector("#schema-form").addEventListener("reset", () => {
+      document.querySelector("#schema-output").textContent = "";
+      document.querySelector("#schema-label").textContent = "";
+      setTimeout(() => showFields(typeEl.value), 0);
+    });
+
+    document.querySelector("#copy-btn").addEventListener("click", () => {
+      const text = document.querySelector("#schema-output").textContent;
+      if (!text) return;
+      navigator.clipboard.writeText(`<script type="application/ld+json">\n${text}\n<\/script>`).then(() => { document.querySelector("#schema-label").textContent = "Copied with script tags."; });
+    });
+  </script>
+  <script src="/assets/js/partials.js"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Image Contrast Adjuster | Bluetext.in</title>
+  <meta name="description" content="Adjust image contrast, saturation, and sharpness with a live preview. Download as PNG.">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="doc-page" role="main">
+    <p class="doc-page__back"><a href="../../../index.html">Back to home</a></p>
+    <h1>Image Contrast &amp; Filter Adjuster</h1>
+    <p>Adjust contrast, saturation, and sharpness. Live preview — no data leaves your browser.</p>
+
+    <section class="panel">
+      <div class="tool-form">
+        <label>Upload image<input id="img-file" type="file" accept="image/*"></label>
+        <label style="margin-top:0.75rem;">Contrast: <span id="contrast-val">100</span>%<input id="contrast" type="range" min="0" max="300" value="100" step="1" style="width:100%;margin-top:0.35rem;"></label>
+        <label style="margin-top:0.5rem;">Saturation: <span id="saturate-val">100</span>%<input id="saturate" type="range" min="0" max="300" value="100" step="1" style="width:100%;margin-top:0.35rem;"></label>
+        <label style="margin-top:0.5rem;">Hue rotate: <span id="hue-val">0</span>°<input id="hue" type="range" min="0" max="360" value="0" step="1" style="width:100%;margin-top:0.35rem;"></label>
+        <label style="margin-top:0.5rem;">Invert: <span id="invert-val">0</span>%<input id="invert" type="range" min="0" max="100" value="0" step="1" style="width:100%;margin-top:0.35rem;"></label>
+      </div>
+      <div class="tool-actions" style="margin-top:0.75rem;">
+        <button id="btn-apply" class="btn btn--primary" type="button" disabled>Apply &amp; Preview</button>
+        <button id="btn-download" class="btn btn--ghost" type="button" style="display:none;">Download PNG</button>
+        <button id="btn-reset" class="btn btn--ghost" type="button">Reset</button>
+      </div>
+    </section>
+
+    <section class="tool-output" aria-live="polite">
+      <p id="status">Upload an image to begin.</p>
+      <canvas id="canvas" style="max-width:100%;border-radius:var(--radius-md);margin-top:0.75rem;display:none;"></canvas>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script>
+    const controls = {
+      contrast: { el: document.querySelector("#contrast"), val: document.querySelector("#contrast-val"), unit: "%" },
+      saturate: { el: document.querySelector("#saturate"), val: document.querySelector("#saturate-val"), unit: "%" },
+      hue: { el: document.querySelector("#hue"), val: document.querySelector("#hue-val"), unit: "deg" },
+      invert: { el: document.querySelector("#invert"), val: document.querySelector("#invert-val"), unit: "%" },
+    };
+
+    Object.values(controls).forEach(({ el, val }) => {
+      el.addEventListener("input", () => { val.textContent = el.value; });
+    });
+
+    const fileInput = document.querySelector("#img-file");
+    const btnApply = document.querySelector("#btn-apply");
+    const btnDownload = document.querySelector("#btn-download");
+    const canvas = document.querySelector("#canvas");
+    const ctx = canvas.getContext("2d");
+    const status = document.querySelector("#status");
+    let imgEl = null;
+
+    fileInput.addEventListener("change", () => {
+      const file = fileInput.files && fileInput.files[0];
+      if (!file) return;
+      const url = URL.createObjectURL(file);
+      imgEl = new Image();
+      imgEl.onload = () => {
+        status.textContent = `${file.name} — ${imgEl.naturalWidth}×${imgEl.naturalHeight} px`;
+        btnApply.disabled = false;
+        btnDownload.style.display = "none";
+      };
+      imgEl.src = url;
+    });
+
+    btnApply.addEventListener("click", () => {
+      if (!imgEl) return;
+      canvas.width = imgEl.naturalWidth;
+      canvas.height = imgEl.naturalHeight;
+      const contrast = controls.contrast.el.value;
+      const saturate = controls.saturate.el.value;
+      const hue = controls.hue.el.value;
+      const invert = controls.invert.el.value;
+      ctx.filter = `contrast(${contrast}%) saturate(${saturate}%) hue-rotate(${hue}deg) invert(${invert}%)`;
+      ctx.drawImage(imgEl, 0, 0);
+      ctx.filter = "none";
+      canvas.style.display = "block";
+      btnDownload.style.display = "";
+      status.textContent = `Applied: contrast ${contrast}% · saturation ${saturate}% · hue ${hue}° · invert ${invert}%`;
+    });
+
+    btnDownload.addEventListener("click", () => {
+      const link = document.createElement("a");
+      link.download = "filtered.png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    });
+
+    document.querySelector("#btn-reset").addEventListener("click", () => {
+      controls.contrast.el.value = 100; controls.contrast.val.textContent = "100";
+      controls.saturate.el.value = 100; controls.saturate.val.textContent = "100";
+      controls.hue.el.value = 0; controls.hue.val.textContent = "0";
+      controls.invert.el.value = 0; controls.invert.val.textContent = "0";
+    });
+  </script>
+  <script src="/assets/js/partials.js"></script>
+</body>
+</html>

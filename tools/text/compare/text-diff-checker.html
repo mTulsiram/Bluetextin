@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Text Diff Checker | Bluetext.in</title>
+  <meta name="description" content="Compare two texts side-by-side and highlight differences instantly.">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="doc-page" role="main">
+    <p class="doc-page__back"><a href="../../../index.html">Back to home</a></p>
+    <h1>Text Diff Checker</h1>
+    <p>Compare two versions of text and see what changed — added, removed, or unchanged.</p>
+
+    <section class="panel">
+      <div class="tool-form">
+        <div class="tool-grid-2">
+          <label>
+            Original text
+            <textarea id="text-a" rows="10" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;" placeholder="Paste original text..."></textarea>
+          </label>
+          <label>
+            Modified text
+            <textarea id="text-b" rows="10" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;" placeholder="Paste modified text..."></textarea>
+          </label>
+        </div>
+        <div class="tool-actions">
+          <button id="btn-compare" class="btn btn--primary" type="button">Compare</button>
+          <button id="btn-clear" class="btn btn--ghost" type="button">Clear</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool-output" aria-live="polite">
+      <p id="diff-status" style="margin:0 0 0.75rem;font-weight:600;"></p>
+      <div id="diff-output" style="font-family:monospace;font-size:0.9rem;line-height:1.6;"></div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script>
+    // Simple line-based diff
+    function diffLines(a, b) {
+      const aLines = a.split("\n");
+      const bLines = b.split("\n");
+      const result = [];
+
+      // LCS-based diff (simple Myers-lite)
+      const m = aLines.length, n = bLines.length;
+      const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
+      for (let i = m - 1; i >= 0; i--) {
+        for (let j = n - 1; j >= 0; j--) {
+          if (aLines[i] === bLines[j]) dp[i][j] = dp[i+1][j+1] + 1;
+          else dp[i][j] = Math.max(dp[i+1][j], dp[i][j+1]);
+        }
+      }
+
+      let i = 0, j = 0;
+      while (i < m || j < n) {
+        if (i < m && j < n && aLines[i] === bLines[j]) {
+          result.push({ type: "equal", text: aLines[i] });
+          i++; j++;
+        } else if (j < n && (i >= m || dp[i+1][j] >= dp[i][j+1])) {
+          result.push({ type: "add", text: bLines[j] });
+          j++;
+        } else {
+          result.push({ type: "remove", text: aLines[i] });
+          i++;
+        }
+      }
+      return result;
+    }
+
+    document.querySelector("#btn-compare").addEventListener("click", () => {
+      const a = document.querySelector("#text-a").value;
+      const b = document.querySelector("#text-b").value;
+      const outputEl = document.querySelector("#diff-output");
+      const statusEl = document.querySelector("#diff-status");
+      outputEl.innerHTML = "";
+
+      const diff = diffLines(a, b);
+      let adds = 0, removes = 0;
+
+      diff.forEach(({ type, text }) => {
+        const line = document.createElement("div");
+        line.style.cssText = "padding:1px 8px;white-space:pre-wrap;word-break:break-word;border-radius:3px;";
+        const esc = text.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+        if (type === "add") {
+          line.style.background = "#f0fdf4"; line.style.color = "#15803d";
+          line.innerHTML = `+ ${esc}`; adds++;
+        } else if (type === "remove") {
+          line.style.background = "#fff1f2"; line.style.color = "#be123c";
+          line.innerHTML = `- ${esc}`; removes++;
+        } else {
+          line.style.color = "var(--text-soft)";
+          line.innerHTML = `  ${esc}`;
+        }
+        outputEl.appendChild(line);
+      });
+
+      statusEl.textContent = diff.length === 0
+        ? "No text entered."
+        : adds === 0 && removes === 0
+        ? "Texts are identical."
+        : `+${adds} lines added, -${removes} lines removed.`;
+    });
+
+    document.querySelector("#btn-clear").addEventListener("click", () => {
+      document.querySelector("#text-a").value = "";
+      document.querySelector("#text-b").value = "";
+      document.querySelector("#diff-output").innerHTML = "";
+      document.querySelector("#diff-status").textContent = "";
+    });
+  </script>
+  <script src="/assets/js/partials.js"></script>
+</body>
+</html>

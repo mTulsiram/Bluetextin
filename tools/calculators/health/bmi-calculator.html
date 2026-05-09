@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>BMI Calculator | Bluetext.in</title>
+	<meta name="description" content="Calculate BMI instantly with metric or imperial units.">
+	<link rel="stylesheet" href="../../../assets/css/main.css">
+</head>
+<body>
+  <div id="site-header"></div>
+	<main class="doc-page" role="main">
+		<p class="doc-page__back"><a href="../../../index.html">Back to home</a></p>
+		<h1>BMI Calculator</h1>
+		<p>Estimate your Body Mass Index with metric or imperial inputs.</p>
+
+		<section class="panel">
+			<form id="bmi-form" class="tool-form" novalidate>
+				<label>
+					Unit System
+					<select id="unit-system" name="unitSystem">
+						<option value="metric">Metric (cm, kg)</option>
+						<option value="imperial">Imperial (in, lb)</option>
+					</select>
+				</label>
+
+				<div class="tool-grid-2">
+					<label>
+						Height
+						<input id="height-input" name="height" type="number" min="1" step="0.1" placeholder="e.g. 170" required>
+					</label>
+					<label>
+						Weight
+						<input id="weight-input" name="weight" type="number" min="1" step="0.1" placeholder="e.g. 65" required>
+					</label>
+				</div>
+
+				<div class="tool-actions">
+					<button class="btn btn--primary" type="submit">Calculate BMI</button>
+					<button class="btn btn--ghost" type="reset">Reset</button>
+				</div>
+			</form>
+		</section>
+
+		<section class="tool-output" aria-live="polite">
+			<p id="bmi-result">Enter values to see your BMI result.</p>
+		</section>
+	</main>
+
+	<script>
+		const form = document.querySelector("#bmi-form");
+		const unitSystem = document.querySelector("#unit-system");
+		const heightInput = document.querySelector("#height-input");
+		const weightInput = document.querySelector("#weight-input");
+		const result = document.querySelector("#bmi-result");
+
+		function categoryForBmi(bmi) {
+			if (bmi < 18.5) return "Underweight";
+			if (bmi < 25) return "Normal";
+			if (bmi < 30) return "Overweight";
+			return "Obesity";
+		}
+
+		function readBmi() {
+			const h = Number(heightInput.value);
+			const w = Number(weightInput.value);
+			if (!Number.isFinite(h) || !Number.isFinite(w) || h <= 0 || w <= 0) {
+				return null;
+			}
+
+			if (unitSystem.value === "metric") {
+				const meters = h / 100;
+				return w / (meters * meters);
+			}
+
+			return (703 * w) / (h * h);
+		}
+
+		form.addEventListener("submit", (event) => {
+			event.preventDefault();
+			const bmi = readBmi();
+			if (!bmi) {
+				result.textContent = "Please enter valid height and weight values.";
+				return;
+			}
+
+			result.textContent = `BMI: ${bmi.toFixed(1)} (${categoryForBmi(bmi)})`;
+		});
+
+		form.addEventListener("reset", () => {
+			result.textContent = "Enter values to see your BMI result.";
+		});
+	</script>
+  <div id="site-footer"></div>
+  <script src="/assets/js/partials.js"></script>
+</body>
+</html>
+
+

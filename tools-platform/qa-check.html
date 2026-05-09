@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QA Check | Bluetext.in</title>
+  <meta name="description" content="Internal QA checks for tool catalog and route consistency.">
+  <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="doc-page" role="main">
+    <p class="doc-page__back"><a href="../index.html">Back to home</a></p>
+    <h1>QA Check</h1>
+    <p>Run quick catalog and route checks for the current build.</p>
+
+    <div class="tool-actions" style="margin-top:0.8rem;">
+      <button id="run-qa" class="btn btn--primary" type="button">Run Checks</button>
+    </div>
+
+    <section class="tool-output" aria-live="polite" style="margin-top:1rem;">
+      <p id="qa-status">No checks executed yet.</p>
+      <div id="qa-results" style="margin-top:0.8rem;"></div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+
+  <script>
+    const runButton = document.querySelector("#run-qa");
+    const statusEl = document.querySelector("#qa-status");
+    const resultsEl = document.querySelector("#qa-results");
+
+    function renderList(title, items, okMessage) {
+      if (!items.length) {
+        return `<article class="card"><h3>${title}</h3><p>${okMessage}</p></article>`;
+      }
+      return `
+        <article class="card">
+          <h3>${title}</h3>
+          <ul>${items.map((item) => `<li>${item}</li>`).join("")}</ul>
+        </article>
+      `;
+    }
+
+    async function pathExists(path) {
+      const url = `../${path}`;
+      try {
+        const response = await fetch(url, { method: "HEAD", cache: "no-cache" });
+        if (response.ok) {
+          return true;
+        }
+      } catch (_) {
+      }
+
+      try {
+        const fallback = await fetch(url, { cache: "no-cache" });
+        return fallback.ok;
+      } catch (_) {
+        return false;
+      }
+    }
+
+    async function runChecks() {
+      statusEl.textContent = "Running checks...";
+      resultsEl.innerHTML = "";
+
+      const toolsResponse = await fetch("../assets/data/tools.json", { cache: "no-cache" });
+      const navigationResponse = await fetch("../assets/data/navigation.json", { cache: "no-cache" });
+      if (!toolsResponse.ok) {
+        statusEl.textContent = "Failed to load tools catalog.";
+        return;
+      }
+      if (!navigationResponse.ok) {
+        statusEl.textContent = "Failed to load category navigation data.";
+        return;
+      }
+
+      const data = await toolsResponse.json();
+      const navigationData = await navigationResponse.json();
+      const tools = Array.isArray(data.tools) ? data.tools : [];
+      const navigationCategories = Array.isArray(navigationData.categories) ? navigationData.categories : [];
+
+      const duplicateIds = [];
+      const seenIds = new Set();
+      for (const tool of tools) {
+        if (seenIds.has(tool.id)) {
+          duplicateIds.push(tool.id);
+        }
+        seenIds.add(tool.id);
+      }
+
+      const missingPaths = [];
+      for (const tool of tools) {
+        if (tool.status === "coming-soon") {
+          continue;
+        }
+        if (!tool.path) {
+          missingPaths.push(`${tool.id}: missing path`);
+          continue;
+        }
+        const exists = await pathExists(tool.path);
+        if (!exists) {
+          missingPaths.push(`${tool.id}: ${tool.path}`);
+        }
+      }
+
+      const badStatus = tools
+        .filter((tool) => tool.status !== "ready" && tool.status !== "coming-soon")
+        .map((tool) => `${tool.id}: ${tool.status || "(missing)"}`);
+
+      const featuredComingSoon = tools
+        .filter((tool) => tool.featured && tool.status === "coming-soon")
+        .map((tool) => tool.id);
+
+      const toolCategories = [...new Set(tools.map((tool) => tool.category).filter(Boolean))].sort();
+      const navigationCategoryIds = navigationCategories.map((category) => category.id).filter(Boolean);
+
+      const duplicateCategoryIds = [];
+      const seenCategoryIds = new Set();
+      for (const categoryId of navigationCategoryIds) {
+        if (seenCategoryIds.has(categoryId)) {
+          duplicateCategoryIds.push(categoryId);
+        }
+        seenCategoryIds.add(categoryId);
+      }
+
+      const missingNavigationCategories = toolCategories.filter(
+        (categoryId) => !navigationCategoryIds.includes(categoryId)
+      );
+
+      const unusedNavigationCategories = navigationCategoryIds.filter(
+        (categoryId) => !toolCategories.includes(categoryId)
+      );
+
+      const missingNavigationPaths = [];
+      for (const category of navigationCategories) {
+        if (!category.path) {
+          missingNavigationPaths.push(`${category.id}: missing path`);
+          continue;
+        }
+
+        const exists = await pathExists(category.path);
+        if (!exists) {
+          missingNavigationPaths.push(`${category.id}: ${category.path}`);
+        }
+      }
+
+      resultsEl.innerHTML = [
+        renderList("Duplicate Tool IDs", duplicateIds, "No duplicate IDs found."),
+        renderList("Missing Ready Tool Pages", missingPaths, "All ready tools resolve to valid pages."),
+        renderList("Invalid Status Values", badStatus, "All tools use valid status values."),
+        renderList("Featured But Coming Soon", featuredComingSoon, "No featured tools are marked coming soon."),
+        renderList("Duplicate Navigation Category IDs", duplicateCategoryIds, "No duplicate navigation category IDs found."),
+        renderList("Tool Categories Missing From Navigation", missingNavigationCategories, "Every tool category is represented in navigation."),
+        renderList("Navigation Categories Without Tools", unusedNavigationCategories, "Every navigation category maps to at least one tool."),
+        renderList("Missing Navigation Category Pages", missingNavigationPaths, "All navigation category pages resolve correctly.")
+      ].join("");
+
+      const issueCount =
+        duplicateIds.length +
+        missingPaths.length +
+        badStatus.length +
+        featuredComingSoon.length +
+        duplicateCategoryIds.length +
+        missingNavigationCategories.length +
+        unusedNavigationCategories.length +
+        missingNavigationPaths.length;
+      statusEl.textContent = issueCount === 0 ? "Checks passed. No issues found." : `Checks completed with ${issueCount} issue(s).`;
+    }
+
+    runButton.addEventListener("click", () => {
+      runChecks().catch((error) => {
+        console.error(error);
+        statusEl.textContent = "Checks failed unexpectedly. See console for details.";
+      });
+    });
+  </script>
+  <script src="/assets/js/partials.js"></script>
+</body>
+</html>

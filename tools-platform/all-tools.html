@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>All Tools | Bluetext.in</title>
+	<meta name="description" content="Browse all tools available on Bluetext.in.">
+	<link rel="stylesheet" href="../assets/css/main.css">
+	<style>
+		.directory-shell {
+			display: grid;
+			gap: 1rem;
+		}
+		.directory-toolbar {
+			display: grid;
+			grid-template-columns: 1.2fr auto;
+			gap: .75rem;
+			align-items: center;
+			margin-bottom: .75rem;
+		}
+		.toolbar-controls {
+			display: grid;
+			grid-template-columns: 1fr auto;
+			gap: .65rem;
+		}
+		#sortTools {
+			padding: 0.75rem;
+			border: 1px solid var(--border-color);
+			border-radius: 12px;
+			background: var(--bg-card);
+			color: var(--text-primary);
+		}
+		.directory-stats {
+			display: flex;
+			flex-wrap: wrap;
+			gap: .5rem;
+		}
+		.stat-pill {
+			display: inline-flex;
+			align-items: center;
+			gap: .3rem;
+			padding: .35rem .55rem;
+			font-size: .78rem;
+			font-weight: 700;
+			border-radius: 999px;
+			background: #eaf2ff;
+			border: 1px solid #bfd8ff;
+			color: #0b3b8f;
+		}
+		.directory-layout {
+			display: grid;
+			grid-template-columns: 280px 1fr;
+			gap: 1rem;
+			align-items: start;
+		}
+		.directory-results {
+			background: var(--surface);
+			border: 1px solid var(--stroke);
+			border-radius: 14px;
+			padding: .9rem;
+		}
+		#resultsMeta {
+			margin-bottom: .7rem;
+			font-size: .92rem;
+			color: var(--text-secondary);
+		}
+		.directory-content {
+			gap: .75rem;
+		}
+		.directory-content .card {
+			padding: 0.85rem;
+		}
+		.tool-card-top {
+			display: flex;
+			justify-content: space-between;
+			gap: .6rem;
+			align-items: flex-start;
+		}
+		.tool-status {
+			font-size: .72rem;
+			font-weight: 700;
+			padding: .2rem .45rem;
+			border-radius: 999px;
+			white-space: nowrap;
+		}
+		.tool-status--ready {
+			background: #e8f8ee;
+			color: #0d6b3e;
+			border: 1px solid #bde7cc;
+		}
+		.tool-status--soon {
+			background: #fff1ce;
+			color: #7a5200;
+			border: 1px solid #ffd67f;
+		}
+		.card .tool-category {
+			display: inline-flex;
+			margin-top: .45rem;
+			font-size: .75rem;
+			font-weight: 700;
+			color: var(--accent-strong);
+		}
+		@media (max-width: 980px) {
+			.directory-layout {
+				grid-template-columns: 1fr;
+			}
+			.category-sidebar {
+				position: static;
+			}
+		}
+		@media (max-width: 700px) {
+			.directory-toolbar,
+			.toolbar-controls {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div id="site-header"></div>
+	<main class="all-tools-layout" role="main">
+		<p class="doc-page__back"><a href="../index.html" data-i18n="allTools.backHome">Back to home</a></p>
+
+		<section class="directory-header">
+			<h1 data-i18n="allTools.title">All Tools Directory</h1>
+			<p data-i18n="allTools.subtitle">Search, sort, and explore the full Bluetext tool catalog from one place.</p>
+		</section>
+
+		<div class="directory-shell">
+			<div class="directory-toolbar">
+				<div class="toolbar-controls">
+					<input id="directoryFilter" class="search__input" type="search" data-i18n-placeholder="allTools.searchPlaceholder" placeholder="Search by title, description, category, or tags" data-i18n-aria-label="allTools.searchAria" aria-label="Filter tools">
+					<select id="sortTools" data-i18n-aria-label="allTools.sortAria" aria-label="Sort tools">
+						<option value="name-asc" data-i18n="allTools.sort.nameAsc">Sort: Name (A-Z)</option>
+						<option value="name-desc" data-i18n="allTools.sort.nameDesc">Sort: Name (Z-A)</option>
+						<option value="status" data-i18n="allTools.sort.readyFirst">Sort: Ready first</option>
+					</select>
+				</div>
+				<div class="directory-stats" id="directoryStats" aria-live="polite"></div>
+			</div>
+
+			<div class="directory-layout">
+				<nav class="category-sidebar" data-i18n-aria-label="allTools.categoryAria" aria-label="Tool categories">
+					<h4 data-i18n="allTools.categoriesTitle">Tool Categories</h4>
+					<a href="../tools/ai/index.html" class="sidebar-link"><span>AI</span> <span data-i18n="allTools.cat.ai">AI Tools</span></a>
+					<a href="../tools/media/index.html" class="sidebar-link"><span>Media</span> <span data-i18n="allTools.cat.media">Audio and Video</span></a>
+					<a href="../tools/calculators/index.html" class="sidebar-link"><span>Calc</span> <span data-i18n="allTools.cat.calculators">Calculators</span></a>
+					<a href="../tools/developer/index.html" class="sidebar-link"><span>Dev</span> <span data-i18n="allTools.cat.developer">Developer Tools</span></a>
+					<a href="../tools/files/index.html" class="sidebar-link"><span>File</span> <span data-i18n="allTools.cat.files">File Tools</span></a>
+					<a href="../tools/images/index.html" class="sidebar-link"><span>Image</span> <span data-i18n="allTools.cat.images">Image Tools</span></a>
+					<a href="../tools/pdf/index.html" class="sidebar-link"><span>PDF</span> <span data-i18n="allTools.cat.pdf">PDF Tools</span></a>
+					<a href="../tools/seo/index.html" class="sidebar-link"><span>SEO</span> <span data-i18n="allTools.cat.seo">SEO Tools</span></a>
+					<a href="../tools/text/index.html" class="sidebar-link"><span>Text</span> <span data-i18n="allTools.cat.text">Text Tools</span></a>
+					<a href="../tools/converters/index.html" class="sidebar-link"><span>Conv</span> <span data-i18n="allTools.cat.converters">Converters</span></a>
+					<hr>
+					<a href="../tools-platform/all-tools.html" class="sidebar-link all-tools-link"><span>All</span> <span data-i18n="allTools.cat.viewAll">View All Tools</span></a>
+				</nav>
+
+				<section class="directory-results" data-i18n-aria-label="allTools.resultsAria" aria-label="Tool results">
+					<div id="resultsMeta" data-i18n="allTools.results.loading">Loading tools...</div>
+					<div id="masterDirectory" class="tool-grid directory-content" aria-live="polite"></div>
+				</section>
+			</div>
+		</div>
+	</main>
+
+	<div id="site-footer"></div>
+	<script src="/assets/js/partials.js"></script>
+	<script>
+		const input = document.querySelector("#directoryFilter");
+		const sortSelect = document.querySelector("#sortTools");
+		const output = document.querySelector("#masterDirectory");
+		const stats = document.querySelector("#directoryStats");
+		const meta = document.querySelector("#resultsMeta");
+		let allToolsCache = [];
+
+		function t(key, fallback) {
+			if (window.btI18n && typeof window.btI18n.t === "function") {
+				return window.btI18n.t(key, fallback);
+			}
+			return fallback;
+		}
+
+		function getToolName(tool) {
+			return tool?.name || tool?.title || "Untitled Tool";
+		}
+
+		function getToolHref(tool) {
+			const raw = tool?.slug || tool?.path || "";
+			if (!raw) return "#";
+			const normalized = String(raw).replace(/^\/+/, "");
+			return `../${normalized}`;
+		}
+
+		function normalize(value) {
+			return String(value || "").trim().toLowerCase();
+		}
+
+		function getQueryParam() {
+			const params = new URLSearchParams(window.location.search);
+			return params.get("q") || "";
+		}
+
+		function renderStats(allTools, shownTools) {
+			const readyCount = allTools.filter((tool) => tool.status !== "coming-soon").length;
+			const categoryCount = new Set(allTools.map((tool) => tool.category).filter(Boolean)).size;
+			stats.innerHTML = `
+				<span class="stat-pill">${t("allTools.stats.total", "Total")}: ${allTools.length}</span>
+				<span class="stat-pill">${t("allTools.stats.ready", "Ready")}: ${readyCount}</span>
+				<span class="stat-pill">${t("allTools.stats.categories", "Categories")}: ${categoryCount}</span>
+				<span class="stat-pill">${t("allTools.stats.showing", "Showing")}: ${shownTools.length}</span>
+			`;
+		}
+
+		function card(tool) {
+			const name = getToolName(tool);
+			const href = getToolHref(tool);
+			const isReady = tool.status !== "coming-soon";
+			const statusClass = isReady ? "tool-status tool-status--ready" : "tool-status tool-status--soon";
+			const statusText = isReady ? t("status.ready", "Ready") : t("status.comingSoon", "Coming soon");
+			return `
+				<article class="card">
+					<div class="tool-card-top">
+						<h3>${isReady ? `<a href="${href}">${name}</a>` : name}</h3>
+						<span class="${statusClass}">${statusText}</span>
+					</div>
+					<p>${tool.description || t("allTools.card.noDescription", "No description available.")}</p>
+					${tool.category ? `<span class="tool-category">${tool.category}</span>` : ""}
+				</article>
+			`;
+		}
+
+		function sortTools(tools, mode) {
+			const sorted = [...tools];
+			if (mode === "name-desc") {
+				sorted.sort((a, b) => getToolName(b).localeCompare(getToolName(a)));
+				return sorted;
+			}
+			if (mode === "status") {
+				sorted.sort((a, b) => {
+					const ar = a.status === "coming-soon" ? 1 : 0;
+					const br = b.status === "coming-soon" ? 1 : 0;
+					if (ar !== br) return ar - br;
+					return getToolName(a).localeCompare(getToolName(b));
+				});
+				return sorted;
+			}
+			sorted.sort((a, b) => getToolName(a).localeCompare(getToolName(b)));
+			return sorted;
+		}
+
+		function filterTools(tools, query) {
+			const q = normalize(query);
+			if (!q) return tools;
+			return tools.filter((tool) => {
+				const haystack = [getToolName(tool), tool.description, tool.category, ...(tool.tags || [])]
+					.map(normalize)
+					.join(" ");
+				return haystack.includes(q);
+			});
+		}
+
+		function render(tools) {
+			const filtered = filterTools(tools, input.value);
+			const sorted = sortTools(filtered, sortSelect.value);
+
+			renderStats(tools, sorted);
+			meta.textContent = sorted.length
+				? t("allTools.results.showing", "Showing {count} tools.").replace("{count}", String(sorted.length))
+				: t("allTools.results.noMatch", "No tools matched your current search.");
+
+			if (!sorted.length) {
+				output.innerHTML = `<p class="empty-state">${t("allTools.results.tryDifferent", "Try a different keyword, category, or clear the filter.")}</p>`;
+				return;
+			}
+
+			output.innerHTML = sorted.map(card).join("");
+		}
+
+		async function init() {
+			const response = await fetch("../assets/data/tools.json", { cache: "no-cache" });
+			if (!response.ok) throw new Error("Unable to load tools catalog.");
+			const data = await response.json();
+			const tools = Array.isArray(data.tools) ? data.tools : [];
+			allToolsCache = tools;
+
+			const initialQuery = getQueryParam();
+			input.value = initialQuery;
+			render(tools);
+
+			input.addEventListener("input", () => render(tools));
+			sortSelect.addEventListener("change", () => render(tools));
+			window.addEventListener("bt:locale-changed", () => render(allToolsCache));
+		}
+
+		init().catch((error) => {
+			console.error(error);
+			meta.textContent = t("allTools.results.unavailable", "Tool directory unavailable right now.");
+			output.innerHTML = `<p class="empty-state">${t("allTools.results.refresh", "Please refresh the page in a moment.")}</p>`;
+		});
+	</script>
+</body>
+</html>

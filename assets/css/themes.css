@@ -1,0 +1,93 @@
+/* =========================================================
+   THEMES.CSS
+   Light / Dark mode palettes and contrast tuning
+========================================================= */
+
+:root {
+	/* Brand */
+	--primary-blue: #0056d2;
+	--brand-yellow: #ffd600;
+
+	/* Accent system */
+	--accent-primary: var(--primary-blue);
+	--accent-soft: rgba(0, 86, 210, 0.12);
+	--accent-contrast: #ffffff;
+
+	/* Text */
+	--text-primary: #1a1a1a;
+	--text-secondary: #555555;
+
+	/* Backgrounds */
+	--bg-main: #f4f7f9;
+	--bg-card: #ffffff;
+	--border-color: #dee2e6;
+
+	/* Typography */
+	--font-main: "Heebo", "Segoe UI", sans-serif;
+	--font-heading: "Heebo", "Segoe UI", sans-serif;
+
+	/* Effects */
+	--shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+	--shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.1);
+	--focus-ring: 0 0 0 3px rgba(0, 86, 210, 0.35);
+	--transition: 0.25s ease;
+
+	/* Radius */
+	--radius-lg: 20px;
+	--radius-md: 14px;
+	--radius-sm: 10px;
+
+	/* Compatibility aliases for existing classes */
+	--bg: var(--bg-main);
+	--bg-strong: #d9e7ff;
+	--surface: var(--bg-card);
+	--surface-soft: #f8fbff;
+	--text: var(--text-primary);
+	--text-soft: var(--text-secondary);
+	--accent: var(--accent-primary);
+	--accent-strong: #083b8f;
+	--accent-alt: #18a0b6;
+	--stroke: #d6e3ff;
+}
+
+
+[data-theme="dark"] {
+	--accent-primary: #4da3ff;
+	--accent-soft: rgba(77, 163, 255, 0.18);
+	--accent-contrast: #091120;
+
+	--text-primary: #e8eef8;
+	--text-secondary: #a9b7cc;
+
+	--bg-main: #0b1220;
+	--bg-card: #121a2a;
+	--border-color: #273246;
+
+	--shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+	--shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.6);
+	--focus-ring: 0 0 0 3px rgba(77, 163, 255, 0.45);
+
+	--bg-strong: #16243a;
+	--surface-soft: #182235;
+	--accent-strong: #8bc5ff;
+	--stroke: #2e3f5a;
+}
+
+@media (prefers-contrast: more) {
+	:root {
+		--accent-soft: rgba(0, 86, 210, 0.2);
+	}
+
+	[data-theme="dark"] {
+		--accent-soft: rgba(77, 163, 255, 0.25);
+	}
+}
+
+/* Override the light-mode gradient so dark backgrounds look correct */
+[data-theme="dark"] body,
+body[data-theme="dark"] {
+	background:
+		radial-gradient(circle at 8% 12%, rgba(77, 163, 255, 0.08) 0, transparent 28%),
+		radial-gradient(circle at 92% 6%, rgba(24, 160, 182, 0.07) 0, transparent 28%),
+		var(--bg-main);
+}

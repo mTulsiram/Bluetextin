@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Length Converter | Bluetext.in</title>
+	<meta name="description" content="Convert length units like meter, kilometer, inch, foot, and mile.">
+	<link rel="stylesheet" href="../../../assets/css/main.css">
+</head>
+<body>
+  <div id="site-header"></div>
+	<main class="doc-page" role="main">
+		<p class="doc-page__back"><a href="../../../index.html">Back to home</a></p>
+		<h1>Length Converter</h1>
+		<p>Convert distance values between common metric and imperial units.</p>
+
+		<section class="panel">
+			<form id="length-form" class="tool-form" novalidate>
+				<div class="tool-grid-2">
+					<label>
+						Input value
+						<input id="length-value" type="number" step="any" placeholder="e.g. 12.5" required>
+					</label>
+					<label>
+						From unit
+						<select id="length-from">
+							<option value="m">Meter (m)</option>
+							<option value="km">Kilometer (km)</option>
+							<option value="cm">Centimeter (cm)</option>
+							<option value="mm">Millimeter (mm)</option>
+							<option value="in">Inch (in)</option>
+							<option value="ft">Foot (ft)</option>
+							<option value="yd">Yard (yd)</option>
+							<option value="mi">Mile (mi)</option>
+						</select>
+					</label>
+				</div>
+
+				<label>
+					To unit
+					<select id="length-to">
+						<option value="ft">Foot (ft)</option>
+						<option value="m">Meter (m)</option>
+						<option value="km">Kilometer (km)</option>
+						<option value="cm">Centimeter (cm)</option>
+						<option value="mm">Millimeter (mm)</option>
+						<option value="in">Inch (in)</option>
+						<option value="yd">Yard (yd)</option>
+						<option value="mi">Mile (mi)</option>
+					</select>
+				</label>
+
+				<div class="tool-actions">
+					<button class="btn btn--primary" type="submit">Convert</button>
+					<button class="btn btn--ghost" type="reset">Reset</button>
+				</div>
+			</form>
+		</section>
+
+		<section class="tool-output" aria-live="polite">
+			<p id="length-result">Enter a value and choose units to convert.</p>
+		</section>
+	</main>
+
+	<script>
+		const form = document.querySelector("#length-form");
+		const valueInput = document.querySelector("#length-value");
+		const fromInput = document.querySelector("#length-from");
+		const toInput = document.querySelector("#length-to");
+		const result = document.querySelector("#length-result");
+
+		const toMeters = {
+			mm: 0.001,
+			cm: 0.01,
+			m: 1,
+			km: 1000,
+			in: 0.0254,
+			ft: 0.3048,
+			yd: 0.9144,
+			mi: 1609.344
+		};
+
+		form.addEventListener("submit", (event) => {
+			event.preventDefault();
+			const value = Number(valueInput.value);
+			const from = fromInput.value;
+			const to = toInput.value;
+
+			if (!Number.isFinite(value)) {
+				result.textContent = "Please enter a valid numeric value.";
+				return;
+			}
+
+			const meters = value * toMeters[from];
+			const converted = meters / toMeters[to];
+			result.textContent = `${value.toFixed(6)} ${from} = ${converted.toFixed(6)} ${to}`;
+		});
+
+		form.addEventListener("reset", () => {
+			result.textContent = "Enter a value and choose units to convert.";
+		});
+	</script>
+  <div id="site-footer"></div>
+  <script src="/assets/js/partials.js"></script>
+</body>
+</html>
+
+

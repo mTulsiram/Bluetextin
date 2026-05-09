@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Extract PDF Pages | Bluetext.in</title>
+  <meta name="description" content="Extract specific pages from a PDF and download them as a new file. Runs in browser.">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="doc-page" role="main">
+    <p class="doc-page__back"><a href="../../../index.html">Back to home</a></p>
+    <h1>Extract PDF Pages</h1>
+    <p>Upload a PDF, specify page numbers, and download only those pages as a new PDF. Runs entirely in your browser.</p>
+
+    <section class="panel">
+      <form id="extract-form" class="tool-form" novalidate>
+        <label>Upload PDF<input id="pdf-file" type="file" accept="application/pdf" required></label>
+        <p id="page-count" style="color:var(--text-soft);font-size:0.9rem;margin:0.25rem 0 0;"></p>
+        <label style="margin-top:0.75rem;">
+          Pages to extract <span style="color:#888;font-size:0.8rem;">(e.g. 2, 4-6, 9)</span>
+          <input id="page-range" type="text" placeholder="e.g. 2, 4-6, 9" required>
+        </label>
+        <div class="tool-actions">
+          <button id="btn-extract" class="btn btn--primary" type="submit" disabled>Extract &amp; Download</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="tool-output" aria-live="polite">
+      <p id="extract-status">Upload a PDF to begin.</p>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script>
+    const fileInput = document.querySelector("#pdf-file");
+    const pageCountEl = document.querySelector("#page-count");
+    const btnExtract = document.querySelector("#btn-extract");
+    const statusEl = document.querySelector("#extract-status");
+    let pdfBytes = null, totalPages = 0;
+
+    fileInput.addEventListener("change", async () => {
+      const file = fileInput.files && fileInput.files[0];
+      if (!file) return;
+      try {
+        pdfBytes = await file.arrayBuffer();
+        const doc = await PDFLib.PDFDocument.load(pdfBytes);
+        totalPages = doc.getPageCount();
+        pageCountEl.textContent = `${totalPages} page${totalPages !== 1 ? "s" : ""} detected.`;
+        statusEl.textContent = `${file.name} — ${(file.size / 1024).toFixed(1)} KB`;
+        btnExtract.disabled = false;
+      } catch {
+        statusEl.textContent = "Could not read the PDF. Ensure it is not password-protected.";
+      }
+    });
+
+    function parseRanges(str, total) {
+      const pages = new Set();
+      for (const part of str.split(",")) {
+        const m = part.trim().match(/^(\d+)(?:-(\d+))?$/);
+        if (!m) return null;
+        const from = Number(m[1]), to = m[2] ? Number(m[2]) : from;
+        if (from < 1 || to > total || from > to) return null;
+        for (let i = from; i <= to; i++) pages.add(i);
+      }
+      return [...pages].sort((a, b) => a - b);
+    }
+
+    document.querySelector("#extract-form").addEventListener("submit", async e => {
+      e.preventDefault();
+      const pages = parseRanges(document.querySelector("#page-range").value, totalPages);
+      if (!pages || !pages.length) { statusEl.textContent = `Invalid range. Enter numbers 1–${totalPages}.`; return; }
+      statusEl.textContent = "Extracting…";
+      btnExtract.disabled = true;
+      try {
+        const srcDoc = await PDFLib.PDFDocument.load(pdfBytes);
+        const newDoc = await PDFLib.PDFDocument.create();
+        const copied = await newDoc.copyPages(srcDoc, pages.map(p => p - 1));
+        copied.forEach(p => newDoc.addPage(p));
+        const bytes = await newDoc.save();
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(new Blob([bytes], { type: "application/pdf" }));
+        link.download = "extracted.pdf";
+        link.click();
+        statusEl.textContent = `Extracted ${pages.length} page${pages.length !== 1 ? "s" : ""}: ${pages.join(", ")}.`;
+      } catch (err) {
+        statusEl.textContent = "Error: " + err.message;
+      } finally {
+        btnExtract.disabled = false;
+      }
+    });
+  </script>
+  <script src="/assets/js/partials.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JPG to PNG Converter | Bluetext.in</title>
+  <meta name="description" content="Convert JPG images to PNG format instantly in your browser, no upload needed.">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="doc-page" role="main">
+    <p class="doc-page__back"><a href="../../../index.html">Back to home</a></p>
+    <h1>JPG to PNG Converter</h1>
+    <p>Upload a JPG image and download it as a lossless PNG — instantly, without uploading to any server.</p>
+
+    <section class="panel">
+      <div class="tool-form">
+        <label>Select JPG image<input id="img-file" type="file" accept="image/jpeg,image/jpg"></label>
+      </div>
+      <div class="tool-actions" style="margin-top:0.75rem;">
+        <button id="btn-download" class="btn btn--primary" type="button" disabled>Convert &amp; Download PNG</button>
+      </div>
+    </section>
+
+    <section class="tool-output" aria-live="polite">
+      <p id="status">Upload a JPG to begin.</p>
+      <img id="preview" alt="Preview" style="max-width:100%;max-height:320px;border-radius:var(--radius-md);margin-top:0.75rem;display:none;">
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script>
+    const fileInput = document.querySelector("#img-file");
+    const btnDownload = document.querySelector("#btn-download");
+    const status = document.querySelector("#status");
+    const preview = document.querySelector("#preview");
+    let objectUrl = null;
+
+    fileInput.addEventListener("change", () => {
+      const file = fileInput.files && fileInput.files[0];
+      if (!file) return;
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
+      objectUrl = URL.createObjectURL(file);
+      preview.src = objectUrl;
+      preview.style.display = "block";
+      status.textContent = `${file.name} — ${(file.size / 1024).toFixed(1)} KB`;
+      btnDownload.disabled = false;
+    });
+
+    btnDownload.addEventListener("click", () => {
+      const file = fileInput.files && fileInput.files[0];
+      if (!file || !objectUrl) return;
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        canvas.getContext("2d").drawImage(img, 0, 0);
+        const link = document.createElement("a");
+        link.download = file.name.replace(/\.[^.]+$/, "") + ".png";
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+        status.textContent = "Downloaded as PNG.";
+      };
+      img.src = objectUrl;
+    });
+  </script>
+  <script src="/assets/js/partials.js"></script>
+</body>
+</html>

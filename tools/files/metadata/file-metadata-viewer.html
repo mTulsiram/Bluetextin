@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>File Metadata Viewer | Bluetext.in</title>
+  <meta name="description" content="View file name, size, type, and last modified date for any file without uploading it.">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="doc-page" role="main">
+    <p class="doc-page__back"><a href="../../../index.html">Back to home</a></p>
+    <h1>File Metadata Viewer</h1>
+    <p>Select any file to instantly see its name, size, type, and last modified date. Nothing is uploaded.</p>
+
+    <section class="panel">
+      <div class="tool-form">
+        <label>Select file<input id="file-input" type="file"></label>
+      </div>
+    </section>
+
+    <section class="tool-output" aria-live="polite">
+      <p id="meta-status" style="margin:0 0 0.75rem;font-weight:600;">Select a file to see its metadata.</p>
+      <div class="tool-grid-2" id="meta-results" style="gap:0.6rem;"></div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script>
+    const fileInput = document.querySelector("#file-input");
+    const statusEl = document.querySelector("#meta-status");
+    const resultsEl = document.querySelector("#meta-results");
+
+    function metaCard(label, value) {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `<p style="font-size:0.8rem;color:var(--text-soft);margin:0 0 0.25rem;">${label}</p><p style="font-size:0.95rem;font-weight:700;margin:0;word-break:break-all;">${value}</p>`;
+      return card;
+    }
+
+    function formatSize(bytes) {
+      if (bytes < 1024) return bytes + " B";
+      if (bytes < 1048576) return (bytes / 1024).toFixed(2) + " KB";
+      if (bytes < 1073741824) return (bytes / 1048576).toFixed(2) + " MB";
+      return (bytes / 1073741824).toFixed(2) + " GB";
+    }
+
+    fileInput.addEventListener("change", () => {
+      const file = fileInput.files && fileInput.files[0];
+      if (!file) return;
+      resultsEl.innerHTML = "";
+
+      const ext = file.name.includes(".") ? file.name.slice(file.name.lastIndexOf(".")) : "—";
+      const modified = file.lastModified ? new Date(file.lastModified).toLocaleString("en-IN") : "Unknown";
+
+      resultsEl.appendChild(metaCard("File name", file.name));
+      resultsEl.appendChild(metaCard("Extension", ext));
+      resultsEl.appendChild(metaCard("File size", formatSize(file.size) + ` (${file.size.toLocaleString("en-IN")} bytes)`));
+      resultsEl.appendChild(metaCard("MIME type", file.type || "Unknown"));
+      resultsEl.appendChild(metaCard("Last modified", modified));
+      statusEl.textContent = `Metadata for: ${file.name}`;
+
+      // If image, show dimensions
+      if (file.type.startsWith("image/")) {
+        const img = new Image();
+        const url = URL.createObjectURL(file);
+        img.onload = () => {
+          resultsEl.appendChild(metaCard("Dimensions", `${img.naturalWidth} × ${img.naturalHeight} px`));
+          URL.revokeObjectURL(url);
+        };
+        img.src = url;
+      }
+    });
+  </script>
+  <script src="/assets/js/partials.js"></script>
+</body>
+</html>

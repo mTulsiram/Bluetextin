@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Average Calculator | Bluetext.in</title>
+  <meta name="description" content="Calculate mean, median, mode, range, and sum of a set of numbers.">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="doc-page" role="main">
+    <p class="doc-page__back"><a href="../../../index.html">Back to home</a></p>
+    <h1>Average Calculator</h1>
+    <p>Enter a list of numbers to compute mean, median, mode, range, and sum.</p>
+
+    <section class="panel">
+      <form id="avg-form" class="tool-form" novalidate>
+        <label>
+          Numbers <span style="color:#888;font-size:0.8rem;">(comma or space separated)</span>
+          <textarea id="num-input" rows="4" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;" placeholder="e.g. 4, 8, 15, 16, 23, 42"></textarea>
+        </label>
+        <div class="tool-actions">
+          <button class="btn btn--primary" type="submit">Calculate</button>
+          <button class="btn btn--ghost" type="reset">Clear</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="tool-output" aria-live="polite">
+      <p id="avg-error" style="color:#e11d48;margin:0 0 0.5rem;"></p>
+      <div class="tool-grid-2" id="avg-results" style="gap:0.6rem;"></div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script>
+    const form = document.querySelector("#avg-form");
+    const errorEl = document.querySelector("#avg-error");
+    const resultsEl = document.querySelector("#avg-results");
+
+    function stat(label, value) {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `<p style="font-size:0.8rem;color:var(--text-soft);margin:0 0 0.25rem;">${label}</p><p style="font-size:1.1rem;font-weight:700;margin:0;">${value}</p>`;
+      return card;
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      errorEl.textContent = "";
+      resultsEl.innerHTML = "";
+
+      const raw = document.querySelector("#num-input").value;
+      const nums = raw.split(/[\s,]+/).filter(Boolean).map(Number);
+
+      if (nums.length === 0) { errorEl.textContent = "Enter at least one number."; return; }
+      if (nums.some(isNaN)) { errorEl.textContent = "All entries must be valid numbers."; return; }
+
+      const sorted = [...nums].sort((a, b) => a - b);
+      const sum = nums.reduce((a, b) => a + b, 0);
+      const mean = sum / nums.length;
+      const median = nums.length % 2 === 0
+        ? (sorted[nums.length / 2 - 1] + sorted[nums.length / 2]) / 2
+        : sorted[Math.floor(nums.length / 2)];
+      const freq = {};
+      nums.forEach((n) => { freq[n] = (freq[n] || 0) + 1; });
+      const maxFreq = Math.max(...Object.values(freq));
+      const modes = Object.keys(freq).filter((k) => freq[k] === maxFreq);
+      const modeStr = maxFreq === 1 ? "None" : modes.join(", ");
+      const range = sorted[sorted.length - 1] - sorted[0];
+
+      resultsEl.appendChild(stat("Count", nums.length));
+      resultsEl.appendChild(stat("Sum", sum));
+      resultsEl.appendChild(stat("Mean (Average)", mean.toFixed(4)));
+      resultsEl.appendChild(stat("Median", median));
+      resultsEl.appendChild(stat("Mode", modeStr));
+      resultsEl.appendChild(stat("Range", range));
+      resultsEl.appendChild(stat("Min", sorted[0]));
+      resultsEl.appendChild(stat("Max", sorted[sorted.length - 1]));
+    });
+
+    form.addEventListener("reset", () => { errorEl.textContent = ""; resultsEl.innerHTML = ""; });
+  </script>
+  <script src="/assets/js/partials.js"></script>
+</body>
+</html>

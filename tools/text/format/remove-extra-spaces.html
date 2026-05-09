@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Remove Extra Spaces | Bluetext.in</title>
+  <meta name="description" content="Remove extra whitespace, duplicate spaces, leading/trailing spaces, and blank lines from text.">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="doc-page" role="main">
+    <p class="doc-page__back"><a href="../../../index.html">Back to home</a></p>
+    <h1>Remove Extra Spaces</h1>
+    <p>Clean up messy whitespace from pasted text in one click.</p>
+
+    <section class="panel">
+      <div class="tool-form">
+        <label class="search__label" for="text-input">Input text</label>
+        <textarea id="text-input" rows="8" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;" placeholder="Paste text with extra spaces here..."></textarea>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0.4rem;margin:0.75rem 0;">
+        <label style="display:flex;align-items:center;gap:0.5rem;"><input type="checkbox" id="opt-extra-spaces" checked> Remove duplicate spaces</label>
+        <label style="display:flex;align-items:center;gap:0.5rem;"><input type="checkbox" id="opt-trim" checked> Trim leading/trailing spaces</label>
+        <label style="display:flex;align-items:center;gap:0.5rem;"><input type="checkbox" id="opt-blank-lines"> Remove blank lines</label>
+        <label style="display:flex;align-items:center;gap:0.5rem;"><input type="checkbox" id="opt-tabs"> Replace tabs with single space</label>
+      </div>
+      <div class="tool-actions">
+        <button id="btn-clean" class="btn btn--primary" type="button">Clean Text</button>
+        <button id="btn-copy" class="btn btn--ghost" type="button">Copy</button>
+        <button id="btn-clear" class="btn btn--ghost" type="button">Clear</button>
+      </div>
+    </section>
+
+    <section class="tool-output" aria-live="polite">
+      <p id="status" style="margin:0 0 0.6rem;font-weight:600;"></p>
+      <textarea id="text-output" rows="8" readonly style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;background:var(--surface-soft);" placeholder="Cleaned text will appear here..."></textarea>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script>
+    const inputEl = document.querySelector("#text-input");
+    const outputEl = document.querySelector("#text-output");
+    const statusEl = document.querySelector("#status");
+
+    document.querySelector("#btn-clean").addEventListener("click", () => {
+      let text = inputEl.value;
+      const beforeLen = text.length;
+
+      if (document.querySelector("#opt-tabs").checked) text = text.replace(/\t/g, " ");
+      if (document.querySelector("#opt-extra-spaces").checked) text = text.replace(/ {2,}/g, " ");
+      if (document.querySelector("#opt-trim").checked) text = text.split("\n").map(l => l.trim()).join("\n");
+      if (document.querySelector("#opt-blank-lines").checked) text = text.replace(/\n{2,}/g, "\n").trim();
+
+      outputEl.value = text;
+      const removed = beforeLen - text.length;
+      statusEl.textContent = `Cleaned. ${removed > 0 ? `Removed ${removed} character${removed !== 1 ? "s" : ""}.` : "No changes needed."}`;
+    });
+
+    document.querySelector("#btn-copy").addEventListener("click", () => {
+      if (!outputEl.value) return;
+      navigator.clipboard.writeText(outputEl.value).then(() => { statusEl.textContent = "Copied to clipboard."; });
+    });
+
+    document.querySelector("#btn-clear").addEventListener("click", () => {
+      inputEl.value = "";
+      outputEl.value = "";
+      statusEl.textContent = "";
+    });
+  </script>
+  <script src="/assets/js/partials.js"></script>
+</body>
+</html>

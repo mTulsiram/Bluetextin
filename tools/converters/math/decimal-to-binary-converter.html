@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Decimal to Binary Converter | Bluetext.in</title>
+  <meta name="description" content="Convert decimal numbers to binary, octal, and hexadecimal instantly.">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="doc-page" role="main">
+    <p class="doc-page__back"><a href="../../../index.html">Back to home</a></p>
+    <h1>Number Base Converter</h1>
+    <p>Convert numbers between decimal, binary, octal, and hexadecimal.</p>
+
+    <section class="panel">
+      <form id="base-form" class="tool-form" novalidate>
+        <div class="tool-grid-2">
+          <label>
+            Input
+            <input id="base-input" type="text" class="mono" placeholder="e.g. 255" autocomplete="off" spellcheck="false">
+          </label>
+          <label>
+            From base
+            <select id="base-from">
+              <option value="10" selected>Decimal (10)</option>
+              <option value="2">Binary (2)</option>
+              <option value="8">Octal (8)</option>
+              <option value="16">Hexadecimal (16)</option>
+            </select>
+          </label>
+        </div>
+        <div class="tool-actions">
+          <button class="btn btn--primary" type="submit">Convert</button>
+          <button class="btn btn--ghost" type="reset">Clear</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="tool-output" aria-live="polite">
+      <p id="base-error" style="color:#e11d48;margin:0 0 0.5rem;"></p>
+      <div class="tool-grid-2" id="base-results" style="gap:0.6rem;"></div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script>
+    const form = document.querySelector("#base-form");
+    const inputEl = document.querySelector("#base-input");
+    const fromSelect = document.querySelector("#base-from");
+    const resultsEl = document.querySelector("#base-results");
+    const errorEl = document.querySelector("#base-error");
+
+    const BASES = [
+      { label: "Decimal (10)", base: 10 },
+      { label: "Binary (2)", base: 2 },
+      { label: "Octal (8)", base: 8 },
+      { label: "Hexadecimal (16)", base: 16 },
+    ];
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const raw = inputEl.value.trim();
+      const fromBase = Number(fromSelect.value);
+      errorEl.textContent = "";
+      resultsEl.innerHTML = "";
+
+      if (!raw) { errorEl.textContent = "Enter a number to convert."; return; }
+
+      const decimal = parseInt(raw, fromBase);
+      if (isNaN(decimal)) { errorEl.textContent = `"${raw}" is not a valid base-${fromBase} number.`; return; }
+
+      BASES.forEach(({ label, base }) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `<p style="font-size:0.8rem;color:var(--text-soft);margin:0 0 0.25rem;">${label}</p><p class="mono" style="font-size:1.05rem;font-weight:700;word-break:break-all;margin:0;">${decimal.toString(base).toUpperCase()}</p>`;
+        resultsEl.appendChild(card);
+      });
+    });
+
+    form.addEventListener("reset", () => {
+      errorEl.textContent = "";
+      resultsEl.innerHTML = "";
+    });
+  </script>
+  <script src="/assets/js/partials.js"></script>
+</body>
+</html>

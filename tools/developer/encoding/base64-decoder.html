@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Base64 Decoder | Bluetext.in</title>
+  <meta name="description" content="Decode Base64 encoded strings back to plain text instantly in your browser.">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="doc-page" role="main">
+    <p class="doc-page__back"><a href="../../../index.html">Back to home</a></p>
+    <h1>Base64 Decoder</h1>
+    <p>Paste a Base64 encoded string to decode it back to plain text instantly. Need to encode? <a href="base64-encoder.html">Use Base64 Encoder</a>.</p>
+
+    <section class="panel">
+      <div class="tool-form">
+        <label class="search__label" for="b64-input">Base64 string</label>
+        <textarea id="b64-input" rows="7" class="mono" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;" placeholder="Paste Base64 string here..."></textarea>
+      </div>
+      <div class="tool-actions" style="margin-top:0.75rem;">
+        <button id="btn-decode" class="btn btn--primary" type="button">Decode</button>
+        <button id="btn-copy" class="btn btn--ghost" type="button">Copy Output</button>
+        <button id="btn-clear" class="btn btn--ghost" type="button">Clear</button>
+      </div>
+    </section>
+
+    <section class="tool-output" aria-live="polite">
+      <p id="status" style="margin:0 0 0.6rem;font-weight:600;"></p>
+      <textarea id="b64-output" rows="7" readonly style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;background:var(--surface-soft);" placeholder="Decoded output..."></textarea>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script>
+    const inputEl = document.querySelector("#b64-input");
+    const outputEl = document.querySelector("#b64-output");
+    const statusEl = document.querySelector("#status");
+
+    document.querySelector("#btn-decode").addEventListener("click", () => {
+      const text = inputEl.value.trim();
+      if (!text) { statusEl.textContent = "Paste a Base64 string first."; return; }
+      try {
+        outputEl.value = decodeURIComponent(escape(atob(text)));
+        statusEl.textContent = "Decoded successfully.";
+      } catch {
+        statusEl.textContent = "Invalid Base64 input. Check your string and try again.";
+        outputEl.value = "";
+      }
+    });
+
+    document.querySelector("#btn-copy").addEventListener("click", () => {
+      if (!outputEl.value) return;
+      navigator.clipboard.writeText(outputEl.value).then(() => { statusEl.textContent = "Copied."; });
+    });
+
+    document.querySelector("#btn-clear").addEventListener("click", () => {
+      inputEl.value = ""; outputEl.value = ""; statusEl.textContent = "";
+    });
+  </script>
+  <script src="/assets/js/partials.js"></script>
+</body>
+</html>
