@@ -9,6 +9,13 @@ const appState = {
 	loaded: false
 };
 
+let searchInitialized = false;
+
+function getCategoryLabel(categoryId) {
+	const found = appState.navigation.find((category) => category.id === categoryId);
+	return found?.label || categoryId || "tool";
+}
+
 function t(key, fallback) {
 	if (window.btI18n && typeof window.btI18n.t === "function") {
 		return window.btI18n.t(key, fallback);
@@ -20,9 +27,23 @@ function getCurrentLocale() {
 	return window.btI18n?.locale || document.documentElement.lang || "en";
 }
 
+function isLocaleRoutablePath(pathname) {
+	return (
+		pathname === "/" ||
+		pathname === "/index.html" ||
+		pathname.startsWith("/nav/") ||
+		pathname.startsWith("/wiki/") ||
+		pathname.startsWith("/tools-platform/")
+	);
+}
+
 function withLocale(pathname) {
 	const locale = getCurrentLocale();
-	return pathname === "/" ? `/${locale}/` : `/${locale}${pathname}`;
+	const normalized = pathname.startsWith("/") ? pathname : `/${pathname}`;
+	if (!isLocaleRoutablePath(normalized)) {
+		return normalized;
+	}
+	return normalized === "/" ? `/${locale}/` : `/${locale}${normalized}`;
 }
 
 async function loadJson(path) {
@@ -31,6 +52,45 @@ async function loadJson(path) {
 		throw new Error(`Failed to load ${path}: ${response.status}`);
 	}
 	return response.json();
+}
+
+function getLocalizedDataPath(basePath, locale) {
+	if (!locale || locale === "en") {
+		return null;
+	}
+
+	if (!basePath.startsWith("assets/data/") || !basePath.endsWith(".json")) {
+		return null;
+	}
+
+	const fileName = basePath.slice("assets/data/".length, -".json".length);
+	return `assets/data/i18n/${fileName}.${locale}.json`;
+}
+
+async function loadLocalizedJson(basePath, locale) {
+	const localizedPath = getLocalizedDataPath(basePath, locale);
+	if (localizedPath) {
+		try {
+			const response = await fetch(localizedPath, { cache: "no-cache" });
+			if (response.ok) {
+				return await response.json();
+			}
+		} catch (error) {
+			console.warn(`Locale data fallback for ${localizedPath}`, error);
+		}
+	}
+
+	return loadJson(basePath);
+}
+
+async function loadAppDataForLocale(locale) {
+	const [navigationData, toolsData] = await Promise.all([
+		loadLocalizedJson(dataPaths.navigation, locale),
+		loadLocalizedJson(dataPaths.tools, locale)
+	]);
+
+	appState.navigation = navigationData.categories || [];
+	appState.tools = toolsData.tools || [];
 }
 
 function renderCategories(categories) {
@@ -86,12 +146,13 @@ function renderFeaturedTools(tools) {
 			const toolName = getToolName(tool);
 			const toolHref = getToolHref(tool);
 			const statusText = tool.status === "coming-soon" ? t("status.comingSoon", "Coming soon") : t("status.ready", "Ready");
+			const categoryLabel = getCategoryLabel(tool.category);
 			return `<article class="card">
 					<h3><a href="${toolHref}">${toolName}</a></h3>
 					<p>${tool.description}</p>
 					<div class="card__meta">
 						<span>${statusText}</span>
-						<span>${tool.category}</span>
+						<span>${categoryLabel}</span>
 					</div>
 					${
 						tags.length
@@ -176,18 +237,24 @@ function getToolHref(tool) {
 	return withLocale(normalized);
 }
 
-function setupSearch(tools) {
+function setupSearch() {
+	if (searchInitialized) {
+		return;
+	}
+
 	const form = document.querySelector("#tool-search-form");
 	const input = document.querySelector("#tool-search-input, #mainSearch");
 	const liveResults = document.querySelector("#live-search-results, #mainSearchResults");
 	if (!form || !input) return;
+
+	searchInitialized = true;
 
 	function findMatches(searchText) {
 		if (!searchText) {
 			return [];
 		}
 
-		return tools
+		return appState.tools
 			.filter((tool) => {
 				const haystack = [getToolName(tool), tool.description, ...(tool.tags || [])]
 					.map(normalizeSearchValue)
@@ -213,7 +280,7 @@ function setupSearch(tools) {
 			.map(
 				(tool) => `<a href="${getToolHref(tool)}">
 					<strong>${getToolName(tool)}</strong>
-					<small>${tool.category}</small>
+					<small>${getCategoryLabel(tool.category)}</small>
 				</a>`
 			)
 			.join("");
@@ -255,13 +322,7 @@ function setupSearch(tools) {
 }
 
 async function bootstrap() {
-	const [navigationData, toolsData] = await Promise.all([
-		loadJson(dataPaths.navigation),
-		loadJson(dataPaths.tools)
-	]);
-
-	appState.navigation = navigationData.categories || [];
-	appState.tools = toolsData.tools || [];
+	await loadAppDataForLocale(getCurrentLocale());
 
 	renderCategories(appState.navigation);
 	renderSnapshotStats(appState.tools, appState.navigation);
@@ -271,14 +332,18 @@ async function bootstrap() {
 		.slice(0, 8);
 
 	renderFeaturedTools(featuredTools.length ? featuredTools : appState.tools.filter((tool) => tool.status !== "coming-soon").slice(0, 8));
-	setupSearch(appState.tools);
+	setupSearch();
 	appState.loaded = true;
 }
 
-window.addEventListener("bt:locale-changed", () => {
+window.addEventListener("bt:locale-changed", async (event) => {
 	if (!appState.loaded) {
 		return;
 	}
+
+	const locale = event?.detail?.locale || getCurrentLocale();
+	await loadAppDataForLocale(locale);
+
 	renderCategories(appState.navigation);
 	renderSnapshotStats(appState.tools, appState.navigation);
 	const featuredTools = appState.tools

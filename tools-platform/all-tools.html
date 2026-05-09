@@ -20,10 +20,11 @@
 		}
 		.toolbar-controls {
 			display: grid;
-			grid-template-columns: 1fr auto;
+			grid-template-columns: 1fr auto auto;
 			gap: .65rem;
 		}
-		#sortTools {
+		#sortTools,
+		#categoryFilter {
 			padding: 0.75rem;
 			border: 1px solid var(--border-color);
 			border-radius: 12px;
@@ -130,6 +131,9 @@
 			<div class="directory-toolbar">
 				<div class="toolbar-controls">
 					<input id="directoryFilter" class="search__input" type="search" data-i18n-placeholder="allTools.searchPlaceholder" placeholder="Search by title, description, category, or tags" data-i18n-aria-label="allTools.searchAria" aria-label="Filter tools">
+					<select id="categoryFilter" aria-label="Filter by category">
+						<option value="all">All categories</option>
+					</select>
 					<select id="sortTools" data-i18n-aria-label="allTools.sortAria" aria-label="Sort tools">
 						<option value="name-asc" data-i18n="allTools.sort.nameAsc">Sort: Name (A-Z)</option>
 						<option value="name-desc" data-i18n="allTools.sort.nameDesc">Sort: Name (Z-A)</option>
@@ -140,18 +144,9 @@
 			</div>
 
 			<div class="directory-layout">
-				<nav class="category-sidebar" data-i18n-aria-label="allTools.categoryAria" aria-label="Tool categories">
+				<nav class="category-sidebar" id="categorySidebar" data-i18n-aria-label="allTools.categoryAria" aria-label="Tool categories">
 					<h4 data-i18n="allTools.categoriesTitle">Tool Categories</h4>
-					<a href="../tools/ai/index.html" class="sidebar-link"><span>AI</span> <span data-i18n="allTools.cat.ai">AI Tools</span></a>
-					<a href="../tools/media/index.html" class="sidebar-link"><span>Media</span> <span data-i18n="allTools.cat.media">Audio and Video</span></a>
-					<a href="../tools/calculators/index.html" class="sidebar-link"><span>Calc</span> <span data-i18n="allTools.cat.calculators">Calculators</span></a>
-					<a href="../tools/developer/index.html" class="sidebar-link"><span>Dev</span> <span data-i18n="allTools.cat.developer">Developer Tools</span></a>
-					<a href="../tools/files/index.html" class="sidebar-link"><span>File</span> <span data-i18n="allTools.cat.files">File Tools</span></a>
-					<a href="../tools/images/index.html" class="sidebar-link"><span>Image</span> <span data-i18n="allTools.cat.images">Image Tools</span></a>
-					<a href="../tools/pdf/index.html" class="sidebar-link"><span>PDF</span> <span data-i18n="allTools.cat.pdf">PDF Tools</span></a>
-					<a href="../tools/seo/index.html" class="sidebar-link"><span>SEO</span> <span data-i18n="allTools.cat.seo">SEO Tools</span></a>
-					<a href="../tools/text/index.html" class="sidebar-link"><span>Text</span> <span data-i18n="allTools.cat.text">Text Tools</span></a>
-					<a href="../tools/converters/index.html" class="sidebar-link"><span>Conv</span> <span data-i18n="allTools.cat.converters">Converters</span></a>
+					<div id="categorySidebarLinks"></div>
 					<hr>
 					<a href="../tools-platform/all-tools.html" class="sidebar-link all-tools-link"><span>All</span> <span data-i18n="allTools.cat.viewAll">View All Tools</span></a>
 				</nav>
@@ -169,16 +164,57 @@
 	<script>
 		const input = document.querySelector("#directoryFilter");
 		const sortSelect = document.querySelector("#sortTools");
+		const categoryFilter = document.querySelector("#categoryFilter");
 		const output = document.querySelector("#masterDirectory");
 		const stats = document.querySelector("#directoryStats");
 		const meta = document.querySelector("#resultsMeta");
+		const categorySidebarLinks = document.querySelector("#categorySidebarLinks");
 		let allToolsCache = [];
+		let navigationCategories = [];
 
 		function t(key, fallback) {
 			if (window.btI18n && typeof window.btI18n.t === "function") {
 				return window.btI18n.t(key, fallback);
 			}
 			return fallback;
+		}
+
+		function getCurrentLocale() {
+			return window.btI18n?.locale || document.documentElement.lang || "en";
+		}
+
+		function getLocalizedDataPath(basePath, locale) {
+			if (!locale || locale === "en") {
+				return null;
+			}
+
+			const normalized = String(basePath).replace(/^\.\.\//, "");
+			if (!normalized.startsWith("assets/data/") || !normalized.endsWith(".json")) {
+				return null;
+			}
+
+			const name = normalized.slice("assets/data/".length, -".json".length);
+			return `../assets/data/i18n/${name}.${locale}.json`;
+		}
+
+		async function fetchLocaleAwareJson(basePath, locale) {
+			const localizedPath = getLocalizedDataPath(basePath, locale);
+			if (localizedPath) {
+				try {
+					const localizedResponse = await fetch(localizedPath, { cache: "no-cache" });
+					if (localizedResponse.ok) {
+						return localizedResponse.json();
+					}
+				} catch (error) {
+					console.warn(`Locale data fallback for ${localizedPath}`, error);
+				}
+			}
+
+			const response = await fetch(basePath, { cache: "no-cache" });
+			if (!response.ok) {
+				throw new Error(`Unable to load ${basePath}`);
+			}
+			return response.json();
 		}
 
 		function getToolName(tool) {
@@ -201,6 +237,58 @@
 			return params.get("q") || "";
 		}
 
+		function getCategoryLabel(categoryId) {
+			const found = navigationCategories.find((category) => category.id === categoryId);
+			if (!found) return categoryId || "";
+			const i18nKey = `allTools.cat.${found.id}`;
+			return t(i18nKey, found.label || found.id);
+		}
+
+		function getCategoryPath(categoryId) {
+			const found = navigationCategories.find((category) => category.id === categoryId);
+			if (!found || !found.path) return null;
+			return `../${String(found.path).replace(/^\/+/, "")}`;
+		}
+
+		function getCategoryBadge(categoryId) {
+			const label = getCategoryLabel(categoryId);
+			const words = String(label || categoryId || "").split(/\s+/).filter(Boolean);
+			if (!words.length) return "CAT";
+			if (words.length === 1) return words[0].slice(0, 4).toUpperCase();
+			return words.slice(0, 2).map((word) => word[0]).join("").toUpperCase();
+		}
+
+		function renderCategoryNavigation(tools) {
+			const categoriesByUsage = new Map();
+			tools.forEach((tool) => {
+				if (!tool.category) return;
+				categoriesByUsage.set(tool.category, (categoriesByUsage.get(tool.category) || 0) + 1);
+			});
+
+			if (navigationCategories.length) {
+				categorySidebarLinks.innerHTML = navigationCategories
+					.map((category) => {
+						const href = getCategoryPath(category.id);
+						if (!href) return "";
+						const label = getCategoryLabel(category.id);
+						const count = categoriesByUsage.get(category.id) || 0;
+						return `<a href="${href}" class="sidebar-link"><span>${getCategoryBadge(category.id)}</span> ${label} (${count})</a>`;
+					})
+					.join("");
+			}
+
+			const current = categoryFilter.value;
+			const options = [
+				`<option value="all">${t("allTools.filter.allCategories", "All categories")}</option>`
+			];
+			navigationCategories.forEach((category) => {
+				const count = categoriesByUsage.get(category.id) || 0;
+				options.push(`<option value="${category.id}">${getCategoryLabel(category.id)} (${count})</option>`);
+			});
+			categoryFilter.innerHTML = options.join("");
+			categoryFilter.value = options.some((opt) => opt.includes(`value="${current}"`)) ? current : "all";
+		}
+
 		function renderStats(allTools, shownTools) {
 			const readyCount = allTools.filter((tool) => tool.status !== "coming-soon").length;
 			const categoryCount = new Set(allTools.map((tool) => tool.category).filter(Boolean)).size;
@@ -218,6 +306,7 @@
 			const isReady = tool.status !== "coming-soon";
 			const statusClass = isReady ? "tool-status tool-status--ready" : "tool-status tool-status--soon";
 			const statusText = isReady ? t("status.ready", "Ready") : t("status.comingSoon", "Coming soon");
+			const categoryLabel = getCategoryLabel(tool.category);
 			return `
 				<article class="card">
 					<div class="tool-card-top">
@@ -225,7 +314,7 @@
 						<span class="${statusClass}">${statusText}</span>
 					</div>
 					<p>${tool.description || t("allTools.card.noDescription", "No description available.")}</p>
-					${tool.category ? `<span class="tool-category">${tool.category}</span>` : ""}
+					${tool.category ? `<span class="tool-category">${categoryLabel}</span>` : ""}
 				</article>
 			`;
 		}
@@ -251,8 +340,12 @@
 
 		function filterTools(tools, query) {
 			const q = normalize(query);
-			if (!q) return tools;
-			return tools.filter((tool) => {
+			const selectedCategory = categoryFilter.value;
+			const categoryFiltered = selectedCategory === "all"
+				? tools
+				: tools.filter((tool) => tool.category === selectedCategory);
+			if (!q) return categoryFiltered;
+			return categoryFiltered.filter((tool) => {
 				const haystack = [getToolName(tool), tool.description, tool.category, ...(tool.tags || [])]
 					.map(normalize)
 					.join(" ");
@@ -278,19 +371,27 @@
 		}
 
 		async function init() {
-			const response = await fetch("../assets/data/tools.json", { cache: "no-cache" });
-			if (!response.ok) throw new Error("Unable to load tools catalog.");
-			const data = await response.json();
+			const locale = getCurrentLocale();
+			const [data, navigation] = await Promise.all([
+				fetchLocaleAwareJson("../assets/data/tools.json", locale),
+				fetchLocaleAwareJson("../assets/data/navigation.json", locale)
+			]);
+			navigationCategories = Array.isArray(navigation.categories) ? navigation.categories : [];
 			const tools = Array.isArray(data.tools) ? data.tools : [];
 			allToolsCache = tools;
+			renderCategoryNavigation(tools);
 
 			const initialQuery = getQueryParam();
 			input.value = initialQuery;
 			render(tools);
 
 			input.addEventListener("input", () => render(tools));
+			categoryFilter.addEventListener("change", () => render(tools));
 			sortSelect.addEventListener("change", () => render(tools));
-			window.addEventListener("bt:locale-changed", () => render(allToolsCache));
+			window.addEventListener("bt:locale-changed", () => {
+				renderCategoryNavigation(allToolsCache);
+				render(allToolsCache);
+			});
 		}
 
 		init().catch((error) => {

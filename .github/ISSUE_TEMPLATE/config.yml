@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Bluetext.in contact page
+    url: https://www.bluetext.in/nav/contact.html
+    about: For general questions, use the contact page.
+  - name: Security reports
+    url: https://www.bluetext.in/nav/security.html
+    about: For potential security issues, report privately.

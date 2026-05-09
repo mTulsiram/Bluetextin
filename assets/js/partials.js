@@ -48,9 +48,65 @@
     return null;
   }
 
+  function isLocaleRoutablePath(pathname) {
+    const base = stripLocaleFromPath(pathname);
+    return (
+      base === "/" ||
+      base === "/index.html" ||
+      base.startsWith("/nav/") ||
+      base.startsWith("/wiki/") ||
+      base.startsWith("/tools-platform/")
+    );
+  }
+
   function withLocale(pathname, locale) {
     const base = stripLocaleFromPath(pathname);
+    if (!isLocaleRoutablePath(base)) {
+      return base;
+    }
     return base === "/" ? `/${locale}/` : `/${locale}${base}`;
+  }
+
+  function upsertHeadLink({ rel, hreflang, href }) {
+    const selector = hreflang
+      ? `link[rel="${rel}"][hreflang="${hreflang}"]`
+      : `link[rel="${rel}"]:not([hreflang])`;
+    let link = document.head.querySelector(selector);
+    if (!link) {
+      link = document.createElement("link");
+      link.setAttribute("rel", rel);
+      if (hreflang) {
+        link.setAttribute("hreflang", hreflang);
+      }
+      document.head.appendChild(link);
+    }
+    link.setAttribute("href", href);
+  }
+
+  function applySeoLanguageLinks(locale) {
+    const basePath = stripLocaleFromPath(window.location.pathname);
+    const origin = window.location.origin;
+    const routable = isLocaleRoutablePath(basePath);
+
+    if (!routable) {
+      upsertHeadLink({ rel: "canonical", href: `${origin}${basePath}` });
+      return;
+    }
+
+    const canonicalPath = withLocale(basePath, locale);
+    upsertHeadLink({ rel: "canonical", href: `${origin}${canonicalPath}` });
+
+    SUPPORTED_LOCALES.forEach((supportedLocale) => {
+      const localizedPath = withLocale(basePath, supportedLocale);
+      upsertHeadLink({
+        rel: "alternate",
+        hreflang: supportedLocale,
+        href: `${origin}${localizedPath}`
+      });
+    });
+
+    const defaultPath = withLocale(basePath, "en");
+    upsertHeadLink({ rel: "alternate", hreflang: "x-default", href: `${origin}${defaultPath}` });
   }
 
   function getInitialLocale() {
@@ -73,6 +129,19 @@
       return "#";
     }
     return raw.startsWith("/") ? raw : `/${raw}`;
+  }
+
+  function getLocalizedDataPath(basePath, locale) {
+    if (!locale || locale === "en") {
+      return null;
+    }
+
+    if (!basePath.startsWith("/assets/data/") || !basePath.endsWith(".json")) {
+      return null;
+    }
+
+    const fileName = basePath.slice("/assets/data/".length, -".json".length);
+    return `/assets/data/i18n/${fileName}.${locale}.json`;
   }
 
   function getDefaultConsent() {
@@ -236,12 +305,23 @@
     banner.querySelector("#consentCustomize").addEventListener("click", openModal);
   }
 
-  async function loadToolsCatalog() {
+  async function loadToolsCatalog(locale) {
     if (Array.isArray(toolsCatalogCache)) {
       return toolsCatalogCache;
     }
 
+    const localizedPath = getLocalizedDataPath("/assets/data/tools.json", locale);
+
     try {
+      if (localizedPath) {
+        const localizedResponse = await fetch(localizedPath, { cache: "no-cache" });
+        if (localizedResponse.ok) {
+          const localizedData = await localizedResponse.json();
+          toolsCatalogCache = Array.isArray(localizedData?.tools) ? localizedData.tools : [];
+          return toolsCatalogCache;
+        }
+      }
+
       const response = await fetch("/assets/data/tools.json", { cache: "no-cache" });
       if (!response.ok) {
         throw new Error(`Failed to load tools catalog: ${response.status}`);
@@ -413,7 +493,7 @@
     const searchInput = root.querySelector("#headerSearch");
     const searchResults = root.querySelector("#headerSearchResults");
     const searchButton = root.querySelector(".mobile-search-icon");
-    const toolsCatalog = await loadToolsCatalog();
+    const toolsCatalog = await loadToolsCatalog(getInitialLocale());
     let currentMatches = [];
     let activeIndex = -1;
 
@@ -642,6 +722,7 @@
     const dict = await loadDictionary(locale);
     applyTranslations(dict);
     setRuntimeI18n(locale, dict);
+    applySeoLanguageLinks(locale);
 
     await setupHeaderBehavior();
     setupLanguageSwitcher(locale);

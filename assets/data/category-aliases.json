@@ -1,0 +1,39 @@
+{
+  "canonical": [
+    "ai",
+    "calculators",
+    "converters",
+    "developer",
+    "files",
+    "images",
+    "media",
+    "pdf",
+    "seo",
+    "text"
+  ],
+  "aliases": {
+    "ai-utilities": "ai",
+    "audio-and-video": "media",
+    "audio-video": "media",
+    "color-and-design": "images",
+    "color-design": "images",
+    "developer-tools": "developer",
+    "domain-network": "developer",
+    "encoding": "converters",
+    "encoding-tools": "converters",
+    "file-data": "files",
+    "file-tools": "files",
+    "image": "images",
+    "image-tools": "images",
+    "miscellaneous": "text",
+    "network-tools": "developer",
+    "pdf-converters": "pdf",
+    "programming": "developer",
+    "seo-tools": "seo",
+    "social-media": "seo",
+    "text-tools": "text",
+    "unit-converters": "converters",
+    "youtube": "media",
+    "youtube-tools": "media"
+  }
+}

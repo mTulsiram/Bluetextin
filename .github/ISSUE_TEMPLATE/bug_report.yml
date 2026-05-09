@@ -1,0 +1,68 @@
+name: Bug report
+description: Report a bug in Bluetext.in
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting an issue. Please fill out the details below.
+
+  - type: input
+    id: page
+    attributes:
+      label: Affected page URL
+      description: The full page URL where the problem happens
+      placeholder: https://www.bluetext.in/en/tools-platform/all-tools.html
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - UI/Design
+        - Tool logic
+        - Localization (i18n)
+        - Header/Footer
+        - Performance
+        - SEO
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the bug and expected behavior
+      placeholder: The language switcher updates URL but text does not change.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to ...
+        2. Click ...
+        3. Observe ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Browser and device
+      placeholder: Chrome 124 on Windows 11 desktop
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Console errors or screenshots
+      description: Paste errors or attach screenshots if available
+    validations:
+      required: false

@@ -1,0 +1,1481 @@
+{
+  "tools": [
+    {
+      "description": "উচ্চতা এবং ওজন থেকে বডি মাস ইনডেক্স গণনা করুন।",
+      "category": "calculators",
+      "tags": [
+        "স্বাস্থ্য",
+        "ফিটনেস",
+        "বডি মাস ইনডেক্স"
+      ],
+      "name": "BMI ক্যালকুলেটর",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "health",
+      "slug": "tools/calculators/health/bmi-calculator.html",
+      "id": "bmi-calculator",
+      "featured": true
+    },
+    {
+      "description": "মূল, হার এবং মেয়াদ সহ মাসিক কিস্তি অনুমান করুন।",
+      "category": "calculators",
+      "tags": [
+        "অর্থ",
+        "emi",
+        "ঋণ"
+      ],
+      "name": "লোন ইএমআই ক্যালকুলেটর",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "finance",
+      "slug": "tools/calculators/finance/loan-emi-calculator.html",
+      "id": "loan-emi-calculator",
+      "featured": true
+    },
+    {
+      "description": "মাসিক EMI গণনা করুন এবং যেকোনো ঋণের জন্য একটি সম্পূর্ণ পরিশোধের সময়সূচী দেখুন।",
+      "category": "calculators",
+      "tags": [
+        "ঋণ",
+        "emi",
+        "পরিশোধ",
+        "অর্থ"
+      ],
+      "name": "লোন ক্যালকুলেটর",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "finance",
+      "slug": "tools/calculators/finance/loan-calculator.html",
+      "id": "loan-calculator",
+      "featured": true
+    },
+    {
+      "description": "জন্ম তারিখ থেকে বর্তমান তারিখ পর্যন্ত সঠিক বয়স গণনা করুন।",
+      "category": "calculators",
+      "tags": [
+        "তারিখ",
+        "সময়",
+        "বয়স"
+      ],
+      "name": "বয়স ক্যালকুলেটর",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "date-time",
+      "slug": "tools/calculators/date-time/age-calculator.html",
+      "id": "age-calculator",
+      "featured": true
+    },
+    {
+      "description": "দুই তারিখের মধ্যে দিন, মাস বা বছরের সংখ্যা খুঁজুন।",
+      "category": "calculators",
+      "tags": [
+        "তারিখ",
+        "সময়",
+        "পার্থক্য"
+      ],
+      "name": "তারিখ পার্থক্য ক্যালকুলেটর",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "date-time",
+      "slug": "tools/calculators/date-time/date-difference-calculator.html",
+      "id": "date-difference-calculator",
+      "featured": false
+    },
+    {
+      "description": "শতাংশ, শতাংশ পরিবর্তন, এবং একটি সংখ্যার শতাংশ গণনা করুন।",
+      "category": "calculators",
+      "tags": [
+        "গণিত",
+        "শতাংশ",
+        "গণনা করা"
+      ],
+      "name": "শতাংশ ক্যালকুলেটর",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "math",
+      "slug": "tools/calculators/math/percentage-calculator.html",
+      "id": "percentage-calculator",
+      "featured": false
+    },
+    {
+      "description": "সংখ্যার একটি তালিকার গড়, মধ্যমা এবং মোড গণনা করুন।",
+      "category": "calculators",
+      "tags": [
+        "গণিত",
+        "গড়",
+        "মানে"
+      ],
+      "name": "গড় ক্যালকুলেটর",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "math",
+      "slug": "tools/calculators/math/average-calculator.html",
+      "id": "average-calculator",
+      "featured": false
+    },
+    {
+      "description": "যেকোনো মূল, হার এবং সময়ের জন্য সাধারণ সুদ এবং মোট পরিমাণ গণনা করুন।",
+      "category": "calculators",
+      "tags": [
+        "অর্থ",
+        "সুদ",
+        "সহজ আগ্রহ"
+      ],
+      "name": "সহজ সুদের ক্যালকুলেটর",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "finance",
+      "slug": "tools/calculators/finance/simple-interest-calculator.html",
+      "id": "simple-interest-calculator",
+      "featured": false
+    },
+    {
+      "description": "যেকোনো দুটি পরিচিত মান থেকে গতি, দূরত্ব বা সময় গণনা করুন।",
+      "category": "calculators",
+      "tags": [
+        "পদার্থবিদ্যা",
+        "গতি",
+        "দূরত্ব",
+        "সময়"
+      ],
+      "name": "স্পিড ক্যালকুলেটর",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "physics",
+      "slug": "tools/calculators/physics/speed-calculator.html",
+      "id": "speed-calculator",
+      "featured": false
+    },
+    {
+      "description": "একটি ডেটা সেট থেকে জনসংখ্যা এবং নমুনা স্ট্যান্ডার্ড বিচ্যুতি গণনা করুন।",
+      "category": "calculators",
+      "tags": [
+        "পরিসংখ্যান",
+        "আদর্শ বিচ্যুতি",
+        "গণিত"
+      ],
+      "name": "স্ট্যান্ডার্ড ডেভিয়েশন ক্যালকুলেটর",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "statistics",
+      "slug": "tools/calculators/statistics/standard-deviation-calculator.html",
+      "id": "standard-deviation-calculator",
+      "featured": false
+    },
+    {
+      "description": "মিটার, ফুট, ইঞ্চি, কিমি, মাইল এবং আরও অনেক কিছুর মধ্যে রূপান্তর করুন।",
+      "category": "converters",
+      "tags": [
+        "ইউনিট",
+        "পরিমাপ",
+        "দূরত্ব"
+      ],
+      "name": "দৈর্ঘ্য কনভার্টার",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "units",
+      "slug": "tools/converters/units/length-unit-converter.html",
+      "id": "length-converter",
+      "featured": true
+    },
+    {
+      "description": "সেলসিয়াস, ফারেনহাইট এবং কেলভিনের মধ্যে পরিবর্তন করুন।",
+      "category": "converters",
+      "tags": [
+        "বিজ্ঞান",
+        "তাপমাত্রা",
+        "সেলসিয়াস"
+      ],
+      "name": "তাপমাত্রা রূপান্তরকারী",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "science",
+      "slug": "tools/converters/science/temperature-converter.html",
+      "id": "temperature-converter",
+      "featured": false
+    },
+    {
+      "description": "সেলসিয়াস, ফারেনহাইট, কেলভিন এবং র‍্যাঙ্কাইনের মধ্যে অবিলম্বে রূপান্তর করুন।",
+      "category": "converters",
+      "tags": [
+        "তাপমাত্রা",
+        "সেলসিয়াস",
+        "ফারেনহাইট",
+        "কেলভিন"
+      ],
+      "name": "তাপমাত্রা ইউনিট কনভার্টার",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "units",
+      "slug": "tools/converters/units/temperature-unit-converter.html",
+      "id": "temperature-unit-converter",
+      "featured": false
+    },
+    {
+      "description": "লিঙ্কে নিরাপদ ব্যবহারের জন্য শতাংশ-এনকোড URL এবং ক্যোয়ারী স্ট্রিং।",
+      "category": "converters",
+      "tags": [
+        "url",
+        "এনকোড",
+        "শতাংশ-এনকোড"
+      ],
+      "name": "URL এনকোডার",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "encoding",
+      "slug": "tools/converters/encoding/url-encoder.html",
+      "id": "url-encoder",
+      "featured": false
+    },
+    {
+      "description": "শতাংশ-এনকোড করা ইউআরএলগুলিকে পাঠযোগ্য পাঠ্যে ফিরিয়ে আনুন।",
+      "category": "converters",
+      "tags": [
+        "url",
+        "ডিকোড",
+        "শতাংশ-এনকোড"
+      ],
+      "name": "URL ডিকোডার",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "encoding",
+      "slug": "tools/converters/encoding/url-decoder.html",
+      "id": "url-decoder",
+      "featured": false
+    },
+    {
+      "description": "দশমিক সংখ্যাকে বাইনারি, অক্টাল এবং হেক্সাডেসিমেলে রূপান্তর করুন।",
+      "category": "converters",
+      "tags": [
+        "বাইনারি",
+        "দশমিক",
+        "হেক্স",
+        "অক্টাল"
+      ],
+      "name": "দশমিক থেকে বাইনারি কনভার্টার",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "math",
+      "slug": "tools/converters/math/decimal-to-binary-converter.html",
+      "id": "decimal-to-binary-converter",
+      "featured": false
+    },
+    {
+      "description": "একটি CSV ফাইল পেস্ট করুন বা আপলোড করুন এবং অবিলম্বে JSON ফর্ম্যাট করুন৷",
+      "category": "converters",
+      "tags": [
+        "csv",
+        "json",
+        "রূপান্তর",
+        "তথ্য"
+      ],
+      "name": "CSV থেকে JSON কনভার্টার",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "data",
+      "slug": "tools/converters/data/csv-to-json-converter.html",
+      "id": "csv-to-json-converter",
+      "featured": true
+    },
+    {
+      "description": "লাইভ এক্সচেঞ্জ রেট ব্যবহার করে মুদ্রা রূপান্তর করুন।",
+      "category": "converters",
+      "tags": [
+        "মুদ্রা",
+        "বিনিময়",
+        "ফরেক্স"
+      ],
+      "name": "কারেন্সি কনভার্টার",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "currency",
+      "slug": "tools/converters/currency/currency-converter.html",
+      "id": "currency-converter",
+      "featured": false
+    },
+    {
+      "description": "ভিডিও ফাইল থেকে অডিও বের করুন এবং MP3 বা WAV হিসাবে ডাউনলোড করুন।",
+      "category": "converters",
+      "tags": [
+        "ভিডিও",
+        "অডিও",
+        "রূপান্তর",
+        "mp3"
+      ],
+      "name": "ভিডিও থেকে অডিও কনভার্টার",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "media",
+      "slug": "tools/converters/media/video-to-audio-converter.html",
+      "id": "video-to-audio-converter",
+      "featured": false
+    },
+    {
+      "description": "একক নথিতে একাধিক পিডিএফ ফাইল একত্রিত করুন। ব্রাউজারে চলে।",
+      "category": "pdf",
+      "tags": [
+        "পিডিএফ",
+        "একত্রিত করা",
+        "একত্রিত করা"
+      ],
+      "name": "পিডিএফ মার্জ করুন",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "merge-split",
+      "slug": "tools/pdf/merge-split/merge-pdf.html",
+      "id": "merge-pdf",
+      "featured": true
+    },
+    {
+      "description": "পিডিএফ থেকে একটি নতুন ফাইলে নির্দিষ্ট পৃষ্ঠা বা পৃষ্ঠার রেঞ্জ বের করুন।",
+      "category": "pdf",
+      "tags": [
+        "পিডিএফ",
+        "বিভক্ত",
+        "পাতা নিষ্কাশন"
+      ],
+      "name": "পিডিএফ বিভক্ত করুন",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "merge-split",
+      "slug": "tools/pdf/merge-split/split-pdf.html",
+      "id": "split-pdf",
+      "featured": true
+    },
+    {
+      "description": "গুণমান বজায় রেখে পিডিএফ ফাইলের আকার হ্রাস করুন। ব্রাউজারে চলে।",
+      "category": "pdf",
+      "tags": [
+        "পিডিএফ",
+        "কম্প্রেস",
+        "অপ্টিমাইজ",
+        "আকার কমানো"
+      ],
+      "name": "পিডিএফ কম্প্রেস করুন",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "optimize",
+      "slug": "tools/pdf/optimize/compress-pdf.html",
+      "id": "compress-pdf",
+      "featured": true
+    },
+    {
+      "description": "কোনো সফটওয়্যার ছাড়াই সরাসরি আপনার ব্রাউজারে যেকোনো PDF ফাইল দেখুন।",
+      "category": "pdf",
+      "tags": [
+        "পিডিএফ",
+        "দর্শক",
+        "পড়া"
+      ],
+      "name": "পিডিএফ ভিউয়ার",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "view",
+      "slug": "tools/pdf/view/pdf-viewer.html",
+      "id": "pdf-viewer",
+      "featured": false
+    },
+    {
+      "description": "একটি পিডিএফ থেকে একটি নতুন ফাইলে নির্দিষ্ট পৃষ্ঠাগুলি বের করুন। ব্রাউজারে চলে।",
+      "category": "pdf",
+      "tags": [
+        "পিডিএফ",
+        "নির্যাস",
+        "পৃষ্ঠাগুলি"
+      ],
+      "name": "পিডিএফ পৃষ্ঠাগুলি বের করুন",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "extract",
+      "slug": "tools/pdf/extract/extract-pdf-pages.html",
+      "id": "extract-pdf-pages",
+      "featured": false
+    },
+    {
+      "description": "আপনার পিডিএফ ফাইলগুলিকে পাসওয়ার্ড-সুরক্ষা করুন।",
+      "category": "pdf",
+      "tags": [
+        "পিডিএফ",
+        "পাসওয়ার্ড",
+        "রক্ষা",
+        "নিরাপত্তা"
+      ],
+      "name": "পিডিএফ রক্ষা করুন",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "security",
+      "slug": "tools/pdf/security/protect-pdf.html",
+      "id": "protect-pdf",
+      "featured": false
+    },
+    {
+      "description": "PDF নথিগুলিকে সম্পাদনাযোগ্য Word (.docx) ফাইলগুলিতে রূপান্তর করুন৷",
+      "category": "pdf",
+      "tags": [
+        "পিডিএফ",
+        "শব্দ",
+        "রূপান্তর",
+        "docx"
+      ],
+      "name": "পিডিএফ টু ওয়ার্ড",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "convert",
+      "slug": "tools/pdf/convert/pdf-to-word.html",
+      "id": "pdf-to-word",
+      "featured": false
+    },
+    {
+      "description": "Word (.docx) নথিগুলিকে PDF এ রূপান্তর করুন।",
+      "category": "pdf",
+      "tags": [
+        "শব্দ",
+        "পিডিএফ",
+        "রূপান্তর",
+        "docx"
+      ],
+      "name": "ওয়ার্ড টু পিডিএফ",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "convert",
+      "slug": "tools/pdf/convert/word-to-pdf.html",
+      "id": "word-to-pdf",
+      "featured": false
+    },
+    {
+      "description": "PDF নথিতে পাঠ্য, টীকা এবং হাইলাইট যোগ করুন।",
+      "category": "pdf",
+      "tags": [
+        "পিডিএফ",
+        "সম্পাদনা",
+        "টীকা"
+      ],
+      "name": "PDF এডিট করুন",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "edit",
+      "slug": "tools/pdf/edit/edit-pdf.html",
+      "id": "edit-pdf",
+      "featured": false
+    },
+    {
+      "description": "আকৃতির অনুপাত বজায় রেখে যেকোন মাত্রায় চিত্রের আকার পরিবর্তন করুন।",
+      "category": "images",
+      "tags": [
+        "ইমেজ",
+        "আকার পরিবর্তন করুন",
+        "মাত্রা"
+      ],
+      "name": "ইমেজ রিসাইজার",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "crop-resize",
+      "slug": "tools/images/crop-resize/image-resizer.html",
+      "id": "image-resizer",
+      "featured": true
+    },
+    {
+      "description": "ফাইলের আকার কমাতে ছবি কম্প্রেস করুন। মান এবং বিন্যাস সামঞ্জস্য করুন.",
+      "category": "images",
+      "tags": [
+        "ইমেজ",
+        "কম্প্রেস",
+        "আকার কমানো"
+      ],
+      "name": "ইমেজ কম্প্রেসার",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "adjust",
+      "slug": "tools/images/adjust/image-compressor.html",
+      "id": "image-compressor-adjust",
+      "featured": true
+    },
+    {
+      "description": "গুণমান এবং আউটপুট বিন্যাস সামঞ্জস্য করে JPEG, PNG, এবং WebP চিত্রগুলিকে সংকুচিত করুন৷",
+      "category": "images",
+      "tags": [
+        "ইমেজ",
+        "কম্প্রেস",
+        "আকার কমানো",
+        "jpeg",
+        "ওয়েবপি"
+      ],
+      "name": "ইমেজ কম্প্রেসার (JPEG/WebP)",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "convert",
+      "slug": "tools/images/convert/image-compressor.html",
+      "id": "image-compressor",
+      "featured": false
+    },
+    {
+      "description": "স্বচ্ছতা সমর্থন সহ JPG চিত্রগুলিকে PNG ফর্ম্যাটে রূপান্তর করুন।",
+      "category": "images",
+      "tags": [
+        "ইমেজ",
+        "jpg",
+        "png",
+        "রূপান্তর"
+      ],
+      "name": "JPG থেকে PNG",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "convert",
+      "slug": "tools/images/convert/jpg-to-png.html",
+      "id": "jpg-to-png",
+      "featured": false
+    },
+    {
+      "description": "ফাইলের আকার কমাতে PNG ছবিগুলিকে JPG ফরম্যাটে রূপান্তর করুন।",
+      "category": "images",
+      "tags": [
+        "ইমেজ",
+        "png",
+        "jpg",
+        "রূপান্তর"
+      ],
+      "name": "PNG থেকে JPG",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "convert",
+      "slug": "tools/images/convert/png-to-jpg.html",
+      "id": "png-to-jpg",
+      "featured": false
+    },
+    {
+      "description": "যেকোনো ছবিকে তাৎক্ষণিকভাবে গ্রেস্কেলে (কালো এবং সাদা) রূপান্তর করুন।",
+      "category": "images",
+      "tags": [
+        "ইমেজ",
+        "গ্রেস্কেল",
+        "কালো এবং সাদা"
+      ],
+      "name": "গ্রেস্কেল ইমেজ কনভার্টার",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "effects",
+      "slug": "tools/images/effects/grayscale-image.html",
+      "id": "grayscale-image",
+      "featured": false
+    },
+    {
+      "description": "HTML বা CSS এ এমবেড করার জন্য ছবিকে Base64 এনকোডেড স্ট্রিং-এ রূপান্তর করুন।",
+      "category": "images",
+      "tags": [
+        "ইমেজ",
+        "বেস64",
+        "এনকোড"
+      ],
+      "name": "Base64-এ চিত্র",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "utilities",
+      "slug": "tools/images/utilities/image-to-base64.html",
+      "id": "image-to-base64",
+      "featured": false
+    },
+    {
+      "description": "একটি লাইভ প্রিভিউ সহ ছবির উজ্জ্বলতা সামঞ্জস্য করুন এবং ফলাফলটি ডাউনলোড করুন।",
+      "category": "images",
+      "tags": [
+        "ইমেজ",
+        "উজ্জ্বলতা",
+        "সামঞ্জস্য করা"
+      ],
+      "name": "ইমেজ ব্রাইটনেস অ্যাডজাস্টার",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "adjust",
+      "slug": "tools/images/adjust/image-brightness-adjuster.html",
+      "id": "image-brightness-adjuster",
+      "featured": false
+    },
+    {
+      "description": "একটি লাইভ প্রিভিউ দিয়ে ছবির বৈসাদৃশ্য সামঞ্জস্য করুন এবং ফলাফল ডাউনলোড করুন।",
+      "category": "images",
+      "tags": [
+        "ইমেজ",
+        "বিপরীত",
+        "সামঞ্জস্য করা"
+      ],
+      "name": "ইমেজ কনট্রাস্ট অ্যাডজাস্টার",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "adjust",
+      "slug": "tools/images/adjust/image-contrast-adjuster.html",
+      "id": "image-contrast-adjuster",
+      "featured": false
+    },
+    {
+      "description": "এআই ব্যবহার করে ছবির ব্যাকগ্রাউন্ড সরান। যেকোনো ছবি আপলোড করুন এবং একটি স্বচ্ছ PNG পান।",
+      "category": "images",
+      "tags": [
+        "ইমেজ",
+        "পটভূমি",
+        "অপসারণ",
+        "ai"
+      ],
+      "name": "ব্যাকগ্রাউন্ড রিমুভার",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "remove",
+      "slug": "tools/images/remove/background-remover.html",
+      "id": "background-remover",
+      "featured": true
+    },
+    {
+      "description": "যেকোনো পাঠ্যে শব্দ, অক্ষর, বাক্য এবং অনুচ্ছেদ গণনা করুন।",
+      "category": "text",
+      "tags": [
+        "পাঠ্য",
+        "শব্দ",
+        "গণনা"
+      ],
+      "name": "শব্দ কাউন্টার",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "analyze",
+      "slug": "tools/text/analyze/word-counter.html",
+      "id": "word-counter",
+      "featured": true
+    },
+    {
+      "description": "যেকোনো পাঠ্যে স্পেস সহ এবং ছাড়া অক্ষর গণনা করুন।",
+      "category": "text",
+      "tags": [
+        "পাঠ্য",
+        "অক্ষর",
+        "গণনা"
+      ],
+      "name": "ক্যারেক্টার কাউন্টার",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "analyze",
+      "slug": "tools/text/analyze/character-counter.html",
+      "id": "character-counter",
+      "featured": false
+    },
+    {
+      "description": "বাক্য গণনা করুন এবং আপনার পাঠ্যের পড়ার স্তর বিশ্লেষণ করুন।",
+      "category": "text",
+      "tags": [
+        "পাঠ্য",
+        "বাক্য",
+        "গণনা"
+      ],
+      "name": "সেন্টেন্স কাউন্টার",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "analyze",
+      "slug": "tools/text/analyze/sentence-counter.html",
+      "id": "sentence-counter",
+      "featured": false
+    },
+    {
+      "description": "অনুচ্ছেদ বা শব্দ দ্বারা স্থানধারক Lorem Ipsum পাঠ্য তৈরি করুন।",
+      "category": "text",
+      "tags": [
+        "পাঠ্য",
+        "lorem ipsum",
+        "স্থানধারক"
+      ],
+      "name": "Lorem Ipsum জেনারেটর",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "generators",
+      "slug": "tools/text/generators/lorem-ipsum-generator.html",
+      "id": "lorem-ipsum-generator",
+      "featured": false
+    },
+    {
+      "description": "বড় হাতের, ছোট হাতের, টাইটেল কেস এবং আরও অনেক কিছুর মধ্যে পাঠ্য রূপান্তর করুন।",
+      "category": "text",
+      "tags": [
+        "পাঠ্য",
+        "মামলা",
+        "বড় হাতের অক্ষর"
+      ],
+      "name": "টেক্সট কেস কনভার্টার",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "case",
+      "slug": "tools/text/case/uppercase-converter.html",
+      "id": "uppercase-converter",
+      "featured": false
+    },
+    {
+      "description": "টেক্সটকে ছোট হাতের অক্ষর, UPPERCASE, টাইটেল কেস, ক্যামেলকেস এবং আরও অনেক কিছুতে রূপান্তর করুন।",
+      "category": "text",
+      "tags": [
+        "পাঠ্য",
+        "মামলা",
+        "ছোট হাতের অক্ষর"
+      ],
+      "name": "ছোট হাতের কনভার্টার",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "case",
+      "slug": "tools/text/case/lowercase-converter.html",
+      "id": "lowercase-converter",
+      "featured": false
+    },
+    {
+      "description": "টেক্সটকে টাইটেল কেস, ছোট হাতের, ক্যামেলকেস, কাবাব-কেস এবং আরও অনেক কিছুতে রূপান্তর করুন।",
+      "category": "text",
+      "tags": [
+        "পাঠ্য",
+        "মামলা",
+        "শিরোনাম ক্ষেত্রে"
+      ],
+      "name": "টাইটেল কেস কনভার্টার",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "case",
+      "slug": "tools/text/case/title-case-converter.html",
+      "id": "title-case-converter",
+      "featured": false
+    },
+    {
+      "description": "পাঠ্যের দুটি ব্লক তুলনা করুন এবং লাইন দ্বারা পার্থক্য লাইন হাইলাইট করুন।",
+      "category": "text",
+      "tags": [
+        "পাঠ্য",
+        "পার্থক্য",
+        "তুলনা"
+      ],
+      "name": "টেক্সট ডিফ চেকার",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "compare",
+      "slug": "tools/text/compare/text-diff-checker.html",
+      "id": "text-diff-checker",
+      "featured": false
+    },
+    {
+      "description": "ডুপ্লিকেট স্পেস সরান, লাইন ট্রিম করুন এবং অগোছালো টেক্সট পরিষ্কার করুন।",
+      "category": "text",
+      "tags": [
+        "পাঠ্য",
+        "স্পেস",
+        "পরিষ্কার"
+      ],
+      "name": "অতিরিক্ত স্থান সরান",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "format",
+      "slug": "tools/text/format/remove-extra-spaces.html",
+      "id": "remove-extra-spaces",
+      "featured": false
+    },
+    {
+      "description": "মার্কডাউন লিখুন এবং পাশাপাশি একটি লাইভ রেন্ডার করা প্রিভিউ দেখুন।",
+      "category": "text",
+      "tags": [
+        "পাঠ্য",
+        "মার্কডাউন",
+        "পূর্বরূপ"
+      ],
+      "name": "মার্কডাউন প্রিভিউ",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "markdown",
+      "slug": "tools/text/markdown/markdown-preview.html",
+      "id": "markdown-preview",
+      "featured": true
+    },
+    {
+      "description": "JSON পেস্ট করুন এবং এটি সুন্দরভাবে ফরম্যাট এবং ইন্ডেন্টেড পান।",
+      "category": "developer",
+      "tags": [
+        "বিকাশকারী",
+        "json",
+        "বিন্যাস"
+      ],
+      "name": "JSON ফরম্যাটার",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "formatters",
+      "slug": "tools/developer/formatters/json-formatter.html",
+      "id": "json-formatter",
+      "featured": true
+    },
+    {
+      "description": "JSON যাচাই করুন এবং অবৈধ সিনট্যাক্সের জন্য বিশদ ত্রুটি বার্তা পান।",
+      "category": "developer",
+      "tags": [
+        "বিকাশকারী",
+        "json",
+        "যাচাই করা"
+      ],
+      "name": "JSON যাচাইকারী",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "validators",
+      "slug": "tools/developer/validators/json-validator.html",
+      "id": "json-validator",
+      "featured": false
+    },
+    {
+      "description": "বেস64 ফরম্যাটে পাঠ্য বা ফাইল এনকোড করুন।",
+      "category": "developer",
+      "tags": [
+        "বিকাশকারী",
+        "বেস64",
+        "এনকোড"
+      ],
+      "name": "বেস64 এনকোডার",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "encoding",
+      "slug": "tools/developer/encoding/base64-encoder.html",
+      "id": "base64-encoder",
+      "featured": false
+    },
+    {
+      "description": "Decode Base64 স্ট্রিং পঠনযোগ্য পাঠ্যে ফিরে আসে।",
+      "category": "developer",
+      "tags": [
+        "বিকাশকারী",
+        "বেস64",
+        "ডিকোড"
+      ],
+      "name": "বেস 64 ডিকোডার",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "encoding",
+      "slug": "tools/developer/encoding/base64-decoder.html",
+      "id": "base64-decoder",
+      "featured": false
+    },
+    {
+      "description": "অবিলম্বে এলোমেলো UUIDs (v4) তৈরি করুন — এক বা বাল্ক।",
+      "category": "developer",
+      "tags": [
+        "বিকাশকারী",
+        "uuid",
+        "উৎপন্ন"
+      ],
+      "name": "UUID জেনারেটর",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "generators",
+      "slug": "tools/developer/generators/uuid-generator.html",
+      "id": "uuid-generator",
+      "featured": false
+    },
+    {
+      "description": "লাইভ ম্যাচ হাইলাইটিং এবং গ্রুপ তথ্য সহ নিয়মিত অভিব্যক্তি পরীক্ষা করুন।",
+      "category": "developer",
+      "tags": [
+        "বিকাশকারী",
+        "regex",
+        "পরীক্ষা"
+      ],
+      "name": "Regex পরীক্ষক",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "testing",
+      "slug": "tools/developer/testing/regex-tester.html",
+      "id": "regex-tester",
+      "featured": true
+    },
+    {
+      "description": "পঠনযোগ্যতার জন্য সিএসএস কোডকে সুন্দর করুন এবং ফর্ম্যাট করুন।",
+      "category": "developer",
+      "tags": [
+        "বিকাশকারী",
+        "css",
+        "বিন্যাস"
+      ],
+      "name": "CSS ফরম্যাটার",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "formatters",
+      "slug": "tools/developer/formatters/css-formatter.html",
+      "id": "css-formatter",
+      "featured": false
+    },
+    {
+      "description": "যথাযথ ইন্ডেন্টেশন সহ HTML কোডকে সুন্দর করুন এবং ফর্ম্যাট করুন।",
+      "category": "developer",
+      "tags": [
+        "বিকাশকারী",
+        "html",
+        "বিন্যাস"
+      ],
+      "name": "এইচটিএমএল ফরম্যাটার",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "formatters",
+      "slug": "tools/developer/formatters/html-formatter.html",
+      "id": "html-formatter",
+      "featured": false
+    },
+    {
+      "description": "সাধারণ HTTP শিরোনাম সম্পর্কে জানুন এবং কীভাবে সেগুলি কনফিগার করবেন।",
+      "category": "developer",
+      "tags": [
+        "বিকাশকারী",
+        "http",
+        "হেডার",
+        "এপিআই"
+      ],
+      "name": "HTTP হেডার পরীক্ষক",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "api-tools",
+      "slug": "tools/developer/api-tools/http-header-checker.html",
+      "id": "http-header-checker",
+      "featured": false
+    },
+    {
+      "description": "এসইও, ওপেন গ্রাফ এবং টুইটার কার্ডের জন্য HTML মেটা ট্যাগ তৈরি করুন।",
+      "category": "seo",
+      "tags": [
+        "SEO",
+        "মেটা ট্যাগ",
+        "খোলা গ্রাফ"
+      ],
+      "name": "মেটা ট্যাগ জেনারেটর",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "meta",
+      "slug": "tools/seo/meta/meta-tag-generator.html",
+      "id": "meta-tag-generator",
+      "featured": true
+    },
+    {
+      "description": "সার্চ ইঞ্জিন ক্রলিং নিয়ন্ত্রণ করতে একটি robots.txt ফাইল তৈরি করুন।",
+      "category": "seo",
+      "tags": [
+        "SEO",
+        "robots.txt",
+        "ক্রল"
+      ],
+      "name": "Robots.txt জেনারেটর",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "meta",
+      "slug": "tools/seo/meta/robots-txt-generator.html",
+      "id": "robots-txt-generator",
+      "featured": false
+    },
+    {
+      "description": "আপনার পাঠ্য বিষয়বস্তুতে কীওয়ার্ডগুলি কত ঘন ঘন প্রদর্শিত হয় তা বিশ্লেষণ করুন।",
+      "category": "seo",
+      "tags": [
+        "SEO",
+        "কীওয়ার্ড",
+        "ঘনত্ব"
+      ],
+      "name": "কীওয়ার্ড ঘনত্ব পরীক্ষক",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "analysis",
+      "slug": "tools/seo/analysis/keyword-density-checker.html",
+      "id": "keyword-density-checker",
+      "featured": false
+    },
+    {
+      "description": "অক্ষর গণনা নির্দেশিকা সহ অপ্টিমাইজ করা পৃষ্ঠা শিরোনাম তৈরি করুন।",
+      "category": "seo",
+      "tags": [
+        "SEO",
+        "শিরোনাম",
+        "মেটা"
+      ],
+      "name": "এসইও শিরোনাম জেনারেটর",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "content",
+      "slug": "tools/seo/content/seo-title-generator.html",
+      "id": "seo-title-generator",
+      "featured": false
+    },
+    {
+      "description": "নিবন্ধ, FAQ, পণ্য এবং আরও অনেক কিছুর জন্য JSON-LD স্ট্রাকচার্ড ডেটা তৈরি করুন।",
+      "category": "seo",
+      "tags": [
+        "SEO",
+        "স্কিমা",
+        "json-ld",
+        "কাঠামোগত তথ্য"
+      ],
+      "name": "স্কিমা মার্কআপ জেনারেটর",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "schema",
+      "slug": "tools/seo/schema/schema-markup-generator.html",
+      "id": "schema-markup-generator",
+      "featured": true
+    },
+    {
+      "description": "Google PageSpeed ​​Insights ব্যবহার করে আপনার ওয়েবসাইটের কর্মক্ষমতা বিশ্লেষণ করুন।",
+      "category": "seo",
+      "tags": [
+        "SEO",
+        "গতি",
+        "কর্মক্ষমতা",
+        "পৃষ্ঠার গতি"
+      ],
+      "name": "পেজ স্পিড চেকার",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "analysis",
+      "slug": "tools/seo/analysis/page-speed-checker.html",
+      "id": "page-speed-checker",
+      "featured": false
+    },
+    {
+      "description": "ভাঙা লিঙ্ক এবং 404 ত্রুটির জন্য আপনার ওয়েবসাইট স্ক্যান করুন.",
+      "category": "seo",
+      "tags": [
+        "SEO",
+        "লিঙ্ক",
+        "ভাঙ্গা",
+        "404"
+      ],
+      "name": "ভাঙা লিঙ্ক পরীক্ষক",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "links",
+      "slug": "tools/seo/links/broken-link-checker.html",
+      "id": "broken-link-checker",
+      "featured": false
+    },
+    {
+      "description": "আপনার ওয়েবসাইট মোবাইল ডিভাইসের জন্য অপ্টিমাইজ করা হয়েছে কিনা তা পরীক্ষা করুন।",
+      "category": "seo",
+      "tags": [
+        "SEO",
+        "মোবাইল",
+        "প্রতিক্রিয়াশীল"
+      ],
+      "name": "মোবাইল ফ্রেন্ডলি টেস্ট",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "performance",
+      "slug": "tools/seo/performance/mobile-friendly-test.html",
+      "id": "mobile-friendly-test",
+      "featured": false
+    },
+    {
+      "description": "যেকোনো ফাইলের জন্য MD5, SHA-1, SHA-256 এবং SHA-512 চেকসাম তৈরি করুন।",
+      "category": "files",
+      "tags": [
+        "ফাইল",
+        "হ্যাশ",
+        "sha256",
+        "চেকসাম"
+      ],
+      "name": "ফাইল হ্যাশ জেনারেটর",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "integrity",
+      "slug": "tools/files/integrity/file-hash-generator.html",
+      "id": "file-hash-generator",
+      "featured": true
+    },
+    {
+      "description": "ফাইলের নাম, আকার, প্রকার, সর্বশেষ সংশোধিত তারিখ এবং চিত্রের মাত্রা দেখুন।",
+      "category": "files",
+      "tags": [
+        "ফাইল",
+        "মেটাডেটা",
+        "তথ্য"
+      ],
+      "name": "ফাইল মেটাডেটা ভিউয়ার",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "metadata",
+      "slug": "tools/files/metadata/file-metadata-viewer.html",
+      "id": "file-metadata-viewer",
+      "featured": false
+    },
+    {
+      "description": "দুটি পাঠ্য ফাইল আপলোড করুন এবং অবিলম্বে লাইন-বাই-লাইন পার্থক্য দেখুন।",
+      "category": "files",
+      "tags": [
+        "ফাইল",
+        "তুলনা",
+        "পার্থক্য"
+      ],
+      "name": "ফাইল তুলনা",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "compare",
+      "slug": "tools/files/compare/file-compare.html",
+      "id": "file-compare",
+      "featured": false
+    },
+    {
+      "description": "এক্সেল (.xlsx) বা CSV ফাইলগুলিকে আপনার ব্রাউজারে অবিলম্বে JSON-এ রূপান্তর করুন।",
+      "category": "files",
+      "tags": [
+        "এক্সেল",
+        "csv",
+        "json",
+        "রূপান্তর",
+        "স্প্রেডশীট"
+      ],
+      "name": "এক্সেল / CSV থেকে JSON",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "spreadsheet",
+      "slug": "tools/files/spreadsheet/excel-to-json.html",
+      "id": "excel-to-json",
+      "featured": false
+    },
+    {
+      "description": "আপনার ব্রাউজারে ZIP সংরক্ষণাগার থেকে ফাইলগুলি বের করুন এবং পূর্বরূপ দেখুন।",
+      "category": "files",
+      "tags": [
+        "ফাইল",
+        "জিপ",
+        "নির্যাস",
+        "সংরক্ষণাগার"
+      ],
+      "name": "জিপ এক্সট্র্যাক্টর",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "archive",
+      "slug": "tools/files/archive/zip-extractor.html",
+      "id": "zip-extractor",
+      "featured": false
+    },
+    {
+      "description": "CSV ফাইলগুলিকে Excel (.xlsx) ফর্ম্যাটে রূপান্তর করুন৷",
+      "category": "files",
+      "tags": [
+        "csv",
+        "এক্সেল",
+        "রূপান্তর",
+        "স্প্রেডশীট"
+      ],
+      "name": "এক্সেল থেকে CSV",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "convert",
+      "slug": "tools/files/convert/csv-to-excel.html",
+      "id": "csv-to-excel",
+      "featured": false
+    },
+    {
+      "description": "একটি সম্মিলিত ফাইলে একাধিক পাঠ্য ফাইল মার্জ করুন।",
+      "category": "files",
+      "tags": [
+        "ফাইল",
+        "একত্রিত করা",
+        "একত্রিত করা"
+      ],
+      "name": "ফাইল মার্জার",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "merge-split",
+      "slug": "tools/files/merge-split/file-merger.html",
+      "id": "file-merger",
+      "featured": false
+    },
+    {
+      "description": "এআই ব্যবহার করে সৃজনশীল ব্যবসায়িক নামের ধারণা তৈরি করুন।",
+      "category": "ai",
+      "tags": [
+        "ai",
+        "ব্যবসা",
+        "নাম",
+        "ব্র্যান্ডিং"
+      ],
+      "name": "এআই ব্যবসার নাম জেনারেটর",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "business",
+      "slug": "tools/ai/business/ai-business-name-generator.html",
+      "id": "ai-business-name-generator",
+      "featured": true
+    },
+    {
+      "description": "কোড পেস্ট করুন এবং AI দ্বারা চালিত একটি সাধারণ-ইংরেজি ব্যাখ্যা পান।",
+      "category": "ai",
+      "tags": [
+        "ai",
+        "কোড",
+        "ব্যাখ্যা",
+        "বিকাশকারী"
+      ],
+      "name": "এআই কোড ব্যাখ্যাকারী",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "code",
+      "slug": "tools/ai/code/ai-code-explainer.html",
+      "id": "ai-code-explainer",
+      "featured": true
+    },
+    {
+      "description": "AI দিয়ে ব্লগ পোস্ট, নিবন্ধ এবং মার্কেটিং বিষয়বস্তু তৈরি করুন।",
+      "category": "ai",
+      "tags": [
+        "ai",
+        "বিষয়বস্তু",
+        "লেখা",
+        "ব্লগ"
+      ],
+      "name": "এআই কন্টেন্ট জেনারেটর",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "content",
+      "slug": "tools/ai/content/ai-content-generator.html",
+      "id": "ai-content-generator",
+      "featured": true
+    },
+    {
+      "description": "AI দিয়ে সৃজনশীল গল্প, কথাসাহিত্য এবং আখ্যান তৈরি করুন।",
+      "category": "ai",
+      "tags": [
+        "ai",
+        "গল্প",
+        "সৃজনশীল",
+        "কল্পকাহিনী"
+      ],
+      "name": "এআই স্টোরি জেনারেটর",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "creative",
+      "slug": "tools/ai/creative/ai-story-generator.html",
+      "id": "ai-story-generator",
+      "featured": false
+    },
+    {
+      "description": "যেকোনো বিষয়ের জন্য ব্যাখ্যা, সারাংশ এবং অধ্যয়নের নোট পান।",
+      "category": "ai",
+      "tags": [
+        "ai",
+        "অধ্যয়ন",
+        "শিক্ষা",
+        "শেখার"
+      ],
+      "name": "এআই স্টাডি হেল্পার",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "education",
+      "slug": "tools/ai/education/ai-study-helper.html",
+      "id": "ai-study-helper",
+      "featured": false
+    },
+    {
+      "description": "আর্থিক তথ্য বিশ্লেষণ করুন এবং এআই-চালিত অন্তর্দৃষ্টি পান।",
+      "category": "ai",
+      "tags": [
+        "ai",
+        "অর্থ",
+        "বিশ্লেষণ",
+        "অন্তর্দৃষ্টি"
+      ],
+      "name": "এআই ফিনান্সিয়াল অ্যানালাইজার",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "finance",
+      "slug": "tools/ai/finance/ai-financial-analyzer.html",
+      "id": "ai-financial-analyzer",
+      "featured": false
+    },
+    {
+      "description": "AI দ্বারা চালিত 100+ ভাষার মধ্যে পাঠ্য অনুবাদ করুন।",
+      "category": "ai",
+      "tags": [
+        "ai",
+        "অনুবাদ",
+        "ভাষা"
+      ],
+      "name": "এআই ভাষা অনুবাদক",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "language",
+      "slug": "tools/ai/language/ai-language-translator.html",
+      "id": "ai-language-translator",
+      "featured": true
+    },
+    {
+      "description": "যেকোনো পণ্য বা পরিষেবার জন্য আকর্ষণীয় বিজ্ঞাপনের অনুলিপি তৈরি করুন।",
+      "category": "ai",
+      "tags": [
+        "ai",
+        "মার্কেটিং",
+        "বিজ্ঞাপন",
+        "অনুলিপি"
+      ],
+      "name": "এআই অ্যাড কপি জেনারেটর",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "marketing",
+      "slug": "tools/ai/marketing/ai-ad-copy-generator.html",
+      "id": "ai-ad-copy-generator",
+      "featured": false
+    },
+    {
+      "description": "আরও ভাল AI প্রতিক্রিয়ার জন্য প্রম্পটগুলিকে উন্নত এবং অপ্টিমাইজ করুন।",
+      "category": "ai",
+      "tags": [
+        "ai",
+        "প্রম্পট",
+        "অপ্টিমাইজ"
+      ],
+      "name": "এআই প্রম্পট অপ্টিমাইজার",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "utilities",
+      "slug": "tools/ai/utilities/ai-prompt-optimizer.html",
+      "id": "ai-prompt-optimizer",
+      "featured": false
+    },
+    {
+      "description": "AI সহায়তায় সম্পূর্ণ নিবন্ধ, ব্লগ পোস্ট এবং প্রবন্ধ লিখুন।",
+      "category": "ai",
+      "tags": [
+        "ai",
+        "লেখা",
+        "নিবন্ধ",
+        "ব্লগ"
+      ],
+      "name": "এআই প্রবন্ধ লেখক",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "writing",
+      "slug": "tools/ai/writing/ai-article-writer.html",
+      "id": "ai-article-writer",
+      "featured": false
+    },
+    {
+      "description": "MP3, WAV, OGG, এবং আরও ফরম্যাটের মধ্যে অডিও ফাইল রূপান্তর করুন।",
+      "category": "media",
+      "tags": [
+        "মিডিয়া",
+        "অডিও",
+        "রূপান্তর",
+        "mp3"
+      ],
+      "name": "অডিও কনভার্টার",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "audio",
+      "slug": "tools/media/audio/audio-converter.html",
+      "id": "audio-converter",
+      "featured": false
+    },
+    {
+      "description": "শুধুমাত্র আপনার প্রয়োজনীয় অংশ রাখতে অডিও ফাইল ট্রিম করুন।",
+      "category": "media",
+      "tags": [
+        "মিডিয়া",
+        "অডিও",
+        "ছাঁটা",
+        "কাটা"
+      ],
+      "name": "অডিও ট্রিমার",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "audio",
+      "slug": "tools/media/audio/audio-trimmer.html",
+      "id": "audio-trimmer",
+      "featured": false
+    },
+    {
+      "description": "ভিডিও ফাইল থেকে অডিও ট্র্যাক বের করুন এবং MP3 হিসাবে ডাউনলোড করুন।",
+      "category": "media",
+      "tags": [
+        "মিডিয়া",
+        "ভিডিও",
+        "অডিও",
+        "নির্যাস"
+      ],
+      "name": "অডিও এক্সট্র্যাক্টরে ভিডিও",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "convert",
+      "slug": "tools/media/convert/video-to-audio.html",
+      "id": "video-to-audio",
+      "featured": false
+    },
+    {
+      "description": "একটি একক ভিডিও ফাইলে একাধিক ভিডিও ক্লিপ মার্জ করুন।",
+      "category": "media",
+      "tags": [
+        "মিডিয়া",
+        "ভিডিও",
+        "একত্রিত করা"
+      ],
+      "name": "ভিডিও মার্জার",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "edit",
+      "slug": "tools/media/edit/video-merger.html",
+      "id": "video-merger",
+      "featured": false
+    },
+    {
+      "description": "অনলাইনে অডিও ফাইলের ভলিউম বাড়ান।",
+      "category": "media",
+      "tags": [
+        "মিডিয়া",
+        "অডিও",
+        "আয়তন",
+        "বৃদ্ধি"
+      ],
+      "name": "অডিও ভলিউম বুস্টার",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "enhance",
+      "slug": "tools/media/enhance/audio-volume-booster.html",
+      "id": "audio-volume-booster",
+      "featured": false
+    },
+    {
+      "description": "কাস্টম থাম্বনেল তৈরি করতে ভিডিও থেকে ফ্রেম বের করুন।",
+      "category": "media",
+      "tags": [
+        "মিডিয়া",
+        "ভিডিও",
+        "থাম্বনেইল"
+      ],
+      "name": "ভিডিও থাম্বনেইল জেনারেটর",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "utilities",
+      "slug": "tools/media/utilities/video-thumbnail-generator.html",
+      "id": "video-thumbnail-generator",
+      "featured": false
+    },
+    {
+      "description": "মান হারানো ছাড়া আকার কমাতে ভিডিও ফাইল সংকুচিত.",
+      "category": "media",
+      "tags": [
+        "মিডিয়া",
+        "ভিডিও",
+        "কম্প্রেস"
+      ],
+      "name": "ভিডিও কম্প্রেসার",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "video",
+      "slug": "tools/media/video/video-compressor.html",
+      "id": "video-compressor",
+      "featured": false
+    },
+    {
+      "description": "আপনার প্রয়োজনীয় মাত্রায় ভিডিও ফাইলগুলি ক্রপ এবং ট্রিম করুন৷",
+      "category": "media",
+      "tags": [
+        "মিডিয়া",
+        "ভিডিও",
+        "ফসল",
+        "ছাঁটা"
+      ],
+      "name": "ভিডিও ক্রপার",
+      "status": "coming-soon",
+      "requiresServer": false,
+      "subcategory": "video",
+      "slug": "tools/media/video/video-cropper.html",
+      "id": "video-cropper",
+      "featured": false
+    }
+  ]
+}
