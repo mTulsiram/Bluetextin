@@ -11,8 +11,6 @@
    6. pages.css      -> page-specific styles
 ========================================================= */
 
-@import url("https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap");
-
 @import "./critical.css";
 @import "./base.css";
 @import "./themes.css";

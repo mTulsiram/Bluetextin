@@ -652,21 +652,6 @@
 	color: #000080;
 	font-weight: 800;
 	letter-spacing: 0.03em;
-	animation: logoLocaleCycle 16s steps(1, end) infinite;
-}
-
-@keyframes logoLocaleCycle {
-	0%, 8% { content: ".EN"; }
-	9%, 17% { content: ".HI"; }
-	18%, 26% { content: ".CN"; }
-	27%, 35% { content: ".ES"; }
-	36%, 44% { content: ".FR"; }
-	45%, 53% { content: ".AR"; }
-	54%, 62% { content: ".RU"; }
-	63%, 71% { content: ".PT"; }
-	72%, 80% { content: ".DE"; }
-	81%, 89% { content: ".JA"; }
-	90%, 100% { content: ".KO"; }
 }
 
 .logo-text--hero {
@@ -684,13 +669,6 @@
 	padding: 0.28em 0.52em;
 	min-width: 2.8ch;
 	transform: translateY(-0.08em);
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.logo-in-badge::after {
-		animation: none;
-		content: ".EN";
-	}
 }
 
 .ad-container {

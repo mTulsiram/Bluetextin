@@ -183,18 +183,20 @@
     const banner = document.createElement("section");
     banner.className = "consent-banner";
     banner.id = "consentBanner";
-    banner.setAttribute("role", "dialog");
+    banner.setAttribute("role", "region");
+    banner.setAttribute("aria-labelledby", "consentBannerTitle");
+    banner.setAttribute("aria-describedby", "consentBannerDescription");
     banner.setAttribute("aria-live", "polite");
     banner.innerHTML = `
-      <h2 style="margin:0;font-size:1rem;">Privacy Choices</h2>
-      <p class="text-muted" style="margin:0;">
+      <h2 id="consentBannerTitle" style="margin:0;font-size:1rem;">Privacy Choices</h2>
+      <p id="consentBannerDescription" class="text-muted" style="margin:0;">
         We use essential storage for language/theme and optional analytics/ads cookies only with your consent.
         Review details in <a href="${withLocale("/nav/privacy.html", locale)}">Privacy Policy</a> and <a href="${withLocale("/nav/compliance.html", locale)}">Compliance Center</a>.
       </p>
       <div class="consent-banner__actions">
         <button type="button" class="consent-btn consent-btn--primary" id="consentAcceptAll">Accept all</button>
         <button type="button" class="consent-btn" id="consentRejectNonEssential">Reject non-essential</button>
-        <button type="button" class="consent-btn" id="consentCustomize">Customize</button>
+        <button type="button" class="consent-btn" id="consentCustomize" aria-haspopup="dialog" aria-controls="consentModal">Customize</button>
       </div>
     `;
     return banner;
@@ -207,10 +209,11 @@
     modal.setAttribute("role", "dialog");
     modal.setAttribute("aria-modal", "true");
     modal.setAttribute("aria-labelledby", "consentModalTitle");
+    modal.setAttribute("aria-describedby", "consentModalDescription");
     modal.innerHTML = `
       <div class="consent-modal__panel">
         <h2 id="consentModalTitle" style="margin:0;font-size:1.1rem;">Privacy Settings</h2>
-        <p class="text-muted" style="margin:0;">Choose which optional data processing categories you allow.</p>
+        <p id="consentModalDescription" class="text-muted" style="margin:0;">Choose which optional data processing categories you allow.</p>
 
         <label class="consent-option">
           <span><strong>Strictly necessary</strong><br><small>Required for core site functionality.</small></span>
