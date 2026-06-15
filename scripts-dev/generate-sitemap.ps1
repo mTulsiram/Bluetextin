@@ -42,7 +42,7 @@ $allUrls = Get-PublicHtmlFiles |
     $_.Name -ne "404.html"
   } |
   ForEach-Object {
-    $relativePath = [System.IO.Path]::GetRelativePath($projectRoot, $_.FullName)
+    $relativePath = $_.FullName.Substring($projectRoot.Length).TrimStart([System.IO.Path]::DirectorySeparatorChar)
     To-UrlPath -RelativePath $relativePath
   } |
   Sort-Object -Unique

@@ -13,7 +13,19 @@ if (-not $TranslateHtml -and -not $TranslateData) {
   $TranslateData = $true
 }
 
+$cachePath = "assets/data/i18n/translation-cache.json"
 $translationCache = @{}
+if (Test-Path $cachePath) {
+  try {
+    $jsonObj = Get-Content -Raw -Path $cachePath | ConvertFrom-Json
+    foreach ($prop in $jsonObj.PSObject.Properties) {
+      $translationCache[$prop.Name] = $prop.Value
+    }
+    Write-Output "Loaded $($translationCache.Count) cached translations."
+  } catch {
+    $translationCache = @{}
+  }
+}
 
 function Get-TranslatedText {
   param(
@@ -35,19 +47,16 @@ function Get-TranslatedText {
   try {
     $response = Invoke-WebRequest -Uri $url -Method Get -UseBasicParsing -TimeoutSec $TimeoutSec -ErrorAction Stop
     if ($null -eq $response -or [string]::IsNullOrWhiteSpace($response.Content)) {
-      $translationCache[$cacheKey] = $Text
       return $Text
     }
 
     $result = $response.Content | ConvertFrom-Json -Depth 12
     if ($null -eq $result -or -not ($result -is [System.Collections.IList]) -or $result.Count -eq 0) {
-      $translationCache[$cacheKey] = $Text
       return $Text
     }
 
     $segmentsRoot = $result[0]
     if ($null -eq $segmentsRoot -or -not ($segmentsRoot -is [System.Collections.IList])) {
-      $translationCache[$cacheKey] = $Text
       return $Text
     }
 
@@ -60,14 +69,12 @@ function Get-TranslatedText {
 
     $joined = ($segments -join "").Trim()
     if ([string]::IsNullOrWhiteSpace($joined)) {
-      $translationCache[$cacheKey] = $Text
       return $Text
     }
 
     $translationCache[$cacheKey] = $joined
     return $joined
   } catch {
-    $translationCache[$cacheKey] = $Text
     return $Text
   }
 }
@@ -195,9 +202,9 @@ function Translate-HtmlForLocale {
 
   $translatedFiles = 0
   $targetFiles = Get-ChildItem -Path $localeDir -Recurse -File -Filter *.html
-
   foreach ($target in $targetFiles) {
-    $relativeInsideLocale = [System.IO.Path]::GetRelativePath($localeDir, $target.FullName)
+    $absLocaleDir = (Resolve-Path $localeDir).Path
+    $relativeInsideLocale = $target.FullName.Substring($absLocaleDir.Length).TrimStart([System.IO.Path]::DirectorySeparatorChar)
     $sourcePath = Join-Path "." $relativeInsideLocale
 
     if (-not (Test-Path $sourcePath)) {
@@ -233,6 +240,12 @@ foreach ($locale in $Locales) {
   if ($TranslateHtml) {
     Translate-HtmlForLocale -Locale $locale
   }
+}
+
+# Save translation cache to disk
+if ($translationCache.Count -gt 0) {
+  $translationCache | ConvertTo-Json -Depth 5 | Set-Content -Path $cachePath -Encoding UTF8
+  Write-Output "Saved $($translationCache.Count) translations to cache."
 }
 
 Write-Output "Completed localization content translation pipeline."

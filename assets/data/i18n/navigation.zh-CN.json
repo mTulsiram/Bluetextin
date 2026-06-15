@@ -1,0 +1,64 @@
+﻿{
+    "categories":  [
+                       {
+                           "id":  "calculators",
+                           "label":  "Calculators",
+                           "description":  "Quick everyday math, finance, and health calculations.",
+                           "path":  "tools/calculators/index.html"
+                       },
+                       {
+                           "id":  "converters",
+                           "label":  "Converters",
+                           "description":  "Convert units, data formats, and encoded values.",
+                           "path":  "tools/converters/index.html"
+                       },
+                       {
+                           "id":  "pdf",
+                           "label":  "PDF Tools",
+                           "description":  "Merge, split, compress, and optimize PDF workflows.",
+                           "path":  "tools/pdf/index.html"
+                       },
+                       {
+                           "id":  "images",
+                           "label":  "Image Tools",
+                           "description":  "Resize, compress, and transform images for web and social.",
+                           "path":  "tools/images/index.html"
+                       },
+                       {
+                           "id":  "text",
+                           "label":  "Text Tools",
+                           "description":  "Word counters, case converters, Lorem ipsum, and more.",
+                           "path":  "tools/text/index.html"
+                       },
+                       {
+                           "id":  "developer",
+                           "label":  "Developer Tools",
+                           "description":  "JSON formatter, Base64, UUID generator, regex tester.",
+                           "path":  "tools/developer/index.html"
+                       },
+                       {
+                           "id":  "files",
+                           "label":  "File Tools",
+                           "description":  "Compare, hash, inspect, and transform everyday files in the browser.",
+                           "path":  "tools/files/index.html"
+                       },
+                       {
+                           "id":  "seo",
+                           "label":  "SEO Tools",
+                           "description":  "Meta tag generator, robots.txt builder, and keyword tools.",
+                           "path":  "tools/seo/index.html"
+                       },
+                       {
+                           "id":  "ai",
+                           "label":  "AI Tools",
+                           "description":  "Prompt, writing, code, and business AI workflows in active development.",
+                           "path":  "tools/ai/index.html"
+                       },
+                       {
+                           "id":  "media",
+                           "label":  "Media Tools",
+                           "description":  "Audio and video utilities for conversion, extraction, and editing.",
+                           "path":  "tools/media/index.html"
+                       }
+                   ]
+}

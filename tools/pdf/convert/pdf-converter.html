@@ -1,0 +1,2162 @@
+<!doctype html>
+<html lang="en" data-tool-id="pdf-converter">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PDF Converter | Bluetext.in</title>
+  <meta name="description" content="Convert CSV, XLSX, JSON data sheets or images to PDF directly in your browser.">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <style>
+    /* ── Drop zone ── */
+    .drop-zone {
+      border: 2px dashed var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 36px 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color var(--transition), background var(--transition);
+      background: var(--surface-soft);
+      position: relative;
+    }
+    .drop-zone:hover, .drop-zone.dragover {
+      border-color: var(--accent-primary);
+      background: var(--accent-soft);
+    }
+    .drop-zone input[type="file"] {
+      position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+    }
+    .drop-icon { font-size: 2rem; margin-bottom: 8px; }
+    .drop-zone p { font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px; }
+    .drop-zone .drop-label { font-size: 0.95rem; color: var(--text-primary); font-weight: 500; }
+    .drop-zone .file-name {
+      margin-top: 8px; font-size: 0.8rem; color: var(--accent-primary);
+      font-weight: 600; display: none;
+    }
+
+    /* ── Row helpers ── */
+    .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .row label { font-size: 0.85rem; color: var(--text-secondary); white-space: nowrap; }
+
+    /* ── Columns grid ── */
+    .columns-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      max-height: 140px;
+      overflow-y: auto;
+      padding: 4px;
+    }
+    .col-chip {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 4px 10px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      user-select: none;
+      transition: all var(--transition);
+      color: var(--text-primary);
+    }
+    .col-chip.selected {
+      border-color: var(--accent-primary);
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+    }
+    .col-chip input[type="checkbox"] { display: none; }
+
+    /* ── Preview table ── */
+    .preview-wrap {
+      overflow-x: auto !important;
+      overflow-y: auto !important;
+      max-height: 420px;
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+      border: 1px solid var(--border-color);
+      margin-top: 0;
+      background: var(--bg-card);
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    .preview-table {
+      width: auto;
+      table-layout: fixed;
+      border-collapse: collapse;
+      font-size: 0.75rem;
+    }
+    .preview-table th {
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      padding: 6px 10px;
+      text-align: left;
+      position: sticky;
+      top: 0;
+      white-space: nowrap;
+      border-bottom: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+      user-select: none;
+      position: relative;
+    }
+    .preview-table td {
+      padding: 6px 10px;
+      border-bottom: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+      color: var(--text-primary);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      cursor: cell;
+    }
+    .preview-table tr:nth-child(even) td {
+      background: var(--bg-card);
+    }
+    .preview-table tr:nth-child(even) td:not(.selected-col) {
+      background: var(--surface-soft);
+    }
+    .preview-table td.selected-col, .preview-table th.selected-col {
+      background: var(--accent-soft) !important;
+      outline: 1px dashed var(--accent-primary);
+    }
+
+    /* Resizer styling */
+    .resizer {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 5px;
+      cursor: col-resize;
+      user-select: none;
+      height: 100%;
+      z-index: 10;
+    }
+    .resizer:hover, .resizer.resizing {
+      background: var(--accent-primary);
+      width: 6px;
+    }
+
+    /* Spreadsheet toolbar styling */
+    .spreadsheet-toolbar {
+      display: none;
+      gap: 8px;
+      align-items: center;
+      background: var(--surface-soft);
+      padding: 8px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+      border-bottom: none;
+      margin-top: 10px;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    .spreadsheet-toolbar button.active {
+      background: var(--accent-soft) !important;
+      border-color: var(--accent-primary) !important;
+      color: var(--accent-strong) !important;
+    }
+
+    /* Overwrite doc-page width for full excel feel */
+    .doc-page {
+      width: 96% !important;
+      max-width: 1600px !important;
+      margin: 0.9rem auto 1.6rem;
+      overflow: hidden !important; /* Contain inner overflows */
+    }
+    .panel {
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    /* ── Thumbnail strip ── */
+    .thumb-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+      max-height: 160px;
+      overflow-y: auto;
+    }
+    .thumb {
+      width: 72px; height: 72px;
+      border-radius: var(--radius-sm);
+      border: 2px solid var(--border-color);
+      object-fit: cover;
+      background: var(--bg-main);
+    }
+    .thumb-label {
+      font-size: 0.65rem;
+      color: var(--text-secondary);
+      text-align: center;
+      word-break: break-all;
+      max-width: 72px;
+    }
+    .thumb-item { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+
+    /* ── Progress ── */
+    .progress-bar-wrap {
+      background: var(--bg-main);
+      border-radius: 99px;
+      height: 8px;
+      overflow: hidden;
+      display: none;
+      margin-top: 10px;
+    }
+    .progress-bar-inner {
+      height: 100%;
+      background: var(--accent-primary);
+      width: 0%;
+      transition: width 0.15s ease;
+      border-radius: 99px;
+    }
+    .progress-label { font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px; display: none; }
+
+    /* ── Log ── */
+    .log-box {
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      font-family: monospace;
+      font-size: 0.75rem;
+      padding: 10px 12px;
+      height: 140px;
+      overflow-y: auto;
+      color: var(--text-primary);
+      margin-top: 1rem;
+    }
+    .log-box .warn  { color: #b28600; }
+    .log-box .error { color: #cc3333; }
+    .log-box .ok    { color: #0d6b3e; }
+    .log-box .dim   { color: var(--text-secondary); }
+
+    [data-theme="dark"] .log-box .warn { color: #facc15; }
+    [data-theme="dark"] .log-box .error { color: #f87171; }
+    [data-theme="dark"] .log-box .ok { color: #4ade80; }
+
+    /* ── Layout mode pills ── */
+    .layout-pills { display: flex; gap: 4px; }
+    .layout-pill {
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .layout-pill.active {
+      background: var(--accent-primary);
+      color: var(--accent-contrast);
+      border-color: var(--accent-primary);
+    }
+
+    /* ── Warning banner ── */
+    .warning-banner {
+      background: #fff3cd;
+      border: 1px solid #ffeeba;
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-size: 0.78rem;
+      color: #856404;
+      display: none;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+    [data-theme="dark"] .warning-banner {
+      background: #2c2512;
+      border-color: #664d03;
+      color: #ffda6a;
+    }
+    .warning-banner strong { font-weight: 700; }
+
+    /* ── Sections ── */
+    .section { display: none; margin-top: 1rem; }
+    .section.visible { display: block; }
+    .stats { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+    .stat-chip {
+      font-size: 0.72rem;
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 4px 10px;
+      color: var(--text-secondary);
+    }
+    .stat-chip strong { color: var(--text-primary); }
+
+    /* ── getdesign.md Dark Neon Aesthetic overrides ── */
+    :root {
+      --bg-main: #05070f;
+      --bg-card: #0f1322;
+      --border-color: #1e293b;
+      --text-primary: #f3f4f6;
+      --text-secondary: #9ca3af;
+      --accent-primary: #ec4899; /* Neon pink */
+      --accent-secondary: #00f0ff; /* Neon cyan */
+      --accent-soft: rgba(236, 72, 153, 0.15);
+      --accent-strong: #ec4899;
+      --surface-soft: #111827;
+      --radius-md: 12px;
+      --radius-sm: 6px;
+    }
+
+    /* ── Split Workspace layout ── */
+    .workspace-container {
+      display: flex;
+      flex-direction: row;
+      gap: 18px;
+      width: 100%;
+      margin-top: 16px;
+      align-items: flex-start;
+    }
+    .workspace-main {
+      flex-grow: 1;
+      width: calc(100% - 300px);
+    }
+    .workspace-sidebar {
+      width: 280px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      flex-shrink: 0;
+    }
+    .ad-placeholder-box {
+      border: 2px dashed #334155;
+      border-radius: var(--radius-sm);
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      background: #0b0f19;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-align: center;
+    }
+
+    /* ── Dropdown menus for toolbar ── */
+    .spreadsheet-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      background: #0f172a;
+      padding: 8px 16px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 12px;
+    }
+    
+    .toolbar-menu-bar {
+      display: flex;
+      gap: 12px;
+    }
+
+    .menu-item-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .menu-trigger-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-primary);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 6px 12px;
+      border-radius: 4px;
+      transition: background 0.15s ease;
+    }
+    .menu-trigger-btn:hover {
+      background: #1e293b;
+      color: var(--accent-secondary);
+    }
+
+    .dropdown-content-pane {
+      display: none;
+      position: absolute;
+      background-color: #0f172a;
+      min-width: 180px;
+      box-shadow: 0px 8px 24px 0px rgba(0,0,0,0.5);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      z-index: 100;
+      margin-top: 4px;
+      padding: 6px 0;
+    }
+    
+    .menu-item-dropdown:hover .dropdown-content-pane {
+      display: block;
+    }
+
+    .dropdown-content-pane button {
+      color: var(--text-primary);
+      padding: 8px 16px;
+      text-decoration: none;
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: none;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .dropdown-content-pane button:hover {
+      background: #1e293b;
+      color: var(--accent-primary);
+    }
+    
+    .submenu-title {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      padding: 4px 16px;
+      font-weight: bold;
+    }
+    .submenu-divider {
+      height: 1px;
+      background: var(--border-color);
+      margin: 6px 0;
+    }
+
+    .toolbar-divider {
+      width: 1px;
+      height: 24px;
+      background: var(--border-color);
+      margin: 0 4px;
+    }
+
+    .toolbar-icon-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .tool-icon-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: var(--text-primary);
+      width: auto;
+      height: 30px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+    .tool-icon-btn:hover, .tool-icon-btn.active {
+      background: var(--accent-soft);
+      border-color: var(--accent-primary);
+      color: var(--accent-strong);
+    }
+
+    .color-picker-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 4px;
+      width: 32px;
+      height: 30px;
+      cursor: pointer;
+    }
+    .color-picker-wrapper input[type="color"] {
+      position: absolute;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      left: 0;
+      top: 0;
+    }
+    .color-indicator {
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    /* Dropdown inputs style in toolbar */
+    .spreadsheet-toolbar select {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: var(--text-primary);
+      border-radius: 4px;
+      padding: 4px;
+      font-size: 0.75rem;
+      outline: none;
+    }
+    .spreadsheet-toolbar select:focus {
+      border-color: var(--accent-secondary);
+    }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="doc-page" role="main">
+    <p class="doc-page__back"><a href="/index.html">Back to home</a></p>
+    <h1>PDF Converter</h1>
+    <p>Convert CSV, XLSX, JSON data sheets or images to PDF directly in your browser. All files are processed locally.</p>
+
+    <!-- Drop zone -->
+    <div class="drop-zone" id="dropZone">
+      <input type="file" id="fileInput"
+        accept=".csv,.tsv,.txt,.json,.xlsx,.xls,image/*,.jpg,.jpeg,.png,.gif,.bmp,.webp,.tif,.tiff,.svg,.ico,.jfif,.avif"
+        multiple />
+      <div class="drop-icon">📂</div>
+      <div class="drop-label">Drop files here or click to browse</div>
+      <p>Data: CSV · TSV · JSON · XLSX &nbsp;|&nbsp; Images: JPG · PNG · WEBP · GIF · BMP · TIFF · SVG · ICO + more</p>
+      <div class="file-name" id="fileNameDisplay"></div>
+    </div>
+
+    <!-- Stats row -->
+    <div class="stats" id="statsRow" style="display:none"></div>
+
+    <!-- Two-column workspace layout: left for spreadsheet, right for ads -->
+    <div class="workspace-container">
+      <div class="workspace-main">
+        
+        <!-- DATA section (shown for CSV/XLSX/JSON/TSV/TXT) -->
+        <div class="section panel" id="dataSection">
+          
+          <!-- TOP: Spreadsheet Preview Table and Formatting Controls -->
+          <div style="margin-top:4px; width: 100%; max-width: 100%; overflow: hidden; box-sizing: border-box;">
+            <div class="row" style="margin-bottom:8px; justify-content: space-between; align-items: center;">
+              <span style="font-weight:700; font-size:1.1rem; color: #ffffff;">Spreadsheet Editor & Preview</span>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <label>Show</label>
+                <select id="previewCount" style="width:70px; background:#1e293b; border:1px solid #334155; color:#fff; padding:4px; border-radius:4px;">
+                  <option>5</option><option selected>10</option><option>25</option><option>50</option>
+                </select>
+                <label>rows</label>
+              </div>
+            </div>
+
+            <!-- Spreadsheet Toolbar -->
+            <div class="spreadsheet-toolbar">
+              <!-- Menu Bar Group -->
+              <div class="toolbar-menu-bar">
+                <div class="menu-item-dropdown">
+                  <button type="button" class="menu-trigger-btn">Format ▾</button>
+                  <div class="dropdown-content-pane">
+                    <div class="submenu-title">Number Format</div>
+                    <button type="button" class="fmt-opt-btn" data-format="auto">Automatic</button>
+                    <button type="button" class="fmt-opt-btn" data-format="plain">Plain Text</button>
+                    <button type="button" class="fmt-opt-btn" data-format="number">Number</button>
+                    <button type="button" class="fmt-opt-btn" data-format="percent">Percent</button>
+                    <button type="button" class="fmt-opt-btn" data-format="scientific">Scientific</button>
+                    <button type="button" class="fmt-opt-btn" data-format="currency">Accounting / Currency</button>
+                    <button type="button" class="fmt-opt-btn" data-format="date">Date</button>
+                    <button type="button" class="fmt-opt-btn" data-format="time">Time</button>
+                    <button type="button" class="fmt-opt-btn" data-format="datetime">Date-Time</button>
+                    <div class="submenu-divider"></div>
+                    <div class="submenu-title">Theme Palette</div>
+                    <button type="button" class="theme-opt-btn" data-theme="cyber">Neon Cyber</button>
+                    <button type="button" class="theme-opt-btn" data-theme="emerald">Emerald</button>
+                    <button type="button" class="theme-opt-btn" data-theme="sapphire">Sapphire</button>
+                    <button type="button" class="theme-opt-btn" data-theme="ruby">Midnight Ruby</button>
+                    <button type="button" class="theme-opt-btn" data-theme="default">Default</button>
+                    <div class="submenu-divider"></div>
+                    <button type="button" id="btnAltRowsToggle" class="menu-action-btn">Toggle Zebra Shading</button>
+                    <button type="button" id="btnCondFormatToggle" class="menu-action-btn">Conditional Formatting...</button>
+                  </div>
+                </div>
+
+                <div class="menu-item-dropdown">
+                  <button type="button" class="menu-trigger-btn">View ▾</button>
+                  <div class="dropdown-content-pane">
+                    <label style="display:flex; align-items:center; gap:8px; cursor:pointer; padding:6px 12px; margin:0; font-size:0.8rem; color:#fff;">
+                      <input type="checkbox" id="chkGridlines" checked>&nbsp;Show Gridlines
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="toolbar-divider"></div>
+
+              <!-- Formatting Icons Group -->
+              <div class="toolbar-icon-group">
+                <!-- Font selector -->
+                <select id="fontFamilySelect" title="Font Family">
+                  <option value="Helvetica" selected>Helvetica</option>
+                  <option value="Times">Times New Roman</option>
+                  <option value="Courier">Courier</option>
+                </select>
+                <select id="fontSizeSelect" title="Font Size" style="width: 65px;">
+                  <option value="6">6pt</option>
+                  <option value="8">8pt</option>
+                  <option value="9" selected>9pt</option>
+                  <option value="10">10pt</option>
+                  <option value="11">11pt</option>
+                  <option value="12">12pt</option>
+                  <option value="14">14pt</option>
+                  <option value="16">16pt</option>
+                  <option value="18">18pt</option>
+                </select>
+
+                <div class="toolbar-divider"></div>
+
+                <!-- Bold, Italic, Strike -->
+                <button type="button" class="tool-icon-btn" id="btnBold" title="Bold"><b>B</b></button>
+                <button type="button" class="tool-icon-btn" id="btnItalic" title="Italic"><i>I</i></button>
+                <button type="button" class="tool-icon-btn" id="btnStrike" title="Strikethrough" style="text-decoration: line-through;">S</button>
+                
+                <!-- Colors -->
+                <div class="color-picker-wrapper" title="Text Color">
+                  <span class="color-indicator" style="color: #ec4899;">A</span>
+                  <input type="color" id="textColorInput" value="#f3f4f6">
+                </div>
+                <div class="color-picker-wrapper" title="Fill Color">
+                  <span class="color-indicator">🪣</span>
+                  <input type="color" id="fillColorInput" value="#090d16">
+                </div>
+                <button type="button" class="tool-icon-btn" id="btnResetCellColor" title="Reset Cell Fill">Reset</button>
+
+                <div class="toolbar-divider"></div>
+
+                <!-- Alignments -->
+                <button type="button" class="tool-icon-btn" id="btnAlignLeft" title="Align Left">L</button>
+                <button type="button" class="tool-icon-btn" id="btnAlignCenter" title="Align Center">C</button>
+                <button type="button" class="tool-icon-btn" id="btnAlignRight" title="Align Right">R</button>
+                
+                <!-- Vertical Alignments -->
+                <button type="button" class="tool-icon-btn" id="btnAlignTop" title="Align Top">Top</button>
+                <button type="button" class="tool-icon-btn" id="btnAlignMiddle" title="Align Middle">Mid</button>
+                <button type="button" class="tool-icon-btn" id="btnAlignBottom" title="Align Bottom">Bot</button>
+
+                <div class="toolbar-divider"></div>
+
+                <!-- Wrapping -->
+                <button type="button" class="tool-icon-btn" id="btnWrapOverflow" title="Text Overflow">Overflow</button>
+                <button type="button" class="tool-icon-btn" id="btnWrapWrap" title="Text Wrap">Wrap</button>
+                <button type="button" class="tool-icon-btn" id="btnWrapClip" title="Text Clip">Clip</button>
+
+                <div class="toolbar-divider"></div>
+
+                <!-- Rotation -->
+                <select id="textRotationSelect" title="Text Rotation" style="width: 75px;">
+                  <option value="0" selected>0°</option>
+                  <option value="45">45°</option>
+                  <option value="-45">-45°</option>
+                  <option value="90">90°</option>
+                  <option value="-90">-90°</option>
+                </select>
+
+                <div class="toolbar-divider"></div>
+
+                <!-- Decimals & Quick formats -->
+                <button type="button" class="tool-icon-btn" id="btnCurrencyQuick" title="Format Currency">$</button>
+                <button type="button" class="tool-icon-btn" id="btnPercentQuick" title="Format Percent">%</button>
+                <button type="button" class="tool-icon-btn" id="btnDecInc" title="Increase Decimals">.00→</button>
+                <button type="button" class="tool-icon-btn" id="btnDecDec" title="Decrease Decimals">←.00</button>
+
+                <div class="toolbar-divider"></div>
+
+                <!-- Borders -->
+                <select id="borderPlacementSelect" title="Borders" style="width: 80px;">
+                  <option value="none" selected>No Border</option>
+                  <option value="all">All Borders</option>
+                  <option value="outer">Outer</option>
+                  <option value="left">Left</option>
+                  <option value="right">Right</option>
+                  <option value="top">Top</option>
+                  <option value="bottom">Bottom</option>
+                </select>
+                <select id="borderStyleSelect" title="Border Style" style="width: 70px;">
+                  <option value="thin" selected>Thin</option>
+                  <option value="medium">Medium</option>
+                  <option value="thick">Thick</option>
+                  <option value="dashed">Dashed</option>
+                  <option value="dotted">Dotted</option>
+                  <option value="double">Double</option>
+                </select>
+                <div class="color-picker-wrapper" title="Border Color">
+                  <span class="color-indicator">🖌️</span>
+                  <input type="color" id="borderColorInput" value="#334155">
+                </div>
+              </div>
+
+              <span id="selectedColIndicator" style="font-size: 0.72rem; color: var(--accent-secondary); margin-left: auto; font-style: italic; font-weight: 500;">Select a column to style</span>
+            </div>
+
+            <!-- Scrollable Table Grid -->
+            <div class="preview-wrap">
+              <table class="preview-table" id="previewTable"></table>
+            </div>
+          </div>
+
+          <!-- Progress bars -->
+          <div class="progress-bar-wrap" id="dataProgress">
+            <div class="progress-bar-inner" id="dataProgressBar"></div>
+          </div>
+          <div class="progress-label" id="dataProgressLabel"></div>
+
+          <!-- BOTTOM: Settings, Layout selection, Columns to include -->
+          <div class="tool-form" style="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 16px;">
+            <h3 style="margin-top:0; font-size: 1rem; color: #ffffff;">Export Layout & Parameters</h3>
+            
+            <!-- Row 1: Safe Mode + Page + Orient + Font -->
+            <div class="row">
+              <label style="display:flex; align-items:center; gap:4px; font-weight: 600;">
+                <input type="checkbox" id="limitRows" checked>&nbsp;Safe Mode
+              </label>
+              <select id="safeLimit" title="Safe mode row limit">
+                <option value="1000" selected>1,000 rows</option>
+                <option value="5000">5,000 rows</option>
+                <option value="10000">10,000 rows</option>
+                <option value="25000">25,000 rows</option>
+                <option value="50000">50,000 rows</option>
+                <option value="100000">100,000 rows</option>
+                <option value="250000">250,000 rows</option>
+                <option value="500000">500,000 rows</option>
+                <option value="1000000">1,000,000 rows</option>
+              </select>
+              <label>Page Size</label>
+              <select id="dataPageSize">
+                <option value="a4" selected>A4</option>
+                <option value="a3">A3</option>
+                <option value="a2">A2</option>
+                <option value="a1">A1</option>
+                <option value="letter">Letter</option>
+                <option value="legal">Legal</option>
+              </select>
+              <label>Orientation</label>
+              <select id="dataOrientation">
+                <option value="p">Portrait</option>
+                <option value="l">Landscape</option>
+              </select>
+              <label>Font Size (pt)</label>
+              <input type="number" id="dataFontSize" value="9" min="5" max="18" style="width:70px"/>
+            </div>
+
+            <!-- Row 2: Layout mode + column width + text wrap -->
+            <div class="row" style="margin-top:10px;">
+              <span style="font-size:0.85rem; font-weight:700;">Layout Width:</span>
+              <div class="layout-pills">
+                <button class="layout-pill active" data-layout="fit" id="pillFit">Fit to page</button>
+                <button class="layout-pill" data-layout="wide" id="pillWide">Wide / Excel</button>
+              </div>
+              <label id="minColWLabel" style="margin-left:8px; display:none;">Min col width</label>
+              <input type="number" id="minColWidth" value="80" min="20" max="500" style="width:70px; display:none;" title="Minimum column width in pt"/>
+              <span id="minColUnit" style="font-size:0.75rem; display:none;">pt</span>
+              <label style="display:flex; align-items:center; gap:4px; font-weight: 600;">
+                <input type="checkbox" id="textWrap">&nbsp;Wrap text
+              </label>
+            </div>
+
+            <!-- Large file warning -->
+            <div class="warning-banner" id="largeFileWarning">
+              <strong>⚠ Large dataset detected.</strong>
+              This file has <span id="warnRowCount"></span> rows × <span id="warnColCount"></span> columns.
+              On standard pages with many columns, columns will be very narrow. Recommended: switch to
+              <strong>Wide / Excel</strong> mode and turn <strong>Wrap text OFF</strong> for fastest export.
+              Safe Mode is <strong>OFF</strong> — export may take 30–90 seconds.
+            </div>
+
+            <!-- Columns (built dynamically) -->
+            <div style="margin-top:16px; width: 100%; max-width: 100%; box-sizing: border-box;">
+              <div class="row" style="margin-bottom:6px; justify-content: space-between;">
+                <span style="font-weight:700;">Columns to Include</span>
+                <label style="display:flex; align-items:center; gap:4px; cursor:pointer;">
+                  <input type="checkbox" id="selectAllCols" checked>&nbsp;Select all
+                </label>
+              </div>
+              <div class="columns-grid" id="colGrid"></div>
+            </div>
+          </div>
+
+          <div class="tool-actions" style="margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 16px;">
+            <button class="btn btn--primary" id="btnExportData" disabled>Export to PDF</button>
+          </div>
+        </div>
+
+        <!-- IMAGE section (shown for image uploads) -->
+        <div class="section panel" id="imageSection">
+          <h2>Image Options</h2>
+          <div class="tool-form">
+            <div class="row">
+              <label>Output</label>
+              <select id="imgOutputMode">
+                <option value="single">One combined PDF</option>
+                <option value="multiple">Separate PDF per image</option>
+              </select>
+
+              <label>Page</label>
+              <select id="imgPageSize">
+                <option value="a4" selected>A4</option>
+                <option value="a3">A3</option>
+                <option value="a2">A2</option>
+                <option value="a1">A1</option>
+                <option value="letter">Letter</option>
+                <option value="legal">Legal</option>
+              </select>
+
+              <label>Orient</label>
+              <select id="imgOrientation">
+                <option value="p">Portrait</option>
+                <option value="l">Landscape</option>
+              </select>
+            </div>
+
+            <div class="row" style="margin-top:10px;">
+              <label>Fit</label>
+              <select id="imgFitMode">
+                <option value="fit" selected>Fit (keep aspect)</option>
+                <option value="actual">Actual size</option>
+                <option value="stretch">Stretch to fill</option>
+              </select>
+
+              <label>DPI</label>
+              <input type="number" id="imgDpi" value="96" min="10" max="1200" style="width:70px"/>
+
+              <label>Quality</label>
+              <input type="number" id="imgQuality" value="0.92" min="0.1" max="1" step="0.01" style="width:70px"/>
+
+              <label>Prefix</label>
+              <input type="text" id="imgPrefix" value="Images_Export" style="width:130px"/>
+            </div>
+
+            <!-- Thumbnail strip -->
+            <div class="thumb-strip" id="thumbStrip"></div>
+          </div>
+
+          <div class="progress-bar-wrap" id="imgProgress">
+            <div class="progress-bar-inner" id="imgProgressBar"></div>
+          </div>
+          <div class="progress-label" id="imgProgressLabel"></div>
+
+          <div class="tool-actions" style="margin-top: 1rem;">
+            <button class="btn btn--primary" id="btnExportImages" disabled>Convert Images to PDF</button>
+          </div>
+        </div>
+
+        <!-- Log box (always visible) -->
+        <div class="log-box" id="logBox"></div>
+      </div>
+
+      <!-- Right Ads Sidebar -->
+      <aside class="workspace-sidebar">
+        <h3 style="margin:0; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent-primary); font-weight: bold; text-align: center; text-shadow: 0 0 8px rgba(236,72,153,0.3);">Sponsored Ads</h3>
+        <div class="ad-placeholder-box">
+          Ad Space 1<br>(300 x 250)
+        </div>
+        <div class="ad-placeholder-box">
+          Ad Space 2<br>(300 x 250)
+        </div>
+        <div style="font-size: 0.7rem; color: var(--text-secondary); text-align: center; line-height: 1.4;">
+          Want to advertise here? Contact us at info@bluetext.in
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <!-- Local libraries — zero external dependencies, memory optimized -->
+  <script src="/assets/js/lib/csv-parser.js"></script>
+  <script src="/assets/js/lib/xlsx-reader.js"></script>
+  <script src="/assets/js/lib/pdf-builder.js"></script>
+  <script src="/assets/js/partials.js"></script>
+
+  <script>
+    /* ── Converter App ── */
+    (() => {
+      /* DOM refs */
+      const dropZone       = document.getElementById('dropZone');
+      const fileInput      = document.getElementById('fileInput');
+      const fileNameDisp   = document.getElementById('fileNameDisplay');
+      const statsRow       = document.getElementById('statsRow');
+
+      const dataSection    = document.getElementById('dataSection');
+      const imageSection   = document.getElementById('imageSection');
+
+      const limitCb        = document.getElementById('limitRows');
+      const safeLimit      = document.getElementById('safeLimit');
+      const pillFit        = document.getElementById('pillFit');
+      const pillWide       = document.getElementById('pillWide');
+      const minColWidthEl  = document.getElementById('minColWidth');
+      const minColWLabel   = document.getElementById('minColWLabel');
+      const minColUnit     = document.getElementById('minColUnit');
+      const textWrapEl     = document.getElementById('textWrap');
+      const largeFileWarn  = document.getElementById('largeFileWarning');
+      const warnRowCount   = document.getElementById('warnRowCount');
+      const warnColCount   = document.getElementById('warnColCount');
+      const dataPageSize   = document.getElementById('dataPageSize');
+      const dataOrientation= document.getElementById('dataOrientation');
+      const dataFontSize   = document.getElementById('dataFontSize');
+
+      const colGrid        = document.getElementById('colGrid');
+      const selectAllCols  = document.getElementById('selectAllCols');
+      const previewCount   = document.getElementById('previewCount');
+      const previewTable   = document.getElementById('previewTable');
+
+      const dataProgressWrap  = document.getElementById('dataProgress');
+      const dataProgressBar   = document.getElementById('dataProgressBar');
+      const dataProgressLabel = document.getElementById('dataProgressLabel');
+      const btnExportData  = document.getElementById('btnExportData');
+
+      const imgOutputMode  = document.getElementById('imgOutputMode');
+      const imgPageSize    = document.getElementById('imgPageSize');
+      const imgOrientation = document.getElementById('imgOrientation');
+      const imgFitMode     = document.getElementById('imgFitMode');
+      const imgDpi         = document.getElementById('imgDpi');
+      const imgQuality     = document.getElementById('imgQuality');
+      const imgPrefix      = document.getElementById('imgPrefix');
+      const thumbStrip     = document.getElementById('thumbStrip');
+      const imgProgressWrap  = document.getElementById('imgProgress');
+      const imgProgressBar   = document.getElementById('imgProgressBar');
+      const imgProgressLabel = document.getElementById('imgProgressLabel');
+      const btnExportImages= document.getElementById('btnExportImages');
+
+      const logBox         = document.getElementById('logBox');
+
+      /* Spreadsheet Toolbar DOM refs */
+      const selectedColIndicator = document.getElementById('selectedColIndicator');
+      const fontFamilySelect     = document.getElementById('fontFamilySelect');
+      const fontSizeSelect       = document.getElementById('fontSizeSelect');
+      const btnBold              = document.getElementById('btnBold');
+      const btnItalic            = document.getElementById('btnItalic');
+      const btnStrike            = document.getElementById('btnStrike');
+      const textColorInput       = document.getElementById('textColorInput');
+      const fillColorInput       = document.getElementById('fillColorInput');
+      const btnResetCellColor    = document.getElementById('btnResetCellColor');
+      const btnAlignLeft         = document.getElementById('btnAlignLeft');
+      const btnAlignCenter       = document.getElementById('btnAlignCenter');
+      const btnAlignRight        = document.getElementById('btnAlignRight');
+      const btnAlignTop          = document.getElementById('btnAlignTop');
+      const btnAlignMiddle       = document.getElementById('btnAlignMiddle');
+      const btnAlignBottom       = document.getElementById('btnAlignBottom');
+      const btnWrapOverflow      = document.getElementById('btnWrapOverflow');
+      const btnWrapWrap          = document.getElementById('btnWrapWrap');
+      const btnWrapClip          = document.getElementById('btnWrapClip');
+      const textRotationSelect   = document.getElementById('textRotationSelect');
+      const btnCurrencyQuick     = document.getElementById('btnCurrencyQuick');
+      const btnPercentQuick      = document.getElementById('btnPercentQuick');
+      const btnDecInc            = document.getElementById('btnDecInc');
+      const btnDecDec            = document.getElementById('btnDecDec');
+      const borderPlacementSelect= document.getElementById('borderPlacementSelect');
+      const borderStyleSelect    = document.getElementById('borderStyleSelect');
+      const borderColorInput     = document.getElementById('borderColorInput');
+      const chkGridlines         = document.getElementById('chkGridlines');
+      const btnAltRowsToggle     = document.getElementById('btnAltRowsToggle');
+      const btnCondFormatToggle  = document.getElementById('btnCondFormatToggle');
+
+      /* State */
+      let currentFile   = null;   // currently loaded file object for re-parsing
+      let fullData      = [];     // parsed rows
+      let allFields     = [];     // column names
+      let imageFiles    = [];     // selected image File objects
+      let colWidthsState= {};     // fieldName -> width in px
+      let selectedColumn= null;   // currently selected fieldName
+      let cellStylesState = {};   // fieldName -> style properties object
+      let showGridlinesState = true;
+      let showZebraShading   = true;
+      let conditionalFormatRules = []; // array of conditional rules
+
+      function initColStyle(colName) {
+        if (!cellStylesState[colName]) {
+          cellStylesState[colName] = {
+            bold: false,
+            italic: false,
+            strike: false,
+            color: '#f3f4f6', // default light text color for dark mode preview
+            fill: '',        // empty background
+            align: 'l',
+            vAlign: 't',
+            wrap: false,
+            rotation: 0,
+            decimals: 2,
+            border: null,    // border settings: { left, right, top, bottom, style: 'thin', color: '#334155' }
+            numberFormat: 'auto'
+          };
+        }
+      }
+
+      function formatCellValue(val, formatType, decimals = 2) {
+        if (val === undefined || val === null || val === '') return '';
+        if (formatType === 'plain') return String(val);
+        const num = parseFloat(val);
+        const isNum = !isNaN(num);
+        if (formatType === 'number' && isNum) {
+          return num.toFixed(decimals);
+        }
+        if (formatType === 'percent' && isNum) {
+          return (num * 100).toFixed(decimals) + '%';
+        }
+        if (formatType === 'scientific' && isNum) {
+          return num.toExponential(decimals);
+        }
+        if (formatType === 'currency' && isNum) {
+          const symbol = '$';
+          if (num < 0) {
+            return `(${symbol}${Math.abs(num).toFixed(decimals)})`;
+          }
+          return `${symbol}${num.toFixed(decimals)}`;
+        }
+        if (formatType === 'date') {
+          const d = new Date(val);
+          if (!isNaN(d.getTime())) return d.toLocaleDateString();
+        }
+        if (formatType === 'time') {
+          const d = new Date(val);
+          if (!isNaN(d.getTime())) return d.toLocaleTimeString();
+        }
+        if (formatType === 'datetime') {
+          const d = new Date(val);
+          if (!isNaN(d.getTime())) return d.toLocaleString();
+        }
+        if (formatType === 'duration' && isNum) {
+          const totalSecs = Math.floor(num);
+          const hrs = Math.floor(totalSecs / 3600);
+          const mins = Math.floor((totalSecs % 3600) / 60);
+          const secs = totalSecs % 60;
+          return [hrs, mins, secs].map(v => String(v).padStart(2, '0')).join(':');
+        }
+        return String(val);
+      }
+
+      /* ── Logger ── */
+      function log(msg, type = '') {
+        const d = document.createElement('div');
+        d.className = type;
+        d.textContent = '› ' + msg;
+        logBox.appendChild(d);
+        logBox.scrollTop = logBox.scrollHeight;
+      }
+
+      /* ── Progress helpers ── */
+      function setDataProgress(pct, text) {
+        dataProgressWrap.style.display = 'block';
+        dataProgressLabel.style.display = 'block';
+        dataProgressBar.style.width = `${pct}%`;
+        dataProgressLabel.textContent = text || '';
+      }
+
+      function setImgProgress(pct, text) {
+        imgProgressWrap.style.display = 'block';
+        imgProgressLabel.style.display = 'block';
+        imgProgressBar.style.width = `${pct}%`;
+        imgProgressLabel.textContent = text || '';
+      }
+
+      function resetDataProgress() {
+        dataProgressWrap.style.display = 'none';
+        dataProgressLabel.style.display = 'none';
+        dataProgressBar.style.width = '0%';
+        dataProgressLabel.textContent = '';
+      }
+
+      /* ── Show/hide sections based on file type ── */
+      const DATA_EXTS = /\.(csv|tsv|txt|json|xlsx|xls)$/i;
+      const IMG_EXTS  = /\.(jpe?g|png|gif|bmp|webp|tiff?|svg|ico|jfif|avif|pjp)$/i;
+
+      function showSections(hasData, hasImages) {
+        dataSection.classList.toggle('visible', hasData);
+        imageSection.classList.toggle('visible', hasImages);
+      }
+
+      /* ── Stat chips ── */
+      function showStats(chips) {
+        statsRow.style.display = 'flex';
+        statsRow.innerHTML = chips.map(([label, val]) =>
+          `<div class="stat-chip">${label}: <strong>${val}</strong></div>`
+        ).join('');
+      }
+
+      /* ── Column chips ── */
+      function buildColGrid(fields) {
+        colGrid.innerHTML = '';
+        fields.forEach(f => {
+          const chip = document.createElement('div');
+          chip.className = 'col-chip selected';
+          chip.dataset.col = f;
+          chip.innerHTML = `<input type="checkbox" checked /><span>${f}</span>`;
+          chip.addEventListener('click', () => {
+            chip.classList.toggle('selected');
+            chip.querySelector('input').checked = chip.classList.contains('selected');
+            syncSelectAll();
+            renderPreview();
+          });
+          colGrid.appendChild(chip);
+        });
+        selectAllCols.checked = true;
+      }
+
+      function getSelectedCols() {
+        return Array.from(colGrid.querySelectorAll('.col-chip.selected')).map(c => c.dataset.col);
+      }
+
+      function syncSelectAll() {
+        const all  = colGrid.querySelectorAll('.col-chip').length;
+        const sel  = colGrid.querySelectorAll('.col-chip.selected').length;
+        selectAllCols.checked = sel === all;
+        selectAllCols.indeterminate = sel > 0 && sel < all;
+      }
+
+      selectAllCols.addEventListener('change', () => {
+        const on = selectAllCols.checked;
+        colGrid.querySelectorAll('.col-chip').forEach(c => {
+          c.classList.toggle('selected', on);
+          c.querySelector('input').checked = on;
+        });
+        renderPreview();
+      });
+
+      /* ── Preview renderer ── */
+      function renderPreview() {
+        const cols = getSelectedCols();
+        const n    = parseInt(previewCount.value, 10) || 10;
+        const activeRows = activeExportRows();
+        const rows = activeRows.slice(0, n);
+
+        // Header
+        let html = '<thead><tr>';
+        cols.forEach(c => {
+          initColStyle(c);
+          const styles = cellStylesState[c];
+          const isSelected = (selectedColumn === c);
+          
+          let headerStyle = `width: ${colWidthsState[c] || 120}px; `;
+          if (isSelected) {
+            headerStyle += 'background: var(--accent-soft); color: var(--accent-primary); ';
+          } else {
+            if (styles.fill) headerStyle += `background: ${styles.fill}; `;
+          }
+          if (styles.bold) headerStyle += 'font-weight: bold; ';
+          if (styles.italic) headerStyle += 'font-style: italic; ';
+          if (styles.strike) headerStyle += 'text-decoration: line-through; ';
+          if (styles.color) headerStyle += `color: ${styles.color}; `;
+          
+          const align = styles.align || 'l';
+          headerStyle += `text-align: ${align === 'c' ? 'center' : align === 'r' ? 'right' : 'left'}; `;
+          
+          if (styles.rotation && styles.rotation !== 0) {
+            headerStyle += `transform: rotate(${styles.rotation}deg); `;
+          }
+          
+          if (!showGridlinesState) {
+            headerStyle += 'border: none !important; ';
+          }
+
+          html += `<th data-col="${c}" style="${headerStyle}" class="${isSelected ? 'selected-col' : ''}">` +
+                  `<span class="header-text">${c}</span>` +
+                  `<div class="resizer" data-col="${c}"></div>` +
+                  `</th>`;
+        });
+        html += '</tr></thead><tbody>';
+
+        // Body
+        rows.forEach((r, idx) => {
+          const isZebra = showZebraShading && (idx % 2 === 0);
+          
+          html += '<tr>' + cols.map(c => {
+            initColStyle(c);
+            const styles = cellStylesState[c];
+            let v = r[c] !== undefined && r[c] !== null ? r[c] : '';
+            if (typeof v === 'object') v = JSON.stringify(v);
+            
+            // Format cell values
+            const formatted = formatCellValue(v, styles.numberFormat, styles.decimals);
+
+            let cellStyle = '';
+            if (styles.bold) cellStyle += 'font-weight: bold; ';
+            if (styles.italic) cellStyle += 'font-style: italic; ';
+            if (styles.strike) cellStyle += 'text-decoration: line-through; ';
+            if (styles.color) cellStyle += `color: ${styles.color}; `;
+            
+            const align = styles.align || 'l';
+            cellStyle += `text-align: ${align === 'c' ? 'center' : align === 'r' ? 'right' : 'left'}; `;
+            
+            const vAlign = styles.vAlign || 't';
+            cellStyle += `vertical-align: ${vAlign === 'm' ? 'middle' : vAlign === 'b' ? 'bottom' : 'top'}; `;
+            
+            // Wrapping
+            if (styles.wrap === 'wrap') {
+              cellStyle += 'white-space: normal; overflow: visible; word-break: break-all; ';
+            } else if (styles.wrap === 'clip') {
+              cellStyle += 'white-space: nowrap; overflow: hidden; text-overflow: clip; ';
+            } else {
+              cellStyle += 'white-space: nowrap; overflow: visible; text-overflow: clip; ';
+            }
+
+            // Rotation
+            if (styles.rotation && styles.rotation !== 0) {
+              cellStyle += `transform: rotate(${styles.rotation}deg); display: inline-block; `;
+            }
+
+            const isSelected = (selectedColumn === c);
+            if (isSelected) {
+              cellStyle += 'background: var(--accent-soft); ';
+            } else {
+              // Apply conditional rule highlights if matches
+              let matchedRule = null;
+              for (const rule of conditionalFormatRules) {
+                if (rule.col === c) {
+                  const numVal = parseFloat(v);
+                  if (rule.type === 'greaterThan' && !isNaN(numVal) && numVal > rule.threshold) {
+                    matchedRule = rule;
+                    break;
+                  }
+                }
+              }
+              
+              if (matchedRule) {
+                cellStyle += `background: ${matchedRule.fill} !important; color: ${matchedRule.color} !important; `;
+              } else if (styles.fill) {
+                cellStyle += `background: ${styles.fill} !important; `;
+              } else if (isZebra) {
+                cellStyle += 'background: var(--surface-soft); ';
+              } else {
+                cellStyle += 'background: var(--bg-card); ';
+              }
+            }
+            
+            // Borders
+            if (styles.border) {
+              const b = styles.border;
+              const bStyle = b.style === 'double' ? 'double' : b.style === 'dashed' ? 'dashed' : b.style === 'dotted' ? 'dotted' : 'solid';
+              const bWidth = b.style === 'medium' ? '2px' : b.style === 'thick' ? '3px' : '1px';
+              if (b.left) cellStyle += `border-left: ${bWidth} ${bStyle} ${b.color} !important; `;
+              if (b.right) cellStyle += `border-right: ${bWidth} ${bStyle} ${b.color} !important; `;
+              if (b.top) cellStyle += `border-top: ${bWidth} ${bStyle} ${b.color} !important; `;
+              if (b.bottom) cellStyle += `border-bottom: ${bWidth} ${bStyle} ${b.color} !important; `;
+            } else if (!showGridlinesState) {
+              cellStyle += 'border: none !important; ';
+            }
+
+            return `<td data-row-idx="${idx}" data-col="${c}" style="${cellStyle}" class="${isSelected ? 'selected-col' : ''}" title="Double click to edit. ${String(formatted).replace(/"/g,'&quot;')}">${String(formatted)}</td>`;
+          }).join('') + '</tr>';
+        });
+        html += '</tbody>';
+        previewTable.innerHTML = html;
+
+        // Set table container width to sum of column widths
+        previewTable.style.width = cols.reduce((sum, col) => sum + (colWidthsState[col] || 120), 0) + 'px';
+
+        // Bind resizing logic
+        previewTable.querySelectorAll('thead th .resizer').forEach(resizer => {
+          resizer.addEventListener('mousedown', ev => {
+            const col = resizer.dataset.col;
+            const th = resizer.closest('th');
+            initResize(ev, col, th);
+          });
+        });
+
+        updateToolbar();
+      }
+
+      /* Column Resizer Logic */
+      function initResize(e, fieldName, thElement) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const startX = e.pageX;
+        const startWidth = colWidthsState[fieldName] || 120;
+        
+        const resizer = thElement.querySelector('.resizer');
+        if (resizer) resizer.classList.add('resizing');
+
+        const onMouseMove = (moveEvent) => {
+          const deltaX = moveEvent.pageX - startX;
+          const newWidth = Math.max(40, startWidth + deltaX);
+          colWidthsState[fieldName] = newWidth;
+          
+          thElement.style.width = newWidth + 'px';
+          const cols = getSelectedCols();
+          previewTable.style.width = cols.reduce((sum, col) => sum + (colWidthsState[col] || 120), 0) + 'px';
+        };
+
+        const onMouseUp = () => {
+          if (resizer) resizer.classList.remove('resizing');
+          document.removeEventListener('mousemove', onMouseMove);
+          document.removeEventListener('mouseup', onMouseUp);
+        };
+
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mouseup', onMouseUp);
+      }
+
+      /* Rename Column keys and references */
+      function renameColumn(oldName, newName) {
+        if (!newName || newName.trim() === '' || oldName === newName) return;
+        newName = newName.trim();
+
+        // Update in allFields
+        const idx = allFields.indexOf(oldName);
+        if (idx !== -1) {
+          allFields[idx] = newName;
+        }
+
+        // Rename keys in fullData
+        fullData.forEach(row => {
+          if (row.hasOwnProperty(oldName)) {
+            row[newName] = row[oldName];
+            delete row[oldName];
+          }
+        });
+
+        // Rename in widths state
+        if (colWidthsState[oldName] !== undefined) {
+          colWidthsState[newName] = colWidthsState[oldName];
+          delete colWidthsState[oldName];
+        }
+
+        // Rename in cellStylesState
+        if (cellStylesState[oldName] !== undefined) {
+          cellStylesState[newName] = cellStylesState[oldName];
+          delete cellStylesState[oldName];
+        }
+
+        // Update selectedColumn if it was renamed
+        if (selectedColumn === oldName) {
+          selectedColumn = newName;
+        }
+
+        buildColGrid(allFields);
+        renderPreview();
+        log(`Renamed column "${oldName}" to "${newName}"`, 'ok');
+      }
+
+      /* Toolbar updates and state styling */
+      function updateToolbar() {
+        if (fullData.length === 0) {
+          document.querySelector('.spreadsheet-toolbar').style.display = 'none';
+          return;
+        }
+        document.querySelector('.spreadsheet-toolbar').style.display = 'flex';
+
+        if (!selectedColumn) {
+          selectedColIndicator.textContent = 'Click a column header to format';
+          fontFamilySelect.disabled = true;
+          fontSizeSelect.disabled = true;
+          btnBold.disabled = true;
+          btnItalic.disabled = true;
+          btnStrike.disabled = true;
+          textColorInput.disabled = true;
+          fillColorInput.disabled = true;
+          btnResetCellColor.disabled = true;
+          btnAlignLeft.disabled = true;
+          btnAlignCenter.disabled = true;
+          btnAlignRight.disabled = true;
+          btnAlignTop.disabled = true;
+          btnAlignMiddle.disabled = true;
+          btnAlignBottom.disabled = true;
+          btnWrapOverflow.disabled = true;
+          btnWrapWrap.disabled = true;
+          btnWrapClip.disabled = true;
+          textRotationSelect.disabled = true;
+          btnCurrencyQuick.disabled = true;
+          btnPercentQuick.disabled = true;
+          btnDecInc.disabled = true;
+          btnDecDec.disabled = true;
+          borderPlacementSelect.disabled = true;
+          borderStyleSelect.disabled = true;
+          borderColorInput.disabled = true;
+
+          btnBold.classList.remove('active');
+          btnItalic.classList.remove('active');
+          btnStrike.classList.remove('active');
+          btnAlignLeft.classList.remove('active');
+          btnAlignCenter.classList.remove('active');
+          btnAlignRight.classList.remove('active');
+          btnAlignTop.classList.remove('active');
+          btnAlignMiddle.classList.remove('active');
+          btnAlignBottom.classList.remove('active');
+          btnWrapOverflow.classList.remove('active');
+          btnWrapWrap.classList.remove('active');
+          btnWrapClip.classList.remove('active');
+        } else {
+          selectedColIndicator.textContent = `Selected: "${selectedColumn}"`;
+          fontFamilySelect.disabled = false;
+          fontSizeSelect.disabled = false;
+          btnBold.disabled = false;
+          btnItalic.disabled = false;
+          btnStrike.disabled = false;
+          textColorInput.disabled = false;
+          fillColorInput.disabled = false;
+          btnResetCellColor.disabled = false;
+          btnAlignLeft.disabled = false;
+          btnAlignCenter.disabled = false;
+          btnAlignRight.disabled = false;
+          btnAlignTop.disabled = false;
+          btnAlignMiddle.disabled = false;
+          btnAlignBottom.disabled = false;
+          btnWrapOverflow.disabled = false;
+          btnWrapWrap.disabled = false;
+          btnWrapClip.disabled = false;
+          textRotationSelect.disabled = false;
+          btnCurrencyQuick.disabled = false;
+          btnPercentQuick.disabled = false;
+          btnDecInc.disabled = false;
+          btnDecDec.disabled = false;
+          borderPlacementSelect.disabled = false;
+          borderStyleSelect.disabled = false;
+          borderColorInput.disabled = false;
+
+          initColStyle(selectedColumn);
+          const s = cellStylesState[selectedColumn];
+
+          // Set active state values
+          fontFamilySelect.value = s.fontFamily || 'Helvetica';
+          fontSizeSelect.value   = String(s.fontSize || 9);
+          btnBold.classList.toggle('active', s.bold);
+          btnItalic.classList.toggle('active', s.italic);
+          btnStrike.classList.toggle('active', s.strike);
+          
+          if (s.color) textColorInput.value = s.color;
+          if (s.fill) fillColorInput.value = s.fill;
+          
+          btnAlignLeft.classList.toggle('active', s.align === 'l');
+          btnAlignCenter.classList.toggle('active', s.align === 'c');
+          btnAlignRight.classList.toggle('active', s.align === 'r');
+          
+          btnAlignTop.classList.toggle('active', s.vAlign === 't');
+          btnAlignMiddle.classList.toggle('active', s.vAlign === 'm');
+          btnAlignBottom.classList.toggle('active', s.vAlign === 'b');
+          
+          btnWrapOverflow.classList.toggle('active', !s.wrap || s.wrap === 'overflow');
+          btnWrapWrap.classList.toggle('active', s.wrap === 'wrap');
+          btnWrapClip.classList.toggle('active', s.wrap === 'clip');
+
+          textRotationSelect.value = String(s.rotation || 0);
+          
+          if (s.border) {
+            borderPlacementSelect.value = s.border.left && s.border.right && s.border.top && s.border.bottom ? 'all' : 'outer';
+            borderStyleSelect.value = s.border.style || 'thin';
+            borderColorInput.value = s.border.color || '#334155';
+          } else {
+            borderPlacementSelect.value = 'none';
+          }
+        }
+      }
+
+      /* ── Toolbar Action Handlers ── */
+      btnBold.addEventListener('click', () => {
+        if (!selectedColumn) return;
+        initColStyle(selectedColumn);
+        cellStylesState[selectedColumn].bold = !cellStylesState[selectedColumn].bold;
+        renderPreview();
+      });
+
+      btnItalic.addEventListener('click', () => {
+        if (!selectedColumn) return;
+        initColStyle(selectedColumn);
+        cellStylesState[selectedColumn].italic = !cellStylesState[selectedColumn].italic;
+        renderPreview();
+      });
+
+      btnStrike.addEventListener('click', () => {
+        if (!selectedColumn) return;
+        initColStyle(selectedColumn);
+        cellStylesState[selectedColumn].strike = !cellStylesState[selectedColumn].strike;
+        renderPreview();
+      });
+
+      textColorInput.addEventListener('input', e => {
+        if (!selectedColumn) return;
+        initColStyle(selectedColumn);
+        cellStylesState[selectedColumn].color = e.target.value;
+        renderPreview();
+      });
+
+      fillColorInput.addEventListener('input', e => {
+        if (!selectedColumn) return;
+        initColStyle(selectedColumn);
+        cellStylesState[selectedColumn].fill = e.target.value;
+        renderPreview();
+      });
+
+      btnResetCellColor.addEventListener('click', () => {
+        if (!selectedColumn) return;
+        initColStyle(selectedColumn);
+        cellStylesState[selectedColumn].fill = '';
+        renderPreview();
+      });
+
+      btnAlignLeft.addEventListener('click', () => {
+        if (!selectedColumn) return;
+        initColStyle(selectedColumn);
+        cellStylesState[selectedColumn].align = 'l';
+        renderPreview();
+      });
+
+      btnAlignCenter.addEventListener('click', () => {
+        if (!selectedColumn) return;
+        initColStyle(selectedColumn);
+        cellStylesState[selectedColumn].align = 'c';
+        renderPreview();
+      });
+
+      btnAlignRight.addEventListener('click', () => {
+        if (!selectedColumn) return;
+        initColStyle(selectedColumn);
+        cellStylesState[selectedColumn].align = 'r';
+        renderPreview();
+      });
+
+      btnAlignTop.addEventListener('click', () => {
+        if (!selectedColumn) return;
+        initColStyle(selectedColumn);
+        cellStylesState[selectedColumn].vAlign = 't';
+        renderPreview();
+      });
+
+      btnAlignMiddle.addEventListener('click', () => {
+        if (!selectedColumn) return;
+        initColStyle(selectedColumn);
+        cellStylesState[selectedColumn].vAlign = 'm';
+        renderPreview();
+      });
+
+      btnAlignBottom.addEventListener('click', () => {
+        if (!selectedColumn) return;
+        initColStyle(selectedColumn);
+        cellStylesState[selectedColumn].vAlign = 'b';
+        renderPreview();
+      });
+
+      btnWrapOverflow.addEventListener('click', () => {
+        if (!selectedColumn) return;
+        initColStyle(selectedColumn);
+        cellStylesState[selectedColumn].wrap = 'overflow';
+        renderPreview();
+      });
+
+      btnWrapWrap.addEventListener('click', () => {
+        if (!selectedColumn) return;
+        initColStyle(selectedColumn);
+        cellStylesState[selectedColumn].wrap = 'wrap';
+        renderPreview();
+      });
+
+      btnWrapClip.addEventListener('click', () => {
+        if (!selectedColumn) return;
+        initColStyle(selectedColumn);
+        cellStylesState[selectedColumn].wrap = 'clip';
+        renderPreview();
+      });
+
+      textRotationSelect.addEventListener('change', e => {
+        if (!selectedColumn) return;
+        initColStyle(selectedColumn);
+        cellStylesState[selectedColumn].rotation = parseInt(e.target.value, 10) || 0;
+        renderPreview();
+      });
+
+      btnCurrencyQuick.addEventListener('click', () => {
+        if (!selectedColumn) return;
+        initColStyle(selectedColumn);
+        cellStylesState[selectedColumn].numberFormat = 'currency';
+        renderPreview();
+      });
+
+      btnPercentQuick.addEventListener('click', () => {
+        if (!selectedColumn) return;
+        initColStyle(selectedColumn);
+        cellStylesState[selectedColumn].numberFormat = 'percent';
+        renderPreview();
+      });
+
+      btnDecInc.addEventListener('click', () => {
+        if (!selectedColumn) return;
+        initColStyle(selectedColumn);
+        cellStylesState[selectedColumn].decimals = (cellStylesState[selectedColumn].decimals || 0) + 1;
+        renderPreview();
+      });
+
+      btnDecDec.addEventListener('click', () => {
+        if (!selectedColumn) return;
+        initColStyle(selectedColumn);
+        cellStylesState[selectedColumn].decimals = Math.max(0, (cellStylesState[selectedColumn].decimals || 0) - 1);
+        renderPreview();
+      });
+
+      function updateBordersState() {
+        if (!selectedColumn) return;
+        initColStyle(selectedColumn);
+        const type = borderPlacementSelect.value;
+        if (type === 'none') {
+          cellStylesState[selectedColumn].border = null;
+        } else {
+          const style = borderStyleSelect.value;
+          const color = borderColorInput.value;
+          if (type === 'all' || type === 'outer') {
+            cellStylesState[selectedColumn].border = { left: true, right: true, top: true, bottom: true, style, color };
+          } else {
+            cellStylesState[selectedColumn].border = {
+              left: type === 'left',
+              right: type === 'right',
+              top: type === 'top',
+              bottom: type === 'bottom',
+              style, color
+            };
+          }
+        }
+        renderPreview();
+      }
+
+      borderPlacementSelect.addEventListener('change', updateBordersState);
+      borderStyleSelect.addEventListener('change', updateBordersState);
+      borderColorInput.addEventListener('input', updateBordersState);
+
+      // View gridlines toggle listener
+      chkGridlines.addEventListener('change', e => {
+        showGridlinesState = e.target.checked;
+        renderPreview();
+      });
+
+      // Zebra toggle listener
+      btnAltRowsToggle.addEventListener('click', () => {
+        showZebraShading = !showZebraShading;
+        renderPreview();
+      });
+
+      // Format menu option listeners
+      document.querySelectorAll('.fmt-opt-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+          if (!selectedColumn) return;
+          initColStyle(selectedColumn);
+          cellStylesState[selectedColumn].numberFormat = e.target.dataset.format;
+          renderPreview();
+        });
+      });
+
+      // Theme options listeners
+      document.querySelectorAll('.theme-opt-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+          const themeName = e.target.dataset.theme;
+          const colorsMap = {
+            cyber:   { fill: '#0b1329', color: '#00f0ff', border: '#1e293b' },
+            emerald: { fill: '#064e3b', color: '#a7f3d0', border: '#047857' },
+            sapphire:{ fill: '#1e3a8a', color: '#dbeafe', border: '#1d4ed8' },
+            ruby:    { fill: '#881337', color: '#ffe4e6', border: '#be123c' },
+            default: { fill: '', color: '#f3f4f6', border: null }
+          };
+          const palette = colorsMap[themeName] || colorsMap.default;
+          allFields.forEach(col => {
+            initColStyle(col);
+            cellStylesState[col].fill = palette.fill;
+            cellStylesState[col].color = palette.color;
+            if (palette.border) {
+              cellStylesState[col].border = { left: true, right: true, top: true, bottom: true, style: 'thin', color: palette.border };
+            } else {
+              cellStylesState[col].border = null;
+            }
+          });
+          renderPreview();
+          log(`Theme "${themeName}" applied to spreadsheet`, 'ok');
+        });
+      });
+
+      btnCondFormatToggle.addEventListener('click', () => {
+        if (!selectedColumn) return;
+        const targetVal = prompt("Conditional formatting: Highlight values greater than threshold in emerald fill. Enter number:");
+        if (targetVal === null) return;
+        const thresh = parseFloat(targetVal);
+        if (isNaN(thresh)) return;
+        
+        // Rule: value > thresh => fill color = '#064e3b', text color = '#a7f3d0'
+        conditionalFormatRules.push({
+          col: selectedColumn,
+          type: 'greaterThan',
+          threshold: thresh,
+          fill: '#064e3b',
+          color: '#a7f3d0'
+        });
+        
+        log(`Conditional formatting rule set: > ${thresh} on column "${selectedColumn}"`, 'ok');
+        renderPreview();
+      });
+
+      /* Click Column Headers and Double-click Editing Events */
+      previewTable.addEventListener('click', e => {
+        const th = e.target.closest('th');
+        if (th) {
+          if (e.target.classList.contains('resizer') || th.querySelector('input')) return;
+          const colName = th.dataset.col;
+          if (colName) {
+            selectedColumn = (selectedColumn === colName) ? null : colName;
+            updateToolbar();
+            renderPreview();
+          }
+        }
+      });
+
+      previewTable.addEventListener('dblclick', e => {
+        const td = e.target.closest('td');
+        const th = e.target.closest('th');
+
+        if (th) {
+          // Double-click header to rename
+          const colName = th.dataset.col;
+          if (!colName) return;
+          if (th.querySelector('input')) return;
+
+          const headerText = th.querySelector('.header-text');
+          const resizer = th.querySelector('.resizer');
+          const oldText = headerText.textContent;
+
+          const input = document.createElement('input');
+          input.type = 'text';
+          input.value = oldText;
+          input.style.width = '90%';
+          input.style.boxSizing = 'border-box';
+          input.style.fontSize = 'inherit';
+          input.style.padding = '2px 4px';
+
+          headerText.style.display = 'none';
+          if (resizer) resizer.style.display = 'none';
+          th.appendChild(input);
+          input.focus();
+          input.select();
+
+          let finished = false;
+          const commit = () => {
+            if (finished) return;
+            finished = true;
+            const newName = input.value.trim();
+            if (input.parentNode === th) th.removeChild(input);
+            headerText.style.display = '';
+            if (resizer) resizer.style.display = '';
+
+            if (newName && newName !== oldText) {
+              renameColumn(colName, newName);
+            }
+          };
+
+          input.addEventListener('keydown', ev => {
+            if (ev.key === 'Enter') commit();
+            if (ev.key === 'Escape') {
+              finished = true;
+              if (input.parentNode === th) th.removeChild(input);
+              headerText.style.display = '';
+              if (resizer) resizer.style.display = '';
+            }
+          });
+          input.addEventListener('blur', commit);
+        }
+
+        if (td) {
+          // Double-click cell to edit
+          const colName = td.dataset.col;
+          const rowIdx = parseInt(td.dataset.rowIdx, 10);
+          if (colName === undefined || isNaN(rowIdx)) return;
+          if (td.querySelector('input')) return;
+
+          const activeRows = activeExportRows();
+          const rowData = activeRows[rowIdx];
+          const val = rowData[colName] !== undefined && rowData[colName] !== null ? rowData[colName] : '';
+
+          const input = document.createElement('input');
+          input.type = 'text';
+          input.value = String(val);
+          input.style.width = '100%';
+          input.style.height = '100%';
+          input.style.boxSizing = 'border-box';
+          input.style.fontSize = 'inherit';
+          input.style.border = 'none';
+          input.style.outline = 'none';
+          input.style.background = 'transparent';
+          input.style.color = 'inherit';
+          input.style.padding = '0';
+
+          td.textContent = '';
+          td.appendChild(input);
+          input.focus();
+          input.select();
+
+          let finished = false;
+          const commit = () => {
+            if (finished) return;
+            finished = true;
+            const newVal = input.value;
+            rowData[colName] = newVal;
+            if (input.parentNode === td) td.removeChild(input);
+            td.textContent = newVal;
+            td.title = newVal;
+            log(`Updated row ${rowIdx + 1} column "${colName}"`, 'dim');
+            renderPreview();
+          };
+
+          input.addEventListener('keydown', ev => {
+            if (ev.key === 'Enter') commit();
+            if (ev.key === 'Escape') {
+              finished = true;
+              if (input.parentNode === td) td.removeChild(input);
+              td.textContent = String(val);
+              td.title = String(val);
+            }
+          });
+          input.addEventListener('blur', commit);
+        }
+      });
+
+      function activeExportRows() {
+        if (limitCb.checked) {
+          const lim = parseInt(safeLimit.value, 10) || 1000;
+          return fullData.slice(0, lim);
+        }
+        return fullData;
+      }
+
+      function reparseCurrentFile() {
+        if (!currentFile) return;
+        log(`Re-reading ${currentFile.name} with updated row options…`);
+        setDataProgress(5, 'Re-reading…');
+        loadDataFile(currentFile);
+      }
+
+      previewCount.addEventListener('change', renderPreview);
+      
+      limitCb.addEventListener('change', () => {
+        safeLimit.disabled = !limitCb.checked;
+        reparseCurrentFile();
+      });
+      
+      safeLimit.addEventListener('change', () => {
+        reparseCurrentFile();
+      });
+
+      /* Layout mode toggle */
+      function setLayout(mode) {
+        pillFit.classList.toggle('active', mode === 'fit');
+        pillWide.classList.toggle('active', mode === 'wide');
+        const isWide = mode === 'wide';
+        minColWidthEl.style.display = isWide ? '' : 'none';
+        minColWLabel.style.display  = isWide ? '' : 'none';
+        minColUnit.style.display    = isWide ? '' : 'none';
+      }
+      pillFit.addEventListener('click',  () => setLayout('fit'));
+      pillWide.addEventListener('click', () => setLayout('wide'));
+
+      /* ── File input handler ── */
+      dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+      dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+      dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('dragover'); handleFiles(e.dataTransfer.files); });
+      fileInput.addEventListener('change', e => handleFiles(e.target.files));
+
+      function handleFiles(fileList) {
+        if (!fileList || fileList.length === 0) return;
+        const files = Array.from(fileList);
+
+        /* Separate data vs image files */
+        const dataFiles = files.filter(f => DATA_EXTS.test(f.name));
+        const imgFiles  = files.filter(f => IMG_EXTS.test(f.name) || f.type.startsWith('image/'));
+
+        /* Reset state */
+        currentFile = null;
+        fullData = []; allFields = []; imageFiles = [];
+        colWidthsState = {}; boldFields = []; alignFields = {}; selectedColumn = null;
+        colGrid.innerHTML = ''; previewTable.innerHTML = ''; thumbStrip.innerHTML = '';
+        btnExportData.disabled = true;
+        btnExportImages.disabled = true;
+        resetDataProgress();
+        statsRow.style.display = 'none';
+        logBox.innerHTML = '';
+        updateToolbar();
+
+        /* Show file names */
+        fileNameDisp.textContent = files.map(f => f.name).join(', ');
+        fileNameDisp.style.display = 'block';
+
+        const hasData   = dataFiles.length > 0;
+        const hasImages = imgFiles.length > 0;
+        showSections(hasData, hasImages);
+
+        if (hasData) {
+          /* Only handle first data file */
+          currentFile = dataFiles[0];
+          loadDataFile(currentFile);
+        }
+
+        if (hasImages) {
+          imageFiles = imgFiles;
+          buildThumbs(imgFiles);
+          btnExportImages.disabled = false;
+          log(`${imgFiles.length} image(s) loaded`, 'ok');
+          showStats([[`Images`, imgFiles.length]]);
+        }
+      }
+
+      /* ── Data file loading ── */
+      function loadDataFile(file) {
+        log(`Reading ${file.name} (${(file.size / 1024).toFixed(0)} KB)…`);
+        setDataProgress(5, 'Reading file…');
+
+        const limit = limitCb.checked ? (parseInt(safeLimit.value, 10) || 1000) : Infinity;
+
+        if (/\.(xlsx|xls)$/i.test(file.name)) {
+          const reader = new FileReader();
+          reader.onprogress = ev => { if (ev.lengthComputable) setDataProgress(Math.floor(ev.loaded/ev.total*60), 'Reading…'); };
+          reader.onload = async evt => {
+            setDataProgress(65, 'Parsing workbook…');
+            try {
+              const wb = await XLSXReader.read(evt.target.result);
+              const sheet = await wb.getSheet(0, limit);
+              fullData = sheet.rows;
+              allFields = sheet.fields;
+              finishDataLoad(file.name);
+            } catch (err) { log(`XLSX error: ${err.message}`, 'error'); }
+          };
+          reader.onerror = () => log('File read error', 'error');
+          reader.readAsArrayBuffer(file);
+          return;
+        }
+
+        // Text-based
+        const reader = new FileReader();
+        reader.onprogress = ev => { if (ev.lengthComputable) setDataProgress(Math.floor(ev.loaded/ev.total*60), 'Reading…'); };
+        reader.onload = evt => {
+          setDataProgress(65, 'Parsing…');
+          setTimeout(() => {
+            try {
+              const text = evt.target.result;
+              if (/\.json$/i.test(file.name)) {
+                const parsed = JSON.parse(text);
+                let arr = Array.isArray(parsed) ? parsed : [parsed];
+                if (limitCb.checked) {
+                  arr = arr.slice(0, limit);
+                }
+                fullData = arr;
+                if (fullData.length > 0 && typeof fullData[0] !== 'object')
+                  fullData = fullData.map(v => ({ Value: v }));
+                allFields = Object.keys(fullData[0] || {});
+              } else {
+                const result = CSVParser.parse(text, { header: true, limit: limit });
+                fullData  = result.rows;
+                allFields = result.fields;
+              }
+              finishDataLoad(file.name);
+            } catch (err) { log(`Parse error: ${err.message}`, 'error'); }
+          }, 20);
+        };
+        reader.onerror = () => log('File read error', 'error');
+        reader.readAsText(file);
+      }
+
+      function finishDataLoad(filename) {
+        if (!fullData || fullData.length === 0) { log('No rows found', 'error'); return; }
+
+        setDataProgress(100, 'Parsed — ready');
+        log(`Loaded ${fullData.length.toLocaleString()} rows, ${allFields.length} columns`, 'ok');
+
+        showStats([
+          ['File', filename],
+          ['Rows', fullData.length.toLocaleString()],
+          ['Cols', allFields.length]
+        ]);
+
+        /* Large-file warning: > 20,000 rows or > 30 columns */
+        const big = fullData.length > 20000 || allFields.length > 30;
+        largeFileWarn.style.display = big ? 'block' : 'none';
+        if (big) {
+          warnRowCount.textContent = fullData.length.toLocaleString();
+          warnColCount.textContent = allFields.length;
+          /* Auto-suggest wide mode for many columns */
+          if (allFields.length > 15) setLayout('wide');
+        }
+
+        // Initialize column widths and styles state
+        colWidthsState = {};
+        cellStylesState = {};
+        selectedColumn = null;
+        showGridlinesState = true;
+        showZebraShading   = true;
+        conditionalFormatRules = [];
+        if (chkGridlines) chkGridlines.checked = true;
+        
+        allFields.forEach(f => {
+          colWidthsState[f] = Math.max(100, Math.min(350, f.length * 7.5 + 36));
+        });
+
+        safeLimit.disabled = !limitCb.checked;
+        buildColGrid(allFields);
+        renderPreview();
+        updateToolbar();
+        btnExportData.disabled = false;
+        btnExportData.textContent = 'Export to PDF';
+
+        setTimeout(resetDataProgress, 1200);
+      }
+
+      /* ── Thumbnail builder ── */
+      function buildThumbs(files) {
+        thumbStrip.innerHTML = '';
+        files.forEach(file => {
+          const url = URL.createObjectURL(file);
+          const item = document.createElement('div');
+          item.className = 'thumb-item';
+          const img = document.createElement('img');
+          img.className = 'thumb';
+          img.src = url;
+          img.onload = () => URL.revokeObjectURL(url);
+          const lbl = document.createElement('div');
+          lbl.className = 'thumb-label';
+          lbl.textContent = file.name.length > 12 ? file.name.slice(0,10) + '…' : file.name;
+          item.appendChild(img); item.appendChild(lbl);
+          thumbStrip.appendChild(item);
+        });
+      }
+
+      /* ── DATA → PDF export ── */
+      btnExportData.addEventListener('click', async () => {
+        const cols = getSelectedCols();
+        if (!cols.length) { log('Select at least one column', 'error'); return; }
+
+        btnExportData.disabled = true;
+        btnExportData.textContent = 'Building…';
+        setDataProgress(1, 'Initialising PDF…');
+
+        const rows = activeExportRows();
+        const layout = pillWide.classList.contains('active') ? 'wide' : 'fit';
+        const minCW  = parseInt(minColWidthEl.value, 10) || 80;
+        const doWrap = textWrapEl.checked;
+        const fs     = parseInt(dataFontSize.value, 10) || 9;
+
+        log(`Exporting ${rows.length.toLocaleString()} rows × ${cols.length} cols [${layout} mode]…`);
+
+        /* Read column widths from preview table (user may have resized them) */
+        const ths = Array.from(previewTable.querySelectorAll('thead th'));
+        let colWidths = null;
+        if (ths.length === cols.length) {
+          const pxWidths   = ths.map(th => th.getBoundingClientRect().width);
+          const totalPx    = pxWidths.reduce((s, w) => s + w, 0);
+          if (layout === 'wide') {
+            /* Convert screen px → pt (96dpi screen: 1pt = 1.333px) */
+            colWidths = pxWidths.map(px => Math.max(minCW, px * 0.75));
+          } else {
+            /* Scale proportionally to fit page */
+            const pageArr  = { a4:[595,842], a3:[842,1191], a2:[1191,1684], a1:[1684,2384], letter:[612,792], legal:[612,1008] };
+            const [bw, bh] = pageArr[dataPageSize.value] || pageArr.a4;
+            const pW       = dataOrientation.value === 'l' ? bh : bw;
+            const usable   = pW - 56; // 28pt each side
+            colWidths = pxWidths.map(px => Math.max(8, (px / totalPx) * usable));
+          }
+        }
+
+        const builder = new PDFBuilder({
+          pageSize:    dataPageSize.value,
+          orientation: dataOrientation.value,
+          fontSize:    fs,
+          layout,
+          minColWidth: minCW,
+          wrapText:    doWrap,
+          colWidths,
+          cellStylesState,
+          gridlines:   showGridlinesState,
+          alternatingRows: showZebraShading
+        });
+
+        /* Filtered rows — only selected columns and formatted values */
+        const filteredRows = rows.map(r => {
+          const obj = {};
+          cols.forEach(c => {
+            const styles = cellStylesState[c] || {};
+            const formatType = styles.numberFormat || 'auto';
+            const decimalsCount = styles.decimals !== undefined ? styles.decimals : 2;
+            const rawVal = r[c];
+            obj[c] = formatCellValue(rawVal, formatType, decimalsCount);
+          });
+          return obj;
+        });
+
+        try {
+          await builder.addTableData(cols, filteredRows, (pct, text) => {
+            setDataProgress(pct, text);
+          });
+          setDataProgress(97, 'Saving file…');
+          await new Promise(r => setTimeout(r, 80));
+          builder.save(`data_export_${Date.now()}.pdf`);
+          setDataProgress(100, 'Done ✓');
+          log('PDF downloaded successfully', 'ok');
+        } catch (err) {
+          log(`Export error: ${err.message}`, 'error');
+        } finally {
+          btnExportData.disabled = false;
+          btnExportData.textContent = 'Export to PDF';
+        }
+      });
+
+      /* ── IMAGES → PDF export ── */
+      function loadImageEl(file) {
+        return new Promise((resolve, reject) => {
+          const url = URL.createObjectURL(file);
+          const img = new Image();
+          img.onload  = () => { URL.revokeObjectURL(url); resolve(img); };
+          img.onerror = () => { URL.revokeObjectURL(url); reject(new Error(`Cannot load ${file.name}`)); };
+          img.src = url;
+        });
+      }
+
+      btnExportImages.addEventListener('click', async () => {
+        if (!imageFiles.length) return;
+        btnExportImages.disabled = true;
+        btnExportImages.textContent = 'Converting…';
+
+        const outputMode = imgOutputMode.value;
+        const dpi     = Math.max(10, parseInt(imgDpi.value, 10) || 96);
+        const quality = Math.max(0.1, Math.min(1, parseFloat(imgQuality.value) || 0.92));
+        const fitMode = imgFitMode.value;
+        const prefix  = imgPrefix.value || 'Images_Export';
+        const total   = imageFiles.length;
+
+        try {
+          if (outputMode === 'single') {
+            const builder = new PDFBuilder({ pageSize: imgPageSize.value, orientation: imgOrientation.value });
+            for (let i = 0; i < total; i++) {
+              setImgProgress(Math.round(i/total*90), `Processing ${i+1}/${total}: ${imageFiles[i].name}`);
+              try {
+                const img = await loadImageEl(imageFiles[i]);
+                await builder.addImagePage(img, fitMode, quality, dpi);
+                log(`Added ${imageFiles[i].name}`, 'dim');
+              } catch (e) { log(`Skipped ${imageFiles[i].name}: ${e.message}`, 'warn'); }
+            }
+            setImgProgress(97, 'Saving…');
+            await new Promise(r => setTimeout(r, 80));
+            builder.save(`${prefix}_${Date.now()}.pdf`);
+            log(`Saved combined PDF (${total} images)`, 'ok');
+            setImgProgress(100, 'Done ✓');
+          } else {
+            for (let i = 0; i < total; i++) {
+              setImgProgress(Math.round(i/total*95), `Saving ${i+1}/${total}: ${imageFiles[i].name}`);
+              try {
+                const img = await loadImageEl(imageFiles[i]);
+                const builder = new PDFBuilder({ pageSize: imgPageSize.value, orientation: imgOrientation.value });
+                await builder.addImagePage(img, fitMode, quality, dpi);
+                await new Promise(r => setTimeout(r, 50));
+                builder.save(`${prefix}_${i+1}_${Date.now()}.pdf`);
+                log(`Saved ${imageFiles[i].name}`, 'ok');
+              } catch (e) { log(`Skipped ${imageFiles[i].name}: ${e.message}`, 'warn'); }
+            }
+            setImgProgress(100, `Done — ${total} PDFs saved`);
+          }
+        } catch (err) {
+          log(`Image export error: ${err.message}`, 'error');
+        } finally {
+          btnExportImages.disabled = false;
+          btnExportImages.textContent = 'Convert Images to PDF';
+        }
+      });
+
+    })();
+  </script>
+</body>
+</html>

@@ -1,6 +1,24 @@
 {
   "tools": [
     {
+      "description": "Convert CSV, XLSX, JSON data sheets or images to PDF directly in your browser.",
+      "category": "pdf",
+      "tags": [
+        "pdf",
+        "convert",
+        "excel",
+        "csv",
+        "image"
+      ],
+      "name": "PDF Converter",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "convert",
+      "slug": "tools/pdf/convert/pdf-converter.html",
+      "id": "pdf-converter",
+      "featured": true
+    },
+    {
       "description": "Calculate body mass index from height and weight.",
       "category": "calculators",
       "tags": [

@@ -1,45 +1,90 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wiki & Guides | Bluetext.in</title>
-<meta name="description" content="Browse Bluetext.in wiki guides for HTML, CSS, JavaScript, and SEO fundamentals.">
-<link rel="stylesheet" href="../assets/css/main.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Developer Wiki Index | Bluetext.in Wiki</title>
+  <meta name="description" content="Educational guide portal covering HTML5, CSS themes, modern JavaScript, and SEO policies.">
+  <link rel="stylesheet" href="/assets/css/themes.css">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <style>
+    .wiki-container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow);
+    }
+    .wiki-nav-back {
+      margin-bottom: 1rem;
+      display: inline-block;
+      color: var(--accent-primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .wiki-nav-back:hover {
+      text-decoration: underline;
+    }
+    pre {
+      background: var(--surface-soft);
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      overflow-x: auto;
+      border: 1px solid var(--border-color);
+      font-family: monospace;
+      font-size: 0.85rem;
+    }
+    code {
+      font-family: monospace;
+      background: var(--surface-soft);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+    h1, h2, h3 {
+      color: var(--text-primary);
+      margin-top: 1.5rem;
+    }
+    p, li {
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+  </style>
+  <script>(function(){var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);})();</script>
 </head>
 <body>
-<div id="site-header"></div>
-<main class="doc-page" role="main">
-<p class="doc-page__back"><a href="../index.html">← Back to home</a></p>
-<h1>Wiki & Guides</h1>
-<p>Practical learning guides for web fundamentals and SEO basics.</p>
+  <div id="site-header"></div>
+  <main class="doc-page" role="main">
+    <div class="wiki-container">
+      <a href="/wiki/index.html" class="wiki-nav-back">← Back to Wiki Index</a>
+      
+<h1>Bluetext Web Wiki & Guides</h1>
+<p>Welcome to the developer and creator resource index. Explore guides on core web technologies, coding conventions, and SEO optimization policies.</p>
 
-<section class="panel">
-<div class="panel__head">
-<h2>Browse Guides</h2>
-<p>Choose a topic to start learning quickly.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 2rem;">
+  <div style="padding: 1.5rem; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: var(--surface-soft);">
+    <h3><a href="/wiki/css-guide.html" style="color: var(--accent-primary); text-decoration: none;">CSS Reference Guide</a></h3>
+    <p>Core variables, box models, layouts, and theme implementation specifications.</p>
+  </div>
+  <div style="padding: 1.5rem; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: var(--surface-soft);">
+    <h3><a href="/wiki/html-guide.html" style="color: var(--accent-primary); text-decoration: none;">HTML5 Standards Guide</a></h3>
+    <p>Guidelines for semantic tags, web accessibility (WCAG), and clean form elements.</p>
+  </div>
+  <div style="padding: 1.5rem; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: var(--surface-soft);">
+    <h3><a href="/wiki/javascript-guide.html" style="color: var(--accent-primary); text-decoration: none;">ES6+ JavaScript Guide</a></h3>
+    <p>Best practices in asynchronous code execution, standard DOM structures, and performance.</p>
+  </div>
+  <div style="padding: 1.5rem; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: var(--surface-soft);">
+    <h3><a href="/wiki/seo-basics.html" style="color: var(--accent-primary); text-decoration: none;">SEO Best Practices</a></h3>
+    <p>Title tuning, meta description criteria, sitemaps, and page-load optimizations.</p>
+  </div>
 </div>
-<div class="tool-grid">
-<article class="card">
-<h3><a href="./html-guide.html">HTML Guide</a></h3>
-<p>Structure, semantics, forms, and accessible markup essentials.</p>
-</article>
-<article class="card">
-<h3><a href="./css-guide.html">CSS Guide</a></h3>
-<p>Layout systems, responsive design, and modern styling patterns.</p>
-</article>
-<article class="card">
-<h3><a href="./javascript-guide.html">JavaScript Guide</a></h3>
-<p>Core JavaScript concepts for interactive frontend workflows.</p>
-</article>
-<article class="card">
-<h3><a href="./seo-basics.html">SEO Basics</a></h3>
-<p>On-page optimization, metadata, and crawlability fundamentals.</p>
-</article>
-</div>
-</section>
-</main>
-<div id="site-footer"></div>
-<script src="/assets/js/partials.js"></script>
+
+    </div>
+  </main>
+  <div id="site-footer"></div>
+  <script src="/assets/js/partials.js" defer></script>
 </body>
 </html>

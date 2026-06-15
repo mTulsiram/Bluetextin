@@ -1,16 +1,168 @@
-<!doctype html>
-<html lang="zh-CN">
+﻿<!doctype html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BlueTEXT.in</title>
-  <meta http-equiv="refresh" content="0;url=/nav/about.html">
-  <script>
-    localStorage.setItem("lang", "zh-CN");
-    location.replace("/nav/about.html" + location.search + location.hash);
-  </script>
+  <title>About Tulsiram Methre &amp; BlueTEXT.in | Our Mission</title>
+  <meta name="description" content="Meet Tulsiram Methre, the creator of BlueTEXT.in. Learn about the mission to provide fast, free, and secure online tools for developers and creators.">
+  <link rel="canonical" href="https://www.bluetext.in/nav/about.html">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <style>
+    .about-hero {
+      text-align: center;
+      padding: 3.5rem 1.25rem 2.5rem;
+      background: var(--accent-primary);
+      color: #fff;
+      border-radius: var(--radius-lg);
+      margin-bottom: 2rem;
+    }
+    .about-hero h1 { color: #fff; margin: 0 0 .6rem; font-size: 2.2rem; }
+    .about-hero p { font-size: 1.1rem; opacity: .9; max-width: 640px; margin: 0 auto; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    .founder-card {
+      background: var(--surface-soft);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      position: sticky;
+      top: 100px;
+    }
+    .founder-card .detail-row {
+      display: flex;
+      align-items: flex-start;
+      gap: .65rem;
+      margin-bottom: .85rem;
+      font-size: .93rem;
+    }
+
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: .75rem;
+      margin-top: .75rem;
+    }
+    .link-btn {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .65rem .9rem;
+      background: var(--surface-soft);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius-md);
+      color: var(--text-secondary);
+      font-weight: 600;
+      font-size: .88rem;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .link-btn:hover {
+      color: var(--accent-strong);
+      border-color: var(--accent-primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+    .link-btn--preferred { border-left: 3px solid var(--brand-yellow); }
+
+    @media (max-width: 740px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .founder-card { position: static; }
+    }
+  </style>
 </head>
 <body>
-  <p>Redirecting...</p>
+  <div id="site-header"></div>
+  <main role="main">
+    <div class="doc-page">
+      <p class="doc-page__back"><a href="../index.html">â† Back to home</a></p>
+
+      <div class="about-hero">
+        <h1>Our Mission</h1>
+        <p>To build the web's best, most accessible, and privacy-respecting toolbox â€” completely free for everyone.</p>
+      </div>
+
+      <section>
+        <h2>Why We Started BlueTEXT.in</h2>
+        <p>In a digital world filled with single-use tools cluttered with intrusive ads and confusing interfaces, we saw a need for something better. We grew tired of searching for a simple utility only to be met with slow, tracker-laden websites that didn't respect our privacy or our time.</p>
+        <p>BlueTEXT.in was born from a simple idea: what if there was a single, trusted destination for all the small tasks you need to do online? A place that was fast, beautifully designed, and put user experience first.</p>
+      </section>
+
+      <section>
+        <h2>Meet the Founder</h2>
+        <div class="about-grid">
+          <div class="founder-bio">
+            <h3>Hi, I'm Tulsiram Methre! ðŸ‘‹</h3>
+            <p><strong>AWS Solution Architect | Cloud Architect | Creator of BlueTEXT.in</strong></p>
+            <p>I am obsessed with helping developers build high-quality apps as fast as possible âš¡. My goal with this project is to simplify complex code and create tools that enable the open-source world to build better products together.</p>
+            <blockquote><em>"Simplifying complex code for everyone."</em></blockquote>
+
+            <h4>What We Prioritize</h4>
+            <ul>
+              <li><strong>Speed:</strong> Lightweight pages and direct workflows. Fast load times, even on slow connections.</li>
+              <li><strong>Privacy:</strong> All processing happens in your browser. No data collection. No tracking.</li>
+              <li><strong>Simplicity:</strong> Clean interfaces with no unnecessary steps. Just the tool you need.</li>
+              <li><strong>Accessibility:</strong> Tools work across all devices and browsers.</li>
+            </ul>
+
+            <h4>Tech Stack</h4>
+            <ul>
+              <li><strong>Frontend:</strong> Plain HTML, CSS, and Vanilla JavaScript</li>
+              <li><strong>Hosting:</strong> <a href="https://pages.cloudflare.com/" target="_blank" rel="noopener noreferrer">Cloudflare Pages</a></li>
+              <li><strong>Analytics:</strong> Google Analytics (GA4) â€” privacy-focused, aggregated</li>
+              <li><strong>Monetization:</strong> Google AdSense â€” non-intrusive auto ads</li>
+              <li><strong>Data:</strong> JSON-driven tool catalog for easy updates</li>
+            </ul>
+          </div>
+
+          <aside class="founder-card">
+            <div class="detail-row"><span>ðŸ¢</span><div>Worked at <strong>Tata Consultancy Services</strong> &amp; <strong>S&amp;P Global</strong></div></div>
+            <div class="detail-row"><span>ðŸ“º</span><div>YouTube: <a href="https://www.youtube.com/@CodeOn" target="_blank" rel="noopener noreferrer"><strong>CodeOn</strong></a> (700+ Subscribers)</div></div>
+            <div class="detail-row"><span>ðŸŽ“</span><div>Expertise: Java, Flutter, AWS, Azure, Web Technologies, ITSM Support</div></div>
+            <div class="detail-row"><span>âš½</span><div>Passions: Football, Table-Tennis, Badminton</div></div>
+            <div class="detail-row"><span>ðŸ“</span><div>Location: <strong>Hyderabad, India</strong></div></div>
+            <div class="detail-row"><span>ðŸ“§</span><div><a href="mailto:codeon@bluetext.in">codeon@bluetext.in</a></div></div>
+          </aside>
+        </div>
+      </section>
+
+      <section>
+        <h3>Connect With Me</h3>
+        <div class="links-grid">
+          <a href="https://linkedin.com/in/tulsiram-methre" class="link-btn" target="_blank" rel="noopener noreferrer">ðŸ’¼ LinkedIn</a>
+          <a href="https://twitter.com/Tulsiram_Methre" class="link-btn" target="_blank" rel="noopener noreferrer">ðŸ¦ Twitter / X</a>
+          <a href="https://github.com/CodeOnYT" class="link-btn" target="_blank" rel="noopener noreferrer">ðŸ’» GitHub</a>
+          <a href="https://instagram.com/CodeOnOriginal" class="link-btn" target="_blank" rel="noopener noreferrer">ðŸ“¸ Instagram</a>
+          <a href="https://discord.gg/6gNUAaHaPw" class="link-btn" target="_blank" rel="noopener noreferrer">ðŸ’¬ Discord</a>
+          <a href="https://facebook.com/CodeOnYT" class="link-btn" target="_blank" rel="noopener noreferrer">ðŸ‘ Facebook</a>
+          <a href="https://reddit.com/user/BlueTEXTin" class="link-btn" target="_blank" rel="noopener noreferrer">Reddit</a>
+          <a href="https://pinterest.com/CodeOnYT" class="link-btn" target="_blank" rel="noopener noreferrer">Pinterest</a>
+          <a href="https://twitch.tv/codeonyt" class="link-btn" target="_blank" rel="noopener noreferrer">Twitch</a>
+          <a href="https://www.youtube.com/@CodeOn" class="link-btn" target="_blank" rel="noopener noreferrer">ðŸŽ¥ YouTube</a>
+        </div>
+      </section>
+
+      <section>
+        <h3>Support My Work</h3>
+        <div class="links-grid">
+          <a href="https://www.buymeacoffee.com/BlueTEXT.in" class="link-btn link-btn--preferred" target="_blank" rel="noopener noreferrer">â˜• Buy Me A Coffee (Preferred)</a>
+          <a href="https://ko-fi.com/bluetextin" class="link-btn" target="_blank" rel="noopener noreferrer">ðŸ’– Ko-fi</a>
+          <a href="https://www.patreon.com/BlueTEXT" class="link-btn" target="_blank" rel="noopener noreferrer">ðŸ¤ Patreon</a>
+          <a href="https://bluetextin.stck.me" class="link-btn" target="_blank" rel="noopener noreferrer">ðŸ—žï¸ Newsletter</a>
+        </div>
+      </section>
+
+      <section>
+        <h2>License &amp; Contribution</h2>
+        <p>BlueTEXT.in is open source under the <a href="https://github.com/CodeOnYT/Bluetextin/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">GNU General Public License v3</a>. Contributions are welcome â€” add tools, report bugs, improve docs, or submit pull requests on <a href="https://github.com/CodeOnYT/Bluetextin" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
+      </section>
+    </div>
+  </main>
+  <div id="site-footer"></div>
+  <script src="/assets/js/partials.js"></script>
 </body>
-</html>
+
