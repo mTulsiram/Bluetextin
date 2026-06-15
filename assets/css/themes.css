@@ -52,26 +52,26 @@
 
 
 [data-theme="dark"] {
-	--accent-primary: #ec4899;      /* Neon Pink */
+	--accent-primary: #ffb1ee;      /* getdesign.md Pink */
 	--accent-secondary: #00f0ff;    /* Neon Cyan */
-	--accent-soft: rgba(236, 72, 153, 0.15);
-	--accent-contrast: #ffffff;
+	--accent-soft: rgba(255, 177, 238, 0.15);
+	--accent-contrast: #000000;
 
-	--text-primary: #f3f4f6;
-	--text-secondary: #9ca3af;
+	--text-primary: #ededed;
+	--text-secondary: #878787;
 
-	--bg-main: #05070f;             /* Deep rich black */
-	--bg-card: #0f1322;             /* Premium dark card */
-	--border-color: #1e293b;
+	--bg-main: #000000;             /* Pure black canvas */
+	--bg-card: #0a0a0a;             /* Deep slate/black card */
+	--border-color: #2e2e2e;        /* Subtle border */
 
-	--shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
-	--shadow-hover: 0 12px 40px rgba(236, 72, 153, 0.25);
-	--focus-ring: 0 0 0 3px rgba(236, 72, 153, 0.45);
+	--shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+	--shadow-hover: 0 12px 40px rgba(255, 177, 238, 0.15);
+	--focus-ring: 0 0 0 3px rgba(255, 177, 238, 0.45);
 
-	--bg-strong: #111827;
-	--surface-soft: #0b0f19;
-	--accent-strong: #ff007f;
-	--stroke: #334155;
+	--bg-strong: #111111;
+	--surface-soft: #111111;
+	--accent-strong: #ffb1ee;
+	--stroke: #2e2e2e;
 }
 
 @media (prefers-contrast: more) {
@@ -80,15 +80,12 @@
 	}
 
 	[data-theme="dark"] {
-		--accent-soft: rgba(236, 72, 153, 0.25);
+		--accent-soft: rgba(255, 177, 238, 0.25);
 	}
 }
 
 /* Override the light-mode gradient so dark backgrounds look correct */
 [data-theme="dark"] body,
 body[data-theme="dark"] {
-	background:
-		radial-gradient(circle at 8% 12%, rgba(236, 72, 153, 0.08) 0, transparent 28%),
-		radial-gradient(circle at 92% 6%, rgba(0, 240, 255, 0.07) 0, transparent 28%),
-		var(--bg-main);
+	background: var(--bg-main);
 }

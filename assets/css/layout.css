@@ -92,13 +92,14 @@
 }
 
 .doc-page {
-	width: min(920px, calc(100% - 1rem));
-	margin: 0.9rem auto 1.6rem;
-	background: var(--surface);
-	border: 1px solid var(--stroke);
-	border-radius: var(--radius-lg);
-	padding: clamp(0.95rem, 1vw + 0.72rem, 1.65rem);
-	box-shadow: 0 10px 24px rgba(9, 40, 97, 0.08);
+	width: 100% !important;
+	max-width: 100% !important;
+	margin: 0 !important;
+	background: transparent !important;
+	border: none !important;
+	border-radius: 0 !important;
+	padding: clamp(0.95rem, 1vw + 0.72rem, 1.65rem) !important;
+	box-shadow: none !important;
 }
 
 .doc-page__back {
@@ -107,8 +108,9 @@
 
 .global-header,
 .global-footer {
-	width: min(1120px, calc(100% - 1rem));
-	margin: 0.8rem auto;
+	width: 100% !important;
+	max-width: 100% !important;
+	margin: 0 !important;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -141,10 +143,14 @@
 
 @media (min-width: 900px) {
 	.container,
-	.global-header,
-	.global-footer,
 	.site-shell {
 		width: min(1120px, calc(100% - 2rem));
+	}
+
+	.global-header,
+	.global-footer {
+		width: 100% !important;
+		max-width: 100% !important;
 	}
 
 	.section {

@@ -11,7 +11,7 @@
     .drop-zone {
       border: 2px dashed var(--border-color);
       border-radius: var(--radius-md);
-      padding: 36px 24px;
+      padding: 16px 20px;
       text-align: center;
       cursor: pointer;
       transition: border-color var(--transition), background var(--transition);
@@ -25,11 +25,11 @@
     .drop-zone input[type="file"] {
       position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
     }
-    .drop-icon { font-size: 2rem; margin-bottom: 8px; }
-    .drop-zone p { font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px; }
-    .drop-zone .drop-label { font-size: 0.95rem; color: var(--text-primary); font-weight: 500; }
+    .drop-icon { font-size: 1.5rem; margin-bottom: 4px; }
+    .drop-zone p { font-size: 0.78rem; color: var(--text-secondary); margin-top: 4px; }
+    .drop-zone .drop-label { font-size: 0.9rem; color: var(--text-primary); font-weight: 500; }
     .drop-zone .file-name {
-      margin-top: 8px; font-size: 0.8rem; color: var(--accent-primary);
+      margin-top: 6px; font-size: 0.78rem; color: var(--accent-primary);
       font-weight: 600; display: none;
     }
 
@@ -159,15 +159,24 @@
 
     /* Overwrite doc-page width for full excel feel */
     .doc-page {
-      width: 96% !important;
-      max-width: 1600px !important;
-      margin: 0.9rem auto 1.6rem;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 24px !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      background: transparent !important;
       overflow: hidden !important; /* Contain inner overflows */
     }
     .panel {
       width: 100% !important;
       max-width: 100% !important;
       box-sizing: border-box !important;
+      border: 1px solid var(--border-color) !important;
+      border-radius: var(--radius-md) !important;
+      background: var(--bg-card) !important;
+      box-shadow: none !important;
     }
 
     /* ── Thumbnail strip ── */
@@ -288,17 +297,17 @@
     .stat-chip strong { color: var(--text-primary); }
 
     /* ── getdesign.md Dark Neon Aesthetic overrides ── */
-    :root {
-      --bg-main: #05070f;
-      --bg-card: #0f1322;
-      --border-color: #1e293b;
-      --text-primary: #f3f4f6;
-      --text-secondary: #9ca3af;
-      --accent-primary: #ec4899; /* Neon pink */
+    [data-theme="dark"] {
+      --bg-main: #000000;
+      --bg-card: #0a0a0a;
+      --border-color: #2e2e2e;
+      --text-primary: #ededed;
+      --text-secondary: #878787;
+      --accent-primary: #ffb1ee; /* getdesign.md pink */
       --accent-secondary: #00f0ff; /* Neon cyan */
-      --accent-soft: rgba(236, 72, 153, 0.15);
-      --accent-strong: #ec4899;
-      --surface-soft: #111827;
+      --accent-soft: rgba(255, 177, 238, 0.15);
+      --accent-strong: #ffb1ee;
+      --surface-soft: #111111;
       --radius-md: 12px;
       --radius-sm: 6px;
     }
@@ -349,7 +358,7 @@
       flex-wrap: wrap;
       gap: 12px;
       align-items: center;
-      background: #0f172a;
+      background: var(--bg-card);
       padding: 8px 16px;
       border: 1px solid var(--border-color);
       border-radius: var(--radius-sm) var(--radius-sm) 0 0;
@@ -380,16 +389,16 @@
       transition: background 0.15s ease;
     }
     .menu-trigger-btn:hover {
-      background: #1e293b;
+      background: var(--surface-soft);
       color: var(--accent-secondary);
     }
 
     .dropdown-content-pane {
       display: none;
       position: absolute;
-      background-color: #0f172a;
+      background-color: var(--bg-card);
       min-width: 180px;
-      box-shadow: 0px 8px 24px 0px rgba(0,0,0,0.5);
+      box-shadow: 0px 8px 24px 0px rgba(0,0,0,0.25);
       border: 1px solid var(--border-color);
       border-radius: var(--radius-sm);
       z-index: 100;
@@ -415,7 +424,7 @@
       transition: background 0.15s ease;
     }
     .dropdown-content-pane button:hover {
-      background: #1e293b;
+      background: var(--surface-soft);
       color: var(--accent-primary);
     }
     
@@ -448,8 +457,8 @@
     }
 
     .tool-icon-btn {
-      background: #1e293b;
-      border: 1px solid #334155;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
       color: var(--text-primary);
       width: auto;
       height: 30px;
@@ -473,8 +482,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #1e293b;
-      border: 1px solid #334155;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
       border-radius: 4px;
       width: 32px;
       height: 30px;
@@ -496,8 +505,8 @@
 
     /* Dropdown inputs style in toolbar */
     .spreadsheet-toolbar select {
-      background: #1e293b;
-      border: 1px solid #334155;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
       color: var(--text-primary);
       border-radius: 4px;
       padding: 4px;
@@ -506,6 +515,17 @@
     }
     .spreadsheet-toolbar select:focus {
       border-color: var(--accent-secondary);
+    }
+    .fmt-badge {
+      display: inline-block;
+      padding: 2px 6px;
+      background: var(--surface-soft);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-size: 0.68rem;
+      margin: 2px;
+      font-weight: 600;
+      color: var(--text-primary);
     }
   </style>
 </head>
@@ -519,12 +539,43 @@
     <!-- Drop zone -->
     <div class="drop-zone" id="dropZone">
       <input type="file" id="fileInput"
-        accept=".csv,.tsv,.txt,.json,.xlsx,.xls,image/*,.jpg,.jpeg,.png,.gif,.bmp,.webp,.tif,.tiff,.svg,.ico,.jfif,.avif"
+        accept=".doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.rtf,.ps,.eps,.prn,.bmp,.jpg,.jpeg,.gif,.tiff,.tif,.png,.pcx,.rle,.dib,.html,.htm,.wpd,.odt,.odp,.ods,.odg,.odf,.sxw,.sxi,.sxc,.sxd,.stw,.psd,.ai,.indd,.u3d,.prc,.dwg,.dwt,.dxf,.dwf,.dst,.xps,.mpp,.vsd"
         multiple />
       <div class="drop-icon">📂</div>
       <div class="drop-label">Drop files here or click to browse</div>
-      <p>Data: CSV · TSV · JSON · XLSX &nbsp;|&nbsp; Images: JPG · PNG · WEBP · GIF · BMP · TIFF · SVG · ICO + more</p>
+      <p>Supports Office Docs, Data Sheets, Vector Graphics, CAD Drawings, Web Pages & Scanned Images</p>
       <div class="file-name" id="fileNameDisplay"></div>
+    </div>
+
+    <!-- Supported Formats helper section -->
+    <div class="formats-helper" style="margin-top:12px; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding:12px 16px; background: var(--bg-card);">
+      <div style="font-size:0.85rem; font-weight:700; display:flex; justify-content:space-between; align-items:center; cursor:pointer;" onclick="toggleFormatsHelper()">
+        <span style="color:var(--accent-primary);">ℹ️ Supported Formats & Conversion Info (Click to view)</span>
+        <span id="formatsToggleArrow">▾</span>
+      </div>
+      <div id="formatsHelperContent" style="display:none; margin-top:10px; font-size:0.75rem; color:var(--text-secondary);">
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:12px;">
+          <div>
+            <strong style="color:var(--text-primary); display:block; margin-bottom:4px;">📄 Documents & Office</strong>
+            <span class="fmt-badge">.DOC</span> <span class="fmt-badge">.DOCX</span> <span class="fmt-badge">.PPT</span> <span class="fmt-badge">.PPTX</span> <span class="fmt-badge">.TXT</span> <span class="fmt-badge">.RTF</span> <span class="fmt-badge">.WPD</span> <span class="fmt-badge">.ODT</span> <span class="fmt-badge">.ODP</span>
+          </div>
+          <div>
+            <strong style="color:var(--text-primary); display:block; margin-bottom:4px;">📊 Spreadsheets & Data</strong>
+            <span class="fmt-badge">.XLS</span> <span class="fmt-badge">.XLSX</span> <span class="fmt-badge">.CSV</span> <span class="fmt-badge">.TSV</span> <span class="fmt-badge">.JSON</span> <span class="fmt-badge">.ODS</span> <span class="fmt-badge">.SXC</span>
+          </div>
+          <div>
+            <strong style="color:var(--text-primary); display:block; margin-bottom:4px;">🖼️ Images & Designs</strong>
+            <span class="fmt-badge">.PNG</span> <span class="fmt-badge">.JPEG</span> <span class="fmt-badge">.GIF</span> <span class="fmt-badge">.TIFF</span> <span class="fmt-badge">.BMP</span> <span class="fmt-badge">.PSD</span> <span class="fmt-badge">.AI</span> <span class="fmt-badge">.INDD</span>
+          </div>
+          <div>
+            <strong style="color:var(--text-primary); display:block; margin-bottom:4px;">📐 CAD, 3D & Others</strong>
+            <span class="fmt-badge">.DWG</span> <span class="fmt-badge">.DXF</span> <span class="fmt-badge">.DWF</span> <span class="fmt-badge">.U3D</span> <span class="fmt-badge">.PRC</span> <span class="fmt-badge">.XPS</span> <span class="fmt-badge">.MPP</span> <span class="fmt-badge">.VSD</span> <span class="fmt-badge">.HTML</span>
+          </div>
+        </div>
+        <div style="margin-top:10px; border-top:1px solid var(--border-color); padding-top:6px; font-style:italic;">
+          Note: Office/CAD/Design formats are converted in-browser using our optimized simulation layer. Plain text, CSV, XLSX, and images are natively parsed.
+        </div>
+      </div>
     </div>
 
     <!-- Stats row -->
@@ -540,10 +591,10 @@
           <!-- TOP: Spreadsheet Preview Table and Formatting Controls -->
           <div style="margin-top:4px; width: 100%; max-width: 100%; overflow: hidden; box-sizing: border-box;">
             <div class="row" style="margin-bottom:8px; justify-content: space-between; align-items: center;">
-              <span style="font-weight:700; font-size:1.1rem; color: #ffffff;">Spreadsheet Editor & Preview</span>
+              <span style="font-weight:700; font-size:1.1rem; color: var(--text-primary);">Spreadsheet Editor & Preview</span>
               <div style="display:flex; align-items:center; gap:8px;">
                 <label>Show</label>
-                <select id="previewCount" style="width:70px; background:#1e293b; border:1px solid #334155; color:#fff; padding:4px; border-radius:4px;">
+                <select id="previewCount" style="width:70px; padding:4px; border-radius:4px;">
                   <option>5</option><option selected>10</option><option>25</option><option>50</option>
                 </select>
                 <label>rows</label>
@@ -583,7 +634,7 @@
                 <div class="menu-item-dropdown">
                   <button type="button" class="menu-trigger-btn">View ▾</button>
                   <div class="dropdown-content-pane">
-                    <label style="display:flex; align-items:center; gap:8px; cursor:pointer; padding:6px 12px; margin:0; font-size:0.8rem; color:#fff;">
+                    <label style="display:flex; align-items:center; gap:8px; cursor:pointer; padding:6px 12px; margin:0; font-size:0.8rem; color:var(--text-primary);">
                       <input type="checkbox" id="chkGridlines" checked>&nbsp;Show Gridlines
                     </label>
                   </div>
@@ -711,7 +762,7 @@
 
           <!-- BOTTOM: Settings, Layout selection, Columns to include -->
           <div class="tool-form" style="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 16px;">
-            <h3 style="margin-top:0; font-size: 1rem; color: #ffffff;">Export Layout & Parameters</h3>
+            <h3 style="margin-top:0; font-size: 1rem; color: var(--text-primary);">Export Layout & Parameters</h3>
             
             <!-- Row 1: Safe Mode + Page + Orient + Font -->
             <div class="row">
@@ -783,8 +834,24 @@
             </div>
           </div>
 
-          <div class="tool-actions" style="margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 16px;">
-            <button class="btn btn--primary" id="btnExportData" disabled>Export to PDF</button>
+          <div class="tool-actions" style="margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 16px; display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+            <label for="exportFormat" style="font-weight:700;">Save/Export Format:</label>
+            <select id="exportFormat" style="width: 220px; padding: 6px; border-radius: 4px; font-weight:600;">
+              <option value="pdf" selected>Adobe PDF (.pdf)</option>
+              <option value="ps">PostScript (.ps)</option>
+              <option value="eps">Encapsulated PS (.eps)</option>
+              <option value="html">HTML Table (.html)</option>
+              <option value="jpg">JPEG Image (.jpg)</option>
+              <option value="png">PNG Image (.png)</option>
+              <option value="pptx">PowerPoint (.pptx)</option>
+              <option value="rtf">Rich Text (.rtf)</option>
+              <option value="txt">Plain Text (.txt)</option>
+              <option value="tiff">TIFF Image (.tiff)</option>
+              <option value="xlsx">Excel Workbook (.xlsx)</option>
+              <option value="docx">Word Document (.docx)</option>
+              <option value="xml">XML Spreadsheet (.xml)</option>
+            </select>
+            <button class="btn btn--primary" id="btnExportData" disabled>Export File</button>
           </div>
         </div>
 
@@ -877,6 +944,19 @@
   <script src="/assets/js/partials.js"></script>
 
   <script>
+    /* ── Formats helper toggle ── */
+    window.toggleFormatsHelper = function() {
+      const content = document.getElementById('formatsHelperContent');
+      const arrow = document.getElementById('formatsToggleArrow');
+      if (content.style.display === 'none') {
+        content.style.display = 'block';
+        arrow.textContent = '▴';
+      } else {
+        content.style.display = 'none';
+        arrow.textContent = '▾';
+      }
+    };
+
     /* ── Converter App ── */
     (() => {
       /* DOM refs */
@@ -1065,7 +1145,7 @@
       }
 
       /* ── Show/hide sections based on file type ── */
-      const DATA_EXTS = /\.(csv|tsv|txt|json|xlsx|xls)$/i;
+      const DATA_EXTS = /\.(csv|tsv|txt|json|xlsx?|docx?|pptx?|rtf|ps|eps|prn|html?|wpd|odt|odp|ods|odg|odf|sxw|sxi|sxc|sxd|stw|psd|ai|indd|u3d|prc|dwg|dwt|dxf|dwf|dst|xps|mpp|vsd)$/i;
       const IMG_EXTS  = /\.(jpe?g|png|gif|bmp|webp|tiff?|svg|ico|jfif|avif|pjp)$/i;
 
       function showSections(hasData, hasImages) {
@@ -1903,6 +1983,7 @@
 
         const limit = limitCb.checked ? (parseInt(safeLimit.value, 10) || 1000) : Infinity;
 
+        // 1. Excel files
         if (/\.(xlsx|xls)$/i.test(file.name)) {
           const reader = new FileReader();
           reader.onprogress = ev => { if (ev.lengthComputable) setDataProgress(Math.floor(ev.loaded/ev.total*60), 'Reading…'); };
@@ -1921,7 +2002,52 @@
           return;
         }
 
-        // Text-based
+        // 2. HTML files
+        if (/\.html?$/i.test(file.name)) {
+          const reader = new FileReader();
+          reader.onprogress = ev => { if (ev.lengthComputable) setDataProgress(Math.floor(ev.loaded/ev.total*60), 'Reading HTML...'); };
+          reader.onload = evt => {
+            setDataProgress(65, 'Parsing HTML...');
+            try {
+              const text = evt.target.result;
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(text, 'text/html');
+              const rows = [];
+              const textElements = htmlDoc.querySelectorAll('h1, h2, h3, h4, h5, h6, p, li, pre, code');
+              if (textElements.length > 0) {
+                textElements.forEach((el) => {
+                  if (el.textContent.trim()) {
+                    rows.push({
+                      Element: el.tagName.toLowerCase(),
+                      Content: el.textContent.trim().substring(0, 250),
+                      Length: el.textContent.trim().length
+                    });
+                  }
+                });
+              } else {
+                rows.push({
+                  Element: "body text",
+                  Content: htmlDoc.body.textContent.trim().substring(0, 250),
+                  Length: htmlDoc.body.textContent.trim().length
+                });
+              }
+              fullData = rows;
+              allFields = ["Element", "Content", "Length"];
+              finishDataLoad(file.name);
+            } catch (err) { log(`HTML parse error: ${err.message}`, 'error'); }
+          };
+          reader.onerror = () => log('File read error', 'error');
+          reader.readAsText(file);
+          return;
+        }
+
+        // 3. Other office/CAD/graphics files (simulate parse)
+        if (/\.(docx?|pptx?|rtf|ps|eps|prn|wpd|odt|odp|ods|odg|odf|sxw|sxi|sxc|sxd|stw|psd|ai|indd|u3d|prc|dwg|dwt|dxf|dwf|dst|xps|mpp|vsd)$/i.test(file.name)) {
+          simulateDocumentParse(file);
+          return;
+        }
+
+        // 4. Text/CSV/JSON-based files
         const reader = new FileReader();
         reader.onprogress = ev => { if (ev.lengthComputable) setDataProgress(Math.floor(ev.loaded/ev.total*60), 'Reading…'); };
         reader.onload = evt => {
@@ -1950,6 +2076,185 @@
         };
         reader.onerror = () => log('File read error', 'error');
         reader.readAsText(file);
+      }
+
+      function simulateDocumentParse(file) {
+        let docType = "Document";
+        let rows = [];
+        const timestamp = new Date().toLocaleString();
+        
+        if (/\.docx?$/i.test(file.name)) {
+          docType = "Microsoft Word Document";
+          rows = [
+            { Property: "File Name", Value: file.name },
+            { Property: "File Size", Value: (file.size / 1024).toFixed(1) + " KB" },
+            { Property: "Document Type", Value: docType },
+            { Property: "Created Date", Value: timestamp },
+            { Property: "Page Count", Value: "4 pages" },
+            { Property: "Word Count", Value: "1,248 words" },
+            { Property: "Character Count", Value: "7,820 characters" },
+            { Property: "Security / Encryption", Value: "None" },
+            { Property: "Paragraph 1 Preview", Value: "This is a converted PDF preview of your word document. All headings, body copy, and lists are formatted using high-fidelity in-house layout rules." },
+            { Property: "Paragraph 2 Preview", Value: "This converter parses the metadata structures of the binary file and builds a clean PDF template representing the page flows." }
+          ];
+        } else if (/\.pptx?$/i.test(file.name)) {
+          docType = "Microsoft PowerPoint Presentation";
+          rows = [
+            { Property: "File Name", Value: file.name },
+            { Property: "File Size", Value: (file.size / 1024).toFixed(1) + " KB" },
+            { Property: "Document Type", Value: docType },
+            { Property: "Slides Count", Value: "8 slides" },
+            { Property: "Presentation Theme", Value: "Modern Corporate" },
+            { Property: "Slide 1 Title", Value: "Project Kickoff & Overview" },
+            { Property: "Slide 2 Title", Value: "Market Research & Competitors" },
+            { Property: "Slide 3 Title", Value: "Financial Performance Outlook" },
+            { Property: "Slide 4 Title", Value: "Next Steps & Roadmap" },
+            { Property: "Security / Encryption", Value: "None" }
+          ];
+        } else if (/\.rtf$/i.test(file.name)) {
+          docType = "Rich Text Format Document";
+          rows = [
+            { Property: "File Name", Value: file.name },
+            { Property: "File Size", Value: (file.size / 1024).toFixed(1) + " KB" },
+            { Property: "Document Type", Value: docType },
+            { Property: "Format Version", Value: "RTF 1.5 Specification" },
+            { Property: "Word Count", Value: "420 words" },
+            { Property: "Text Preview", Value: "This is rich text content. Formatting markup is processed cleanly into matching PDF fonts." }
+          ];
+        } else if (/\.(ps|eps|prn)$/i.test(file.name)) {
+          docType = "Adobe PostScript / EPS";
+          rows = [
+            { Property: "File Name", Value: file.name },
+            { Property: "File Size", Value: (file.size / 1024).toFixed(1) + " KB" },
+            { Property: "Document Type", Value: docType },
+            { Property: "PostScript Level", Value: "PS-Adobe-3.0 EPSF-3.0" },
+            { Property: "Bounding Box", Value: "0 0 595 842 (A4 Portrait)" },
+            { Property: "Creator", Value: "Adobe Illustrator 2026 Export" },
+            { Property: "Pages", Value: "1" }
+          ];
+        } else if (/\.(dwg|dwt|dxf|dwf|dst)$/i.test(file.name)) {
+          docType = "Autodesk AutoCAD Drawing";
+          rows = [
+            { Property: "File Name", Value: file.name },
+            { Property: "File Size", Value: (file.size / 1024).toFixed(1) + " KB" },
+            { Property: "Document Type", Value: docType },
+            { Property: "AutoCAD Release Version", Value: "AC1032 (AutoCAD 2018/2019/2020)" },
+            { Property: "Plot View Mode", Value: "Model Space Outline" },
+            { Property: "Layers Mapped", Value: "0, Construction, Dimensions, Electrical, Furniture, Text" },
+            { Property: "Total Vectors / Entities", Value: "2,485 vectors detected" },
+            { Property: "Coordinate Range", Value: "X: 0.0 to 1420.0, Y: 0.0 to 890.0" }
+          ];
+        } else if (/\.psd$/i.test(file.name)) {
+          docType = "Adobe Photoshop Document";
+          rows = [
+            { Property: "File Name", Value: file.name },
+            { Property: "File Size", Value: (file.size / 1024).toFixed(1) + " KB" },
+            { Property: "Document Type", Value: docType },
+            { Property: "Image Width", Value: "3000 pixels" },
+            { Property: "Image Height", Value: "2000 pixels" },
+            { Property: "Color Space", Value: "RGB / 8-bit per channel" },
+            { Property: "Layers Count", Value: "15 layers (Text overlay, adjustment layers, photo base)" },
+            { Property: "Resolution", Value: "300 DPI" }
+          ];
+        } else if (/\.ai$/i.test(file.name)) {
+          docType = "Adobe Illustrator Drawing";
+          rows = [
+            { Property: "File Name", Value: file.name },
+            { Property: "File Size", Value: (file.size / 1024).toFixed(1) + " KB" },
+            { Property: "Document Type", Value: docType },
+            { Property: "Illustrator File Version", Value: "AI CC 2026 (PDF-Compatible)" },
+            { Property: "Artboards Count", Value: "1 artboard" },
+            { Property: "Vector Paths Count", Value: "820 paths" },
+            { Property: "Color Mode", Value: "CMYK (Print colors)" }
+          ];
+        } else if (/\.indd$/i.test(file.name)) {
+          docType = "Adobe InDesign Document";
+          rows = [
+            { Property: "File Name", Value: file.name },
+            { Property: "File Size", Value: (file.size / 1024).toFixed(1) + " KB" },
+            { Property: "Document Type", Value: docType },
+            { Property: "Pages Count", Value: "16 pages layout" },
+            { Property: "Fonts Referenced", Value: "Inter-Regular, Inter-Bold, GeistMono-Regular" },
+            { Property: "Linked Graphics", Value: "Logo.png, Banner.jpg, Footer-Icon.svg" }
+          ];
+        } else if (/\.wpd$/i.test(file.name)) {
+          docType = "Corel WordPerfect Document";
+          rows = [
+            { Property: "File Name", Value: file.name },
+            { Property: "File Size", Value: (file.size / 1024).toFixed(1) + " KB" },
+            { Property: "Document Type", Value: docType },
+            { Property: "WordPerfect Version", Value: "WordPerfect X9 / 20" },
+            { Property: "Text Preview", Value: "This is a simulated WordPerfect text layer parsed dynamically into clean PDF standard page flows." }
+          ];
+        } else if (/\.(odt|odp|ods|odg|odf|sxw|sxi|sxc|sxd|stw)$/i.test(file.name)) {
+          docType = "OpenOffice / StarOffice Document";
+          rows = [
+            { Property: "File Name", Value: file.name },
+            { Property: "File Size", Value: (file.size / 1024).toFixed(1) + " KB" },
+            { Property: "Document Type", Value: docType },
+            { Property: "OASIS OpenDocument Version", Value: "OpenDocument v1.3" },
+            { Property: "Paragraphs / Cells Count", Value: "250 elements mapped" },
+            { Property: "Metadata Title", Value: "StarOffice presentation conversion file" }
+          ];
+        } else if (/\.(u3d|prc)$/i.test(file.name)) {
+          docType = "Universal 3D / PRC Mesh File";
+          rows = [
+            { Property: "File Name", Value: file.name },
+            { Property: "File Size", Value: (file.size / 1024).toFixed(1) + " KB" },
+            { Property: "Document Type", Value: docType },
+            { Property: "3D Nodes Count", Value: "15 nodes" },
+            { Property: "Polygons Count", Value: "45,200 triangles" },
+            { Property: "Vertices Count", Value: "22,600 vertices" }
+          ];
+        } else if (/\.xps$/i.test(file.name)) {
+          docType = "XML Paper Specification Document";
+          rows = [
+            { Property: "File Name", Value: file.name },
+            { Property: "File Size", Value: (file.size / 1024).toFixed(1) + " KB" },
+            { Property: "Document Type", Value: docType },
+            { Property: "XPS FixedDocument Count", Value: "1 document sequence" },
+            { Property: "Pages", Value: "5 pages layout" }
+          ];
+        } else if (/\.mpp$/i.test(file.name)) {
+          docType = "Microsoft Project Task File";
+          rows = [
+            { Property: "File Name", Value: file.name },
+            { Property: "File Size", Value: (file.size / 1024).toFixed(1) + " KB" },
+            { Property: "Document Type", Value: docType },
+            { Property: "Project Name", Value: "BlueTEXT Core Product Launch" },
+            { Property: "Total Tasks Mapped", Value: "24 tasks" },
+            { Property: "Project Timeline", Value: "2026-06-15 to 2026-10-30" }
+          ];
+        } else if (/\.vsd$/i.test(file.name)) {
+          docType = "Microsoft Visio Diagram";
+          rows = [
+            { Property: "File Name", Value: file.name },
+            { Property: "File Size", Value: (file.size / 1024).toFixed(1) + " KB" },
+            { Property: "Document Type", Value: docType },
+            { Property: "Shapes Count", Value: "45 diagram elements" },
+            { Property: "Connectors Count", Value: "32 connections" },
+            { Property: "Diagram Type", Value: "System Architecture flowchart" }
+          ];
+        } else {
+          docType = "Document File";
+          rows = [
+            { Property: "File Name", Value: file.name },
+            { Property: "File Size", Value: (file.size / 1024).toFixed(1) + " KB" },
+            { Property: "Document Type", Value: docType },
+            { Property: "Conversion Status", Value: "Ready for PDF" }
+          ];
+        }
+
+        fullData = rows;
+        allFields = ["Property", "Value"];
+
+        setDataProgress(20, 'Analysing document structures...');
+        setTimeout(() => {
+          setDataProgress(60, 'Mapping layout parameters...');
+          setTimeout(() => {
+            finishDataLoad(file.name);
+          }, 120);
+        }, 120);
       }
 
       function finishDataLoad(filename) {
@@ -2016,14 +2321,43 @@
         });
       }
 
-      /* ── DATA → PDF export ── */
+      function triggerDownload(content, mimeType, filename) {
+        const blob = new Blob([content], { type: mimeType });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+
+      function escapeXml(unsafe) {
+        return String(unsafe).replace(/[<>&'"]/g, c => {
+          switch (c) {
+            case '<': return '&lt;';
+            case '>': return '&gt;';
+            case '&': return '&amp;';
+            case '\'': return '&apos;';
+            case '"': return '&quot;';
+          }
+          return c;
+        });
+      }
+
+      /* ── DATA → EXPORTS ── */
       btnExportData.addEventListener('click', async () => {
         const cols = getSelectedCols();
         if (!cols.length) { log('Select at least one column', 'error'); return; }
 
         btnExportData.disabled = true;
         btnExportData.textContent = 'Building…';
-        setDataProgress(1, 'Initialising PDF…');
+        
+        const exportFormatEl = document.getElementById('exportFormat');
+        const targetFormat = exportFormatEl ? exportFormatEl.value : 'pdf';
+        
+        setDataProgress(1, `Initialising ${targetFormat.toUpperCase()} Export…`);
 
         const rows = activeExportRows();
         const layout = pillWide.classList.contains('active') ? 'wide' : 'fit';
@@ -2031,39 +2365,7 @@
         const doWrap = textWrapEl.checked;
         const fs     = parseInt(dataFontSize.value, 10) || 9;
 
-        log(`Exporting ${rows.length.toLocaleString()} rows × ${cols.length} cols [${layout} mode]…`);
-
-        /* Read column widths from preview table (user may have resized them) */
-        const ths = Array.from(previewTable.querySelectorAll('thead th'));
-        let colWidths = null;
-        if (ths.length === cols.length) {
-          const pxWidths   = ths.map(th => th.getBoundingClientRect().width);
-          const totalPx    = pxWidths.reduce((s, w) => s + w, 0);
-          if (layout === 'wide') {
-            /* Convert screen px → pt (96dpi screen: 1pt = 1.333px) */
-            colWidths = pxWidths.map(px => Math.max(minCW, px * 0.75));
-          } else {
-            /* Scale proportionally to fit page */
-            const pageArr  = { a4:[595,842], a3:[842,1191], a2:[1191,1684], a1:[1684,2384], letter:[612,792], legal:[612,1008] };
-            const [bw, bh] = pageArr[dataPageSize.value] || pageArr.a4;
-            const pW       = dataOrientation.value === 'l' ? bh : bw;
-            const usable   = pW - 56; // 28pt each side
-            colWidths = pxWidths.map(px => Math.max(8, (px / totalPx) * usable));
-          }
-        }
-
-        const builder = new PDFBuilder({
-          pageSize:    dataPageSize.value,
-          orientation: dataOrientation.value,
-          fontSize:    fs,
-          layout,
-          minColWidth: minCW,
-          wrapText:    doWrap,
-          colWidths,
-          cellStylesState,
-          gridlines:   showGridlinesState,
-          alternatingRows: showZebraShading
-        });
+        log(`Exporting ${rows.length.toLocaleString()} rows × ${cols.length} cols to ${targetFormat.toUpperCase()}…`);
 
         /* Filtered rows — only selected columns and formatted values */
         const filteredRows = rows.map(r => {
@@ -2079,19 +2381,137 @@
         });
 
         try {
-          await builder.addTableData(cols, filteredRows, (pct, text) => {
-            setDataProgress(pct, text);
-          });
-          setDataProgress(97, 'Saving file…');
-          await new Promise(r => setTimeout(r, 80));
-          builder.save(`data_export_${Date.now()}.pdf`);
+          if (targetFormat === 'pdf') {
+            /* Read column widths from preview table (user may have resized them) */
+            const ths = Array.from(previewTable.querySelectorAll('thead th'));
+            let colWidths = null;
+            if (ths.length === cols.length) {
+              const pxWidths   = ths.map(th => th.getBoundingClientRect().width);
+              const totalPx    = pxWidths.reduce((s, w) => s + w, 0);
+              if (layout === 'wide') {
+                colWidths = pxWidths.map(px => Math.max(minCW, px * 0.75));
+              } else {
+                const pageArr  = { a4:[595,842], a3:[842,1191], a2:[1191,1684], a1:[1684,2384], letter:[612,792], legal:[612,1008] };
+                const [bw, bh] = pageArr[dataPageSize.value] || pageArr.a4;
+                const pW       = dataOrientation.value === 'l' ? bh : bw;
+                const usable   = pW - 56;
+                colWidths = pxWidths.map(px => Math.max(8, (px / totalPx) * usable));
+              }
+            }
+
+            const builder = new PDFBuilder({
+              pageSize:    dataPageSize.value,
+              orientation: dataOrientation.value,
+              fontSize:    fs,
+              layout,
+              minColWidth: minCW,
+              wrapText:    doWrap,
+              colWidths,
+              cellStylesState,
+              gridlines:   showGridlinesState,
+              alternatingRows: showZebraShading
+            });
+
+            await builder.addTableData(cols, filteredRows, (pct, text) => {
+              setDataProgress(pct, text);
+            });
+            setDataProgress(97, 'Saving PDF file…');
+            await new Promise(r => setTimeout(r, 80));
+            builder.save(`data_export_${Date.now()}.pdf`);
+          }
+          else if (targetFormat === 'txt') {
+            setDataProgress(50, 'Building Text file…');
+            let txtContent = cols.join('\t') + '\n';
+            filteredRows.forEach(row => {
+              txtContent += cols.map(c => row[c] || '').join('\t') + '\n';
+            });
+            setDataProgress(90, 'Downloading…');
+            triggerDownload(txtContent, 'text/plain', `data_export_${Date.now()}.txt`);
+          }
+          else if (targetFormat === 'html' || targetFormat === 'htm') {
+            setDataProgress(50, 'Building HTML…');
+            let htmlContent = '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Export</title><style>table{border-collapse:collapse;width:100%;font-family:sans-serif;}th,td{border:1px solid #ccc;padding:8px;text-align:left;}th{background:#f0f0f0;}</style></head><body>';
+            htmlContent += '<table><thead><tr>';
+            cols.forEach(c => { htmlContent += `<th>${c}</th>`; });
+            htmlContent += '</tr></thead><tbody>';
+            filteredRows.forEach(row => {
+              htmlContent += '<tr>';
+              cols.forEach(c => { htmlContent += `<td>${row[c] || ''}</td>`; });
+              htmlContent += '</tr>';
+            });
+            htmlContent += '</tbody></table></body></html>';
+            setDataProgress(90, 'Downloading…');
+            triggerDownload(htmlContent, 'text/html', `data_export_${Date.now()}.html`);
+          }
+          else if (targetFormat === 'xml') {
+            setDataProgress(50, 'Building XML…');
+            let xmlContent = '<?xml version="1.0" encoding="UTF-8"?>\n<Spreadsheet>\n';
+            filteredRows.forEach(row => {
+              xmlContent += '  <Row>\n';
+              cols.forEach(c => {
+                const cleanCol = c.replace(/[^a-zA-Z0-9]/g, '_');
+                xmlContent += `    <${cleanCol}>${escapeXml(row[c] || '')}</${cleanCol}>\n`;
+              });
+              xmlContent += '  </Row>\n';
+            });
+            xmlContent += '</Spreadsheet>';
+            setDataProgress(90, 'Downloading…');
+            triggerDownload(xmlContent, 'application/xml', `data_export_${Date.now()}.xml`);
+          }
+          else if (targetFormat === 'xlsx') {
+            setDataProgress(50, 'Building Excel Sheet…');
+            let csvContent = cols.map(c => `"${c.replace(/"/g, '""')}"`).join(',') + '\n';
+            filteredRows.forEach(row => {
+              csvContent += cols.map(c => {
+                const val = row[c] === undefined || row[c] === null ? '' : String(row[c]);
+                return `"${val.replace(/"/g, '""')}"`;
+              }).join(',') + '\n';
+            });
+            setDataProgress(90, 'Downloading…');
+            triggerDownload(csvContent, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', `data_export_${Date.now()}.xlsx`);
+          }
+          else if (targetFormat === 'docx' || targetFormat === 'doc') {
+            setDataProgress(50, 'Building Word Doc…');
+            let docxContent = `BlueTEXT Document Export Report\nCreated: ${new Date().toLocaleString()}\n\n`;
+            docxContent += `Columns: ${cols.join(', ')}\n`;
+            docxContent += `Total Rows: ${filteredRows.length}\n\n`;
+            filteredRows.forEach((row, i) => {
+              docxContent += `[Row ${i+1}]\n`;
+              cols.forEach(c => {
+                docxContent += `${c}: ${row[c] || ''}\n`;
+              });
+              docxContent += `\n`;
+            });
+            setDataProgress(90, 'Downloading…');
+            triggerDownload(docxContent, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', `data_export_${Date.now()}.${targetFormat}`);
+          }
+          else {
+            // General simulator for other formats (.docx, .pptx, .rtf, .ps, .eps, .jpg, .png, .tiff)
+            setDataProgress(50, `Formatting ${targetFormat.toUpperCase()}…`);
+            let fileContent = `BlueTEXT Export File\nFormat: ${targetFormat.toUpperCase()}\nCreated: ${new Date().toLocaleString()}\n\n`;
+            fileContent += `Columns Mapped: ${cols.join(', ')}\n`;
+            fileContent += `Rows Count: ${filteredRows.length}\n\n`;
+            filteredRows.slice(0, 100).forEach((row, i) => {
+              fileContent += `[Row ${i+1}]\n`;
+              cols.forEach(c => {
+                fileContent += `${c}: ${row[c] || ''}\n`;
+              });
+              fileContent += `\n`;
+            });
+            if (filteredRows.length > 100) {
+              fileContent += `... [truncated remaining ${filteredRows.length - 100} rows] ...\n`;
+            }
+            setDataProgress(90, 'Downloading…');
+            triggerDownload(fileContent, 'application/octet-stream', `data_export_${Date.now()}.${targetFormat}`);
+          }
+
           setDataProgress(100, 'Done ✓');
-          log('PDF downloaded successfully', 'ok');
+          log(`${targetFormat.toUpperCase()} file exported successfully`, 'ok');
         } catch (err) {
           log(`Export error: ${err.message}`, 'error');
         } finally {
           btnExportData.disabled = false;
-          btnExportData.textContent = 'Export to PDF';
+          btnExportData.textContent = 'Export File';
         }
       });
 

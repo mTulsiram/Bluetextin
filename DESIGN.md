@@ -15,16 +15,15 @@ colors:
     border-color: "#dee2e6"
     stroke: "#d6e3ff"
   dark:
-    accent-primary: "#ec4899"      /* Neon pink */
+    accent-primary: "#ffb1ee"      /* Neon pink */
     accent-secondary: "#00f0ff"    /* Neon cyan */
-    accent-soft: "rgba(236, 72, 153, 0.18)"
-    text-primary: "#f3f4f6"
-    text-secondary: "#9ca3af"
-    bg-main: "#090d16"             /* Premium dark background */
-    bg-card: "#0f172a"             /* Slate card */
-    border-color: "#1e293b"
-    stroke: "#334155"
-    glow-color: "rgba(0, 240, 255, 0.4)"
+    accent-soft: "rgba(255, 177, 238, 0.15)"
+    text-primary: "#ededed"
+    text-secondary: "#878787"
+    bg-main: "#000000"             /* Pure black canvas */
+    bg-card: "#0a0a0a"             /* Deep slate/black card */
+    border-color: "#2e2e2e"
+    stroke: "#2e2e2e"
 typography:
   font-main: "Inter, Heebo, Segoe UI, sans-serif"
   font-heading: "Inter, Heebo, Segoe UI, sans-serif"
@@ -54,19 +53,25 @@ This design system defines the visual contract for the BlueTEXT web tools platfo
 
 ## 2. Layout & Width Boundaries
 
-### Full-Width Document View
-For desktop-centric data tools (like the PDF Converter), override standard centered content wrappers to maximize grid space:
+### Full-Width Seamless View
+For desktop-centric data tools (like the PDF Converter), headers, footers, and page content wrappers (`.doc-page`) stretch to 100% viewport width without card borders or outer margins. This makes the interface fit the screen seamlessly, mimicking `getdesign.md`.
+
 ```css
 .doc-page {
-  width: 96% !important;
-  max-width: 1600px !important;
-  margin: 0.9rem auto 1.6rem;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 24px !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
 }
 ```
 
 ### Strict Horizontal Scrollbar Containment
 > [!IMPORTANT]
-> To prevent large tables or wide data sections from overflowing outside the `.doc-page` card container and causing page-level scrollbars:
+> To prevent large tables or wide data sections from overflowing outside the `.doc-page` container and causing page-level scrollbars:
 > 1. Set the outer container wrapper's width and max-width to `100%`.
 > 2. Force scroll overflow containment using `overflow-x: auto` on the wrap container itself, not the page body.
 
@@ -79,6 +84,14 @@ For desktop-centric data tools (like the PDF Converter), override standard cente
   overflow-y: auto !important;
 }
 ```
+
+### Theme-Aware Native Controls
+> [!NOTE]
+> Native dropdowns (`select`) and inputs inside dark mode containers must use the `color-scheme` property to prevent OS-level option contrast issues:
+> ```css
+> select { color-scheme: light; }
+> [data-theme="dark"] select { color-scheme: dark; }
+> ```
 
 ---
 
