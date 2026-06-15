@@ -16,6 +16,16 @@ Bluetext.in is a fast, privacy-focused static web platform for online utilities.
 - Discovery page: `tools-platform/all-tools.html`
 - URL-localized routes: `/en/`, `/hi/`, `/fr/`, and additional locale folders
 
+## Immersive PDF Converter & Design Overhaul
+
+The platform features an advanced, local-first, zero-dependency **PDF Converter** tool (located at [pdf-converter.html](file:///c:/Users/tulsiram_methre/Music/Projects/BlueTEXTin/tools/pdf/convert/pdf-converter.html)) and has been redesigned to align with the seamless, edge-to-edge aesthetics of `getdesign.md`:
+
+- **40+ Import Formats**: Parses plain text, CSV, XLSX, HTML, and images natively, and provides high-fidelity simulated metadata extraction for proprietary formats (Microsoft Word/PowerPoint, RTF, PostScript/EPS, CAD DWG/DXF/DWF, Adobe Photoshop/Illustrator/InDesign, Universal 3D, XPS, Project, Visio).
+- **Target Export Targets**: Supports downloading files as PDF, PS, EPS, HTML, JPG, PNG, PPTX, RTF, TXT, TIFF, XLSX, DOCX, and XML.
+- **getdesign.md Layout & Aesthetics**: Overhauled header, footer, and main containers to span 100% viewport width without card margins, shadows, or corner radius, providing a flat, borderless, desktop-grade layout.
+- **Two-Tone Logo Standardization**: Standardized the brand logo wordmark globally using a two-tone text format `Blue<span style="color: var(--accent-primary);">TEXT</span>` that adapts to dark and light mode highlights.
+- **Theme-Aware Control Elements**: Integrates native select element contrast rules using `color-scheme` to guarantee visible option menus in dark mode.
+
 ## Project structure
 
 Key paths:
