@@ -59,35 +59,30 @@ Open:
 
 Bluetext.in uses URL-based locales and runtime dictionary loading. No Google Translate widget is used.
 
-When UI strings change, run:
-
-```powershell
-./scripts-dev/sync-ui-translations.ps1 -TranslateMissing -TranslateEnglishFallback
-```
-
-When tool names/descriptions and localized HTML pages need refresh, run:
-
-```powershell
-./scripts-dev/translate-localized-content.ps1 -TranslateData -TranslateHtml
-```
-
-If needed, regenerate locale route stubs:
-
-```powershell
-./scripts-dev/generate-locale-stubs.ps1
-```
-
-Audit translation coverage:
-
-```powershell
-./scripts-dev/audit-translation-coverage.ps1
-```
-
-One-command maintenance run:
+To run full localization maintenance (regenerating route stubs, syncing UI dictionary keys, translating catalog data and localized HTML pages, and writing a coverage audit report), run the consolidated script from the project root:
 
 ```powershell
 ./scripts-dev/run-localization-maintenance.ps1
 ```
+
+You can also run specific maintenance stages selectively using switch parameters:
+
+- **Regenerate landing page route stubs only**:
+  ```powershell
+  ./scripts-dev/run-localization-maintenance.ps1 -RegenerateLocaleStubs
+  ```
+- **Sync and translate UI dictionary keys only**:
+  ```powershell
+  ./scripts-dev/run-localization-maintenance.ps1 -SyncUiTranslations
+  ```
+- **Auto-translate catalog json files and localized HTML stubs only**:
+  ```powershell
+  ./scripts-dev/run-localization-maintenance.ps1 -TranslateContent
+  ```
+- **Audit translation key coverage only**:
+  ```powershell
+  ./scripts-dev/run-localization-maintenance.ps1 -AuditCoverage
+  ```
 
 ## Contribution
 

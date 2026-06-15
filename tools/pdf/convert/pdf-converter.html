@@ -1057,7 +1057,7 @@
             bold: false,
             italic: false,
             strike: false,
-            color: '#f3f4f6', // default light text color for dark mode preview
+            color: '', // inherit theme text color
             fill: '',        // empty background
             align: 'l',
             vAlign: 't',
@@ -1728,7 +1728,7 @@
             emerald: { fill: '#064e3b', color: '#a7f3d0', border: '#047857' },
             sapphire:{ fill: '#1e3a8a', color: '#dbeafe', border: '#1d4ed8' },
             ruby:    { fill: '#881337', color: '#ffe4e6', border: '#be123c' },
-            default: { fill: '', color: '#f3f4f6', border: null }
+            default: { fill: '', color: '', border: null }
           };
           const palette = colorsMap[themeName] || colorsMap.default;
           allFields.forEach(col => {
