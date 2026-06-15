@@ -538,9 +538,7 @@
 
     <!-- Drop zone -->
     <div class="drop-zone" id="dropZone">
-      <input type="file" id="fileInput"
-        accept=".doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.rtf,.ps,.eps,.prn,.bmp,.jpg,.jpeg,.gif,.tiff,.tif,.png,.pcx,.rle,.dib,.html,.htm,.wpd,.odt,.odp,.ods,.odg,.odf,.sxw,.sxi,.sxc,.sxd,.stw,.psd,.ai,.indd,.u3d,.prc,.dwg,.dwt,.dxf,.dwf,.dst,.xps,.mpp,.vsd"
-        multiple />
+       <input type="file" id="fileInput" multiple />
       <div class="drop-icon">📂</div>
       <div class="drop-label">Drop files here or click to browse</div>
       <p>Supports Office Docs, Data Sheets, Vector Graphics, CAD Drawings, Web Pages & Scanned Images</p>
@@ -587,9 +585,108 @@
         
         <!-- DATA section (shown for CSV/XLSX/JSON/TSV/TXT) -->
         <div class="section panel" id="dataSection">
-          
-          <!-- TOP: Spreadsheet Preview Table and Formatting Controls -->
-          <div style="margin-top:4px; width: 100%; max-width: 100%; overflow: hidden; box-sizing: border-box;">
+          <!-- TOP: Settings, Layout selection, Columns to include -->
+          <div class="tool-form" style="margin-bottom: 16px;">
+            <h3 style="margin-top:0; font-size: 1rem; color: var(--text-primary);">Export Layout & Parameters</h3>
+            
+            <!-- Row 1: Safe Mode + Page + Orient + Font -->
+            <div class="row">
+              <label style="display:flex; align-items:center; gap:4px; font-weight: 600;">
+                <input type="checkbox" id="limitRows" checked>&nbsp;Safe Mode
+              </label>
+              <select id="safeLimit" title="Safe mode row limit">
+                <option value="1000" selected>1,000 rows</option>
+                <option value="5000">5,000 rows</option>
+                <option value="10000">10,000 rows</option>
+                <option value="25000">25,000 rows</option>
+                <option value="50000">50,000 rows</option>
+                <option value="100000">100,000 rows</option>
+                <option value="250000">250,000 rows</option>
+                <option value="500000">500,000 rows</option>
+                <option value="1000000">1,000,000 rows</option>
+              </select>
+              <label>Page Size</label>
+              <select id="dataPageSize">
+                <option value="a4" selected>A4</option>
+                <option value="a3">A3</option>
+                <option value="a2">A2</option>
+                <option value="a1">A1</option>
+                <option value="letter">Letter</option>
+                <option value="legal">Legal</option>
+              </select>
+              <label>Orientation</label>
+              <select id="dataOrientation">
+                <option value="p">Portrait</option>
+                <option value="l">Landscape</option>
+              </select>
+              <label>Font Size (pt)</label>
+              <input type="number" id="dataFontSize" value="9" min="5" max="18" style="width:70px"/>
+            </div>
+
+            <!-- Row 2: Layout mode + column width + text wrap -->
+            <div class="row" style="margin-top:10px;">
+              <span style="font-size:0.85rem; font-weight:700;">Layout Width:</span>
+              <div class="layout-pills">
+                <button class="layout-pill active" data-layout="fit" id="pillFit">Fit to page</button>
+                <button class="layout-pill" data-layout="wide" id="pillWide">Wide / Excel</button>
+              </div>
+              <label id="minColWLabel" style="margin-left:8px; display:none;">Min col width</label>
+              <input type="number" id="minColWidth" value="80" min="20" max="500" style="width:70px; display:none;" title="Minimum column width in pt"/>
+              <span id="minColUnit" style="font-size:0.75rem; display:none;">pt</span>
+              <label style="display:flex; align-items:center; gap:4px; font-weight: 600;">
+                <input type="checkbox" id="textWrap">&nbsp;Wrap text
+              </label>
+            </div>
+
+            <!-- Large file warning -->
+            <div class="warning-banner" id="largeFileWarning">
+              <strong>⚠ Large dataset detected.</strong>
+              This file has <span id="warnRowCount"></span> rows × <span id="warnColCount"></span> columns.
+              On standard pages with many columns, columns will be very narrow. Recommended: switch to
+              <strong>Wide / Excel</strong> mode and turn <strong>Wrap text OFF</strong> for fastest export.
+              Safe Mode is <strong>OFF</strong> — export may take 30–90 seconds.
+            </div>
+
+            <!-- Columns (built dynamically) -->
+            <div style="margin-top:16px; width: 100%; max-width: 100%; box-sizing: border-box;">
+              <div class="row" style="margin-bottom:6px; justify-content: space-between;">
+                <span style="font-weight:700;">Columns to Include</span>
+                <label style="display:flex; align-items:center; gap:4px; cursor:pointer;">
+                  <input type="checkbox" id="selectAllCols" checked>&nbsp;Select all
+                </label>
+              </div>
+              <div class="columns-grid" id="colGrid"></div>
+            </div>
+          </div>
+
+          <div class="tool-actions" style="margin-bottom: 24px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+            <label for="exportFormat" style="font-weight:700;">Save/Export Format:</label>
+            <select id="exportFormat" style="width: 220px; padding: 6px; border-radius: 4px; font-weight:600;">
+              <option value="pdf" selected>Adobe PDF (.pdf)</option>
+              <option value="ps">PostScript (.ps)</option>
+              <option value="eps">Encapsulated PS (.eps)</option>
+              <option value="html">HTML Table (.html)</option>
+              <option value="jpg">JPEG Image (.jpg)</option>
+              <option value="png">PNG Image (.png)</option>
+              <option value="pptx">PowerPoint (.pptx)</option>
+              <option value="rtf">Rich Text (.rtf)</option>
+              <option value="txt">Plain Text (.txt)</option>
+              <option value="tiff">TIFF Image (.tiff)</option>
+              <option value="xlsx">Excel Workbook (.xlsx)</option>
+              <option value="docx">Word Document (.docx)</option>
+              <option value="xml">XML Spreadsheet (.xml)</option>
+            </select>
+            <button class="btn btn--primary" id="btnExportData" disabled>Export File</button>
+          </div>
+
+          <!-- Progress bars -->
+          <div class="progress-bar-wrap" id="dataProgress">
+            <div class="progress-bar-inner" id="dataProgressBar"></div>
+          </div>
+          <div class="progress-label" id="dataProgressLabel"></div>
+
+          <!-- BOTTOM: Spreadsheet Preview Table and Formatting Controls -->
+          <div style="margin-top:16px; width: 100%; max-width: 100%; overflow: hidden; box-sizing: border-box;">
             <div class="row" style="margin-bottom:8px; justify-content: space-between; align-items: center;">
               <span style="font-weight:700; font-size:1.1rem; color: var(--text-primary);">Spreadsheet Editor & Preview</span>
               <div style="display:flex; align-items:center; gap:8px;">
@@ -752,106 +849,6 @@
             <div class="preview-wrap">
               <table class="preview-table" id="previewTable"></table>
             </div>
-          </div>
-
-          <!-- Progress bars -->
-          <div class="progress-bar-wrap" id="dataProgress">
-            <div class="progress-bar-inner" id="dataProgressBar"></div>
-          </div>
-          <div class="progress-label" id="dataProgressLabel"></div>
-
-          <!-- BOTTOM: Settings, Layout selection, Columns to include -->
-          <div class="tool-form" style="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 16px;">
-            <h3 style="margin-top:0; font-size: 1rem; color: var(--text-primary);">Export Layout & Parameters</h3>
-            
-            <!-- Row 1: Safe Mode + Page + Orient + Font -->
-            <div class="row">
-              <label style="display:flex; align-items:center; gap:4px; font-weight: 600;">
-                <input type="checkbox" id="limitRows" checked>&nbsp;Safe Mode
-              </label>
-              <select id="safeLimit" title="Safe mode row limit">
-                <option value="1000" selected>1,000 rows</option>
-                <option value="5000">5,000 rows</option>
-                <option value="10000">10,000 rows</option>
-                <option value="25000">25,000 rows</option>
-                <option value="50000">50,000 rows</option>
-                <option value="100000">100,000 rows</option>
-                <option value="250000">250,000 rows</option>
-                <option value="500000">500,000 rows</option>
-                <option value="1000000">1,000,000 rows</option>
-              </select>
-              <label>Page Size</label>
-              <select id="dataPageSize">
-                <option value="a4" selected>A4</option>
-                <option value="a3">A3</option>
-                <option value="a2">A2</option>
-                <option value="a1">A1</option>
-                <option value="letter">Letter</option>
-                <option value="legal">Legal</option>
-              </select>
-              <label>Orientation</label>
-              <select id="dataOrientation">
-                <option value="p">Portrait</option>
-                <option value="l">Landscape</option>
-              </select>
-              <label>Font Size (pt)</label>
-              <input type="number" id="dataFontSize" value="9" min="5" max="18" style="width:70px"/>
-            </div>
-
-            <!-- Row 2: Layout mode + column width + text wrap -->
-            <div class="row" style="margin-top:10px;">
-              <span style="font-size:0.85rem; font-weight:700;">Layout Width:</span>
-              <div class="layout-pills">
-                <button class="layout-pill active" data-layout="fit" id="pillFit">Fit to page</button>
-                <button class="layout-pill" data-layout="wide" id="pillWide">Wide / Excel</button>
-              </div>
-              <label id="minColWLabel" style="margin-left:8px; display:none;">Min col width</label>
-              <input type="number" id="minColWidth" value="80" min="20" max="500" style="width:70px; display:none;" title="Minimum column width in pt"/>
-              <span id="minColUnit" style="font-size:0.75rem; display:none;">pt</span>
-              <label style="display:flex; align-items:center; gap:4px; font-weight: 600;">
-                <input type="checkbox" id="textWrap">&nbsp;Wrap text
-              </label>
-            </div>
-
-            <!-- Large file warning -->
-            <div class="warning-banner" id="largeFileWarning">
-              <strong>⚠ Large dataset detected.</strong>
-              This file has <span id="warnRowCount"></span> rows × <span id="warnColCount"></span> columns.
-              On standard pages with many columns, columns will be very narrow. Recommended: switch to
-              <strong>Wide / Excel</strong> mode and turn <strong>Wrap text OFF</strong> for fastest export.
-              Safe Mode is <strong>OFF</strong> — export may take 30–90 seconds.
-            </div>
-
-            <!-- Columns (built dynamically) -->
-            <div style="margin-top:16px; width: 100%; max-width: 100%; box-sizing: border-box;">
-              <div class="row" style="margin-bottom:6px; justify-content: space-between;">
-                <span style="font-weight:700;">Columns to Include</span>
-                <label style="display:flex; align-items:center; gap:4px; cursor:pointer;">
-                  <input type="checkbox" id="selectAllCols" checked>&nbsp;Select all
-                </label>
-              </div>
-              <div class="columns-grid" id="colGrid"></div>
-            </div>
-          </div>
-
-          <div class="tool-actions" style="margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 16px; display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
-            <label for="exportFormat" style="font-weight:700;">Save/Export Format:</label>
-            <select id="exportFormat" style="width: 220px; padding: 6px; border-radius: 4px; font-weight:600;">
-              <option value="pdf" selected>Adobe PDF (.pdf)</option>
-              <option value="ps">PostScript (.ps)</option>
-              <option value="eps">Encapsulated PS (.eps)</option>
-              <option value="html">HTML Table (.html)</option>
-              <option value="jpg">JPEG Image (.jpg)</option>
-              <option value="png">PNG Image (.png)</option>
-              <option value="pptx">PowerPoint (.pptx)</option>
-              <option value="rtf">Rich Text (.rtf)</option>
-              <option value="txt">Plain Text (.txt)</option>
-              <option value="tiff">TIFF Image (.tiff)</option>
-              <option value="xlsx">Excel Workbook (.xlsx)</option>
-              <option value="docx">Word Document (.docx)</option>
-              <option value="xml">XML Spreadsheet (.xml)</option>
-            </select>
-            <button class="btn btn--primary" id="btnExportData" disabled>Export File</button>
           </div>
         </div>
 
@@ -1938,8 +1935,15 @@
         const files = Array.from(fileList);
 
         /* Separate data vs image files */
-        const dataFiles = files.filter(f => DATA_EXTS.test(f.name));
-        const imgFiles  = files.filter(f => IMG_EXTS.test(f.name) || f.type.startsWith('image/'));
+        const dataFiles = [];
+        const imgFiles  = [];
+        for (const f of files) {
+          if (IMG_EXTS.test(f.name) || (f.type && f.type.startsWith('image/'))) {
+            imgFiles.push(f);
+          } else {
+            dataFiles.push(f);
+          }
+        }
 
         /* Reset state */
         currentFile = null;

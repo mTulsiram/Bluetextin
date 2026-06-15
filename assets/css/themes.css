@@ -13,6 +13,13 @@
 	--accent-soft: rgba(0, 86, 210, 0.12);
 	--accent-contrast: #ffffff;
 
+	/* Logo Color Scheme */
+	--logo-blue-part: var(--primary-blue);
+	--logo-text-part: var(--text-primary);
+	--logo-badge-bg: rgba(0, 86, 210, 0.08);
+	--logo-badge-border: var(--primary-blue);
+	--logo-badge-text: var(--primary-blue);
+
 	/* Text */
 	--text-primary: #1a1a1a;
 	--text-secondary: #555555;
@@ -72,6 +79,13 @@
 	--surface-soft: #111111;
 	--accent-strong: #ffb1ee;
 	--stroke: #2e2e2e;
+
+	/* Logo Color Scheme */
+	--logo-blue-part: #ffffff;
+	--logo-text-part: #3b82f6;
+	--logo-badge-bg: rgba(59, 130, 246, 0.1);
+	--logo-badge-border: #3b82f6;
+	--logo-badge-text: #3b82f6;
 }
 
 @media (prefers-contrast: more) {

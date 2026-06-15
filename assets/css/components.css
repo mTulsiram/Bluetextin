@@ -628,9 +628,15 @@
 	font-weight: 800;
 	text-transform: none;
 	letter-spacing: 0.03em;
-	color: var(--text-primary);
 }
 
+.logo-blue {
+	color: var(--logo-blue-part);
+}
+
+.logo-text-pt {
+	color: var(--logo-text-part);
+}
 
 .logo-in-badge {
 	display: inline-flex;
@@ -644,16 +650,16 @@
 	font-size: 0.65rem;
 	font-weight: 800;
 	letter-spacing: 0.04em;
-	color: transparent;
-	background: var(--accent-soft);
-	border: 1px solid var(--accent-primary);
+	background: var(--logo-badge-bg);
+	border: 1px solid var(--logo-badge-border);
 	border-radius: 6px;
 	margin-left: 6px;
+	color: var(--logo-badge-text);
 }
 
 .logo-in-badge::after {
-	content: ".EN";
-	color: var(--accent-primary);
+	content: ".in";
+	color: var(--logo-badge-text);
 	font-weight: 800;
 	letter-spacing: 0.03em;
 }
@@ -663,16 +669,27 @@
 	line-height: 1.05;
 }
 
-.hero__title .logo-wordmark {
+.hero__title .logo-blue {
 	color: #ffffff;
-	letter-spacing: 0.015em;
+}
+
+.hero__title .logo-text-pt {
+	color: #ffffff;
 }
 
 .hero__title .logo-in-badge {
+	border-color: #ffffff;
+	background: rgba(255, 255, 255, 0.18);
+	color: #ffffff;
 	font-size: 0.32em;
 	padding: 0.28em 0.52em;
 	min-width: 2.8ch;
 	transform: translateY(-0.08em);
+}
+
+.hero__title .logo-in-badge::after {
+	content: ".in";
+	color: #ffffff;
 }
 
 .ad-container {
