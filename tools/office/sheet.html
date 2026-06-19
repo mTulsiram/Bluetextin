@@ -752,6 +752,119 @@
 
       document.getElementById("docTitleInput").value = activeDoc.name;
       cellData = activeDoc.content && typeof activeDoc.content === 'object' ? activeDoc.content : {};
+      
+      if (Object.keys(cellData).length === 0) {
+        cellData = {
+          "A1": "## Anatomy of the Excel Ribbon System",
+          "A2": "The Excel Ribbon is organized into a rigid three-tier hierarchy to help users locate commands quickly:",
+          "A3": "   1. Tabs: Broad, task-oriented headers (e.g., Home, Insert).",
+          "A4": "   2. Groups: Sub-sections within a tab that cluster closely related functions (divided by faint vertical lines).",
+          "A5": "   3. Commands: The individual buttons, dropdown lists, or input boxes that execute actions.",
+          "A6": "Note for your book: The Share option is not a standalone ribbon tab; it is an administrative action button located at the top-right corner of the window frame used for real-time collaboration via OneDrive.",
+          "A8": "------------------------------------------------------------",
+          "A9": "## Comprehensive Breakdown of Core Tabs",
+          
+          "A11": "## 📄 File (Backstage View)",
+          "A12": "* Target User: Data creators, administrative staff, and system administrators.",
+          "A13": "* Core Purpose: Managing file-level operations, security settings, and global Excel configurations.",
+          "A14": "* Key Groups & Contents:",
+          "B15": "Info: File properties, protection settings (passwords), and version history.",
+          "B16": "New / Open: Document initiation templates and file retrieval systems.",
+          "B17": "Save / Save As: Location targeting (OneDrive, Local Disk) and file type conversion.",
+          "B18": "Print: Print layout previews, margin configuration, and printer routing.",
+          "B19": "Export: Direct generation of PDF/XPS documents.",
+          "B20": "Options: The backend engine for customizing formulas, advanced settings, and ribbon layouts.",
+
+          "A22": "## 🏠 Home",
+          "A23": "* Target User: Every general Excel user.",
+          "A24": "* Core Purpose: Day-to-day data entry, structural layout design, and immediate aesthetic formatting.",
+          "A25": "* Key Groups & Contents:",
+          "B26": "Clipboard: Cut, Copy, Paste, and the Format Painter.",
+          "B27": "Font: Typefaces, text sizing, cell borders, and background fills.",
+          "B28": "Alignment: Text wrapping, cell merging, vertical/horizontal alignment, and text indentation.",
+          "B29": "Number: Numeric data formatting (Currency, Percentages, Dates, decimals).",
+          "B30": "Styles: Conditional Formatting (rules-based cell coloring) and structural Table Styles.",
+          "B31": "Cells: Rapid row/column insertion, deletion, and height/width adjustments.",
+          "B32": "Editing: AutoSum, AutoFill, Clear formatting, Sorting, Filtering, and Find & Replace.",
+
+          "A34": "## ➕ Insert",
+          "A35": "* Target User: Data analysts, financial modelers, and report designers.",
+          "A36": "* Core Purpose: Enriching plain data worksheets with structural summaries, visuals, and interactive tools.",
+          "A37": "* Key Groups & Contents:",
+          "B38": "Tables: PivotTables (data summaries) and standard formatted Data Tables.",
+          "B39": "Illustrations: Local/online pictures, geometric shapes, icons, and SmartArt graphics.",
+          "B40": "Add-ins: Direct application extensions from the Microsoft Store.",
+          "B41": "Charts: Bar, Line, Pie, Scatter, and specialized pivot charts.",
+          "B42": "Sparklines: Miniature, single-cell trend charts (Line, Column, Win/Loss).",
+          "B43": "Filters: Slicers and Timelines for visual dashboard interactions.",
+          "B44": "Links: Hyperlink routing to web domains or internal sheet coordinates.",
+          "B45": "Text: Text Boxes, Headers & Footers, and WordArt objects.",
+          "B46": "Symbols: Advanced mathematical Equation editors and special symbols.",
+
+          "A48": "## 📐 Page Layout",
+          "A49": "* Target User: Report publishers and administrative professionals preparing data for print or export.",
+          "A50": "* Core Purpose: Controlling worksheet canvas scaling, visual themes, and hardcopy print dimensions.",
+          "A51": "* Key Groups & Contents:",
+          "B52": "Themes: Unified color schemes and typography matching corporate design systems.",
+          "B53": "Page Setup: Print margins, paper orientation (Portrait/Landscape), paper size, print area designation, page breaks, and print titles (repeating rows).",
+          "B54": "Scale to Fit: Forcing data to scale into a predefined number of printed pages.",
+          "B55": "Sheet Options: Toggling gridlines and column/row headers between viewable and printable states.",
+          "B56": "Arrange: Layering objects (Bring Forward/Send Backward) and alignment grids.",
+
+          "A58": "## 🧮 Formulas",
+          "A59": "* Target User: Financial analysts, engineers, mathematicians, and advanced data modelers.",
+          "A60": "* Core Purpose: Injecting logic, math, financial structures, and auditing tools into cells.",
+          "A61": "* Key Groups & Contents:",
+          "B62": "Function Library: Categorized calculation libraries (Financial, Logical, Text, Date/Time, Lookup & Reference, Math & Trig).",
+          "B63": "Defined Names: The Name Manager, used to define descriptive titles for specific data arrays.",
+          "B64": "Formula Auditing: Trace Precedents/Dependents (visually maps cell relationships), Show Formulas mode, and Error Checking tools.",
+          "B65": "Calculation: Toggling cell calculation between Automatic execution and Manual trigger states.",
+
+          "A67": "## 📊 Data",
+          "A68": "* Target User: Database managers, data engineers, and business intelligence specialists.",
+          "A69": "* Core Purpose: Pulling information from corporate systems, cleaning raw data tables, and running models.",
+          "A70": "* Key Groups & Contents:",
+          "B71": "Get & Transform Data: Power Query connectors (Web, SQL Databases, CSVs, Text files).",
+          "B72": "Queries & Connections: Managing background sync schedules for external pipelines.",
+          "B73": "Sort & Filter: Single or multi-tiered alphabetical/numeric sorting and advanced autofilters.",
+          "B74": "Data Tools: Text-to-Columns, Flash Fill, Duplicate Removal, Data Validation (restricting cell inputs), and Data Models.",
+          "B75": "Forecast: What-If Analysis tools (Goal Seek, Scenario Manager, Data Tables) and automated Forecasting Sheets.",
+          "B76": "Outline: Grouping/ungrouping nested rows and executing automated Subtotals.",
+
+          "A78": "## 👁️ Review",
+          "A79": "* Target User: Editors, compliance officers, and collaborative project teams.",
+          "A80": "* Core Purpose: Quality checking workbook copy, sharing feedback, and locking down intellectual property.",
+          "A81": "* Key Groups & Contents:",
+          "B82": "Proofing: Spell Check and Thesaurus verification tools.",
+          "B83": "Accessibility: The Accessibility Checker to ensure worksheets remain functional for disabled screen readers.",
+          "B84": "Insights: Smart Lookup engines using online database queries.",
+          "B85": "Language: Translation tools for text cells.",
+          "B86": "Comments & Notes: Threaded conversational comments and old-school sticky notes.",
+          "B87": "Protect: Sheet locking, Workbook structure encryption, and editing permissions assignment.",
+
+          "A89": "## 🖥️ View",
+          "A90": "* Target User: Power users navigating large enterprise models or configuring workspace ergonomics.",
+          "A91": "* Core Purpose: Modifying workspace visibility, handling multiple split screens, and managing automated macros.",
+          "A92": "* Key Groups & Contents:",
+          "B93": "Workbook Views: Normal View, Page Break Preview (for adjustments), and Page Layout View.",
+          "B94": "Show: Visibility checkboxes for the Formula Bar, Gridlines, and Sheet Headings.",
+          "B95": "Zoom: Direct screen magnification controls.",
+          "B96": "Window: Freeze Panes (locking rows/columns while scrolling), Split screen, and New Window instances.",
+          "B97": "Macros: Access point for recording and executing VBA automation steps.",
+
+          "A99": "------------------------------------------------------------",
+          "A100": "## Hidden & Contextual Ribbon Tabs (Crucial for Book Accuracy)",
+          "A102": "Contextual Tab Name", "B102": "Trigger Action", "C102": "Core Tools Provided",
+          "A103": "Chart Design / Format", "B103": "Selecting any Chart asset", "C103": "Changing layout styles, modifying data source ranges, and re-routing axis lines.",
+          "A104": "Table Design", "B104": "Clicking inside an Excel Table (Ctrl+T)", "C104": "Toggling Total Rows, changing corporate color themes, and adding table names.",
+          "A105": "PivotTable Analyze", "B105": "Clicking inside a PivotTable", "C105": "Refreshing source structures, updating data ranges, and nesting calculated items.",
+          "A106": "Picture Format", "B106": "Selecting an embedded Image", "C106": "Background removal tools, aspect ratio cropping, and color correction.",
+          "A107": "Developer (Hidden)", "B107": "Manually enabled in options", "C107": "Writing custom VBA modules, designing interactive UserForms, and XML data maps."
+        };
+        activeDoc.content = cellData;
+        saveDoc();
+      }
+
       cellStyles = activeDoc.styles || {};
 
       if (activeDoc.theme) {
