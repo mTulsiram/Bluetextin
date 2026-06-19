@@ -286,17 +286,6 @@
           <button type="button" class="btn-upload" id="btnUploadTrigger">📁 Upload Document</button>
           <input type="file" id="officeFileInput" style="display:none;" />
         </div>
-
-        <div class="sidebar-footer-controls">
-          <label>
-            Username
-            <select id="userSelector">
-              <option value="John Smith">John Smith</option>
-              <option value="Jane Doe">Jane Doe</option>
-              <option value="Bob Johnson">Bob Johnson</option>
-            </select>
-          </label>
-        </div>
       </aside>
 
       <!-- Main Panel -->
@@ -320,7 +309,6 @@
               <thead>
                 <tr>
                   <th>Filename</th>
-                  <th>Type</th>
                   <th>Size</th>
                   <th>Actions</th>
                 </tr>
@@ -381,7 +369,6 @@
 
         tr.innerHTML = `
           <td><span class="file-icon">${typeIcon}</span><strong>${doc.name}</strong></td>
-          <td><span style="font-size:0.75rem; background:#1e293b; padding:2px 6px; border-radius:4px; font-weight:600;">${doc.type}</span></td>
           <td>${doc.size}</td>
           <td class="actions-cell">
             <a href="${openUrl}?id=${doc.id}" class="action-icon-btn" title="Open in editor">📂</a>
@@ -487,10 +474,37 @@
       else if (/\.(pdf|oform)$/i.test(name)) { type = "PDF"; openUrl = "pdf.html"; }
       else if (/\.(vsdx|svg)$/i.test(name)) { type = "DIAGRAM"; openUrl = "diagram.html"; }
 
-      const d = { id: generateId(), name: name, type: type, size: `${(file.size / 1024).toFixed(0)} KB`, content: "" };
-      documentCatalog.push(d);
-      saveDb();
-      window.location.href = `${openUrl}?id=${d.id}`;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        let fileContent = evt.target.result;
+        
+        // Handle CSV to Excel grid mapping
+        if (name.endsWith(".csv")) {
+          const cells = {};
+          const lines = fileContent.split(/\r?\n/);
+          lines.forEach((line, rIdx) => {
+            const cols = line.split(",");
+            cols.forEach((val, cIdx) => {
+              const colLetter = String.fromCharCode(65 + cIdx); // A, B, C...
+              if (cIdx < 8 && rIdx < 20) {
+                cells[`${colLetter}${rIdx + 1}`] = val.trim();
+              }
+            });
+          });
+          fileContent = cells;
+        }
+
+        const d = { id: generateId(), name: name, type: type, size: `${(file.size / 1024).toFixed(0)} KB`, content: fileContent };
+        documentCatalog.push(d);
+        saveDb();
+        window.location.href = `${openUrl}?id=${d.id}`;
+      };
+
+      if (name.endsWith(".csv") || name.endsWith(".txt") || name.endsWith(".svg") || name.endsWith(".html")) {
+        reader.readAsText(file);
+      } else {
+        reader.readAsDataURL(file); // fallback base64
+      }
     });
 
     document.getElementById("btnClearAllDocs").addEventListener("click", () => {

@@ -340,9 +340,11 @@
   <div class="sheet-ribbon">
     <div class="ribbon-tabs">
       <button class="ribbon-tab active">Home</button>
-      <button class="ribbon-tab" onclick="alert('Simulation: Charts and Tables insertion available.')">Insert</button>
       <button class="ribbon-tab" id="btnCalculateSum" style="color:#107c41; font-weight:bold;">∑ AutoSum</button>
       <button class="ribbon-tab" id="btnZebraShading">Toggle Zebra Shading</button>
+      <button class="ribbon-tab" id="btnSaveCopy" style="color:#107c41;">💾 Save Copy</button>
+      <button class="ribbon-tab" id="btnExportCSV">📥 Export CSV</button>
+      <button class="ribbon-tab" id="btnExportJSON">📥 Export JSON</button>
     </div>
 
     <div class="ribbon-toolbar">
@@ -391,7 +393,7 @@
     <aside class="sheet-right-sidebar">
       <div class="sidebar-tabs">
         <button class="sidebar-tab active" id="tabComments">Comments</button>
-        <button class="sidebar-tab" id="tabReview">Review Logs</button>
+        <button class="sidebar-tab" id="tabReview">Review & History</button>
       </div>
       
       <div class="sidebar-content" id="sidebarContent">
@@ -405,7 +407,7 @@
     let documentCatalog = [];
     let activeDoc = null;
     let docComments = [];
-    let reviewLogs = [];
+    let reviewLogs = []; // Stores version snapshots: { time, text, cellDataSnapshot }
     let activeTab = "comments";
     let isTrackChanges = false;
     
@@ -502,21 +504,30 @@
       };
 
       // Fill values into spreadsheet DOM
-      Object.keys(cellData).forEach(cellId => {
-        const cell = document.getElementById(cellId);
-        if (cell) cell.textContent = cellData[cellId];
-      });
+      renderGridData();
 
-      docComments = activeDoc.comments || [
-        { user: "Jane Doe", time: "11:20 AM", text: "AutoSum formula checked." }
-      ];
-      
+      docComments = activeDoc.comments || [];
       reviewLogs = activeDoc.reviewLogs || [
-        { time: "11:00 AM", text: "Initialized spreadsheet model", type: "addition" }
+        { time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), text: "Initial spreadsheet version", cellDataSnapshot: JSON.parse(JSON.stringify(cellData)) }
       ];
 
       selectCell("A1");
       renderSidebar();
+    }
+
+    function renderGridData() {
+      // Clear sheet
+      for (let r = 1; r <= ROW_COUNT; r++) {
+        COLUMNS.forEach(col => {
+          const cell = document.getElementById(`${col}${r}`);
+          if (cell) cell.textContent = "";
+        });
+      }
+      // Populate new data
+      Object.keys(cellData).forEach(cellId => {
+        const cell = document.getElementById(cellId);
+        if (cell) cell.textContent = cellData[cellId];
+      });
     }
 
     function saveDoc() {
@@ -575,7 +586,6 @@
 
     // AutoSum Simple Parser
     document.getElementById("btnCalculateSum").addEventListener("click", () => {
-      // Find numbers in column B to sum up to selected row
       if (!selectedCell) return;
       const col = selectedCell[0];
       const maxRow = parseInt(selectedCell.slice(1));
@@ -592,6 +602,61 @@
       document.getElementById("formulaInput").value = sum.toString();
       saveDoc();
       logReview(`Calculated AutoSum for cell ${selectedCell}: ${sum}`);
+    });
+
+    // Save Copy (Non-destructive backup creation)
+    document.getElementById("btnSaveCopy").addEventListener("click", () => {
+      const timestamp = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
+      const originalName = document.getElementById("docTitleInput").value;
+      const copyName = prompt("Save as copy (leaves original intact):", `${originalName.replace(/\.[^/.]+$/, "")} (Backup ${timestamp}).xlsx`);
+      if (!copyName) return;
+
+      const newId = "doc_" + Math.random().toString(36).substr(2, 9);
+      const newDoc = {
+        id: newId,
+        name: copyName,
+        type: "CELL",
+        size: activeDoc.size,
+        content: JSON.parse(JSON.stringify(cellData)),
+        comments: JSON.parse(JSON.stringify(docComments)),
+        reviewLogs: JSON.parse(JSON.stringify(reviewLogs))
+      };
+      
+      documentCatalog.push(newDoc);
+      localStorage.setItem(DB_KEY, JSON.stringify(documentCatalog));
+      alert(`New copy saved successfully: ${copyName}`);
+      window.location.href = `sheet.html?id=${newId}`;
+    });
+
+    // Export Formats
+    document.getElementById("btnExportCSV").addEventListener("click", () => {
+      let csvContent = "";
+      for (let r = 1; r <= ROW_COUNT; r++) {
+        const rowArr = [];
+        COLUMNS.forEach(col => {
+          rowArr.push(cellData[`${col}${r}`] || "");
+        });
+        csvContent += rowArr.join(",") + "\n";
+      }
+      
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.setAttribute("download", document.getElementById("docTitleInput").value.replace(/\.[^/.]+$/, "") + ".csv");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+
+    document.getElementById("btnExportJSON").addEventListener("click", () => {
+      const jsonContent = JSON.stringify(cellData, null, 2);
+      const blob = new Blob([jsonContent], { type: 'application/json;charset=utf-8;' });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.setAttribute("download", document.getElementById("docTitleInput").value.replace(/\.[^/.]+$/, "") + ".json");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     });
 
     // Watermark
@@ -637,19 +702,41 @@
     document.getElementById("btnAddComment").addEventListener("click", () => {
       const comment = prompt("Add comment/notes for cell " + selectedCell + ":");
       if (!comment) return;
-      const user = "John Smith";
+      
+      const defaultUser = localStorage.getItem("bt_office_user") || "User";
+      const author = prompt("Enter your name:", defaultUser);
+      if (!author) return;
+      localStorage.setItem("bt_office_user", author);
+
       const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      docComments.push({ user, time, text: `[Cell ${selectedCell}] ${comment}` });
+      docComments.push({ user: author, time, text: `[Cell ${selectedCell}] ${comment}` });
       saveDoc();
       renderSidebar();
     });
 
     function logReview(msg, type = "addition") {
       const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      reviewLogs.push({ time, text: msg, type });
+      // Capture cell snapshot state for restore options
+      reviewLogs.push({
+        time,
+        text: msg,
+        cellDataSnapshot: JSON.parse(JSON.stringify(cellData))
+      });
       saveDoc();
       if (activeTab === "review") renderSidebar();
     }
+
+    window.restoreVersionSnapshot = function(idx) {
+      if (confirm("Are you sure you want to revert spreadsheet cells to this version?")) {
+        const snapshot = reviewLogs[idx].cellDataSnapshot;
+        if (snapshot) {
+          cellData = JSON.parse(JSON.stringify(snapshot));
+          renderGridData();
+          saveDoc();
+          alert("Version restored successfully!");
+        }
+      }
+    };
 
     function renderSidebar() {
       const content = document.getElementById("sidebarContent");
@@ -669,10 +756,13 @@
           content.appendChild(div);
         });
       } else {
-        reviewLogs.forEach(r => {
+        reviewLogs.forEach((r, idx) => {
           const div = document.createElement("div");
           div.className = `track-changes-item`;
-          div.innerHTML = `<strong>${r.time}</strong>: ${r.text}`;
+          div.style.cursor = "pointer";
+          div.title = "Click to restore this version snapshot";
+          div.setAttribute("onclick", `restoreVersionSnapshot(${idx})`);
+          div.innerHTML = `<strong>${r.time}</strong>: ${r.text} <span style="font-size:0.7rem; color:#107c41; float:right;">(Restore)</span>`;
           content.appendChild(div);
         });
       }
