@@ -6,6 +6,7 @@
   <title>BlueOffice Suite Dashboard | Bluetext.in</title>
   <meta name="description" content="A premium, serverless office suite. Create, upload, manage and share Word docs, spreadsheets, slides, PDFs and diagrams locally in your browser.">
   <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="xlsx-reader.js"></script>
   
   <script async crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js"></script>
 
@@ -589,11 +590,23 @@
       else if (/\.(vsdx|svg)$/i.test(name)) { type = "DIAGRAM"; openUrl = "diagram.html"; }
 
       const reader = new FileReader();
-      reader.onload = function(evt) {
+      reader.onload = async function(evt) {
         let fileContent = evt.target.result;
         
+        // Handle XLSX/XLS workbook mapping
+        if (/\.(xlsx|xls)$/i.test(name)) {
+          try {
+            const wb = await XLSXReader.read(evt.target.result);
+            const cells = await wb.getSheetCells(0);
+            fileContent = cells;
+          } catch (err) {
+            console.error("XLSX parsing error:", err);
+            alert("Could not parse Excel file correctly. Loading empty spreadsheet.");
+            fileContent = {};
+          }
+        }
         // Handle CSV to Excel grid mapping
-        if (name.endsWith(".csv")) {
+        else if (name.endsWith(".csv")) {
           const cells = {};
           const lines = fileContent.split(/\r?\n/);
           
@@ -648,7 +661,9 @@
         window.location.href = `${openUrl}?id=${d.id}`;
       };
 
-      if (name.endsWith(".csv") || name.endsWith(".txt") || name.endsWith(".svg") || name.endsWith(".html")) {
+      if (/\.(xlsx|xls)$/i.test(name)) {
+        reader.readAsArrayBuffer(file);
+      } else if (name.endsWith(".csv") || name.endsWith(".txt") || name.endsWith(".svg") || name.endsWith(".html")) {
         reader.readAsText(file);
       } else {
         reader.readAsDataURL(file); // fallback base64

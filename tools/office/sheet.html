@@ -336,6 +336,36 @@
       border-radius: 0 4px 4px 0;
       font-size: 0.75rem;
     }
+
+    /* Resize handles */
+    .col-resize-handle {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 4px;
+      height: 100%;
+      cursor: col-resize;
+      z-index: 20;
+      user-select: none;
+    }
+    .col-resize-handle:hover, .col-resize-handle.resizing {
+      background: #107c41;
+      width: 6px;
+    }
+    .row-resize-handle {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 4px;
+      cursor: row-resize;
+      z-index: 20;
+      user-select: none;
+    }
+    .row-resize-handle:hover, .row-resize-handle.resizing {
+      background: #107c41;
+      height: 6px;
+    }
   </style>
 </head>
 <body>
@@ -586,7 +616,7 @@
     </div>
   </div>
 
-  <!-- Formula Bar & Pagination Container -->
+  <!-- Formula Bar & Search Container -->
   <div style="background:#ffffff; border-bottom:1px solid #d1d5db; display:flex; flex-direction:column;">
     <div class="formula-bar-container" style="border-bottom:1px solid #e5e7eb;">
       <div class="formula-cell-indicator" id="activeCellLabel">A1</div>
@@ -594,16 +624,10 @@
       <input type="text" class="formula-input" id="formulaInput" placeholder="Enter values or formulas..." />
     </div>
     
-    <div style="background:#f9fafb; padding:4px 16px; display:flex; align-items:center; justify-content:space-between; font-size:0.8rem; border-bottom:1px solid #e5e7eb;">
-      <div>
-        <button class="ribbon-btn" id="btnPrevPage" style="border:1px solid #ccc; padding:2px 8px; border-radius:3px;">◀ Prev Page</button>
-        <span id="pageInfoSpan" style="margin:0 12px; font-weight:600; color:#374151;">Page 1 of 1</span>
-        <button class="ribbon-btn" id="btnNextPage" style="border:1px solid #ccc; padding:2px 8px; border-radius:3px;">Next Page ▶</button>
-      </div>
+    <div style="background:#f9fafb; padding:4px 16px; display:flex; align-items:center; justify-content:flex-end; font-size:0.8rem; border-bottom:1px solid #e5e7eb;">
       <div style="display:flex; align-items:center; gap:8px;">
         <span style="color:#4b5563;">Find cell:</span>
         <input type="text" id="sheetSearchInput" placeholder="Search..." style="padding:2px 6px; border:1px solid #ccc; border-radius:3px; font-size:0.75rem;" />
-        <button class="ribbon-btn" id="btnAddRowsChunk" style="border:1px solid #ccc; padding:2px 8px; border-radius:3px; color:#107c41;">➕ Add 100 Rows</button>
       </div>
     </div>
   </div>
@@ -669,9 +693,9 @@
     // Grid settings and Pagination State
     let cellData = {}; 
     let cellStyles = {}; // {"A1": {fontWeight: "bold", background: "#fff"}}
+    let columnWidths = {}; // {"A": 100}
+    let rowHeights = {};    // {"1": 25}
     let selectedCell = "A1";
-    let currentPage = 1;
-    let rowsPerPage = 100;
     let maxRows = 100;
     let maxColumnsCount = 26;
 
@@ -747,8 +771,14 @@
 
     function buildGrid() {
       updateMaxDimensions();
+      
+      // Save scroll position of the center pane
+      const pane = document.querySelector(".sheet-center-pane");
+      const savedScrollTop = pane ? pane.scrollTop : 0;
+      const savedScrollLeft = pane ? pane.scrollLeft : 0;
+
       const headerRow = document.getElementById("gridHeaderRow");
-      headerRow.innerHTML = '<th style="width: 50px;"></th>';
+      headerRow.innerHTML = '<th style="width: 50px; position: relative;"></th>';
       
       const colLimit = Math.max(26, maxColumnsCount);
       const colsToRender = [];
@@ -759,20 +789,43 @@
       colsToRender.forEach(col => {
         const th = document.createElement("th");
         th.textContent = col;
+        th.style.position = "relative";
+        if (columnWidths[col]) {
+          th.style.width = columnWidths[col] + "px";
+        }
+        
+        // Add col resize handle
+        const handle = document.createElement("div");
+        handle.className = "col-resize-handle";
+        handle.dataset.col = col;
+        th.appendChild(handle);
+
         headerRow.appendChild(th);
       });
 
       const body = document.getElementById("gridBody");
       body.innerHTML = "";
       
-      const startRow = (currentPage - 1) * rowsPerPage + 1;
-      const endRow = Math.min(startRow + rowsPerPage - 1, maxRows);
-      
-      for (let r = startRow; r <= endRow; r++) {
+      for (let r = 1; r <= maxRows; r++) {
         const tr = document.createElement("tr");
         tr.id = `row-${r}`;
+        if (rowHeights[r]) {
+          tr.style.height = rowHeights[r] + "px";
+        }
+        
         const rowLabel = document.createElement("th");
         rowLabel.textContent = r;
+        rowLabel.style.position = "relative";
+        if (rowHeights[r]) {
+          rowLabel.style.height = rowHeights[r] + "px";
+        }
+
+        // Add row resize handle
+        const handle = document.createElement("div");
+        handle.className = "row-resize-handle";
+        handle.dataset.row = r;
+        rowLabel.appendChild(handle);
+
         tr.appendChild(rowLabel);
 
         colsToRender.forEach(col => {
@@ -814,8 +867,13 @@
         body.appendChild(tr);
       }
       
-      const totalPages = Math.ceil(maxRows / rowsPerPage);
-      document.getElementById("pageInfoSpan").textContent = `Page ${currentPage} of ${totalPages} (Rows ${startRow}-${endRow} of ${maxRows})`;
+      // Restore scroll position
+      if (pane) {
+        requestAnimationFrame(() => {
+          pane.scrollTop = savedScrollTop;
+          pane.scrollLeft = savedScrollLeft;
+        });
+      }
     }
 
     function selectCell(cellId) {
@@ -967,6 +1025,8 @@
       }
 
       cellStyles = activeDoc.styles || {};
+      columnWidths = activeDoc.columnWidths || {};
+      rowHeights = activeDoc.rowHeights || {};
 
       if (activeDoc.theme) {
         document.getElementById("themeSelect").value = activeDoc.theme;
@@ -988,6 +1048,8 @@
       activeDoc.name = document.getElementById("docTitleInput").value;
       activeDoc.content = cellData;
       activeDoc.styles = cellStyles;
+      activeDoc.columnWidths = columnWidths;
+      activeDoc.rowHeights = rowHeights;
       activeDoc.comments = docComments;
       activeDoc.reviewLogs = reviewLogs;
 
@@ -998,29 +1060,90 @@
       localStorage.setItem(DB_KEY, JSON.stringify(documentCatalog));
     }
 
-    // Pagination handlers
-    document.getElementById("btnPrevPage").addEventListener("click", () => {
-      if (currentPage > 1) {
-        currentPage--;
-        buildGrid();
-        selectCell(`A${(currentPage - 1) * rowsPerPage + 1}`);
+    // Drag resizing handlers
+    let isResizingCol = false;
+    let isResizingRow = false;
+    let currentResizeCol = null;
+    let currentResizeRow = null;
+    let startX = 0;
+    let startY = 0;
+    let startWidth = 0;
+    let startHeight = 0;
+    let resizeThElement = null;
+    let resizeTrElement = null;
+
+    document.addEventListener("mousedown", (e) => {
+      if (e.target.classList.contains("col-resize-handle")) {
+        isResizingCol = true;
+        currentResizeCol = e.target.dataset.col;
+        resizeThElement = e.target.parentElement;
+        startX = e.clientX;
+        startWidth = resizeThElement.offsetWidth;
+        e.target.classList.add("resizing");
+        e.preventDefault();
+      } else if (e.target.classList.contains("row-resize-handle")) {
+        isResizingRow = true;
+        currentResizeRow = e.target.dataset.row;
+        resizeTrElement = document.getElementById(`row-${currentResizeRow}`);
+        startY = e.clientY;
+        startHeight = resizeTrElement.offsetHeight;
+        e.target.classList.add("resizing");
+        e.preventDefault();
       }
     });
 
-    document.getElementById("btnNextPage").addEventListener("click", () => {
-      const totalPages = Math.ceil(maxRows / rowsPerPage);
-      if (currentPage < totalPages) {
-        currentPage++;
-        buildGrid();
-        selectCell(`A${(currentPage - 1) * rowsPerPage + 1}`);
+    document.addEventListener("mousemove", (e) => {
+      if (isResizingCol && resizeThElement) {
+        const deltaX = e.clientX - startX;
+        const newWidth = Math.max(40, startWidth + deltaX);
+        resizeThElement.style.width = newWidth + "px";
+        columnWidths[currentResizeCol] = newWidth;
+      } else if (isResizingRow && resizeTrElement) {
+        const deltaY = e.clientY - startY;
+        const newHeight = Math.max(15, startHeight + deltaY);
+        resizeTrElement.style.height = newHeight + "px";
+        
+        const thLabel = resizeTrElement.querySelector("th");
+        if (thLabel) {
+          thLabel.style.height = newHeight + "px";
+        }
+        rowHeights[currentResizeRow] = newHeight;
       }
     });
 
-    document.getElementById("btnAddRowsChunk").addEventListener("click", () => {
-      maxRows += 100;
-      saveDoc();
-      buildGrid();
+    document.addEventListener("mouseup", () => {
+      if (isResizingCol || isResizingRow) {
+        isResizingCol = false;
+        isResizingRow = false;
+        currentResizeCol = null;
+        currentResizeRow = null;
+        resizeThElement = null;
+        resizeTrElement = null;
+        document.querySelectorAll(".col-resize-handle.resizing, .row-resize-handle.resizing").forEach(h => {
+          h.classList.remove("resizing");
+        });
+        saveDoc();
+      }
     });
+
+    // Infinite scrolling logic
+    const centerPane = document.querySelector(".sheet-center-pane");
+    if (centerPane) {
+      centerPane.addEventListener("scroll", () => {
+        // 1. Scroll bottom -> load more rows
+        if (centerPane.scrollTop + centerPane.clientHeight >= centerPane.scrollHeight - 80) {
+          maxRows += 50;
+          buildGrid();
+          saveDoc();
+        }
+        // 2. Scroll right -> load more columns
+        if (centerPane.scrollLeft + centerPane.clientWidth >= centerPane.scrollWidth - 80) {
+          maxColumnsCount += 5;
+          buildGrid();
+          saveDoc();
+        }
+      });
+    }
 
     // Formatting Toolbar controls
     function applyStyleProperty(prop, value) {
