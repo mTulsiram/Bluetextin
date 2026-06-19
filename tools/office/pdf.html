@@ -2,313 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BluePDF - PDF Form Filler & Editor | Bluetext.in</title>
-  <link rel="stylesheet" href="/assets/css/main.css">
-  <style>
-    body {
-      background: #f3f4f6;
-      margin: 0;
-      font-family: "Segoe UI", Arial, sans-serif;
-    }
-    
-    /* PDF Adobe Red Header */
-    .pdf-header {
-      background: #dc2626;
-      color: #ffffff;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      padding: 0 16px;
-      justify-content: space-between;
-      font-size: 0.9rem;
-    }
-
-    .pdf-header-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .pdf-app-icon {
-      font-size: 1.25rem;
-      font-weight: 800;
-    }
-
-    .pdf-doc-title-box {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .pdf-title-input {
-      background: none;
-      border: 1px solid transparent;
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.95rem;
-      padding: 2px 6px;
-      border-radius: 3px;
-      width: 200px;
-    }
-    .pdf-title-input:focus {
-      background: rgba(255,255,255,0.15);
-      border-color: #fff;
-      outline: none;
-    }
-
-    .save-badge {
-      font-size: 0.75rem;
-      color: #fca5a5;
-    }
-
-    /* Ribbon */
-    .pdf-ribbon {
-      background: #ffffff;
-      border-bottom: 1px solid #d1d5db;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-
-    .ribbon-tabs {
-      display: flex;
-      background: #f3f4f6;
-      border-bottom: 1px solid #e5e7eb;
-      padding-left: 20px;
-    }
-
-    .ribbon-tab {
-      background: none;
-      border: none;
-      padding: 8px 16px;
-      font-size: 0.8rem;
-      color: #374151;
-      cursor: pointer;
-      font-weight: 500;
-    }
-    .ribbon-tab.active {
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-bottom-color: transparent;
-      color: #dc2626;
-      font-weight: 600;
-    }
-
-    .ribbon-toolbar {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 8px 20px;
-      background: #ffffff;
-      flex-wrap: wrap;
-    }
-
-    .ribbon-group {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      border-right: 1px solid #e5e7eb;
-      padding-right: 12px;
-    }
-
-    .ribbon-group:last-child {
-      border: none;
-    }
-
-    .ribbon-btn {
-      background: none;
-      border: 1px solid transparent;
-      padding: 4px 8px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 0.85rem;
-      color: #374151;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .ribbon-btn:hover {
-      background: #f3f4f6;
-    }
-    .ribbon-btn.active {
-      background: #fee2e2;
-      border-color: #fca5a5;
-      color: #dc2626;
-    }
-
-    /* Workspace Body */
-    .pdf-workspace {
-      display: flex;
-      height: calc(100vh - 120px);
-      overflow: hidden;
-    }
-
-    .pdf-center-pane {
-      flex-grow: 1;
-      background: #f3f4f6;
-      padding: 30px;
-      overflow-y: auto;
-      display: flex;
-      justify-content: center;
-      position: relative;
-    }
-
-    /* PDF Page container mock */
-    .pdf-page-sheet {
-      width: 100%;
-      max-width: 800px;
-      min-height: 842px;
-      background: #ffffff;
-      color: #1a1a1a;
-      padding: 50px 60px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-      border: 1px solid #e5e7eb;
-      border-radius: 2px;
-      box-sizing: border-box;
-      position: relative;
-    }
-
-    .pdf-section-title {
-      font-size: 1.4rem;
-      color: #dc2626;
-      border-bottom: 2px solid #dc2626;
-      padding-bottom: 6px;
-      margin-bottom: 20px;
-      font-weight: 700;
-    }
-
-    /* PDF interactive form controls */
-    .pdf-form-group {
-      margin-bottom: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .pdf-form-label {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #374151;
-    }
-
-    .pdf-input-text {
-      width: 100%;
-      border: 1px solid #cbd5e1;
-      background: #f8fafc;
-      padding: 8px 10px;
-      border-radius: 4px;
-      font-size: 0.9rem;
-      outline: none;
-      box-sizing: border-box;
-    }
-    .pdf-input-text:focus {
-      background: #ffffff;
-      border-color: #dc2626;
-    }
-
-    /* Watermark Overlay */
-    .watermark-overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4.5rem;
-      color: rgba(0,0,0,0.02);
-      transform: rotate(-30deg);
-      pointer-events: none;
-      font-weight: 900;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      z-index: 5;
-      user-select: none;
-    }
-
-    /* Right Sidebar comments & review */
-    .pdf-right-sidebar {
-      width: 280px;
-      background: #ffffff;
-      border-left: 1px solid #e5e7eb;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      flex-shrink: 0;
-    }
-
-    .sidebar-tabs {
-      display: flex;
-      border-bottom: 1px solid #e5e7eb;
-    }
-
-    .sidebar-tab {
-      flex: 1;
-      background: #f9fafb;
-      border: none;
-      padding: 10px;
-      font-size: 0.8rem;
-      cursor: pointer;
-      color: #4b5563;
-    }
-    .sidebar-tab.active {
-      background: #ffffff;
-      font-weight: 600;
-      border-bottom: 2px solid #dc2626;
-      color: #dc2626;
-    }
-
-    .sidebar-content {
-      padding: 16px;
-      overflow-y: auto;
-      flex-grow: 1;
-      font-size: 0.8rem;
-    }
-
-    .comment-card {
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
-      padding: 10px;
-      border-radius: 6px;
-      margin-bottom: 8px;
-    }
-
-    .comment-meta {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.72rem;
-      color: #6b7280;
-      margin-bottom: 4px;
-    }
-
-    .track-changes-item {
-      padding: 6px 8px;
-      border-left: 3px solid #10b981;
-      background: rgba(16, 185, 129, 0.05);
-      margin-bottom: 8px;
-      border-radius: 0 4px 4px 0;
-      font-size: 0.75rem;
-    }
-
-    /* Signature Modal / Canvas area */
-    .signature-area {
-      border: 2px dashed #cbd5e1;
-      background: #f8fafc;
-      border-radius: 6px;
-      height: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-style: italic;
-      color: #64748b;
-      position: relative;
-      user-select: none;
-    }
-
-    .signature-rendered {
-      font-family: 'Brush Script MT', cursive, sans-serif;
-      font-size: 2.2rem;
-      color: #0f172a;
-    }
-  </style>
+  
+  
 </head>
 <body>
 
@@ -322,7 +20,7 @@
       </div>
     </div>
     <div>
-      <a href="office-suite.html" style="color:#fff; text-decoration:none; font-weight:600; background:rgba(255,255,255,0.15); padding:6px 12px; border-radius:4px;">Dashboard</a>
+      <a href="office-suite.html">Dashboard</a>
     </div>
   </header>
 
@@ -330,18 +28,18 @@
   <div class="pdf-ribbon">
     <div class="ribbon-tabs">
       <button class="ribbon-tab active">Interactive Fields</button>
-      <button class="ribbon-tab" id="btnSignPDF" style="color:#dc2626; font-weight:bold;">✍️ Add E-Signature</button>
+      <button class="ribbon-tab" id="btnSignPDF">✍️ Add E-Signature</button>
       <button class="ribbon-tab" onclick="alert('PDF security options locked locally.')">Encrypt Form</button>
     </div>
 
     <div class="ribbon-toolbar">
       <!-- Watermark overlay and comments controls -->
       <div class="ribbon-group">
-        <button class="ribbon-btn" id="btnAddComment" style="color:#dc2626;">💬 New Comment</button>
+        <button class="ribbon-btn" id="btnAddComment">💬 New Comment</button>
         <button class="ribbon-btn" id="btnTrackChanges">Toggle Review Mode (OFF)</button>
-        <label style="font-size:0.75rem; color:#4b5563; display:flex; align-items:center; gap:6px; margin-left:10px; cursor:pointer;">
+        <label>
           <input type="checkbox" id="chkWatermark" /> Watermark:
-          <input type="text" id="watermarkText" value="COPY ONLY" style="width:90px; padding:2px; border:1px solid #ccc; font-size:0.7rem;" />
+          <input type="text" id="watermarkText" value="COPY ONLY" />
         </label>
       </div>
     </div>
@@ -350,11 +48,11 @@
   <!-- Workspace -->
   <div class="pdf-workspace">
     <div class="pdf-center-pane">
-      <div class="watermark-overlay" id="watermarkOverlay" style="display:none;">COPY ONLY</div>
+      <div class="watermark-overlay" id="watermarkOverlay">COPY ONLY</div>
       
       <div class="pdf-page-sheet">
         <div class="pdf-section-title">EMPLOYEE ONBOARDING FORM</div>
-        <p style="font-size:0.85rem; color:#4b5563; margin-bottom:24px;">Please complete all interactive fields below. Forms are automatically compiled and saved in-browser.</p>
+        <p>Please complete all interactive fields below. Forms are automatically compiled and saved in-browser.</p>
         
         <div class="pdf-form-group">
           <label class="pdf-form-label">Full Name</label>
@@ -371,7 +69,7 @@
           <input type="text" class="pdf-input-text pdf-val-sync" id="pdfFieldDept" placeholder="Department" />
         </div>
 
-        <div class="pdf-form-group" style="margin-top: 30px;">
+        <div class="pdf-form-group">
           <label class="pdf-form-label">Employee Digital Signature</label>
           <div class="signature-area" id="signatureBox">
             <span id="signaturePlaceholder">Click to Sign Form</span>
@@ -565,7 +263,7 @@
               <span><strong>${c.user}</strong></span>
               <span>${c.time}</span>
             </div>
-            <div style="color: #374151; margin-top:4px;">${c.text}</div>
+            <div>${c.text}</div>
           `;
           content.appendChild(div);
         });

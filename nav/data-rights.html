@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data Rights Request - BlueTEXT.in</title>
+  <meta name="description" content="Submit data rights requests for access, correction, deletion, portability, and opt-out preferences on BlueTEXT.in.">
+  <meta name="robots" content="noindex, follow">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div id="site-header"></div>
+  <main id="main-content" role="main">
+    <div class="doc-page">
+      <p class="doc-page__back"><a href="../index.html">← Back to home</a></p>
+      <h1>Data Rights Request</h1>
+      <p class="text-muted">For GDPR/CCPA-compatible requests: access, correction, deletion, portability, and opt-out.</p>
+
+      <section class="dsr-panel" aria-labelledby="rights-options-title">
+        <h2 id="rights-options-title">Available Request Types</h2>
+        <div class="dsr-grid">
+          <article class="card"><h3>Access</h3><p>Request a summary of personal data associated with your interactions.</p></article>
+          <article class="card"><h3>Correction</h3><p>Request updates to incorrect or outdated personal information.</p></article>
+          <article class="card"><h3>Deletion</h3><p>Request deletion of eligible personal data, subject to legal constraints.</p></article>
+          <article class="card"><h3>Portability</h3><p>Request portable export of applicable personal data.</p></article>
+          <article class="card"><h3>Opt-Out</h3><p>Request opt-out from non-essential processing categories.</p></article>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="rights-form-title">
+        <div class="panel__head">
+          <h2 id="rights-form-title">Submit a Request</h2>
+          <p>Use this form to prepare your request. For now, requests are sent by email for manual verification.</p>
+        </div>
+
+        <form class="stack" id="dataRightsForm" novalidate>
+          <div>
+            <label for="rightsType">Request type</label>
+            <select id="rightsType" name="rightsType" required>
+              <option value="">Select a request type</option>
+              <option value="access">Access</option>
+              <option value="correction">Correction</option>
+              <option value="deletion">Deletion</option>
+              <option value="portability">Portability</option>
+              <option value="opt-out">Opt-Out</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="rightsEmail">Contact email</label>
+            <input id="rightsEmail" name="rightsEmail" type="email" autocomplete="email" required>
+            <p class="form-hint">Use the same email used when contacting support, if available.</p>
+          </div>
+
+          <div>
+            <label for="rightsDetails">Request details</label>
+            <textarea id="rightsDetails" name="rightsDetails" rows="6" required></textarea>
+          </div>
+
+          <div class="cluster">
+            <button type="submit" class="btn btn-primary">Prepare Email Request</button>
+            <a class="btn btn-secondary" href="mailto:codeon@bluetext.in?subject=BlueTEXT%20Data%20Rights%20Request">Email Directly</a>
+          </div>
+        </form>
+      </section>
+
+      <section>
+        <h2>Verification and Response</h2>
+        <ul>
+          <li>Identity verification may be requested before processing your request.</li>
+          <li>Response timelines follow applicable legal obligations.</li>
+          <li>For privacy details, see <a href="./privacy.html">Privacy Policy</a> and <a href="./compliance.html">Compliance Center</a>.</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+  <div id="site-footer"></div>
+  <script src="/assets/js/partials.js"></script>
+  <script>
+    (function () {
+      const form = document.getElementById("dataRightsForm");
+      if (!form) return;
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const type = document.getElementById("rightsType").value;
+        const email = document.getElementById("rightsEmail").value;
+        const details = document.getElementById("rightsDetails").value;
+
+        if (!type || !email || !details) {
+          return;
+        }
+
+        const subject = encodeURIComponent("BlueTEXT Data Rights Request - " + type);
+        const body = encodeURIComponent(
+          "Request Type: " + type + "\n" +
+          "Contact Email: " + email + "\n\n" +
+          "Details:\n" + details + "\n\n" +
+          "Page: " + window.location.href
+        );
+        window.location.href = "mailto:codeon@bluetext.in?subject=" + subject + "&body=" + body;
+      });
+    })();
+  </script>
+</body>
+</html>

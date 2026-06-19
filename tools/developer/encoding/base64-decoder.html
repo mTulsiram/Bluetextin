@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Base64 Decoder | Bluetext.in</title>
   <meta name="description" content="Decode Base64 encoded strings back to plain text instantly in your browser.">
-  <link rel="stylesheet" href="../../../assets/css/main.css">
+  
 </head>
 <body>
   <div id="site-header"></div>
@@ -17,9 +18,9 @@
     <section class="panel">
       <div class="tool-form">
         <label class="search__label" for="b64-input">Base64 string</label>
-        <textarea id="b64-input" rows="7" class="mono" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;" placeholder="Paste Base64 string here..."></textarea>
+        <textarea id="b64-input" rows="7" class="mono" placeholder="Paste Base64 string here..."></textarea>
       </div>
-      <div class="tool-actions" style="margin-top:0.75rem;">
+      <div class="tool-actions">
         <button id="btn-decode" class="btn btn--primary" type="button">Decode</button>
         <button id="btn-copy" class="btn btn--ghost" type="button">Copy Output</button>
         <button id="btn-clear" class="btn btn--ghost" type="button">Clear</button>
@@ -27,8 +28,8 @@
     </section>
 
     <section class="tool-output" aria-live="polite">
-      <p id="status" style="margin:0 0 0.6rem;font-weight:600;"></p>
-      <textarea id="b64-output" rows="7" readonly style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;background:var(--surface-soft);" placeholder="Decoded output..."></textarea>
+      <p id="status"></p>
+      <textarea id="b64-output" rows="7" readonly placeholder="Decoded output..."></textarea>
     </section>
   </main>
   <div id="site-footer"></div>

@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Grayscale Image | Bluetext.in</title>
   <meta name="description" content="Convert any image to grayscale instantly in your browser.">
-  <link rel="stylesheet" href="../../../assets/css/main.css">
+  
 </head>
 <body>
   <div id="site-header"></div>
@@ -18,15 +19,15 @@
       <div class="tool-form">
         <label>Upload image<input id="img-file" type="file" accept="image/*"></label>
       </div>
-      <div class="tool-actions" style="margin-top:0.75rem;">
+      <div class="tool-actions">
         <button id="btn-convert" class="btn btn--primary" type="button" disabled>Convert to Grayscale</button>
-        <button id="btn-download" class="btn btn--ghost" type="button" style="display:none;">Download</button>
+        <button id="btn-download" class="btn btn--ghost" type="button">Download</button>
       </div>
     </section>
 
     <section class="tool-output" aria-live="polite">
       <p id="status">Upload an image to begin.</p>
-      <canvas id="canvas" style="max-width:100%;display:none;border-radius:var(--radius-md);margin-top:0.75rem;"></canvas>
+      <canvas id="canvas"></canvas>
     </section>
   </main>
   <div id="site-footer"></div>

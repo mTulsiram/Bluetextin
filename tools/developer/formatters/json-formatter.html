@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>JSON Formatter | Bluetext.in</title>
   <meta name="description" content="Validate, format, and minify JSON with syntax highlighting.">
-  <link rel="stylesheet" href="../../../assets/css/main.css">
+  
 </head>
 <body>
   <div id="site-header"></div>
@@ -17,9 +18,9 @@
     <section class="panel">
       <div class="tool-form">
         <label class="search__label" for="json-input">Paste JSON</label>
-        <textarea id="json-input" rows="10" class="mono" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;" placeholder='{"key": "value"}'></textarea>
+        <textarea id="json-input" rows="10" class="mono" placeholder='{"key": "value"}'></textarea>
       </div>
-      <div class="tool-actions" style="margin-top:0.75rem;">
+      <div class="tool-actions">
         <button id="btn-format" class="btn btn--primary" type="button">Format</button>
         <button id="btn-minify" class="btn btn--ghost" type="button">Minify</button>
         <button id="btn-copy" class="btn btn--ghost" type="button">Copy</button>
@@ -28,8 +29,8 @@
     </section>
 
     <section class="tool-output" aria-live="polite">
-      <p id="json-status" style="margin:0 0 0.6rem;font-weight:600;"></p>
-      <pre id="json-output" class="mono" style="overflow:auto;white-space:pre-wrap;"></pre>
+      <p id="json-status"></p>
+      <pre id="json-output" class="mono"></pre>
     </section>
   </main>
   <div id="site-footer"></div>

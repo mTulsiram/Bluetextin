@@ -38,12 +38,8 @@ function isLocaleRoutablePath(pathname) {
 }
 
 function withLocale(pathname) {
-	const locale = getCurrentLocale();
 	const normalized = pathname.startsWith("/") ? pathname : `/${pathname}`;
-	if (!isLocaleRoutablePath(normalized)) {
-		return normalized;
-	}
-	return normalized === "/" ? `/${locale}/` : `/${locale}${normalized}`;
+	return normalized;
 }
 
 async function loadJson(path) {

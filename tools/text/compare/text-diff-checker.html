@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Text Diff Checker | Bluetext.in</title>
   <meta name="description" content="Compare two texts side-by-side and highlight differences instantly.">
-  <link rel="stylesheet" href="../../../assets/css/main.css">
+  
 </head>
 <body>
   <div id="site-header"></div>
@@ -19,11 +20,11 @@
         <div class="tool-grid-2">
           <label>
             Original text
-            <textarea id="text-a" rows="10" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;" placeholder="Paste original text..."></textarea>
+            <textarea id="text-a" rows="10" placeholder="Paste original text..."></textarea>
           </label>
           <label>
             Modified text
-            <textarea id="text-b" rows="10" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;" placeholder="Paste modified text..."></textarea>
+            <textarea id="text-b" rows="10" placeholder="Paste modified text..."></textarea>
           </label>
         </div>
         <div class="tool-actions">
@@ -34,8 +35,8 @@
     </section>
 
     <section class="tool-output" aria-live="polite">
-      <p id="diff-status" style="margin:0 0 0.75rem;font-weight:600;"></p>
-      <div id="diff-output" style="font-family:monospace;font-size:0.9rem;line-height:1.6;"></div>
+      <p id="diff-status"></p>
+      <div id="diff-output"></div>
     </section>
   </main>
   <div id="site-footer"></div>

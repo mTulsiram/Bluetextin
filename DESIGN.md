@@ -1,123 +1,130 @@
----
-brand: BlueTEXT
-name: BlueTEXT Design System
-author: Antigravity Agent
-colors:
-  light:
-    primary-blue: "#0056d2"
-    brand-yellow: "#ffd600"
-    accent-primary: "#0056d2"
-    accent-soft: "rgba(0, 86, 210, 0.12)"
-    text-primary: "#1a1a1a"
-    text-secondary: "#555555"
-    bg-main: "#f4f7f9"
-    bg-card: "#ffffff"
-    border-color: "#dee2e6"
-    stroke: "#d6e3ff"
-  dark:
-    accent-primary: "#ffb1ee"      /* Neon pink */
-    accent-secondary: "#00f0ff"    /* Neon cyan */
-    accent-soft: "rgba(255, 177, 238, 0.15)"
-    text-primary: "#ededed"
-    text-secondary: "#878787"
-    bg-main: "#000000"             /* Pure black canvas */
-    bg-card: "#0a0a0a"             /* Deep slate/black card */
-    border-color: "#2e2e2e"
-    stroke: "#2e2e2e"
-typography:
-  font-main: "Inter, Heebo, Segoe UI, sans-serif"
-  font-heading: "Inter, Heebo, Segoe UI, sans-serif"
-radius:
-  lg: "16px"
-  md: "12px"
-  sm: "8px"
-effects:
-  shadow: "0 4px 20px rgba(0, 0, 0, 0.3)"
-  shadow-hover: "0 8px 30px rgba(236, 72, 153, 0.2)"
-  focus-ring: "0 0 0 3px rgba(236, 72, 153, 0.45)"
-  transition: "0.2s ease"
----
+# BlueTEXTin Design And Compliance Standard
 
-# BlueTEXT Design System (`DESIGN.md`)
+Version: 2026-06-19
+Scope: All web pages, tools, forms, office simulators, and shared UI components.
 
-This design system defines the visual contract for the BlueTEXT web tools platform, ensuring design consistency across all pages and interactive components.
+## 1) Compliance Baseline
 
----
+This system is designed to meet and sustain:
 
-## 1. Visual Philosophy
-- **Aesthetic**: Rich, premium, and glassmorphic elements. Soft gradients with high-contrast, readable typography.
-- **Theme Awareness**: Standard support for Light/Dark themes using CSS Custom Variables.
-- **Immersive Spreadsheet Design**: When working with spreadsheet previews or developer layouts, the workspace expands to utilize 96% width of the screen, creating an immersive, desktop-like Excel environment.
+- WCAG 2.2 AA accessibility baseline
+- GDPR and CCPA privacy control baseline
+- ISO 27001 and FISMA aligned UX/security baseline
+- UX4G-style public service UX principles: clear language, inclusive access, mobile-first usability, trust signals, and consistent service journeys
 
----
+## 2) Design Principles
 
-## 2. Layout & Width Boundaries
+- Clarity first: plain language, short labels, clear system status, no hidden actions
+- Inclusive by default: keyboard-first interactions, readable hierarchy, visible focus, accessible errors
+- Trust-centered: explicit privacy choices, explain data use, show security state and consent status
+- Mobile-first: touch-safe controls (minimum 44x44), responsive layout at every breakpoint
+- Consistency at scale: token-driven styling only through shared CSS layers
 
-### Full-Width Seamless View
-For desktop-centric data tools (like the PDF Converter), headers, footers, and page content wrappers (`.doc-page`) stretch to 100% viewport width without card borders or outer margins. This makes the interface fit the screen seamlessly, mimicking `getdesign.md`.
+## 3) Token Contract
 
-```css
-.doc-page {
-  width: 100% !important;
-  max-width: 100% !important;
-  margin: 0 !important;
-  padding: 24px !important;
-  border: none !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  background: transparent !important;
-}
-```
+All visual values come from CSS custom properties in `assets/css/themes.css`.
 
-### Strict Horizontal Scrollbar Containment
-> [!IMPORTANT]
-> To prevent large tables or wide data sections from overflowing outside the `.doc-page` container and causing page-level scrollbars:
-> 1. Set the outer container wrapper's width and max-width to `100%`.
-> 2. Force scroll overflow containment using `overflow-x: auto` on the wrap container itself, not the page body.
+Required tokens include:
 
-```css
-.preview-wrap {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  overflow-x: auto !important;
-  overflow-y: auto !important;
-}
-```
+- Surfaces: `--bg-canvas`, `--bg-card`, `--surface-soft`, `--surface-strong`
+- Text: `--text-primary`, `--text-secondary`, `--text-muted`
+- Action: `--accent-primary`, `--accent-primary-hover`, `--accent-contrast`
+- States: `--success`, `--warning`, `--danger`, `--info`
+- Accessibility: `--focus-ring`, `--focus-bg`
+- Geometry: `--radius-sm`, `--radius-md`, `--radius-lg`, `--radius-pill`
+- Spacing: `--space-1` to `--space-6`
 
-### Theme-Aware Native Controls
-> [!NOTE]
-> Native dropdowns (`select`) and inputs inside dark mode containers must use the `color-scheme` property to prevent OS-level option contrast issues:
-> ```css
-> select { color-scheme: light; }
-> [data-theme="dark"] select { color-scheme: dark; }
-> ```
+Do not introduce hardcoded color values in page-level HTML.
 
----
+## 4) Accessibility Requirements (WCAG 2.2 AA)
 
-## 3. Component Specifications
+### 4.1 Perceivable
 
-### Spreadsheet Table Grid
-- **Border Grids**: Border lines around all cells mimic a native desktop spreadsheet.
-- **Resizing Drag Handles**: Absolute-positioned handles on header boundaries allow column drag resizing.
-- **Selection Highlights**: Selected columns use the accent soft background with a dashed primary border.
-- **Inline Editing**: Double-clicking cells or headers swaps text for borderless inputs.
+- Text contrast minimum 4.5:1 for normal text, 3:1 for large text and UI components.
+- Non-text contrast minimum 3:1 for controls, focus indicators, and meaningful graphics.
+- Do not use color as the only way to convey state.
 
-### Spreadsheet Toolbar
-- Sits perfectly stacked on top of the preview container.
-- Uses `--radius-sm` for top-left and top-right corners, matching the bottom corners of the container.
-- Contains buttons for formatting actions (Bold, Align Left/Center/Right, Rename).
+### 4.2 Operable
 
----
+- All interactive controls reachable and actionable by keyboard.
+- Visible focus ring on all focusable elements.
+- Target size minimum 44x44 CSS pixels for primary interactions.
+- No keyboard traps; escape and close actions must be available for dialogs.
 
-## 4. Design Do's & Don'ts for AI Agents
+### 4.3 Understandable
 
-### Do
-- Always use the HSL/RGB customized CSS variables for colors (avoid plain red/green/blue).
-- Set `max-width: 100%` and `overflow-x: auto` on any container containing dynamically sized tables or grids.
-- Ensure all interactive tables support keyboard Escape and Enter keys for cell/header edit commits.
+- Every form control has a programmatic label.
+- Errors include clear text and recovery guidance.
+- Maintain predictable navigation and component behavior.
 
-### Don't
-- Never allow a child table to determine the width of parent container cards.
-- Never write hardcoded pixel values for theme colors. Use the aliases (`--surface`, `--stroke`, `--text-soft`).
-- Do not let the viewport scroll horizontally on desktop. Keep all overflows self-contained in scrollable divs.
+### 4.4 Robust
+
+- Use semantic HTML landmarks and valid ARIA only when necessary.
+- Test with screen readers and high-contrast/forced-colors mode.
+
+## 5) Privacy Controls (GDPR/CCPA)
+
+The UI must expose these controls clearly:
+
+- Consent banner with explicit actions: Accept all, Reject non-essential, Manage preferences
+- Category-level consent toggles (essential, analytics, personalization, marketing)
+- Data rights request UI for access, deletion, correction, portability, and opt-out requests
+- Privacy notices adjacent to data collection fields
+- Revocation path available at all times (for example through footer privacy controls)
+
+Use classes from `assets/css/pages.css`:
+
+- `consent-banner`, `consent-actions`, `consent-preferences`, `consent-toggle`
+- `dsr-panel`, `dsr-grid`
+
+## 6) Security Baseline (ISO 27001/FISMA aligned)
+
+UI and frontend architecture shall support:
+
+- Least privilege patterns in admin and moderation interfaces
+- Clear session state and timeout warnings where authentication exists
+- Security event visibility (for example `security-chip` status indicators)
+- Safe defaults: no hidden tracking, no unsafe third-party execution by default
+- Input validation messaging without exposing internals or stack details
+
+Note: Technical controls such as encryption, secure headers, logging, key management, and vulnerability management must be enforced server-side in parallel.
+
+## 7) UX4G Alignment Guidelines
+
+Follow these implementation behaviors:
+
+- Citizen-first content structure: start with user task, not system structure
+- Multilingual support readiness and language discoverability in navigation
+- Consistent, reusable component patterns across all service pages
+- Inclusive readability: moderate line lengths, clear spacing, and plain language
+- Service confidence cues: visible support links, policy links, and status feedback
+
+## 8) CSS Architecture
+
+- `assets/css/themes.css`: design tokens and theme variants
+- `assets/css/base.css`: reset, typography, links, focus, motion safety
+- `assets/css/critical.css`: first-render essentials
+- `assets/css/layout.css`: container/grid/layout helpers
+- `assets/css/components.css`: buttons, forms, alerts, tables, dialog, badges
+- `assets/css/pages.css`: page-level patterns including consent/privacy/security surfaces
+- `assets/css/main.css`: module import entrypoint
+
+No inline style attributes in production pages.
+
+## 9) Mandatory QA Gate
+
+Before merge/deploy, every release must pass:
+
+- Automated accessibility checks (keyboard, contrast, semantics)
+- Manual keyboard-only navigation review
+- Manual screen-reader smoke tests on critical flows
+- Consent and privacy flow validation (accept/reject/manage/revoke)
+- Responsive behavior checks on small and large screens
+- Regression check for focus visibility and error messaging
+
+## 10) Implementation Notes For This Repo
+
+- This repository has multilingual routes and tool pages; shared CSS must remain route-safe and token-driven.
+- Components should consume `main.css` and avoid ad hoc style blocks.
+- Any future redesign must preserve this compliance baseline unless a stricter policy supersedes it.
+

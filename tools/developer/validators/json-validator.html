@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>JSON Validator | Bluetext.in</title>
   <meta name="description" content="Validate JSON syntax and get detailed error messages instantly.">
-  <link rel="stylesheet" href="../../../assets/css/main.css">
+  
 </head>
 <body>
   <div id="site-header"></div>
@@ -17,16 +18,16 @@
     <section class="panel">
       <div class="tool-form">
         <label class="search__label" for="json-input">Paste JSON</label>
-        <textarea id="json-input" rows="12" class="mono" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;" placeholder='{"name": "value", "count": 42}'></textarea>
+        <textarea id="json-input" rows="12" class="mono" placeholder='{"name": "value", "count": 42}'></textarea>
       </div>
-      <div class="tool-actions" style="margin-top:0.75rem;">
+      <div class="tool-actions">
         <button id="btn-validate" class="btn btn--primary" type="button">Validate JSON</button>
         <button id="btn-clear" class="btn btn--ghost" type="button">Clear</button>
       </div>
     </section>
 
     <section class="tool-output" aria-live="polite">
-      <div id="validation-result" style="border-radius:var(--radius-sm);padding:0.75rem 1rem;margin-top:0.5rem;"></div>
+      <div id="validation-result"></div>
     </section>
   </main>
   <div id="site-footer"></div>
@@ -51,11 +52,11 @@
         const type = Array.isArray(parsed) ? `Array [${parsed.length} items]` : `Object {${Object.keys(parsed).length} keys}`;
         resultEl.style.background = "#f0fdf4";
         resultEl.style.borderLeft = "4px solid #16a34a";
-        resultEl.innerHTML = `<strong style="color:#16a34a">Valid JSON</strong><br><span style="font-family:monospace;font-size:0.9rem;">Type: ${type}</span>`;
+        resultEl.innerHTML = `<strong>Valid JSON</strong><br><span>Type: ${type}</span>`;
       } catch (err) {
         resultEl.style.background = "#fff1f2";
         resultEl.style.borderLeft = "4px solid #e11d48";
-        resultEl.innerHTML = `<strong style="color:#e11d48">Invalid JSON</strong><br><span style="font-family:monospace;font-size:0.9rem;">${escapeHtml(err.message)}</span>`;
+        resultEl.innerHTML = `<strong>Invalid JSON</strong><br><span>${escapeHtml(err.message)}</span>`;
       }
     });
 

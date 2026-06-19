@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Schema Markup Generator | Bluetext.in</title>
   <meta name="description" content="Generate JSON-LD schema markup for articles, FAQs, products, and local businesses.">
-  <link rel="stylesheet" href="../../../assets/css/main.css">
+  
 </head>
 <body>
   <div id="site-header"></div>
@@ -39,19 +40,19 @@
         </div>
 
         <!-- FAQ fields -->
-        <div id="fields-FAQPage" style="display:none;">
-          <p style="font-size:0.9rem;color:var(--text-soft);">Add up to 5 Q&amp;A pairs.</p>
+        <div id="fields-FAQPage">
+          <p>Add up to 5 Q&amp;A pairs.</p>
           <div id="faq-pairs">
-            <div class="faq-pair" style="border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.75rem;margin-bottom:0.5rem;">
+            <div class="faq-pair">
               <label>Question 1<input type="text" class="faq-q" placeholder="What is ...?"></label>
-              <label>Answer 1<textarea class="faq-a" rows="2" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.5rem 0.6rem;font:inherit;resize:vertical;" placeholder="The answer is..."></textarea></label>
+              <label>Answer 1<textarea class="faq-a" rows="2" placeholder="The answer is..."></textarea></label>
             </div>
           </div>
-          <button id="add-faq" class="btn btn--ghost" type="button" style="font-size:0.85rem;padding:0.35rem 0.75rem;">+ Add Q&amp;A</button>
+          <button id="add-faq" class="btn btn--ghost" type="button">+ Add Q&amp;A</button>
         </div>
 
         <!-- Product fields -->
-        <div id="fields-Product" style="display:none;">
+        <div id="fields-Product">
           <label>Product name<input id="prod-name" type="text" placeholder="e.g. Blue Widget"></label>
           <label>Description<input id="prod-desc" type="text" placeholder="Short product description"></label>
           <label>Price<input id="prod-price" type="number" step="0.01" min="0" placeholder="e.g. 999"></label>
@@ -68,7 +69,7 @@
         </div>
 
         <!-- LocalBusiness fields -->
-        <div id="fields-LocalBusiness" style="display:none;">
+        <div id="fields-LocalBusiness">
           <label>Business name<input id="biz-name" type="text" placeholder="e.g. Acme Pvt Ltd"></label>
           <label>Business type <small>(e.g. Restaurant, Store)</small><input id="biz-type" type="text" value="LocalBusiness" placeholder="Restaurant"></label>
           <label>Street address<input id="biz-street" type="text" placeholder="123 Main St"></label>
@@ -79,29 +80,29 @@
         </div>
 
         <!-- Breadcrumb fields -->
-        <div id="fields-BreadcrumbList" style="display:none;">
-          <p style="font-size:0.9rem;color:var(--text-soft);">Add breadcrumb items in order.</p>
+        <div id="fields-BreadcrumbList">
+          <p>Add breadcrumb items in order.</p>
           <div id="bc-items">
-            <div class="bc-item" style="display:flex;gap:0.5rem;margin-bottom:0.4rem;">
-              <input class="bc-name" type="text" placeholder="Home" style="flex:1;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.5rem 0.65rem;">
-              <input class="bc-url" type="url" placeholder="https://example.com" style="flex:2;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.5rem 0.65rem;">
+            <div class="bc-item">
+              <input class="bc-name" type="text" placeholder="Home">
+              <input class="bc-url" type="url" placeholder="https://example.com">
             </div>
-            <div class="bc-item" style="display:flex;gap:0.5rem;margin-bottom:0.4rem;">
-              <input class="bc-name" type="text" placeholder="Tools" style="flex:1;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.5rem 0.65rem;">
-              <input class="bc-url" type="url" placeholder="https://example.com/tools" style="flex:2;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.5rem 0.65rem;">
+            <div class="bc-item">
+              <input class="bc-name" type="text" placeholder="Tools">
+              <input class="bc-url" type="url" placeholder="https://example.com/tools">
             </div>
           </div>
-          <button id="add-bc" class="btn btn--ghost" type="button" style="font-size:0.85rem;padding:0.35rem 0.75rem;">+ Add item</button>
+          <button id="add-bc" class="btn btn--ghost" type="button">+ Add item</button>
         </div>
 
         <!-- WebSite fields -->
-        <div id="fields-WebSite" style="display:none;">
+        <div id="fields-WebSite">
           <label>Site name<input id="ws-name" type="text" placeholder="My Website"></label>
           <label>Site URL<input id="ws-url" type="url" placeholder="https://example.com"></label>
           <label>Search URL template <small>(use {search_term_string})</small><input id="ws-search" type="text" placeholder="https://example.com/search?q={search_term_string}"></label>
         </div>
 
-        <div class="tool-actions" style="margin-top:0.75rem;">
+        <div class="tool-actions">
           <button class="btn btn--primary" type="submit">Generate Schema</button>
           <button class="btn btn--ghost" type="reset">Clear</button>
         </div>
@@ -109,12 +110,12 @@
     </section>
 
     <section class="tool-output" aria-live="polite">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-bottom:0.5rem;">
-        <p id="schema-label" style="margin:0;font-weight:600;"></p>
-        <button id="copy-btn" class="btn btn--ghost" type="button" style="padding:0.4rem 0.75rem;font-size:0.85rem;">Copy</button>
+      <div>
+        <p id="schema-label"></p>
+        <button id="copy-btn" class="btn btn--ghost" type="button">Copy</button>
       </div>
-      <p style="font-size:0.85rem;color:var(--text-soft);margin:0 0 0.5rem;">Add this inside a <code>&lt;script type="application/ld+json"&gt;</code> tag in your page <code>&lt;head&gt;</code>.</p>
-      <pre id="schema-output" class="mono" style="white-space:pre-wrap;background:var(--surface-soft);border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:1rem;font-size:0.85rem;overflow:auto;"></pre>
+      <p>Add this inside a <code>&lt;script type="application/ld+json"&gt;</code> tag in your page <code>&lt;head&gt;</code>.</p>
+      <pre id="schema-output" class="mono"></pre>
     </section>
   </main>
   <div id="site-footer"></div>
@@ -137,7 +138,7 @@
       div.className = "faq-pair";
       div.style.cssText = "border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.75rem;margin-bottom:0.5rem;";
       div.innerHTML = `<label>Question ${n}<input type="text" class="faq-q" placeholder="What is ...?"></label>
-        <label>Answer ${n}<textarea class="faq-a" rows="2" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.5rem 0.6rem;font:inherit;resize:vertical;" placeholder="The answer is..."></textarea></label>`;
+        <label>Answer ${n}<textarea class="faq-a" rows="2" placeholder="The answer is..."></textarea></label>`;
       pairs.appendChild(div);
     });
 
@@ -148,8 +149,8 @@
       const div = document.createElement("div");
       div.className = "bc-item";
       div.style.cssText = "display:flex;gap:0.5rem;margin-bottom:0.4rem;";
-      div.innerHTML = `<input class="bc-name" type="text" placeholder="Page" style="flex:1;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.5rem 0.65rem;">
-        <input class="bc-url" type="url" placeholder="https://example.com/page" style="flex:2;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.5rem 0.65rem;">`;
+      div.innerHTML = `<input class="bc-name" type="text" placeholder="Page">
+        <input class="bc-url" type="url" placeholder="https://example.com/page">`;
       items.appendChild(div);
     });
 

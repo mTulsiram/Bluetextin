@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Regex Tester | Bluetext.in</title>
   <meta name="description" content="Test JavaScript regular expressions against text and see live matches.">
-  <link rel="stylesheet" href="../../../assets/css/main.css">
+  
 </head>
 <body>
   <div id="site-header"></div>
@@ -28,14 +29,14 @@
         </div>
         <label>
           Test string
-          <textarea id="regex-input" rows="7" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;" placeholder="Paste or type text to match against..."></textarea>
+          <textarea id="regex-input" rows="7" placeholder="Paste or type text to match against..."></textarea>
         </label>
       </div>
     </section>
 
     <section class="tool-output" aria-live="polite">
-      <p id="regex-status" style="margin:0 0 0.6rem;font-weight:600;"></p>
-      <div id="regex-matches" style="display:flex;flex-wrap:wrap;gap:0.4rem;"></div>
+      <p id="regex-status"></p>
+      <div id="regex-matches"></div>
     </section>
   </main>
   <div id="site-footer"></div>

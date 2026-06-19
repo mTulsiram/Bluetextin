@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Robots.txt Generator | Bluetext.in</title>
   <meta name="description" content="Generate a robots.txt file for your website with common rules for search engine crawlers.">
-  <link rel="stylesheet" href="../../../assets/css/main.css">
+  
 </head>
 <body>
   <div id="site-header"></div>
@@ -21,17 +22,17 @@
           <input id="sitemap-url" type="url" placeholder="https://example.com/sitemap.xml">
         </label>
 
-        <fieldset style="border:none;padding:0;margin:0.5rem 0;">
-          <legend style="font-weight:700;font-size:0.95rem;margin-bottom:0.5rem;">Common bot rules</legend>
-          <label style="display:flex;align-items:center;gap:0.5rem;"><input type="checkbox" id="allow-all" checked> Allow all bots to crawl everything (default)</label>
-          <label style="display:flex;align-items:center;gap:0.5rem;"><input type="checkbox" id="block-gpt"> Block GPTBot (OpenAI)</label>
-          <label style="display:flex;align-items:center;gap:0.5rem;"><input type="checkbox" id="block-ccbot"> Block CCBot (Common Crawl)</label>
-          <label style="display:flex;align-items:center;gap:0.5rem;"><input type="checkbox" id="block-google-ai"> Block Google-Extended (Bard/Gemini training)</label>
+        <fieldset>
+          <legend>Common bot rules</legend>
+          <label><input type="checkbox" id="allow-all" checked> Allow all bots to crawl everything (default)</label>
+          <label><input type="checkbox" id="block-gpt"> Block GPTBot (OpenAI)</label>
+          <label><input type="checkbox" id="block-ccbot"> Block CCBot (Common Crawl)</label>
+          <label><input type="checkbox" id="block-google-ai"> Block Google-Extended (Bard/Gemini training)</label>
         </fieldset>
 
         <label>
           Disallow paths (one per line)
-          <textarea id="disallow-paths" rows="4" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;" placeholder="/admin/&#10;/private/&#10;/*.pdf"></textarea>
+          <textarea id="disallow-paths" rows="4" placeholder="/admin/&#10;/private/&#10;/*.pdf"></textarea>
         </label>
 
         <div class="tool-actions">
@@ -42,11 +43,11 @@
     </section>
 
     <section class="tool-output" aria-live="polite">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-bottom:0.5rem;">
-        <p id="robots-label" style="margin:0;font-weight:600;"></p>
-        <button id="copy-btn" class="btn btn--ghost" type="button" style="padding:0.4rem 0.75rem;font-size:0.85rem;">Copy</button>
+      <div>
+        <p id="robots-label"></p>
+        <button id="copy-btn" class="btn btn--ghost" type="button">Copy</button>
       </div>
-      <pre id="robots-output" class="mono" style="white-space:pre-wrap;background:var(--surface-soft);border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:1rem;"></pre>
+      <pre id="robots-output" class="mono"></pre>
     </section>
   </main>
   <div id="site-footer"></div>

@@ -1,19 +1,7 @@
-/* =========================================================
-   main.css
-   CSS entry point for Bluetext.in
-   ---------------------------------------------------------
-   Load order is IMPORTANT:
-   1. critical.css   -> LCP / above-the-fold
-   2. base.css       -> reset, typography, accessibility
-   3. themes.css     -> variables
-   4. layout.css     -> structure
-   5. components.css -> reusable UI
-   6. pages.css      -> page-specific styles
-========================================================= */
+@import url("themes.css");
+@import url("base.css");
+@import url("critical.css");
+@import url("layout.css");
+@import url("components.css");
+@import url("pages.css");
 
-@import "./critical.css";
-@import "./base.css";
-@import "./themes.css";
-@import "./layout.css";
-@import "./components.css";
-@import "./pages.css";

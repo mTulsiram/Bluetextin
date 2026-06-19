@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>File Compare | Bluetext.in</title>
   <meta name="description" content="Compare two text files side-by-side and see line-by-line differences instantly.">
-  <link rel="stylesheet" href="../../../assets/css/main.css">
+  
 </head>
 <body>
   <div id="site-header"></div>
@@ -20,7 +21,7 @@
           <label>File A<input id="file-a" type="file" accept="text/*,.txt,.csv,.json,.xml,.html,.css,.js,.md,.log"></label>
           <label>File B<input id="file-b" type="file" accept="text/*,.txt,.csv,.json,.xml,.html,.css,.js,.md,.log"></label>
         </div>
-        <div class="tool-actions" style="margin-top:0.75rem;">
+        <div class="tool-actions">
           <button id="btn-compare" class="btn btn--primary" type="button" disabled>Compare Files</button>
           <button id="btn-clear" class="btn btn--ghost" type="button">Clear</button>
         </div>
@@ -28,8 +29,8 @@
     </section>
 
     <section class="tool-output" aria-live="polite">
-      <p id="compare-status" style="margin:0 0 0.75rem;font-weight:600;"></p>
-      <div id="diff-output" style="font-family:monospace;font-size:0.85rem;line-height:1.6;"></div>
+      <p id="compare-status"></p>
+      <div id="diff-output"></div>
     </section>
   </main>
   <div id="site-footer"></div>

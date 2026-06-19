@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Image to Base64 | Bluetext.in</title>
   <meta name="description" content="Convert any image to a Base64 data URL string instantly in browser.">
-  <link rel="stylesheet" href="../../../assets/css/main.css">
+  
 </head>
 <body>
   <div id="site-header"></div>
@@ -22,12 +23,12 @@
 
     <section class="tool-output" aria-live="polite">
       <p id="img-status">Upload an image to begin.</p>
-      <div style="margin-top:0.6rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
-        <button id="copy-data-url" class="btn btn--ghost" type="button" style="display:none;">Copy Data URL</button>
-        <button id="copy-src" class="btn btn--ghost" type="button" style="display:none;">Copy as img src</button>
+      <div>
+        <button id="copy-data-url" class="btn btn--ghost" type="button">Copy Data URL</button>
+        <button id="copy-src" class="btn btn--ghost" type="button">Copy as img src</button>
       </div>
-      <textarea id="img-output" rows="6" class="mono" readonly style="margin-top:0.75rem;width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;background:var(--surface-soft);display:none;" placeholder="Base64 output..."></textarea>
-      <img id="img-preview" alt="Preview" style="max-width:100%;margin-top:0.75rem;border-radius:var(--radius-md);display:none;">
+      <textarea id="img-output" rows="6" class="mono" readonly placeholder="Base64 output..."></textarea>
+      <img id="img-preview" alt="Preview">
     </section>
   </main>
   <div id="site-footer"></div>

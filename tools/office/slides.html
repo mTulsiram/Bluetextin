@@ -2,350 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BluePresent - PowerPoint Online Editor | Bluetext.in</title>
-  <link rel="stylesheet" href="/assets/css/main.css">
-  <style>
-    body {
-      background: #f3f4f6;
-      margin: 0;
-      font-family: "Segoe UI", Arial, sans-serif;
-    }
-    
-    /* PowerPoint Orange Header */
-    .slides-header {
-      background: #c43e1c;
-      color: #ffffff;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      padding: 0 16px;
-      justify-content: space-between;
-      font-size: 0.9rem;
-    }
-
-    .slides-header-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .slides-app-icon {
-      font-size: 1.25rem;
-      font-weight: 800;
-    }
-
-    .slides-doc-title-box {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .slides-title-input {
-      background: none;
-      border: 1px solid transparent;
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.95rem;
-      padding: 2px 6px;
-      border-radius: 3px;
-      width: 200px;
-    }
-    .slides-title-input:focus {
-      background: rgba(255,255,255,0.15);
-      border-color: #fff;
-      outline: none;
-    }
-
-    .save-badge {
-      font-size: 0.75rem;
-      color: #fee2e2;
-    }
-
-    /* Ribbon */
-    .slides-ribbon {
-      background: #ffffff;
-      border-bottom: 1px solid #d1d5db;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-
-    .ribbon-tabs {
-      display: flex;
-      background: #f3f4f6;
-      border-bottom: 1px solid #e5e7eb;
-      padding-left: 20px;
-    }
-
-    .ribbon-tab {
-      background: none;
-      border: none;
-      padding: 8px 16px;
-      font-size: 0.8rem;
-      color: #374151;
-      cursor: pointer;
-      font-weight: 500;
-    }
-    .ribbon-tab.active {
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-bottom-color: transparent;
-      color: #c43e1c;
-      font-weight: 600;
-    }
-
-    .ribbon-toolbar {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 8px 20px;
-      background: #ffffff;
-      flex-wrap: wrap;
-    }
-
-    .ribbon-group {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      border-right: 1px solid #e5e7eb;
-      padding-right: 12px;
-    }
-
-    .ribbon-group:last-child {
-      border: none;
-    }
-
-    .ribbon-btn {
-      background: none;
-      border: 1px solid transparent;
-      padding: 4px 8px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 0.85rem;
-      color: #374151;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .ribbon-btn:hover {
-      background: #f3f4f6;
-    }
-    .ribbon-btn.active {
-      background: #fee2e2;
-      border-color: #fca5a5;
-      color: #c43e1c;
-    }
-
-    /* Workspace Body */
-    .slides-workspace {
-      display: flex;
-      height: calc(100vh - 120px);
-      overflow: hidden;
-    }
-
-    /* Left Slide Deck list */
-    .slide-deck-list {
-      width: 180px;
-      background: #e5e7eb;
-      border-right: 1px solid #d1d5db;
-      display: flex;
-      flex-direction: column;
-      padding: 16px;
-      gap: 12px;
-      overflow-y: auto;
-      flex-shrink: 0;
-    }
-
-    .slide-deck-title {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #4b5563;
-      font-weight: 700;
-    }
-
-    .slide-thumb {
-      background: #ffffff;
-      border: 2px solid transparent;
-      aspect-ratio: 16/9;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      cursor: pointer;
-      color: #4b5563;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      transition: all var(--transition);
-      text-align: center;
-      padding: 4px;
-      box-sizing: border-box;
-    }
-    .slide-thumb:hover {
-      border-color: #fca5a5;
-    }
-    .slide-thumb.active {
-      border-color: #c43e1c;
-      font-weight: 600;
-    }
-
-    /* Center Pane */
-    .slides-center-pane {
-      flex-grow: 1;
-      background: #f3f4f6;
-      padding: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      overflow: auto;
-    }
-
-    /* Presentation slide canvas */
-    .slide-canvas {
-      width: 100%;
-      max-width: 800px;
-      aspect-ratio: 16/9;
-      background: #ffffff;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      border-radius: 4px;
-      position: relative;
-      padding: 40px;
-      box-sizing: border-box;
-      outline: none;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: #1f2937;
-    }
-
-    .watermark-overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4rem;
-      color: rgba(0,0,0,0.02);
-      transform: rotate(-30deg);
-      pointer-events: none;
-      font-weight: 900;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      z-index: 5;
-      user-select: none;
-    }
-
-    /* Right Sidebar comments & review */
-    .slides-right-sidebar {
-      width: 280px;
-      background: #ffffff;
-      border-left: 1px solid #e5e7eb;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      flex-shrink: 0;
-    }
-
-    .sidebar-tabs {
-      display: flex;
-      border-bottom: 1px solid #e5e7eb;
-    }
-
-    .sidebar-tab {
-      flex: 1;
-      background: #f9fafb;
-      border: none;
-      padding: 10px;
-      font-size: 0.8rem;
-      cursor: pointer;
-      color: #4b5563;
-    }
-    .sidebar-tab.active {
-      background: #ffffff;
-      font-weight: 600;
-      border-bottom: 2px solid #c43e1c;
-      color: #c43e1c;
-    }
-
-    .sidebar-content {
-      padding: 16px;
-      overflow-y: auto;
-      flex-grow: 1;
-      font-size: 0.8rem;
-    }
-
-    .comment-card {
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
-      padding: 10px;
-      border-radius: 6px;
-      margin-bottom: 8px;
-    }
-
-    .comment-meta {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.72rem;
-      color: #6b7280;
-      margin-bottom: 4px;
-    }
-
-    .track-changes-item {
-      padding: 6px 8px;
-      border-left: 3px solid #10b981;
-      background: rgba(16, 185, 129, 0.05);
-      margin-bottom: 8px;
-      border-radius: 0 4px 4px 0;
-      font-size: 0.75rem;
-    }
-
-    /* Presenter View Fullscreen overlay */
-    .presenter-overlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: #000000;
-      z-index: 1000;
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: #ffffff;
-    }
-
-    .presenter-slide {
-      width: 80%;
-      aspect-ratio: 16/9;
-      background: #ffffff;
-      color: #000000;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      font-family: sans-serif;
-      padding: 40px;
-      box-sizing: border-box;
-      border-radius: 8px;
-      text-align: center;
-    }
-
-    .presenter-controls {
-      margin-top: 20px;
-      display: flex;
-      gap: 20px;
-    }
-
-    .presenter-btn {
-      background: #e11d48;
-      border: none;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-  </style>
+  
+  
 </head>
 <body>
 
@@ -359,7 +20,7 @@
       </div>
     </div>
     <div>
-      <a href="office-suite.html" style="color:#fff; text-decoration:none; font-weight:600; background:rgba(255,255,255,0.15); padding:6px 12px; border-radius:4px;">Dashboard</a>
+      <a href="office-suite.html">Dashboard</a>
     </div>
   </header>
 
@@ -368,7 +29,7 @@
     <div class="ribbon-tabs">
       <button class="ribbon-tab active">Home</button>
       <button class="ribbon-tab" id="btnNewSlide">➕ New Slide</button>
-      <button class="ribbon-tab" id="btnPresent" style="color:#c43e1c; font-weight:bold;">▶️ Present Slides</button>
+      <button class="ribbon-tab" id="btnPresent">▶️ Present Slides</button>
     </div>
 
     <div class="ribbon-toolbar">
@@ -379,11 +40,11 @@
 
       <!-- Watermark overlay and comments controls -->
       <div class="ribbon-group">
-        <button class="ribbon-btn" id="btnAddComment" style="color:#c43e1c;">💬 New Comment</button>
+        <button class="ribbon-btn" id="btnAddComment">💬 New Comment</button>
         <button class="ribbon-btn" id="btnTrackChanges">Toggle Review Mode (OFF)</button>
-        <label style="font-size:0.75rem; color:#4b5563; display:flex; align-items:center; gap:6px; margin-left:10px; cursor:pointer;">
+        <label>
           <input type="checkbox" id="chkWatermark" /> Watermark:
-          <input type="text" id="watermarkText" value="INTERNAL" style="width:90px; padding:2px; border:1px solid #ccc; font-size:0.7rem;" />
+          <input type="text" id="watermarkText" value="INTERNAL" />
         </label>
       </div>
     </div>
@@ -399,7 +60,7 @@
 
     <!-- Center Editor Canvas -->
     <div class="slides-center-pane">
-      <div class="watermark-overlay" id="watermarkOverlay" style="display:none;">INTERNAL</div>
+      <div class="watermark-overlay" id="watermarkOverlay">INTERNAL</div>
       <div class="slide-canvas" id="slideCanvas" contenteditable="true">
         <!-- Slide content loaded here -->
       </div>
@@ -426,7 +87,7 @@
     <div class="presenter-controls">
       <button class="presenter-btn" id="btnPresPrev">◀ Prev</button>
       <button class="presenter-btn" id="btnPresNext">Next ▶</button>
-      <button class="presenter-btn" style="background:#4b5563;" id="btnExitPresenter">Exit Presentation</button>
+      <button class="presenter-btn" id="btnExitPresenter">Exit Presentation</button>
     </div>
   </div>
 
@@ -503,7 +164,7 @@
       slideDeck.forEach((slide, idx) => {
         const thumb = document.createElement("div");
         thumb.className = `slide-thumb ${idx === activeSlideIndex ? 'active' : ''}`;
-        thumb.innerHTML = `<strong>Slide ${idx + 1}</strong><br><span style="font-size:0.6rem;">${slide.title}</span>`;
+        thumb.innerHTML = `<strong>Slide ${idx + 1}</strong><br><span>${slide.title}</span>`;
         thumb.addEventListener("click", () => {
           activeSlideIndex = idx;
           renderDeck();
@@ -517,8 +178,8 @@
       const slide = slideDeck[activeSlideIndex];
       const canvas = document.getElementById("slideCanvas");
       canvas.innerHTML = `
-        <h2 style="font-size: 2rem; color: #c43e1c; margin-bottom: 10px;">${slide.title}</h2>
-        <p style="font-size: 1.2rem; color: #4b5563;">${slide.subtitle}</p>
+        <h2>${slide.title}</h2>
+        <p>${slide.subtitle}</p>
       `;
     }
 
@@ -534,7 +195,7 @@
         // Update thumbnail listing real time
         const thumbs = document.querySelectorAll(".slide-thumb");
         if (thumbs[activeSlideIndex]) {
-          thumbs[activeSlideIndex].innerHTML = `<strong>Slide ${activeSlideIndex + 1}</strong><br><span style="font-size:0.6rem;">${slideDeck[activeSlideIndex].title}</span>`;
+          thumbs[activeSlideIndex].innerHTML = `<strong>Slide ${activeSlideIndex + 1}</strong><br><span>${slideDeck[activeSlideIndex].title}</span>`;
         }
         
         if (isTrackChanges) {
@@ -580,8 +241,8 @@
     function renderPresenterSlide() {
       const slide = slideDeck[activePresIndex];
       presSlideArea.innerHTML = `
-        <h2 style="font-size: 3.5rem; color: #c43e1c; margin-bottom: 20px;">${slide.title}</h2>
-        <p style="font-size: 2rem; color: #4b5563;">${slide.subtitle}</p>
+        <h2>${slide.title}</h2>
+        <p>${slide.subtitle}</p>
       `;
     }
 
@@ -665,7 +326,7 @@
               <span><strong>${c.user}</strong></span>
               <span>${c.time}</span>
             </div>
-            <div style="color: #374151; margin-top:4px;">${c.text}</div>
+            <div>${c.text}</div>
           `;
           content.appendChild(div);
         });

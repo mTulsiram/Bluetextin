@@ -1,91 +1,27 @@
-/* =========================================================
-   CRITICAL CSS
-   Loads first for fast LCP and mobile-first rendering
-========================================================= */
-
-.skip-link {
-	position: absolute;
-	left: -10000px;
-	top: 0;
-}
-
-.skip-link:focus {
-	left: 16px;
-	top: 12px;
-	background: var(--accent-primary);
-	color: #fff;
-	padding: 8px 12px;
-	border-radius: var(--radius-sm);
-	z-index: 999;
-}
-
-.site-shell {
-	width: min(1120px, calc(100% - 1.2rem));
-	margin: 0.9rem auto 1.2rem;
-}
-
-.hero {
-	background:
-		linear-gradient(145deg, #0056d2 0%, #003d99 100%),
-		linear-gradient(35deg, rgba(24, 160, 182, 0.24) 0%, transparent 60%);
-	color: #fff;
-	border-radius: var(--radius-lg);
-	padding: clamp(1.2rem, 1.6vw + 0.9rem, 2.4rem);
-	box-shadow: var(--shadow-hover);
-	text-align: left;
-}
-
-.hero__badge {
-	display: inline-flex;
-	align-items: center;
-	min-height: 32px;
-	background: rgba(255, 255, 255, 0.18);
-	border: 1px solid rgba(255, 255, 255, 0.34);
-	border-radius: 999px;
-	padding: 0.35rem 0.8rem;
-	font-size: 0.8rem;
-	letter-spacing: 0.02em;
-	margin-bottom: 1rem;
-}
-
-.hero__title {
+html,
+body {
 	margin: 0;
-	font-size: clamp(1.95rem, 4vw, 3.2rem);
-	line-height: 1.06;
-	color: #fff;
+	padding: 0;
+	background: var(--bg-canvas);
+	color: var(--text-primary);
+	font-family: var(--font-main);
 }
 
-.hero__subtitle {
-	margin: 0.8rem 0 1.1rem;
-	max-width: 62ch;
-	font-size: clamp(1rem, 0.35vw + 0.95rem, 1.15rem);
-	color: rgba(255, 255, 255, 0.92);
-}
-
-.search {
-	max-width: 720px;
-}
-
-.search__input {
+header,
+main,
+footer {
 	width: 100%;
-	padding: 14px 16px;
-	font-size: 1rem;
-	border-radius: 12px;
-	border: none;
-	outline: none;
-	margin-top: 2px;
 }
 
-@media (min-width: 801px) {
-	.site-shell {
-		width: min(1120px, calc(100% - 2rem));
-		margin: 1.8rem auto;
-	}
+.container {
+	width: min(1120px, calc(100% - 2rem));
+	margin-inline: auto;
 }
 
-@media (prefers-reduced-motion: reduce) {
-	* {
-		animation: none !important;
-		transition: none !important;
-	}
+.btn,
+input,
+select,
+textarea {
+	min-height: 44px;
 }
+

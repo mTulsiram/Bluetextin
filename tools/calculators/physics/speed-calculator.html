@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Speed Calculator | Bluetext.in</title>
   <meta name="description" content="Calculate speed, distance, or time given the other two values.">
-  <link rel="stylesheet" href="../../../assets/css/main.css">
+  
 </head>
 <body>
   <div id="site-header"></div>
@@ -16,13 +17,13 @@
 
     <section class="panel">
       <form id="speed-form" class="tool-form" novalidate>
-        <p style="color:var(--text-soft);font-size:0.9rem;margin-top:0;">Leave one field empty — it will be calculated.</p>
+        <p>Leave one field empty — it will be calculated.</p>
         <div class="tool-grid-2">
           <label>
             Speed
-            <div style="display:flex;gap:0.5rem;">
-              <input id="speed-val" type="number" min="0" step="any" placeholder="e.g. 60" style="flex:1;">
-              <select id="speed-unit" style="width:80px;">
+            <div>
+              <input id="speed-val" type="number" min="0" step="any" placeholder="e.g. 60">
+              <select id="speed-unit">
                 <option value="km/h">km/h</option>
                 <option value="m/s">m/s</option>
                 <option value="mph">mph</option>
@@ -31,9 +32,9 @@
           </label>
           <label>
             Distance
-            <div style="display:flex;gap:0.5rem;">
-              <input id="dist-val" type="number" min="0" step="any" placeholder="e.g. 120" style="flex:1;">
-              <select id="dist-unit" style="width:80px;">
+            <div>
+              <input id="dist-val" type="number" min="0" step="any" placeholder="e.g. 120">
+              <select id="dist-unit">
                 <option value="km">km</option>
                 <option value="m">m</option>
                 <option value="mi">mi</option>
@@ -43,10 +44,10 @@
         </div>
         <label>
           Time (hours : minutes : seconds)
-          <div style="display:flex;gap:0.5rem;">
-            <input id="time-h" type="number" min="0" step="1" placeholder="h" style="flex:1;">
-            <input id="time-m" type="number" min="0" max="59" step="1" placeholder="min" style="flex:1;">
-            <input id="time-s" type="number" min="0" max="59" step="1" placeholder="sec" style="flex:1;">
+          <div>
+            <input id="time-h" type="number" min="0" step="1" placeholder="h">
+            <input id="time-m" type="number" min="0" max="59" step="1" placeholder="min">
+            <input id="time-s" type="number" min="0" max="59" step="1" placeholder="sec">
           </div>
         </label>
         <div class="tool-actions">
@@ -57,8 +58,8 @@
     </section>
 
     <section class="tool-output" aria-live="polite">
-      <p id="speed-error" style="color:#e11d48;margin:0 0 0.5rem;"></p>
-      <p id="speed-result" style="font-size:1.15rem;font-weight:700;margin:0;"></p>
+      <p id="speed-error"></p>
+      <p id="speed-result"></p>
     </section>
   </main>
   <div id="site-footer"></div>

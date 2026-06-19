@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sentence Counter | Bluetext.in</title>
   <meta name="description" content="Count sentences, words, characters, and estimate reading time for any text.">
-  <link rel="stylesheet" href="../../../assets/css/main.css">
+  
 </head>
 <body>
   <div id="site-header"></div>
@@ -17,12 +18,12 @@
     <section class="panel">
       <div class="tool-form">
         <label class="search__label" for="text-input">Your text</label>
-        <textarea id="text-input" rows="10" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;" placeholder="Type or paste text here..."></textarea>
+        <textarea id="text-input" rows="10" placeholder="Type or paste text here..."></textarea>
       </div>
     </section>
 
     <section class="tool-output" aria-live="polite">
-      <div class="tool-grid-2" style="gap:0.6rem;">
+      <div class="tool-grid-2">
         <div class="card"><h3 id="stat-sentences">0</h3><p>Sentences</p></div>
         <div class="card"><h3 id="stat-words">0</h3><p>Words</p></div>
         <div class="card"><h3 id="stat-chars">0</h3><p>Characters</p></div>

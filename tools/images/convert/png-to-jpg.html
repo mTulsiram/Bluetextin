@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PNG to JPG Converter | Bluetext.in</title>
   <meta name="description" content="Convert PNG images to JPG format instantly in your browser. Control quality and background color.">
-  <link rel="stylesheet" href="../../../assets/css/main.css">
+  
 </head>
 <body>
   <div id="site-header"></div>
@@ -19,7 +20,7 @@
         <label>Select PNG image<input id="img-file" type="file" accept="image/png"></label>
         <div class="tool-grid-2">
           <label>Quality (1–100)<input id="quality" type="number" min="1" max="100" value="92" step="1"></label>
-          <label>Background color <small>(for transparency)</small><input id="bg-color" type="color" value="#ffffff" style="height:2.5rem;padding:0.2rem;"></label>
+          <label>Background color <small>(for transparency)</small><input id="bg-color" type="color" value="#ffffff"></label>
         </div>
         <div class="tool-actions">
           <button id="btn-download" class="btn btn--primary" type="submit" disabled>Convert &amp; Download JPG</button>
@@ -29,7 +30,7 @@
 
     <section class="tool-output" aria-live="polite">
       <p id="status">Upload a PNG to begin.</p>
-      <img id="preview" alt="Preview" style="max-width:100%;max-height:320px;border-radius:var(--radius-md);margin-top:0.75rem;display:none;">
+      <img id="preview" alt="Preview">
     </section>
   </main>
   <div id="site-footer"></div>

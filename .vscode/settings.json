@@ -19,5 +19,11 @@
     "ur": true,
     "vi": true,
     "zh-CN": true
+  },
+  "chat.tools.terminal.autoApprove": {
+    "/^python -m http\\.server 3000 --bind 127\\.0\\.0\\.1$/": {
+      "approve": true,
+      "matchCommandLine": true
+    }
   }
 }

@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Decimal to Binary Converter | Bluetext.in</title>
   <meta name="description" content="Convert decimal numbers to binary, octal, and hexadecimal instantly.">
-  <link rel="stylesheet" href="../../../assets/css/main.css">
+  
 </head>
 <body>
   <div id="site-header"></div>
@@ -39,8 +40,8 @@
     </section>
 
     <section class="tool-output" aria-live="polite">
-      <p id="base-error" style="color:#e11d48;margin:0 0 0.5rem;"></p>
-      <div class="tool-grid-2" id="base-results" style="gap:0.6rem;"></div>
+      <p id="base-error"></p>
+      <div class="tool-grid-2" id="base-results"></div>
     </section>
   </main>
   <div id="site-footer"></div>
@@ -73,7 +74,7 @@
       BASES.forEach(({ label, base }) => {
         const card = document.createElement("div");
         card.className = "card";
-        card.innerHTML = `<p style="font-size:0.8rem;color:var(--text-soft);margin:0 0 0.25rem;">${label}</p><p class="mono" style="font-size:1.05rem;font-weight:700;word-break:break-all;margin:0;">${decimal.toString(base).toUpperCase()}</p>`;
+        card.innerHTML = `<p>${label}</p><p class="mono">${decimal.toString(base).toUpperCase()}</p>`;
         resultsEl.appendChild(card);
       });
     });

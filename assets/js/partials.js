@@ -61,10 +61,7 @@
 
   function withLocale(pathname, locale) {
     const base = stripLocaleFromPath(pathname);
-    if (!isLocaleRoutablePath(base)) {
-      return base;
-    }
-    return base === "/" ? `/${locale}/` : `/${locale}${base}`;
+    return base;
   }
 
   function upsertHeadLink({ rel, hreflang, href }) {
@@ -93,26 +90,24 @@
       return;
     }
 
-    const canonicalPath = withLocale(basePath, locale);
-    upsertHeadLink({ rel: "canonical", href: `${origin}${canonicalPath}` });
+    upsertHeadLink({ rel: "canonical", href: `${origin}${basePath}` });
 
     SUPPORTED_LOCALES.forEach((supportedLocale) => {
-      const localizedPath = withLocale(basePath, supportedLocale);
       upsertHeadLink({
         rel: "alternate",
         hreflang: supportedLocale,
-        href: `${origin}${localizedPath}`
+        href: `${origin}${basePath}?lang=${encodeURIComponent(supportedLocale)}`
       });
     });
 
-    const defaultPath = withLocale(basePath, "en");
-    upsertHeadLink({ rel: "alternate", hreflang: "x-default", href: `${origin}${defaultPath}` });
+    upsertHeadLink({ rel: "alternate", hreflang: "x-default", href: `${origin}${basePath}` });
   }
 
   function getInitialLocale() {
-    const fromPath = detectLocaleFromPath(window.location.pathname);
-    if (fromPath) {
-      return fromPath;
+    const params = new URLSearchParams(window.location.search);
+    const fromQuery = params.get("lang");
+    if (fromQuery && SUPPORTED_LOCALES.includes(fromQuery)) {
+      return fromQuery;
     }
 
     const stored = localStorage.getItem("lang") || "en";
@@ -175,8 +170,41 @@
     document.documentElement.setAttribute("data-consent-ads", next.ads ? "granted" : "denied");
     document.documentElement.setAttribute("data-consent-preferences", next.preferences ? "granted" : "denied");
     window.btConsent = next;
+    updateComplianceRuntime(next);
     window.dispatchEvent(new CustomEvent("bt:consent-updated", { detail: next }));
     return next;
+  }
+
+  function updateComplianceRuntime(consent) {
+    const consentSummary = document.getElementById("consentStatusText");
+    const consentChip = document.getElementById("securityConsent");
+    const transportChip = document.getElementById("securityTransport");
+
+    const safeTransport =
+      window.location.protocol === "https:" ||
+      window.location.hostname === "localhost" ||
+      window.location.hostname === "127.0.0.1";
+
+    if (transportChip) {
+      transportChip.classList.toggle("ok", safeTransport);
+      transportChip.classList.toggle("warn", !safeTransport);
+      transportChip.textContent = safeTransport ? "Transport: secure" : "Transport: not secure";
+    }
+
+    if (consentChip) {
+      const hasOptional = !!(consent && (consent.analytics || consent.ads || consent.preferences));
+      consentChip.classList.toggle("ok", hasOptional);
+      consentChip.classList.toggle("warn", !hasOptional);
+      consentChip.textContent = hasOptional ? "Consent: customized" : "Consent: strict mode";
+    }
+
+    if (consentSummary) {
+      if (!consent || !consent.updatedAt) {
+        consentSummary.textContent = "Privacy preferences are not set.";
+      } else {
+        consentSummary.textContent = `Privacy preferences updated on ${new Date(consent.updatedAt).toLocaleString()}.`;
+      }
+    }
   }
 
   function buildConsentBanner(locale) {
@@ -188,8 +216,8 @@
     banner.setAttribute("aria-describedby", "consentBannerDescription");
     banner.setAttribute("aria-live", "polite");
     banner.innerHTML = `
-      <h2 id="consentBannerTitle" style="margin:0;font-size:1rem;">Privacy Choices</h2>
-      <p id="consentBannerDescription" class="text-muted" style="margin:0;">
+      <h2 id="consentBannerTitle">Privacy Choices</h2>
+      <p id="consentBannerDescription" class="text-muted">
         We use essential storage for language/theme and optional analytics/ads cookies only with your consent.
         Review details in <a href="${withLocale("/nav/privacy.html", locale)}">Privacy Policy</a> and <a href="${withLocale("/nav/compliance.html", locale)}">Compliance Center</a>.
       </p>
@@ -210,10 +238,11 @@
     modal.setAttribute("aria-modal", "true");
     modal.setAttribute("aria-labelledby", "consentModalTitle");
     modal.setAttribute("aria-describedby", "consentModalDescription");
+    modal.setAttribute("aria-hidden", "true");
     modal.innerHTML = `
       <div class="consent-modal__panel">
-        <h2 id="consentModalTitle" style="margin:0;font-size:1.1rem;">Privacy Settings</h2>
-        <p id="consentModalDescription" class="text-muted" style="margin:0;">Choose which optional data processing categories you allow.</p>
+        <h2 id="consentModalTitle">Privacy Settings</h2>
+        <p id="consentModalDescription" class="text-muted">Choose which optional data processing categories you allow.</p>
 
         <label class="consent-option">
           <span><strong>Strictly necessary</strong><br><small>Required for core site functionality.</small></span>
@@ -248,6 +277,8 @@
     const existingConsent = readConsent();
     if (existingConsent) {
       writeConsent(existingConsent);
+    } else {
+      updateComplianceRuntime(null);
     }
 
     const modal = buildConsentModal();
@@ -259,9 +290,13 @@
       modal.querySelector("#consentAds").checked = !!current.ads;
       modal.querySelector("#consentPreferences").checked = !!current.preferences;
       modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
     };
 
-    const closeModal = () => modal.classList.remove("is-open");
+    const closeModal = () => {
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+    };
 
     modal.querySelector("#consentCancel").addEventListener("click", closeModal);
     modal.addEventListener("click", (event) => {
@@ -306,6 +341,30 @@
     });
 
     banner.querySelector("#consentCustomize").addEventListener("click", openModal);
+  }
+
+  function ensureSkipLink() {
+    if (document.querySelector(".skip-link")) {
+      return;
+    }
+
+    const main = document.querySelector("main");
+    if (main && !main.id) {
+      main.id = "main-content";
+    }
+
+    const targetId = main ? main.id : "main-content";
+    const anchor = document.createElement("a");
+    anchor.className = "skip-link";
+    anchor.setAttribute("href", `#${targetId}`);
+    anchor.textContent = "Skip to content";
+
+    const host = document.querySelector("#site-header, #header-placeholder") || document.body.firstElementChild;
+    if (host && host.parentNode) {
+      host.parentNode.insertBefore(anchor, host.nextSibling);
+    } else {
+      document.body.prepend(anchor);
+    }
   }
 
   async function loadToolsCatalog(locale) {
@@ -686,16 +745,19 @@
       selector.value = locale;
     }
 
-    selector.addEventListener("change", () => {
+    selector.addEventListener("change", async () => {
       const nextLocale = selector.value;
       if (!SUPPORTED_LOCALES.includes(nextLocale)) {
         return;
       }
 
       localStorage.setItem("lang", nextLocale);
-      const nextPath = withLocale(window.location.pathname, nextLocale);
-      const target = `${nextPath}${window.location.search}${window.location.hash}`;
-      window.location.href = target;
+
+      const dict = await loadDictionary(nextLocale);
+      applyTranslations(dict);
+      setRuntimeI18n(nextLocale, dict);
+      applySeoLanguageLinks(nextLocale);
+      updateComplianceRuntime(readConsent());
     });
   }
 
@@ -704,8 +766,10 @@
     localStorage.setItem("lang", locale);
     document.documentElement.lang = locale;
 
-    if (!detectLocaleFromPath(window.location.pathname)) {
-      const normalized = `${withLocale(window.location.pathname, locale)}${window.location.search}${window.location.hash}`;
+    const localizedPath = detectLocaleFromPath(window.location.pathname);
+    if (localizedPath) {
+      const normalizedPath = stripLocaleFromPath(window.location.pathname);
+      const normalized = `${normalizedPath}${window.location.search}${window.location.hash}`;
       window.history.replaceState({}, "", normalized);
     }
 
@@ -729,6 +793,7 @@
 
     await setupHeaderBehavior();
     setupLanguageSwitcher(locale);
+    ensureSkipLink();
     setupConsentManager(locale);
   }
 

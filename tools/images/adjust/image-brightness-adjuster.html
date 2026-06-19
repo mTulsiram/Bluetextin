@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Image Brightness Adjuster | Bluetext.in</title>
   <meta name="description" content="Adjust image brightness and contrast with a live preview. Download result as PNG.">
-  <link rel="stylesheet" href="../../../assets/css/main.css">
+  
 </head>
 <body>
   <div id="site-header"></div>
@@ -17,25 +18,25 @@
     <section class="panel">
       <div class="tool-form">
         <label>Upload image<input id="img-file" type="file" accept="image/*"></label>
-        <label style="margin-top:0.75rem;">
+        <label>
           Brightness: <span id="brightness-val">100</span>%
-          <input id="brightness" type="range" min="0" max="300" value="100" step="1" style="width:100%;margin-top:0.35rem;">
+          <input id="brightness" type="range" min="0" max="300" value="100" step="1">
         </label>
-        <label style="margin-top:0.5rem;">
+        <label>
           Contrast: <span id="contrast-val">100</span>%
-          <input id="contrast" type="range" min="0" max="300" value="100" step="1" style="width:100%;margin-top:0.35rem;">
+          <input id="contrast" type="range" min="0" max="300" value="100" step="1">
         </label>
       </div>
-      <div class="tool-actions" style="margin-top:0.75rem;">
+      <div class="tool-actions">
         <button id="btn-apply" class="btn btn--primary" type="button" disabled>Apply &amp; Preview</button>
-        <button id="btn-download" class="btn btn--ghost" type="button" style="display:none;">Download PNG</button>
+        <button id="btn-download" class="btn btn--ghost" type="button">Download PNG</button>
         <button id="btn-reset" class="btn btn--ghost" type="button">Reset</button>
       </div>
     </section>
 
     <section class="tool-output" aria-live="polite">
       <p id="status">Upload an image to begin.</p>
-      <canvas id="canvas" style="max-width:100%;border-radius:var(--radius-md);margin-top:0.75rem;display:none;"></canvas>
+      <canvas id="canvas"></canvas>
     </section>
   </main>
   <div id="site-footer"></div>

@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PDF Viewer | Bluetext.in</title>
   <meta name="description" content="View any PDF file directly in your browser without installing software.">
-  <link rel="stylesheet" href="../../../assets/css/main.css">
+  
 </head>
 <body>
   <div id="site-header"></div>
@@ -22,8 +23,8 @@
 
     <section class="tool-output" aria-live="polite">
       <p id="pdf-status">Upload a PDF to view it.</p>
-      <div id="pdf-container" style="margin-top:0.75rem;border:1px solid var(--stroke);border-radius:var(--radius-sm);overflow:hidden;display:none;">
-        <iframe id="pdf-frame" title="PDF Viewer" style="width:100%;height:80vh;border:none;"></iframe>
+      <div id="pdf-container">
+        <iframe id="pdf-frame" title="PDF Viewer"></iframe>
       </div>
     </section>
   </main>

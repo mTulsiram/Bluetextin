@@ -1,3 +1,7 @@
+/en/assets/* /assets/:splat 200
+/en/tools/* /tools/:splat 200
+/en/components/* /components/:splat 200
+
 /zh-CN/*   /:splat   200
 /hi/*      /:splat   200
 /es/*      /:splat   200

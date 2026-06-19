@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Keyword Density Checker | Bluetext.in</title>
   <meta name="description" content="Analyse keyword frequency and density in any text or webpage content.">
-  <link rel="stylesheet" href="../../../assets/css/main.css">
+  
 </head>
 <body>
   <div id="site-header"></div>
@@ -17,20 +18,20 @@
     <section class="panel">
       <div class="tool-form">
         <label class="search__label" for="content-input">Page content</label>
-        <textarea id="content-input" rows="10" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;" placeholder="Paste your article or page text here..."></textarea>
-        <div class="tool-grid-2" style="margin-top:0.6rem;">
+        <textarea id="content-input" rows="10" placeholder="Paste your article or page text here..."></textarea>
+        <div class="tool-grid-2">
           <label>Min word length<input id="min-len" type="number" min="1" max="20" value="3" step="1"></label>
           <label>Top results<input id="top-n" type="number" min="5" max="100" value="20" step="5"></label>
         </div>
       </div>
-      <div class="tool-actions" style="margin-top:0.75rem;">
+      <div class="tool-actions">
         <button id="btn-analyse" class="btn btn--primary" type="button">Analyse</button>
         <button id="btn-clear" class="btn btn--ghost" type="button">Clear</button>
       </div>
     </section>
 
     <section class="tool-output" aria-live="polite">
-      <p id="kd-status" style="margin:0 0 0.75rem;font-weight:600;"></p>
+      <p id="kd-status"></p>
       <div id="kd-results"></div>
     </section>
   </main>
@@ -60,11 +61,11 @@
 
       const table = document.createElement("table");
       table.style.cssText = "width:100%;border-collapse:collapse;font-size:0.9rem;";
-      table.innerHTML = `<thead><tr style="text-align:left;border-bottom:2px solid var(--stroke);">
-        <th style="padding:0.4rem 0.6rem;">Keyword</th>
-        <th style="padding:0.4rem 0.6rem;">Count</th>
-        <th style="padding:0.4rem 0.6rem;">Density</th>
-        <th style="padding:0.4rem 0.6rem;width:200px;">Bar</th>
+      table.innerHTML = `<thead><tr>
+        <th>Keyword</th>
+        <th>Count</th>
+        <th>Density</th>
+        <th>Bar</th>
       </tr></thead>`;
       const tbody = document.createElement("tbody");
       const maxCount = sorted[0]?.[1] || 1;
@@ -75,12 +76,12 @@
         const tr = document.createElement("tr");
         tr.style.borderBottom = "1px solid var(--stroke)";
         tr.innerHTML = `
-          <td style="padding:0.4rem 0.6rem;font-weight:600;">${word}</td>
-          <td style="padding:0.4rem 0.6rem;">${count}</td>
-          <td style="padding:0.4rem 0.6rem;">${density}%</td>
-          <td style="padding:0.4rem 0.6rem;">
-            <div style="background:var(--stroke);border-radius:999px;height:8px;overflow:hidden;">
-              <div style="width:${barW}%;height:100%;background:var(--accent);border-radius:999px;"></div>
+          <td>${word}</td>
+          <td>${count}</td>
+          <td>${density}%</td>
+          <td>
+            <div>
+              <div></div>
             </div>
           </td>`;
         tbody.appendChild(tr);

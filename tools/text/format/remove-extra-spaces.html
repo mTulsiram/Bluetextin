@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Remove Extra Spaces | Bluetext.in</title>
   <meta name="description" content="Remove extra whitespace, duplicate spaces, leading/trailing spaces, and blank lines from text.">
-  <link rel="stylesheet" href="../../../assets/css/main.css">
+  
 </head>
 <body>
   <div id="site-header"></div>
@@ -17,13 +18,13 @@
     <section class="panel">
       <div class="tool-form">
         <label class="search__label" for="text-input">Input text</label>
-        <textarea id="text-input" rows="8" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;" placeholder="Paste text with extra spaces here..."></textarea>
+        <textarea id="text-input" rows="8" placeholder="Paste text with extra spaces here..."></textarea>
       </div>
-      <div style="display:flex;flex-direction:column;gap:0.4rem;margin:0.75rem 0;">
-        <label style="display:flex;align-items:center;gap:0.5rem;"><input type="checkbox" id="opt-extra-spaces" checked> Remove duplicate spaces</label>
-        <label style="display:flex;align-items:center;gap:0.5rem;"><input type="checkbox" id="opt-trim" checked> Trim leading/trailing spaces</label>
-        <label style="display:flex;align-items:center;gap:0.5rem;"><input type="checkbox" id="opt-blank-lines"> Remove blank lines</label>
-        <label style="display:flex;align-items:center;gap:0.5rem;"><input type="checkbox" id="opt-tabs"> Replace tabs with single space</label>
+      <div>
+        <label><input type="checkbox" id="opt-extra-spaces" checked> Remove duplicate spaces</label>
+        <label><input type="checkbox" id="opt-trim" checked> Trim leading/trailing spaces</label>
+        <label><input type="checkbox" id="opt-blank-lines"> Remove blank lines</label>
+        <label><input type="checkbox" id="opt-tabs"> Replace tabs with single space</label>
       </div>
       <div class="tool-actions">
         <button id="btn-clean" class="btn btn--primary" type="button">Clean Text</button>
@@ -33,8 +34,8 @@
     </section>
 
     <section class="tool-output" aria-live="polite">
-      <p id="status" style="margin:0 0 0.6rem;font-weight:600;"></p>
-      <textarea id="text-output" rows="8" readonly style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;background:var(--surface-soft);" placeholder="Cleaned text will appear here..."></textarea>
+      <p id="status"></p>
+      <textarea id="text-output" rows="8" readonly placeholder="Cleaned text will appear here..."></textarea>
     </section>
   </main>
   <div id="site-footer"></div>

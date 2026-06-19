@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Title Case Converter | Bluetext.in</title>
   <meta name="description" content="Convert text to Title Case instantly. Also supports lowercase, UPPERCASE, camelCase, and more.">
-  <link rel="stylesheet" href="../../../assets/css/main.css">
+  
 </head>
 <body>
   <div id="site-header"></div>
@@ -17,9 +18,9 @@
     <section class="panel">
       <div class="tool-form">
         <label class="search__label" for="case-input">Your text</label>
-        <textarea id="case-input" rows="8" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;" placeholder="Type or paste text here..."></textarea>
+        <textarea id="case-input" rows="8" placeholder="Type or paste text here..."></textarea>
       </div>
-      <div class="tool-actions" style="margin-top:0.75rem;flex-wrap:wrap;">
+      <div class="tool-actions">
         <button data-case="title" class="btn btn--primary" type="button">Title Case</button>
         <button data-case="lower" class="btn btn--ghost" type="button">lowercase</button>
         <button data-case="upper" class="btn btn--ghost" type="button">UPPERCASE</button>
@@ -31,8 +32,8 @@
     </section>
 
     <section class="tool-output" aria-live="polite">
-      <p id="case-status" style="margin:0 0 0.6rem;font-weight:600;"></p>
-      <textarea id="case-output" rows="8" readonly style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;background:var(--surface-soft);" placeholder="Output..."></textarea>
+      <p id="case-status"></p>
+      <textarea id="case-output" rows="8" readonly placeholder="Output..."></textarea>
     </section>
   </main>
   <div id="site-footer"></div>

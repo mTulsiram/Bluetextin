@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Split PDF | Bluetext.in</title>
   <meta name="description" content="Split a PDF by page ranges or extract individual pages — runs entirely in your browser.">
-  <link rel="stylesheet" href="../../../assets/css/main.css">
-  <script src="https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.min.js"></script>
 </head>
 <body>
   <div id="site-header"></div>
@@ -18,9 +17,9 @@
     <section class="panel">
       <form id="split-form" class="tool-form" novalidate>
         <label>Upload PDF<input id="pdf-file" type="file" accept="application/pdf" required></label>
-        <p id="page-count" style="color:var(--text-soft);font-size:0.9rem;margin:0.25rem 0 0;"></p>
-        <label style="margin-top:0.75rem;">
-          Pages to extract <span style="color:#888;font-size:0.8rem;">(e.g. 1, 3-5, 7)</span>
+        <p id="page-count"></p>
+        <label>
+          Pages to extract <span>(e.g. 1, 3-5, 7)</span>
           <input id="page-range" type="text" placeholder="e.g. 1, 3-5, 7" required>
         </label>
         <div class="tool-actions">
@@ -45,6 +44,10 @@
     fileInput.addEventListener("change", async () => {
       const file = fileInput.files && fileInput.files[0];
       if (!file) return;
+      if (!window.PDFLib) {
+        statusEl.textContent = "In-house mode active: PDF split engine is not bundled yet.";
+        return;
+      }
       statusEl.textContent = "Reading PDF…";
       try {
         pdfBytes = await file.arrayBuffer();

@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Average Calculator | Bluetext.in</title>
   <meta name="description" content="Calculate mean, median, mode, range, and sum of a set of numbers.">
-  <link rel="stylesheet" href="../../../assets/css/main.css">
+  
 </head>
 <body>
   <div id="site-header"></div>
@@ -17,8 +18,8 @@
     <section class="panel">
       <form id="avg-form" class="tool-form" novalidate>
         <label>
-          Numbers <span style="color:#888;font-size:0.8rem;">(comma or space separated)</span>
-          <textarea id="num-input" rows="4" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;" placeholder="e.g. 4, 8, 15, 16, 23, 42"></textarea>
+          Numbers <span>(comma or space separated)</span>
+          <textarea id="num-input" rows="4" placeholder="e.g. 4, 8, 15, 16, 23, 42"></textarea>
         </label>
         <div class="tool-actions">
           <button class="btn btn--primary" type="submit">Calculate</button>
@@ -28,8 +29,8 @@
     </section>
 
     <section class="tool-output" aria-live="polite">
-      <p id="avg-error" style="color:#e11d48;margin:0 0 0.5rem;"></p>
-      <div class="tool-grid-2" id="avg-results" style="gap:0.6rem;"></div>
+      <p id="avg-error"></p>
+      <div class="tool-grid-2" id="avg-results"></div>
     </section>
   </main>
   <div id="site-footer"></div>
@@ -41,7 +42,7 @@
     function stat(label, value) {
       const card = document.createElement("div");
       card.className = "card";
-      card.innerHTML = `<p style="font-size:0.8rem;color:var(--text-soft);margin:0 0 0.25rem;">${label}</p><p style="font-size:1.1rem;font-weight:700;margin:0;">${value}</p>`;
+      card.innerHTML = `<p>${label}</p><p>${value}</p>`;
       return card;
     }
 

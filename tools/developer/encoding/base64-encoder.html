@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Base64 Encoder / Decoder | Bluetext.in</title>
   <meta name="description" content="Encode or decode text and files to/from Base64 instantly in browser.">
-  <link rel="stylesheet" href="../../../assets/css/main.css">
+  
 </head>
 <body>
   <div id="site-header"></div>
@@ -17,9 +18,9 @@
     <section class="panel">
       <div class="tool-form">
         <label class="search__label" for="b64-input">Input text</label>
-        <textarea id="b64-input" rows="8" class="mono" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;" placeholder="Enter plain text or Base64 string..."></textarea>
+        <textarea id="b64-input" rows="8" class="mono" placeholder="Enter plain text or Base64 string..."></textarea>
       </div>
-      <div class="tool-actions" style="margin-top:0.75rem;">
+      <div class="tool-actions">
         <button id="btn-encode" class="btn btn--primary" type="button">Encode to Base64</button>
         <button id="btn-decode" class="btn btn--ghost" type="button">Decode from Base64</button>
         <button id="btn-copy" class="btn btn--ghost" type="button">Copy Output</button>
@@ -28,8 +29,8 @@
     </section>
 
     <section class="tool-output" aria-live="polite">
-      <p id="b64-status" style="margin:0 0 0.6rem;font-weight:600;"></p>
-      <textarea id="b64-output" rows="8" class="mono" readonly style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;background:var(--surface-soft);" placeholder="Output will appear here..."></textarea>
+      <p id="b64-status"></p>
+      <textarea id="b64-output" rows="8" class="mono" readonly placeholder="Output will appear here..."></textarea>
     </section>
   </main>
   <div id="site-footer"></div>

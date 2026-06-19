@@ -2,268 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BlueWriter - Word Online Editor | Bluetext.in</title>
-  <link rel="stylesheet" href="/assets/css/main.css">
-  <style>
-    body {
-      background: #f3f4f6;
-      margin: 0;
-      font-family: "Segoe UI", Arial, sans-serif;
-    }
-    
-    /* Word Blue Header */
-    .word-header {
-      background: #107c41; /* Excel green, wait, Word is blue #2b579a or #185abd */
-      background: #185abd;
-      color: #ffffff;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      padding: 0 16px;
-      justify-content: space-between;
-      font-size: 0.9rem;
-    }
-
-    .word-header-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .word-app-icon {
-      font-size: 1.25rem;
-      font-weight: 800;
-    }
-
-    .word-doc-title-box {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .word-title-input {
-      background: none;
-      border: 1px solid transparent;
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.95rem;
-      padding: 2px 6px;
-      border-radius: 3px;
-      width: 200px;
-    }
-    .word-title-input:focus {
-      background: rgba(255,255,255,0.15);
-      border-color: #fff;
-      outline: none;
-    }
-
-    .save-badge {
-      font-size: 0.75rem;
-      color: #c7d2fe;
-    }
-
-    /* Word Office Ribbon */
-    .word-ribbon {
-      background: #ffffff;
-      border-bottom: 1px solid #d1d5db;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-
-    .ribbon-tabs {
-      display: flex;
-      background: #f3f4f6;
-      border-bottom: 1px solid #e5e7eb;
-      padding-left: 20px;
-    }
-
-    .ribbon-tab {
-      background: none;
-      border: none;
-      padding: 8px 16px;
-      font-size: 0.8rem;
-      color: #374151;
-      cursor: pointer;
-      font-weight: 500;
-    }
-    .ribbon-tab.active {
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-bottom-color: transparent;
-      color: #185abd;
-      font-weight: 600;
-    }
-
-    .ribbon-toolbar {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 8px 20px;
-      background: #ffffff;
-      flex-wrap: wrap;
-    }
-
-    .ribbon-group {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      border-right: 1px solid #e5e7eb;
-      padding-right: 12px;
-    }
-
-    .ribbon-group:last-child {
-      border: none;
-    }
-
-    .ribbon-select {
-      border: 1px solid #d1d5db;
-      background: #f9fafb;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 0.78rem;
-      outline: none;
-    }
-
-    .ribbon-btn {
-      background: none;
-      border: 1px solid transparent;
-      padding: 4px 8px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 0.85rem;
-      color: #374151;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .ribbon-btn:hover {
-      background: #f3f4f6;
-    }
-    .ribbon-btn.active {
-      background: #e0e7ff;
-      border-color: #a5b4fc;
-      color: #185abd;
-    }
-
-    /* Workspace Body */
-    .word-workspace {
-      display: flex;
-      height: calc(100vh - 120px);
-      overflow: hidden;
-    }
-
-    .word-center-pane {
-      flex-grow: 1;
-      background: #f3f4f6;
-      padding: 30px;
-      overflow-y: auto;
-      display: flex;
-      justify-content: center;
-      position: relative;
-    }
-
-    /* A4 sheet style */
-    .word-page-sheet {
-      width: 100%;
-      max-width: 800px;
-      min-height: 842px;
-      background: #ffffff;
-      color: #1a1a1a;
-      padding: 60px 80px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-      outline: none;
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-      line-height: 1.6;
-      border: 1px solid #e5e7eb;
-      border-radius: 2px;
-      box-sizing: border-box;
-    }
-
-    .watermark-overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4.5rem;
-      color: rgba(0,0,0,0.02);
-      transform: rotate(-30deg);
-      pointer-events: none;
-      font-weight: 900;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      z-index: 5;
-      user-select: none;
-    }
-
-    /* Right Sidebar comments & review */
-    .word-right-sidebar {
-      width: 280px;
-      background: #ffffff;
-      border-left: 1px solid #e5e7eb;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-
-    .sidebar-tabs {
-      display: flex;
-      border-bottom: 1px solid #e5e7eb;
-    }
-
-    .sidebar-tab {
-      flex: 1;
-      background: #f9fafb;
-      border: none;
-      padding: 10px;
-      font-size: 0.8rem;
-      cursor: pointer;
-      color: #4b5563;
-    }
-    .sidebar-tab.active {
-      background: #ffffff;
-      font-weight: 600;
-      border-bottom: 2px solid #185abd;
-      color: #185abd;
-    }
-
-    .sidebar-content {
-      padding: 16px;
-      overflow-y: auto;
-      flex-grow: 1;
-      font-size: 0.8rem;
-    }
-
-    .comment-card {
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
-      padding: 10px;
-      border-radius: 6px;
-      margin-bottom: 8px;
-    }
-
-    .comment-meta {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.72rem;
-      color: #6b7280;
-      margin-bottom: 4px;
-    }
-
-    .track-changes-item {
-      padding: 6px 8px;
-      border-left: 3px solid #10b981;
-      background: rgba(16, 185, 129, 0.05);
-      margin-bottom: 8px;
-      border-radius: 0 4px 4px 0;
-      font-size: 0.75rem;
-    }
-    .track-changes-item.deletion {
-      border-left-color: #ef4444;
-      background: rgba(239, 68, 68, 0.05);
-    }
-  </style>
+  
+  
 </head>
 <body>
 
@@ -277,7 +20,7 @@
       </div>
     </div>
     <div>
-      <a href="office-suite.html" style="color:#fff; text-decoration:none; font-weight:600; background:rgba(255,255,255,0.15); padding:6px 12px; border-radius:4px;">Dashboard</a>
+      <a href="office-suite.html">Dashboard</a>
     </div>
   </header>
 
@@ -285,7 +28,7 @@
   <div class="word-ribbon">
     <div class="ribbon-tabs">
       <button class="ribbon-tab active">Home</button>
-      <button class="ribbon-tab" id="btnSaveCopy" style="color:#185abd;">💾 Save Copy</button>
+      <button class="ribbon-tab" id="btnSaveCopy">💾 Save Copy</button>
       <button class="ribbon-tab" id="btnExportTXT">📥 Export TXT</button>
       <button class="ribbon-tab" id="btnExportHTML">📥 Export HTML</button>
       <button class="ribbon-tab" id="btnExportJSON">📥 Export JSON</button>
@@ -300,7 +43,7 @@
           <option value="Georgia">Georgia</option>
           <option value="Times New Roman">Times New Roman</option>
         </select>
-        <select class="ribbon-select" id="fontSizeSelect" style="width: 55px;">
+        <select class="ribbon-select" id="fontSizeSelect">
           <option value="12px">9</option>
           <option value="14px">10</option>
           <option value="16px" selected>11</option>
@@ -314,7 +57,7 @@
         <button class="ribbon-btn" id="btnBold" title="Bold"><b>B</b></button>
         <button class="ribbon-btn" id="btnItalic" title="Italic"><i>I</i></button>
         <button class="ribbon-btn" id="btnUnderline" title="Underline"><u>U</u></button>
-        <button class="ribbon-btn" id="btnStrike" style="text-decoration:line-through;" title="Strikethrough">ab</button>
+        <button class="ribbon-btn" id="btnStrike" title="Strikethrough">ab</button>
       </div>
 
       <!-- Alignment Groups -->
@@ -326,11 +69,11 @@
 
       <!-- Watermark overlay and comments controls -->
       <div class="ribbon-group">
-        <button class="ribbon-btn" id="btnAddComment" style="color:#185abd;">💬 New Comment</button>
+        <button class="ribbon-btn" id="btnAddComment">💬 New Comment</button>
         <button class="ribbon-btn" id="btnTrackChanges">Toggle Review Mode (OFF)</button>
-        <label style="font-size:0.75rem; color:#4b5563; display:flex; align-items:center; gap:6px; margin-left:10px; cursor:pointer;">
+        <label>
           <input type="checkbox" id="chkWatermark" /> Watermark:
-          <input type="text" id="watermarkText" value="CONFIDENTIAL" style="width:90px; padding:2px; border:1px solid #ccc; font-size:0.7rem;" />
+          <input type="text" id="watermarkText" value="CONFIDENTIAL" />
         </label>
       </div>
     </div>
@@ -340,7 +83,7 @@
   <div class="word-workspace">
     <!-- Center canvas sheet -->
     <div class="word-center-pane">
-      <div class="watermark-overlay" id="watermarkOverlay" style="display:none;">CONFIDENTIAL</div>
+      <div class="watermark-overlay" id="watermarkOverlay">CONFIDENTIAL</div>
       <div class="word-page-sheet" id="editorArea" contenteditable="true">
         <!-- Loaded dynamically -->
       </div>
@@ -389,14 +132,14 @@
       document.getElementById("docTitleInput").value = activeDoc.name;
       
       const defaultContent = `
-        <p style="text-align: center;"><strong style="font-size: 1.8rem; line-height: 1.2;">GROWTH BUSINESS PROPOSAL</strong></p>
-        <hr style="border: 0; border-top: 1px solid #1a1a1a; margin: 20px 0;" />
+        <p><strong>GROWTH BUSINESS PROPOSAL</strong></p>
+        <hr />
         <p><strong>This proposal outlines a streamlined solution designed to address key business challenges and drive growth.</strong> Our approach leverages industry expertise, innovative strategies, and data-driven insights to create a tailored plan that delivers measurable results.</p>
         
-        <p style="margin-top:30px;"><strong style="font-size:1.2rem;">PROBLEM STATEMENT</strong></p>
+        <p><strong>PROBLEM STATEMENT</strong></p>
         <p>Businesses today face challenges such as inefficiencies, rising costs, and evolving market demands. Addressing these issues requires a well-structured approach.</p>
         
-        <p style="margin-top:30px;"><strong style="font-size:1.2rem;">SOLUTION SUMMARY</strong></p>
+        <p><strong>SOLUTION SUMMARY</strong></p>
         <p>Our solution is designed to improve overall performance. Using best practices, we help businesses optimize workflows and drive innovation.</p>
       `;
 
@@ -598,7 +341,7 @@
               <span><strong>${c.user}</strong></span>
               <span>${c.time}</span>
             </div>
-            <div style="color: #374151; margin-top:4px;">${c.text}</div>
+            <div>${c.text}</div>
           `;
           content.appendChild(div);
         });
@@ -609,7 +352,7 @@
           div.style.cursor = "pointer";
           div.title = "Click to restore this version snapshot";
           div.setAttribute("onclick", `restoreVersionSnapshot(${idx})`);
-          div.innerHTML = `<strong>${r.time}</strong>: ${r.text} <span style="font-size:0.7rem; color:#185abd; float:right;">(Restore)</span>`;
+          div.innerHTML = `<strong>${r.time}</strong>: ${r.text} <span>(Restore)</span>`;
           content.appendChild(div);
         });
       }

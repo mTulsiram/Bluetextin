@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>HTML Formatter | Bluetext.in</title>
   <meta name="description" content="Beautify and minify HTML markup instantly in your browser.">
-  <link rel="stylesheet" href="../../../assets/css/main.css">
+  
 </head>
 <body>
   <div id="site-header"></div>
@@ -17,9 +18,9 @@
     <section class="panel">
       <div class="tool-form">
         <label class="search__label" for="html-input">Paste HTML</label>
-        <textarea id="html-input" rows="12" class="mono" style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;" placeholder="&lt;div&gt;&lt;p&gt;Hello&lt;/p&gt;&lt;/div&gt;"></textarea>
+        <textarea id="html-input" rows="12" class="mono" placeholder="&lt;div&gt;&lt;p&gt;Hello&lt;/p&gt;&lt;/div&gt;"></textarea>
       </div>
-      <div class="tool-actions" style="margin-top:0.75rem;">
+      <div class="tool-actions">
         <button id="btn-format" class="btn btn--primary" type="button">Beautify</button>
         <button id="btn-minify" class="btn btn--ghost" type="button">Minify</button>
         <button id="btn-copy" class="btn btn--ghost" type="button">Copy</button>
@@ -28,8 +29,8 @@
     </section>
 
     <section class="tool-output" aria-live="polite">
-      <p id="html-status" style="margin:0 0 0.6rem;font-weight:600;"></p>
-      <textarea id="html-output" rows="12" class="mono" readonly style="width:100%;border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:0.65rem 0.75rem;font:inherit;resize:vertical;background:var(--surface-soft);" placeholder="Output will appear here..."></textarea>
+      <p id="html-status"></p>
+      <textarea id="html-output" rows="12" class="mono" readonly placeholder="Output will appear here..."></textarea>
     </section>
   </main>
   <div id="site-footer"></div>

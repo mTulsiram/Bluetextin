@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Excel / CSV to JSON | Bluetext.in</title>
-  <meta name="description" content="Convert Excel (.xlsx) or CSV files to JSON instantly in your browser using SheetJS.">
-  <link rel="stylesheet" href="../../../assets/css/main.css">
-  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+  <meta name="description" content="Convert Excel (.xlsx) or CSV files to JSON instantly in your browser using our in-house parser.">
+  
+  <script src="/assets/js/lib/xlsx-reader.js"></script>
 </head>
 <body>
   <div id="site-header"></div>
@@ -18,21 +19,21 @@
     <section class="panel">
       <div class="tool-form">
         <label>Upload Excel or CSV<input id="file-input" type="file" accept=".xlsx,.xls,.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv"></label>
-        <label style="margin-top:0.5rem;display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;">
+        <label>
           <input id="has-header" type="checkbox" checked>
           First row is header
         </label>
       </div>
-      <div class="tool-actions" style="margin-top:0.75rem;">
+      <div class="tool-actions">
         <button id="btn-convert" class="btn btn--primary" type="button" disabled>Convert to JSON</button>
         <button id="btn-copy" class="btn btn--ghost" type="button">Copy JSON</button>
-        <button id="btn-download" class="btn btn--ghost" type="button" style="display:none;">Download JSON</button>
+        <button id="btn-download" class="btn btn--ghost" type="button">Download JSON</button>
       </div>
     </section>
 
     <section class="tool-output" aria-live="polite">
-      <p id="status" style="margin:0 0 0.6rem;font-weight:600;">Upload a file to begin.</p>
-      <pre id="json-output" class="mono" style="overflow:auto;white-space:pre-wrap;max-height:500px;font-size:0.85rem;"></pre>
+      <p id="status">Upload a file to begin.</p>
+      <pre id="json-output" class="mono"></pre>
     </section>
   </main>
   <div id="site-footer"></div>
@@ -58,24 +59,22 @@
       const file = fileInput.files && fileInput.files[0];
       if (!file) return;
       const reader = new FileReader();
-      reader.onload = e => {
+      reader.onload = async e => {
         try {
-          const wb = XLSX.read(e.target.result, { type: "array" });
-          const sheetName = wb.SheetNames[0];
-          const ws = wb.Sheets[sheetName];
+          const workbook = await XLSXReader.read(e.target.result);
+          const sheetName = workbook.sheetNames[0] || "Sheet1";
+          const ws = await workbook.getSheet(sheetName);
           const hasHeader = document.querySelector("#has-header").checked;
-          const raw = XLSX.utils.sheet_to_json(ws, { header: hasHeader ? 1 : undefined, defval: "" });
+
           let data;
-          if (hasHeader && raw.length > 0) {
-            const headers = raw[0];
-            data = raw.slice(1).map(row => {
-              const obj = {};
-              headers.forEach((h, i) => { obj[h] = row[i] ?? ""; });
-              return obj;
-            });
+          if (hasHeader) {
+            data = ws.rows;
           } else {
-            data = raw;
+            const firstRow = ws.fields || [];
+            const remainingRows = ws.rows.map(row => firstRow.map(field => row[field] ?? ""));
+            data = [firstRow, ...remainingRows];
           }
+
           jsonData = data;
           output.textContent = JSON.stringify(data, null, 2);
           status.textContent = `Converted sheet "${sheetName}" — ${data.length} row${data.length !== 1 ? "s" : ""}.`;

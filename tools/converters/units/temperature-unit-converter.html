@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Temperature Converter | Bluetext.in</title>
   <meta name="description" content="Convert temperatures between Celsius, Fahrenheit, Kelvin, and Rankine instantly.">
-  <link rel="stylesheet" href="../../../assets/css/main.css">
+  
 </head>
 <body>
   <div id="site-header"></div>
@@ -39,8 +40,8 @@
     </section>
 
     <section class="tool-output" aria-live="polite">
-      <p id="temp-error" style="color:#e11d48;margin:0 0 0.5rem;"></p>
-      <div class="tool-grid-2" id="temp-results" style="gap:0.6rem;"></div>
+      <p id="temp-error"></p>
+      <div class="tool-grid-2" id="temp-results"></div>
     </section>
   </main>
   <div id="site-footer"></div>
@@ -89,7 +90,7 @@
         const result = fromCelsius(celsius, id);
         const card = document.createElement("div");
         card.className = "card";
-        card.innerHTML = `<p style="font-size:0.8rem;color:var(--text-soft);margin:0 0 0.25rem;">${label}</p><p style="font-size:1.15rem;font-weight:700;margin:0;">${result.toFixed(4)}</p>`;
+        card.innerHTML = `<p>${label}</p><p>${result.toFixed(4)}</p>`;
         resultsEl.appendChild(card);
       });
     });

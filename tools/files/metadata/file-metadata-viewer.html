@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>File Metadata Viewer | Bluetext.in</title>
   <meta name="description" content="View file name, size, type, and last modified date for any file without uploading it.">
-  <link rel="stylesheet" href="../../../assets/css/main.css">
+  
 </head>
 <body>
   <div id="site-header"></div>
@@ -21,8 +22,8 @@
     </section>
 
     <section class="tool-output" aria-live="polite">
-      <p id="meta-status" style="margin:0 0 0.75rem;font-weight:600;">Select a file to see its metadata.</p>
-      <div class="tool-grid-2" id="meta-results" style="gap:0.6rem;"></div>
+      <p id="meta-status">Select a file to see its metadata.</p>
+      <div class="tool-grid-2" id="meta-results"></div>
     </section>
   </main>
   <div id="site-footer"></div>
@@ -34,7 +35,7 @@
     function metaCard(label, value) {
       const card = document.createElement("div");
       card.className = "card";
-      card.innerHTML = `<p style="font-size:0.8rem;color:var(--text-soft);margin:0 0 0.25rem;">${label}</p><p style="font-size:0.95rem;font-weight:700;margin:0;word-break:break-all;">${value}</p>`;
+      card.innerHTML = `<p>${label}</p><p>${value}</p>`;
       return card;
     }
 

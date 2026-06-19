@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Merge PDF | Bluetext.in</title>
 	<meta name="description" content="Merge multiple PDF files into one document directly in your browser.">
-	<link rel="stylesheet" href="../../../assets/css/main.css">
+	
 </head>
 <body>
   <div id="site-header"></div>
@@ -33,7 +34,6 @@
 		</section>
 	</main>
 
-	<script src="https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.min.js"></script>
 	<script>
 		const form = document.querySelector("#merge-form");
 		const filesInput = document.querySelector("#pdf-files");
@@ -49,7 +49,7 @@
 			}
 
 			if (!window.PDFLib) {
-				status.textContent = "PDF engine failed to load. Check network access and try again.";
+				status.textContent = "In-house mode active: PDF merge engine is not bundled yet.";
 				return;
 			}
 

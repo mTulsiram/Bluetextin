@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>QA Check | Bluetext.in</title>
   <meta name="description" content="Internal QA checks for tool catalog and route consistency.">
-  <link rel="stylesheet" href="../assets/css/main.css">
+  
 </head>
 <body>
   <div id="site-header"></div>
@@ -14,13 +15,13 @@
     <h1>QA Check</h1>
     <p>Run quick catalog and route checks for the current build.</p>
 
-    <div class="tool-actions" style="margin-top:0.8rem;">
+    <div class="tool-actions">
       <button id="run-qa" class="btn btn--primary" type="button">Run Checks</button>
     </div>
 
-    <section class="tool-output" aria-live="polite" style="margin-top:1rem;">
+    <section class="tool-output" aria-live="polite">
       <p id="qa-status">No checks executed yet.</p>
-      <div id="qa-results" style="margin-top:0.8rem;"></div>
+      <div id="qa-results"></div>
     </section>
   </main>
   <div id="site-footer"></div>

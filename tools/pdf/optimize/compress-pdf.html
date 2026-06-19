@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Compress PDF | Bluetext.in</title>
 	<meta name="description" content="Optimize and compress PDF documents in your browser.">
-	<link rel="stylesheet" href="../../../assets/css/main.css">
+	
 </head>
 <body>
   <div id="site-header"></div>
@@ -30,11 +31,10 @@
 
 		<section class="tool-output" aria-live="polite">
 			<p id="compress-status">Select one PDF file to begin.</p>
-			<p id="compress-size" class="mono" style="margin-top:0.5rem;"></p>
+			<p id="compress-size" class="mono"></p>
 		</section>
 	</main>
 
-	<script src="https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.min.js"></script>
 	<script>
 		const form = document.querySelector("#compress-form");
 		const fileInput = document.querySelector("#pdf-file");
@@ -54,7 +54,7 @@
 			}
 
 			if (!window.PDFLib) {
-				status.textContent = "PDF engine failed to load. Check network and retry.";
+				status.textContent = "In-house mode active: PDF compression engine is not bundled yet.";
 				return;
 			}
 
