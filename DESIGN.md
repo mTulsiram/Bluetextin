@@ -137,3 +137,10 @@ Non-visual interfaces rely on semantic structures to read the application layout
 To support supplementary subdomains (e.g., `blog.bluetext.in` or specific documentation pages):
 - **Universal Header**: The navigation header must maintain a unified structure across subdomains, allowing users to jump back to `bluetext.in` dashboard via a persistent logo link.
 - **Color Systems**: Subdomains must use the identical custom property variables (`themes.css`) to ensure consistent visual aesthetics across the entire network.
+
+---
+
+## 5. Agent-Assisted Design Development (Spec Kit & Graphify)
+To preserve design tokens and layout consistency across all 1,000+ utilities:
+- **Spec Validation**: Design modifications must be validated using Spec Kit checks (`/speckit.checklist`) to verify color contrast and screen-reader accessibility rules.
+- **Visual Mapping**: The page layouts and card CSS grid assets are registered within the `graphify` knowledge graph rules to prevent visual layout drifts during automated code generation.
