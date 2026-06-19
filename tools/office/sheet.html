@@ -93,13 +93,21 @@
       font-weight: 600;
     }
 
+    .ribbon-toolbar-container {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
     .ribbon-toolbar {
-      display: flex;
+      display: none;
       align-items: center;
       gap: 16px;
       padding: 8px 20px;
       background: #ffffff;
       flex-wrap: wrap;
+    }
+    .ribbon-toolbar.active {
+      display: flex;
     }
 
     .ribbon-group {
@@ -125,6 +133,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 4px;
     }
     .ribbon-btn:hover {
       background: #f3f4f6;
@@ -133,6 +142,15 @@
       background: #dcfce7;
       border-color: #86efac;
       color: #107c41;
+    }
+
+    .ribbon-select {
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      padding: 4px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      outline: none;
     }
 
     /* Formula Bar */
@@ -153,7 +171,7 @@
       padding: 2px 8px;
       border: 1px solid #d1d5db;
       border-radius: 3px;
-      min-width: 40px;
+      min-width: 45px;
       text-align: center;
     }
 
@@ -172,7 +190,7 @@
     /* Workspace Body */
     .sheet-workspace {
       display: flex;
-      height: calc(100vh - 150px);
+      height: calc(100vh - 165px);
       overflow: hidden;
     }
 
@@ -215,7 +233,7 @@
     .sheet-grid tr th:first-child {
       left: 0;
       z-index: 15;
-      width: 40px;
+      width: 50px;
     }
     .sheet-grid thead th {
       top: 0;
@@ -339,28 +357,76 @@
   <!-- Ribbon -->
   <div class="sheet-ribbon">
     <div class="ribbon-tabs">
-      <button class="ribbon-tab active">Home</button>
-      <button class="ribbon-tab" id="btnCalculateSum" style="color:#107c41; font-weight:bold;">∑ AutoSum</button>
-      <button class="ribbon-tab" id="btnZebraShading">Toggle Zebra Shading</button>
-      <button class="ribbon-tab" id="btnSaveCopy" style="color:#107c41;">💾 Save Copy</button>
-      <button class="ribbon-tab" id="btnExportCSV">📥 Export CSV</button>
-      <button class="ribbon-tab" id="btnExportJSON">📥 Export JSON</button>
+      <button class="ribbon-tab active" data-tab="ribbon-home">Home</button>
+      <button class="ribbon-tab" data-tab="ribbon-file">File</button>
+      <button class="ribbon-tab" data-tab="ribbon-insert">Insert</button>
+      <button class="ribbon-tab" data-tab="ribbon-layout">Page Layout</button>
+      <button class="ribbon-tab" data-tab="ribbon-formulas">Formulas</button>
     </div>
 
-    <div class="ribbon-toolbar">
-      <div class="ribbon-group">
-        <button class="ribbon-btn" id="btnBold" title="Bold"><b>B</b></button>
-        <button class="ribbon-btn" id="btnItalic" title="Italic"><i>I</i></button>
+    <div class="ribbon-toolbar-container">
+      <!-- HOME TOOLBAR -->
+      <div class="ribbon-toolbar active" id="ribbon-home">
+        <div class="ribbon-group">
+          <button class="ribbon-btn" id="btnBold" title="Bold"><b>B</b></button>
+          <button class="ribbon-btn" id="btnItalic" title="Italic"><i>I</i></button>
+          <button class="ribbon-btn" id="btnUnderline" title="Underline"><u>U</u></button>
+        </div>
+        <div class="ribbon-group">
+          <select class="ribbon-select" id="fontSizeSelect">
+            <option value="12px">9</option>
+            <option value="14px">10</option>
+            <option value="16px" selected>11</option>
+            <option value="18px">12</option>
+          </select>
+          <button class="ribbon-btn" id="btnZebraShading">Toggle Zebra Shading</button>
+        </div>
+        <div class="ribbon-group">
+          <button class="ribbon-btn" id="btnAddComment" style="color:#107c41;">💬 New Comment</button>
+          <button class="ribbon-btn" id="btnTrackChanges">Toggle Review Mode (OFF)</button>
+        </div>
       </div>
 
-      <!-- Watermark overlay and comments controls -->
-      <div class="ribbon-group">
-        <button class="ribbon-btn" id="btnAddComment" style="color:#107c41;">💬 New Comment</button>
-        <button class="ribbon-btn" id="btnTrackChanges">Toggle Review Mode (OFF)</button>
-        <label style="font-size:0.75rem; color:#4b5563; display:flex; align-items:center; gap:6px; margin-left:10px; cursor:pointer;">
-          <input type="checkbox" id="chkWatermark" /> Watermark:
-          <input type="text" id="watermarkText" value="DRAFT" style="width:90px; padding:2px; border:1px solid #ccc; font-size:0.7rem;" />
-        </label>
+      <!-- FILE TOOLBAR -->
+      <div class="ribbon-toolbar" id="ribbon-file">
+        <div class="ribbon-group">
+          <button class="ribbon-btn" id="btnSaveCopy" style="color:#107c41;">💾 Save Copy</button>
+          <button class="ribbon-btn" id="btnExportCSV">Export CSV</button>
+          <button class="ribbon-btn" id="btnExportJSON">Export JSON</button>
+          <button class="ribbon-btn" id="btnClearSheet" style="color:#dc2626;">🗑️ Clear Grid</button>
+        </div>
+      </div>
+
+      <!-- INSERT TOOLBAR -->
+      <div class="ribbon-toolbar" id="ribbon-insert">
+        <div class="ribbon-group">
+          <button class="ribbon-btn" id="btnInsertRow">➕ Insert Row Above</button>
+          <button class="ribbon-btn" id="btnInsertCol">➕ Insert Column Right</button>
+          <button class="ribbon-btn" id="btnDeleteRow" style="color:#dc2626;">❌ Delete Row</button>
+        </div>
+      </div>
+
+      <!-- PAGE LAYOUT TOOLBAR -->
+      <div class="ribbon-toolbar" id="ribbon-layout">
+        <div class="ribbon-group">
+          <label style="font-size:0.75rem; color:#4b5563; display:flex; align-items:center; gap:6px; cursor:pointer;">
+            <input type="checkbox" id="chkWatermark" /> Enable Watermark:
+            <input type="text" id="watermarkText" value="DRAFT" style="width:90px; padding:2px; border:1px solid #ccc; font-size:0.7rem;" />
+          </label>
+        </div>
+        <div class="ribbon-group">
+          <button class="ribbon-btn" id="btnToggleGridlines" class="active">Hide Gridlines</button>
+        </div>
+      </div>
+
+      <!-- FORMULAS TOOLBAR -->
+      <div class="ribbon-toolbar" id="ribbon-formulas">
+        <div class="ribbon-group">
+          <button class="ribbon-btn" id="btnCalculateSum" style="color:#107c41; font-weight:bold;">∑ SUM</button>
+          <button class="ribbon-btn" id="btnCalculateAverage">Average</button>
+          <button class="ribbon-btn" id="btnCalculateCount">Count</button>
+          <button class="ribbon-btn" id="btnCalculateMax">Max</button>
+        </div>
       </div>
     </div>
   </div>
@@ -379,12 +445,12 @@
       <table class="sheet-grid" id="spreadsheetGrid">
         <thead>
           <tr id="gridHeaderRow">
-            <th style="width: 40px;"></th>
-            <!-- Letters A to H populated via JS -->
+            <th style="width: 50px;"></th>
+            <!-- Letters A to Z populated via JS -->
           </tr>
         </thead>
         <tbody id="gridBody">
-          <!-- Rows and cells populated via JS -->
+          <!-- Rows A-Z and 1-100 populated via JS -->
         </tbody>
       </table>
     </div>
@@ -412,16 +478,33 @@
     let isTrackChanges = false;
     
     // Spreadsheet state
-    const COLUMNS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
-    const ROW_COUNT = 20;
+    const COLUMNS = [];
+    for (let i = 0; i < 26; i++) {
+      COLUMNS.push(String.fromCharCode(65 + i)); // A to Z
+    }
+    const ROW_COUNT = 100;
     let cellData = {}; // Format: {"A1": "val", "B2": "100"}
     let selectedCell = "A1";
 
     const urlParams = new URLSearchParams(window.location.search);
     const docId = urlParams.get("id");
 
+    // Ribbon Tabs switching
+    document.querySelectorAll(".ribbon-tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".ribbon-tab").forEach(t => t.classList.remove("active"));
+        document.querySelectorAll(".ribbon-toolbar").forEach(b => b.classList.remove("active"));
+        
+        tab.classList.add("active");
+        const toolbarId = tab.getAttribute("data-tab");
+        document.getElementById(toolbarId).classList.add("active");
+      });
+    });
+
     function buildGrid() {
       const headerRow = document.getElementById("gridHeaderRow");
+      // Clear header row (except first empty header cell)
+      headerRow.innerHTML = '<th style="width: 50px;"></th>';
       COLUMNS.forEach(col => {
         const th = document.createElement("th");
         th.textContent = col;
@@ -429,6 +512,7 @@
       });
 
       const body = document.getElementById("gridBody");
+      body.innerHTML = "";
       for (let r = 1; r <= ROW_COUNT; r++) {
         const tr = document.createElement("tr");
         tr.id = `row-${r}`;
@@ -491,17 +575,7 @@
 
       document.getElementById("docTitleInput").value = activeDoc.name;
       
-      // Load spreadsheet cell values
-      cellData = activeDoc.content && typeof activeDoc.content === 'object' ? activeDoc.content : {
-        "A1": "Q1 Revenue", "B1": "12000",
-        "A2": "Q2 Revenue", "B2": "14500",
-        "A3": "Q3 Revenue", "B3": "19000",
-        "A4": "Total Revenue", "B4": "=SUM(B1:B3)",
-        "A6": "Project Growth Plan Budget",
-        "A7": "Marketing", "B7": "2500",
-        "A8": "Engineering", "B8": "8000",
-        "A9": "Operations", "B9": "3000"
-      };
+      cellData = activeDoc.content && typeof activeDoc.content === 'object' ? activeDoc.content : {};
 
       // Fill values into spreadsheet DOM
       renderGridData();
@@ -568,6 +642,20 @@
       }
     });
 
+    document.getElementById("btnUnderline").addEventListener("click", () => {
+      const cell = document.getElementById(selectedCell);
+      if (cell) {
+        cell.style.textDecoration = cell.style.textDecoration === 'underline' ? 'none' : 'underline';
+      }
+    });
+
+    document.getElementById("fontSizeSelect").addEventListener("change", (e) => {
+      const cell = document.getElementById(selectedCell);
+      if (cell) {
+        cell.style.fontSize = e.target.value;
+      }
+    });
+
     // Zebra Shading toggle
     let zebraOn = false;
     document.getElementById("btnZebraShading").addEventListener("click", () => {
@@ -584,27 +672,148 @@
       }
     });
 
-    // AutoSum Simple Parser
+    // Insert/Delete Column or Row Functions
+    document.getElementById("btnInsertRow").addEventListener("click", () => {
+      const rowNum = parseInt(selectedCell.slice(1));
+      // Shift all rows down from rowNum
+      const tempCellData = {};
+      Object.keys(cellData).forEach(key => {
+        const col = key[0];
+        const r = parseInt(key.slice(1));
+        if (r >= rowNum) {
+          tempCellData[`${col}${r + 1}`] = cellData[key];
+        } else {
+          tempCellData[key] = cellData[key];
+        }
+      });
+      cellData = tempCellData;
+      renderGridData();
+      saveDoc();
+      logReview(`Inserted row above row ${rowNum}`);
+    });
+
+    document.getElementById("btnDeleteRow").addEventListener("click", () => {
+      const rowNum = parseInt(selectedCell.slice(1));
+      const tempCellData = {};
+      Object.keys(cellData).forEach(key => {
+        const col = key[0];
+        const r = parseInt(key.slice(1));
+        if (r > rowNum) {
+          tempCellData[`${col}${r - 1}`] = cellData[key];
+        } else if (r < rowNum) {
+          tempCellData[key] = cellData[key];
+        }
+      });
+      cellData = tempCellData;
+      renderGridData();
+      saveDoc();
+      logReview(`Deleted row ${rowNum}`);
+    });
+
+    document.getElementById("btnInsertCol").addEventListener("click", () => {
+      const colLetter = selectedCell[0];
+      const colIndex = COLUMNS.indexOf(colLetter);
+      // Shift columns right
+      const tempCellData = {};
+      Object.keys(cellData).forEach(key => {
+        const col = key[0];
+        const r = key.slice(1);
+        const idx = COLUMNS.indexOf(col);
+        if (idx >= colIndex && idx < COLUMNS.length - 1) {
+          tempCellData[`${COLUMNS[idx + 1]}${r}`] = cellData[key];
+        } else if (idx < colIndex) {
+          tempCellData[key] = cellData[key];
+        }
+      });
+      cellData = tempCellData;
+      renderGridData();
+      saveDoc();
+      logReview(`Inserted column right of ${colLetter}`);
+    });
+
+    // Clear Sheet
+    document.getElementById("btnClearSheet").addEventListener("click", () => {
+      if (confirm("Are you sure you want to clear the entire spreadsheet?")) {
+        cellData = {};
+        renderGridData();
+        saveDoc();
+        logReview("Cleared entire spreadsheet grid", "deletion");
+      }
+    });
+
+    // Hide/Show Gridlines
+    let gridlinesVisible = true;
+    document.getElementById("btnToggleGridlines").addEventListener("click", (e) => {
+      gridlinesVisible = !gridlinesVisible;
+      const cells = document.querySelectorAll(".sheet-grid td, .sheet-grid th");
+      cells.forEach(c => {
+        c.style.border = gridlinesVisible ? "1px solid #d1d5db" : "none";
+      });
+      e.target.textContent = gridlinesVisible ? "Hide Gridlines" : "Show Gridlines";
+    });
+
+    // Formulas Helpers
+    function getColNumbers(col, maxRow) {
+      const vals = [];
+      for (let r = 1; r < maxRow; r++) {
+        const val = parseFloat(cellData[`${col}${r}`]);
+        if (!isNaN(val)) vals.push(val);
+      }
+      return vals;
+    }
+
     document.getElementById("btnCalculateSum").addEventListener("click", () => {
       if (!selectedCell) return;
       const col = selectedCell[0];
       const maxRow = parseInt(selectedCell.slice(1));
-      let sum = 0;
-      for (let r = 1; r < maxRow; r++) {
-        const val = parseFloat(cellData[`${col}${r}`]);
-        if (!isNaN(val)) {
-          sum += val;
-        }
-      }
+      const vals = getColNumbers(col, maxRow);
+      const sum = vals.reduce((a, b) => a + b, 0);
       cellData[selectedCell] = sum.toString();
-      const cell = document.getElementById(selectedCell);
-      if (cell) cell.textContent = sum.toString();
+      renderGridData();
       document.getElementById("formulaInput").value = sum.toString();
       saveDoc();
       logReview(`Calculated AutoSum for cell ${selectedCell}: ${sum}`);
     });
 
-    // Save Copy (Non-destructive backup creation)
+    document.getElementById("btnCalculateAverage").addEventListener("click", () => {
+      if (!selectedCell) return;
+      const col = selectedCell[0];
+      const maxRow = parseInt(selectedCell.slice(1));
+      const vals = getColNumbers(col, maxRow);
+      const avg = vals.length ? (vals.reduce((a, b) => a + b, 0) / vals.length).toFixed(2) : 0;
+      cellData[selectedCell] = avg.toString();
+      renderGridData();
+      document.getElementById("formulaInput").value = avg.toString();
+      saveDoc();
+      logReview(`Calculated Average for cell ${selectedCell}: ${avg}`);
+    });
+
+    document.getElementById("btnCalculateCount").addEventListener("click", () => {
+      if (!selectedCell) return;
+      const col = selectedCell[0];
+      const maxRow = parseInt(selectedCell.slice(1));
+      const vals = getColNumbers(col, maxRow);
+      cellData[selectedCell] = vals.length.toString();
+      renderGridData();
+      document.getElementById("formulaInput").value = vals.length.toString();
+      saveDoc();
+      logReview(`Calculated Count for cell ${selectedCell}: ${vals.length}`);
+    });
+
+    document.getElementById("btnCalculateMax").addEventListener("click", () => {
+      if (!selectedCell) return;
+      const col = selectedCell[0];
+      const maxRow = parseInt(selectedCell.slice(1));
+      const vals = getColNumbers(col, maxRow);
+      const max = vals.length ? Math.max(...vals) : 0;
+      cellData[selectedCell] = max.toString();
+      renderGridData();
+      document.getElementById("formulaInput").value = max.toString();
+      saveDoc();
+      logReview(`Calculated Max for cell ${selectedCell}: ${max}`);
+    });
+
+    // Save Copy
     document.getElementById("btnSaveCopy").addEventListener("click", () => {
       const timestamp = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
       const originalName = document.getElementById("docTitleInput").value;
@@ -716,7 +925,6 @@
 
     function logReview(msg, type = "addition") {
       const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      // Capture cell snapshot state for restore options
       reviewLogs.push({
         time,
         text: msg,

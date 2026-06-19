@@ -486,7 +486,7 @@
             const cols = line.split(",");
             cols.forEach((val, cIdx) => {
               const colLetter = String.fromCharCode(65 + cIdx); // A, B, C...
-              if (cIdx < 8 && rIdx < 20) {
+              if (cIdx < 26 && rIdx < 100) {
                 cells[`${colLetter}${rIdx + 1}`] = val.trim();
               }
             });
