@@ -10,9 +10,10 @@
   --bg-card: rgba(17, 22, 34, 0.7);
   --bg-card-hover: rgba(25, 32, 50, 0.85);
   
-  --text-primary: #f3f4f6;
-  --text-secondary: #9ca3af;
-  --text-muted: #6b7280;
+  /* High contrast text values satisfying WCAG 2.2 AA (4.5:1 minimum contrast) */
+  --text-primary: #f3f4f6;       /* White-grey (Contrast ratio > 10:1 against canvas) */
+  --text-secondary: #d1d5db;     /* Light grey (Contrast ratio > 7:1 against canvas) */
+  --text-muted: #9ca3af;         /* Medium-light grey (Contrast ratio > 4.8:1 against canvas) */
 
   --accent-primary: #3b82f6;
   --accent-primary-glow: rgba(59, 130, 246, 0.35);
@@ -23,9 +24,12 @@
   --accent-danger: #ef4444;
   --accent-warning: #f59e0b;
 
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-focus: rgba(59, 130, 246, 0.5);
-  --focus-ring: 0 0 0 4px rgba(59, 130, 246, 0.25);
+  --border-subtle: rgba(255, 255, 255, 0.12);
+  --border-focus: #3b82f6;
+  
+  /* Visible Focus Indicator (satisfying WCAG 2.2 AA 3:1 focus contrast rule) */
+  --focus-ring: 0 0 0 3px #3b82f6;
+  --focus-outline: 2px solid transparent;
   
   /* Geometry */
   --radius-sm: 8px;
@@ -55,9 +59,9 @@
   --bg-card: rgba(255, 255, 255, 0.8);
   --bg-card-hover: rgba(255, 255, 255, 0.95);
   
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #94a3b8;
+  --text-primary: #0f172a;       /* Dark slate (Contrast ratio > 15:1 against canvas) */
+  --text-secondary: #334155;     /* Slate (Contrast ratio > 9:1 against canvas) */
+  --text-muted: #475569;         /* Light slate (Contrast ratio > 6:1 against canvas) */
 
   --accent-primary: #2563eb;
   --accent-primary-glow: rgba(37, 99, 235, 0.15);
@@ -65,8 +69,8 @@
   --accent-secondary: #7c3aed;
   --accent-secondary-glow: rgba(124, 58, 237, 0.15);
   
-  --border-subtle: rgba(15, 23, 42, 0.08);
-  --border-focus: rgba(37, 99, 235, 0.5);
-  --focus-ring: 0 0 0 4px rgba(37, 99, 235, 0.2);
+  --border-subtle: rgba(15, 23, 42, 0.12);
+  --border-focus: #2563eb;
+  --focus-ring: 0 0 0 3px #2563eb;
   --glass-shadow: 0 8px 32px 0 rgba(15, 23, 42, 0.06);
 }

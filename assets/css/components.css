@@ -1,4 +1,15 @@
-/* Buttons */
+/* Keyboard focus visible indicators for interactive elements */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+.drop-zone:focus-visible {
+  outline: var(--focus-outline) !important;
+  box-shadow: var(--focus-ring) !important;
+}
+
+/* General Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -12,10 +23,6 @@
   transition: var(--transition-smooth);
   gap: var(--space-2);
   outline: none;
-}
-
-.btn:focus-visible {
-  box-shadow: var(--focus-ring);
 }
 
 .btn--primary {
@@ -78,8 +85,7 @@ label {
 }
 
 .input:focus, .textarea:focus, .select:focus {
-  border-color: var(--accent-primary);
-  box-shadow: var(--focus-ring);
+  border-color: var(--border-focus);
 }
 
 .textarea {
@@ -96,6 +102,7 @@ label {
   cursor: pointer;
   transition: var(--transition-smooth);
   background: rgba(255, 255, 255, 0.02);
+  outline: none;
 }
 
 .drop-zone:hover, .drop-zone.dragover {
@@ -215,7 +222,7 @@ label {
   gap: var(--space-4);
 }
 
-/* Consent Banner */
+/* Consent Preferences and Modal */
 .consent-banner {
   position: fixed;
   bottom: var(--space-5);
@@ -232,4 +239,54 @@ label {
   flex-direction: column;
   gap: var(--space-4);
   backdrop-filter: var(--glass-blur);
+}
+
+.consent-banner p a {
+  text-decoration: underline;
+}
+
+.consent-banner h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Security Chips & Compliance Indicators */
+.compliance-runtime {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.security-chip {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  transition: var(--transition-smooth);
+}
+
+.security-chip.ok {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--accent-success);
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.security-chip.warn {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--accent-danger);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.compliance-pill {
+  font-size: 0.725rem;
+  font-weight: 500;
+  border: 1px solid var(--border-subtle);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm);
+  background: rgba(0,0,0,0.15);
 }
