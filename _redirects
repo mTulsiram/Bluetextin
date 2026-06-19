@@ -22,3 +22,29 @@
 /vi/*      /:splat   200
 /ko/*      /:splat   200
 /en/*      /:splat   200
+
+# Category Redirects (Alias -> Canonical)
+/tools/ai-utilities/* /tools/ai/:splat 301
+/tools/audio-and-video/* /tools/media/:splat 301
+/tools/audio-video/* /tools/media/:splat 301
+/tools/color-and-design/* /tools/images/:splat 301
+/tools/color-design/* /tools/images/:splat 301
+/tools/developer-tools/* /tools/developer/:splat 301
+/tools/domain-network/* /tools/developer/:splat 301
+/tools/encoding/* /tools/converters/:splat 301
+/tools/encoding-tools/* /tools/converters/:splat 301
+/tools/file-data/* /tools/files/:splat 301
+/tools/file-tools/* /tools/files/:splat 301
+/tools/image/* /tools/images/:splat 301
+/tools/image-tools/* /tools/images/:splat 301
+/tools/miscellaneous/* /tools/text/:splat 301
+/tools/network-tools/* /tools/developer/:splat 301
+/tools/pdf-converters/* /tools/pdf/:splat 301
+/tools/programming/* /tools/developer/:splat 301
+/tools/seo-tools/* /tools/seo/:splat 301
+/tools/social-media/* /tools/seo/:splat 301
+/tools/text-tools/* /tools/text/:splat 301
+/tools/unit-converters/* /tools/converters/:splat 301
+/tools/youtube/* /tools/media/:splat 301
+/tools/youtube-tools/* /tools/media/:splat 301
+
