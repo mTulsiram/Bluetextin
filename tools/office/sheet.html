@@ -341,7 +341,7 @@
 <body>
 
   <!-- Excel Online Header -->
-  <header class="sheet-header">
+  <header class="sheet-header" id="sheetHeader">
     <div class="sheet-header-left">
       <span class="sheet-app-icon">X📗</span>
       <div class="sheet-doc-title-box">
@@ -368,7 +368,8 @@
       <!-- FILE TOOLBAR -->
       <div class="ribbon-toolbar active" id="ribbon-file">
         <div class="ribbon-group">
-          <button class="ribbon-btn" id="btnSaveCopy" style="color:#107c41;">💾 Save Copy</button>
+          <span style="font-size:0.7rem; color:#6b7280; font-weight:bold; display:block; width:100%; margin-bottom:2px;">FILE OPERATIONS</span>
+          <button class="ribbon-btn" id="btnSaveCopy" style="color:#107c41; font-weight:bold;">💾 Save Copy</button>
           <button class="ribbon-btn" id="btnExportCSV">Export CSV</button>
           <button class="ribbon-btn" id="btnExportJSON">Export JSON</button>
           <button class="ribbon-btn" id="btnClearSheet" style="color:#dc2626;">🗑️ Clear Grid</button>
@@ -378,78 +379,166 @@
       <!-- HOME TOOLBAR -->
       <div class="ribbon-toolbar" id="ribbon-home">
         <div class="ribbon-group">
+          <span style="font-size:0.7rem; color:#6b7280; font-weight:bold; display:block; width:100%; margin-bottom:2px;">CLIPBOARD & UNDO</span>
+          <button class="ribbon-btn" id="btnUndo" title="Undo Last Change">↩️ Undo</button>
+          <button class="ribbon-btn" id="btnRedo" title="Redo">↪️ Redo</button>
+        </div>
+        <div class="ribbon-group">
+          <span style="font-size:0.7rem; color:#6b7280; font-weight:bold; display:block; width:100%; margin-bottom:2px;">FONT STYLES</span>
+          <select class="ribbon-select" id="fontFamilySelect" title="Font Family">
+            <option value="Segoe UI" selected>Segoe UI</option>
+            <option value="Arial">Arial</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Georgia">Georgia</option>
+          </select>
+          <select class="ribbon-select" id="fontSizeSelect" title="Font Size">
+            <option value="12px">9</option>
+            <option value="14px">10</option>
+            <option value="16px" selected>11</option>
+            <option value="18px">12</option>
+            <option value="20px">14</option>
+            <option value="24px">18</option>
+          </select>
           <button class="ribbon-btn" id="btnBold" title="Bold"><b>B</b></button>
           <button class="ribbon-btn" id="btnItalic" title="Italic"><i>I</i></button>
           <button class="ribbon-btn" id="btnUnderline" title="Underline"><u>U</u></button>
         </div>
         <div class="ribbon-group">
-          <select class="ribbon-select" id="fontSizeSelect">
-            <option value="12px">9</option>
-            <option value="14px">10</option>
-            <option value="16px" selected>11</option>
-            <option value="18px">12</option>
+          <span style="font-size:0.7rem; color:#6b7280; font-weight:bold; display:block; width:100%; margin-bottom:2px;">ALIGN & FILL</span>
+          <button class="ribbon-btn" id="btnAlignLeft" title="Align Left">Align L</button>
+          <button class="ribbon-btn" id="btnAlignCenter" title="Center">Align C</button>
+          <button class="ribbon-btn" id="btnAlignRight" title="Align Right">Align R</button>
+          <select class="ribbon-select" id="cellColorSelect" title="Cell Fill Color">
+            <option value="">Fill Color</option>
+            <option value="#fef08a">Yellow</option>
+            <option value="#bbf7d0">Green</option>
+            <option value="#bfdbfe">Blue</option>
+            <option value="#fecaca">Red</option>
+            <option value="#e2e8f0">Gray</option>
           </select>
-          <button class="ribbon-btn" id="btnZebraShading">Toggle Zebra Shading</button>
+          <select class="ribbon-select" id="textColorSelect" title="Text Color">
+            <option value="">Text Color</option>
+            <option value="#000000">Black</option>
+            <option value="#dc2626">Red</option>
+            <option value="#2563eb">Blue</option>
+            <option value="#16a34a">Green</option>
+          </select>
         </div>
         <div class="ribbon-group">
-          <button class="ribbon-btn" id="btnAddComment" style="color:#107c41;">💬 New Comment</button>
-          <button class="ribbon-btn" id="btnTrackChanges">Toggle Review Mode (OFF)</button>
+          <span style="font-size:0.7rem; color:#6b7280; font-weight:bold; display:block; width:100%; margin-bottom:2px;">REVIEW & ZEBRA</span>
+          <button class="ribbon-btn" id="btnZebraShading">Toggle Zebra</button>
+          <button class="ribbon-btn" id="btnTrackChanges">Review Mode (OFF)</button>
         </div>
       </div>
+
       <!-- INSERT TOOLBAR -->
       <div class="ribbon-toolbar" id="ribbon-insert">
         <div class="ribbon-group">
-          <button class="ribbon-btn" id="btnInsertRow">➕ Insert Row Above</button>
-          <button class="ribbon-btn" id="btnInsertCol">➕ Insert Column Right</button>
+          <span style="font-size:0.7rem; color:#6b7280; font-weight:bold; display:block; width:100%; margin-bottom:2px;">CELL CONTROLS</span>
+          <button class="ribbon-btn" id="btnInsertRow">➕ Insert Row</button>
+          <button class="ribbon-btn" id="btnInsertCol">➕ Insert Col</button>
           <button class="ribbon-btn" id="btnDeleteRow" style="color:#dc2626;">❌ Delete Row</button>
+        </div>
+        <div class="ribbon-group">
+          <span style="font-size:0.7rem; color:#6b7280; font-weight:bold; display:block; width:100%; margin-bottom:2px;">CHARTS & MEDIA</span>
+          <button class="ribbon-btn" id="btnInsertChart" style="color:#2563eb; font-weight:bold;">📊 Insert Bar Chart</button>
+          <button class="ribbon-btn" id="btnInsertPieChart" style="color:#8b5cf6;">🍕 Insert Pie Chart</button>
+          <button class="ribbon-btn" id="btnInsertImage">🖼️ Insert Float Image</button>
+          <button class="ribbon-btn" id="btnAddComment" style="color:#107c41;">💬 Comment</button>
         </div>
       </div>
 
       <!-- PAGE LAYOUT TOOLBAR -->
       <div class="ribbon-toolbar" id="ribbon-layout">
         <div class="ribbon-group">
-          <label style="font-size:0.75rem; color:#4b5563; display:flex; align-items:center; gap:6px; cursor:pointer;">
-            <input type="checkbox" id="chkWatermark" /> Enable Watermark:
-            <input type="text" id="watermarkText" value="DRAFT" style="width:90px; padding:2px; border:1px solid #ccc; font-size:0.7rem;" />
-          </label>
+          <span style="font-size:0.7rem; color:#6b7280; font-weight:bold; display:block; width:100%; margin-bottom:2px;">SHEET DISPLAY</span>
+          <button class="ribbon-btn" id="btnToggleGridlines" class="active">Hide Gridlines</button>
+          <button class="ribbon-btn" id="btnToggleHeadings" class="active">Hide Headings</button>
         </div>
         <div class="ribbon-group">
-          <button class="ribbon-btn" id="btnToggleGridlines" class="active">Hide Gridlines</button>
+          <span style="font-size:0.7rem; color:#6b7280; font-weight:bold; display:block; width:100%; margin-bottom:2px;">THEME & WATERMARK</span>
+          <select class="ribbon-select" id="themeSelect">
+            <option value="green">Excel Green Theme</option>
+            <option value="blue">Midnight Blue Theme</option>
+            <option value="dark">Charcoal Dark Theme</option>
+            <option value="purple">Modern Purple Theme</option>
+          </select>
+          <label style="font-size:0.75rem; color:#4b5563; display:flex; align-items:center; gap:6px; cursor:pointer;">
+            <input type="checkbox" id="chkWatermark" /> Watermark:
+            <input type="text" id="watermarkText" value="DRAFT" style="width:70px; padding:2px; border:1px solid #ccc; font-size:0.7rem;" />
+          </label>
         </div>
       </div>
 
       <!-- FORMULAS TOOLBAR -->
       <div class="ribbon-toolbar" id="ribbon-formulas">
         <div class="ribbon-group">
+          <span style="font-size:0.7rem; color:#6b7280; font-weight:bold; display:block; width:100%; margin-bottom:2px;">AUTOSUM FUNCTIONS</span>
           <button class="ribbon-btn" id="btnCalculateSum" style="color:#107c41; font-weight:bold;">∑ SUM</button>
           <button class="ribbon-btn" id="btnCalculateAverage">Average</button>
           <button class="ribbon-btn" id="btnCalculateCount">Count</button>
           <button class="ribbon-btn" id="btnCalculateMax">Max</button>
+          <button class="ribbon-btn" id="btnCalculateMin">Min</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Formula Bar -->
-  <div class="formula-bar-container">
-    <div class="formula-cell-indicator" id="activeCellLabel">A1</div>
-    <div style="font-style:italic; color:#6b7280; font-size:0.9rem;">fx</div>
-    <input type="text" class="formula-input" id="formulaInput" placeholder="Enter values or formulas..." />
+  <!-- Formula Bar & Pagination Container -->
+  <div style="background:#ffffff; border-bottom:1px solid #d1d5db; display:flex; flex-direction:column;">
+    <div class="formula-bar-container" style="border-bottom:1px solid #e5e7eb;">
+      <div class="formula-cell-indicator" id="activeCellLabel">A1</div>
+      <div style="font-style:italic; color:#6b7280; font-size:0.9rem;">fx</div>
+      <input type="text" class="formula-input" id="formulaInput" placeholder="Enter values or formulas..." />
+    </div>
+    
+    <div style="background:#f9fafb; padding:4px 16px; display:flex; align-items:center; justify-content:space-between; font-size:0.8rem; border-bottom:1px solid #e5e7eb;">
+      <div>
+        <button class="ribbon-btn" id="btnPrevPage" style="border:1px solid #ccc; padding:2px 8px; border-radius:3px;">◀ Prev Page</button>
+        <span id="pageInfoSpan" style="margin:0 12px; font-weight:600; color:#374151;">Page 1 of 1</span>
+        <button class="ribbon-btn" id="btnNextPage" style="border:1px solid #ccc; padding:2px 8px; border-radius:3px;">Next Page ▶</button>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span style="color:#4b5563;">Find cell:</span>
+        <input type="text" id="sheetSearchInput" placeholder="Search..." style="padding:2px 6px; border:1px solid #ccc; border-radius:3px; font-size:0.75rem;" />
+        <button class="ribbon-btn" id="btnAddRowsChunk" style="border:1px solid #ccc; padding:2px 8px; border-radius:3px; color:#107c41;">➕ Add 100 Rows</button>
+      </div>
+    </div>
   </div>
 
   <!-- Main Workspace -->
   <div class="sheet-workspace">
-    <div class="sheet-center-pane">
+    <div class="sheet-center-pane" style="position:relative;">
       <div class="watermark-overlay" id="watermarkOverlay" style="display:none;">DRAFT</div>
+      
+      <!-- Interactive Floating Canvas Chart -->
+      <div id="floatingChartContainer" style="display:none; position:absolute; top:50px; left:150px; width:450px; height:280px; background:#fff; border:2px solid #107c41; border-radius:6px; box-shadow:0 4px 12px rgba(0,0,0,0.15); z-index:100; padding:10px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; border-bottom:1px solid #eee; padding-bottom:4px;">
+          <strong id="chartTitle" style="font-size:0.85rem; color:#374151;">Spreadsheet Bar Chart</strong>
+          <button onclick="document.getElementById('floatingChartContainer').style.display='none'" style="background:none; border:none; cursor:pointer; font-weight:bold; color:#dc2626;">✕</button>
+        </div>
+        <canvas id="chartCanvas" width="430" height="230"></canvas>
+      </div>
+
+      <!-- Float Image Overlay -->
+      <div id="floatingImageContainer" style="display:none; position:absolute; top:80px; left:200px; width:300px; height:200px; border:1px dashed #2563eb; background:rgba(255,255,255,0.9); resize:both; overflow:hidden; z-index:90; padding:4px;">
+        <div style="text-align:right; font-size:0.75rem; background:#2563eb; color:#fff; padding:2px; cursor:move;">
+          <span style="float:left; padding-left:4px;">Float Image</span>
+          <button onclick="document.getElementById('floatingImageContainer').style.display='none'" style="background:none; border:none; color:#fff; font-weight:bold; cursor:pointer;">✕</button>
+        </div>
+        <img id="floatingImg" src="" style="width:100%; height:calc(100% - 20px); object-fit:contain;" alt="Floating user asset" />
+      </div>
+
       <table class="sheet-grid" id="spreadsheetGrid">
         <thead>
           <tr id="gridHeaderRow">
             <th style="width: 50px;"></th>
-            <!-- Letters A to Z populated via JS -->
+            <!-- Dynamic columns letters A-Z, AA-AZ populated via JS -->
           </tr>
         </thead>
         <tbody id="gridBody">
-          <!-- Rows A-Z and 1-100 populated via JS -->
+          <!-- Dynamic row items rendered based on current page -->
         </tbody>
       </table>
     </div>
@@ -472,21 +561,58 @@
     let documentCatalog = [];
     let activeDoc = null;
     let docComments = [];
-    let reviewLogs = []; // Stores version snapshots: { time, text, cellDataSnapshot }
+    let reviewLogs = []; // Stores version snapshots
     let activeTab = "comments";
     let isTrackChanges = false;
     
-    // Spreadsheet state
-    const COLUMNS = [];
-    for (let i = 0; i < 26; i++) {
-      COLUMNS.push(String.fromCharCode(65 + i)); // A to Z
-    }
-    const ROW_COUNT = 100;
-    let cellData = {}; // Format: {"A1": "val", "B2": "100"}
+    // Grid settings and Pagination State
+    let cellData = {}; 
+    let cellStyles = {}; // {"A1": {fontWeight: "bold", background: "#fff"}}
     let selectedCell = "A1";
+    let currentPage = 1;
+    let rowsPerPage = 100;
+    let maxRows = 100;
+    let maxColumnsCount = 26;
 
     const urlParams = new URLSearchParams(window.location.search);
     const docId = urlParams.get("id");
+
+    // Convert Column Label to Index
+    function getColumnIndex(label) {
+      let index = 0;
+      for (let i = 0; i < label.length; i++) {
+        index = index * 26 + (label.charCodeAt(i) - 64);
+      }
+      return index - 1;
+    }
+
+    // Convert Index to Column Label
+    function getColumnLabel(index) {
+      let label = "";
+      let temp = index;
+      while (temp >= 0) {
+        label = String.fromCharCode((temp % 26) + 65) + label;
+        temp = Math.floor(temp / 26) - 1;
+      }
+      return label;
+    }
+
+    function updateMaxDimensions() {
+      let maxR = 100; 
+      let maxCIdx = 25; 
+      Object.keys(cellData).forEach(key => {
+        const match = key.match(/^([A-Z]+)(\d+)$/);
+        if (match) {
+          const colLabel = match[1];
+          const r = parseInt(match[2]);
+          if (r > maxR) maxR = r;
+          const cIdx = getColumnIndex(colLabel);
+          if (cIdx > maxCIdx) maxCIdx = cIdx;
+        }
+      });
+      maxRows = maxR;
+      maxColumnsCount = maxCIdx + 1;
+    }
 
     // Ribbon Tabs switching
     document.querySelectorAll(".ribbon-tab").forEach(tab => {
@@ -500,11 +626,36 @@
       });
     });
 
+    // Theme selector
+    document.getElementById("themeSelect").addEventListener("change", (e) => {
+      const theme = e.target.value;
+      const header = document.getElementById("sheetHeader");
+      const activeTabLabel = document.querySelector(".ribbon-tab.active");
+      
+      let headerColor = "#107c41"; // default green
+      if (theme === "blue") headerColor = "#005a9e";
+      if (theme === "dark") headerColor = "#201f1e";
+      if (theme === "purple") headerColor = "#5c2d91";
+
+      header.style.background = headerColor;
+      if (activeDoc) {
+        activeDoc.theme = theme;
+        saveDoc();
+      }
+    });
+
     function buildGrid() {
+      updateMaxDimensions();
       const headerRow = document.getElementById("gridHeaderRow");
-      // Clear header row (except first empty header cell)
       headerRow.innerHTML = '<th style="width: 50px;"></th>';
-      COLUMNS.forEach(col => {
+      
+      const colLimit = Math.max(26, maxColumnsCount);
+      const colsToRender = [];
+      for (let i = 0; i < colLimit; i++) {
+        colsToRender.push(getColumnLabel(i));
+      }
+      
+      colsToRender.forEach(col => {
         const th = document.createElement("th");
         th.textContent = col;
         headerRow.appendChild(th);
@@ -512,18 +663,36 @@
 
       const body = document.getElementById("gridBody");
       body.innerHTML = "";
-      for (let r = 1; r <= ROW_COUNT; r++) {
+      
+      const startRow = (currentPage - 1) * rowsPerPage + 1;
+      const endRow = Math.min(startRow + rowsPerPage - 1, maxRows);
+      
+      for (let r = startRow; r <= endRow; r++) {
         const tr = document.createElement("tr");
         tr.id = `row-${r}`;
         const rowLabel = document.createElement("th");
         rowLabel.textContent = r;
         tr.appendChild(rowLabel);
 
-        COLUMNS.forEach(col => {
+        colsToRender.forEach(col => {
           const cellId = `${col}${r}`;
           const td = document.createElement("td");
           td.id = cellId;
           td.contentEditable = "true";
+          td.textContent = cellData[cellId] || "";
+
+          // Apply styles if present
+          if (cellStyles[cellId]) {
+            const styles = cellStyles[cellId];
+            if (styles.fontWeight) td.style.fontWeight = styles.fontWeight;
+            if (styles.fontStyle) td.style.fontStyle = styles.fontStyle;
+            if (styles.textDecoration) td.style.textDecoration = styles.textDecoration;
+            if (styles.fontFamily) td.style.fontFamily = styles.fontFamily;
+            if (styles.fontSize) td.style.fontSize = styles.fontSize;
+            if (styles.textAlign) td.style.textAlign = styles.textAlign;
+            if (styles.background) td.style.background = styles.background;
+            if (styles.color) td.style.color = styles.color;
+          }
           
           td.addEventListener("focus", () => {
             selectCell(cellId);
@@ -543,6 +712,9 @@
 
         body.appendChild(tr);
       }
+      
+      const totalPages = Math.ceil(maxRows / rowsPerPage);
+      document.getElementById("pageInfoSpan").textContent = `Page ${currentPage} of ${totalPages} (Rows ${startRow}-${endRow} of ${maxRows})`;
     }
 
     function selectCell(cellId) {
@@ -554,6 +726,12 @@
       const curr = document.getElementById(cellId);
       if (curr) {
         curr.classList.add("selected");
+        
+        // Sync formatting drop-downs in UI
+        document.getElementById("fontFamilySelect").value = curr.style.fontFamily || "Segoe UI";
+        document.getElementById("fontSizeSelect").value = curr.style.fontSize || "16px";
+        document.getElementById("cellColorSelect").value = cellStyles[cellId]?.background || "";
+        document.getElementById("textColorSelect").value = cellStyles[cellId]?.color || "";
       }
       document.getElementById("activeCellLabel").textContent = cellId;
       document.getElementById("formulaInput").value = cellData[cellId] || "";
@@ -573,40 +751,29 @@
       }
 
       document.getElementById("docTitleInput").value = activeDoc.name;
-      
       cellData = activeDoc.content && typeof activeDoc.content === 'object' ? activeDoc.content : {};
+      cellStyles = activeDoc.styles || {};
 
-      // Fill values into spreadsheet DOM
-      renderGridData();
+      if (activeDoc.theme) {
+        document.getElementById("themeSelect").value = activeDoc.theme;
+        document.getElementById("themeSelect").dispatchEvent(new Event("change"));
+      }
 
       docComments = activeDoc.comments || [];
       reviewLogs = activeDoc.reviewLogs || [
         { time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), text: "Initial spreadsheet version", cellDataSnapshot: JSON.parse(JSON.stringify(cellData)) }
       ];
 
+      buildGrid();
       selectCell("A1");
       renderSidebar();
-    }
-
-    function renderGridData() {
-      // Clear sheet
-      for (let r = 1; r <= ROW_COUNT; r++) {
-        COLUMNS.forEach(col => {
-          const cell = document.getElementById(`${col}${r}`);
-          if (cell) cell.textContent = "";
-        });
-      }
-      // Populate new data
-      Object.keys(cellData).forEach(cellId => {
-        const cell = document.getElementById(cellId);
-        if (cell) cell.textContent = cellData[cellId];
-      });
     }
 
     function saveDoc() {
       if (!activeDoc) return;
       activeDoc.name = document.getElementById("docTitleInput").value;
       activeDoc.content = cellData;
+      activeDoc.styles = cellStyles;
       activeDoc.comments = docComments;
       activeDoc.reviewLogs = reviewLogs;
 
@@ -617,49 +784,82 @@
       localStorage.setItem(DB_KEY, JSON.stringify(documentCatalog));
     }
 
-    // Formula Input Sync
-    document.getElementById("formulaInput").addEventListener("input", (e) => {
-      if (!selectedCell) return;
-      cellData[selectedCell] = e.target.value;
-      const cell = document.getElementById(selectedCell);
-      if (cell) cell.textContent = e.target.value;
-      saveDoc();
+    // Pagination handlers
+    document.getElementById("btnPrevPage").addEventListener("click", () => {
+      if (currentPage > 1) {
+        currentPage--;
+        buildGrid();
+        selectCell(`A${(currentPage - 1) * rowsPerPage + 1}`);
+      }
     });
 
-    // Formatting Toolbar triggers
-    document.getElementById("btnBold").addEventListener("click", () => {
+    document.getElementById("btnNextPage").addEventListener("click", () => {
+      const totalPages = Math.ceil(maxRows / rowsPerPage);
+      if (currentPage < totalPages) {
+        currentPage++;
+        buildGrid();
+        selectCell(`A${(currentPage - 1) * rowsPerPage + 1}`);
+      }
+    });
+
+    document.getElementById("btnAddRowsChunk").addEventListener("click", () => {
+      maxRows += 100;
+      saveDoc();
+      buildGrid();
+    });
+
+    // Formatting Toolbar controls
+    function applyStyleProperty(prop, value) {
+      if (!selectedCell) return;
       const cell = document.getElementById(selectedCell);
       if (cell) {
-        cell.style.fontWeight = cell.style.fontWeight === 'bold' ? 'normal' : 'bold';
+        cell.style[prop] = value;
+        if (!cellStyles[selectedCell]) cellStyles[selectedCell] = {};
+        cellStyles[selectedCell][prop] = value;
+        saveDoc();
       }
+    }
+
+    document.getElementById("btnBold").addEventListener("click", () => {
+      const current = cellStyles[selectedCell]?.fontWeight || "normal";
+      applyStyleProperty("fontWeight", current === "bold" ? "normal" : "bold");
     });
 
     document.getElementById("btnItalic").addEventListener("click", () => {
-      const cell = document.getElementById(selectedCell);
-      if (cell) {
-        cell.style.fontStyle = cell.style.fontStyle === 'italic' ? 'normal' : 'italic';
-      }
+      const current = cellStyles[selectedCell]?.fontStyle || "normal";
+      applyStyleProperty("fontStyle", current === "italic" ? "normal" : "italic");
     });
 
     document.getElementById("btnUnderline").addEventListener("click", () => {
-      const cell = document.getElementById(selectedCell);
-      if (cell) {
-        cell.style.textDecoration = cell.style.textDecoration === 'underline' ? 'none' : 'underline';
-      }
+      const current = cellStyles[selectedCell]?.textDecoration || "none";
+      applyStyleProperty("textDecoration", current === "underline" ? "none" : "underline");
+    });
+
+    document.getElementById("fontFamilySelect").addEventListener("change", (e) => {
+      applyStyleProperty("fontFamily", e.target.value);
     });
 
     document.getElementById("fontSizeSelect").addEventListener("change", (e) => {
-      const cell = document.getElementById(selectedCell);
-      if (cell) {
-        cell.style.fontSize = e.target.value;
-      }
+      applyStyleProperty("fontSize", e.target.value);
+    });
+
+    document.getElementById("btnAlignLeft").addEventListener("click", () => applyStyleProperty("textAlign", "left"));
+    document.getElementById("btnAlignCenter").addEventListener("click", () => applyStyleProperty("textAlign", "center"));
+    document.getElementById("btnAlignRight").addEventListener("click", () => applyStyleProperty("textAlign", "right"));
+
+    document.getElementById("cellColorSelect").addEventListener("change", (e) => {
+      applyStyleProperty("background", e.target.value);
+    });
+
+    document.getElementById("textColorSelect").addEventListener("change", (e) => {
+      applyStyleProperty("color", e.target.value);
     });
 
     // Zebra Shading toggle
     let zebraOn = false;
     document.getElementById("btnZebraShading").addEventListener("click", () => {
       zebraOn = !zebraOn;
-      for (let r = 1; r <= ROW_COUNT; r++) {
+      for (let r = 1; r <= maxRows; r++) {
         const row = document.getElementById(`row-${r}`);
         if (row) {
           if (zebraOn && r % 2 === 0) {
@@ -671,84 +871,151 @@
       }
     });
 
-    // Insert/Delete Column or Row Functions
-    document.getElementById("btnInsertRow").addEventListener("click", () => {
-      const rowNum = parseInt(selectedCell.slice(1));
-      // Shift all rows down from rowNum
-      const tempCellData = {};
-      Object.keys(cellData).forEach(key => {
-        const col = key[0];
-        const r = parseInt(key.slice(1));
-        if (r >= rowNum) {
-          tempCellData[`${col}${r + 1}`] = cellData[key];
-        } else {
-          tempCellData[key] = cellData[key];
+    // Search bar helper
+    document.getElementById("sheetSearchInput").addEventListener("input", (e) => {
+      const query = e.target.value.toLowerCase();
+      if (!query) {
+        document.querySelectorAll(".sheet-grid td").forEach(c => c.style.outline = "none");
+        return;
+      }
+      Object.keys(cellData).forEach(cellId => {
+        const val = cellData[cellId];
+        const cell = document.getElementById(cellId);
+        if (cell && val && val.toLowerCase().includes(query)) {
+          cell.style.outline = "2px solid #2563eb";
+        } else if (cell) {
+          cell.style.outline = "none";
         }
       });
-      cellData = tempCellData;
-      renderGridData();
-      saveDoc();
-      logReview(`Inserted row above row ${rowNum}`);
     });
 
-    document.getElementById("btnDeleteRow").addEventListener("click", () => {
-      const rowNum = parseInt(selectedCell.slice(1));
-      const tempCellData = {};
-      Object.keys(cellData).forEach(key => {
-        const col = key[0];
-        const r = parseInt(key.slice(1));
-        if (r > rowNum) {
-          tempCellData[`${col}${r - 1}`] = cellData[key];
-        } else if (r < rowNum) {
-          tempCellData[key] = cellData[key];
-        }
-      });
-      cellData = tempCellData;
-      renderGridData();
-      saveDoc();
-      logReview(`Deleted row ${rowNum}`);
-    });
-
-    document.getElementById("btnInsertCol").addEventListener("click", () => {
+    // Chart Insertion module (Canvas rendering)
+    function drawChart(type) {
       const colLetter = selectedCell[0];
-      const colIndex = COLUMNS.indexOf(colLetter);
-      // Shift columns right
-      const tempCellData = {};
-      Object.keys(cellData).forEach(key => {
-        const col = key[0];
-        const r = key.slice(1);
-        const idx = COLUMNS.indexOf(col);
-        if (idx >= colIndex && idx < COLUMNS.length - 1) {
-          tempCellData[`${COLUMNS[idx + 1]}${r}`] = cellData[key];
-        } else if (idx < colIndex) {
-          tempCellData[key] = cellData[key];
+      const dataVals = [];
+      const labels = [];
+      for (let r = 1; r <= 15; r++) {
+        const val = parseFloat(cellData[`${colLetter}${r}`]);
+        if (!isNaN(val)) {
+          dataVals.push(val);
+          labels.push(`${colLetter}${r}`);
         }
-      });
-      cellData = tempCellData;
-      renderGridData();
-      saveDoc();
-      logReview(`Inserted column right of ${colLetter}`);
-    });
+      }
 
-    // Clear Sheet
-    document.getElementById("btnClearSheet").addEventListener("click", () => {
-      if (confirm("Are you sure you want to clear the entire spreadsheet?")) {
-        cellData = {};
-        renderGridData();
-        saveDoc();
-        logReview("Cleared entire spreadsheet grid", "deletion");
+      if (dataVals.length === 0) {
+        alert("Please enter numeric data in the top 15 rows of the current column to generate a chart.");
+        return;
+      }
+
+      const container = document.getElementById("floatingChartContainer");
+      container.style.display = "block";
+      document.getElementById("chartTitle").textContent = `Selected Column ${colLetter} Data Visualization`;
+
+      const canvas = document.getElementById("chartCanvas");
+      const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const maxVal = Math.max(...dataVals, 1);
+      const chartHeight = 150;
+      const chartWidth = 350;
+      const margin = 40;
+
+      if (type === "bar") {
+        const barWidth = (chartWidth / dataVals.length) - 10;
+        ctx.fillStyle = "#107c41";
+        dataVals.forEach((val, idx) => {
+          const h = (val / maxVal) * chartHeight;
+          const x = margin + idx * (barWidth + 10);
+          const y = canvas.height - margin - h;
+          ctx.fillRect(x, y, barWidth, h);
+
+          // Draw values
+          ctx.fillStyle = "#374151";
+          ctx.font = "10px sans-serif";
+          ctx.fillText(val, x + 2, y - 5);
+          ctx.fillText(labels[idx], x, canvas.height - margin + 15);
+          ctx.fillStyle = "#107c41";
+        });
+      } else {
+        // Pie Chart
+        const total = dataVals.reduce((a, b) => a + b, 0);
+        let startAngle = 0;
+        const colors = ["#ef4444", "#3b82f6", "#10b981", "#f59e0b", "#8b5cf6", "#ec4899", "#14b8a6"];
+        
+        ctx.save();
+        ctx.translate(canvas.width / 2, canvas.height / 2);
+        dataVals.forEach((val, idx) => {
+          const sliceAngle = (val / total) * 2 * Math.PI;
+          ctx.fillStyle = colors[idx % colors.length];
+          ctx.beginPath();
+          ctx.moveTo(0, 0);
+          ctx.arc(0, 0, 70, startAngle, startAngle + sliceAngle);
+          ctx.closePath();
+          ctx.fill();
+
+          // Legend
+          ctx.fillStyle = colors[idx % colors.length];
+          ctx.restore();
+          ctx.fillRect(20, 20 + idx * 15, 10, 10);
+          ctx.fillStyle = "#374151";
+          ctx.font = "11px sans-serif";
+          ctx.fillText(`${labels[idx]}: ${val}`, 35, 30 + idx * 15);
+          ctx.save();
+          ctx.translate(canvas.width / 2, canvas.height / 2);
+
+          startAngle += sliceAngle;
+        });
+        ctx.restore();
+      }
+    }
+
+    document.getElementById("btnInsertChart").addEventListener("click", () => drawChart("bar"));
+    document.getElementById("btnInsertPieChart").addEventListener("click", () => drawChart("pie"));
+
+    // Insert Image helper
+    document.getElementById("btnInsertImage").addEventListener("click", () => {
+      const url = prompt("Enter Image URL to float on sheet:", "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=200");
+      if (url) {
+        document.getElementById("floatingImageContainer").style.display = "block";
+        document.getElementById("floatingImg").src = url;
       }
     });
 
-    // Hide/Show Gridlines
-    let gridlinesVisible = true;
-    document.getElementById("btnToggleGridlines").addEventListener("click", (e) => {
-      gridlinesVisible = !gridlinesVisible;
-      const cells = document.querySelectorAll(".sheet-grid td, .sheet-grid th");
-      cells.forEach(c => {
-        c.style.border = gridlinesVisible ? "1px solid #d1d5db" : "none";
+    // Toggle grid/headings view
+    let headingsVisible = true;
+    document.getElementById("btnToggleHeadings").addEventListener("click", (e) => {
+      headingsVisible = !headingsVisible;
+      document.querySelectorAll(".sheet-grid th").forEach(h => {
+        h.style.display = headingsVisible ? "" : "none";
       });
-      e.target.textContent = gridlinesVisible ? "Hide Gridlines" : "Show Gridlines";
+      e.target.textContent = headingsVisible ? "Hide Headings" : "Show Headings";
+    });
+
+    // Formula Evaluator Sync
+    document.getElementById("formulaInput").addEventListener("input", (e) => {
+      if (!selectedCell) return;
+      cellData[selectedCell] = e.target.value;
+      const cell = document.getElementById(selectedCell);
+      if (cell) cell.textContent = e.target.value;
+      saveDoc();
+    });
+
+    // Undo & Redo simulator via review snapshot restore
+    document.getElementById("btnUndo").addEventListener("click", () => {
+      if (reviewLogs.length > 1) {
+        const confirmRestore = confirm("Restore to previous changes version?");
+        if (confirmRestore) {
+          // Revert to second to last version snapshot
+          const snapshot = reviewLogs[reviewLogs.length - 2].cellDataSnapshot;
+          if (snapshot) {
+            cellData = JSON.parse(JSON.stringify(snapshot));
+            buildGrid();
+            saveDoc();
+          }
+        }
+      } else {
+        alert("No previous versions available to undo.");
+      }
     });
 
     // Formulas Helpers
@@ -768,7 +1035,7 @@
       const vals = getColNumbers(col, maxRow);
       const sum = vals.reduce((a, b) => a + b, 0);
       cellData[selectedCell] = sum.toString();
-      renderGridData();
+      buildGrid();
       document.getElementById("formulaInput").value = sum.toString();
       saveDoc();
       logReview(`Calculated AutoSum for cell ${selectedCell}: ${sum}`);
@@ -781,7 +1048,7 @@
       const vals = getColNumbers(col, maxRow);
       const avg = vals.length ? (vals.reduce((a, b) => a + b, 0) / vals.length).toFixed(2) : 0;
       cellData[selectedCell] = avg.toString();
-      renderGridData();
+      buildGrid();
       document.getElementById("formulaInput").value = avg.toString();
       saveDoc();
       logReview(`Calculated Average for cell ${selectedCell}: ${avg}`);
@@ -793,7 +1060,7 @@
       const maxRow = parseInt(selectedCell.slice(1));
       const vals = getColNumbers(col, maxRow);
       cellData[selectedCell] = vals.length.toString();
-      renderGridData();
+      buildGrid();
       document.getElementById("formulaInput").value = vals.length.toString();
       saveDoc();
       logReview(`Calculated Count for cell ${selectedCell}: ${vals.length}`);
@@ -806,17 +1073,87 @@
       const vals = getColNumbers(col, maxRow);
       const max = vals.length ? Math.max(...vals) : 0;
       cellData[selectedCell] = max.toString();
-      renderGridData();
+      buildGrid();
       document.getElementById("formulaInput").value = max.toString();
       saveDoc();
       logReview(`Calculated Max for cell ${selectedCell}: ${max}`);
     });
 
-    // Save Copy
+    document.getElementById("btnCalculateMin").addEventListener("click", () => {
+      if (!selectedCell) return;
+      const col = selectedCell[0];
+      const maxRow = parseInt(selectedCell.slice(1));
+      const vals = getColNumbers(col, maxRow);
+      const min = vals.length ? Math.min(...vals) : 0;
+      cellData[selectedCell] = min.toString();
+      buildGrid();
+      document.getElementById("formulaInput").value = min.toString();
+      saveDoc();
+      logReview(`Calculated Min for cell ${selectedCell}: ${min}`);
+    });
+
+    // Column insertion and delete rows shifting
+    document.getElementById("btnInsertRow").addEventListener("click", () => {
+      const rowNum = parseInt(selectedCell.slice(1));
+      const tempCellData = {};
+      Object.keys(cellData).forEach(key => {
+        const col = key.match(/^([A-Z]+)/)[1];
+        const r = parseInt(key.slice(col.length));
+        if (r >= rowNum) {
+          tempCellData[`${col}${r + 1}`] = cellData[key];
+        } else {
+          tempCellData[key] = cellData[key];
+        }
+      });
+      cellData = tempCellData;
+      buildGrid();
+      saveDoc();
+      logReview(`Inserted row above row ${rowNum}`);
+    });
+
+    document.getElementById("btnDeleteRow").addEventListener("click", () => {
+      const rowNum = parseInt(selectedCell.slice(1));
+      const tempCellData = {};
+      Object.keys(cellData).forEach(key => {
+        const col = key.match(/^([A-Z]+)/)[1];
+        const r = parseInt(key.slice(col.length));
+        if (r > rowNum) {
+          tempCellData[`${col}${r - 1}`] = cellData[key];
+        } else if (r < rowNum) {
+          tempCellData[key] = cellData[key];
+        }
+      });
+      cellData = tempCellData;
+      buildGrid();
+      saveDoc();
+      logReview(`Deleted row ${rowNum}`);
+    });
+
+    document.getElementById("btnInsertCol").addEventListener("click", () => {
+      const colLetter = selectedCell.match(/^([A-Z]+)/)[1];
+      const colIndex = getColumnIndex(colLetter);
+      const tempCellData = {};
+      Object.keys(cellData).forEach(key => {
+        const col = key.match(/^([A-Z]+)/)[1];
+        const r = key.slice(col.length);
+        const idx = getColumnIndex(col);
+        if (idx >= colIndex) {
+          tempCellData[`${getColumnLabel(idx + 1)}${r}`] = cellData[key];
+        } else {
+          tempCellData[key] = cellData[key];
+        }
+      });
+      cellData = tempCellData;
+      buildGrid();
+      saveDoc();
+      logReview(`Inserted column right of ${colLetter}`);
+    });
+
+    // File Management
     document.getElementById("btnSaveCopy").addEventListener("click", () => {
       const timestamp = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
       const originalName = document.getElementById("docTitleInput").value;
-      const copyName = prompt("Save as copy (leaves original intact):", `${originalName.replace(/\.[^/.]+$/, "")} (Backup ${timestamp}).xlsx`);
+      const copyName = prompt("Save copy as:", `${originalName.replace(/\.[^/.]+$/, "")} (Backup ${timestamp}).xlsx`);
       if (!copyName) return;
 
       const newId = "doc_" + Math.random().toString(36).substr(2, 9);
@@ -826,24 +1163,27 @@
         type: "CELL",
         size: activeDoc.size,
         content: JSON.parse(JSON.stringify(cellData)),
+        styles: JSON.parse(JSON.stringify(cellStyles)),
         comments: JSON.parse(JSON.stringify(docComments)),
-        reviewLogs: JSON.parse(JSON.stringify(reviewLogs))
+        reviewLogs: JSON.parse(JSON.stringify(reviewLogs)),
+        theme: activeDoc.theme || "green"
       };
       
       documentCatalog.push(newDoc);
       localStorage.setItem(DB_KEY, JSON.stringify(documentCatalog));
-      alert(`New copy saved successfully: ${copyName}`);
+      alert(`New copy saved: ${copyName}`);
       window.location.href = `sheet.html?id=${newId}`;
     });
 
-    // Export Formats
     document.getElementById("btnExportCSV").addEventListener("click", () => {
       let csvContent = "";
-      for (let r = 1; r <= ROW_COUNT; r++) {
+      updateMaxDimensions();
+      for (let r = 1; r <= maxRows; r++) {
         const rowArr = [];
-        COLUMNS.forEach(col => {
-          rowArr.push(cellData[`${col}${r}`] || "");
-        });
+        for (let c = 0; c < Math.max(26, maxColumnsCount); c++) {
+          const colLabel = getColumnLabel(c);
+          rowArr.push(`"${(cellData[`${colLabel}${r}`] || "").replace(/"/g, '""')}"`);
+        }
         csvContent += rowArr.join(",") + "\n";
       }
       
@@ -857,7 +1197,7 @@
     });
 
     document.getElementById("btnExportJSON").addEventListener("click", () => {
-      const jsonContent = JSON.stringify(cellData, null, 2);
+      const jsonContent = JSON.stringify({ cellData, cellStyles }, null, 2);
       const blob = new Blob([jsonContent], { type: 'application/json;charset=utf-8;' });
       const link = document.createElement("a");
       link.href = URL.createObjectURL(blob);
@@ -867,7 +1207,17 @@
       document.body.removeChild(link);
     });
 
-    // Watermark
+    document.getElementById("btnClearSheet").addEventListener("click", () => {
+      if (confirm("Clear entire grid?")) {
+        cellData = {};
+        cellStyles = {};
+        buildGrid();
+        saveDoc();
+        logReview("Cleared entire sheet", "deletion");
+      }
+    });
+
+    // Watermark Module
     const chkWatermark = document.getElementById("chkWatermark");
     const watermarkText = document.getElementById("watermarkText");
     const overlay = document.getElementById("watermarkOverlay");
@@ -883,7 +1233,7 @@
     chkWatermark.addEventListener("change", updateWatermark);
     watermarkText.addEventListener("input", updateWatermark);
 
-    // Comments & Review Tabs
+    // Sidebar Comments
     const tabComments = document.getElementById("tabComments");
     const tabReview = document.getElementById("tabReview");
 
@@ -903,16 +1253,16 @@
 
     document.getElementById("btnTrackChanges").addEventListener("click", (e) => {
       isTrackChanges = !isTrackChanges;
-      e.target.textContent = `Toggle Review Mode (${isTrackChanges ? 'ON' : 'OFF'})`;
+      e.target.textContent = `Review Mode (${isTrackChanges ? 'ON' : 'OFF'})`;
       e.target.classList.toggle("active", isTrackChanges);
     });
 
     document.getElementById("btnAddComment").addEventListener("click", () => {
-      const comment = prompt("Add comment/notes for cell " + selectedCell + ":");
+      const comment = prompt("Add comment for cell " + selectedCell + ":");
       if (!comment) return;
       
       const defaultUser = localStorage.getItem("bt_office_user") || "User";
-      const author = prompt("Enter your name:", defaultUser);
+      const author = prompt("Enter name:", defaultUser);
       if (!author) return;
       localStorage.setItem("bt_office_user", author);
 
@@ -922,7 +1272,7 @@
       renderSidebar();
     });
 
-    function logReview(msg, type = "addition") {
+    function logReview(msg) {
       const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
       reviewLogs.push({
         time,
@@ -934,13 +1284,13 @@
     }
 
     window.restoreVersionSnapshot = function(idx) {
-      if (confirm("Are you sure you want to revert spreadsheet cells to this version?")) {
+      if (confirm("Revert grid to this version?")) {
         const snapshot = reviewLogs[idx].cellDataSnapshot;
         if (snapshot) {
           cellData = JSON.parse(JSON.stringify(snapshot));
-          renderGridData();
+          buildGrid();
           saveDoc();
-          alert("Version restored successfully!");
+          alert("Version restored!");
         }
       }
     };
@@ -958,7 +1308,7 @@
               <span><strong>${c.user}</strong></span>
               <span>${c.time}</span>
             </div>
-            <div style="color: #374151; margin-top:4px;">${c.text}</div>
+            <div style="color:#374151; margin-top:4px;">${c.text}</div>
           `;
           content.appendChild(div);
         });
@@ -967,7 +1317,7 @@
           const div = document.createElement("div");
           div.className = `track-changes-item`;
           div.style.cursor = "pointer";
-          div.title = "Click to restore this version snapshot";
+          div.title = "Click to restore this snapshot";
           div.setAttribute("onclick", `restoreVersionSnapshot(${idx})`);
           div.innerHTML = `<strong>${r.time}</strong>: ${r.text} <span style="font-size:0.7rem; color:#107c41; float:right;">(Restore)</span>`;
           content.appendChild(div);
@@ -975,8 +1325,37 @@
       }
     }
 
-    buildGrid();
+    // Draggable canvas container script
+    const dragContainer = document.getElementById("floatingChartContainer");
+    let isDragging = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
+    
+    dragContainer.addEventListener("mousedown", dragStart);
+    document.addEventListener("mouseup", dragEnd);
+    document.addEventListener("mousemove", drag);
+
+    function dragStart(e) {
+      if (e.target.tagName.toLowerCase() === 'canvas') return;
+      initialX = e.clientX - xOffset;
+      initialY = e.clientY - yOffset;
+      isDragging = true;
+    }
+
+    function dragEnd() {
+      initialX = currentX;
+      initialY = currentY;
+      isDragging = false;
+    }
+
+    function drag(e) {
+      if (isDragging) {
+        e.preventDefault();
+        currentX = e.clientX - initialX;
+        currentY = e.clientY - initialY;
+        xOffset = currentX;
+        yOffset = currentY;
+        dragContainer.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+      }
+    }
+
     loadDoc();
   </script>
-</body>
-</html>
