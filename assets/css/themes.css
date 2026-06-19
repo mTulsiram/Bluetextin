@@ -21,22 +21,22 @@
 	--logo-badge-text: var(--primary-blue);
 
 	/* Text */
-	--text-primary: #1a1a1a;
-	--text-secondary: #555555;
+	--text-primary: #111827;
+	--text-secondary: #4b5563;
 
 	/* Backgrounds */
-	--bg-main: #f4f7f9;
+	--bg-main: #f3f4f6;
 	--bg-card: #ffffff;
-	--border-color: #dee2e6;
+	--border-color: #cbd5e1;
 
 	/* Typography */
 	--font-main: "Heebo", "Segoe UI", sans-serif;
 	--font-heading: "Heebo", "Segoe UI", sans-serif;
 
 	/* Effects */
-	--shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-	--shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.1);
-	--focus-ring: 0 0 0 3px rgba(0, 86, 210, 0.35);
+	--shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+	--shadow-hover: 0 8px 25px rgba(15, 23, 42, 0.1);
+	--focus-ring: 0 0 0 3px rgba(11, 87, 208, 0.35);
 	--transition: 0.25s ease;
 
 	/* Radius */
@@ -46,46 +46,45 @@
 
 	/* Compatibility aliases for existing classes */
 	--bg: var(--bg-main);
-	--bg-strong: #d9e7ff;
+	--bg-strong: #dbeafe;
 	--surface: var(--bg-card);
-	--surface-soft: #f8fbff;
+	--surface-soft: #f8fafc;
 	--text: var(--text-primary);
 	--text-soft: var(--text-secondary);
 	--accent: var(--accent-primary);
-	--accent-strong: #083b8f;
-	--accent-alt: #18a0b6;
-	--stroke: #d6e3ff;
+	--accent-strong: #0842a0;
+	--accent-alt: #0b57d0;
+	--stroke: #cbd5e1;
 }
 
-
 [data-theme="dark"] {
-	--accent-primary: #ffb1ee;      /* getdesign.md Pink */
-	--accent-secondary: #00f0ff;    /* Neon Cyan */
-	--accent-soft: rgba(255, 177, 238, 0.15);
-	--accent-contrast: #000000;
+	--accent-primary: #8ab4f8;
+	--accent-secondary: #a4c6ff;
+	--accent-soft: rgba(138, 180, 248, 0.15);
+	--accent-contrast: #111827;
 
-	--text-primary: #ededed;
-	--text-secondary: #878787;
+	--text-primary: #e5e7eb;
+	--text-secondary: #9ca3af;
 
-	--bg-main: #000000;             /* Pure black canvas */
-	--bg-card: #0a0a0a;             /* Deep slate/black card */
-	--border-color: #2e2e2e;        /* Subtle border */
+	--bg-main: #020617;
+	--bg-card: #0b0f19;
+	--border-color: #374151;
 
-	--shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
-	--shadow-hover: 0 12px 40px rgba(255, 177, 238, 0.15);
-	--focus-ring: 0 0 0 3px rgba(255, 177, 238, 0.45);
+	--shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+	--shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.8);
+	--focus-ring: 0 0 0 3px rgba(138, 180, 248, 0.45);
 
-	--bg-strong: #111111;
-	--surface-soft: #111111;
-	--accent-strong: #ffb1ee;
-	--stroke: #2e2e2e;
+	--bg-strong: #0f172a;
+	--surface-soft: #0f172a;
+	--accent-strong: #8ab4f8;
+	--stroke: #374151;
 
 	/* Logo Color Scheme */
 	--logo-blue-part: #ffffff;
-	--logo-text-part: #3b82f6;
-	--logo-badge-bg: rgba(59, 130, 246, 0.1);
-	--logo-badge-border: #3b82f6;
-	--logo-badge-text: #3b82f6;
+	--logo-text-part: #8ab4f8;
+	--logo-badge-bg: rgba(138, 180, 248, 0.1);
+	--logo-badge-border: #8ab4f8;
+	--logo-badge-text: #8ab4f8;
 }
 
 @media (prefers-contrast: more) {
