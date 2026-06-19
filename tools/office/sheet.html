@@ -357,16 +357,26 @@
   <!-- Ribbon -->
   <div class="sheet-ribbon">
     <div class="ribbon-tabs">
-      <button class="ribbon-tab active" data-tab="ribbon-home">Home</button>
-      <button class="ribbon-tab" data-tab="ribbon-file">File</button>
+      <button class="ribbon-tab active" data-tab="ribbon-file">File</button>
+      <button class="ribbon-tab" data-tab="ribbon-home">Home</button>
       <button class="ribbon-tab" data-tab="ribbon-insert">Insert</button>
       <button class="ribbon-tab" data-tab="ribbon-layout">Page Layout</button>
       <button class="ribbon-tab" data-tab="ribbon-formulas">Formulas</button>
     </div>
 
     <div class="ribbon-toolbar-container">
+      <!-- FILE TOOLBAR -->
+      <div class="ribbon-toolbar active" id="ribbon-file">
+        <div class="ribbon-group">
+          <button class="ribbon-btn" id="btnSaveCopy" style="color:#107c41;">💾 Save Copy</button>
+          <button class="ribbon-btn" id="btnExportCSV">Export CSV</button>
+          <button class="ribbon-btn" id="btnExportJSON">Export JSON</button>
+          <button class="ribbon-btn" id="btnClearSheet" style="color:#dc2626;">🗑️ Clear Grid</button>
+        </div>
+      </div>
+
       <!-- HOME TOOLBAR -->
-      <div class="ribbon-toolbar active" id="ribbon-home">
+      <div class="ribbon-toolbar" id="ribbon-home">
         <div class="ribbon-group">
           <button class="ribbon-btn" id="btnBold" title="Bold"><b>B</b></button>
           <button class="ribbon-btn" id="btnItalic" title="Italic"><i>I</i></button>
@@ -386,17 +396,6 @@
           <button class="ribbon-btn" id="btnTrackChanges">Toggle Review Mode (OFF)</button>
         </div>
       </div>
-
-      <!-- FILE TOOLBAR -->
-      <div class="ribbon-toolbar" id="ribbon-file">
-        <div class="ribbon-group">
-          <button class="ribbon-btn" id="btnSaveCopy" style="color:#107c41;">💾 Save Copy</button>
-          <button class="ribbon-btn" id="btnExportCSV">Export CSV</button>
-          <button class="ribbon-btn" id="btnExportJSON">Export JSON</button>
-          <button class="ribbon-btn" id="btnClearSheet" style="color:#dc2626;">🗑️ Clear Grid</button>
-        </div>
-      </div>
-
       <!-- INSERT TOOLBAR -->
       <div class="ribbon-toolbar" id="ribbon-insert">
         <div class="ribbon-group">
