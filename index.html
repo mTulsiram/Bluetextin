@@ -1,191 +1,87 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-	<meta charset="UTF-8">
+  <meta charset="UTF-8">
   <link rel="stylesheet" href="/assets/css/main.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Bluetext.in | 90 Free Online Tools for Developers, Creators & Professionals</title>
-	<meta name="description" content="90 free online tools for developers, creators, and professionals. Fast, simple, and privacy-first. Calculators, converters, PDF, images, SEO, AI, media, and more.">
-	<meta name="keywords" content="online tools, calculators, converters, PDF tools, image tools, SEO tools, developer tools, free tools, privacy">
-	<meta name="theme-color" content="#181d26">
-	<meta name="creator" content="Tulsiram Methre">
-	<meta name="author" content="Tulsiram Methre, AWS Solution Architect">
-	
-	<!-- Open Graph / Social Media -->
-	<meta property="og:type" content="website">
-	<meta property="og:url" content="/index.html">
-	<meta property="og:title" content="Bluetext.in | 90 Free Online Tools">
-	<meta property="og:description" content="90 free, fast, and privacy-first online tools for developers, creators, and professionals.">
-	<meta property="og:image" content="/assets/img/og-image.png">
-	<meta property="og:image:alt" content="Bluetext.in - The Ultimate Online Utility Suite">
-	
-	<!-- Twitter -->
-	<meta property="twitter:card" content="summary_large_image">
-	<meta property="twitter:url" content="/index.html">
-	<meta property="twitter:title" content="Bluetext.in | 90 Free Online Tools">
-	<meta property="twitter:description" content="90 free, fast, and privacy-first online tools for developers, creators, and professionals.">
-	<meta property="twitter:image" content="/assets/img/og-image.png">
-	<meta property="twitter:creator" content="@Tulsiram_Methre">
-	
-	<!-- Additional Meta Tags -->
-	<meta name="copyright" content="© 2026 Bluetext.in. All rights reserved.">
-	<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-	<link rel="canonical" href="/index.html">
-	
-	<!-- Google Site Verification (update with your own) -->
-	<meta name="google-site-verification" content="">
-	
-	<link rel="manifest" href="manifest.webmanifest">
-	
-	
-	
-	
-	
-	
-	
-	
-	<noscript>
-		
-		
-		
-	</noscript>
-	
-	<!-- Apply saved theme before first paint to avoid flash -->
-	<script>(function(){var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BlueTEXT | High Performance Local Web Utilities</title>
+  <meta name="description" content="Stunning, high-performance developer utilities running entirely locally in your browser. Case converter, CSV to JSON grid, and Base64 encoders.">
 </head>
 <body>
-	<div id="site-header"></div>
-	<a class="skip-link" href="#main-content">Skip to content</a>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div id="site-header" class="global-header"></div>
+  
+  <main id="main-content" class="app-container" style="margin-top: var(--space-8);">
+    <header style="text-align: center; margin-bottom: var(--space-8);">
+      <div style="display:inline-block; font-size:0.875rem; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent-primary); margin-bottom:var(--space-3); background:var(--accent-primary-glow); padding:0.4rem 1rem; border-radius:var(--radius-pill); border:1px solid rgba(59,130,246,0.2);">
+        Local &middot; Serverless &middot; Privacy First
+      </div>
+      <h1 style="font-size: 3.5rem; background: linear-gradient(135deg, var(--text-primary) 30%, var(--accent-primary-hover) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+        Instant Web Utilities
+      </h1>
+      <p style="color: var(--text-secondary); max-width: 600px; margin: var(--space-3) auto var(--space-5); font-size: 1.125rem;">
+        Sleek, production-grade tools designed for developers and content writers. Process files and texts instantly inside your browser sandbox.
+      </p>
 
-	<div class="site-shell">
-		<header class="hero" role="banner">
-			<div class="hero__badge" data-i18n="home.heroBadge">Simple. Fast. Privacy-first.</div>
-			<h1 class="hero__title">
-				<span class="logo-text logo-text--hero" aria-label="BlueTEXT language code">
-					<span class="logo-wordmark" aria-hidden="true"><span class="logo-blue">Blue</span><span class="logo-text-pt">TEXT</span></span><span class="logo-in-badge" aria-hidden="true"></span>
-				</span>
-			</h1>
-			<p class="hero__subtitle" data-i18n="home.heroSubtitle">
-				90 free online tools for developers, creators, and professionals. No tracking. No signup. Just pure utility.
-			</p>
+      <div style="max-width: 500px; margin: 0 auto; position: relative;">
+        <input type="search" id="tool-search" class="input" placeholder="Search tools (e.g. csv, base64, case)..." style="border-radius: var(--radius-pill); padding: 0.9rem 1.5rem; text-align: center;" aria-label="Search tools">
+      </div>
+    </header>
 
-			<div class="hero__meta" aria-label="Platform highlights">
-				<div class="meta-chip">
-					<span class="meta-chip__label" data-i18n="home.meta.totalTools">Total tools</span>
-					<strong id="hero-total-tools">-</strong>
-				</div>
-				<div class="meta-chip">
-					<span class="meta-chip__label" data-i18n="home.meta.readyNow">Ready now</span>
-					<strong id="hero-ready-tools">-</strong>
-				</div>
-				<div class="meta-chip">
-					<span class="meta-chip__label" data-i18n="home.meta.categories">Categories</span>
-					<strong id="hero-total-categories">-</strong>
-				</div>
-			</div>
+    <section>
+      <h2 style="font-size: 1.5rem; font-weight: 500; border-bottom: 1px solid var(--border-subtle); padding-bottom: var(--space-2); color: var(--text-secondary);">
+        Available Utilities
+      </h2>
+      
+      <div class="tool-grid" id="tools-list">
+        <a href="/tools/text-case.html" class="glass-card tool-card">
+          <h3>
+            <span>Text Case & Analytics</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent-primary);"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </h3>
+          <p>Convert case structures, estimate reading durations, count parameters, and analyze word patterns instantly.</p>
+        </a>
 
-			<div class="hero__actions">
-				<a class="btn btn--primary" href="tools-platform/all-tools.html" data-i18n="home.cta.explore">Explore All Tools</a>
-				<a class="btn btn--ghost" href="#category-section" data-i18n="home.cta.browse">Browse Categories</a>
-			</div>
+        <a href="/tools/csv-json.html" class="glass-card tool-card">
+          <h3>
+            <span>CSV / JSON Converter</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent-secondary);"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </h3>
+          <p>Drag and drop CSV files to view a live interactive table and instantly export to formatted JSON, or vice-versa.</p>
+        </a>
 
-			<form class="search" id="tool-search-form" role="search" aria-label="Search tools">
-				<label class="search__label" for="mainSearch" data-i18n="search.label">Search tools</label>
-				<input
-					id="mainSearch"
-					class="search__input"
-					type="search"
-					placeholder="Try: BMI, PDF merge, image resize"
-					data-i18n-placeholder="home.search.placeholder"
-					autocomplete="off"
-					aria-describedby="search-help"
-					aria-controls="mainSearchResults"
-				>
-				<p id="search-help" class="search__help" data-i18n="home.search.help">Press Enter to jump to the first matching tool.</p>
-				<div id="mainSearchResults" class="live-search-results" aria-live="polite"></div>
-			</form>
-		</header>
+        <a href="/tools/file-base64.html" class="glass-card tool-card">
+          <h3>
+            <span>File to Base64 encoder</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent-success);"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </h3>
+          <p>Encode any file (images, PDFs, documents) into standard Base64 URI strings, view sizes, and copy code snippets.</p>
+        </a>
+      </div>
+    </section>
+  </main>
 
-		<main id="main-content" class="content" role="main">
-			<section id="category-section" class="panel">
-				<div class="panel__head">
-					<h2 data-i18n="home.browse.title">Browse Categories</h2>
-					<p data-i18n="home.browse.desc">Explore the current tool catalog by workflow, format, and use case.</p>
-				</div>
-				<div id="categoryGrid" class="category-grid" aria-live="polite"></div>
-			</section>
+  <div id="site-footer" class="global-footer"></div>
 
-			<section class="panel">
-				<div class="panel__head">
-					<h2 data-i18n="home.snapshot.title">Platform Snapshot</h2>
-					<p data-i18n="home.snapshot.desc">Live catalog status generated from your current tool data.</p>
-				</div>
-				<div id="stats-grid" class="stats-grid" aria-live="polite"></div>
-			</section>
-
-			<section class="panel">
-				<div class="panel__head">
-					<h2 data-i18n="home.featured.title">Featured Tools</h2>
-					<p data-i18n="home.featured.desc">Handpicked utilities from the first launch wave.</p>
-				</div>
-				<div id="featured-tools" class="tool-grid" aria-live="polite"></div>
-			</section>
-
-			<section class="panel panel--split">
-				<div>
-					<h2 data-i18n="home.why.title">Why Bluetext?</h2>
-					<ul class="feature-list">
-						<li data-i18n="home.why.point1">Fast pages with lightweight UI and no sign-up friction.</li>
-						<li data-i18n="home.why.point2">Focused tool experiences with clear input-output flows.</li>
-						<li data-i18n="home.why.point3">Scalable, category-driven architecture for rapid expansion.</li>
-					</ul>
-				</div>
-				<div class="status-card">
-					<h3 data-i18n="home.build.title">Build Status</h3>
-					<p data-i18n="home.build.desc">Core platform foundation is now active.</p>
-					<dl>
-						<div><dt data-i18n="home.build.phaseLabel">Phase</dt><dd data-i18n="home.build.phaseValue">Catalog Expansion</dd></div>
-						<div><dt data-i18n="home.build.langLabel">Language</dt><dd data-i18n="home.build.langValue">English First</dd></div>
-						<div><dt data-i18n="home.build.focusLabel">Focus</dt><dd data-i18n="home.build.focusValue">Tools, listings, and category coverage</dd></div>
-					</dl>
-				</div>
-			</section>
-
-			<section class="panel" aria-labelledby="compliance-hub-title">
-				<div class="panel__head">
-					<h2 id="compliance-hub-title">Compliance and Trust Controls</h2>
-					<p>Accessibility, privacy rights, and security baseline indicators are available on every page.</p>
-				</div>
-				<div class="dsr-grid">
-					<article class="dsr-panel">
-						<h3>Privacy and Consent</h3>
-						<p>Use Privacy Settings to manage optional consent categories and review policy details.</p>
-						<p><a href="/nav/privacy.html">Open Privacy Policy</a> | <a href="/nav/compliance.html">Open Compliance Center</a></p>
-					</article>
-					<article class="security-baseline">
-						<h3>Security Baseline</h3>
-						<ul>
-							<li>Transport and consent status chips shown in footer runtime area.</li>
-							<li>Design and component standards aligned to WCAG 2.2 AA and UX4G-style service UX.</li>
-							<li>Operational controls aligned to ISO 27001 and FISMA governance baselines.</li>
-						</ul>
-					</article>
-				</div>
-			</section>
-		</main>
-	</div>
-
-	<div id="site-footer"></div>
-
-	<script src="/assets/js/partials.js" defer></script>
-	<script type="module" src="/assets/js/main.js"></script>
-	<script>
-		// Unregister any existing service workers so caching does not block updates.
-		if ("serviceWorker" in navigator) {
-			navigator.serviceWorker.getRegistrations().then((registrations) => {
-				registrations.forEach((r) => r.unregister());
-			});
-		}
-	</script>
+  <script src="/assets/js/app.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const search = document.getElementById('tool-search');
+      const cards = document.querySelectorAll('#tools-list .tool-card');
+      
+      search.addEventListener('input', () => {
+        const query = search.value.trim().toLowerCase();
+        cards.forEach(card => {
+          const title = card.querySelector('h3').textContent.toLowerCase();
+          const desc = card.querySelector('p').textContent.toLowerCase();
+          if (title.includes(query) || desc.includes(query)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>

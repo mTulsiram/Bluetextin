@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSV / JSON Grid Converter | BlueTEXT</title>
+  <style>
+    /* Spreadsheet table preview */
+    .table-container {
+      width: 100%;
+      overflow: auto;
+      max-height: 350px;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      background: rgba(0,0,0,0.15);
+    }
+    table.spreadsheet-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    table.spreadsheet-table th {
+      background: var(--bg-canvas);
+      color: var(--text-secondary);
+      font-weight: 600;
+      padding: var(--space-2) var(--space-3);
+      border-bottom: 2px solid var(--border-subtle);
+      border-right: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      text-align: left;
+    }
+    table.spreadsheet-table td {
+      padding: var(--space-2) var(--space-3);
+      border-bottom: 1px solid var(--border-subtle);
+      border-right: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      white-space: nowrap;
+    }
+    table.spreadsheet-table tr:hover {
+      background: rgba(255,255,255,0.02);
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div id="site-header" class="global-header"></div>
+
+  <main id="main-content" class="app-container" style="margin-top: var(--space-6);">
+    <header style="margin-bottom: var(--space-4);">
+      <p style="font-size:0.875rem; color:var(--accent-secondary); font-weight:600;"><a href="/index.html">&larr; Back to Dashboard</a></p>
+      <h1 style="margin-top: var(--space-2);">CSV / JSON Grid Converter</h1>
+      <p style="color:var(--text-secondary); font-size:0.95rem;">Bidirectional format conversion with interactive grid validation. No server calls, entirely browser-contained.</p>
+    </header>
+
+    <div class="tool-layout">
+      <!-- Input Panel -->
+      <section class="glass-card" style="display:flex; flex-direction:column; gap:var(--space-4);">
+        <h3 style="font-size:1.15rem; font-weight:600;">Load Content</h3>
+        <div class="drop-zone" id="csv-drop-zone">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+          <p style="font-size:0.9rem; font-weight:500;">Drag &amp; Drop CSV File Here</p>
+          <span style="font-size:0.75rem; color:var(--text-muted);">or click to browse local files</span>
+          <input type="file" id="csv-file-input" accept=".csv" style="display:none;">
+        </div>
+
+        <div class="form-group" style="margin:0;">
+          <label for="raw-input">Or Paste CSV/JSON Code Raw</label>
+          <textarea id="raw-input" class="textarea" placeholder="Paste CSV or JSON here..." style="min-height:180px;"></textarea>
+        </div>
+
+        <div style="display:flex; gap:var(--space-2);">
+          <button class="btn btn--primary" id="btn-csv-to-json" style="flex:1;">CSV to JSON &rarr;</button>
+          <button class="btn btn--ghost" id="btn-json-to-csv" style="flex:1;">&larr; JSON to CSV</button>
+        </div>
+      </section>
+
+      <!-- Output Dashboard & Grid -->
+      <section class="glass-card" style="display:flex; flex-direction:column; gap:var(--space-4);">
+        <h3 style="font-size:1.15rem; font-weight:600; display:flex; justify-content:space-between; align-items:center;">
+          <span>Interactive Grid &amp; Output</span>
+          <span id="grid-status" style="font-size:0.75rem; color:var(--accent-success); font-weight:normal;"></span>
+        </h3>
+
+        <!-- Scrollable Table -->
+        <div class="table-container" id="grid-wrapper" style="display:none;">
+          <table class="spreadsheet-table" id="spreadsheet-view">
+            <thead><tr id="table-head"></tr></thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </div>
+
+        <div class="form-group" style="margin:0;">
+          <label for="raw-output">Converted Output</label>
+          <textarea id="raw-output" class="textarea" readonly placeholder="Output will appear here..." style="min-height:150px; background:rgba(0,0,0,0.3); font-family:monospace; font-size:0.875rem;"></textarea>
+        </div>
+
+        <div style="display:flex; gap:var(--space-2);">
+          <button class="btn btn--ghost" id="btn-copy-output" style="flex:1;">Copy Output</button>
+          <button class="btn btn--accent" id="btn-download-output" style="flex:1;">Download File</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="site-footer" class="global-footer"></div>
+
+  <script src="/assets/js/app.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const dropZone = document.getElementById('csv-drop-zone');
+      const fileInput = document.getElementById('csv-file-input');
+      const rawInput = document.getElementById('raw-input');
+      const rawOutput = document.getElementById('raw-output');
+      const gridWrapper = document.getElementById('grid-wrapper');
+      const gridStatus = document.getElementById('grid-status');
+      
+      const tHead = document.getElementById('table-head');
+      const tBody = document.getElementById('table-body');
+
+      // Drop zone click triggers file input
+      dropZone.addEventListener('click', () => fileInput.click());
+
+      // Drag behaviors
+      ['dragenter', 'dragover'].forEach(name => {
+        dropZone.addEventListener(name, (e) => {
+          e.preventDefault();
+          dropZone.classList.add('dragover');
+        });
+      });
+      ['dragleave', 'drop'].forEach(name => {
+        dropZone.addEventListener(name, (e) => {
+          e.preventDefault();
+          dropZone.classList.remove('dragover');
+        });
+      });
+
+      dropZone.addEventListener('drop', (e) => {
+        const file = e.dataTransfer.files[0];
+        if (file) handleFile(file);
+      });
+
+      fileInput.addEventListener('change', () => {
+        const file = fileInput.files[0];
+        if (file) handleFile(file);
+      });
+
+      function handleFile(file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          rawInput.value = e.target.result;
+          processCsv(e.target.result);
+        };
+        reader.readAsText(file);
+      }
+
+      function parseCsv(text) {
+        const lines = text.split(/\r?\n/).filter(line => line.trim().length > 0);
+        return lines.map(line => {
+          // simple csv parser (respects quotes)
+          const result = [];
+          let current = '';
+          let inQuotes = false;
+          for (let i = 0; i < line.length; i++) {
+            const char = line[i];
+            if (char === '"') {
+              inQuotes = !inQuotes;
+            } else if (char === ',' && !inQuotes) {
+              result.push(current.trim());
+              current = '';
+            } else {
+              current += char;
+            }
+          }
+          result.push(current.trim());
+          return result;
+        });
+      }
+
+      function processCsv(text) {
+        try {
+          const rows = parseCsv(text);
+          if (!rows.length) return;
+          
+          const headers = rows[0];
+          const dataRows = rows.slice(1);
+
+          // Populate interactive spreadsheet grid
+          tHead.innerHTML = headers.map(h => `<th>${h}</th>`).join('');
+          tBody.innerHTML = dataRows.map(row => {
+            return `<tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>`;
+          }).join('');
+          
+          gridWrapper.style.display = 'block';
+          gridStatus.textContent = `Interactive Grid: ${dataRows.length} rows detected`;
+
+          // Format output to JSON
+          const jsonArr = dataRows.map(row => {
+            const obj = {};
+            headers.forEach((h, index) => {
+              obj[h] = row[index] || '';
+            });
+            return obj;
+          });
+
+          rawOutput.value = JSON.stringify(jsonArr, null, 2);
+        } catch (e) {
+          rawOutput.value = 'Failed to parse CSV: ' + e.message;
+        }
+      }
+
+      document.getElementById('btn-csv-to-json').addEventListener('click', () => {
+        processCsv(rawInput.value);
+      });
+
+      document.getElementById('btn-json-to-csv').addEventListener('click', () => {
+        try {
+          const json = JSON.parse(rawInput.value);
+          if (!Array.isArray(json) || !json.length) {
+            throw new Error('JSON input must be an array of objects.');
+          }
+          
+          const headers = Object.keys(json[0]);
+          const csvRows = [headers.join(',')];
+          
+          json.forEach(obj => {
+            const values = headers.map(h => {
+              const val = String(obj[h] || '');
+              return val.includes(',') ? `"${val}"` : val;
+            });
+            csvRows.push(values.join(','));
+          });
+
+          const csvText = csvRows.join('\n');
+          rawOutput.value = csvText;
+
+          // Populate grid
+          tHead.innerHTML = headers.map(h => `<th>${h}</th>`).join('');
+          tBody.innerHTML = json.map(obj => {
+            return `<tr>${headers.map(h => `<td>${obj[h] || ''}</td>`).join('')}</tr>`;
+          }).join('');
+          gridWrapper.style.display = 'block';
+          gridStatus.textContent = `Interactive Grid: ${json.length} records parsed`;
+        } catch (e) {
+          rawOutput.value = 'Failed to convert JSON to CSV: ' + e.message;
+        }
+      });
+
+      document.getElementById('btn-copy-output').addEventListener('click', () => {
+        navigator.clipboard.writeText(rawOutput.value).then(() => {
+          const btn = document.getElementById('btn-copy-output');
+          btn.textContent = 'Copied!';
+          setTimeout(() => { btn.textContent = 'Copy Output'; }, 1500);
+        });
+      });
+
+      document.getElementById('btn-download-output').addEventListener('click', () => {
+        const text = rawOutput.value;
+        if (!text) return;
+        const isJson = text.trim().startsWith('[');
+        const blob = new Blob([text], { type: isJson ? 'application/json' : 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = isJson ? 'converted.json' : 'converted.csv';
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+    });
+  </script>
+</body>
+</html>
