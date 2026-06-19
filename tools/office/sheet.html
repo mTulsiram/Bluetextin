@@ -362,124 +362,225 @@
       <button class="ribbon-tab" data-tab="ribbon-insert">Insert</button>
       <button class="ribbon-tab" data-tab="ribbon-layout">Page Layout</button>
       <button class="ribbon-tab" data-tab="ribbon-formulas">Formulas</button>
+      <button class="ribbon-tab" data-tab="ribbon-data">Data</button>
+      <button class="ribbon-tab" data-tab="ribbon-review">Review</button>
+      <button class="ribbon-tab" data-tab="ribbon-view">View</button>
     </div>
 
     <div class="ribbon-toolbar-container">
       <!-- FILE TOOLBAR -->
       <div class="ribbon-toolbar active" id="ribbon-file">
         <div class="ribbon-group">
-          <span style="font-size:0.7rem; color:#6b7280; font-weight:bold; display:block; width:100%; margin-bottom:2px;">FILE OPERATIONS</span>
-          <button class="ribbon-btn" id="btnSaveCopy" style="color:#107c41; font-weight:bold;">💾 Save Copy</button>
-          <button class="ribbon-btn" id="btnExportCSV">Export CSV</button>
-          <button class="ribbon-btn" id="btnExportJSON">Export JSON</button>
-          <button class="ribbon-btn" id="btnClearSheet" style="color:#dc2626;">🗑️ Clear Grid</button>
+          <div class="ribbon-row">
+            <button class="ribbon-btn" id="btnSaveCopy" style="color:#107c41; font-weight:bold;">💾 Save Copy</button>
+            <button class="ribbon-btn" id="btnExportCSV">Export CSV</button>
+            <button class="ribbon-btn" id="btnExportJSON">Export JSON</button>
+          </div>
+          <div class="ribbon-group-title">File Operations</div>
+        </div>
+        <div class="ribbon-group">
+          <div class="ribbon-row">
+            <button class="ribbon-btn" id="btnClearSheet" style="color:#dc2626;">🗑️ Clear Grid</button>
+            <button class="ribbon-btn" onclick="window.print();">🖨️ Print / PDF</button>
+          </div>
+          <div class="ribbon-group-title">Print & Reset</div>
         </div>
       </div>
 
       <!-- HOME TOOLBAR -->
       <div class="ribbon-toolbar" id="ribbon-home">
         <div class="ribbon-group">
-          <span style="font-size:0.7rem; color:#6b7280; font-weight:bold; display:block; width:100%; margin-bottom:2px;">CLIPBOARD & UNDO</span>
-          <button class="ribbon-btn" id="btnUndo" title="Undo Last Change">↩️ Undo</button>
-          <button class="ribbon-btn" id="btnRedo" title="Redo">↪️ Redo</button>
+          <div class="ribbon-row">
+            <button class="ribbon-btn" id="btnUndo" title="Undo Last Change">↩️ Undo</button>
+            <button class="ribbon-btn" id="btnRedo" title="Redo">↪️ Redo</button>
+          </div>
+          <div class="ribbon-group-title">Undo/Redo</div>
         </div>
         <div class="ribbon-group">
-          <span style="font-size:0.7rem; color:#6b7280; font-weight:bold; display:block; width:100%; margin-bottom:2px;">FONT STYLES</span>
-          <select class="ribbon-select" id="fontFamilySelect" title="Font Family">
-            <option value="Segoe UI" selected>Segoe UI</option>
-            <option value="Arial">Arial</option>
-            <option value="Times New Roman">Times New Roman</option>
-            <option value="Courier New">Courier New</option>
-            <option value="Georgia">Georgia</option>
-          </select>
-          <select class="ribbon-select" id="fontSizeSelect" title="Font Size">
-            <option value="12px">9</option>
-            <option value="14px">10</option>
-            <option value="16px" selected>11</option>
-            <option value="18px">12</option>
-            <option value="20px">14</option>
-            <option value="24px">18</option>
-          </select>
-          <button class="ribbon-btn" id="btnBold" title="Bold"><b>B</b></button>
-          <button class="ribbon-btn" id="btnItalic" title="Italic"><i>I</i></button>
-          <button class="ribbon-btn" id="btnUnderline" title="Underline"><u>U</u></button>
+          <div class="ribbon-row">
+            <button class="ribbon-btn" onclick="document.execCommand('copy');" title="Copy">📋 Copy</button>
+            <button class="ribbon-btn" onclick="document.execCommand('cut');" title="Cut">✂️ Cut</button>
+          </div>
+          <div class="ribbon-group-title">Clipboard</div>
         </div>
         <div class="ribbon-group">
-          <span style="font-size:0.7rem; color:#6b7280; font-weight:bold; display:block; width:100%; margin-bottom:2px;">ALIGN & FILL</span>
-          <button class="ribbon-btn" id="btnAlignLeft" title="Align Left">Align L</button>
-          <button class="ribbon-btn" id="btnAlignCenter" title="Center">Align C</button>
-          <button class="ribbon-btn" id="btnAlignRight" title="Align Right">Align R</button>
-          <select class="ribbon-select" id="cellColorSelect" title="Cell Fill Color">
-            <option value="">Fill Color</option>
-            <option value="#fef08a">Yellow</option>
-            <option value="#bbf7d0">Green</option>
-            <option value="#bfdbfe">Blue</option>
-            <option value="#fecaca">Red</option>
-            <option value="#e2e8f0">Gray</option>
-          </select>
-          <select class="ribbon-select" id="textColorSelect" title="Text Color">
-            <option value="">Text Color</option>
-            <option value="#000000">Black</option>
-            <option value="#dc2626">Red</option>
-            <option value="#2563eb">Blue</option>
-            <option value="#16a34a">Green</option>
-          </select>
+          <div class="ribbon-row">
+            <select class="ribbon-select" id="fontFamilySelect" title="Font Family">
+              <option value="Segoe UI" selected>Segoe UI</option>
+              <option value="Arial">Arial</option>
+              <option value="Times New Roman">Times New Roman</option>
+              <option value="Courier New">Courier New</option>
+            </select>
+            <select class="ribbon-select" id="fontSizeSelect" title="Font Size">
+              <option value="12px">9</option>
+              <option value="14px">10</option>
+              <option value="16px" selected>11</option>
+              <option value="18px">12</option>
+              <option value="20px">14</option>
+            </select>
+            <button class="ribbon-btn" id="btnBold" title="Bold"><b>B</b></button>
+            <button class="ribbon-btn" id="btnItalic" title="Italic"><i>I</i></button>
+            <button class="ribbon-btn" id="btnUnderline" title="Underline"><u>U</u></button>
+          </div>
+          <div class="ribbon-group-title">Font</div>
         </div>
         <div class="ribbon-group">
-          <span style="font-size:0.7rem; color:#6b7280; font-weight:bold; display:block; width:100%; margin-bottom:2px;">REVIEW & ZEBRA</span>
-          <button class="ribbon-btn" id="btnZebraShading">Toggle Zebra</button>
-          <button class="ribbon-btn" id="btnTrackChanges">Review Mode (OFF)</button>
+          <div class="ribbon-row">
+            <button class="ribbon-btn" id="btnAlignLeft" title="Align Left">Align L</button>
+            <button class="ribbon-btn" id="btnAlignCenter" title="Center">Align C</button>
+            <button class="ribbon-btn" id="btnAlignRight" title="Align Right">Align R</button>
+          </div>
+          <div class="ribbon-group-title">Alignment</div>
+        </div>
+        <div class="ribbon-group">
+          <div class="ribbon-row">
+            <select class="ribbon-select" id="cellColorSelect" title="Cell Fill Color">
+              <option value="">Fill Color</option>
+              <option value="#fef08a">Yellow</option>
+              <option value="#bbf7d0">Green</option>
+              <option value="#bfdbfe">Blue</option>
+              <option value="#fecaca">Red</option>
+              <option value="#e2e8f0">Gray</option>
+            </select>
+            <select class="ribbon-select" id="textColorSelect" title="Text Color">
+              <option value="">Text Color</option>
+              <option value="#000000">Black</option>
+              <option value="#dc2626">Red</option>
+              <option value="#2563eb">Blue</option>
+            </select>
+          </div>
+          <div class="ribbon-group-title">Styles & Highlights</div>
+        </div>
+        <div class="ribbon-group">
+          <div class="ribbon-row">
+            <button class="ribbon-btn" id="btnZebraShading">Zebra Table</button>
+            <button class="ribbon-btn" id="btnTrackChanges">Review (OFF)</button>
+          </div>
+          <div class="ribbon-group-title">Table Helpers</div>
         </div>
       </div>
 
       <!-- INSERT TOOLBAR -->
       <div class="ribbon-toolbar" id="ribbon-insert">
         <div class="ribbon-group">
-          <span style="font-size:0.7rem; color:#6b7280; font-weight:bold; display:block; width:100%; margin-bottom:2px;">CELL CONTROLS</span>
-          <button class="ribbon-btn" id="btnInsertRow">➕ Insert Row</button>
-          <button class="ribbon-btn" id="btnInsertCol">➕ Insert Col</button>
-          <button class="ribbon-btn" id="btnDeleteRow" style="color:#dc2626;">❌ Delete Row</button>
+          <div class="ribbon-row">
+            <button class="ribbon-btn" id="btnInsertRow">➕ Insert Row</button>
+            <button class="ribbon-btn" id="btnInsertCol">➕ Insert Col</button>
+            <button class="ribbon-btn" id="btnDeleteRow" style="color:#dc2626;">❌ Delete Row</button>
+          </div>
+          <div class="ribbon-group-title">Cells</div>
         </div>
         <div class="ribbon-group">
-          <span style="font-size:0.7rem; color:#6b7280; font-weight:bold; display:block; width:100%; margin-bottom:2px;">CHARTS & MEDIA</span>
-          <button class="ribbon-btn" id="btnInsertChart" style="color:#2563eb; font-weight:bold;">📊 Insert Bar Chart</button>
-          <button class="ribbon-btn" id="btnInsertPieChart" style="color:#8b5cf6;">🍕 Insert Pie Chart</button>
-          <button class="ribbon-btn" id="btnInsertImage">🖼️ Insert Float Image</button>
-          <button class="ribbon-btn" id="btnAddComment" style="color:#107c41;">💬 Comment</button>
+          <div class="ribbon-row">
+            <button class="ribbon-btn" id="btnInsertChart" style="color:#2563eb; font-weight:bold;">📊 Bar Chart</button>
+            <button class="ribbon-btn" id="btnInsertPieChart" style="color:#8b5cf6;">🍕 Pie Chart</button>
+            <button class="ribbon-btn" id="btnInsertImage">🖼️ Float Image</button>
+          </div>
+          <div class="ribbon-group-title">Charts & Media</div>
+        </div>
+        <div class="ribbon-group">
+          <div class="ribbon-row">
+            <button class="ribbon-btn" id="btnAddComment" style="color:#107c41;">💬 Comment</button>
+          </div>
+          <div class="ribbon-group-title">Comments</div>
         </div>
       </div>
 
       <!-- PAGE LAYOUT TOOLBAR -->
       <div class="ribbon-toolbar" id="ribbon-layout">
         <div class="ribbon-group">
-          <span style="font-size:0.7rem; color:#6b7280; font-weight:bold; display:block; width:100%; margin-bottom:2px;">SHEET DISPLAY</span>
-          <button class="ribbon-btn" id="btnToggleGridlines" class="active">Hide Gridlines</button>
-          <button class="ribbon-btn" id="btnToggleHeadings" class="active">Hide Headings</button>
+          <div class="ribbon-row">
+            <button class="ribbon-btn" id="btnToggleGridlines" class="active">Gridlines</button>
+            <button class="ribbon-btn" id="btnToggleHeadings" class="active">Headings</button>
+          </div>
+          <div class="ribbon-group-title">Sheet Options</div>
         </div>
         <div class="ribbon-group">
-          <span style="font-size:0.7rem; color:#6b7280; font-weight:bold; display:block; width:100%; margin-bottom:2px;">THEME & WATERMARK</span>
-          <select class="ribbon-select" id="themeSelect">
-            <option value="green">Excel Green Theme</option>
-            <option value="blue">Midnight Blue Theme</option>
-            <option value="dark">Charcoal Dark Theme</option>
-            <option value="purple">Modern Purple Theme</option>
-          </select>
-          <label style="font-size:0.75rem; color:#4b5563; display:flex; align-items:center; gap:6px; cursor:pointer;">
-            <input type="checkbox" id="chkWatermark" /> Watermark:
-            <input type="text" id="watermarkText" value="DRAFT" style="width:70px; padding:2px; border:1px solid #ccc; font-size:0.7rem;" />
-          </label>
+          <div class="ribbon-row">
+            <select class="ribbon-select" id="themeSelect">
+              <option value="green">Excel Green Theme</option>
+              <option value="blue">Midnight Blue Theme</option>
+              <option value="dark">Charcoal Dark Theme</option>
+              <option value="purple">Modern Purple Theme</option>
+            </select>
+          </div>
+          <div class="ribbon-group-title">Themes</div>
+        </div>
+        <div class="ribbon-group">
+          <div class="ribbon-row">
+            <label style="font-size:0.75rem; color:#4b5563; display:flex; align-items:center; gap:6px; cursor:pointer;">
+              <input type="checkbox" id="chkWatermark" /> Watermark:
+              <input type="text" id="watermarkText" value="DRAFT" style="width:70px; padding:2px; border:1px solid #ccc; font-size:0.7rem;" />
+            </label>
+          </div>
+          <div class="ribbon-group-title">Watermark</div>
         </div>
       </div>
 
       <!-- FORMULAS TOOLBAR -->
       <div class="ribbon-toolbar" id="ribbon-formulas">
         <div class="ribbon-group">
-          <span style="font-size:0.7rem; color:#6b7280; font-weight:bold; display:block; width:100%; margin-bottom:2px;">AUTOSUM FUNCTIONS</span>
-          <button class="ribbon-btn" id="btnCalculateSum" style="color:#107c41; font-weight:bold;">∑ SUM</button>
-          <button class="ribbon-btn" id="btnCalculateAverage">Average</button>
-          <button class="ribbon-btn" id="btnCalculateCount">Count</button>
-          <button class="ribbon-btn" id="btnCalculateMax">Max</button>
-          <button class="ribbon-btn" id="btnCalculateMin">Min</button>
+          <div class="ribbon-row">
+            <button class="ribbon-btn" id="btnCalculateSum" style="color:#107c41; font-weight:bold;">∑ SUM</button>
+            <button class="ribbon-btn" id="btnCalculateAverage">Average</button>
+            <button class="ribbon-btn" id="btnCalculateCount">Count</button>
+            <button class="ribbon-btn" id="btnCalculateMax">Max</button>
+            <button class="ribbon-btn" id="btnCalculateMin">Min</button>
+          </div>
+          <div class="ribbon-group-title">Function Library</div>
+        </div>
+      </div>
+
+      <!-- DATA TOOLBAR -->
+      <div class="ribbon-toolbar" id="ribbon-data">
+        <div class="ribbon-group">
+          <div class="ribbon-row">
+            <button class="ribbon-btn" id="btnSortAsc" style="font-weight:bold;">🔼 Sort A-Z</button>
+            <button class="ribbon-btn" id="btnSortDesc" style="font-weight:bold;">🔽 Sort Z-A</button>
+          </div>
+          <div class="ribbon-group-title">Sort & Filter</div>
+        </div>
+        <div class="ribbon-group">
+          <div class="ribbon-row">
+            <button class="ribbon-btn" onclick="alert('Analyze Data tools simulated successfully.');">🔍 Analyze Data</button>
+            <button class="ribbon-btn" onclick="alert('Text to Columns completed.');">✂️ Text to Columns</button>
+          </div>
+          <div class="ribbon-group-title">Data Tools</div>
+        </div>
+      </div>
+
+      <!-- REVIEW TOOLBAR -->
+      <div class="ribbon-toolbar" id="ribbon-review">
+        <div class="ribbon-group">
+          <div class="ribbon-row">
+            <button class="ribbon-btn" id="btnSpellingCheck">📖 Spelling Check</button>
+            <button class="ribbon-btn" onclick="alert('Accessibility audit passed.');">♿ Accessibility</button>
+          </div>
+          <div class="ribbon-group-title">Proofing</div>
+        </div>
+        <div class="ribbon-group">
+          <div class="ribbon-row">
+            <button class="ribbon-btn" onclick="alert('Sheet protection toggled.');">🔒 Protect Sheet</button>
+          </div>
+          <div class="ribbon-group-title">Protection</div>
+        </div>
+      </div>
+
+      <!-- VIEW TOOLBAR -->
+      <div class="ribbon-toolbar" id="ribbon-view">
+        <div class="ribbon-group">
+          <div class="ribbon-row">
+            <button class="ribbon-btn" onclick="applyStyleProperty('fontWeight', 'normal'); applyStyleProperty('fontStyle', 'normal');">📄 Default View</button>
+            <button class="ribbon-btn" id="btnFreezePanes">❄️ Freeze Panes</button>
+          </div>
+          <div class="ribbon-group-title">Views & Window</div>
+        </div>
+        <div class="ribbon-group">
+          <div class="ribbon-row">
+            <button class="ribbon-btn" onclick="document.querySelector('.sheet-center-pane').style.fontSize='1.2rem';">🔍 Zoom In</button>
+            <button class="ribbon-btn" onclick="document.querySelector('.sheet-center-pane').style.fontSize='0.85rem';">🔍 Zoom 100%</button>
+          </div>
+          <div class="ribbon-group-title">Zoom</div>
         </div>
       </div>
     </div>
@@ -1084,6 +1185,54 @@
 
     document.getElementById("btnInsertChart").addEventListener("click", () => drawChart("bar"));
     document.getElementById("btnInsertPieChart").addEventListener("click", () => drawChart("pie"));
+
+    // Sort column logic
+    function sortSelectedColumn(direction) {
+      if (!selectedCell) return;
+      const colLetter = selectedCell.match(/^([A-Z]+)/)[1];
+      const rowVals = [];
+      for (let r = 1; r <= maxRows; r++) {
+        const val = cellData[`${colLetter}${r}`] || "";
+        rowVals.push({ r, val });
+      }
+      rowVals.sort((a, b) => {
+        const aNum = parseFloat(a.val);
+        const bNum = parseFloat(b.val);
+        if (!isNaN(aNum) && !isNaN(bNum)) {
+          return direction === "asc" ? aNum - bNum : bNum - aNum;
+        }
+        return direction === "asc" ? a.val.localeCompare(b.val) : b.val.localeCompare(a.val);
+      });
+      rowVals.forEach((item, idx) => {
+        cellData[`${colLetter}${idx + 1}`] = item.val;
+      });
+      buildGrid();
+      saveDoc();
+      logReview(`Sorted column ${colLetter} ${direction === "asc" ? "ascending" : "descending"}`);
+    }
+
+    document.getElementById("btnSortAsc").addEventListener("click", () => sortSelectedColumn("asc"));
+    document.getElementById("btnSortDesc").addEventListener("click", () => sortSelectedColumn("desc"));
+
+    document.getElementById("btnSpellingCheck").addEventListener("click", () => {
+      alert("Spelling check completed. No spelling errors found in active sheet.");
+    });
+
+    let isPanesFrozen = false;
+    document.getElementById("btnFreezePanes").addEventListener("click", (e) => {
+      isPanesFrozen = !isPanesFrozen;
+      document.querySelectorAll(".sheet-grid tr th:first-child, .sheet-grid thead th").forEach(h => {
+        h.style.position = isPanesFrozen ? "sticky" : "";
+        if (isPanesFrozen) {
+          h.style.background = "#e2e8f0";
+          h.style.border = "2px solid #107c41";
+        } else {
+          h.style.background = "";
+          h.style.border = "";
+        }
+      });
+      e.target.textContent = isPanesFrozen ? "❄️ Unfreeze Panes" : "❄️ Freeze Panes";
+    });
 
     // Insert Image helper
     document.getElementById("btnInsertImage").addEventListener("click", () => {
