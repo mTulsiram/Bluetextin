@@ -19,6 +19,26 @@
       "featured": true
     },
     {
+      "description": "Premium, serverless office suite to create, edit, view, and co-edit documents, spreadsheets, presentations, forms, and diagrams.",
+      "category": "files",
+      "tags": [
+        "office",
+        "word",
+        "excel",
+        "powerpoint",
+        "pdf",
+        "diagram",
+        "collaboration"
+      ],
+      "name": "BlueOffice Suite",
+      "status": "ready",
+      "requiresServer": false,
+      "subcategory": "spreadsheet",
+      "slug": "tools/office/office-suite.html",
+      "id": "office-suite",
+      "featured": true
+    },
+    {
       "description": "Calculate body mass index from height and weight.",
       "category": "calculators",
       "tags": [
