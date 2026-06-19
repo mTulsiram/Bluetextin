@@ -107,22 +107,29 @@ Non-visual interfaces rely on semantic structures to read the application layout
    - Every input, select, and textarea must have an associated `<label>` specifying a matching `for` attribute.
    - For components without adjacent labels (like search bars, close buttons, or toggle controls), use `aria-label` or `aria-labelledby`.
 3. **Alt Text**: All static graphics must contain descriptive `alt` tags. Decorative SVG icons must include `aria-hidden="true"` to prevent screen readers from reading raw XML paths.
-4. **Live Regions (`aria-live`)**: Instant output blocks (like string conversion results, file size calculators, and validators) must programmatically signal status updates to screen readers using `aria-live="polite"`.
+4. **Live Regions (`aria-live`)**: Instant output blocks must programmatically signal status updates to screen readers using `aria-live="polite"`.
 
 ---
 
-## 3. UI Component Specifications for E-Commerce & Media
+## 3. UI Component Specifications for Specific Environments
 
-### A. Embedded Media Players (Audio / Video)
-All custom audio and video players on the platform must be fully accessible and visually coherent:
-- **Controls styling**: Use native semantic buttons for `<play>`, `<pause>`, `<mute>`, and `<fullscreen>` overlays. Do not rely on mouse-only slider hover states.
-- **Progress Trackers**: Use standard `<input type="range">` with styling customized to display contrasting active tracks (`--accent-primary` in dark, `--accent-primary` in light) meeting a `3:1` graphical contrast.
-- **Transcript/Caption Layouts**: Video widgets must offer toggleable captions using accessible ARIA-described containers situated immediately below the viewport.
+### A. Games Visual Environment
+- **Canvas Scaling**: Interactive game grids (arcade, puzzles, boards) must render inside centered card panels. Visual sizing must adapt dynamically without overflowing viewports.
+- **Controls Info**: Display clear keyboard layout maps (e.g. arrow keys, WASD) in high-contrast text (`--text-secondary`) situated next to the canvas viewport.
 
-### B. E-Commerce & Donation Integrations
-- **Buy Me a Coffee & Patreon Cards**: Placed in cards utilizing the `--bg-card` glassmorphism layer. Icons and brand-specific callouts (e.g. Patreon Orange) must have background overlays adjusted to maintain the `4.5:1` text contrast limit.
+### B. Software & Code Editors Interface
+- **Split Layouts**: Visual tools (like editors, diagram generators, and painting canvases) must use flex-grow split layouts to divide active code grids/control inputs from visual previews.
+- **Focus Locking**: When modals or full-screen panels are active within the local tool canvas, focus must lock inside the container until closed.
+
+### C. Tutorials & Educational Layouts
+- **Reading Comfort**: Text columns must limit line widths to `70ch` to maximize readability. Line height is set to `1.7` (`--font-sans`).
+- **Markdown Headers**: Heading layers (`h1` through `h4`) must maintain clear sizing contrast hierarchy.
+- **Code Block Formatting**: Markdown code blocks must render in monospace font families with distinct background outlines (`--border-subtle`) and padding constraints.
+
+### D. E-Commerce & Donation Integrations
+- **Buy Me a Coffee & Patreon Cards**: Placed in cards utilizing the `--bg-card` glassmorphism layer. Icons and brand-specific callouts must have background overlays adjusted to maintain the `4.5:1` text contrast limit.
 - **Stripe & Razorpay Embedded Elements**: Card number fields are enclosed in secure frames matching the dark theme's primary input layouts.
-- **Gumroad Store Widget Overlay**: Gumroad products are rendered as a custom responsive grid (`.tool-grid`). Overlays (modal checkouts) must apply a darkened background screen `rgba(0,0,0,0.6)` to focus user attention, and return active keyboard focus back to the parent product card upon closing.
+- **Gumroad Store Widget Overlay**: Gumroad products are rendered as a custom responsive grid. Overlays must apply a darkened background screen `rgba(0,0,0,0.6)` to focus user attention, and return active keyboard focus back to the parent product card upon closing.
 
 ---
 
