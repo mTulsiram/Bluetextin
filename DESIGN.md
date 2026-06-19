@@ -108,3 +108,25 @@ Non-visual interfaces rely on semantic structures to read the application layout
    - For components without adjacent labels (like search bars, close buttons, or toggle controls), use `aria-label` or `aria-labelledby`.
 3. **Alt Text**: All static graphics must contain descriptive `alt` tags. Decorative SVG icons must include `aria-hidden="true"` to prevent screen readers from reading raw XML paths.
 4. **Live Regions (`aria-live`)**: Instant output blocks (like string conversion results, file size calculators, and validators) must programmatically signal status updates to screen readers using `aria-live="polite"`.
+
+---
+
+## 3. UI Component Specifications for E-Commerce & Media
+
+### A. Embedded Media Players (Audio / Video)
+All custom audio and video players on the platform must be fully accessible and visually coherent:
+- **Controls styling**: Use native semantic buttons for `<play>`, `<pause>`, `<mute>`, and `<fullscreen>` overlays. Do not rely on mouse-only slider hover states.
+- **Progress Trackers**: Use standard `<input type="range">` with styling customized to display contrasting active tracks (`--accent-primary` in dark, `--accent-primary` in light) meeting a `3:1` graphical contrast.
+- **Transcript/Caption Layouts**: Video widgets must offer toggleable captions using accessible ARIA-described containers situated immediately below the viewport.
+
+### B. E-Commerce & Donation Integrations
+- **Buy Me a Coffee & Patreon Cards**: Placed in cards utilizing the `--bg-card` glassmorphism layer. Icons and brand-specific callouts (e.g. Patreon Orange) must have background overlays adjusted to maintain the `4.5:1` text contrast limit.
+- **Stripe & Razorpay Embedded Elements**: Card number fields are enclosed in secure frames matching the dark theme's primary input layouts.
+- **Gumroad Store Widget Overlay**: Gumroad products are rendered as a custom responsive grid (`.tool-grid`). Overlays (modal checkouts) must apply a darkened background screen `rgba(0,0,0,0.6)` to focus user attention, and return active keyboard focus back to the parent product card upon closing.
+
+---
+
+## 4. Multisite & Subdomain Branding Coherence
+To support supplementary subdomains (e.g., `blog.bluetext.in` or specific documentation pages):
+- **Universal Header**: The navigation header must maintain a unified structure across subdomains, allowing users to jump back to `bluetext.in` dashboard via a persistent logo link.
+- **Color Systems**: Subdomains must use the identical custom property variables (`themes.css`) to ensure consistent visual aesthetics across the entire network.
