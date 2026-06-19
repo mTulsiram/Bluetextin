@@ -1,50 +1,27 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# BlueTEXTin Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Serverless & Local-First Processing
+All text analysis, files, converters, graphic manipulation, media playback, and calculations must execute entirely in the user's browser memory (local sandboxed runtime). No user content, documents, or personal data can be transmitted to external servers.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Universal Compliance-First Design
+Every user interface and tool must enforce the Master Compliance Stack:
+1. **WCAG 2.2 AA digital accessibility**: Text contrast ratios > 4.5:1, thick visible focus indicators (`box-shadow`), strict tab flows, and screen-reader ARIA labeling.
+2. **Global User Privacy**: Opt-in gates for GDPR/ePrivacy, opt-out triggers for CCPA, data fiduciary controls for DPDP (India), localized storage declarations for PIPL (China), and DPO endpoints for LGPD (Brazil).
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Deep Subfolder Routing & Clean URLs
+To support a high-fidelity visual dashboard and clear site navigation, files must match these directory protocols:
+1. `/tools/`: Must be strictly two levels deep (e.g., `/tools/images/jpeg-compressor.html`).
+2. `/games/`, `/software/`, `/tutorials/`, and `/education/`: Organized by category folders containing individual `index.html` files.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Relative Asset Resolution
+No page, script, or stylesheet can rely on hardcoded absolute paths (`/assets/...`). All references must resolve relatively (e.g., `../../assets/css/main.css`) to ensure the website is fully functional when run locally via the browser's `file:///` protocol.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
-
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
-
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### V. Gated Third-Party Integrations
+Advertising tags (Google AdSense via IAB TCF v2.2), conversion tracking (Google Analytics, Facebook Pixel), payment gateways (Stripe Elements, Razorpay Checkout), and store widgets (Gumroad) must load dynamically and only after resolving matching privacy consent states.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+This Constitution establishes the baseline for all features. Any additions to the tools, games, software, or tutorial suites must verify compliance with accessibility and privacy controls before deployment.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-06-20
