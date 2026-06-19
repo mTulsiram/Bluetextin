@@ -1,0 +1,682 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BlueDiagram - Diagram Flowchart Editor | Bluetext.in</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <style>
+    body {
+      background: #f3f4f6;
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+    
+    /* Visio Slate/Teal Header Accent */
+    .diagram-header {
+      background: #0078d4;
+      color: #ffffff;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      justify-content: space-between;
+      font-size: 0.9rem;
+    }
+
+    .diagram-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .diagram-app-icon {
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    .diagram-doc-title-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .diagram-title-input {
+      background: none;
+      border: 1px solid transparent;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 2px 6px;
+      border-radius: 3px;
+      width: 200px;
+    }
+    .diagram-title-input:focus {
+      background: rgba(255,255,255,0.15);
+      border-color: #fff;
+      outline: none;
+    }
+
+    .save-badge {
+      font-size: 0.75rem;
+      color: #bae6fd;
+    }
+
+    /* Ribbon */
+    .diagram-ribbon {
+      background: #ffffff;
+      border-bottom: 1px solid #d1d5db;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .ribbon-tabs {
+      display: flex;
+      background: #f3f4f6;
+      border-bottom: 1px solid #e5e7eb;
+      padding-left: 20px;
+    }
+
+    .ribbon-tab {
+      background: none;
+      border: none;
+      padding: 8px 16px;
+      font-size: 0.8rem;
+      color: #374151;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .ribbon-tab.active {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-bottom-color: transparent;
+      color: #0078d4;
+      font-weight: 600;
+    }
+
+    .ribbon-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 8px 20px;
+      background: #ffffff;
+      flex-wrap: wrap;
+    }
+
+    .ribbon-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-right: 1px solid #e5e7eb;
+      padding-right: 12px;
+    }
+
+    .ribbon-group:last-child {
+      border: none;
+    }
+
+    .ribbon-btn {
+      background: none;
+      border: 1px solid transparent;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: #374151;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ribbon-btn:hover {
+      background: #f3f4f6;
+    }
+    .ribbon-btn.active {
+      background: #e0f2fe;
+      border-color: #bae6fd;
+      color: #0078d4;
+    }
+
+    /* Workspace Body */
+    .diagram-workspace {
+      display: flex;
+      height: calc(100vh - 120px);
+      overflow: hidden;
+    }
+
+    /* Toolbox side pane */
+    .shape-toolbox {
+      width: 160px;
+      background: #f1f5f9;
+      border-right: 1px solid #cbd5e1;
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .toolbox-title {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #475569;
+      font-weight: 700;
+    }
+
+    .shape-btn {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      padding: 10px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      text-align: center;
+      transition: all var(--transition);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      color: #334155;
+    }
+    .shape-btn:hover {
+      border-color: #0078d4;
+      background: #f0f9ff;
+    }
+
+    /* Canvas Center Pane */
+    .diagram-center-pane {
+      flex-grow: 1;
+      background: #e2e8f0;
+      position: relative;
+      overflow: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Target canvas board */
+    .diagram-board {
+      width: 800px;
+      height: 600px;
+      background: #ffffff;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      position: relative;
+      background-image: radial-gradient(#cbd5e1 1px, transparent 0);
+      background-size: 20px 20px;
+      overflow: hidden;
+    }
+
+    .diagram-node {
+      position: absolute;
+      min-width: 100px;
+      min-height: 50px;
+      background: #e0f2fe;
+      border: 2px solid #0078d4;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: move;
+      color: #0369a1;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+      user-select: none;
+      padding: 8px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .diagram-node.decision {
+      border-radius: 0;
+      transform: rotate(45deg);
+      width: 80px;
+      height: 80px;
+    }
+
+    .diagram-node.decision span {
+      transform: rotate(-45deg);
+    }
+
+    .watermark-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4.5rem;
+      color: rgba(0,0,0,0.02);
+      transform: rotate(-30deg);
+      pointer-events: none;
+      font-weight: 900;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      z-index: 5;
+      user-select: none;
+    }
+
+    /* Right Sidebar comments & review */
+    .diagram-right-sidebar {
+      width: 280px;
+      background: #ffffff;
+      border-left: 1px solid #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      flex-shrink: 0;
+    }
+
+    .sidebar-tabs {
+      display: flex;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .sidebar-tab {
+      flex: 1;
+      background: #f9fafb;
+      border: none;
+      padding: 10px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      color: #4b5563;
+    }
+    .sidebar-tab.active {
+      background: #ffffff;
+      font-weight: 600;
+      border-bottom: 2px solid #0078d4;
+      color: #0078d4;
+    }
+
+    .sidebar-content {
+      padding: 16px;
+      overflow-y: auto;
+      flex-grow: 1;
+      font-size: 0.8rem;
+    }
+
+    .comment-card {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+
+    .comment-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: #6b7280;
+      margin-bottom: 4px;
+    }
+
+    .track-changes-item {
+      padding: 6px 8px;
+      border-left: 3px solid #10b981;
+      background: rgba(16, 185, 129, 0.05);
+      margin-bottom: 8px;
+      border-radius: 0 4px 4px 0;
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Visio Header -->
+  <header class="diagram-header">
+    <div class="diagram-header-left">
+      <span class="diagram-app-icon">D📐</span>
+      <div class="diagram-doc-title-box">
+        <input type="text" class="diagram-title-input" id="docTitleInput" value="system_architecture.vsdx" />
+        <span class="save-badge" id="saveIndicator">● Saved to Local Library</span>
+      </div>
+    </div>
+    <div>
+      <a href="office-suite.html" style="color:#fff; text-decoration:none; font-weight:600; background:rgba(255,255,255,0.15); padding:6px 12px; border-radius:4px;">Dashboard</a>
+    </div>
+  </header>
+
+  <!-- Ribbon -->
+  <div class="diagram-ribbon">
+    <div class="ribbon-tabs">
+      <button class="ribbon-tab active">Shapes</button>
+      <button class="ribbon-tab" id="btnClearBoard" style="color:#ef4444;">Clear Canvas</button>
+      <button class="ribbon-tab" onclick="alert('Simulation: SVG Connector logic initialized.')">Add Connector</button>
+    </div>
+
+    <div class="ribbon-toolbar">
+      <!-- Watermark overlay and comments controls -->
+      <div class="ribbon-group">
+        <button class="ribbon-btn" id="btnAddComment" style="color:#0078d4;">💬 New Comment</button>
+        <button class="ribbon-btn" id="btnTrackChanges">Toggle Review Mode (OFF)</button>
+        <label style="font-size:0.75rem; color:#4b5563; display:flex; align-items:center; gap:6px; margin-left:10px; cursor:pointer;">
+          <input type="checkbox" id="chkWatermark" /> Watermark:
+          <input type="text" id="watermarkText" value="CONFIDENTIAL" style="width:90px; padding:2px; border:1px solid #ccc; font-size:0.7rem;" />
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Workspace -->
+  <div class="diagram-workspace">
+    <!-- Shape bar -->
+    <div class="shape-toolbox">
+      <div class="toolbox-title">Shapes</div>
+      <button class="shape-btn" id="btnAddProcess">🟦 Process</button>
+      <button class="shape-btn" id="btnAddDecision">🔶 Decision</button>
+      <button class="shape-btn" id="btnAddTerminator">🟢 Start/End</button>
+    </div>
+
+    <!-- Canvas -->
+    <div class="diagram-center-pane">
+      <div class="watermark-overlay" id="watermarkOverlay" style="display:none;">CONFIDENTIAL</div>
+      <div class="diagram-board" id="diagramBoard">
+        <!-- SVG Connections Layer -->
+        <svg id="connectorSvg" style="position:absolute; width:100%; height:100%; top:0; left:0; pointer-events:none;"></svg>
+        <!-- Nodes populated via JS -->
+      </div>
+    </div>
+
+    <!-- Right Sidebar comments & Review logs -->
+    <aside class="diagram-right-sidebar">
+      <div class="sidebar-tabs">
+        <button class="sidebar-tab active" id="tabComments">Comments</button>
+        <button class="sidebar-tab" id="tabReview">Review Logs</button>
+      </div>
+      
+      <div class="sidebar-content" id="sidebarContent">
+        <!-- Loaded dynamically -->
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    const DB_KEY = "bt_office_docs_v1";
+    let documentCatalog = [];
+    let activeDoc = null;
+    let docComments = [];
+    let reviewLogs = [];
+    let activeTab = "comments";
+    let isTrackChanges = false;
+
+    // Diagram nodes state
+    let diagramNodes = [];
+    const board = document.getElementById("diagramBoard");
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const docId = urlParams.get("id");
+
+    function loadDoc() {
+      const stored = localStorage.getItem(DB_KEY);
+      if (stored) {
+        documentCatalog = JSON.parse(stored);
+      }
+      
+      activeDoc = documentCatalog.find(d => d.id === docId);
+      if (!activeDoc) {
+        alert("Document not found.");
+        window.location.href = "office-suite.html";
+        return;
+      }
+
+      document.getElementById("docTitleInput").value = activeDoc.name;
+
+      diagramNodes = Array.isArray(activeDoc.content) && activeDoc.content.length > 0 ? activeDoc.content : [
+        { id: "node1", label: "User Input Request", x: 100, y: 150, type: "process" },
+        { id: "node2", label: "Is Form Valid?", x: 300, y: 135, type: "decision" },
+        { id: "node3", label: "Success & Store", x: 520, y: 150, type: "terminator" }
+      ];
+
+      docComments = activeDoc.comments || [
+        { user: "Jane Doe", time: "04:15 PM", text: "Process connection points look aligned." }
+      ];
+      
+      reviewLogs = activeDoc.reviewLogs || [
+        { time: "04:00 PM", text: "Created diagram layout", type: "addition" }
+      ];
+
+      renderCanvasNodes();
+      renderSidebar();
+    }
+
+    function saveDoc() {
+      if (!activeDoc) return;
+      activeDoc.name = document.getElementById("docTitleInput").value;
+      activeDoc.content = diagramNodes;
+      activeDoc.comments = docComments;
+      activeDoc.reviewLogs = reviewLogs;
+
+      const idx = documentCatalog.findIndex(d => d.id === activeDoc.id);
+      if (idx !== -1) {
+        documentCatalog[idx] = activeDoc;
+      }
+      localStorage.setItem(DB_KEY, JSON.stringify(documentCatalog));
+    }
+
+    function renderCanvasNodes() {
+      // Clear current node DOM elements (keep SVG)
+      const existingNodes = board.querySelectorAll(".diagram-node");
+      existingNodes.forEach(n => n.remove());
+
+      diagramNodes.forEach(node => {
+        const div = document.createElement("div");
+        div.className = `diagram-node ${node.type}`;
+        div.style.left = `${node.x}px`;
+        div.style.top = `${node.y}px`;
+        div.id = node.id;
+        
+        const span = document.createElement("span");
+        span.textContent = node.label;
+        span.contentEditable = "true";
+        span.addEventListener("blur", () => {
+          node.label = span.textContent;
+          saveDoc();
+          if (isTrackChanges) {
+            logReview(`Renamed shape to "${node.label}"`);
+          }
+        });
+        
+        div.appendChild(span);
+        makeDraggable(div, node);
+        board.appendChild(div);
+      });
+
+      drawLines();
+    }
+
+    function makeDraggable(el, nodeObj) {
+      let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+      el.onmousedown = dragMouseDown;
+
+      function dragMouseDown(e) {
+        e = e || window.event;
+        // Ignore drag if clicking inside editable text span
+        if (e.target.contentEditable === "true") return;
+        
+        e.preventDefault();
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+      }
+
+      function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        
+        let newX = el.offsetLeft - pos1;
+        let newY = el.offsetTop - pos2;
+
+        // Boundaries
+        if (newX < 0) newX = 0;
+        if (newY < 0) newY = 0;
+        if (newX > board.clientWidth - el.clientWidth) newX = board.clientWidth - el.clientWidth;
+        if (newY > board.clientHeight - el.clientHeight) newY = board.clientHeight - el.clientHeight;
+
+        el.style.left = `${newX}px`;
+        el.style.top = `${newY}px`;
+
+        nodeObj.x = newX;
+        nodeObj.y = newY;
+      }
+
+      function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+        saveDoc();
+        drawLines();
+        if (isTrackChanges) {
+          logReview(`Moved shape "${nodeObj.label}" to position X:${nodeObj.x} Y:${nodeObj.y}`);
+        }
+      }
+    }
+
+    // Dynamic Line Connectors SVG builder
+    function drawLines() {
+      const svg = document.getElementById("connectorSvg");
+      svg.innerHTML = "";
+      
+      // Let's draw lines sequentially from node 1 to node 2, etc.
+      for (let i = 0; i < diagramNodes.length - 1; i++) {
+        const startNode = diagramNodes[i];
+        const endNode = diagramNodes[i + 1];
+        
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        // Center offset approximation
+        const x1 = startNode.x + 50;
+        const y1 = startNode.y + 25;
+        const x2 = endNode.x + 50;
+        const y2 = endNode.y + 25;
+
+        line.setAttribute("x1", x1);
+        line.setAttribute("y1", y1);
+        line.setAttribute("x2", x2);
+        line.setAttribute("y2", y2);
+        line.setAttribute("stroke", "#0078d4");
+        line.setAttribute("stroke-width", "2");
+        line.setAttribute("marker-end", "url(#arrow)");
+        
+        svg.appendChild(line);
+      }
+    }
+
+    // Toolbox adds
+    document.getElementById("btnAddProcess").addEventListener("click", () => {
+      const id = "node_" + Date.now();
+      diagramNodes.push({ id, label: "Process Block", x: 50, y: 50, type: "process" });
+      saveDoc();
+      renderCanvasNodes();
+      logReview("Added Process block shape to diagram");
+    });
+
+    document.getElementById("btnAddDecision").addEventListener("click", () => {
+      const id = "node_" + Date.now();
+      diagramNodes.push({ id, label: "Decision", x: 50, y: 50, type: "decision" });
+      saveDoc();
+      renderCanvasNodes();
+      logReview("Added Decision diamond shape to diagram");
+    });
+
+    document.getElementById("btnAddTerminator").addEventListener("click", () => {
+      const id = "node_" + Date.now();
+      diagramNodes.push({ id, label: "End Terminus", x: 50, y: 50, type: "terminator" });
+      saveDoc();
+      renderCanvasNodes();
+      logReview("Added Start/End terminus shape to diagram");
+    });
+
+    document.getElementById("btnClearBoard").addEventListener("click", () => {
+      diagramNodes = [];
+      saveDoc();
+      renderCanvasNodes();
+      logReview("Cleared all elements from diagram canvas", "deletion");
+    });
+
+    // Watermark
+    const chkWatermark = document.getElementById("chkWatermark");
+    const watermarkText = document.getElementById("watermarkText");
+    const overlay = document.getElementById("watermarkOverlay");
+
+    function updateWatermark() {
+      if (chkWatermark.checked && watermarkText.value) {
+        overlay.style.display = "flex";
+        overlay.textContent = watermarkText.value;
+      } else {
+        overlay.style.display = "none";
+      }
+    }
+    chkWatermark.addEventListener("change", updateWatermark);
+    watermarkText.addEventListener("input", updateWatermark);
+
+    // Comments & Review Tabs
+    const tabComments = document.getElementById("tabComments");
+    const tabReview = document.getElementById("tabReview");
+
+    tabComments.addEventListener("click", () => {
+      activeTab = "comments";
+      tabComments.classList.add("active");
+      tabReview.classList.remove("active");
+      renderSidebar();
+    });
+
+    tabReview.addEventListener("click", () => {
+      activeTab = "review";
+      tabReview.classList.add("active");
+      tabComments.classList.remove("active");
+      renderSidebar();
+    });
+
+    document.getElementById("btnTrackChanges").addEventListener("click", (e) => {
+      isTrackChanges = !isTrackChanges;
+      e.target.textContent = `Toggle Review Mode (${isTrackChanges ? 'ON' : 'OFF'})`;
+      e.target.classList.toggle("active", isTrackChanges);
+    });
+
+    document.getElementById("btnAddComment").addEventListener("click", () => {
+      const comment = prompt("Add comment/notes for active layout elements:");
+      if (!comment) return;
+      const user = "John Smith";
+      const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      docComments.push({ user, time, text: comment });
+      saveDoc();
+      renderSidebar();
+    });
+
+    function logReview(msg, type = "addition") {
+      const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      reviewLogs.push({ time, text: msg, type });
+      saveDoc();
+      if (activeTab === "review") renderSidebar();
+    }
+
+    function renderSidebar() {
+      const content = document.getElementById("sidebarContent");
+      content.innerHTML = "";
+      
+      if (activeTab === "comments") {
+        docComments.forEach(c => {
+          const div = document.createElement("div");
+          div.className = "comment-card";
+          div.innerHTML = `
+            <div class="comment-meta">
+              <span><strong>${c.user}</strong></span>
+              <span>${c.time}</span>
+            </div>
+            <div style="color: #374151; margin-top:4px;">${c.text}</div>
+          `;
+          content.appendChild(div);
+        });
+      } else {
+        reviewLogs.forEach(r => {
+          const div = document.createElement("div");
+          div.className = `track-changes-item`;
+          div.innerHTML = `<strong>${r.time}</strong>: ${r.text}`;
+          content.appendChild(div);
+        });
+      }
+    }
+
+    loadDoc();
+  </script>
+</body>
+</html>

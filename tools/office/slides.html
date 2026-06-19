@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BluePresent - PowerPoint Online Editor | Bluetext.in</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <style>
+    body {
+      background: #f3f4f6;
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+    
+    /* PowerPoint Orange Header */
+    .slides-header {
+      background: #c43e1c;
+      color: #ffffff;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      justify-content: space-between;
+      font-size: 0.9rem;
+    }
+
+    .slides-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .slides-app-icon {
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    .slides-doc-title-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .slides-title-input {
+      background: none;
+      border: 1px solid transparent;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 2px 6px;
+      border-radius: 3px;
+      width: 200px;
+    }
+    .slides-title-input:focus {
+      background: rgba(255,255,255,0.15);
+      border-color: #fff;
+      outline: none;
+    }
+
+    .save-badge {
+      font-size: 0.75rem;
+      color: #fee2e2;
+    }
+
+    /* Ribbon */
+    .slides-ribbon {
+      background: #ffffff;
+      border-bottom: 1px solid #d1d5db;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .ribbon-tabs {
+      display: flex;
+      background: #f3f4f6;
+      border-bottom: 1px solid #e5e7eb;
+      padding-left: 20px;
+    }
+
+    .ribbon-tab {
+      background: none;
+      border: none;
+      padding: 8px 16px;
+      font-size: 0.8rem;
+      color: #374151;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .ribbon-tab.active {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-bottom-color: transparent;
+      color: #c43e1c;
+      font-weight: 600;
+    }
+
+    .ribbon-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 8px 20px;
+      background: #ffffff;
+      flex-wrap: wrap;
+    }
+
+    .ribbon-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-right: 1px solid #e5e7eb;
+      padding-right: 12px;
+    }
+
+    .ribbon-group:last-child {
+      border: none;
+    }
+
+    .ribbon-btn {
+      background: none;
+      border: 1px solid transparent;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: #374151;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ribbon-btn:hover {
+      background: #f3f4f6;
+    }
+    .ribbon-btn.active {
+      background: #fee2e2;
+      border-color: #fca5a5;
+      color: #c43e1c;
+    }
+
+    /* Workspace Body */
+    .slides-workspace {
+      display: flex;
+      height: calc(100vh - 120px);
+      overflow: hidden;
+    }
+
+    /* Left Slide Deck list */
+    .slide-deck-list {
+      width: 180px;
+      background: #e5e7eb;
+      border-right: 1px solid #d1d5db;
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+      gap: 12px;
+      overflow-y: auto;
+      flex-shrink: 0;
+    }
+
+    .slide-deck-title {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #4b5563;
+      font-weight: 700;
+    }
+
+    .slide-thumb {
+      background: #ffffff;
+      border: 2px solid transparent;
+      aspect-ratio: 16/9;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      cursor: pointer;
+      color: #4b5563;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      transition: all var(--transition);
+      text-align: center;
+      padding: 4px;
+      box-sizing: border-box;
+    }
+    .slide-thumb:hover {
+      border-color: #fca5a5;
+    }
+    .slide-thumb.active {
+      border-color: #c43e1c;
+      font-weight: 600;
+    }
+
+    /* Center Pane */
+    .slides-center-pane {
+      flex-grow: 1;
+      background: #f3f4f6;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: auto;
+    }
+
+    /* Presentation slide canvas */
+    .slide-canvas {
+      width: 100%;
+      max-width: 800px;
+      aspect-ratio: 16/9;
+      background: #ffffff;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      border-radius: 4px;
+      position: relative;
+      padding: 40px;
+      box-sizing: border-box;
+      outline: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #1f2937;
+    }
+
+    .watermark-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      color: rgba(0,0,0,0.02);
+      transform: rotate(-30deg);
+      pointer-events: none;
+      font-weight: 900;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      z-index: 5;
+      user-select: none;
+    }
+
+    /* Right Sidebar comments & review */
+    .slides-right-sidebar {
+      width: 280px;
+      background: #ffffff;
+      border-left: 1px solid #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      flex-shrink: 0;
+    }
+
+    .sidebar-tabs {
+      display: flex;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .sidebar-tab {
+      flex: 1;
+      background: #f9fafb;
+      border: none;
+      padding: 10px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      color: #4b5563;
+    }
+    .sidebar-tab.active {
+      background: #ffffff;
+      font-weight: 600;
+      border-bottom: 2px solid #c43e1c;
+      color: #c43e1c;
+    }
+
+    .sidebar-content {
+      padding: 16px;
+      overflow-y: auto;
+      flex-grow: 1;
+      font-size: 0.8rem;
+    }
+
+    .comment-card {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+
+    .comment-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: #6b7280;
+      margin-bottom: 4px;
+    }
+
+    .track-changes-item {
+      padding: 6px 8px;
+      border-left: 3px solid #10b981;
+      background: rgba(16, 185, 129, 0.05);
+      margin-bottom: 8px;
+      border-radius: 0 4px 4px 0;
+      font-size: 0.75rem;
+    }
+
+    /* Presenter View Fullscreen overlay */
+    .presenter-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #000000;
+      z-index: 1000;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #ffffff;
+    }
+
+    .presenter-slide {
+      width: 80%;
+      aspect-ratio: 16/9;
+      background: #ffffff;
+      color: #000000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: sans-serif;
+      padding: 40px;
+      box-sizing: border-box;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .presenter-controls {
+      margin-top: 20px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .presenter-btn {
+      background: #e11d48;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Slide Header -->
+  <header class="slides-header">
+    <div class="slides-header-left">
+      <span class="slides-app-icon">P📘</span>
+      <div class="slides-doc-title-box">
+        <input type="text" class="slides-title-input" id="docTitleInput" value="strategic_roadmap.pptx" />
+        <span class="save-badge" id="saveIndicator">● Saved to Local Library</span>
+      </div>
+    </div>
+    <div>
+      <a href="office-suite.html" style="color:#fff; text-decoration:none; font-weight:600; background:rgba(255,255,255,0.15); padding:6px 12px; border-radius:4px;">Dashboard</a>
+    </div>
+  </header>
+
+  <!-- Ribbon -->
+  <div class="slides-ribbon">
+    <div class="ribbon-tabs">
+      <button class="ribbon-tab active">Home</button>
+      <button class="ribbon-tab" id="btnNewSlide">➕ New Slide</button>
+      <button class="ribbon-tab" id="btnPresent" style="color:#c43e1c; font-weight:bold;">▶️ Present Slides</button>
+    </div>
+
+    <div class="ribbon-toolbar">
+      <div class="ribbon-group">
+        <button class="ribbon-btn" id="btnBold" title="Bold"><b>B</b></button>
+        <button class="ribbon-btn" id="btnItalic" title="Italic"><i>I</i></button>
+      </div>
+
+      <!-- Watermark overlay and comments controls -->
+      <div class="ribbon-group">
+        <button class="ribbon-btn" id="btnAddComment" style="color:#c43e1c;">💬 New Comment</button>
+        <button class="ribbon-btn" id="btnTrackChanges">Toggle Review Mode (OFF)</button>
+        <label style="font-size:0.75rem; color:#4b5563; display:flex; align-items:center; gap:6px; margin-left:10px; cursor:pointer;">
+          <input type="checkbox" id="chkWatermark" /> Watermark:
+          <input type="text" id="watermarkText" value="INTERNAL" style="width:90px; padding:2px; border:1px solid #ccc; font-size:0.7rem;" />
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Workspace -->
+  <div class="slides-workspace">
+    <!-- Left thumb strip -->
+    <div class="slide-deck-list" id="slideThumbList">
+      <div class="slide-deck-title">Slides</div>
+      <!-- Dynamically filled -->
+    </div>
+
+    <!-- Center Editor Canvas -->
+    <div class="slides-center-pane">
+      <div class="watermark-overlay" id="watermarkOverlay" style="display:none;">INTERNAL</div>
+      <div class="slide-canvas" id="slideCanvas" contenteditable="true">
+        <!-- Slide content loaded here -->
+      </div>
+    </div>
+
+    <!-- Right Sidebar comments & Review logs -->
+    <aside class="slides-right-sidebar">
+      <div class="sidebar-tabs">
+        <button class="sidebar-tab active" id="tabComments">Comments</button>
+        <button class="sidebar-tab" id="tabReview">Review Logs</button>
+      </div>
+      
+      <div class="sidebar-content" id="sidebarContent">
+        <!-- Loaded dynamically -->
+      </div>
+    </aside>
+  </div>
+
+  <!-- Presenter Mode Overlay -->
+  <div class="presenter-overlay" id="presenterOverlay">
+    <div class="presenter-slide" id="presenterSlideArea">
+      <!-- Active slide contents -->
+    </div>
+    <div class="presenter-controls">
+      <button class="presenter-btn" id="btnPresPrev">◀ Prev</button>
+      <button class="presenter-btn" id="btnPresNext">Next ▶</button>
+      <button class="presenter-btn" style="background:#4b5563;" id="btnExitPresenter">Exit Presentation</button>
+    </div>
+  </div>
+
+  <script>
+    const DB_KEY = "bt_office_docs_v1";
+    let documentCatalog = [];
+    let activeDoc = null;
+    let docComments = [];
+    let reviewLogs = [];
+    let activeTab = "comments";
+    let isTrackChanges = false;
+
+    // Slide state
+    let slideDeck = [];
+    let activeSlideIndex = 0;
+    let isPresenterActive = false;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const docId = urlParams.get("id");
+
+    function loadDoc() {
+      const stored = localStorage.getItem(DB_KEY);
+      if (stored) {
+        documentCatalog = JSON.parse(stored);
+      }
+      
+      activeDoc = documentCatalog.find(d => d.id === docId);
+      if (!activeDoc) {
+        alert("Document not found.");
+        window.location.href = "office-suite.html";
+        return;
+      }
+
+      document.getElementById("docTitleInput").value = activeDoc.name;
+
+      slideDeck = Array.isArray(activeDoc.content) && activeDoc.content.length > 0 ? activeDoc.content : [
+        { title: "Strategic Roadmap", subtitle: "Q3-Q4 Growth Business Outline" },
+        { title: "Current Milestones", subtitle: "Completed setup and preliminary validation tests." },
+        { title: "Next Phase Objectives", subtitle: "Rollout premium collaboration components and testing framework." }
+      ];
+
+      docComments = activeDoc.comments || [
+        { user: "Jane Doe", time: "02:10 PM", text: "Slides flow logically." }
+      ];
+      
+      reviewLogs = activeDoc.reviewLogs || [
+        { time: "01:30 PM", text: "Created presentation deck", type: "addition" }
+      ];
+
+      renderDeck();
+      renderActiveSlide();
+      renderSidebar();
+    }
+
+    function saveDoc() {
+      if (!activeDoc) return;
+      activeDoc.name = document.getElementById("docTitleInput").value;
+      activeDoc.content = slideDeck;
+      activeDoc.comments = docComments;
+      activeDoc.reviewLogs = reviewLogs;
+
+      const idx = documentCatalog.findIndex(d => d.id === activeDoc.id);
+      if (idx !== -1) {
+        documentCatalog[idx] = activeDoc;
+      }
+      localStorage.setItem(DB_KEY, JSON.stringify(documentCatalog));
+    }
+
+    function renderDeck() {
+      const list = document.getElementById("slideThumbList");
+      // Keep title
+      list.innerHTML = '<div class="slide-deck-title">Slides</div>';
+      
+      slideDeck.forEach((slide, idx) => {
+        const thumb = document.createElement("div");
+        thumb.className = `slide-thumb ${idx === activeSlideIndex ? 'active' : ''}`;
+        thumb.innerHTML = `<strong>Slide ${idx + 1}</strong><br><span style="font-size:0.6rem;">${slide.title}</span>`;
+        thumb.addEventListener("click", () => {
+          activeSlideIndex = idx;
+          renderDeck();
+          renderActiveSlide();
+        });
+        list.appendChild(thumb);
+      });
+    }
+
+    function renderActiveSlide() {
+      const slide = slideDeck[activeSlideIndex];
+      const canvas = document.getElementById("slideCanvas");
+      canvas.innerHTML = `
+        <h2 style="font-size: 2rem; color: #c43e1c; margin-bottom: 10px;">${slide.title}</h2>
+        <p style="font-size: 1.2rem; color: #4b5563;">${slide.subtitle}</p>
+      `;
+    }
+
+    // Capture editing of active slide
+    document.getElementById("slideCanvas").addEventListener("input", (e) => {
+      const titleEl = e.target.querySelector("h2");
+      const subEl = e.target.querySelector("p");
+      if (slideDeck[activeSlideIndex]) {
+        if (titleEl) slideDeck[activeSlideIndex].title = titleEl.textContent;
+        if (subEl) slideDeck[activeSlideIndex].subtitle = subEl.textContent;
+        saveDoc();
+        
+        // Update thumbnail listing real time
+        const thumbs = document.querySelectorAll(".slide-thumb");
+        if (thumbs[activeSlideIndex]) {
+          thumbs[activeSlideIndex].innerHTML = `<strong>Slide ${activeSlideIndex + 1}</strong><br><span style="font-size:0.6rem;">${slideDeck[activeSlideIndex].title}</span>`;
+        }
+        
+        if (isTrackChanges) {
+          logReview(`Edited slide ${activeSlideIndex + 1} elements`);
+        }
+      }
+    });
+
+    document.getElementById("btnNewSlide").addEventListener("click", () => {
+      slideDeck.push({ title: "New Slide Title", subtitle: "Double click to edit details" });
+      activeSlideIndex = slideDeck.length - 1;
+      saveDoc();
+      renderDeck();
+      renderActiveSlide();
+      logReview("Added new slide to presentation");
+    });
+
+    // Formatting Tools
+    document.getElementById("btnBold").addEventListener("click", () => document.execCommand("bold"));
+    document.getElementById("btnItalic").addEventListener("click", () => document.execCommand("italic"));
+
+    // Watermark
+    const chkWatermark = document.getElementById("chkWatermark");
+    const watermarkText = document.getElementById("watermarkText");
+    const overlay = document.getElementById("watermarkOverlay");
+
+    function updateWatermark() {
+      if (chkWatermark.checked && watermarkText.value) {
+        overlay.style.display = "flex";
+        overlay.textContent = watermarkText.value;
+      } else {
+        overlay.style.display = "none";
+      }
+    }
+    chkWatermark.addEventListener("change", updateWatermark);
+    watermarkText.addEventListener("input", updateWatermark);
+
+    // Presenter Mode Toggle
+    const presOverlay = document.getElementById("presenterOverlay");
+    const presSlideArea = document.getElementById("presenterSlideArea");
+    let activePresIndex = 0;
+
+    function renderPresenterSlide() {
+      const slide = slideDeck[activePresIndex];
+      presSlideArea.innerHTML = `
+        <h2 style="font-size: 3.5rem; color: #c43e1c; margin-bottom: 20px;">${slide.title}</h2>
+        <p style="font-size: 2rem; color: #4b5563;">${slide.subtitle}</p>
+      `;
+    }
+
+    document.getElementById("btnPresent").addEventListener("click", () => {
+      isPresenterActive = true;
+      activePresIndex = activeSlideIndex;
+      presOverlay.style.display = "flex";
+      renderPresenterSlide();
+    });
+
+    document.getElementById("btnExitPresenter").addEventListener("click", () => {
+      isPresenterActive = false;
+      presOverlay.style.display = "none";
+    });
+
+    document.getElementById("btnPresPrev").addEventListener("click", () => {
+      if (activePresIndex > 0) {
+        activePresIndex--;
+        renderPresenterSlide();
+      }
+    });
+
+    document.getElementById("btnPresNext").addEventListener("click", () => {
+      if (activePresIndex < slideDeck.length - 1) {
+        activePresIndex++;
+        renderPresenterSlide();
+      }
+    });
+
+    // Comments & Review Tabs
+    const tabComments = document.getElementById("tabComments");
+    const tabReview = document.getElementById("tabReview");
+
+    tabComments.addEventListener("click", () => {
+      activeTab = "comments";
+      tabComments.classList.add("active");
+      tabReview.classList.remove("active");
+      renderSidebar();
+    });
+
+    tabReview.addEventListener("click", () => {
+      activeTab = "review";
+      tabReview.classList.add("active");
+      tabComments.classList.remove("active");
+      renderSidebar();
+    });
+
+    document.getElementById("btnTrackChanges").addEventListener("click", (e) => {
+      isTrackChanges = !isTrackChanges;
+      e.target.textContent = `Toggle Review Mode (${isTrackChanges ? 'ON' : 'OFF'})`;
+      e.target.classList.toggle("active", isTrackChanges);
+    });
+
+    document.getElementById("btnAddComment").addEventListener("click", () => {
+      const comment = prompt("Add comment/notes for active slide:");
+      if (!comment) return;
+      const user = "John Smith";
+      const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      docComments.push({ user, time, text: `[Slide ${activeSlideIndex + 1}] ${comment}` });
+      saveDoc();
+      renderSidebar();
+    });
+
+    function logReview(msg, type = "addition") {
+      const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      reviewLogs.push({ time, text: msg, type });
+      saveDoc();
+      if (activeTab === "review") renderSidebar();
+    }
+
+    function renderSidebar() {
+      const content = document.getElementById("sidebarContent");
+      content.innerHTML = "";
+      
+      if (activeTab === "comments") {
+        docComments.forEach(c => {
+          const div = document.createElement("div");
+          div.className = "comment-card";
+          div.innerHTML = `
+            <div class="comment-meta">
+              <span><strong>${c.user}</strong></span>
+              <span>${c.time}</span>
+            </div>
+            <div style="color: #374151; margin-top:4px;">${c.text}</div>
+          `;
+          content.appendChild(div);
+        });
+      } else {
+        reviewLogs.forEach(r => {
+          const div = document.createElement("div");
+          div.className = `track-changes-item`;
+          div.innerHTML = `<strong>${r.time}</strong>: ${r.text}`;
+          content.appendChild(div);
+        });
+      }
+    }
+
+    loadDoc();
+  </script>
+</body>
+</html>

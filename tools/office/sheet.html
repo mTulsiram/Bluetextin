@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BlueSheet - Excel Online Editor | Bluetext.in</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <style>
+    body {
+      background: #f3f4f6;
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+    
+    /* Excel Green Header */
+    .sheet-header {
+      background: #107c41;
+      color: #ffffff;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      justify-content: space-between;
+      font-size: 0.9rem;
+    }
+
+    .sheet-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sheet-app-icon {
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    .sheet-doc-title-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sheet-title-input {
+      background: none;
+      border: 1px solid transparent;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 2px 6px;
+      border-radius: 3px;
+      width: 200px;
+    }
+    .sheet-title-input:focus {
+      background: rgba(255,255,255,0.15);
+      border-color: #fff;
+      outline: none;
+    }
+
+    .save-badge {
+      font-size: 0.75rem;
+      color: #bbf7d0;
+    }
+
+    /* Office Ribbon */
+    .sheet-ribbon {
+      background: #ffffff;
+      border-bottom: 1px solid #d1d5db;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .ribbon-tabs {
+      display: flex;
+      background: #f3f4f6;
+      border-bottom: 1px solid #e5e7eb;
+      padding-left: 20px;
+    }
+
+    .ribbon-tab {
+      background: none;
+      border: none;
+      padding: 8px 16px;
+      font-size: 0.8rem;
+      color: #374151;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .ribbon-tab.active {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-bottom-color: transparent;
+      color: #107c41;
+      font-weight: 600;
+    }
+
+    .ribbon-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 8px 20px;
+      background: #ffffff;
+      flex-wrap: wrap;
+    }
+
+    .ribbon-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-right: 1px solid #e5e7eb;
+      padding-right: 12px;
+    }
+
+    .ribbon-group:last-child {
+      border: none;
+    }
+
+    .ribbon-btn {
+      background: none;
+      border: 1px solid transparent;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: #374151;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ribbon-btn:hover {
+      background: #f3f4f6;
+    }
+    .ribbon-btn.active {
+      background: #dcfce7;
+      border-color: #86efac;
+      color: #107c41;
+    }
+
+    /* Formula Bar */
+    .formula-bar-container {
+      display: flex;
+      align-items: center;
+      background: #ffffff;
+      border-bottom: 1px solid #d1d5db;
+      padding: 4px 12px;
+      gap: 8px;
+      font-size: 0.85rem;
+    }
+
+    .formula-cell-indicator {
+      font-weight: 600;
+      color: #107c41;
+      background: #f3f4f6;
+      padding: 2px 8px;
+      border: 1px solid #d1d5db;
+      border-radius: 3px;
+      min-width: 40px;
+      text-align: center;
+    }
+
+    .formula-input {
+      flex-grow: 1;
+      border: 1px solid #d1d5db;
+      padding: 4px 8px;
+      border-radius: 3px;
+      font-family: monospace;
+      outline: none;
+    }
+    .formula-input:focus {
+      border-color: #107c41;
+    }
+
+    /* Workspace Body */
+    .sheet-workspace {
+      display: flex;
+      height: calc(100vh - 150px);
+      overflow: hidden;
+    }
+
+    .sheet-center-pane {
+      flex-grow: 1;
+      background: #f3f4f6;
+      overflow: auto;
+      position: relative;
+    }
+
+    /* Spreadsheet Grid Table */
+    .sheet-grid {
+      border-collapse: collapse;
+      background: #ffffff;
+      font-size: 0.85rem;
+      user-select: none;
+      table-layout: fixed;
+      width: 100%;
+    }
+
+    .sheet-grid th, .sheet-grid td {
+      border: 1px solid #d1d5db;
+      padding: 4px 6px;
+      box-sizing: border-box;
+      height: 25px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* Row/Col Headers */
+    .sheet-grid th {
+      background: #f3f4f6;
+      color: #4b5563;
+      font-weight: 500;
+      text-align: center;
+      position: sticky;
+      z-index: 10;
+    }
+    .sheet-grid tr th:first-child {
+      left: 0;
+      z-index: 15;
+      width: 40px;
+    }
+    .sheet-grid thead th {
+      top: 0;
+    }
+
+    /* Table cells */
+    .sheet-grid td {
+      background: #ffffff;
+      outline: none;
+      cursor: cell;
+    }
+
+    .sheet-grid td.selected {
+      outline: 2px solid #107c41;
+      z-index: 5;
+      position: relative;
+    }
+
+    .sheet-grid tr.zebra td {
+      background: #f9fafb;
+    }
+
+    .watermark-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4.5rem;
+      color: rgba(0,0,0,0.02);
+      transform: rotate(-30deg);
+      pointer-events: none;
+      font-weight: 900;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      z-index: 5;
+      user-select: none;
+    }
+
+    /* Right Sidebar comments & review */
+    .sheet-right-sidebar {
+      width: 280px;
+      background: #ffffff;
+      border-left: 1px solid #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      flex-shrink: 0;
+    }
+
+    .sidebar-tabs {
+      display: flex;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .sidebar-tab {
+      flex: 1;
+      background: #f9fafb;
+      border: none;
+      padding: 10px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      color: #4b5563;
+    }
+    .sidebar-tab.active {
+      background: #ffffff;
+      font-weight: 600;
+      border-bottom: 2px solid #107c41;
+      color: #107c41;
+    }
+
+    .sidebar-content {
+      padding: 16px;
+      overflow-y: auto;
+      flex-grow: 1;
+      font-size: 0.8rem;
+    }
+
+    .comment-card {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+
+    .comment-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: #6b7280;
+      margin-bottom: 4px;
+    }
+
+    .track-changes-item {
+      padding: 6px 8px;
+      border-left: 3px solid #10b981;
+      background: rgba(16, 185, 129, 0.05);
+      margin-bottom: 8px;
+      border-radius: 0 4px 4px 0;
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Excel Online Header -->
+  <header class="sheet-header">
+    <div class="sheet-header-left">
+      <span class="sheet-app-icon">X📗</span>
+      <div class="sheet-doc-title-box">
+        <input type="text" class="sheet-title-input" id="docTitleInput" value="annual_budget.xlsx" />
+        <span class="save-badge" id="saveIndicator">● Saved to Local Library</span>
+      </div>
+    </div>
+    <div>
+      <a href="office-suite.html" style="color:#fff; text-decoration:none; font-weight:600; background:rgba(255,255,255,0.15); padding:6px 12px; border-radius:4px;">Dashboard</a>
+    </div>
+  </header>
+
+  <!-- Ribbon -->
+  <div class="sheet-ribbon">
+    <div class="ribbon-tabs">
+      <button class="ribbon-tab active">Home</button>
+      <button class="ribbon-tab" onclick="alert('Simulation: Charts and Tables insertion available.')">Insert</button>
+      <button class="ribbon-tab" id="btnCalculateSum" style="color:#107c41; font-weight:bold;">∑ AutoSum</button>
+      <button class="ribbon-tab" id="btnZebraShading">Toggle Zebra Shading</button>
+    </div>
+
+    <div class="ribbon-toolbar">
+      <div class="ribbon-group">
+        <button class="ribbon-btn" id="btnBold" title="Bold"><b>B</b></button>
+        <button class="ribbon-btn" id="btnItalic" title="Italic"><i>I</i></button>
+      </div>
+
+      <!-- Watermark overlay and comments controls -->
+      <div class="ribbon-group">
+        <button class="ribbon-btn" id="btnAddComment" style="color:#107c41;">💬 New Comment</button>
+        <button class="ribbon-btn" id="btnTrackChanges">Toggle Review Mode (OFF)</button>
+        <label style="font-size:0.75rem; color:#4b5563; display:flex; align-items:center; gap:6px; margin-left:10px; cursor:pointer;">
+          <input type="checkbox" id="chkWatermark" /> Watermark:
+          <input type="text" id="watermarkText" value="DRAFT" style="width:90px; padding:2px; border:1px solid #ccc; font-size:0.7rem;" />
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formula Bar -->
+  <div class="formula-bar-container">
+    <div class="formula-cell-indicator" id="activeCellLabel">A1</div>
+    <div style="font-style:italic; color:#6b7280; font-size:0.9rem;">fx</div>
+    <input type="text" class="formula-input" id="formulaInput" placeholder="Enter values or formulas..." />
+  </div>
+
+  <!-- Main Workspace -->
+  <div class="sheet-workspace">
+    <div class="sheet-center-pane">
+      <div class="watermark-overlay" id="watermarkOverlay" style="display:none;">DRAFT</div>
+      <table class="sheet-grid" id="spreadsheetGrid">
+        <thead>
+          <tr id="gridHeaderRow">
+            <th style="width: 40px;"></th>
+            <!-- Letters A to H populated via JS -->
+          </tr>
+        </thead>
+        <tbody id="gridBody">
+          <!-- Rows and cells populated via JS -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Right Sidebar comments & Review logs -->
+    <aside class="sheet-right-sidebar">
+      <div class="sidebar-tabs">
+        <button class="sidebar-tab active" id="tabComments">Comments</button>
+        <button class="sidebar-tab" id="tabReview">Review Logs</button>
+      </div>
+      
+      <div class="sidebar-content" id="sidebarContent">
+        <!-- Loaded dynamically -->
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    const DB_KEY = "bt_office_docs_v1";
+    let documentCatalog = [];
+    let activeDoc = null;
+    let docComments = [];
+    let reviewLogs = [];
+    let activeTab = "comments";
+    let isTrackChanges = false;
+    
+    // Spreadsheet state
+    const COLUMNS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+    const ROW_COUNT = 20;
+    let cellData = {}; // Format: {"A1": "val", "B2": "100"}
+    let selectedCell = "A1";
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const docId = urlParams.get("id");
+
+    function buildGrid() {
+      const headerRow = document.getElementById("gridHeaderRow");
+      COLUMNS.forEach(col => {
+        const th = document.createElement("th");
+        th.textContent = col;
+        headerRow.appendChild(th);
+      });
+
+      const body = document.getElementById("gridBody");
+      for (let r = 1; r <= ROW_COUNT; r++) {
+        const tr = document.createElement("tr");
+        tr.id = `row-${r}`;
+        const rowLabel = document.createElement("th");
+        rowLabel.textContent = r;
+        tr.appendChild(rowLabel);
+
+        COLUMNS.forEach(col => {
+          const cellId = `${col}${r}`;
+          const td = document.createElement("td");
+          td.id = cellId;
+          td.contentEditable = "true";
+          
+          td.addEventListener("focus", () => {
+            selectCell(cellId);
+          });
+          
+          td.addEventListener("input", (e) => {
+            cellData[cellId] = e.target.textContent;
+            document.getElementById("formulaInput").value = cellData[cellId] || "";
+            saveDoc();
+            if (isTrackChanges) {
+              logReview(`Edited cell ${cellId} to "${cellData[cellId]}"`);
+            }
+          });
+
+          tr.appendChild(td);
+        });
+
+        body.appendChild(tr);
+      }
+    }
+
+    function selectCell(cellId) {
+      if (selectedCell) {
+        const prev = document.getElementById(selectedCell);
+        if (prev) prev.classList.remove("selected");
+      }
+      selectedCell = cellId;
+      const curr = document.getElementById(cellId);
+      if (curr) {
+        curr.classList.add("selected");
+      }
+      document.getElementById("activeCellLabel").textContent = cellId;
+      document.getElementById("formulaInput").value = cellData[cellId] || "";
+    }
+
+    function loadDoc() {
+      const stored = localStorage.getItem(DB_KEY);
+      if (stored) {
+        documentCatalog = JSON.parse(stored);
+      }
+      
+      activeDoc = documentCatalog.find(d => d.id === docId);
+      if (!activeDoc) {
+        alert("Document not found.");
+        window.location.href = "office-suite.html";
+        return;
+      }
+
+      document.getElementById("docTitleInput").value = activeDoc.name;
+      
+      // Load spreadsheet cell values
+      cellData = activeDoc.content && typeof activeDoc.content === 'object' ? activeDoc.content : {
+        "A1": "Q1 Revenue", "B1": "12000",
+        "A2": "Q2 Revenue", "B2": "14500",
+        "A3": "Q3 Revenue", "B3": "19000",
+        "A4": "Total Revenue", "B4": "=SUM(B1:B3)",
+        "A6": "Project Growth Plan Budget",
+        "A7": "Marketing", "B7": "2500",
+        "A8": "Engineering", "B8": "8000",
+        "A9": "Operations", "B9": "3000"
+      };
+
+      // Fill values into spreadsheet DOM
+      Object.keys(cellData).forEach(cellId => {
+        const cell = document.getElementById(cellId);
+        if (cell) cell.textContent = cellData[cellId];
+      });
+
+      docComments = activeDoc.comments || [
+        { user: "Jane Doe", time: "11:20 AM", text: "AutoSum formula checked." }
+      ];
+      
+      reviewLogs = activeDoc.reviewLogs || [
+        { time: "11:00 AM", text: "Initialized spreadsheet model", type: "addition" }
+      ];
+
+      selectCell("A1");
+      renderSidebar();
+    }
+
+    function saveDoc() {
+      if (!activeDoc) return;
+      activeDoc.name = document.getElementById("docTitleInput").value;
+      activeDoc.content = cellData;
+      activeDoc.comments = docComments;
+      activeDoc.reviewLogs = reviewLogs;
+
+      const idx = documentCatalog.findIndex(d => d.id === activeDoc.id);
+      if (idx !== -1) {
+        documentCatalog[idx] = activeDoc;
+      }
+      localStorage.setItem(DB_KEY, JSON.stringify(documentCatalog));
+    }
+
+    // Formula Input Sync
+    document.getElementById("formulaInput").addEventListener("input", (e) => {
+      if (!selectedCell) return;
+      cellData[selectedCell] = e.target.value;
+      const cell = document.getElementById(selectedCell);
+      if (cell) cell.textContent = e.target.value;
+      saveDoc();
+    });
+
+    // Formatting Toolbar triggers
+    document.getElementById("btnBold").addEventListener("click", () => {
+      const cell = document.getElementById(selectedCell);
+      if (cell) {
+        cell.style.fontWeight = cell.style.fontWeight === 'bold' ? 'normal' : 'bold';
+      }
+    });
+
+    document.getElementById("btnItalic").addEventListener("click", () => {
+      const cell = document.getElementById(selectedCell);
+      if (cell) {
+        cell.style.fontStyle = cell.style.fontStyle === 'italic' ? 'normal' : 'italic';
+      }
+    });
+
+    // Zebra Shading toggle
+    let zebraOn = false;
+    document.getElementById("btnZebraShading").addEventListener("click", () => {
+      zebraOn = !zebraOn;
+      for (let r = 1; r <= ROW_COUNT; r++) {
+        const row = document.getElementById(`row-${r}`);
+        if (row) {
+          if (zebraOn && r % 2 === 0) {
+            row.classList.add("zebra");
+          } else {
+            row.classList.remove("zebra");
+          }
+        }
+      }
+    });
+
+    // AutoSum Simple Parser
+    document.getElementById("btnCalculateSum").addEventListener("click", () => {
+      // Find numbers in column B to sum up to selected row
+      if (!selectedCell) return;
+      const col = selectedCell[0];
+      const maxRow = parseInt(selectedCell.slice(1));
+      let sum = 0;
+      for (let r = 1; r < maxRow; r++) {
+        const val = parseFloat(cellData[`${col}${r}`]);
+        if (!isNaN(val)) {
+          sum += val;
+        }
+      }
+      cellData[selectedCell] = sum.toString();
+      const cell = document.getElementById(selectedCell);
+      if (cell) cell.textContent = sum.toString();
+      document.getElementById("formulaInput").value = sum.toString();
+      saveDoc();
+      logReview(`Calculated AutoSum for cell ${selectedCell}: ${sum}`);
+    });
+
+    // Watermark
+    const chkWatermark = document.getElementById("chkWatermark");
+    const watermarkText = document.getElementById("watermarkText");
+    const overlay = document.getElementById("watermarkOverlay");
+
+    function updateWatermark() {
+      if (chkWatermark.checked && watermarkText.value) {
+        overlay.style.display = "flex";
+        overlay.textContent = watermarkText.value;
+      } else {
+        overlay.style.display = "none";
+      }
+    }
+    chkWatermark.addEventListener("change", updateWatermark);
+    watermarkText.addEventListener("input", updateWatermark);
+
+    // Comments & Review Tabs
+    const tabComments = document.getElementById("tabComments");
+    const tabReview = document.getElementById("tabReview");
+
+    tabComments.addEventListener("click", () => {
+      activeTab = "comments";
+      tabComments.classList.add("active");
+      tabReview.classList.remove("active");
+      renderSidebar();
+    });
+
+    tabReview.addEventListener("click", () => {
+      activeTab = "review";
+      tabReview.classList.add("active");
+      tabComments.classList.remove("active");
+      renderSidebar();
+    });
+
+    document.getElementById("btnTrackChanges").addEventListener("click", (e) => {
+      isTrackChanges = !isTrackChanges;
+      e.target.textContent = `Toggle Review Mode (${isTrackChanges ? 'ON' : 'OFF'})`;
+      e.target.classList.toggle("active", isTrackChanges);
+    });
+
+    document.getElementById("btnAddComment").addEventListener("click", () => {
+      const comment = prompt("Add comment/notes for cell " + selectedCell + ":");
+      if (!comment) return;
+      const user = "John Smith";
+      const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      docComments.push({ user, time, text: `[Cell ${selectedCell}] ${comment}` });
+      saveDoc();
+      renderSidebar();
+    });
+
+    function logReview(msg, type = "addition") {
+      const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      reviewLogs.push({ time, text: msg, type });
+      saveDoc();
+      if (activeTab === "review") renderSidebar();
+    }
+
+    function renderSidebar() {
+      const content = document.getElementById("sidebarContent");
+      content.innerHTML = "";
+      
+      if (activeTab === "comments") {
+        docComments.forEach(c => {
+          const div = document.createElement("div");
+          div.className = "comment-card";
+          div.innerHTML = `
+            <div class="comment-meta">
+              <span><strong>${c.user}</strong></span>
+              <span>${c.time}</span>
+            </div>
+            <div style="color: #374151; margin-top:4px;">${c.text}</div>
+          `;
+          content.appendChild(div);
+        });
+      } else {
+        reviewLogs.forEach(r => {
+          const div = document.createElement("div");
+          div.className = `track-changes-item`;
+          div.innerHTML = `<strong>${r.time}</strong>: ${r.text}`;
+          content.appendChild(div);
+        });
+      }
+    }
+
+    buildGrid();
+    loadDoc();
+  </script>
+</body>
+</html>
