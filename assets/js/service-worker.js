@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bluetext-offline-v1';
+const CACHE_NAME = 'bluetext-offline-v5';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
@@ -14,9 +14,24 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll(ASSETS_TO_CACHE);
-    }).catch(err => {
+    }).then(() => self.skipWaiting()).catch(err => {
       console.warn("Offline caching skipped during installation:", err);
     })
+  );
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheName) => {
+          if (cacheName !== CACHE_NAME) {
+            console.log("Clearing old cache:", cacheName);
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    }).then(() => self.clients.claim())
   );
 });
 

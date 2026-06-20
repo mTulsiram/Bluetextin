@@ -616,68 +616,189 @@ document.addEventListener('DOMContentLoaded', async () => {
         modal.setAttribute('role', 'dialog');
         modal.setAttribute('aria-modal', 'true');
         modal.setAttribute('aria-labelledby', 'modal-login-title');
-        modal.innerHTML = `
-          <div class="login-modal-card">
-            <h3 id="modal-login-title" style="margin: 0; font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--accent-primary);">Sign In to BlueTEXT.in</h3>
-            <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary);">Access your developer dashboard. Default: admin / password.</p>
-            
-            <form id="login-modal-form" style="display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-2);">
-              <div class="login-form-group">
-                <label for="login-username">Username</label>
-                <input type="text" id="login-username" class="input" required style="padding: 0.55rem 1rem; border-radius: var(--radius-sm);" placeholder="Username">
-              </div>
-              <div class="login-form-group">
-                <label for="login-password">Password</label>
-                <input type="password" id="login-password" class="input" required style="padding: 0.55rem 1rem; border-radius: var(--radius-sm);" placeholder="Password">
-              </div>
-              <div id="login-error-msg" class="login-form-error" style="color: var(--accent-danger); font-size: 0.8rem; display: none;">Invalid username or password.</div>
-              
-              <div style="display: flex; justify-content: flex-end; gap: var(--space-3); margin-top: var(--space-2);">
-                <button type="button" class="btn btn--ghost" id="login-cancel-btn" style="padding: 0.45rem 1rem; font-size: 0.85rem;">Cancel</button>
-                <button type="submit" class="btn btn--primary" style="padding: 0.45rem 1.25rem; font-size: 0.85rem;">Login</button>
-              </div>
-            </form>
-          </div>
-        `;
         document.body.appendChild(modal);
+      }
 
-        const closeBtn = document.getElementById('login-cancel-btn');
+      let currentMode = 'login'; // 'login' or 'register'
+
+      const updateModalDOM = () => {
+        if (currentMode === 'login') {
+          modal.innerHTML = `
+            <div class="login-modal-card">
+              <h3 id="modal-login-title" style="margin: 0; font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--accent-primary);">Sign In to BlueTEXT.in</h3>
+              <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary);">Access your developer dashboard. Default: admin / password.</p>
+              
+              <form id="login-modal-form" style="display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-2);">
+                <div class="login-form-group">
+                  <label for="login-username">Username</label>
+                  <input type="text" id="login-username" class="input" required style="padding: 0.55rem 1rem; border-radius: var(--radius-sm);" placeholder="Username">
+                </div>
+                <div class="login-form-group">
+                  <label for="login-password">Password</label>
+                  <input type="password" id="login-password" class="input" required style="padding: 0.55rem 1rem; border-radius: var(--radius-sm);" placeholder="Password">
+                </div>
+                <div id="login-error-msg" class="login-form-error" style="color: var(--accent-danger); font-size: 0.8rem; display: none;">Invalid username or password.</div>
+                
+                <div style="display: flex; justify-content: flex-end; gap: var(--space-3); margin-top: var(--space-2);">
+                  <button type="button" class="btn btn--ghost" id="login-cancel-btn" style="padding: 0.45rem 1rem; font-size: 0.85rem;">Cancel</button>
+                  <button type="submit" class="btn btn--primary" style="padding: 0.45rem 1.25rem; font-size: 0.85rem;">Login</button>
+                </div>
+              </form>
+              <div style="text-align: center; margin-top: var(--space-2); font-size: 0.85rem; color: var(--text-secondary);">
+                Don't have an account? <a href="#" id="toggle-register-link" style="color: var(--accent-primary); font-weight: 600;">Create Account</a>
+              </div>
+            </div>
+          `;
+        } else {
+          modal.innerHTML = `
+            <div class="login-modal-card">
+              <h3 id="modal-login-title" style="margin: 0; font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--accent-primary);">Create Account</h3>
+              <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary);">Register a new local account.</p>
+              
+              <form id="register-modal-form" style="display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-2);">
+                <div class="login-form-group">
+                  <label for="register-username">Username</label>
+                  <input type="text" id="register-username" class="input" required style="padding: 0.55rem 1rem; border-radius: var(--radius-sm);" placeholder="Username">
+                </div>
+                <div class="login-form-group">
+                  <label for="register-password">Password</label>
+                  <input type="password" id="register-password" class="input" required style="padding: 0.55rem 1rem; border-radius: var(--radius-sm);" placeholder="Password">
+                </div>
+                <div class="login-form-group">
+                  <label for="register-password-confirm">Confirm Password</label>
+                  <input type="password" id="register-password-confirm" class="input" required style="padding: 0.55rem 1rem; border-radius: var(--radius-sm);" placeholder="Confirm Password">
+                </div>
+                <div id="register-error-msg" class="login-form-error" style="color: var(--accent-danger); font-size: 0.8rem; display: none;">Error.</div>
+                
+                <div style="display: flex; justify-content: flex-end; gap: var(--space-3); margin-top: var(--space-2);">
+                  <button type="button" class="btn btn--ghost" id="register-cancel-btn" style="padding: 0.45rem 1rem; font-size: 0.85rem;">Cancel</button>
+                  <button type="submit" class="btn btn--primary" style="padding: 0.45rem 1.25rem; font-size: 0.85rem;">Register</button>
+                </div>
+              </form>
+              <div style="text-align: center; margin-top: var(--space-2); font-size: 0.85rem; color: var(--text-secondary);">
+                Already have an account? <a href="#" id="toggle-login-link" style="color: var(--accent-primary); font-weight: 600;">Sign In</a>
+              </div>
+            </div>
+          `;
+        }
+
+        // Attach listeners
+        const cancelBtn = document.getElementById(currentMode === 'login' ? 'login-cancel-btn' : 'register-cancel-btn');
         const closeForm = () => {
           modal.classList.remove('show');
           const loginBtn = document.getElementById('header-login-btn');
           if (loginBtn) loginBtn.focus();
         };
-        closeBtn.addEventListener('click', closeForm);
-        modal.addEventListener('click', (e) => {
-          if (e.target === modal) closeForm();
-        });
+        if (cancelBtn) cancelBtn.addEventListener('click', closeForm);
 
-        const form = document.getElementById('login-modal-form');
-        form.addEventListener('submit', (e) => {
-          e.preventDefault();
-          const u = document.getElementById('login-username').value;
-          const p = document.getElementById('login-password').value;
-          const err = document.getElementById('login-error-msg');
+        if (currentMode === 'login') {
+          const toggleLink = document.getElementById('toggle-register-link');
+          if (toggleLink) {
+            toggleLink.addEventListener('click', (e) => {
+              e.preventDefault();
+              currentMode = 'register';
+              updateModalDOM();
+            });
+          }
+
+          const form = document.getElementById('login-modal-form');
+          form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const u = document.getElementById('login-username').value.trim();
+            const p = document.getElementById('login-password').value;
+            const err = document.getElementById('login-error-msg');
+            
+            const registeredAccounts = JSON.parse(localStorage.getItem('bluetext_accounts') || '[]');
+            const matchedUser = registeredAccounts.find(acc => acc.username.toLowerCase() === u.toLowerCase() && acc.password === p);
+
+            if ((u.toLowerCase() === 'admin' && p === 'password') || matchedUser) {
+              const displayUsername = matchedUser ? matchedUser.username : 'Admin';
+              localStorage.setItem('bluetext_user_logged', 'true');
+              localStorage.setItem('bluetext_username', displayUsername);
+              setCookie('bluetext_session', `authorized_${displayUsername.toLowerCase()}`, 1);
+              modal.classList.remove('show');
+              updateLoginUI();
+            } else {
+              err.textContent = 'Invalid username or password.';
+              err.style.display = 'block';
+            }
+          });
           
-          if (u === 'admin' && p === 'password') {
+          setTimeout(() => {
+            const input = document.getElementById('login-username');
+            if (input) input.focus();
+          }, 50);
+
+        } else {
+          const toggleLink = document.getElementById('toggle-login-link');
+          if (toggleLink) {
+            toggleLink.addEventListener('click', (e) => {
+              e.preventDefault();
+              currentMode = 'login';
+              updateModalDOM();
+            });
+          }
+
+          const form = document.getElementById('register-modal-form');
+          form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const u = document.getElementById('register-username').value.trim();
+            const p = document.getElementById('register-password').value;
+            const pc = document.getElementById('register-password-confirm').value;
+            const err = document.getElementById('register-error-msg');
+
+            if (!u) {
+              err.textContent = 'Username is required.';
+              err.style.display = 'block';
+              return;
+            }
+            if (u.toLowerCase() === 'admin') {
+              err.textContent = 'Username "admin" is reserved.';
+              err.style.display = 'block';
+              return;
+            }
+            if (p !== pc) {
+              err.textContent = 'Passwords do not match.';
+              err.style.display = 'block';
+              return;
+            }
+
+            const registeredAccounts = JSON.parse(localStorage.getItem('bluetext_accounts') || '[]');
+            if (registeredAccounts.some(acc => acc.username.toLowerCase() === u.toLowerCase())) {
+              err.textContent = 'Username already exists.';
+              err.style.display = 'block';
+              return;
+            }
+
+            registeredAccounts.push({ username: u, password: p });
+            localStorage.setItem('bluetext_accounts', JSON.stringify(registeredAccounts));
+
             localStorage.setItem('bluetext_user_logged', 'true');
-            setCookie('bluetext_session', 'authorized_admin', 1);
+            localStorage.setItem('bluetext_username', u);
+            setCookie('bluetext_session', `authorized_${u.toLowerCase()}`, 1);
+            
             modal.classList.remove('show');
             updateLoginUI();
-          } else {
-            err.style.display = 'block';
-          }
-        });
-      }
+          });
 
-      document.getElementById('login-username').value = '';
-      document.getElementById('login-password').value = '';
-      document.getElementById('login-error-msg').style.display = 'none';
+          setTimeout(() => {
+            const input = document.getElementById('register-username');
+            if (input) input.focus();
+          }, 50);
+        }
+      };
+
+      updateModalDOM();
+      
+      modal.onclick = (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('show');
+          const loginBtn = document.getElementById('header-login-btn');
+          if (loginBtn) loginBtn.focus();
+        }
+      };
 
       modal.classList.add('show');
-      setTimeout(() => {
-        document.getElementById('login-username').focus();
-      }, 100);
     };
 
     const updateLoginUI = () => {
@@ -685,13 +806,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       const isLoggedIn = localStorage.getItem('bluetext_user_logged') || getCookie('bluetext_session');
       
       if (isLoggedIn) {
+        const username = localStorage.getItem('bluetext_username') || 'Admin';
         userSection.innerHTML = `
           <button class="btn btn--primary nav-trigger" id="profile-menu-btn" aria-expanded="false" aria-haspopup="true" type="button" style="padding: 0.45rem 1rem; font-size: 0.85rem;">
-            👤 Admin <span aria-hidden="true" style="font-size: 0.65rem; margin-left: 4px;">▼</span>
+            👤 ${username} <span aria-hidden="true" style="font-size: 0.65rem; margin-left: 4px;">▼</span>
           </button>
           <div class="dropdown-pane" id="profile-dropdown-pane" style="width: 220px; right: 0; left: auto; transform: translateY(10px); display: flex; flex-direction: column; gap: var(--space-3);">
             <div style="font-weight: 600; font-size: 0.85rem; color: var(--accent-success); border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.5rem; margin-bottom: 0.25rem;">
-              Session: Active Admin
+              Session: Active ${username}
             </div>
             <button class="btn btn--ghost" id="export-settings-btn" type="button" style="width: 100%; justify-content: flex-start; font-size: 0.85rem; padding: 0.45rem 0.75rem;">
               📤 Export Settings
@@ -700,6 +822,9 @@ document.addEventListener('DOMContentLoaded', async () => {
               📥 Import Settings
             </label>
             <input type="file" id="settings-file-input" accept=".json" style="display: none;">
+            <button class="btn btn--ghost" id="clear-cache-btn" type="button" style="width: 100%; justify-content: flex-start; font-size: 0.85rem; padding: 0.45rem 0.75rem; color: var(--accent-danger);">
+              🧹 Clear Cache & Reload
+            </button>
             <button class="btn btn--primary" id="header-logout-btn" type="button" style="width: 100%; justify-content: center; font-size: 0.85rem; padding: 0.45rem 0.75rem; margin-top: 0.25rem;">
               Sign Out
             </button>
@@ -729,8 +854,33 @@ document.addEventListener('DOMContentLoaded', async () => {
           }
         });
 
+        document.getElementById('clear-cache-btn').addEventListener('click', async () => {
+          if (confirm("Are you sure you want to clear the site cache, local storage, and reload?")) {
+            const theme = localStorage.getItem('bluetext_theme');
+            const accounts = localStorage.getItem('bluetext_accounts');
+            localStorage.clear();
+            if (theme) localStorage.setItem('bluetext_theme', theme);
+            if (accounts) localStorage.setItem('bluetext_accounts', accounts);
+            
+            if ('caches' in window) {
+              const keys = await caches.keys();
+              for (const key of keys) {
+                await caches.delete(key);
+              }
+            }
+            if ('serviceWorker' in navigator) {
+              const registrations = await navigator.serviceWorker.getRegistrations();
+              for (const registration of registrations) {
+                await registration.unregister();
+              }
+            }
+            window.location.reload();
+          }
+        });
+
         document.getElementById('header-logout-btn').addEventListener('click', () => {
           localStorage.removeItem('bluetext_user_logged');
+          localStorage.removeItem('bluetext_username');
           eraseCookie('bluetext_session');
           updateLoginUI();
         });
@@ -755,18 +905,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     function closeAllHeaderDropdowns() {
-      dropdownItems.forEach(item => {
+      const dropdowns = document.querySelectorAll('.nav-item.has-dropdown');
+      dropdowns.forEach(item => {
         item.classList.remove('show');
-        item.querySelector('.nav-trigger').setAttribute('aria-expanded', 'false');
+        const trigger = item.querySelector('.nav-trigger');
+        if (trigger) trigger.setAttribute('aria-expanded', 'false');
       });
+      const langWrapper = document.querySelector('.lang-selector-wrapper');
+      const langBtn = document.getElementById('lang-menu-btn');
       if (langWrapper) {
         langWrapper.classList.remove('show');
+      }
+      if (langBtn) {
         langBtn.setAttribute('aria-expanded', 'false');
       }
       const profilePane = document.getElementById('profile-dropdown-pane');
       const profileBtn = document.getElementById('profile-menu-btn');
-      if (profilePane && profilePane.classList.contains('show')) {
+      if (profilePane) {
         profilePane.classList.remove('show');
+      }
+      if (profileBtn) {
         profileBtn.setAttribute('aria-expanded', 'false');
       }
     }

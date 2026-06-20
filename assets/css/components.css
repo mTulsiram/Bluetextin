@@ -41,14 +41,14 @@ select:focus-visible {
 }
 
 .btn--ghost:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--btn-ghost-hover, rgba(255, 255, 255, 0.05));
 }
 
 /* Form inputs & search deck */
 .input {
   width: 100%;
   padding: 0.75rem 1.25rem;
-  background: rgba(0, 0, 0, 0.25);
+  background: var(--bg-input, rgba(0, 0, 0, 0.25));
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-pill);
   color: var(--text-primary);
@@ -226,7 +226,7 @@ select:focus-visible {
   left: var(--space-5);
   right: var(--space-5);
   max-width: 500px;
-  background: rgba(10, 14, 22, 0.95);
+  background: var(--bg-card);
   border: 1px solid var(--accent-primary);
   border-radius: var(--radius-md);
   padding: var(--space-5);
@@ -316,7 +316,7 @@ select:focus-visible {
   top: 100%;
   left: 50%;
   transform: translateX(-50%) translateY(10px);
-  background: rgba(8, 11, 18, 0.96);
+  background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: var(--space-4);
@@ -334,6 +334,13 @@ select:focus-visible {
   visibility: visible;
   pointer-events: auto;
   transform: translateX(-50%) translateY(5px);
+}
+
+.dropdown-pane.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(5px);
 }
 
 /* Grids for Dropdown Contents */
@@ -432,7 +439,7 @@ select:focus-visible {
   top: 100%;
   right: 0;
   transform: translateY(10px);
-  background: rgba(8, 11, 18, 0.96);
+  background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
   padding: var(--space-2) 0;
@@ -499,7 +506,7 @@ select:focus-visible {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--overlay-bg, rgba(0, 0, 0, 0.7));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -516,7 +523,7 @@ select:focus-visible {
 }
 
 .login-modal-card {
-  background: rgba(8, 12, 20, 0.98);
+  background: var(--bg-card);
   border: 1px solid var(--accent-primary);
   border-radius: var(--radius-md);
   padding: var(--space-6);
