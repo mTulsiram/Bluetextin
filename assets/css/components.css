@@ -1,0 +1,15 @@
+/* Category Card Premium Animations */
+.bt-category-card {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease;
+}
+
+.bt-category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(13, 110, 253, 0.08) !important;
+  border-color: rgba(13, 110, 253, 0.3) !important;
+}
+
+[data-bs-theme="dark"] .bt-category-card:hover {
+  box-shadow: 0 12px 30px rgba(59, 130, 246, 0.12) !important;
+  border-color: rgba(59, 130, 246, 0.4) !important;
+}

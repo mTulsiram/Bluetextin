@@ -1,0 +1,3979 @@
+{
+  "/pages/tutorials/web-dev/localstorage-and-indexeddb-guide.html": [
+    "Localstorage And Indexeddb Guide | BlueTEXT",
+    "Localstorage And Indexeddb Guide",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/web-dev/webgl-and-html5-canvas-basics.html": [
+    "Webgl And Html5 Canvas Basics | BlueTEXT",
+    "Webgl And Html5 Canvas Basics",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/web-dev/responsive-web-design-media-queries.html": [
+    "Responsive Web Design Media Queries | BlueTEXT",
+    "Responsive Web Design Media Queries",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/web-dev/javascript-dom-manipulation.html": [
+    "Javascript Dom Manipulation | BlueTEXT",
+    "Javascript Dom Manipulation",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/web-dev/html5-basics-for-beginners.html": [
+    "Html5 Basics For Beginners | BlueTEXT",
+    "Html5 Basics For Beginners",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/web-dev/": [
+    "Web Dev | BlueTEXT",
+    "Web Dev",
+    "Browse all web dev resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Tutorials",
+    "📄 Async Await And Fetch Api",
+    "📄 Building Single Page Applications",
+    "📄 Css3 Flexbox And Grid Guide",
+    "📄 Deploying Static Websites For Free",
+    "📄 Html5 Basics For Beginners",
+    "📄 Introduction To React Components",
+    "📄 Javascript Dom Manipulation",
+    "📄 Localstorage And Indexeddb Guide",
+    "📄 Responsive Web Design Media Queries",
+    "📄 Webgl And Html5 Canvas Basics"
+  ],
+  "/pages/tutorials/web-dev/introduction-to-react-components.html": [
+    "Introduction To React Components | BlueTEXT",
+    "Introduction To React Components",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/security/web-application-security-owasp-top-10.html": [
+    "Web Application Security Owasp Top 10 | BlueTEXT",
+    "Web Application Security Owasp Top 10",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/web-dev/deploying-static-websites-for-free.html": [
+    "Deploying Static Websites For Free | BlueTEXT",
+    "Deploying Static Websites For Free",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/web-dev/css3-flexbox-and-grid-guide.html": [
+    "Css3 Flexbox And Grid Guide | BlueTEXT",
+    "Css3 Flexbox And Grid Guide",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/web-dev/building-single-page-applications.html": [
+    "Building Single Page Applications | BlueTEXT",
+    "Building Single Page Applications",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/web-dev/async-await-and-fetch-api.html": [
+    "Async Await And Fetch Api | BlueTEXT",
+    "Async Await And Fetch Api",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/security/setting-up-a-secure-firewall.html": [
+    "Setting Up A Secure Firewall | BlueTEXT",
+    "Setting Up A Secure Firewall",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/security/symmetric-vs-asymmetric-cryptography.html": [
+    "Symmetric Vs Asymmetric Cryptography | BlueTEXT",
+    "Symmetric Vs Asymmetric Cryptography",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/security/understanding-jwt-and-session-auth.html": [
+    "Understanding Jwt And Session Auth | BlueTEXT",
+    "Understanding Jwt And Session Auth",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/security/": [
+    "Security | BlueTEXT",
+    "Security",
+    "Browse all security resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Tutorials",
+    "📄 Api Rate Limiting Strategies",
+    "📄 Cors Policy Errors And Fixes",
+    "📄 Hashing Vs Encryption Explained",
+    "📄 How Ssl Tls Certificates Work",
+    "📄 How To Prevent Xss And Sql Injection",
+    "📄 Networking Basics Ip Subnets Dns",
+    "📄 Setting Up A Secure Firewall",
+    "📄 Symmetric Vs Asymmetric Cryptography",
+    "📄 Understanding Jwt And Session Auth",
+    "📄 Web Application Security Owasp Top 10"
+  ],
+  "/pages/tutorials/security/networking-basics-ip-subnets-dns.html": [
+    "Networking Basics Ip Subnets Dns | BlueTEXT",
+    "Networking Basics Ip Subnets Dns",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/security/how-to-prevent-xss-and-sql-injection.html": [
+    "How To Prevent Xss And Sql Injection | BlueTEXT",
+    "How To Prevent Xss And Sql Injection",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/security/how-ssl-tls-certificates-work.html": [
+    "How Ssl Tls Certificates Work | BlueTEXT",
+    "How Ssl Tls Certificates Work",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/security/hashing-vs-encryption-explained.html": [
+    "Hashing Vs Encryption Explained | BlueTEXT",
+    "Hashing Vs Encryption Explained",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/security/api-rate-limiting-strategies.html": [
+    "Api Rate Limiting Strategies | BlueTEXT",
+    "Api Rate Limiting Strategies",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/security/cors-policy-errors-and-fixes.html": [
+    "Cors Policy Errors And Fixes | BlueTEXT",
+    "Cors Policy Errors And Fixes",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/programming/java-memory-management-basics.html": [
+    "Java Memory Management Basics | BlueTEXT",
+    "Java Memory Management Basics",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/programming/typescript-for-javascript-developers.html": [
+    "Typescript For Javascript Developers | BlueTEXT",
+    "Typescript For Javascript Developers",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/programming/object-oriented-programming-in-cpp.html": [
+    "Object Oriented Programming In Cpp | BlueTEXT",
+    "Object Oriented Programming In Cpp",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/programming/regular-expressions-regex-tutorial.html": [
+    "Regular Expressions Regex Tutorial | BlueTEXT",
+    "Regular Expressions Regex Tutorial",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/programming/rust-ownership-and-borrowing.html": [
+    "Rust Ownership And Borrowing | BlueTEXT",
+    "Rust Ownership And Borrowing",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/programming/python-syntax-and-data-structures.html": [
+    "Python Syntax And Data Structures | BlueTEXT",
+    "Python Syntax And Data Structures",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/programming/": [
+    "Programming | BlueTEXT",
+    "Programming",
+    "Browse all programming resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Tutorials",
+    "📄 Csharp Dotnet Core Fundamentals",
+    "📄 Data Structures And Algorithms Guide",
+    "📄 Functional Programming Concepts",
+    "📄 Golang Concurrency With Goroutines",
+    "📄 Java Memory Management Basics",
+    "📄 Object Oriented Programming In Cpp",
+    "📄 Python Syntax And Data Structures",
+    "📄 Regular Expressions Regex Tutorial",
+    "📄 Rust Ownership And Borrowing",
+    "📄 Typescript For Javascript Developers"
+  ],
+  "/pages/tutorials/programming/functional-programming-concepts.html": [
+    "Functional Programming Concepts | BlueTEXT",
+    "Functional Programming Concepts",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/": [
+    "Tutorials | BlueTEXT",
+    "Tutorials",
+    "Step-by-step tutorials on backend, design, programming, security, and web development.",
+    "Home",
+    "Pages",
+    "📄 Backend",
+    "📄 Design",
+    "📄 Programming",
+    "📄 Security",
+    "📄 Web Dev"
+  ],
+  "/pages/tutorials/programming/data-structures-and-algorithms-guide.html": [
+    "Data Structures And Algorithms Guide | BlueTEXT",
+    "Data Structures And Algorithms Guide",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/programming/golang-concurrency-with-goroutines.html": [
+    "Golang Concurrency With Goroutines | BlueTEXT",
+    "Golang Concurrency With Goroutines",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/design/ui-ux-principles-for-clean-layouts.html": [
+    "Ui Ux Principles For Clean Layouts | BlueTEXT",
+    "Ui Ux Principles For Clean Layouts",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/design/inkscape-vector-drawing-tutorial.html": [
+    "Inkscape Vector Drawing Tutorial | BlueTEXT",
+    "Inkscape Vector Drawing Tutorial",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/programming/csharp-dotnet-core-fundamentals.html": [
+    "Csharp Dotnet Core Fundamentals | BlueTEXT",
+    "Csharp Dotnet Core Fundamentals",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/design/svg-vector-graphics-optimization.html": [
+    "Svg Vector Graphics Optimization | BlueTEXT",
+    "Svg Vector Graphics Optimization",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/design/typography-rules-for-web-interfaces.html": [
+    "Typography Rules For Web Interfaces | BlueTEXT",
+    "Typography Rules For Web Interfaces",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/design/video-editing-timeline-fundamentals.html": [
+    "Video Editing Timeline Fundamentals | BlueTEXT",
+    "Video Editing Timeline Fundamentals",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/design/gimp-image-editing-basics.html": [
+    "Gimp Image Editing Basics | BlueTEXT",
+    "Gimp Image Editing Basics",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/design/figma-prototyping-for-beginners.html": [
+    "Figma Prototyping For Beginners | BlueTEXT",
+    "Figma Prototyping For Beginners",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/design/": [
+    "Design | BlueTEXT",
+    "Design",
+    "Browse all design resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Tutorials",
+    "📄 Blender 3d Modeling Introduction",
+    "📄 Color Theory And Palette Selection",
+    "📄 Css Animations And Transitions Guide",
+    "📄 Figma Prototyping For Beginners",
+    "📄 Gimp Image Editing Basics",
+    "📄 Inkscape Vector Drawing Tutorial",
+    "📄 Svg Vector Graphics Optimization",
+    "📄 Typography Rules For Web Interfaces",
+    "📄 Ui Ux Principles For Clean Layouts",
+    "📄 Video Editing Timeline Fundamentals"
+  ],
+  "/pages/tutorials/design/blender-3d-modeling-introduction.html": [
+    "Blender 3d Modeling Introduction | BlueTEXT",
+    "Blender 3d Modeling Introduction",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/backend/ssh-key-setup-and-server-access.html": [
+    "Ssh Key Setup And Server Access | BlueTEXT",
+    "Ssh Key Setup And Server Access",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/design/css-animations-and-transitions-guide.html": [
+    "Css Animations And Transitions Guide | BlueTEXT",
+    "Css Animations And Transitions Guide",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/backend/sql-queries-join-and-select.html": [
+    "Sql Queries Join And Select | BlueTEXT",
+    "Sql Queries Join And Select",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/backend/redis-caching-implementation-basics.html": [
+    "Redis Caching Implementation Basics | BlueTEXT",
+    "Redis Caching Implementation Basics",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/design/color-theory-and-palette-selection.html": [
+    "Color Theory And Palette Selection | BlueTEXT",
+    "Color Theory And Palette Selection",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/backend/mongodb-crud-operations-guide.html": [
+    "Mongodb Crud Operations Guide | BlueTEXT",
+    "Mongodb Crud Operations Guide",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/backend/linux-command-line-cheat-sheet.html": [
+    "Linux Command Line Cheat Sheet | BlueTEXT",
+    "Linux Command Line Cheat Sheet",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/backend/docker-containers-for-beginners.html": [
+    "Docker Containers For Beginners | BlueTEXT",
+    "Docker Containers For Beginners",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/backend/": [
+    "Backend | BlueTEXT",
+    "Backend",
+    "Browse all backend resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Tutorials",
+    "📄 Building Restful Apis With Node",
+    "📄 Ci Cd Pipelines With Github Actions",
+    "📄 Docker Containers For Beginners",
+    "📄 Git Version Control And Github",
+    "📄 Graphql Vs Rest Comparison Guide",
+    "📄 Linux Command Line Cheat Sheet",
+    "📄 Mongodb Crud Operations Guide",
+    "📄 Redis Caching Implementation Basics",
+    "📄 Sql Queries Join And Select",
+    "📄 Ssh Key Setup And Server Access"
+  ],
+  "/pages/tutorials/backend/graphql-vs-rest-comparison-guide.html": [
+    "Graphql Vs Rest Comparison Guide | BlueTEXT",
+    "Graphql Vs Rest Comparison Guide",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/backend/git-version-control-and-github.html": [
+    "Git Version Control And Github | BlueTEXT",
+    "Git Version Control And Github",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/backend/building-restful-apis-with-node.html": [
+    "Building Restful Apis With Node | BlueTEXT",
+    "Building Restful Apis With Node",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/vtt-to-srt-converter.html": [
+    "Vtt To Srt Converter | BlueTEXT",
+    "Vtt To Srt Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/wav-to-mp3-converter.html": [
+    "Wav To Mp3 Converter | BlueTEXT",
+    "Wav To Mp3 Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/video-trimmer.html": [
+    "Video Trimmer | BlueTEXT",
+    "Video Trimmer",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tutorials/backend/ci-cd-pipelines-with-github-actions.html": [
+    "Ci Cd Pipelines With Github Actions | BlueTEXT",
+    "Ci Cd Pipelines With Github Actions",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/voice-recorder.html": [
+    "Voice Recorder | BlueTEXT",
+    "Voice Recorder",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/video-thumbnail-generator.html": [
+    "Video Thumbnail Generator | BlueTEXT",
+    "Video Thumbnail Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/video-reverse-tool.html": [
+    "Video Reverse Tool | BlueTEXT",
+    "Video Reverse Tool",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/video-to-gif.html": [
+    "Video To Gif | BlueTEXT",
+    "Video To Gif",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/video-playback-speed-changer.html": [
+    "Video Playback Speed Changer | BlueTEXT",
+    "Video Playback Speed Changer",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/video-resizer.html": [
+    "Video Resizer | BlueTEXT",
+    "Video Resizer",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/video-mute.html": [
+    "Video Mute | BlueTEXT",
+    "Video Mute",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/subtitle-merger.html": [
+    "Subtitle Merger | BlueTEXT",
+    "Subtitle Merger",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/video-aspect-ratio-calculator.html": [
+    "Video Aspect Ratio Calculator | BlueTEXT",
+    "Video Aspect Ratio Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/srt-subtitle-generator.html": [
+    "Srt Subtitle Generator | BlueTEXT",
+    "Srt Subtitle Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/text-to-speech-mp3.html": [
+    "Text To Speech Mp3 | BlueTEXT",
+    "Text To Speech Mp3",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/ogg-converter.html": [
+    "Ogg Converter | BlueTEXT",
+    "Ogg Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/pitch-shifter.html": [
+    "Pitch Shifter | BlueTEXT",
+    "Pitch Shifter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/noise-gate-simulator.html": [
+    "Noise Gate Simulator | BlueTEXT",
+    "Noise Gate Simulator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/screen-recorder.html": [
+    "Screen Recorder | BlueTEXT",
+    "Screen Recorder",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/mp4-compressor.html": [
+    "Mp4 Compressor | BlueTEXT",
+    "Mp4 Compressor",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/metronome-online.html": [
+    "Metronome Online | BlueTEXT",
+    "Metronome Online",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/midi-visualizer.html": [
+    "Midi Visualizer | BlueTEXT",
+    "Midi Visualizer",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/mp3-volume-booster.html": [
+    "Mp3 Volume Booster | BlueTEXT",
+    "Mp3 Volume Booster",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/": [
+    "Videos | BlueTEXT",
+    "Videos",
+    "Browse all videos resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Tools",
+    "📄 Audio Cutter",
+    "📄 Audio Extractor",
+    "📄 Audio Joiner",
+    "📄 Audio Panner",
+    "📄 Audio Spectrum Generator",
+    "📄 Bpm Counter",
+    "📄 Flac To Mp3",
+    "📄 Frequency Generator",
+    "📄 Metronome Online",
+    "📄 Midi Visualizer",
+    "📄 Mp3 Volume Booster",
+    "📄 Mp4 Compressor",
+    "📄 Noise Gate Simulator",
+    "📄 Ogg Converter",
+    "📄 Pitch Shifter",
+    "📄 Screen Recorder",
+    "📄 Srt Subtitle Generator",
+    "📄 Subtitle Merger",
+    "📄 Text To Speech Mp3",
+    "📄 Video Aspect Ratio Calculator",
+    "📄 Video Mute",
+    "📄 Video Playback Speed Changer",
+    "📄 Video Resizer",
+    "📄 Video Reverse Tool",
+    "📄 Video Thumbnail Generator",
+    "📄 Video To Gif",
+    "📄 Video Trimmer",
+    "📄 Voice Recorder",
+    "📄 Vtt To Srt Converter",
+    "📄 Wav To Mp3 Converter"
+  ],
+  "/pages/tools/videos/flac-to-mp3.html": [
+    "Flac To Mp3 | BlueTEXT",
+    "Flac To Mp3",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/frequency-generator.html": [
+    "Frequency Generator | BlueTEXT",
+    "Frequency Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/bpm-counter.html": [
+    "Bpm Counter | BlueTEXT",
+    "Bpm Counter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/audio-joiner.html": [
+    "Audio Joiner | BlueTEXT",
+    "Audio Joiner",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/audio-spectrum-generator.html": [
+    "Audio Spectrum Generator | BlueTEXT",
+    "Audio Spectrum Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/audio-panner.html": [
+    "Audio Panner | BlueTEXT",
+    "Audio Panner",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/wheel-decider.html": [
+    "Wheel Decider | BlueTEXT",
+    "Wheel Decider",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/audio-extractor.html": [
+    "Audio Extractor | BlueTEXT",
+    "Audio Extractor",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/videos/audio-cutter.html": [
+    "Audio Cutter | BlueTEXT",
+    "Audio Cutter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/virtual-piano.html": [
+    "Virtual Piano | BlueTEXT",
+    "Virtual Piano",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/stopwatch.html": [
+    "Stopwatch | BlueTEXT",
+    "Stopwatch",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/username-generator.html": [
+    "Username Generator | BlueTEXT",
+    "Username Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/scrabble-word-finder.html": [
+    "Scrabble Word Finder | BlueTEXT",
+    "Scrabble Word Finder",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/screen-color-test.html": [
+    "Screen Color Test | BlueTEXT",
+    "Screen Color Test",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/sound-level-meter-mock.html": [
+    "Sound Level Meter Mock | BlueTEXT",
+    "Sound Level Meter Mock",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/sales-pitch-generator.html": [
+    "Sales Pitch Generator | BlueTEXT",
+    "Sales Pitch Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/ruler-on-screen.html": [
+    "Ruler On Screen | BlueTEXT",
+    "Ruler On Screen",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/random-name-picker.html": [
+    "Random Name Picker | BlueTEXT",
+    "Random Name Picker",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/qr-code-generator.html": [
+    "Qr Code Generator | BlueTEXT",
+    "Qr Code Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/protractor-on-screen.html": [
+    "Protractor On Screen | BlueTEXT",
+    "Protractor On Screen",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/list-randomizer.html": [
+    "List Randomizer | BlueTEXT",
+    "List Randomizer",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/lottery-number-picker.html": [
+    "Lottery Number Picker | BlueTEXT",
+    "Lottery Number Picker",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/password-generator.html": [
+    "Password Generator | BlueTEXT",
+    "Password Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/morse-code-flasher.html": [
+    "Morse Code Flasher | BlueTEXT",
+    "Morse Code Flasher",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/palette-extractor.html": [
+    "Palette Extractor | BlueTEXT",
+    "Palette Extractor",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/iban-validator.html": [
+    "Iban Validator | BlueTEXT",
+    "Iban Validator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/": [
+    "Utilities | BlueTEXT",
+    "Utilities",
+    "Browse all utilities resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Tools",
+    "📄 Alarm Clock",
+    "📄 Anagram Solver",
+    "📄 Barcode Generator",
+    "📄 Bubble Level Online",
+    "📄 Card Shuffler",
+    "📄 Coin Flipper",
+    "📄 Color Blindness Simulator",
+    "📄 Countdown Timer",
+    "📄 Credit Card Validator",
+    "📄 Crossword Clue Solver",
+    "📄 Crypto Address Validator",
+    "📄 Dice Roller",
+    "📄 Iban Validator",
+    "📄 List Randomizer",
+    "📄 Lottery Number Picker",
+    "📄 Morse Code Flasher",
+    "📄 Palette Extractor",
+    "📄 Password Generator",
+    "📄 Protractor On Screen",
+    "📄 Qr Code Generator",
+    "📄 Random Name Picker",
+    "📄 Ruler On Screen",
+    "📄 Sales Pitch Generator",
+    "📄 Scrabble Word Finder",
+    "📄 Screen Color Test",
+    "📄 Sound Level Meter Mock",
+    "📄 Stopwatch",
+    "📄 Username Generator",
+    "📄 Virtual Piano",
+    "📄 Wheel Decider"
+  ],
+  "/pages/tools/utilities/crossword-clue-solver.html": [
+    "Crossword Clue Solver | BlueTEXT",
+    "Crossword Clue Solver",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/credit-card-validator.html": [
+    "Credit Card Validator | BlueTEXT",
+    "Credit Card Validator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/dice-roller.html": [
+    "Dice Roller | BlueTEXT",
+    "Dice Roller",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/color-blindness-simulator.html": [
+    "Color Blindness Simulator | BlueTEXT",
+    "Color Blindness Simulator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/crypto-address-validator.html": [
+    "Crypto Address Validator | BlueTEXT",
+    "Crypto Address Validator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/countdown-timer.html": [
+    "Countdown Timer | BlueTEXT",
+    "Countdown Timer",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/card-shuffler.html": [
+    "Card Shuffler | BlueTEXT",
+    "Card Shuffler",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/alarm-clock.html": [
+    "Alarm Clock | BlueTEXT",
+    "Alarm Clock",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/coin-flipper.html": [
+    "Coin Flipper | BlueTEXT",
+    "Coin Flipper",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/bubble-level-online.html": [
+    "Bubble Level Online | BlueTEXT",
+    "Bubble Level Online",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/upside-down-text.html": [
+    "Upside Down Text | BlueTEXT",
+    "Upside Down Text",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/word-to-pdf.html": [
+    "Word To Pdf | BlueTEXT",
+    "Word To Pdf",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/word-processor.html": [
+    "Word Processor | BlueTEXT",
+    "Word Processor",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/barcode-generator.html": [
+    "Barcode Generator | BlueTEXT",
+    "Barcode Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/utilities/anagram-solver.html": [
+    "Anagram Solver | BlueTEXT",
+    "Anagram Solver",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/text-diff-checker.html": [
+    "Text Diff Checker | BlueTEXT",
+    "Text Diff Checker",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/word-counter.html": [
+    "Word Counter | BlueTEXT",
+    "Word Counter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/text-to-handwriting-converter.html": [
+    "Text To Handwriting Converter | BlueTEXT",
+    "Text To Handwriting Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/text-sorter.html": [
+    "Text Sorter | BlueTEXT",
+    "Text Sorter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/slug-generator.html": [
+    "Slug Generator | BlueTEXT",
+    "Slug Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/strip-html-tags.html": [
+    "Strip Html Tags | BlueTEXT",
+    "Strip Html Tags",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/vector-diagram-editor.html": [
+    "Vector Diagram Editor | BlueTEXT",
+    "Vector Diagram Editor",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/spreadsheet-editor.html": [
+    "Spreadsheet Editor | BlueTEXT",
+    "Spreadsheet Editor",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/signature-generator.html": [
+    "Signature Generator | BlueTEXT",
+    "Signature Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/remove-duplicate-lines.html": [
+    "Remove Duplicate Lines | BlueTEXT",
+    "Remove Duplicate Lines",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/presentation-maker.html": [
+    "Presentation Maker | BlueTEXT",
+    "Presentation Maker",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/pdf-merge.html": [
+    "Pdf Merge | BlueTEXT",
+    "Pdf Merge",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/pdf-to-word.html": [
+    "Pdf To Word | BlueTEXT",
+    "Pdf To Word",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/pdf-split.html": [
+    "Pdf Split | BlueTEXT",
+    "Pdf Split",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/pdf-password-remover.html": [
+    "Pdf Password Remover | BlueTEXT",
+    "Pdf Password Remover",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/pdf-form-filler.html": [
+    "Pdf Form Filler | BlueTEXT",
+    "Pdf Form Filler",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/pdf-compressor.html": [
+    "Pdf Compressor | BlueTEXT",
+    "Pdf Compressor",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/resume-builder.html": [
+    "Resume Builder | BlueTEXT",
+    "Resume Builder",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/morse-code-translator.html": [
+    "Morse Code Translator | BlueTEXT",
+    "Morse Code Translator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/mindmap-generator.html": [
+    "Mindmap Generator | BlueTEXT",
+    "Mindmap Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/nato-phonetic-alphabet-translator.html": [
+    "Nato Phonetic Alphabet Translator | BlueTEXT",
+    "Nato Phonetic Alphabet Translator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/lorem-ipsum-generator.html": [
+    "Lorem Ipsum Generator | BlueTEXT",
+    "Lorem Ipsum Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/markdown-editor.html": [
+    "Markdown Editor | BlueTEXT",
+    "Markdown Editor",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/invoice-generator.html": [
+    "Invoice Generator | BlueTEXT",
+    "Invoice Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/invisible-character-generator.html": [
+    "Invisible Character Generator | BlueTEXT",
+    "Invisible Character Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/flowchart-maker.html": [
+    "Flowchart Maker | BlueTEXT",
+    "Flowchart Maker",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/": [
+    "Office | BlueTEXT",
+    "Office",
+    "Browse all office resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Tools",
+    "📄 Binary To Text",
+    "📄 Case Converter",
+    "📄 Character Counter",
+    "📄 Csv To Xml",
+    "📄 Epub To Pdf",
+    "📄 Excel To Json",
+    "📄 Fax Cover Sheet Creator",
+    "📄 Find And Replace",
+    "📄 Flowchart Maker",
+    "📄 Invisible Character Generator",
+    "📄 Invoice Generator",
+    "📄 Lorem Ipsum Generator",
+    "📄 Markdown Editor",
+    "📄 Mindmap Generator",
+    "📄 Morse Code Translator",
+    "📄 Nato Phonetic Alphabet Translator",
+    "📄 Pdf Compressor",
+    "📄 Pdf Form Filler",
+    "📄 Pdf Merge",
+    "📄 Pdf Password Remover",
+    "📄 Pdf Split",
+    "📄 Pdf To Word",
+    "📄 Presentation Maker",
+    "📄 Remove Duplicate Lines",
+    "📄 Resume Builder",
+    "📄 Signature Generator",
+    "📄 Slug Generator",
+    "📄 Spreadsheet Editor",
+    "📄 Strip Html Tags",
+    "📄 Text Diff Checker",
+    "📄 Text Sorter",
+    "📄 Text To Handwriting Converter",
+    "📄 Upside Down Text",
+    "📄 Vector Diagram Editor",
+    "📄 Word Counter",
+    "📄 Word Processor",
+    "📄 Word To Pdf"
+  ],
+  "/pages/tools/office/excel-to-json.html": [
+    "Excel To Json | BlueTEXT",
+    "Excel To Json",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/fax-cover-sheet-creator.html": [
+    "Fax Cover Sheet Creator | BlueTEXT",
+    "Fax Cover Sheet Creator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/epub-to-pdf.html": [
+    "Epub To Pdf | BlueTEXT",
+    "Epub To Pdf",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/character-counter.html": [
+    "Character Counter | BlueTEXT",
+    "Character Counter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/csv-to-xml.html": [
+    "Csv To Xml | BlueTEXT",
+    "Csv To Xml",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/find-and-replace.html": [
+    "Find And Replace | BlueTEXT",
+    "Find And Replace",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/binary-to-text.html": [
+    "Binary To Text | BlueTEXT",
+    "Binary To Text",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/office/case-converter.html": [
+    "Case Converter | BlueTEXT",
+    "Case Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/website-hosting-checker.html": [
+    "Website Hosting Checker | BlueTEXT",
+    "Website Hosting Checker",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/whois-domain-lookup.html": [
+    "Whois Domain Lookup | BlueTEXT",
+    "Whois Domain Lookup",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/ssl-certificate-checker.html": [
+    "Ssl Certificate Checker | BlueTEXT",
+    "Ssl Certificate Checker",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/subnet-calculator.html": [
+    "Subnet Calculator | BlueTEXT",
+    "Subnet Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/txt-record-lookup.html": [
+    "Txt Record Lookup | BlueTEXT",
+    "Txt Record Lookup",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/sitemap-generator.html": [
+    "Sitemap Generator | BlueTEXT",
+    "Sitemap Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/spf-record-generator.html": [
+    "Spf Record Generator | BlueTEXT",
+    "Spf Record Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/robots-txt-generator.html": [
+    "Robots Txt Generator | BlueTEXT",
+    "Robots Txt Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/serp-preview-tool.html": [
+    "Serp Preview Tool | BlueTEXT",
+    "Serp Preview Tool",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/proxy-checker.html": [
+    "Proxy Checker | BlueTEXT",
+    "Proxy Checker",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/redirect-checker.html": [
+    "Redirect Checker | BlueTEXT",
+    "Redirect Checker",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/port-scanner.html": [
+    "Port Scanner | BlueTEXT",
+    "Port Scanner",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/page-speed-insights-shortcut.html": [
+    "Page Speed Insights Shortcut | BlueTEXT",
+    "Page Speed Insights Shortcut",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/ping-test.html": [
+    "Ping Test | BlueTEXT",
+    "Ping Test",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/open-graph-generator.html": [
+    "Open Graph Generator | BlueTEXT",
+    "Open Graph Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/mac-address-lookup.html": [
+    "Mac Address Lookup | BlueTEXT",
+    "Mac Address Lookup",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/link-price-calculator.html": [
+    "Link Price Calculator | BlueTEXT",
+    "Link Price Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/meta-tags-generator.html": [
+    "Meta Tags Generator | BlueTEXT",
+    "Meta Tags Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/keyword-density-checker.html": [
+    "Keyword Density Checker | BlueTEXT",
+    "Keyword Density Checker",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/ip-subnet-mask-converter.html": [
+    "Ip Subnet Mask Converter | BlueTEXT",
+    "Ip Subnet Mask Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/ip-address-lookup.html": [
+    "Ip Address Lookup | BlueTEXT",
+    "Ip Address Lookup",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/http-headers-viewer.html": [
+    "Http Headers Viewer | BlueTEXT",
+    "Http Headers Viewer",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/htaccess-redirect-generator.html": [
+    "Htaccess Redirect Generator | BlueTEXT",
+    "Htaccess Redirect Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/domain-age-calculator.html": [
+    "Domain Age Calculator | BlueTEXT",
+    "Domain Age Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/": [
+    "Network | BlueTEXT",
+    "Network",
+    "Browse all network resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Tools",
+    "📄 Blacklist Lookup",
+    "📄 Broken Links Checker",
+    "📄 Dkim Record Checker",
+    "📄 Dmarc Generator",
+    "📄 Dns Records Checker",
+    "📄 Domain Age Calculator",
+    "📄 Email Header Analyzer",
+    "📄 Htaccess Redirect Generator",
+    "📄 Http Headers Viewer",
+    "📄 Ip Address Lookup",
+    "📄 Ip Subnet Mask Converter",
+    "📄 Keyword Density Checker",
+    "📄 Link Price Calculator",
+    "📄 Mac Address Lookup",
+    "📄 Meta Tags Generator",
+    "📄 Open Graph Generator",
+    "📄 Page Speed Insights Shortcut",
+    "📄 Ping Test",
+    "📄 Port Scanner",
+    "📄 Proxy Checker",
+    "📄 Redirect Checker",
+    "📄 Robots Txt Generator",
+    "📄 Serp Preview Tool",
+    "📄 Sitemap Generator",
+    "📄 Spf Record Generator",
+    "📄 Ssl Certificate Checker",
+    "📄 Subnet Calculator",
+    "📄 Txt Record Lookup",
+    "📄 Website Hosting Checker",
+    "📄 Whois Domain Lookup"
+  ],
+  "/pages/tools/network/dkim-record-checker.html": [
+    "Dkim Record Checker | BlueTEXT",
+    "Dkim Record Checker",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/dmarc-generator.html": [
+    "Dmarc Generator | BlueTEXT",
+    "Dmarc Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/broken-links-checker.html": [
+    "Broken Links Checker | BlueTEXT",
+    "Broken Links Checker",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/dns-records-checker.html": [
+    "Dns Records Checker | BlueTEXT",
+    "Dns Records Checker",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/email-header-analyzer.html": [
+    "Email Header Analyzer | BlueTEXT",
+    "Email Header Analyzer",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/network/blacklist-lookup.html": [
+    "Blacklist Lookup | BlueTEXT",
+    "Blacklist Lookup",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/miscellaneous/virtual-piano-keyboard.html": [
+    "Virtual Piano Keyboard | BlueTEXT",
+    "Virtual Piano Keyboard",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/miscellaneous/todo-task-board.html": [
+    "Todo Task Board | BlueTEXT",
+    "Todo Task Board",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/miscellaneous/sticky-notes-board.html": [
+    "Sticky Notes Board | BlueTEXT",
+    "Sticky Notes Board",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/miscellaneous/sketchpad-drawer.html": [
+    "Sketchpad Drawer | BlueTEXT",
+    "Sketchpad Drawer",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/miscellaneous/screen-ruler.html": [
+    "Screen Ruler | BlueTEXT",
+    "Screen Ruler",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/miscellaneous/qr-code-designer.html": [
+    "Qr Code Designer | BlueTEXT",
+    "Qr Code Designer",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/miscellaneous/rich-text-notepad.html": [
+    "Rich Text Notepad | BlueTEXT",
+    "Rich Text Notepad",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/miscellaneous/protractor-canvas.html": [
+    "Protractor Canvas | BlueTEXT",
+    "Protractor Canvas",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/miscellaneous/pomodoro-focus-timer.html": [
+    "Pomodoro Focus Timer | BlueTEXT",
+    "Pomodoro Focus Timer",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/miscellaneous/morse-code-flasher.html": [
+    "Morse Code Flasher | BlueTEXT",
+    "Morse Code Flasher",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/miscellaneous/pixel-art-canvas.html": [
+    "Pixel Art Canvas | BlueTEXT",
+    "Pixel Art Canvas",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/miscellaneous/password-strength-meter.html": [
+    "Password Strength Meter | BlueTEXT",
+    "Password Strength Meter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/miscellaneous/digital-tally-counter.html": [
+    "Digital Tally Counter | BlueTEXT",
+    "Digital Tally Counter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/miscellaneous/guitar-tuner-mic.html": [
+    "Guitar Tuner Mic | BlueTEXT",
+    "Guitar Tuner Mic",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/miscellaneous/dice-roll-simulator.html": [
+    "Dice Roll Simulator | BlueTEXT",
+    "Dice Roll Simulator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/miscellaneous/color-blindness-tester.html": [
+    "Color Blindness Tester | BlueTEXT",
+    "Color Blindness Tester",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/miscellaneous/collaborative-whiteboard.html": [
+    "Collaborative Whiteboard | BlueTEXT",
+    "Collaborative Whiteboard",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/miscellaneous/barcode-scanner-cam.html": [
+    "Barcode Scanner Cam | BlueTEXT",
+    "Barcode Scanner Cam",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/miscellaneous/": [
+    "Miscellaneous | BlueTEXT",
+    "Miscellaneous",
+    "Browse all miscellaneous resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Tools",
+    "📄 Ambient Noise Mixer",
+    "📄 Barcode Scanner Cam",
+    "📄 Code Snippet Notebook",
+    "📄 Collaborative Whiteboard",
+    "📄 Color Blindness Tester",
+    "📄 Dice Roll Simulator",
+    "📄 Digital Tally Counter",
+    "📄 Guitar Tuner Mic",
+    "📄 Morse Code Flasher",
+    "📄 Password Strength Meter",
+    "📄 Pixel Art Canvas",
+    "📄 Pomodoro Focus Timer",
+    "📄 Protractor Canvas",
+    "📄 Qr Code Designer",
+    "📄 Rich Text Notepad",
+    "📄 Screen Ruler",
+    "📄 Sketchpad Drawer",
+    "📄 Sticky Notes Board",
+    "📄 Todo Task Board",
+    "📄 Virtual Piano Keyboard"
+  ],
+  "/pages/tools/miscellaneous/code-snippet-notebook.html": [
+    "Code Snippet Notebook | BlueTEXT",
+    "Code Snippet Notebook",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/tip-calculator.html": [
+    "Tip Calculator | BlueTEXT",
+    "Tip Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/miscellaneous/ambient-noise-mixer.html": [
+    "Ambient Noise Mixer | BlueTEXT",
+    "Ambient Noise Mixer",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/statistics-mean-median-mode.html": [
+    "Statistics Mean Median Mode | BlueTEXT",
+    "Statistics Mean Median Mode",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/scientific-calculator.html": [
+    "Scientific Calculator | BlueTEXT",
+    "Scientific Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/standard-deviation-calculator.html": [
+    "Standard Deviation Calculator | BlueTEXT",
+    "Standard Deviation Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/stock-average-calculator.html": [
+    "Stock Average Calculator | BlueTEXT",
+    "Stock Average Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/salary-paycheck-calculator.html": [
+    "Salary Paycheck Calculator | BlueTEXT",
+    "Salary Paycheck Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/roi-calculator.html": [
+    "Roi Calculator | BlueTEXT",
+    "Roi Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/sales-tax-vat-calculator.html": [
+    "Sales Tax Vat Calculator | BlueTEXT",
+    "Sales Tax Vat Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/retirement-planner.html": [
+    "Retirement Planner | BlueTEXT",
+    "Retirement Planner",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/quadratic-equation-solver.html": [
+    "Quadratic Equation Solver | BlueTEXT",
+    "Quadratic Equation Solver",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/random-number-generator.html": [
+    "Random Number Generator | BlueTEXT",
+    "Random Number Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/probability-calculator.html": [
+    "Probability Calculator | BlueTEXT",
+    "Probability Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/percentage-calculator.html": [
+    "Percentage Calculator | BlueTEXT",
+    "Percentage Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/prime-number-checker.html": [
+    "Prime Number Checker | BlueTEXT",
+    "Prime Number Checker",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/margin-markup-calculator.html": [
+    "Margin Markup Calculator | BlueTEXT",
+    "Margin Markup Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/matrix-multiplication-calculator.html": [
+    "Matrix Multiplication Calculator | BlueTEXT",
+    "Matrix Multiplication Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/mortgage-calculator.html": [
+    "Mortgage Calculator | BlueTEXT",
+    "Mortgage Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/inflation-calculator.html": [
+    "Inflation Calculator | BlueTEXT",
+    "Inflation Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/loan-emi-calculator.html": [
+    "Loan Emi Calculator | BlueTEXT",
+    "Loan Emi Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/": [
+    "Math | BlueTEXT",
+    "Math",
+    "Browse all math resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Tools",
+    "📄 Binary Calculator",
+    "📄 Car Lease Calculator",
+    "📄 Compound Interest Calculator",
+    "📄 Crypto Profit Calculator",
+    "📄 Currency Converter",
+    "📄 Depreciation Calculator",
+    "📄 Discount Calculator",
+    "📄 Factorial Calculator",
+    "📄 Fraction To Decimal",
+    "📄 Gcd Lcm Calculator",
+    "📄 Gpa Calculator",
+    "📄 Inflation Calculator",
+    "📄 Loan Emi Calculator",
+    "📄 Margin Markup Calculator",
+    "📄 Matrix Multiplication Calculator",
+    "📄 Mortgage Calculator",
+    "📄 Percentage Calculator",
+    "📄 Prime Number Checker",
+    "📄 Probability Calculator",
+    "📄 Quadratic Equation Solver",
+    "📄 Random Number Generator",
+    "📄 Retirement Planner",
+    "📄 Roi Calculator",
+    "📄 Salary Paycheck Calculator",
+    "📄 Sales Tax Vat Calculator",
+    "📄 Scientific Calculator",
+    "📄 Standard Deviation Calculator",
+    "📄 Statistics Mean Median Mode",
+    "📄 Stock Average Calculator",
+    "📄 Tip Calculator"
+  ],
+  "/pages/tools/math/fraction-to-decimal.html": [
+    "Fraction To Decimal | BlueTEXT",
+    "Fraction To Decimal",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/factorial-calculator.html": [
+    "Factorial Calculator | BlueTEXT",
+    "Factorial Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/gpa-calculator.html": [
+    "Gpa Calculator | BlueTEXT",
+    "Gpa Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/gcd-lcm-calculator.html": [
+    "Gcd Lcm Calculator | BlueTEXT",
+    "Gcd Lcm Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/currency-converter.html": [
+    "Currency Converter | BlueTEXT",
+    "Currency Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/discount-calculator.html": [
+    "Discount Calculator | BlueTEXT",
+    "Discount Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/crypto-profit-calculator.html": [
+    "Crypto Profit Calculator | BlueTEXT",
+    "Crypto Profit Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/depreciation-calculator.html": [
+    "Depreciation Calculator | BlueTEXT",
+    "Depreciation Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/compound-interest-calculator.html": [
+    "Compound Interest Calculator | BlueTEXT",
+    "Compound Interest Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/binary-calculator.html": [
+    "Binary Calculator | BlueTEXT",
+    "Binary Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/math/car-lease-calculator.html": [
+    "Car Lease Calculator | BlueTEXT",
+    "Car Lease Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/zodiac-sign-finder.html": [
+    "Zodiac Sign Finder | BlueTEXT",
+    "Zodiac Sign Finder",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/workout-interval-timer.html": [
+    "Workout Interval Timer | BlueTEXT",
+    "Workout Interval Timer",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/water-intake-tracker.html": [
+    "Water Intake Tracker | BlueTEXT",
+    "Water Intake Tracker",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/target-heart-rate-calculator.html": [
+    "Target Heart Rate Calculator | BlueTEXT",
+    "Target Heart Rate Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/step-to-distance-converter.html": [
+    "Step To Distance Converter | BlueTEXT",
+    "Step To Distance Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/smoking-cost-calculator.html": [
+    "Smoking Cost Calculator | BlueTEXT",
+    "Smoking Cost Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/ovulation-calendar.html": [
+    "Ovulation Calendar | BlueTEXT",
+    "Ovulation Calendar",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/sleep-cycle-calculator.html": [
+    "Sleep Cycle Calculator | BlueTEXT",
+    "Sleep Cycle Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/period-tracker.html": [
+    "Period Tracker | BlueTEXT",
+    "Period Tracker",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/one-rep-max-calculator.html": [
+    "One Rep Max Calculator | BlueTEXT",
+    "One Rep Max Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/military-time-converter.html": [
+    "Military Time Converter | BlueTEXT",
+    "Military Time Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/pregnancy-due-date-calculator.html": [
+    "Pregnancy Due Date Calculator | BlueTEXT",
+    "Pregnancy Due Date Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/love-compatibility-calculator.html": [
+    "Love Compatibility Calculator | BlueTEXT",
+    "Love Compatibility Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/": [
+    "Lifestyle | BlueTEXT",
+    "Lifestyle",
+    "Browse all lifestyle resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Tools",
+    "📄 Age Calculator",
+    "📄 Biorhythm Calculator",
+    "📄 Birthstone Finder",
+    "📄 Blood Alcohol Concentration Calculator",
+    "📄 Bmi Calculator",
+    "📄 Bmr Calculator",
+    "📄 Body Fat Percentage Calculator",
+    "📄 Body Surface Area Calculator",
+    "📄 Caffeine Metabolism Calculator",
+    "📄 Calorie Intake Calculator",
+    "📄 Chronological Age Calculator",
+    "📄 Days Until Counter",
+    "📄 Digital Poker Chips Counter",
+    "📄 Habit Tracker Board",
+    "📄 Hydration Reminder",
+    "📄 Ideal Weight Calculator",
+    "📄 Love Compatibility Calculator",
+    "📄 Macro Nutrients Calculator",
+    "📄 Military Time Converter",
+    "📄 One Rep Max Calculator",
+    "📄 Ovulation Calendar",
+    "📄 Period Tracker",
+    "📄 Pregnancy Due Date Calculator",
+    "📄 Sleep Cycle Calculator",
+    "📄 Smoking Cost Calculator",
+    "📄 Step To Distance Converter",
+    "📄 Target Heart Rate Calculator",
+    "📄 Water Intake Tracker",
+    "📄 Workout Interval Timer",
+    "📄 Zodiac Sign Finder"
+  ],
+  "/pages/tools/lifestyle/macro-nutrients-calculator.html": [
+    "Macro Nutrients Calculator | BlueTEXT",
+    "Macro Nutrients Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/hydration-reminder.html": [
+    "Hydration Reminder | BlueTEXT",
+    "Hydration Reminder",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/habit-tracker-board.html": [
+    "Habit Tracker Board | BlueTEXT",
+    "Habit Tracker Board",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/days-until-counter.html": [
+    "Days Until Counter | BlueTEXT",
+    "Days Until Counter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/ideal-weight-calculator.html": [
+    "Ideal Weight Calculator | BlueTEXT",
+    "Ideal Weight Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/chronological-age-calculator.html": [
+    "Chronological Age Calculator | BlueTEXT",
+    "Chronological Age Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/digital-poker-chips-counter.html": [
+    "Digital Poker Chips Counter | BlueTEXT",
+    "Digital Poker Chips Counter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/calorie-intake-calculator.html": [
+    "Calorie Intake Calculator | BlueTEXT",
+    "Calorie Intake Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/body-fat-percentage-calculator.html": [
+    "Body Fat Percentage Calculator | BlueTEXT",
+    "Body Fat Percentage Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/body-surface-area-calculator.html": [
+    "Body Surface Area Calculator | BlueTEXT",
+    "Body Surface Area Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/caffeine-metabolism-calculator.html": [
+    "Caffeine Metabolism Calculator | BlueTEXT",
+    "Caffeine Metabolism Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/bmi-calculator.html": [
+    "Bmi Calculator | BlueTEXT",
+    "Bmi Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/bmr-calculator.html": [
+    "Bmr Calculator | BlueTEXT",
+    "Bmr Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/blood-alcohol-concentration-calculator.html": [
+    "Blood Alcohol Concentration Calculator | BlueTEXT",
+    "Blood Alcohol Concentration Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/biorhythm-calculator.html": [
+    "Biorhythm Calculator | BlueTEXT",
+    "Biorhythm Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/birthstone-finder.html": [
+    "Birthstone Finder | BlueTEXT",
+    "Birthstone Finder",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/tiff-to-pdf.html": [
+    "Tiff To Pdf | BlueTEXT",
+    "Tiff To Pdf",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/lifestyle/age-calculator.html": [
+    "Age Calculator | BlueTEXT",
+    "Age Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/": [
+    "Tools | BlueTEXT",
+    "Tools",
+    "Browse all free client-side developer and productivity tools on BlueTEXT.",
+    "Home",
+    "Pages",
+    "📄 Coding",
+    "📄 Converters",
+    "📄 Data",
+    "📄 Images",
+    "📄 Lifestyle",
+    "📄 Math",
+    "📄 Miscellaneous",
+    "📄 Network",
+    "📄 Office",
+    "📄 Utilities",
+    "📄 Videos"
+  ],
+  "/pages/tools/images/watermark-adder.html": [
+    "Watermark Adder | BlueTEXT",
+    "Watermark Adder",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/sprite-sheet-generator.html": [
+    "Sprite Sheet Generator | BlueTEXT",
+    "Sprite Sheet Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/svg-optimizer.html": [
+    "Svg Optimizer | BlueTEXT",
+    "Svg Optimizer",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/svg-to-png.html": [
+    "Svg To Png | BlueTEXT",
+    "Svg To Png",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/photo-cropper.html": [
+    "Photo Cropper | BlueTEXT",
+    "Photo Cropper",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/png-to-webp-converter.html": [
+    "Png To Webp Converter | BlueTEXT",
+    "Png To Webp Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/pixel-art-creator.html": [
+    "Pixel Art Creator | BlueTEXT",
+    "Pixel Art Creator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/photo-filter-editor.html": [
+    "Photo Filter Editor | BlueTEXT",
+    "Photo Filter Editor",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/qr-code-to-png.html": [
+    "Qr Code To Png | BlueTEXT",
+    "Qr Code To Png",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/normal-map-generator.html": [
+    "Normal Map Generator | BlueTEXT",
+    "Normal Map Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/palette-generator.html": [
+    "Palette Generator | BlueTEXT",
+    "Palette Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/meme-generator.html": [
+    "Meme Generator | BlueTEXT",
+    "Meme Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/jpeg-compressor.html": [
+    "Jpeg Compressor | BlueTEXT",
+    "Jpeg Compressor",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/image-splitter.html": [
+    "Image Splitter | BlueTEXT",
+    "Image Splitter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/": [
+    "Images | BlueTEXT",
+    "Images",
+    "Browse all images resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Tools",
+    "📄 Ascii Art Generator",
+    "📄 Background Remover",
+    "📄 Base64 To Image",
+    "📄 Canvas Paint Board",
+    "📄 Color Picker",
+    "📄 Exif Data Viewer",
+    "📄 Favicon Generator",
+    "📄 Gif Maker",
+    "📄 Heic To Jpg",
+    "📄 Icns Converter",
+    "📄 Ico Converter",
+    "📄 Image Blurrer",
+    "📄 Image Flipper",
+    "📄 Image Metadata Stripper",
+    "📄 Image Resizer",
+    "📄 Image Splitter",
+    "📄 Jpeg Compressor",
+    "📄 Meme Generator",
+    "📄 Normal Map Generator",
+    "📄 Palette Generator",
+    "📄 Photo Cropper",
+    "📄 Photo Filter Editor",
+    "📄 Pixel Art Creator",
+    "📄 Png To Webp Converter",
+    "📄 Qr Code To Png",
+    "📄 Sprite Sheet Generator",
+    "📄 Svg Optimizer",
+    "📄 Svg To Png",
+    "📄 Tiff To Pdf",
+    "📄 Watermark Adder"
+  ],
+  "/pages/tools/images/image-resizer.html": [
+    "Image Resizer | BlueTEXT",
+    "Image Resizer",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/image-metadata-stripper.html": [
+    "Image Metadata Stripper | BlueTEXT",
+    "Image Metadata Stripper",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/image-flipper.html": [
+    "Image Flipper | BlueTEXT",
+    "Image Flipper",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/image-blurrer.html": [
+    "Image Blurrer | BlueTEXT",
+    "Image Blurrer",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/ico-converter.html": [
+    "Ico Converter | BlueTEXT",
+    "Ico Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/icns-converter.html": [
+    "Icns Converter | BlueTEXT",
+    "Icns Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/gif-maker.html": [
+    "Gif Maker | BlueTEXT",
+    "Gif Maker",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/color-picker.html": [
+    "Color Picker | BlueTEXT",
+    "Color Picker",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/heic-to-jpg.html": [
+    "Heic To Jpg | BlueTEXT",
+    "Heic To Jpg",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/favicon-generator.html": [
+    "Favicon Generator | BlueTEXT",
+    "Favicon Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/canvas-paint-board.html": [
+    "Canvas Paint Board | BlueTEXT",
+    "Canvas Paint Board",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/exif-data-viewer.html": [
+    "Exif Data Viewer | BlueTEXT",
+    "Exif Data Viewer",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/base64-to-image.html": [
+    "Base64 To Image | BlueTEXT",
+    "Base64 To Image",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/background-remover.html": [
+    "Background Remover | BlueTEXT",
+    "Background Remover",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/images/ascii-art-generator.html": [
+    "Ascii Art Generator | BlueTEXT",
+    "Ascii Art Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/yaml-to-xml-converter.html": [
+    "Yaml To Xml Converter | BlueTEXT",
+    "Yaml To Xml Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/url-parameter-parser.html": [
+    "Url Parameter Parser | BlueTEXT",
+    "Url Parameter Parser",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/xml-to-yaml-converter.html": [
+    "Xml To Yaml Converter | BlueTEXT",
+    "Xml To Yaml Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/tsv-to-json.html": [
+    "Tsv To Json | BlueTEXT",
+    "Tsv To Json",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/toml-to-json.html": [
+    "Toml To Json | BlueTEXT",
+    "Toml To Json",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/text-to-sql-insert-generator.html": [
+    "Text To Sql Insert Generator | BlueTEXT",
+    "Text To Sql Insert Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/sql-query-builder.html": [
+    "Sql Query Builder | BlueTEXT",
+    "Sql Query Builder",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/regex-extractor.html": [
+    "Regex Extractor | BlueTEXT",
+    "Regex Extractor",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/serialized-php-parser.html": [
+    "Serialized Php Parser | BlueTEXT",
+    "Serialized Php Parser",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/protobuf-decoder.html": [
+    "Protobuf Decoder | BlueTEXT",
+    "Protobuf Decoder",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/query-string-generator.html": [
+    "Query String Generator | BlueTEXT",
+    "Query String Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/json-tree-viewer.html": [
+    "Json Tree Viewer | BlueTEXT",
+    "Json Tree Viewer",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/latex-equation-editor.html": [
+    "Latex Equation Editor | BlueTEXT",
+    "Latex Equation Editor",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/json-to-csv-converter.html": [
+    "Json To Csv Converter | BlueTEXT",
+    "Json To Csv Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/json-minify.html": [
+    "Json Minify | BlueTEXT",
+    "Json Minify",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/json-to-toml.html": [
+    "Json To Toml | BlueTEXT",
+    "Json To Toml",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/html-table-generator.html": [
+    "Html Table Generator | BlueTEXT",
+    "Html Table Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/ini-to-json-converter.html": [
+    "Ini To Json Converter | BlueTEXT",
+    "Ini To Json Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/": [
+    "Data | BlueTEXT",
+    "Data",
+    "Browse all data resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Tools",
+    "📄 Ascii To Binary",
+    "📄 Base32 Encoder Decoder",
+    "📄 Binary To Ascii",
+    "📄 Binary To Hex",
+    "📄 Bson To Json",
+    "📄 Column To Comma Separator",
+    "📄 Csv To Json Converter",
+    "📄 Data Anonymizer",
+    "📄 Data Sorting Matrix",
+    "📄 Excel To Markdown",
+    "📄 Hex Dump Viewer",
+    "📄 Hex To Binary",
+    "📄 Html Table Generator",
+    "📄 Ini To Json Converter",
+    "📄 Json Minify",
+    "📄 Json To Csv Converter",
+    "📄 Json To Toml",
+    "📄 Json Tree Viewer",
+    "📄 Latex Equation Editor",
+    "📄 Protobuf Decoder",
+    "📄 Query String Generator",
+    "📄 Regex Extractor",
+    "📄 Serialized Php Parser",
+    "📄 Sql Query Builder",
+    "📄 Text To Sql Insert Generator",
+    "📄 Toml To Json",
+    "📄 Tsv To Json",
+    "📄 Url Parameter Parser",
+    "📄 Xml To Yaml Converter",
+    "📄 Yaml To Xml Converter"
+  ],
+  "/pages/tools/data/hex-to-binary.html": [
+    "Hex To Binary | BlueTEXT",
+    "Hex To Binary",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/hex-dump-viewer.html": [
+    "Hex Dump Viewer | BlueTEXT",
+    "Hex Dump Viewer",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/data-anonymizer.html": [
+    "Data Anonymizer | BlueTEXT",
+    "Data Anonymizer",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/excel-to-markdown.html": [
+    "Excel To Markdown | BlueTEXT",
+    "Excel To Markdown",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/csv-to-json-converter.html": [
+    "Csv To Json Converter | BlueTEXT",
+    "Csv To Json Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/data-sorting-matrix.html": [
+    "Data Sorting Matrix | BlueTEXT",
+    "Data Sorting Matrix",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/column-to-comma-separator.html": [
+    "Column To Comma Separator | BlueTEXT",
+    "Column To Comma Separator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/bson-to-json.html": [
+    "Bson To Json | BlueTEXT",
+    "Bson To Json",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/binary-to-ascii.html": [
+    "Binary To Ascii | BlueTEXT",
+    "Binary To Ascii",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/binary-to-hex.html": [
+    "Binary To Hex | BlueTEXT",
+    "Binary To Hex",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/base32-encoder-decoder.html": [
+    "Base32 Encoder Decoder | BlueTEXT",
+    "Base32 Encoder Decoder",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/data/ascii-to-binary.html": [
+    "Ascii To Binary | BlueTEXT",
+    "Ascii To Binary",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/volume-converter.html": [
+    "Volume Converter | BlueTEXT",
+    "Volume Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/weight-mass-converter.html": [
+    "Weight Mass Converter | BlueTEXT",
+    "Weight Mass Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/unix-timestamp-converter.html": [
+    "Unix Timestamp Converter | BlueTEXT",
+    "Unix Timestamp Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/voltage-to-watts.html": [
+    "Voltage To Watts | BlueTEXT",
+    "Voltage To Watts",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/torque-converter.html": [
+    "Torque Converter | BlueTEXT",
+    "Torque Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/time-zone-converter.html": [
+    "Time Zone Converter | BlueTEXT",
+    "Time Zone Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/temperature-converter.html": [
+    "Temperature Converter | BlueTEXT",
+    "Temperature Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/speed-converter.html": [
+    "Speed Converter | BlueTEXT",
+    "Speed Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/shoe-size-converter.html": [
+    "Shoe Size Converter | BlueTEXT",
+    "Shoe Size Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/roman-numerals-converter.html": [
+    "Roman Numerals Converter | BlueTEXT",
+    "Roman Numerals Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/radiation-converter.html": [
+    "Radiation Converter | BlueTEXT",
+    "Radiation Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/pressure-converter.html": [
+    "Pressure Converter | BlueTEXT",
+    "Pressure Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/power-converter.html": [
+    "Power Converter | BlueTEXT",
+    "Power Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/morse-to-text.html": [
+    "Morse To Text | BlueTEXT",
+    "Morse To Text",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/": [
+    "Converters | BlueTEXT",
+    "Converters",
+    "Browse all converters resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Tools",
+    "📄 Angle Converter",
+    "📄 Area Converter",
+    "📄 Braille Translator",
+    "📄 Bytes To Human Readable",
+    "📄 Clothing Size Converter",
+    "📄 Cooking Measurement Converter",
+    "📄 Data Storage Converter",
+    "📄 Density Calculator",
+    "📄 Energy Converter",
+    "📄 Flow Rate Converter",
+    "📄 Force Converter",
+    "📄 Fuel Consumption Converter",
+    "📄 Gmt To Local Time",
+    "📄 Hz To Ms Converter",
+    "📄 Length Converter",
+    "📄 Morse To Text",
+    "📄 Number To Words Converter",
+    "📄 Power Converter",
+    "📄 Pressure Converter",
+    "📄 Radiation Converter",
+    "📄 Roman Numerals Converter",
+    "📄 Shoe Size Converter",
+    "📄 Speed Converter",
+    "📄 Temperature Converter",
+    "📄 Time Zone Converter",
+    "📄 Torque Converter",
+    "📄 Unix Timestamp Converter",
+    "📄 Voltage To Watts",
+    "📄 Volume Converter",
+    "📄 Weight Mass Converter"
+  ],
+  "/pages/tools/converters/number-to-words-converter.html": [
+    "Number To Words Converter | BlueTEXT",
+    "Number To Words Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/length-converter.html": [
+    "Length Converter | BlueTEXT",
+    "Length Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/fuel-consumption-converter.html": [
+    "Fuel Consumption Converter | BlueTEXT",
+    "Fuel Consumption Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/gmt-to-local-time.html": [
+    "Gmt To Local Time | BlueTEXT",
+    "Gmt To Local Time",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/hz-to-ms-converter.html": [
+    "Hz To Ms Converter | BlueTEXT",
+    "Hz To Ms Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/flow-rate-converter.html": [
+    "Flow Rate Converter | BlueTEXT",
+    "Flow Rate Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/force-converter.html": [
+    "Force Converter | BlueTEXT",
+    "Force Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/energy-converter.html": [
+    "Energy Converter | BlueTEXT",
+    "Energy Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/density-calculator.html": [
+    "Density Calculator | BlueTEXT",
+    "Density Calculator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/data-storage-converter.html": [
+    "Data Storage Converter | BlueTEXT",
+    "Data Storage Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/cooking-measurement-converter.html": [
+    "Cooking Measurement Converter | BlueTEXT",
+    "Cooking Measurement Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/clothing-size-converter.html": [
+    "Clothing Size Converter | BlueTEXT",
+    "Clothing Size Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/bytes-to-human-readable.html": [
+    "Bytes To Human Readable | BlueTEXT",
+    "Bytes To Human Readable",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/area-converter.html": [
+    "Area Converter | BlueTEXT",
+    "Area Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/angle-converter.html": [
+    "Angle Converter | BlueTEXT",
+    "Angle Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/converters/braille-translator.html": [
+    "Braille Translator | BlueTEXT",
+    "Braille Translator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/yaml-to-json.html": [
+    "Yaml To Json | BlueTEXT",
+    "Yaml To Json",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/uuid-v4-generator.html": [
+    "Uuid V4 Generator | BlueTEXT",
+    "Uuid V4 Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/xml-to-json.html": [
+    "Xml To Json | BlueTEXT",
+    "Xml To Json",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/user-agent-parser.html": [
+    "User Agent Parser | BlueTEXT",
+    "User Agent Parser",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/url-encoder-decoder.html": [
+    "Url Encoder Decoder | BlueTEXT",
+    "Url Encoder Decoder",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/sha256-hash-generator.html": [
+    "Sha256 Hash Generator | BlueTEXT",
+    "Sha256 Hash Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/string-to-hex.html": [
+    "String To Hex | BlueTEXT",
+    "String To Hex",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/rsa-key-pair-generator.html": [
+    "Rsa Key Pair Generator | BlueTEXT",
+    "Rsa Key Pair Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/sql-formatter.html": [
+    "Sql Formatter | BlueTEXT",
+    "Sql Formatter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/md5-hash-generator.html": [
+    "Md5 Hash Generator | BlueTEXT",
+    "Md5 Hash Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/rgba-to-hex-converter.html": [
+    "Rgba To Hex Converter | BlueTEXT",
+    "Rgba To Hex Converter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/markdown-to-html.html": [
+    "Markdown To Html | BlueTEXT",
+    "Markdown To Html",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/jwt-decoder.html": [
+    "Jwt Decoder | BlueTEXT",
+    "Jwt Decoder",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/regex-tester.html": [
+    "Regex Tester | BlueTEXT",
+    "Regex Tester",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/json-schema-validator.html": [
+    "Json Schema Validator | BlueTEXT",
+    "Json Schema Validator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/json-formatter.html": [
+    "Json Formatter | BlueTEXT",
+    "Json Formatter",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/javascript-obfuscator.html": [
+    "Javascript Obfuscator | BlueTEXT",
+    "Javascript Obfuscator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/": [
+    "Coding | BlueTEXT",
+    "Coding",
+    "Browse all coding resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Tools",
+    "📄 Base64 Encoder",
+    "📄 Bcrypt Hash Checker",
+    "📄 Box Shadow Generator",
+    "📄 Cron Expression Descriptor",
+    "📄 Css Beautifier",
+    "📄 Css Gradient Button Maker",
+    "📄 Css Grid Generator",
+    "📄 Flexbox Playground",
+    "📄 Gitignore Generator",
+    "📄 Hmac Generator",
+    "📄 Html Entities Escape",
+    "📄 Html Minifier",
+    "📄 Htpasswd Generator",
+    "📄 Javascript Obfuscator",
+    "📄 Json Formatter",
+    "📄 Json Schema Validator",
+    "📄 Jwt Decoder",
+    "📄 Markdown To Html",
+    "📄 Md5 Hash Generator",
+    "📄 Regex Tester",
+    "📄 Rgba To Hex Converter",
+    "📄 Rsa Key Pair Generator",
+    "📄 Sha256 Hash Generator",
+    "📄 Sql Formatter",
+    "📄 String To Hex",
+    "📄 Url Encoder Decoder",
+    "📄 User Agent Parser",
+    "📄 Uuid V4 Generator",
+    "📄 Xml To Json",
+    "📄 Yaml To Json"
+  ],
+  "/pages/tools/coding/htpasswd-generator.html": [
+    "Htpasswd Generator | BlueTEXT",
+    "Htpasswd Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/html-entities-escape.html": [
+    "Html Entities Escape | BlueTEXT",
+    "Html Entities Escape",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/html-minifier.html": [
+    "Html Minifier | BlueTEXT",
+    "Html Minifier",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/hmac-generator.html": [
+    "Hmac Generator | BlueTEXT",
+    "Hmac Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/gitignore-generator.html": [
+    "Gitignore Generator | BlueTEXT",
+    "Gitignore Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/flexbox-playground.html": [
+    "Flexbox Playground | BlueTEXT",
+    "Flexbox Playground",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/css-grid-generator.html": [
+    "Css Grid Generator | BlueTEXT",
+    "Css Grid Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/css-gradient-button-maker.html": [
+    "Css Gradient Button Maker | BlueTEXT",
+    "Css Gradient Button Maker",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/css-beautifier.html": [
+    "Css Beautifier | BlueTEXT",
+    "Css Beautifier",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/base64-encoder.html": [
+    "Base64 Encoder | BlueTEXT",
+    "Base64 Encoder",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/bcrypt-hash-checker.html": [
+    "Bcrypt Hash Checker | BlueTEXT",
+    "Bcrypt Hash Checker",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/box-shadow-generator.html": [
+    "Box Shadow Generator | BlueTEXT",
+    "Box Shadow Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/tools/coding/cron-expression-descriptor.html": [
+    "Cron Expression Descriptor | BlueTEXT",
+    "Cron Expression Descriptor",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/software/windows/utility/": [
+    "Utility | BlueTEXT",
+    "Utility",
+    "Browse all utility resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Software",
+    "Windows"
+  ],
+  "/pages/software/windows/productivity/": [
+    "Productivity | BlueTEXT",
+    "Productivity",
+    "Browse all productivity resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Software",
+    "Windows"
+  ],
+  "/pages/software/windows/": [
+    "Windows Software | BlueTEXT",
+    "Windows Software",
+    "Free and open-source Windows app picks in games, productivity, and utility categories.",
+    "Home",
+    "Software",
+    "📄 Games",
+    "📄 Productivity",
+    "📄 Utility"
+  ],
+  "/pages/software/linux/utility/": [
+    "Utility | BlueTEXT",
+    "Utility",
+    "Browse all utility resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Software",
+    "Linux"
+  ],
+  "/pages/software/windows/games/": [
+    "Games | BlueTEXT",
+    "Games",
+    "Browse all games resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Software",
+    "Windows"
+  ],
+  "/pages/software/linux/productivity/": [
+    "Productivity | BlueTEXT",
+    "Productivity",
+    "Browse all productivity resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Software",
+    "Linux"
+  ],
+  "/pages/software/linux/games/": [
+    "Games | BlueTEXT",
+    "Games",
+    "Browse all games resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Software",
+    "Linux"
+  ],
+  "/pages/software/linux/": [
+    "Linux Software | BlueTEXT",
+    "Linux Software",
+    "Free and open-source Linux app picks in games, productivity, and utility categories.",
+    "Home",
+    "Software",
+    "📄 Games",
+    "📄 Productivity",
+    "📄 Utility"
+  ],
+  "/pages/software/apple/utility/": [
+    "Utility | BlueTEXT",
+    "Utility",
+    "Browse all utility resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Software",
+    "Apple"
+  ],
+  "/pages/software/": [
+    "Software | BlueTEXT",
+    "Software",
+    "Explore free and open-source software picks for Android, Apple, Linux, and Windows.",
+    "Home",
+    "Pages",
+    "📄 Android",
+    "📄 Apple",
+    "📄 Linux",
+    "📄 Windows"
+  ],
+  "/pages/software/apple/productivity/": [
+    "Productivity | BlueTEXT",
+    "Productivity",
+    "Browse all productivity resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Software",
+    "Apple"
+  ],
+  "/pages/software/apple/": [
+    "Apple Software | BlueTEXT",
+    "Apple Software",
+    "Free and open-source Apple app picks in productivity and utility categories.",
+    "Home",
+    "Software",
+    "📄 Productivity",
+    "📄 Utility"
+  ],
+  "/pages/software/android/utility/": [
+    "Utility | BlueTEXT",
+    "Utility",
+    "Browse all utility resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Software",
+    "Android"
+  ],
+  "/pages/software/android/productivity/": [
+    "Productivity | BlueTEXT",
+    "Productivity",
+    "Browse all productivity resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Software",
+    "Android"
+  ],
+  "/pages/": [
+    "Pages | BlueTEXT",
+    "Pages",
+    "Browse all tools, games, software, tutorials, blog, and education resources on BlueTEXT.",
+    "Home",
+    "📄 Tools",
+    "📄 Games",
+    "📄 Software",
+    "📄 Tutorials",
+    "📄 Education",
+    "📄 Blog"
+  ],
+  "/pages/software/android/": [
+    "Android Software | BlueTEXT",
+    "Android Software",
+    "Free and open-source Android app picks in productivity and utility categories.",
+    "Home",
+    "Software",
+    "📄 Productivity",
+    "📄 Utility"
+  ],
+  "/pages/games/word/wordle-clone.html": [
+    "Wordle Clone | BlueTEXT",
+    "Wordle Clone",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/word/typing-speed-racer.html": [
+    "Typing Speed Racer | BlueTEXT",
+    "Typing Speed Racer",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/word/trivia-quiz.html": [
+    "Trivia Quiz | BlueTEXT",
+    "Trivia Quiz",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/word/word-search-grid.html": [
+    "Word Search Grid | BlueTEXT",
+    "Word Search Grid",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/word/scrabble-helper-game.html": [
+    "Scrabble Helper Game | BlueTEXT",
+    "Scrabble Helper Game",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/word/": [
+    "Word | BlueTEXT",
+    "Word",
+    "Browse all word resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Games",
+    "📄 Anagram Scramble",
+    "📄 Crossword Puzzle",
+    "📄 Geo Quiz Map",
+    "📄 Hangman Classic",
+    "📄 Riddle Me This",
+    "📄 Scrabble Helper Game",
+    "📄 Trivia Quiz",
+    "📄 Typing Speed Racer",
+    "📄 Word Search Grid",
+    "📄 Wordle Clone"
+  ],
+  "/pages/games/word/riddle-me-this.html": [
+    "Riddle Me This | BlueTEXT",
+    "Riddle Me This",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/word/hangman-classic.html": [
+    "Hangman Classic | BlueTEXT",
+    "Hangman Classic",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/word/geo-quiz-map.html": [
+    "Geo Quiz Map | BlueTEXT",
+    "Geo Quiz Map",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/word/crossword-puzzle.html": [
+    "Crossword Puzzle | BlueTEXT",
+    "Crossword Puzzle",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/puzzles/twenty-forty-eight.html": [
+    "Twenty Forty Eight | BlueTEXT",
+    "Twenty Forty Eight",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/word/anagram-scramble.html": [
+    "Anagram Scramble | BlueTEXT",
+    "Anagram Scramble",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/puzzles/tower-stacker.html": [
+    "Tower Stacker | BlueTEXT",
+    "Tower Stacker",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/puzzles/sudoku-board.html": [
+    "Sudoku Board | BlueTEXT",
+    "Sudoku Board",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/puzzles/tetris-blocks.html": [
+    "Tetris Blocks | BlueTEXT",
+    "Tetris Blocks",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/puzzles/sliding-block.html": [
+    "Sliding Block | BlueTEXT",
+    "Sliding Block",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/puzzles/pipe-connector.html": [
+    "Pipe Connector | BlueTEXT",
+    "Pipe Connector",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/puzzles/nonogram-griddlers.html": [
+    "Nonogram Griddlers | BlueTEXT",
+    "Nonogram Griddlers",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/puzzles/minesweeper-classic.html": [
+    "Minesweeper Classic | BlueTEXT",
+    "Minesweeper Classic",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/puzzles/maze-generator.html": [
+    "Maze Generator | BlueTEXT",
+    "Maze Generator",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/puzzles/lights-out.html": [
+    "Lights Out | BlueTEXT",
+    "Lights Out",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/puzzles/": [
+    "Puzzles | BlueTEXT",
+    "Puzzles",
+    "Browse all puzzles resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Games",
+    "📄 Lights Out",
+    "📄 Maze Generator",
+    "📄 Minesweeper Classic",
+    "📄 Nonogram Griddlers",
+    "📄 Pipe Connector",
+    "📄 Sliding Block",
+    "📄 Sudoku Board",
+    "📄 Tetris Blocks",
+    "📄 Tower Stacker",
+    "📄 Twenty Forty Eight"
+  ],
+  "/pages/games/cards/spider-solitaire.html": [
+    "Spider Solitaire | BlueTEXT",
+    "Spider Solitaire",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/": [
+    "Games | BlueTEXT",
+    "Games",
+    "Play free browser games on BlueTEXT — arcade, board, cards, puzzles, and word games.",
+    "Home",
+    "Pages",
+    "📄 Arcade",
+    "📄 Board",
+    "📄 Cards",
+    "📄 Puzzles",
+    "📄 Word"
+  ],
+  "/pages/games/cards/uno-wild.html": [
+    "Uno Wild | BlueTEXT",
+    "Uno Wild",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/cards/solitaire-klondike.html": [
+    "Solitaire Klondike | BlueTEXT",
+    "Solitaire Klondike",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/cards/poker-texas-holdem.html": [
+    "Poker Texas Holdem | BlueTEXT",
+    "Poker Texas Holdem",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/cards/hearts-card-game.html": [
+    "Hearts Card Game | BlueTEXT",
+    "Hearts Card Game",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/cards/": [
+    "Cards | BlueTEXT",
+    "Cards",
+    "Browse all cards resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Games",
+    "📄 Baccarat Table",
+    "📄 Blackjack Twenty One",
+    "📄 Freecell Classic",
+    "📄 Gin Rummy",
+    "📄 Hearts Card Game",
+    "📄 Memory Card Match",
+    "📄 Poker Texas Holdem",
+    "📄 Solitaire Klondike",
+    "📄 Spider Solitaire",
+    "📄 Uno Wild"
+  ],
+  "/pages/games/cards/memory-card-match.html": [
+    "Memory Card Match | BlueTEXT",
+    "Memory Card Match",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/cards/freecell-classic.html": [
+    "Freecell Classic | BlueTEXT",
+    "Freecell Classic",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/cards/blackjack-twenty-one.html": [
+    "Blackjack Twenty One | BlueTEXT",
+    "Blackjack Twenty One",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/cards/gin-rummy.html": [
+    "Gin Rummy | BlueTEXT",
+    "Gin Rummy",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/board/reversi-othello.html": [
+    "Reversi Othello | BlueTEXT",
+    "Reversi Othello",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/board/tic-tac-toe.html": [
+    "Tic Tac Toe | BlueTEXT",
+    "Tic Tac Toe",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/cards/baccarat-table.html": [
+    "Baccarat Table | BlueTEXT",
+    "Baccarat Table",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/board/mancala-pit.html": [
+    "Mancala Pit | BlueTEXT",
+    "Mancala Pit",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/board/connect-four.html": [
+    "Connect Four | BlueTEXT",
+    "Connect Four",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/board/ludo-classic.html": [
+    "Ludo Classic | BlueTEXT",
+    "Ludo Classic",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/board/": [
+    "Board | BlueTEXT",
+    "Board",
+    "Browse all board resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Games",
+    "📄 Backgammon Board",
+    "📄 Battleship Grid",
+    "📄 Checkers Draughts",
+    "📄 Chess Engine",
+    "📄 Connect Four",
+    "📄 Dominoes Chain",
+    "📄 Ludo Classic",
+    "📄 Mancala Pit",
+    "📄 Reversi Othello",
+    "📄 Tic Tac Toe"
+  ],
+  "/pages/games/board/dominoes-chain.html": [
+    "Dominoes Chain | BlueTEXT",
+    "Dominoes Chain",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/board/backgammon-board.html": [
+    "Backgammon Board | BlueTEXT",
+    "Backgammon Board",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/board/chess-engine.html": [
+    "Chess Engine | BlueTEXT",
+    "Chess Engine",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/board/checkers-draughts.html": [
+    "Checkers Draughts | BlueTEXT",
+    "Checkers Draughts",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/arcade/space-invaders.html": [
+    "Space Invaders | BlueTEXT",
+    "Space Invaders",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/arcade/whack-a-mole.html": [
+    "Whack A Mole | BlueTEXT",
+    "Whack A Mole",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/board/battleship-grid.html": [
+    "Battleship Grid | BlueTEXT",
+    "Battleship Grid",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/arcade/snake-canvas.html": [
+    "Snake Canvas | BlueTEXT",
+    "Snake Canvas",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/arcade/pacman-retro.html": [
+    "Pacman Retro | BlueTEXT",
+    "Pacman Retro",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/arcade/": [
+    "Arcade | BlueTEXT",
+    "Arcade",
+    "Browse all arcade resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Games",
+    "📄 Asteroids Field",
+    "📄 Brick Breaker",
+    "📄 Flappy Bird Clone",
+    "📄 Frogger Road",
+    "📄 Helicopter Tunnel",
+    "📄 Pacman Retro",
+    "📄 Pong Paddle",
+    "📄 Snake Canvas",
+    "📄 Space Invaders",
+    "📄 Whack A Mole"
+  ],
+  "/pages/games/arcade/pong-paddle.html": [
+    "Pong Paddle | BlueTEXT",
+    "Pong Paddle",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/arcade/helicopter-tunnel.html": [
+    "Helicopter Tunnel | BlueTEXT",
+    "Helicopter Tunnel",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/arcade/flappy-bird-clone.html": [
+    "Flappy Bird Clone | BlueTEXT",
+    "Flappy Bird Clone",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/arcade/frogger-road.html": [
+    "Frogger Road | BlueTEXT",
+    "Frogger Road",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/arcade/brick-breaker.html": [
+    "Brick Breaker | BlueTEXT",
+    "Brick Breaker",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/games/arcade/asteroids-field.html": [
+    "Asteroids Field | BlueTEXT",
+    "Asteroids Field",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/science/understanding-the-periodic-table.html": [
+    "Understanding The Periodic Table | BlueTEXT",
+    "Understanding The Periodic Table",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/science/": [
+    "Science | BlueTEXT",
+    "Science",
+    "Browse all science resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Education",
+    "📄 Basics Of Astronomy And Planets",
+    "📄 Cell Biology Structure And Function",
+    "📄 Ecosystems And Environmental Science",
+    "📄 Fundamentals Of Chemical Bonding",
+    "📄 Genetics And Dna Replication Explained",
+    "📄 Human Anatomy And Body Systems",
+    "📄 Introduction To Organic Chemistry",
+    "📄 Newtons Laws Of Motion",
+    "📄 Thermodynamics And Heat Transfer",
+    "📄 Understanding The Periodic Table"
+  ],
+  "/pages/education/science/newtons-laws-of-motion.html": [
+    "Newtons Laws Of Motion | BlueTEXT",
+    "Newtons Laws Of Motion",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/science/introduction-to-organic-chemistry.html": [
+    "Introduction To Organic Chemistry | BlueTEXT",
+    "Introduction To Organic Chemistry",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/science/human-anatomy-and-body-systems.html": [
+    "Human Anatomy And Body Systems | BlueTEXT",
+    "Human Anatomy And Body Systems",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/science/thermodynamics-and-heat-transfer.html": [
+    "Thermodynamics And Heat Transfer | BlueTEXT",
+    "Thermodynamics And Heat Transfer",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/science/fundamentals-of-chemical-bonding.html": [
+    "Fundamentals Of Chemical Bonding | BlueTEXT",
+    "Fundamentals Of Chemical Bonding",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/science/genetics-and-dna-replication-explained.html": [
+    "Genetics And Dna Replication Explained | BlueTEXT",
+    "Genetics And Dna Replication Explained",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/science/ecosystems-and-environmental-science.html": [
+    "Ecosystems And Environmental Science | BlueTEXT",
+    "Ecosystems And Environmental Science",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/science/cell-biology-structure-and-function.html": [
+    "Cell Biology Structure And Function | BlueTEXT",
+    "Cell Biology Structure And Function",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/science/basics-of-astronomy-and-planets.html": [
+    "Basics Of Astronomy And Planets | BlueTEXT",
+    "Basics Of Astronomy And Planets",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/math/trigonometry-sine-cosine-tangent.html": [
+    "Trigonometry Sine Cosine Tangent | BlueTEXT",
+    "Trigonometry Sine Cosine Tangent",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/math/understanding-fractions-and-decimals.html": [
+    "Understanding Fractions And Decimals | BlueTEXT",
+    "Understanding Fractions And Decimals",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/math/probability-and-statistics-basics.html": [
+    "Probability And Statistics Basics | BlueTEXT",
+    "Probability And Statistics Basics",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/math/matrices-and-linear-algebra.html": [
+    "Matrices And Linear Algebra | BlueTEXT",
+    "Matrices And Linear Algebra",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/math/pre-algebra-essentials.html": [
+    "Pre Algebra Essentials | BlueTEXT",
+    "Pre Algebra Essentials",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/math/introduction-to-geometry-shapes.html": [
+    "Introduction To Geometry Shapes | BlueTEXT",
+    "Introduction To Geometry Shapes",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/math/": [
+    "Math | BlueTEXT",
+    "Math",
+    "Browse all math resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Education",
+    "📄 Algebra Linear Equations Solving",
+    "📄 Binary And Hexadecimal Number Systems",
+    "📄 Calculus Limits And Derivatives",
+    "📄 Discrete Mathematics Logic",
+    "📄 Introduction To Geometry Shapes",
+    "📄 Matrices And Linear Algebra",
+    "📄 Pre Algebra Essentials",
+    "📄 Probability And Statistics Basics",
+    "📄 Trigonometry Sine Cosine Tangent",
+    "📄 Understanding Fractions And Decimals"
+  ],
+  "/pages/education/math/discrete-mathematics-logic.html": [
+    "Discrete Mathematics Logic | BlueTEXT",
+    "Discrete Mathematics Logic",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/math/calculus-limits-and-derivatives.html": [
+    "Calculus Limits And Derivatives | BlueTEXT",
+    "Calculus Limits And Derivatives",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/math/algebra-linear-equations-solving.html": [
+    "Algebra Linear Equations Solving | BlueTEXT",
+    "Algebra Linear Equations Solving",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/languages/speed-reading-techniques.html": [
+    "Speed Reading Techniques | BlueTEXT",
+    "Speed Reading Techniques",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/math/binary-and-hexadecimal-number-systems.html": [
+    "Binary And Hexadecimal Number Systems | BlueTEXT",
+    "Binary And Hexadecimal Number Systems",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/languages/reading-comprehension-strategies.html": [
+    "Reading Comprehension Strategies | BlueTEXT",
+    "Reading Comprehension Strategies",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/languages/spanish-vocabulary-for-beginners.html": [
+    "Spanish Vocabulary For Beginners | BlueTEXT",
+    "Spanish Vocabulary For Beginners",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/languages/public-speaking-and-rhetoric.html": [
+    "Public Speaking And Rhetoric | BlueTEXT",
+    "Public Speaking And Rhetoric",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/languages/professional-business-writing-etiquette.html": [
+    "Professional Business Writing Etiquette | BlueTEXT",
+    "Professional Business Writing Etiquette",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/languages/french-pronunciation-and-basics.html": [
+    "French Pronunciation And Basics | BlueTEXT",
+    "French Pronunciation And Basics",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/languages/literary-devices-metaphor-irony-symbolism.html": [
+    "Literary Devices Metaphor Irony Symbolism | BlueTEXT",
+    "Literary Devices Metaphor Irony Symbolism",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/languages/": [
+    "Languages | BlueTEXT",
+    "Languages",
+    "Browse all languages resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Education",
+    "📄 Creative Writing And Character Building",
+    "📄 English Grammar Tenses And Structures",
+    "📄 Essay Writing And Structuring Arguments",
+    "📄 French Pronunciation And Basics",
+    "📄 Literary Devices Metaphor Irony Symbolism",
+    "📄 Professional Business Writing Etiquette",
+    "📄 Public Speaking And Rhetoric",
+    "📄 Reading Comprehension Strategies",
+    "📄 Spanish Vocabulary For Beginners",
+    "📄 Speed Reading Techniques"
+  ],
+  "/pages/education/languages/english-grammar-tenses-and-structures.html": [
+    "English Grammar Tenses And Structures | BlueTEXT",
+    "English Grammar Tenses And Structures",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/": [
+    "Education | BlueTEXT",
+    "Education",
+    "Free study resources covering finance, humanities, languages, math, and science.",
+    "Home",
+    "Pages",
+    "📄 Finance",
+    "📄 Humanities",
+    "📄 Languages",
+    "📄 Math",
+    "📄 Science"
+  ],
+  "/pages/education/languages/essay-writing-and-structuring-arguments.html": [
+    "Essay Writing And Structuring Arguments | BlueTEXT",
+    "Essay Writing And Structuring Arguments",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/languages/creative-writing-and-character-building.html": [
+    "Creative Writing And Character Building | BlueTEXT",
+    "Creative Writing And Character Building",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/humanities/world-history-major-turning-points.html": [
+    "World History Major Turning Points | BlueTEXT",
+    "World History Major Turning Points",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/humanities/world-geography-continents-and-climate-zones.html": [
+    "World Geography Continents And Climate Zones | BlueTEXT",
+    "World Geography Continents And Climate Zones",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/humanities/microeconomics-supply-and-demand.html": [
+    "Microeconomics Supply And Demand | BlueTEXT",
+    "Microeconomics Supply And Demand",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/humanities/introduction-to-western-philosophy.html": [
+    "Introduction To Western Philosophy | BlueTEXT",
+    "Introduction To Western Philosophy",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/humanities/introduction-to-political-science.html": [
+    "Introduction To Political Science | BlueTEXT",
+    "Introduction To Political Science",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/humanities/sociology-and-cultural-studies.html": [
+    "Sociology And Cultural Studies | BlueTEXT",
+    "Sociology And Cultural Studies",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/humanities/fundamentals-of-human-psychology.html": [
+    "Fundamentals Of Human Psychology | BlueTEXT",
+    "Fundamentals Of Human Psychology",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/humanities/": [
+    "Humanities | BlueTEXT",
+    "Humanities",
+    "Browse all humanities resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Education",
+    "📄 Ancient Civilizations Egypt Greece Rome",
+    "📄 Basics Of Macroeconomics",
+    "📄 Environmental Geography And Mapping",
+    "📄 Fundamentals Of Human Psychology",
+    "📄 Introduction To Political Science",
+    "📄 Introduction To Western Philosophy",
+    "📄 Microeconomics Supply And Demand",
+    "📄 Sociology And Cultural Studies",
+    "📄 World Geography Continents And Climate Zones",
+    "📄 World History Major Turning Points"
+  ],
+  "/pages/education/finance/understanding-stocks-bonds-and-mutual-funds.html": [
+    "Understanding Stocks Bonds And Mutual Funds | BlueTEXT",
+    "Understanding Stocks Bonds And Mutual Funds",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/humanities/basics-of-macroeconomics.html": [
+    "Basics Of Macroeconomics | BlueTEXT",
+    "Basics Of Macroeconomics",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/humanities/environmental-geography-and-mapping.html": [
+    "Environmental Geography And Mapping | BlueTEXT",
+    "Environmental Geography And Mapping",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/finance/": [
+    "Finance | BlueTEXT",
+    "Finance",
+    "Browse all finance resources on BlueTEXT.",
+    "Home",
+    "Pages",
+    "Education",
+    "📄 Basics Of Real Estate Investing",
+    "📄 Basics Of Taxation And Income",
+    "📄 Credit Scores And Debt Management",
+    "📄 Cryptocurrency And Blockchain Fundamentals",
+    "📄 Entrepreneurship And Business Plan Creation",
+    "📄 How Banking And Central Banks Operate",
+    "📄 How Compound Interest Works",
+    "📄 Introduction To Corporate Accounting",
+    "📄 Personal Budgeting And Saving Strategies",
+    "📄 Understanding Stocks Bonds And Mutual Funds"
+  ],
+  "/pages/education/humanities/ancient-civilizations-egypt-greece-rome.html": [
+    "Ancient Civilizations Egypt Greece Rome | BlueTEXT",
+    "Ancient Civilizations Egypt Greece Rome",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/finance/how-compound-interest-works.html": [
+    "How Compound Interest Works | BlueTEXT",
+    "How Compound Interest Works",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/finance/personal-budgeting-and-saving-strategies.html": [
+    "Personal Budgeting And Saving Strategies | BlueTEXT",
+    "Personal Budgeting And Saving Strategies",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/finance/basics-of-taxation-and-income.html": [
+    "Basics Of Taxation And Income | BlueTEXT",
+    "Basics Of Taxation And Income",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/finance/introduction-to-corporate-accounting.html": [
+    "Introduction To Corporate Accounting | BlueTEXT",
+    "Introduction To Corporate Accounting",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/finance/cryptocurrency-and-blockchain-fundamentals.html": [
+    "Cryptocurrency And Blockchain Fundamentals | BlueTEXT",
+    "Cryptocurrency And Blockchain Fundamentals",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/finance/credit-scores-and-debt-management.html": [
+    "Credit Scores And Debt Management | BlueTEXT",
+    "Credit Scores And Debt Management",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/finance/entrepreneurship-and-business-plan-creation.html": [
+    "Entrepreneurship And Business Plan Creation | BlueTEXT",
+    "Entrepreneurship And Business Plan Creation",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/education/finance/basics-of-real-estate-investing.html": [
+    "Basics Of Real Estate Investing | BlueTEXT",
+    "Basics Of Real Estate Investing",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/pages/blog/": [
+    "Blog | BlueTEXT",
+    "Blog",
+    "Articles, guides, and updates from BlueTEXT.",
+    "Home",
+    "Pages"
+  ],
+  "/pages/education/finance/how-banking-and-central-banks-operate.html": [
+    "How Banking And Central Banks Operate | BlueTEXT",
+    "How Banking And Central Banks Operate",
+    "This page is part of BlueTEXT and now uses the shared site header and footer components.",
+    "Back"
+  ],
+  "/assets/nav/security.html": [
+    "Security Statement | BlueTEXT",
+    "Security Statement",
+    "Baseline aligned with ISO 27001 and FISMA control intent.",
+    "Technical Controls",
+    "Strict browser security headers and content security policy.",
+    "Restricted permissions policy for camera/mic/geolocation.",
+    "XSS and MIME hardening through response header policy.",
+    "Cache behavior tuned for safe updates to HTML and service worker.",
+    "Operational Controls",
+    "Privacy-by-default front-end design, with local processing where possible.",
+    "Consent gating for optional data categories.",
+    "Documented legal and policy pages for transparency.",
+    "Responsible Disclosure",
+    "To report a vulnerability, contact codeon@bluetext.in with reproducible details. Please do not publicly disclose issues",
+    "Back to Home"
+  ],
+  "/": [
+    "BlueTEXT.in | Tools, Tutorials, Software, and Learning",
+    "BlueTEXT.in",
+    "Developer Tools",
+    "Browser Games",
+    "Software Catalog",
+    "Tutorials",
+    "Education",
+    "Tech Blog",
+    "An accessible, client-side first content platform providing developer tools, programming guides, browser games, and study resources.",
+    "Free client-side developers tools, data converters, encoders, formatters, and utility apps executing completely in your browser.",
+    "Play responsive, clean, and classic games including Arcade, Board, Cards, Puzzles, and Word games directly in the browser.",
+    "Explore our hand-picked selections of free and open-source applications for Android, Apple, Linux, and Windows.",
+    "Step-by-step programming tutorials, backend development guides, network administration, security, and web design basics.",
+    "Study resources and reference documents covering business, finance, humanities, languages, math, and general sciences.",
+    "Read our latest platform announcements, tech guides, open-source tips, and developer updates from BlueTEXT.in.",
+    "This site works best with JavaScript enabled.",
+    "Get Started",
+    "Read Tutorials",
+    "Browse Tools",
+    "Play Games",
+    "Explore Software",
+    "Start Learning",
+    "Read Blog"
+  ],
+  "/assets/nav/terms.html": [
+    "Terms of Use | BlueTEXT",
+    "Terms of Use",
+    "Effective date: 28 March 2026 | Last updated: May 9, 2026",
+    "1. Acceptance of Terms",
+    "2. Use License",
+    "Permission is granted to temporarily use the tools on BlueTEXT.in&#39;s website for personal, non-commercial transitory viewing only. Under this license you may not:",
+    "Modify or copy the materials;",
+    "Attempt to decompile or reverse-engineer any software on BlueTEXT.in;",
+    "Remove any copyright or other proprietary notations from the materials;",
+    "Transfer the materials to another person or &quot;mirror&quot; them on any other server.",
+    "This license shall automatically terminate if you violate any of these restrictions and may be terminated by BlueTEXT.in at any time.",
+    "3. Disclaimer of Warranties",
+    "4. Limitations of Liability",
+    "5. Tools Disclaimer",
+    "6. External Links",
+    "7. Governing Law",
+    "These terms and conditions are governed by and construed in accordance with the laws of India. You irrevocably submit to the exclusive jurisdiction of the courts in that State or location.",
+    "8. Changes to Terms",
+    "BlueTEXT.in may revise these terms of use at any time without notice. By using this website, you agree to be bound by the current version of these terms of use. Please check this page periodically for updates.",
+    "Back to Home"
+  ],
+  "/assets/nav/privacy.html": [
+    "Privacy Policy | BlueTEXT",
+    "Privacy Policy",
+    "Effective date: 28 March 2026 | Last updated: May 9, 2026",
+    "Your privacy is important to us. It is BlueTEXT.in&#39;s policy to respect your privacy regarding any information we may collect from you across our website, bluetext.in.",
+    "1. Information We Collect",
+    "2. Log Data and Analytics",
+    "We use Google Analytics (GA4) to analyze traffic and improve our service. Google Analytics may use cookies to collect this data. You can learn about Google&#39;s practices at google.com/policies/privacy/partners.",
+    "3. Advertising and Cookies",
+    "This website uses Google AdSense to serve advertisements. Google&#39;s use of advertising cookies enables it and its partners to serve ads based on your visits to this and other websites.",
+    "Third-party vendors, including Google, use cookies to serve ads based on prior visits to our website or other websites.",
+    "Users may opt out of personalised advertising by visiting Google Ads Settings.",
+    "You can also opt out via the Network Advertising Initiative opt-out page.",
+    "4. Data Security",
+    "5. Links to Third-Party Sites",
+    "Our website may contain links to external sites not operated by us. We have no control over the content or privacy practices of those sites and cannot accept responsibility for their respective privacy policies.",
+    "6. Changes to This Policy",
+    "We may update this Privacy Policy from time to time. We will notify you of changes by posting the updated policy on this page. You are advised to review this page periodically for any changes.",
+    "7. Contact",
+    "Questions about this policy can be sent to codeon@bluetext.in.",
+    "Back to Home"
+  ],
+  "/assets/nav/contact.html": [
+    "Contact | BlueTEXT",
+    "Get In Touch",
+    "Send a Message",
+    "📧 Email",
+    "💬 Community",
+    "🔧 Bug Reports &amp; Feature Requests",
+    "🌐 Social Media",
+    "💝 Support the Project",
+    "🛠️ More Links",
+    "🏷️ BlueTEXT.in Metadata",
+    "📝 Website Logs",
+    "Contact Details",
+    "We're always happy to hear from our users. Whether you have a question, a tool suggestion, or just want to say hello, feel free to reach out.",
+    "Use any of the channels below — we respond to all genuine inquiries within 2–3 business days. Discord and Twitter typically get faster responses.",
+    "codeon@bluetext.in",
+    "For support, bug reports, feedback, tool suggestions, and collaboration inquiries.",
+    "Found a bug or want a new tool? Please open an issue on our GitHub repository .",
+    "Last updated: Sat Mar 28 2026 12:54:59 GMT+0530 (India Standard Time)",
+    "Most inquiries get a response within 2–3 business days. Discord is fastest for community questions.",
+    "← Back to Home",
+    "Discord Server",
+    "Twitter / X",
+    "Slack Workspace",
+    "GitHub repository",
+    "LinkedIn",
+    "Instagram",
+    "Facebook",
+    "Discord",
+    "Reddit",
+    "YouTube — CodeOn Channel",
+    "Twitch",
+    "Pinterest",
+    "Buy Me A Coffee",
+    "Patreon",
+    "Ko-fi",
+    "Newsletter",
+    "ORCID",
+    "GitHub",
+    "Slack",
+    "linkedin.com/in/tulsiram-methre",
+    "https://www.bluetext.in",
+    "Contact Details 📧 Email codeon@bluetext.in",
+    "CodeOn (700+ Subscribers | 590k+ Views)",
+    "@Tulsiram_Methre",
+    "in/tulsiram-methre",
+    "CodeOnYT"
+  ],
+  "/assets/nav/accessibility.html": [
+    "Accessibility Statement | BlueTEXT",
+    "Accessibility Statement",
+    "Current Accessibility Controls",
+    "Known Limitations",
+    "Feedback and Support",
+    "BlueTEXT aims to meet WCAG 2.2 AA accessibility expectations across navigation, content structure, and interactive controls.",
+    "Some legacy pages may require incremental updates for complete consistency. These are reviewed continuously as content expands.",
+    "If you find an accessibility issue, contact us via Contact with page URL, issue description, and device/browser details.",
+    "Back to Home",
+    "Contact"
+  ],
+  "/assets/nav/about.html": [
+    "About Tulsiram Methre &amp; BlueTEXT.in | Our Mission",
+    "Our Mission",
+    "Why We Started BlueTEXT.in",
+    "Meet the Founder",
+    "License &amp; Contribution",
+    "Hi, I'm Tulsiram Methre! 👋",
+    "Connect With Me",
+    "Support My Work",
+    "More Links",
+    "BlueTEXT.in Metadata",
+    "Website Logs",
+    "To build the web's best, most accessible, and privacy-respecting toolbox — completely free for everyone.",
+    "BlueTEXT.in was born from a simple idea: what if there was a single, trusted destination for all the small tasks you need to do online? A place that was fast, beautifully designed, and put user experience first.",
+    "AWS Solution Architect | Cloud Architect | Creator of BlueTEXT.in",
+    "I am obsessed with helping developers build high-quality apps as fast as possible ⚡. I simplify complex code so that the open-source world can build better products together.",
+    "UPI: Bluetext.in@UPI",
+    "Last updated: Sat Mar 28 2026 12:54:59 GMT+0530 (India Standard Time)",
+    "BlueTEXT.in is open source under the GNU General Public License v3 . Contributions are welcome — add tools, report bugs, improve docs, or submit pull requests on GitHub .",
+    "← Back to Home",
+    "Cloudflare Pages",
+    "🏢 Working at: Tata Consultancy Services (Hyderabad) 📺 YouTube: CodeOn",
+    "codeon@bluetext.in",
+    "💼 LinkedIn",
+    "🐦 Twitter / X",
+    "💻 GitHub",
+    "📸 Instagram",
+    "💬 Discord",
+    "👍 Facebook",
+    "Reddit",
+    "Pinterest",
+    "Twitch",
+    "🎥 YouTube",
+    "☕ Buy Me A Coffee",
+    "💖 Ko-fi",
+    "🤝 Patreon",
+    "🗞️ Newsletter",
+    "bluetextin.slack.com",
+    "0009-0007-8869-1617",
+    "linkedin.com/in/tulsiram-methre",
+    "https://www.bluetext.in",
+    "GNU General Public License v3",
+    "GitHub"
+  ],
+  "/assets/nav/compliance.html": [
+    "Compliance Center | BlueTEXT",
+    "Compliance Center",
+    "Framework Coverage",
+    "Technical Controls Implemented",
+    "Privacy Baseline",
+    "Accessibility Baseline (WCAG 2.2 AA)",
+    "Assurance Note",
+    "Effective date: 2026-06-20",
+    "BlueTEXT implementation is designed around the baseline control expectations of GDPR, CCPA, PIPL, LGPD, DPDP, and WCAG 2.2 AA.",
+    "This page documents implementation controls and operating intent. Formal legal compliance depends on operational policy, legal review, and periodic audits.",
+    "Privacy Policy | Accessibility Statement | Security Statement | Terms of Use",
+    "Back to Home",
+    "Privacy Policy",
+    "Accessibility Statement",
+    "Security Statement",
+    "Terms of Use"
+  ],
+  "/assets/nav/disclaimer.html": [
+    "Disclaimer | BlueTEXT",
+    "Disclaimer",
+    "Tool outputs are provided for informational and productivity purposes. Always verify results for sensitive or critical decisions.",
+    "No professional advice",
+    "Content and outputs do not constitute legal, medical, financial, or other professional advice.",
+    "Third-party references",
+    "Any external references are provided for convenience and do not imply endorsement.",
+    "Back to Home"
+  ]
+}

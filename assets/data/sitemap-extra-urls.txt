@@ -1,0 +1,6 @@
+# Optional extra URLs for sitemap generation.
+# Add one URL per line.
+# Supports full URLs or site-relative paths.
+# Examples:
+# /custom-page
+# https://bluetext.in/special-landing

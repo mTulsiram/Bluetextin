@@ -1,0 +1,51 @@
+#footer-component .bt-logo {
+	color: #0d6efd;
+}
+
+#footer-component .bt-footer-panel {
+	background:
+		radial-gradient(1200px 220px at -20% -20%, rgba(13, 110, 253, 0.08), transparent 60%),
+		radial-gradient(900px 180px at 120% 0%, rgba(25, 135, 84, 0.07), transparent 55%),
+		var(--bs-body-bg);
+	border-color: rgba(13, 110, 253, 0.16) !important;
+}
+
+#footer-component h3 {
+	letter-spacing: 0.05em;
+}
+
+#footer-component a {
+	transition: color 0.2s ease, transform 0.2s ease;
+}
+
+#footer-component a:hover {
+	color: #0d6efd !important;
+	transform: translateX(2px);
+}
+
+/* Mobile responsive improvements */
+@media (max-width: 767.98px) {
+	#footer-component .bt-footer-panel {
+		padding: 1.75rem !important;
+	}
+	#footer-component .row.g-4 {
+		--bs-gutter-y: 2rem; /* Extra breathing room between blocks */
+	}
+	#footer-component h2, 
+	#footer-component h3 {
+		font-size: 1.1rem;
+	}
+	#footer-component p {
+		font-size: 0.92rem;
+		line-height: 1.5;
+	}
+	#footer-component a {
+		font-size: 0.92rem;
+		display: inline-block;
+		padding: 0.35rem 0; /* Easily clickable touch target */
+	}
+	#footer-component .btn-outline-primary {
+		padding: 0.4rem 1rem !important; /* Premium button sizing for mobile */
+		font-weight: 500;
+	}
+}
