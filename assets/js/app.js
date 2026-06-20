@@ -37,12 +37,29 @@ document.addEventListener('DOMContentLoaded', async () => {
   // 2. Load Components Dynamically
   const loadDynamicComponents = async () => {
     try {
+      // Load Header
+      const headerContainer = document.getElementById('global-header');
+      if (headerContainer) {
+        const res = await fetch(`${prefix}components/header.html`);
+        if (res.ok) {
+          let html = await res.text();
+          // Resolve absolute sitemap & index paths relatively
+          html = html.replace(/href="\/index\.html"/g, `href="${prefix}index.html"`);
+          html = html.replace(/href="\/sitemap\.xml"/g, `href="${prefix}sitemap.xml"`);
+          headerContainer.innerHTML = html;
+          setupThemeToggle();
+        }
+      }
+
       // Load Footer
       const footerContainer = document.getElementById('global-footer');
       if (footerContainer) {
         const res = await fetch(`${prefix}components/footer.html`);
         if (res.ok) {
-          footerContainer.innerHTML = await res.text();
+          let html = await res.text();
+          html = html.replace(/href="\/index\.html"/g, `href="${prefix}index.html"`);
+          html = html.replace(/href="\/sitemap\.xml"/g, `href="${prefix}sitemap.xml"`);
+          footerContainer.innerHTML = html;
           setupResetConsentButton();
         }
       }
@@ -50,8 +67,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       console.warn("Failed to load header/footer components dynamically:", e);
     }
   };
-
-  await loadDynamicComponents();
 
   // 3. Cookie Consent (GDPR/PIPL/CCPA/DPDP Compliance)
   const consentBanner = document.getElementById('consent-banner');
@@ -95,39 +110,44 @@ document.addEventListener('DOMContentLoaded', async () => {
   checkConsent();
 
   // 4. Theme & Dark Mode Manager
-  const themeToggleBtn = document.getElementById('theme-toggle-btn');
-  const sunIcon = document.querySelector('.theme-icon-sun');
-  const moonIcon = document.querySelector('.theme-icon-moon');
-
   const applyTheme = (theme) => {
+    const sunIcons = document.querySelectorAll('.theme-icon-sun');
+    const moonIcons = document.querySelectorAll('.theme-icon-moon');
+    
     if (theme === 'light') {
       document.body.classList.remove('theme-dark');
       document.body.classList.add('theme-light');
-      if (sunIcon) sunIcon.style.display = 'block';
-      if (moonIcon) moonIcon.style.display = 'none';
+      sunIcons.forEach(i => i.style.display = 'block');
+      moonIcons.forEach(i => i.style.display = 'none');
     } else {
       document.body.classList.remove('theme-light');
       document.body.classList.add('theme-dark');
-      if (sunIcon) sunIcon.style.display = 'none';
-      if (moonIcon) moonIcon.style.display = 'block';
+      sunIcons.forEach(i => i.style.display = 'none');
+      moonIcons.forEach(i => i.style.display = 'block');
     }
   };
 
-  // Check saved preference or system theme
-  let savedTheme = localStorage.getItem('bluetext_theme');
-  if (!savedTheme) {
-    savedTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-  }
-  applyTheme(savedTheme);
-
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-      const currentTheme = document.body.classList.contains('theme-light') ? 'light' : 'dark';
-      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-      localStorage.setItem('bluetext_theme', newTheme);
-      applyTheme(newTheme);
+  const setupThemeToggle = () => {
+    const toggleBtns = document.querySelectorAll('.dark-mode-toggle, #theme-toggle-btn');
+    toggleBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const currentTheme = document.body.classList.contains('theme-light') ? 'light' : 'dark';
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        localStorage.setItem('bluetext_theme', newTheme);
+        applyTheme(newTheme);
+      });
     });
-  }
+    // Apply current active theme status icons
+    let savedTheme = localStorage.getItem('bluetext_theme');
+    if (!savedTheme) {
+      savedTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    }
+    applyTheme(savedTheme);
+  };
+
+  // Run dynamic loading
+  await loadDynamicComponents();
+
 
   // 5. Explorer Dashboard Registry Navigation and Search
   let toolsRegistry = [];
