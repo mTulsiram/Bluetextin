@@ -1,14 +1,175 @@
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 <div class="header-content">
-  <a href="/index.html" class="logo-text" aria-label="BlueTEXT Home">
+  <!-- Brand Logo -->
+  <a href="/index.html" class="logo-text" aria-label="BlueTEXT.in Home">
     <span class="logo-wordmark" aria-hidden="true">
       <span class="logo-blue">Blue</span><span class="logo-text-pt">TEXT</span>
     </span>
   </a>
-  <nav class="header-actions">
-    <a href="/index.html" style="font-weight: 500;">All Tools</a>
-    <button class="dark-mode-toggle btn btn--ghost" type="button" title="Toggle Theme" aria-label="Toggle Theme" style="padding: 0.5rem;">
+
+  <!-- Mega Navigation (Semantic structures for screen readers) -->
+  <nav class="nav-menu" aria-label="Main Navigation">
+    <ul class="nav-list">
+      
+      <!-- 1. Tools Dropdown -->
+      <li class="nav-item has-dropdown">
+        <button class="nav-trigger" aria-expanded="false" aria-haspopup="true" type="button">
+          Tools <span class="arrow" aria-hidden="true">▼</span>
+        </button>
+        <div class="dropdown-pane">
+          <ul class="dropdown-grid grid-3">
+            <li><a href="/tools/coding/index.html">💻 Coding Utilities</a></li>
+            <li><a href="/tools/converters/index.html">🔄 Unit Converters</a></li>
+            <li><a href="/tools/data/index.html">📊 Data Formatting</a></li>
+            <li><a href="/tools/images/index.html">🖼️ Image & Graphic</a></li>
+            <li><a href="/tools/lifestyle/index.html">🥗 Health & Lifestyle</a></li>
+            <li><a href="/tools/math/index.html">🧮 Math Calculators</a></li>
+            <li><a href="/tools/network/index.html">🌐 Network & SEO</a></li>
+            <li><a href="/tools/office/index.html">📁 Office & Writers</a></li>
+            <li><a href="/tools/utilities/index.html">⚡ Everyday Utilities</a></li>
+            <li><a href="/tools/videos/index.html">🔊 Video & Audio</a></li>
+            <li><a href="/tools/miscellaneous/index.html">💡 Miscellaneous</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <!-- 2. Games Dropdown -->
+      <li class="nav-item has-dropdown">
+        <button class="nav-trigger" aria-expanded="false" aria-haspopup="true" type="button">
+          Games <span class="arrow" aria-hidden="true">▼</span>
+        </button>
+        <div class="dropdown-pane">
+          <ul class="dropdown-grid grid-2">
+            <li><a href="/games/arcade/index.html">🕹️ Arcade Games</a></li>
+            <li><a href="/games/puzzles/index.html">🧩 Puzzle Blocks</a></li>
+            <li><a href="/games/board/index.html">♟️ Board Games</a></li>
+            <li><a href="/games/cards/index.html">🃏 Card Games</a></li>
+            <li><a href="/games/word/index.html">📝 Word Games</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <!-- 3. Software Dropdown (Multi-Level / OS Groupings + Sub-Subcategories) -->
+      <li class="nav-item has-dropdown">
+        <button class="nav-trigger" aria-expanded="false" aria-haspopup="true" type="button">
+          Software <span class="arrow" aria-hidden="true">▼</span>
+        </button>
+        <div class="dropdown-pane mega-software-pane">
+          <div class="software-grid">
+            <!-- Windows Grouping -->
+            <div class="software-col">
+              <span class="col-title">🖥️ Windows</span>
+              <ul>
+                <li><a href="/software/windows/utility/index.html">Utilities</a></li>
+                <li><a href="/software/windows/productivity/index.html">Productivity</a></li>
+                <li><a href="/software/windows/games/index.html">Games</a></li>
+                <li><a href="/software/windows/development/index.html">Development</a></li>
+                <li><a href="/software/windows/design/index.html">Design</a></li>
+                <li><a href="/software/windows/multimedia/index.html">Multimedia</a></li>
+              </ul>
+            </div>
+            <!-- Linux Grouping -->
+            <div class="software-col">
+              <span class="col-title">🐧 Linux</span>
+              <ul>
+                <li><a href="/software/linux/utility/index.html">Utilities</a></li>
+                <li><a href="/software/linux/productivity/index.html">Productivity</a></li>
+                <li><a href="/software/linux/games/index.html">Games</a></li>
+                <li><a href="/software/linux/development/index.html">Development</a></li>
+                <li><a href="/software/linux/design/index.html">Design</a></li>
+                <li><a href="/software/linux/multimedia/index.html">Multimedia</a></li>
+              </ul>
+            </div>
+            <!-- Android Grouping -->
+            <div class="software-col">
+              <span class="col-title">🤖 Android</span>
+              <ul>
+                <li><a href="/software/android/utility/index.html">Utilities</a></li>
+                <li><a href="/software/android/productivity/index.html">Productivity</a></li>
+                <li><a href="/software/android/games/index.html">Games</a></li>
+                <li><a href="/software/android/development/index.html">Development</a></li>
+                <li><a href="/software/android/design/index.html">Design</a></li>
+                <li><a href="/software/android/multimedia/index.html">Multimedia</a></li>
+              </ul>
+            </div>
+            <!-- Apple Grouping -->
+            <div class="software-col">
+              <span class="col-title">🍏 Apple OS</span>
+              <ul>
+                <li><a href="/software/apple/utility/index.html">Utilities</a></li>
+                <li><a href="/software/apple/productivity/index.html">Productivity</a></li>
+                <li><a href="/software/apple/games/index.html">Games</a></li>
+                <li><a href="/software/apple/development/index.html">Development</a></li>
+                <li><a href="/software/apple/design/index.html">Design</a></li>
+                <li><a href="/software/apple/multimedia/index.html">Multimedia</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <!-- 4. Tutorials Dropdown -->
+      <li class="nav-item has-dropdown">
+        <button class="nav-trigger" aria-expanded="false" aria-haspopup="true" type="button">
+          Tutorials <span class="arrow" aria-hidden="true">▼</span>
+        </button>
+        <div class="dropdown-pane">
+          <ul class="dropdown-grid grid-2">
+            <li><a href="/tutorials/web-dev/index.html">🌐 Web Development</a></li>
+            <li><a href="/tutorials/programming/index.html">🐍 Programming languages</a></li>
+            <li><a href="/tutorials/backend/index.html">🛢️ Backend & Devops</a></li>
+            <li><a href="/tutorials/design/index.html">🎨 UI/UX Design</a></li>
+            <li><a href="/tutorials/security/index.html">🔑 Cyber Security</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <!-- 5. Education Dropdown -->
+      <li class="nav-item has-dropdown">
+        <button class="nav-trigger" aria-expanded="false" aria-haspopup="true" type="button">
+          Education <span class="arrow" aria-hidden="true">▼</span>
+        </button>
+        <div class="dropdown-pane">
+          <ul class="dropdown-grid grid-2">
+            <li><a href="/education/math/index.html">🧮 Pure & Applied Math</a></li>
+            <li><a href="/education/science/index.html">🔬 General Science</a></li>
+            <li><a href="/education/humanities/index.html">🏛️ Humanities & History</a></li>
+            <li><a href="/education/languages/index.html">🗣️ Language Studies</a></li>
+            <li><a href="/education/finance/index.html">📈 Wealth & Finance</a></li>
+          </ul>
+        </div>
+      </li>
+
+    </ul>
+  </nav>
+
+  <!-- Actions (Settings, Language, Theme, Login) -->
+  <div class="header-actions">
+    
+    <!-- Language Dropdown -->
+    <div class="lang-selector-wrapper">
+      <button class="btn btn--ghost lang-trigger" id="lang-menu-btn" aria-expanded="false" aria-haspopup="listbox" aria-label="Select Language" type="button">
+        🌐 <span id="current-lang-label">EN</span>
+      </button>
+      <ul class="lang-dropdown-list" role="listbox" aria-label="Language options" id="lang-listbox">
+        <li role="option" aria-selected="true" data-lang="en" tabindex="0">English (EN)</li>
+        <li role="option" aria-selected="false" data-lang="es" tabindex="0">Español (ES)</li>
+        <li role="option" aria-selected="false" data-lang="fr" tabindex="0">Français (FR)</li>
+        <li role="option" aria-selected="false" data-lang="de" tabindex="0">Deutsch (DE)</li>
+        <li role="option" aria-selected="false" data-lang="hi" tabindex="0">हिन्दी (HI)</li>
+      </ul>
+    </div>
+
+    <!-- Theme Mode Toggle -->
+    <button class="dark-mode-toggle btn btn--ghost" id="theme-toggle-btn" type="button" title="Toggle Theme" aria-label="Toggle Theme" style="padding: 0.5rem;">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon-sun" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
     </button>
-  </nav>
+
+    <!-- Login Area -->
+    <div class="user-profile-wrapper" id="user-profile-section">
+      <button class="btn btn--primary" id="header-login-btn" type="button">Sign In</button>
+    </div>
+  </div>
 </div>

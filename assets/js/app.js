@@ -43,11 +43,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         const res = await fetch(`${prefix}components/header.html`);
         if (res.ok) {
           let html = await res.text();
-          // Resolve absolute sitemap & index paths relatively
-          html = html.replace(/href="\/index\.html"/g, `href="${prefix}index.html"`);
-          html = html.replace(/href="\/sitemap\.xml"/g, `href="${prefix}sitemap.xml"`);
+          // Resolve absolute sitemap, index, category, and asset paths relatively
+          html = html.replace(/href="\/(tools|games|software|tutorials|education|components|index\.html|sitemap\.xml)/g, (match, group) => {
+            return `href="${prefix}${group}`;
+          });
           headerContainer.innerHTML = html;
           setupThemeToggle();
+          setupHeaderInteractiveFeatures();
         }
       }
 
@@ -57,8 +59,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         const res = await fetch(`${prefix}components/footer.html`);
         if (res.ok) {
           let html = await res.text();
-          html = html.replace(/href="\/index\.html"/g, `href="${prefix}index.html"`);
-          html = html.replace(/href="\/sitemap\.xml"/g, `href="${prefix}sitemap.xml"`);
+          html = html.replace(/href="\/(tools|games|software|tutorials|education|components|index\.html|sitemap\.xml)/g, (match, group) => {
+            return `href="${prefix}${group}`;
+          });
           footerContainer.innerHTML = html;
           setupResetConsentButton();
         }
@@ -145,8 +148,153 @@ document.addEventListener('DOMContentLoaded', async () => {
     applyTheme(savedTheme);
   };
 
+  // Header Interactive Features: Navigation Toggles, Keyboard Controls, Login, Language Options
+  const setupHeaderInteractiveFeatures = () => {
+    // A. Dropdown Nav Toggles (Tools, Games, Software, etc.)
+    const dropdownItems = document.querySelectorAll('.nav-item.has-dropdown');
+    dropdownItems.forEach(item => {
+      const trigger = item.querySelector('.nav-trigger');
+      
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = item.classList.contains('show');
+        
+        // Close all other dropdowns
+        closeAllHeaderDropdowns();
+        
+        if (!isOpen) {
+          item.classList.add('show');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+
+      // Keyboard Trap inside Dropdown Panel
+      item.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          item.classList.remove('show');
+          trigger.setAttribute('aria-expanded', 'false');
+          trigger.focus();
+        }
+      });
+    });
+
+    // B. Language Selector Listbox
+    const langWrapper = document.querySelector('.lang-selector-wrapper');
+    const langBtn = document.getElementById('lang-menu-btn');
+    const langListbox = document.getElementById('lang-listbox');
+    const currentLangLabel = document.getElementById('current-lang-label');
+    const langOptions = document.querySelectorAll('#lang-listbox li');
+
+    if (langBtn && langWrapper && langListbox) {
+      langBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = langWrapper.classList.contains('show');
+        closeAllHeaderDropdowns();
+        
+        if (!isOpen) {
+          langWrapper.classList.add('show');
+          langBtn.setAttribute('aria-expanded', 'true');
+          // Focus first selectable language
+          const selectedOption = langListbox.querySelector('[aria-selected="true"]');
+          if (selectedOption) selectedOption.focus();
+        }
+      });
+
+      langWrapper.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          langWrapper.classList.remove('show');
+          langBtn.setAttribute('aria-expanded', 'false');
+          langBtn.focus();
+        }
+      });
+
+      // Handle selecting language
+      langOptions.forEach(opt => {
+        const selectLang = (element) => {
+          const langCode = element.dataset.lang;
+          localStorage.setItem('bluetext_lang', langCode);
+          currentLangLabel.textContent = langCode.toUpperCase();
+          
+          langOptions.forEach(o => {
+            o.setAttribute('aria-selected', 'false');
+          });
+          element.setAttribute('aria-selected', 'true');
+          
+          langWrapper.classList.remove('show');
+          langBtn.setAttribute('aria-expanded', 'false');
+          langBtn.focus();
+        };
+
+        opt.addEventListener('click', () => selectLang(opt));
+        opt.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            selectLang(opt);
+          }
+        });
+      });
+
+      // Restore active language selection
+      const savedLang = localStorage.getItem('bluetext_lang') || 'en';
+      const activeOption = langListbox.querySelector(`[data-lang="${savedLang}"]`);
+      if (activeOption) {
+        langOptions.forEach(o => o.setAttribute('aria-selected', 'false'));
+        activeOption.setAttribute('aria-selected', 'true');
+        currentLangLabel.textContent = savedLang.toUpperCase();
+      }
+    }
+
+    // C. User Login Simulation
+    const userSection = document.getElementById('user-profile-section');
+    
+    const updateLoginUI = () => {
+      if (!userSection) return;
+      const isLoggedIn = localStorage.getItem('bluetext_user_logged');
+      
+      if (isLoggedIn) {
+        userSection.innerHTML = `
+          <div style="display: flex; align-items: center; gap: 0.65rem;">
+            <span style="font-size: 0.85rem; color: var(--accent-success); font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">
+              <span style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--accent-success); box-shadow: 0 0 8px var(--accent-success);"></span> Admin
+            </span>
+            <button class="btn btn--ghost" id="header-logout-btn" style="padding: 0.35rem 0.65rem; font-size: 0.75rem;" type="button">Sign Out</button>
+          </div>
+        `;
+        document.getElementById('header-logout-btn').addEventListener('click', () => {
+          localStorage.removeItem('bluetext_user_logged');
+          updateLoginUI();
+        });
+      } else {
+        userSection.innerHTML = `<button class="btn btn--primary" id="header-login-btn" type="button" style="padding: 0.45rem 1rem; font-size: 0.85rem;">Sign In</button>`;
+        document.getElementById('header-login-btn').addEventListener('click', () => {
+          localStorage.setItem('bluetext_user_logged', 'true');
+          updateLoginUI();
+        });
+      }
+    };
+
+    updateLoginUI();
+
+    // Helper: Close all menus when clicking outside
+    document.addEventListener('click', () => {
+      closeAllHeaderDropdowns();
+    });
+
+    function closeAllHeaderDropdowns() {
+      dropdownItems.forEach(item => {
+        item.classList.remove('show');
+        item.querySelector('.nav-trigger').setAttribute('aria-expanded', 'false');
+      });
+      if (langWrapper) {
+        langWrapper.classList.remove('show');
+        langBtn.setAttribute('aria-expanded', 'false');
+      }
+    }
+  };
+
   // Run dynamic loading
   await loadDynamicComponents();
+
 
 
   // 5. Explorer Dashboard Registry Navigation and Search
