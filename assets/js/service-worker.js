@@ -1,71 +1,70 @@
-const CACHE_NAME = 'bluetext-offline-v5';
-const ASSETS_TO_CACHE = [
+/* Service Worker - Enables offline support */
+
+const CACHE_NAME = 'bluetext-v1';
+const urlsToCache = [
   '/',
   '/index.html',
-  '/assets/css/main.css',
-  '/assets/css/themes.css',
-  '/assets/css/base.css',
-  '/assets/css/components.css',
+  '/assets/css/config.css',
+  '/assets/css/reset.css',
+  '/assets/css/header.css',
+  '/assets/css/footer.css',
+  '/assets/css/layout.css',
+  '/assets/js/config.js',
+  '/assets/js/theme.js',
+  '/assets/js/auth.js',
+  '/assets/js/nav.js',
   '/assets/js/app.js',
-  '/assets/data/tools.json'
 ];
 
+// Install event
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS_TO_CACHE);
-    }).then(() => self.skipWaiting()).catch(err => {
-      console.warn("Offline caching skipped during installation:", err);
+      return cache.addAll(urlsToCache).catch(() => {
+        // It's OK if some resources fail to cache
+      });
     })
   );
+  self.skipWaiting();
 });
 
+// Activate event
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (cacheName !== CACHE_NAME) {
-            console.log("Clearing old cache:", cacheName);
             return caches.delete(cacheName);
           }
         })
       );
-    }).then(() => self.clients.claim())
+    })
   );
+  self.clients.claim();
 });
 
+// Fetch event - Network first, fallback to cache
 self.addEventListener('fetch', (event) => {
-  if (event.request.method !== 'GET') return;
-  
+  if (event.request.method !== 'GET') {
+    return;
+  }
+
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        // Return cached, and fetch in background to refresh
-        fetch(event.request).then((networkResponse) => {
-          if (networkResponse.status === 200) {
-            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, networkResponse));
-          }
-        }).catch(() => {});
-        return cachedResponse;
-      }
-      
-      return fetch(event.request).then((networkResponse) => {
-        if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
-          return networkResponse;
-        }
-        const responseToCache = networkResponse.clone();
+    fetch(event.request)
+      .then((response) => {
+        // Clone the response
+        const responseToCache = response.clone();
         caches.open(CACHE_NAME).then((cache) => {
           cache.put(event.request, responseToCache);
         });
-        return networkResponse;
-      }).catch(async () => {
-        // Fallback for offline access
-        if (event.request.mode === 'navigate') {
-          const cache = await caches.open(CACHE_NAME);
-          return cache.match('/index.html');
-        }
-      });
-    })
+        return response;
+      })
+      .catch(() => {
+        // Fallback to cache
+        return caches.match(event.request).then((response) => {
+          return response || new Response('Offline - resource not cached', { status: 503 });
+        });
+      })
   );
 });

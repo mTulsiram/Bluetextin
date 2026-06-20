@@ -1,145 +1,303 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BlueTEXT - Premium Visual Sitemap Directory & Offline Portal</title>
-  <meta name="description" content="Discover 1,000+ interactive client-side developer tools, games, offline software, tutorials, and study resources. Features high-performance real-time search, local sandboxing, and WCAG AA accessibility.">
+  <meta name="description" content="BlueTEXT.in - Your local-first, offline-ready utility suite with tools, games, software guides, and educational content.">
+  <meta name="keywords" content="tools, utilities, games, education, tutorials, software">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="color-scheme" content="light dark">
   
-  <!-- Modern Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Main Stylesheet (imports themes, base, and components) -->
-  <link rel="stylesheet" href="./assets/css/main.css">
-  
+  <title>BlueTEXT.in - Tools, Games & Education</title>
+
+  <!-- MASTER CSS CONFIGURATION - All styling controlled here -->
+  <link rel="stylesheet" href="/assets/css/config.css">
+  <link rel="stylesheet" href="/assets/css/reset.css">
+  <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="./assets/images/favicon.png" onerror="this.onerror=null; this.href='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>';">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' fill='%230066ff'>T</text></svg>">
 </head>
-<body class="theme-light" data-theme="light">
-  <!-- Dynamic Global Header -->
-  <header class="global-header" id="global-header">
-    <!-- Loaded dynamically by app.js -->
-    <div class="header-content">
-      <a href="./index.html" class="logo-text" aria-label="BlueTEXT.in Home">
-        <span class="logo-wordmark" aria-hidden="true">
-          <span class="logo-blue">Blue</span><span class="logo-text-pt">TEXT</span><span class="logo-in" style="color: var(--accent-warning);">.in</span>
-        </span>
-      </a>
-      <nav class="header-actions">
-        <a href="./index.html" style="font-weight: 500; text-decoration: none; color: var(--text-primary);">All Tools</a>
-        <button class="dark-mode-toggle btn btn--ghost" id="theme-toggle-btn" type="button" title="Toggle Theme" aria-label="Toggle Theme" style="padding: 0.5rem;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon-sun" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-        </button>
-      </nav>
-    </div>
-  </header>
+<body>
+  <div id="app">
+    <!-- HEADER - Reusable component -->
+    <header>
+      <div class="header-container">
+        <!-- Logo -->
+        <a href="/" class="logo" title="Home">
+          <span class="logo-text">Blue</span><span class="logo-in">TEXT</span><span class="logo-text">.in</span>
+        </a>
 
-  <!-- Interactive Directory Explorer Main Content -->
-  <main id="main-content" tabindex="-1" class="container" style="max-width: 1200px; margin: 0 auto; padding: var(--space-8) var(--space-4);">
+        <!-- Navigation Menu -->
+        <nav>
+          <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+            ☰
+          </button>
+          <ul class="nav-menu">
+            <li><a href="/pages/games/" class="nav-link">🎮 Games</a></li>
+            <li><a href="/pages/tools/" class="nav-link">🛠️ Tools</a></li>
+            <li><a href="/pages/software/" class="nav-link">💻 Software</a></li>
+            <li><a href="/pages/education/" class="nav-link">📚 Education</a></li>
+            <li><a href="/pages/tutorials/" class="nav-link">🎓 Tutorials</a></li>
+          </ul>
+        </nav>
 
-
-    
-    <!-- Hero / Header Deck -->
-    <section style="text-align: center; margin-bottom: var(--space-8);">
-      <h1 data-i18n="title" class="hero-title">
-        Local static web directory
-      </h1>
-      <p data-i18n="subtitle" style="color: var(--text-secondary); max-width: 600px; margin: 0 auto var(--space-6) auto; font-size: 1.125rem;">
-        Browse offline-ready client-side utilities, retro arcade games, and comprehensive learning materials.
-      </p>
-
-      <!-- Global Search Bar -->
-      <div style="position: relative; max-width: 640px; margin: 0 auto;">
-        <input type="text" id="directory-search-input" class="input" placeholder="Search 470+ modules (e.g. base64, snake, calculus, git)..." aria-label="Search directory" style="padding-left: 3rem; font-size: 1.1rem; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.35);">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 1.25rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none;">
-          <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-        <button id="search-clear-btn" type="button" aria-label="Clear search" style="position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-muted); cursor: pointer; display: none;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-        </button>
+        <!-- Right Controls -->
+        <div class="header-controls">
+          <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+            <span>🌙</span> Dark
+          </button>
+          <div class="auth-controls" data-auth-container>
+            <button class="btn btn-secondary btn-sm" data-action="login">Login</button>
+            <button class="btn btn-primary btn-sm" data-action="register">Register</button>
+          </div>
+        </div>
       </div>
-    </section>
+    </header>
 
-    <!-- Visual Explorer Grid -->
-    <section class="explorer-container">
-      <!-- Categories Sidebar -->
-      <aside class="explorer-sidebar" aria-label="Directory categories">
-        <div class="category-node active" id="node-all" data-category="all" role="button" tabindex="0">
-          <span>📁 <span data-i18n="all_categories">All Categories</span></span>
-          <span style="font-size: 0.8rem; opacity: 0.7;" id="count-all">0</span>
-        </div>
-        <div class="category-node" id="node-tools" data-category="tools" role="button" tabindex="0">
-          <span>🛠️ <span data-i18n="tools">Tools</span></span>
-          <span style="font-size: 0.8rem; opacity: 0.7;" id="count-tools">0</span>
-        </div>
-        <div class="category-node" id="node-games" data-category="games" role="button" tabindex="0">
-          <span>🎮 <span data-i18n="games">Games</span></span>
-          <span style="font-size: 0.8rem; opacity: 0.7;" id="count-games">0</span>
-        </div>
-        <div class="category-node" id="node-software" data-category="software" role="button" tabindex="0">
-          <span>💿 <span data-i18n="software">Software</span></span>
-          <span style="font-size: 0.8rem; opacity: 0.7;" id="count-software">0</span>
-        </div>
-        <div class="category-node" id="node-tutorials" data-category="tutorials" role="button" tabindex="0">
-          <span>📚 <span data-i18n="tutorials">Tutorials</span></span>
-          <span style="font-size: 0.8rem; opacity: 0.7;" id="count-tutorials">0</span>
-        </div>
-        <div class="category-node" id="node-education" data-category="education" role="button" tabindex="0">
-          <span>🎓 <span data-i18n="education">Education</span></span>
-          <span style="font-size: 0.8rem; opacity: 0.7;" id="count-education">0</span>
-        </div>
-      </aside>
-
-      <!-- Main Explorer Browser view -->
-      <article style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: var(--space-5); box-shadow: var(--glass-shadow); backdrop-filter: var(--glass-blur);">
-        
-        <!-- Breadcrumb & Directory Path indicator -->
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: var(--space-4); margin-bottom: var(--space-4); flex-wrap: wrap; gap: var(--space-2);">
-          <div id="explorer-breadcrumbs" style="font-family: monospace; font-size: 0.9rem; color: var(--accent-primary-hover); display: flex; align-items: center; gap: 0.5rem;">
-            <span>Root</span>
+    <!-- MAIN CONTENT -->
+    <main>
+      <div class="container">
+        <!-- Hero Section -->
+        <section class="hero" style="text-align: center; margin-bottom: var(--spacing-3xl); padding: var(--spacing-3xl) 0;">
+          <h1 style="margin-bottom: var(--spacing-md);">Welcome to <span style="color: var(--accent-primary);">BlueTEXT</span><span style="color: var(--accent-warning);">.in</span></h1>
+          <p style="font-size: var(--font-size-lg); color: var(--text-secondary); margin-bottom: var(--spacing-lg); max-width: 600px; margin-left: auto; margin-right: auto;">
+            Your local-first, offline-ready utility suite. No backend, no tracking, just pure client-side tools for productivity, learning, and fun.
+          </p>
+          <div style="display: flex; gap: var(--spacing-lg); justify-content: center; flex-wrap: wrap;">
+            <button class="btn btn-primary btn-lg" onclick="window.location.href='/pages/tools/'">Explore Tools</button>
+            <button class="btn btn-secondary btn-lg" onclick="window.location.href='/pages/games/'">Play Games</button>
           </div>
-          <div style="font-size: 0.8rem; color: var(--text-muted);" id="explorer-item-counter">
-            Showing 0 folders / files
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+          <h2 style="text-align: center; margin-bottom: var(--spacing-2xl);">Why Choose BlueTEXT.in?</h2>
+          <div class="grid grid-3">
+            <div class="card">
+              <div class="card-header">
+                <div style="font-size: 2rem; margin-bottom: var(--spacing-md);">🔒</div>
+                <h3 class="card-title">100% Private</h3>
+              </div>
+              <div class="card-body">
+                <p>No backend servers, no data collection, no tracking cookies. Everything runs locally in your browser.</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div style="font-size: 2rem; margin-bottom: var(--spacing-md);">⚡</div>
+                <h3 class="card-title">Lightning Fast</h3>
+              </div>
+              <div class="card-body">
+                <p>No network requests needed. All tools run instantly without any server dependencies.</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div style="font-size: 2rem; margin-bottom: var(--spacing-md);">📦</div>
+                <h3 class="card-title">Offline Ready</h3>
+              </div>
+              <div class="card-body">
+                <p>Works completely offline with service worker support. Perfect for planes, trains, and remote areas.</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div style="font-size: 2rem; margin-bottom: var(--spacing-md);">🎨</div>
+                <h3 class="card-title">Dark Mode</h3>
+              </div>
+              <div class="card-body">
+                <p>Seamless dark/light mode toggle that respects your system preferences and persists across sessions.</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div style="font-size: 2rem; margin-bottom: var(--spacing-md);">♿</div>
+                <h3 class="card-title">Accessible</h3>
+              </div>
+              <div class="card-body">
+                <p>WCAG 2.2 AA compliant with proper ARIA labels, keyboard navigation, and screen reader support.</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div style="font-size: 2rem; margin-bottom: var(--spacing-md);">🌍</div>
+                <h3 class="card-title">Open Source</h3>
+              </div>
+              <div class="card-body">
+                <p>Built with clean, modular code. Contribute on GitHub and help improve BlueTEXT.in.</p>
+              </div>
+            </div>
           </div>
+        </section>
+
+        <!-- Categories Overview -->
+        <section class="categories">
+          <h2 style="text-align: center; margin-bottom: var(--spacing-2xl);">Explore Our Categories</h2>
+          
+          <div class="grid grid-4">
+            <a href="/pages/games/" class="card" style="text-decoration: none; cursor: pointer;">
+              <div class="card-header">
+                <div style="font-size: 3rem; text-align: center;">🎮</div>
+                <h3 class="card-title" style="text-align: center;">Games</h3>
+              </div>
+              <div class="card-body" style="text-align: center;">
+                <p>Arcade, puzzles, card games, and more</p>
+              </div>
+            </a>
+
+            <a href="/pages/tools/" class="card" style="text-decoration: none; cursor: pointer;">
+              <div class="card-header">
+                <div style="font-size: 3rem; text-align: center;">🛠️</div>
+                <h3 class="card-title" style="text-align: center;">Tools</h3>
+              </div>
+              <div class="card-body" style="text-align: center;">
+                <p>Utilities for work and productivity</p>
+              </div>
+            </a>
+
+            <a href="/pages/software/" class="card" style="text-decoration: none; cursor: pointer;">
+              <div class="card-header">
+                <div style="font-size: 3rem; text-align: center;">💻</div>
+                <h3 class="card-title" style="text-align: center;">Software</h3>
+              </div>
+              <div class="card-body" style="text-align: center;">
+                <p>Guides for Windows, Linux, Android, Apple</p>
+              </div>
+            </a>
+
+            <a href="/pages/education/" class="card" style="text-decoration: none; cursor: pointer;">
+              <div class="card-header">
+                <div style="font-size: 3rem; text-align: center;">📚</div>
+                <h3 class="card-title" style="text-align: center;">Education</h3>
+              </div>
+              <div class="card-body" style="text-align: center;">
+                <p>Learn finance, science, languages, and more</p>
+              </div>
+            </a>
+
+            <a href="/pages/tutorials/" class="card" style="text-decoration: none; cursor: pointer;">
+              <div class="card-header">
+                <div style="font-size: 3rem; text-align: center;">🎓</div>
+                <h3 class="card-title" style="text-align: center;">Tutorials</h3>
+              </div>
+              <div class="card-body" style="text-align: center;">
+                <p>Step-by-step guides and how-tos</p>
+              </div>
+            </a>
+          </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section style="background-color: var(--bg-secondary); padding: var(--spacing-3xl); border-radius: var(--radius-lg); text-align: center; margin-top: var(--spacing-3xl);">
+          <h2 style="margin-bottom: var(--spacing-md);">Ready to Explore?</h2>
+          <p style="margin-bottom: var(--spacing-lg); color: var(--text-secondary);">Choose a category above or use the navigation menu to get started.</p>
+          <div style="display: flex; gap: var(--spacing-lg); justify-content: center; flex-wrap: wrap;">
+            <a href="/pages/tools/" class="btn btn-primary btn-lg">Go to Tools</a>
+            <a href="/pages/games/" class="btn btn-secondary btn-lg">Go to Games</a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- FOOTER - Reusable component -->
+    <footer>
+      <div class="footer-container">
+        <!-- About Section -->
+        <div class="footer-section">
+          <h3>About BlueTEXT.in</h3>
+          <p>Your local-first, offline-ready utility suite. No backend, no tracking, just pure client-side tools.</p>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/pages/games/">Games</a></li>
+            <li><a href="/pages/tools/">Tools</a></li>
+            <li><a href="/pages/software/">Software</a></li>
+          </ul>
         </div>
 
-        <!-- Files / Subfolders view pane -->
-        <div id="file-list-pane" class="file-list-pane">
-          <!-- Populated dynamically by app.js -->
-          <div style="text-align: center; padding: var(--space-8); color: var(--text-muted);">
-            <div style="font-size: 2rem; margin-bottom: var(--space-3);">🔄</div>
-            Loading directory structures...
-          </div>
+        <!-- Resources Section -->
+        <div class="footer-section">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="/pages/education/">Education</a></li>
+            <li><a href="/pages/tutorials/">Tutorials</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
         </div>
-      </article>
-    </section>
-  </main>
 
-  <!-- Global Footer -->
-  <footer class="global-footer" id="global-footer">
-    <!-- Loaded dynamically by app.js -->
-  </footer>
+        <!-- Legal Section -->
+        <div class="footer-section">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="#privacy">Privacy Policy</a></li>
+            <li><a href="#terms">Terms of Service</a></li>
+            <li><a href="#cookies">Cookie Policy</a></li>
+            <li><a href="#accessibility">Accessibility</a></li>
+          </ul>
+        </div>
 
-  <!-- GDPR/PIPL/CCPA Cookie Consent Dialog -->
-  <div class="consent-banner" id="consent-banner" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="consent-title">
-    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-      <h3 id="consent-title" style="margin: 0; font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--accent-primary-hover);">
-        Privacy & Cookie Settings
-      </h3>
-    </div>
-    <p style="margin: 0; font-size: 0.875rem; color: var(--text-secondary); line-height: 1.45;">
-      We use client-side local storage exclusively to save your active theme preference and app settings. No cookies are transmitted to any servers, ensuring absolute compliance with GDPR, PIPL, CCPA, and DPDP.
-    </p>
-    <div style="display: flex; gap: var(--space-3); justify-content: flex-end;">
-      <button class="btn btn--ghost" id="consent-reject-btn" style="padding: 0.45rem 1rem; font-size: 0.85rem;" type="button">Reject Optional</button>
-      <button class="btn btn--primary" id="consent-accept-btn" style="padding: 0.45rem 1.15rem; font-size: 0.85rem;" type="button">Accept All</button>
-    </div>
+        <!-- Connect Section -->
+        <div class="footer-section">
+          <h3>Connect</h3>
+          <ul>
+            <li><a href="https://github.com">GitHub</a></li>
+            <li><a href="https://twitter.com">Twitter</a></li>
+            <li><a href="https://discord.gg">Discord</a></li>
+            <li><a href="mailto:hello@bluetext.in">Email</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Compliance Section -->
+      <div class="footer-compliance">
+        <div class="compliance-badges">
+          <span class="badge success">✓ GDPR</span>
+          <span class="badge success">✓ CCPA</span>
+          <span class="badge success">✓ PIPL</span>
+          <span class="badge success">✓ LGPD</span>
+          <span class="badge success">✓ DPDP</span>
+          <span class="badge success">✓ WCAG 2.2 AA</span>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p>&copy; 2026 BlueTEXT.in. All rights reserved.</p>
+        <p>Built with ❤️ for the open web. No tracking, no ads, just tools.</p>
+        <div class="footer-bottom-links">
+          <a href="#sitemap">Sitemap</a>
+          <a href="#changelog">Changelog</a>
+          <a href="#status">Status</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Notifications Container -->
+    <div data-notifications style="position: fixed; top: 20px; right: 20px; z-index: 1080; max-width: 400px;"></div>
   </div>
 
-  <!-- Main JavaScript Runtime -->
-  <script src="./assets/js/app.js" type="module"></script>
+  <!-- MASTER JS CONFIGURATION - All scripts in order -->
+  <script src="/assets/js/config.js"></script>
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/auth.js"></script>
+  <script src="/assets/js/nav.js"></script>
+  <script src="/assets/js/app.js"></script>
+
+  <!-- Service Worker Registration (for offline support) -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/assets/js/service-worker.js').catch(() => {
+        console.log('Service worker registration failed - this is OK for development');
+      });
+    }
+  </script>
 </body>
 </html>
