@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlueTEXT - Premium Visual Sitemap Directory & Offline Portal</title>
+  <meta name="description" content="Discover 1,000+ interactive client-side developer tools, games, offline software, tutorials, and study resources. Features high-performance real-time search, local sandboxing, and WCAG AA accessibility.">
+  
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet (imports themes, base, and components) -->
+  <link rel="stylesheet" href="./assets/css/main.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./assets/images/favicon.png" onerror="this.onerror=null; this.href='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>';">
+</head>
+<body class="theme-dark">
+  <!-- Dynamic Global Header -->
+  <header class="global-header" id="global-header">
+    <!-- Loaded dynamically by app.js -->
+    <div class="header-content">
+      <a href="./index.html" class="logo-text" aria-label="BlueTEXT Home">
+        <span class="logo-wordmark" aria-hidden="true">
+          <span class="logo-blue">Blue</span><span class="logo-text-pt">TEXT</span>
+        </span>
+      </a>
+      <nav class="header-actions">
+        <a href="./index.html" style="font-weight: 500; text-decoration: none; color: var(--text-primary);">All Tools</a>
+        <button class="dark-mode-toggle btn btn--ghost" id="theme-toggle-btn" type="button" title="Toggle Theme" aria-label="Toggle Theme" style="padding: 0.5rem;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon-sun" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Interactive Directory Explorer Main Content -->
+  <main class="container" style="max-width: 1200px; margin: 0 auto; padding: var(--space-8) var(--space-4);">
+    
+    <!-- Hero / Header Deck -->
+    <section style="text-align: center; margin-bottom: var(--space-8);">
+      <h1 style="font-family: var(--font-display); font-size: 2.75rem; font-weight: 800; line-height: 1.15; margin-bottom: var(--space-3); background: linear-gradient(135deg, #fff 30%, var(--accent-primary-hover) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+        Local static web directory
+      </h1>
+      <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto var(--space-6) auto; font-size: 1.125rem;">
+        Browse offline-ready client-side utilities, retro arcade games, and comprehensive learning materials.
+      </p>
+
+      <!-- Global Search Bar -->
+      <div style="position: relative; max-width: 640px; margin: 0 auto;">
+        <input type="text" id="directory-search-input" class="input" placeholder="Search 470+ modules (e.g. base64, snake, calculus, git)..." aria-label="Search directory" style="padding-left: 3rem; font-size: 1.1rem; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.35);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 1.25rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none;">
+          <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <button id="search-clear-btn" type="button" aria-label="Clear search" style="position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-muted); cursor: pointer; display: none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- Visual Explorer Grid -->
+    <section class="explorer-container">
+      <!-- Categories Sidebar -->
+      <aside class="explorer-sidebar" aria-label="Directory categories">
+        <div class="category-node active" id="node-all" data-category="all" role="button" tabindex="0">
+          <span>📁 All Categories</span>
+          <span style="font-size: 0.8rem; opacity: 0.7;" id="count-all">0</span>
+        </div>
+        <div class="category-node" id="node-tools" data-category="tools" role="button" tabindex="0">
+          <span>🛠️ Tools</span>
+          <span style="font-size: 0.8rem; opacity: 0.7;" id="count-tools">0</span>
+        </div>
+        <div class="category-node" id="node-games" data-category="games" role="button" tabindex="0">
+          <span>🎮 Games</span>
+          <span style="font-size: 0.8rem; opacity: 0.7;" id="count-games">0</span>
+        </div>
+        <div class="category-node" id="node-software" data-category="software" role="button" tabindex="0">
+          <span>💿 Software</span>
+          <span style="font-size: 0.8rem; opacity: 0.7;" id="count-software">0</span>
+        </div>
+        <div class="category-node" id="node-tutorials" data-category="tutorials" role="button" tabindex="0">
+          <span>📚 Tutorials</span>
+          <span style="font-size: 0.8rem; opacity: 0.7;" id="count-tutorials">0</span>
+        </div>
+        <div class="category-node" id="node-education" data-category="education" role="button" tabindex="0">
+          <span>🎓 Education</span>
+          <span style="font-size: 0.8rem; opacity: 0.7;" id="count-education">0</span>
+        </div>
+      </aside>
+
+      <!-- Main Explorer Browser view -->
+      <article style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: var(--space-5); box-shadow: var(--glass-shadow); backdrop-filter: var(--glass-blur);">
+        
+        <!-- Breadcrumb & Directory Path indicator -->
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: var(--space-4); margin-bottom: var(--space-4); flex-wrap: wrap; gap: var(--space-2);">
+          <div id="explorer-breadcrumbs" style="font-family: monospace; font-size: 0.9rem; color: var(--accent-primary-hover); display: flex; align-items: center; gap: 0.5rem;">
+            <span>Root</span>
+          </div>
+          <div style="font-size: 0.8rem; color: var(--text-muted);" id="explorer-item-counter">
+            Showing 0 folders / files
+          </div>
+        </div>
+
+        <!-- Files / Subfolders view pane -->
+        <div id="file-list-pane" class="file-list-pane">
+          <!-- Populated dynamically by app.js -->
+          <div style="text-align: center; padding: var(--space-8); color: var(--text-muted);">
+            <div style="font-size: 2rem; margin-bottom: var(--space-3);">🔄</div>
+            Loading directory structures...
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="global-footer" id="global-footer">
+    <!-- Loaded dynamically by app.js -->
+  </footer>
+
+  <!-- GDPR/PIPL/CCPA Cookie Consent Dialog -->
+  <div class="consent-banner" id="consent-banner" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="consent-title">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+      <h3 id="consent-title" style="margin: 0; font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--accent-primary-hover);">
+        Privacy & Cookie Settings
+      </h3>
+    </div>
+    <p style="margin: 0; font-size: 0.875rem; color: var(--text-secondary); line-height: 1.45;">
+      We use client-side local storage exclusively to save your active theme preference and app settings. No cookies are transmitted to any servers, ensuring absolute compliance with GDPR, PIPL, CCPA, and DPDP.
+    </p>
+    <div style="display: flex; gap: var(--space-3); justify-content: flex-end;">
+      <button class="btn btn--ghost" id="consent-reject-btn" style="padding: 0.45rem 1rem; font-size: 0.85rem;" type="button">Reject Optional</button>
+      <button class="btn btn--primary" id="consent-accept-btn" style="padding: 0.45rem 1.15rem; font-size: 0.85rem;" type="button">Accept All</button>
+    </div>
+  </div>
+
+  <!-- Main JavaScript Runtime -->
+  <script src="./assets/js/app.js" type="module"></script>
+</body>
+</html>

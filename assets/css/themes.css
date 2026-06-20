@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Typography */
+  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Color Palette - Cyber Glass (Dark Mode Default) */
+  --bg-canvas: #06080c;
+  --bg-card: rgba(13, 17, 28, 0.7);
+  --bg-card-hover: rgba(22, 28, 45, 0.85);
+  
+  /* Text Contrast - WCAG 2.2 Level AA Compliant */
+  --text-primary: #f3f4f6;       /* White-grey (Contrast > 10:1 against canvas) */
+  --text-secondary: #d1d5db;     /* Light-medium grey (Contrast > 7:1 against canvas) */
+  --text-muted: #9ca3af;         /* Medium-light grey (Contrast > 4.8:1 against canvas) */
+
+  /* Accents & Neon Highlights */
+  --accent-primary: #3b82f6;           /* Electric Blue */
+  --accent-primary-glow: rgba(59, 130, 246, 0.25);
+  --accent-primary-hover: #60a5fa;
+  --accent-secondary: #8b5cf6;         /* Royal Violet */
+  --accent-secondary-glow: rgba(139, 92, 246, 0.25);
+  --accent-success: #10b981;           /* Emerald Green */
+  --accent-danger: #ef4444;            /* Neon Red */
+  --accent-warning: #f59e0b;           /* Amber Gold */
+
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-focus: #3b82f6;
+  
+  /* Accessible Focus Indication (WCAG 2.2 AA 3:1 focus contrast rule) */
+  --focus-ring: 0 0 0 3px #3b82f6;
+  --focus-outline: 2px solid transparent;
+
+  /* Geometry & Spacing */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 9999px;
+  
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-8: 3rem;
+
+  /* Glassmorphism Configuration */
+  --glass-blur: blur(16px);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="light"] {
+  --bg-canvas: #f8fafc;
+  --bg-card: rgba(255, 255, 255, 0.85);
+  --bg-card-hover: rgba(255, 255, 255, 0.95);
+  
+  --text-primary: #0f172a;       /* Dark slate (Contrast > 15:1 against canvas) */
+  --text-secondary: #334155;     /* Slate (Contrast > 9:1 against canvas) */
+  --text-muted: #475569;         /* Light slate (Contrast > 6:1 against canvas) */
+
+  --accent-primary: #2563eb;
+  --accent-primary-glow: rgba(37, 99, 235, 0.12);
+  --accent-primary-hover: #1d4ed8;
+  --accent-secondary: #7c3aed;
+  
+  --border-subtle: rgba(15, 23, 42, 0.08);
+  --border-focus: #2563eb;
+  --focus-ring: 0 0 0 3px #2563eb;
+  --glass-shadow: 0 8px 32px 0 rgba(15, 23, 42, 0.06);
+}

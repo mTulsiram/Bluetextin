@@ -1,0 +1,3341 @@
+[
+  {
+    "path": "tools/coding/base64-encoder.html",
+    "name": "Base64 Encoder",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive base64 encoder tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/bcrypt-hash-checker.html",
+    "name": "Bcrypt Hash Checker",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive bcrypt hash checker tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/box-shadow-generator.html",
+    "name": "Box Shadow Generator",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive box shadow generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/cron-expression-descriptor.html",
+    "name": "Cron Expression Descriptor",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive cron expression descriptor tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/css-beautifier.html",
+    "name": "Css Beautifier",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive css beautifier tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/css-gradient-button-maker.html",
+    "name": "Css Gradient Button Maker",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive css gradient button maker tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/css-grid-generator.html",
+    "name": "Css Grid Generator",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive css grid generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/flexbox-playground.html",
+    "name": "Flexbox Playground",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive flexbox playground tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/gitignore-generator.html",
+    "name": "Gitignore Generator",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive gitignore generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/hmac-generator.html",
+    "name": "Hmac Generator",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive hmac generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/html-entities-escape.html",
+    "name": "Html Entities Escape",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive html entities escape tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/html-minifier.html",
+    "name": "Html Minifier",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive html minifier tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/htpasswd-generator.html",
+    "name": "Htpasswd Generator",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive htpasswd generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/javascript-obfuscator.html",
+    "name": "Javascript Obfuscator",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive javascript obfuscator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/json-formatter.html",
+    "name": "Json Formatter",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive json formatter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/json-schema-validator.html",
+    "name": "Json Schema Validator",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive json schema validator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/jwt-decoder.html",
+    "name": "Jwt Decoder",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive jwt decoder tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/markdown-to-html.html",
+    "name": "Markdown to HTML",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive markdown to html tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/md5-hash-generator.html",
+    "name": "Md5 Hash Generator",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive md5 hash generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/regex-tester.html",
+    "name": "Regex Tester",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive regex tester tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/rgba-to-hex-converter.html",
+    "name": "Rgba to Hex Converter",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive rgba to hex converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/rsa-key-pair-generator.html",
+    "name": "Rsa Key Pair Generator",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive rsa key pair generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/sha256-hash-generator.html",
+    "name": "Sha256 Hash Generator",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive sha256 hash generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/sql-formatter.html",
+    "name": "Sql Formatter",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive sql formatter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/string-to-hex.html",
+    "name": "String to Hex",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive string to hex tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/url-encoder-decoder.html",
+    "name": "Url Encoder Decoder",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive url encoder decoder tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/user-agent-parser.html",
+    "name": "User Agent Parser",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive user agent parser tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/uuid-v4-generator.html",
+    "name": "Uuid V4 Generator",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive uuid v4 generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/xml-to-json.html",
+    "name": "Xml to JSON",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive xml to json tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/coding/yaml-to-json.html",
+    "name": "Yaml to JSON",
+    "category": "tools",
+    "subcategory": "coding",
+    "description": "Client-side interactive yaml to json tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/angle-converter.html",
+    "name": "Angle Converter",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive angle converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/area-converter.html",
+    "name": "Area Converter",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive area converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/braille-translator.html",
+    "name": "Braille Translator",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive braille translator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/bytes-to-human-readable.html",
+    "name": "Bytes to Human Readable",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive bytes to human readable tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/clothing-size-converter.html",
+    "name": "Clothing Size Converter",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive clothing size converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/cooking-measurement-converter.html",
+    "name": "Cooking Measurement Converter",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive cooking measurement converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/data-storage-converter.html",
+    "name": "Data Storage Converter",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive data storage converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/density-calculator.html",
+    "name": "Density Calculator",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive density calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/energy-converter.html",
+    "name": "Energy Converter",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive energy converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/flow-rate-converter.html",
+    "name": "Flow Rate Converter",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive flow rate converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/force-converter.html",
+    "name": "Force Converter",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive force converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/fuel-consumption-converter.html",
+    "name": "Fuel Consumption Converter",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive fuel consumption converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/gmt-to-local-time.html",
+    "name": "Gmt to Local Time",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive gmt to local time tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/hz-to-ms-converter.html",
+    "name": "Hz to Ms Converter",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive hz to ms converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/length-converter.html",
+    "name": "Length Converter",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive length converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/morse-to-text.html",
+    "name": "Morse to Text",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive morse to text tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/number-to-words-converter.html",
+    "name": "Number to Words Converter",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive number to words converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/power-converter.html",
+    "name": "Power Converter",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive power converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/pressure-converter.html",
+    "name": "Pressure Converter",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive pressure converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/radiation-converter.html",
+    "name": "Radiation Converter",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive radiation converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/roman-numerals-converter.html",
+    "name": "Roman Numerals Converter",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive roman numerals converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/shoe-size-converter.html",
+    "name": "Shoe Size Converter",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive shoe size converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/speed-converter.html",
+    "name": "Speed Converter",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive speed converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/temperature-converter.html",
+    "name": "Temperature Converter",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive temperature converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/time-zone-converter.html",
+    "name": "Time Zone Converter",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive time zone converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/torque-converter.html",
+    "name": "Torque Converter",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive torque converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/unix-timestamp-converter.html",
+    "name": "Unix Timestamp Converter",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive unix timestamp converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/voltage-to-watts.html",
+    "name": "Voltage to Watts",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive voltage to watts tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/volume-converter.html",
+    "name": "Volume Converter",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive volume converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/converters/weight-mass-converter.html",
+    "name": "Weight Mass Converter",
+    "category": "tools",
+    "subcategory": "converters",
+    "description": "Client-side interactive weight mass converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/ascii-to-binary.html",
+    "name": "Ascii to Binary",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive ascii to binary tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/base32-encoder-decoder.html",
+    "name": "Base32 Encoder Decoder",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive base32 encoder decoder tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/binary-to-ascii.html",
+    "name": "Binary to Ascii",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive binary to ascii tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/binary-to-hex.html",
+    "name": "Binary to Hex",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive binary to hex tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/bson-to-json.html",
+    "name": "Bson to JSON",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive bson to json tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/column-to-comma-separator.html",
+    "name": "Column to Comma Separator",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive column to comma separator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/csv-to-json-converter.html",
+    "name": "Csv to JSON Converter",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive csv to json converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/data-anonymizer.html",
+    "name": "Data Anonymizer",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive data anonymizer tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/data-sorting-matrix.html",
+    "name": "Data Sorting Matrix",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive data sorting matrix tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/excel-to-markdown.html",
+    "name": "Excel to Markdown",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive excel to markdown tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/hex-dump-viewer.html",
+    "name": "Hex Dump Viewer",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive hex dump viewer tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/hex-to-binary.html",
+    "name": "Hex to Binary",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive hex to binary tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/html-table-generator.html",
+    "name": "Html Table Generator",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive html table generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/ini-to-json-converter.html",
+    "name": "Ini to JSON Converter",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive ini to json converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/json-minify.html",
+    "name": "Json Minify",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive json minify tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/json-to-csv-converter.html",
+    "name": "Json to Csv Converter",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive json to csv converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/json-to-toml.html",
+    "name": "Json to TOML",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive json to toml tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/json-tree-viewer.html",
+    "name": "Json Tree Viewer",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive json tree viewer tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/latex-equation-editor.html",
+    "name": "Latex Equation Editor",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive latex equation editor tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/protobuf-decoder.html",
+    "name": "Protobuf Decoder",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive protobuf decoder tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/query-string-generator.html",
+    "name": "Query String Generator",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive query string generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/regex-extractor.html",
+    "name": "Regex Extractor",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive regex extractor tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/serialized-php-parser.html",
+    "name": "Serialized Php Parser",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive serialized php parser tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/sql-query-builder.html",
+    "name": "Sql Query Builder",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive sql query builder tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/text-to-sql-insert-generator.html",
+    "name": "Text to SQL Insert Generator",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive text to sql insert generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/toml-to-json.html",
+    "name": "Toml to JSON",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive toml to json tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/tsv-to-json.html",
+    "name": "Tsv to JSON",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive tsv to json tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/url-parameter-parser.html",
+    "name": "Url Parameter Parser",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive url parameter parser tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/xml-to-yaml-converter.html",
+    "name": "Xml to YAML Converter",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive xml to yaml converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/data/yaml-to-xml-converter.html",
+    "name": "Yaml to XML Converter",
+    "category": "tools",
+    "subcategory": "data",
+    "description": "Client-side interactive yaml to xml converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/ascii-art-generator.html",
+    "name": "Ascii Art Generator",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive ascii art generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/background-remover.html",
+    "name": "Background Remover",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive background remover tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/base64-to-image.html",
+    "name": "Base64 to Image",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive base64 to image tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/canvas-paint-board.html",
+    "name": "Canvas Paint Board",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive canvas paint board tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/color-picker.html",
+    "name": "Color Picker",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive color picker tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/exif-data-viewer.html",
+    "name": "Exif Data Viewer",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive exif data viewer tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/favicon-generator.html",
+    "name": "Favicon Generator",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive favicon generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/gif-maker.html",
+    "name": "Gif Maker",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive gif maker tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/heic-to-jpg.html",
+    "name": "Heic to Jpg",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive heic to jpg tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/icns-converter.html",
+    "name": "Icns Converter",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive icns converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/ico-converter.html",
+    "name": "Ico Converter",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive ico converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/image-blurrer.html",
+    "name": "Image Blurrer",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive image blurrer tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/image-flipper.html",
+    "name": "Image Flipper",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive image flipper tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/image-metadata-stripper.html",
+    "name": "Image Metadata Stripper",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive image metadata stripper tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/image-resizer.html",
+    "name": "Image Resizer",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive image resizer tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/image-splitter.html",
+    "name": "Image Splitter",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive image splitter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/jpeg-compressor.html",
+    "name": "Jpeg Compressor",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive jpeg compressor tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/meme-generator.html",
+    "name": "Meme Generator",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive meme generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/normal-map-generator.html",
+    "name": "Normal Map Generator",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive normal map generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/palette-generator.html",
+    "name": "Palette Generator",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive palette generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/photo-cropper.html",
+    "name": "Photo Cropper",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive photo cropper tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/photo-filter-editor.html",
+    "name": "Photo Filter Editor",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive photo filter editor tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/pixel-art-creator.html",
+    "name": "Pixel Art Creator",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive pixel art creator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/png-to-webp-converter.html",
+    "name": "Png to Webp Converter",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive png to webp converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/qr-code-to-png.html",
+    "name": "Qr Code to Png",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive qr code to png tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/sprite-sheet-generator.html",
+    "name": "Sprite Sheet Generator",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive sprite sheet generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/svg-optimizer.html",
+    "name": "Svg Optimizer",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive svg optimizer tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/svg-to-png.html",
+    "name": "Svg to Png",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive svg to png tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/tiff-to-pdf.html",
+    "name": "Tiff to PDF",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive tiff to pdf tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/images/watermark-adder.html",
+    "name": "Watermark Adder",
+    "category": "tools",
+    "subcategory": "images",
+    "description": "Client-side interactive watermark adder tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/age-calculator.html",
+    "name": "Age Calculator",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive age calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/biorhythm-calculator.html",
+    "name": "Biorhythm Calculator",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive biorhythm calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/birthstone-finder.html",
+    "name": "Birthstone Finder",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive birthstone finder tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/blood-alcohol-concentration-calculator.html",
+    "name": "Blood Alcohol Concentration Calculator",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive blood alcohol concentration calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/bmi-calculator.html",
+    "name": "Bmi Calculator",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive bmi calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/bmr-calculator.html",
+    "name": "Bmr Calculator",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive bmr calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/body-fat-percentage-calculator.html",
+    "name": "Body Fat Percentage Calculator",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive body fat percentage calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/body-surface-area-calculator.html",
+    "name": "Body Surface Area Calculator",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive body surface area calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/caffeine-metabolism-calculator.html",
+    "name": "Caffeine Metabolism Calculator",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive caffeine metabolism calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/calorie-intake-calculator.html",
+    "name": "Calorie Intake Calculator",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive calorie intake calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/chronological-age-calculator.html",
+    "name": "Chronological Age Calculator",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive chronological age calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/days-until-counter.html",
+    "name": "Days Until Counter",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive days until counter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/digital-poker-chips-counter.html",
+    "name": "Digital Poker Chips Counter",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive digital poker chips counter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/habit-tracker-board.html",
+    "name": "Habit Tracker Board",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive habit tracker board tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/hydration-reminder.html",
+    "name": "Hydration Reminder",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive hydration reminder tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/ideal-weight-calculator.html",
+    "name": "Ideal Weight Calculator",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive ideal weight calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/love-compatibility-calculator.html",
+    "name": "Love Compatibility Calculator",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive love compatibility calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/macro-nutrients-calculator.html",
+    "name": "Macro Nutrients Calculator",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive macro nutrients calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/military-time-converter.html",
+    "name": "Military Time Converter",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive military time converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/one-rep-max-calculator.html",
+    "name": "One Rep Max Calculator",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive one rep max calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/ovulation-calendar.html",
+    "name": "Ovulation Calendar",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive ovulation calendar tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/period-tracker.html",
+    "name": "Period Tracker",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive period tracker tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/pregnancy-due-date-calculator.html",
+    "name": "Pregnancy Due Date Calculator",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive pregnancy due date calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/sleep-cycle-calculator.html",
+    "name": "Sleep Cycle Calculator",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive sleep cycle calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/smoking-cost-calculator.html",
+    "name": "Smoking Cost Calculator",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive smoking cost calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/step-to-distance-converter.html",
+    "name": "Step to Distance Converter",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive step to distance converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/target-heart-rate-calculator.html",
+    "name": "Target Heart Rate Calculator",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive target heart rate calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/water-intake-tracker.html",
+    "name": "Water Intake Tracker",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive water intake tracker tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/workout-interval-timer.html",
+    "name": "Workout Interval Timer",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive workout interval timer tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/lifestyle/zodiac-sign-finder.html",
+    "name": "Zodiac Sign Finder",
+    "category": "tools",
+    "subcategory": "lifestyle",
+    "description": "Client-side interactive zodiac sign finder tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/binary-calculator.html",
+    "name": "Binary Calculator",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive binary calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/car-lease-calculator.html",
+    "name": "Car Lease Calculator",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive car lease calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/compound-interest-calculator.html",
+    "name": "Compound Interest Calculator",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive compound interest calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/crypto-profit-calculator.html",
+    "name": "Crypto Profit Calculator",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive crypto profit calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/currency-converter.html",
+    "name": "Currency Converter",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive currency converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/depreciation-calculator.html",
+    "name": "Depreciation Calculator",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive depreciation calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/discount-calculator.html",
+    "name": "Discount Calculator",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive discount calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/factorial-calculator.html",
+    "name": "Factorial Calculator",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive factorial calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/fraction-to-decimal.html",
+    "name": "Fraction to Decimal",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive fraction to decimal tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/gcd-lcm-calculator.html",
+    "name": "Gcd LCM Calculator",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive gcd lcm calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/gpa-calculator.html",
+    "name": "Gpa Calculator",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive gpa calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/inflation-calculator.html",
+    "name": "Inflation Calculator",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive inflation calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/loan-emi-calculator.html",
+    "name": "Loan EMI Calculator",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive loan emi calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/margin-markup-calculator.html",
+    "name": "Margin Markup Calculator",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive margin markup calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/matrix-multiplication-calculator.html",
+    "name": "Matrix Multiplication Calculator",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive matrix multiplication calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/mortgage-calculator.html",
+    "name": "Mortgage Calculator",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive mortgage calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/percentage-calculator.html",
+    "name": "Percentage Calculator",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive percentage calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/prime-number-checker.html",
+    "name": "Prime Number Checker",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive prime number checker tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/probability-calculator.html",
+    "name": "Probability Calculator",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive probability calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/quadratic-equation-solver.html",
+    "name": "Quadratic Equation Solver",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive quadratic equation solver tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/random-number-generator.html",
+    "name": "Random Number Generator",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive random number generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/retirement-planner.html",
+    "name": "Retirement Planner",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive retirement planner tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/roi-calculator.html",
+    "name": "Roi Calculator",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive roi calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/salary-paycheck-calculator.html",
+    "name": "Salary Paycheck Calculator",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive salary paycheck calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/sales-tax-vat-calculator.html",
+    "name": "Sales Tax VAT Calculator",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive sales tax vat calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/scientific-calculator.html",
+    "name": "Scientific Calculator",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive scientific calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/standard-deviation-calculator.html",
+    "name": "Standard Deviation Calculator",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive standard deviation calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/statistics-mean-median-mode.html",
+    "name": "Statistics Mean Median Mode",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive statistics mean median mode tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/stock-average-calculator.html",
+    "name": "Stock Average Calculator",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive stock average calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/math/tip-calculator.html",
+    "name": "Tip Calculator",
+    "category": "tools",
+    "subcategory": "math",
+    "description": "Client-side interactive tip calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/miscellaneous/ambient-noise-mixer.html",
+    "name": "Ambient Noise Mixer",
+    "category": "tools",
+    "subcategory": "miscellaneous",
+    "description": "Client-side interactive ambient noise mixer tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/miscellaneous/barcode-scanner-cam.html",
+    "name": "Barcode Scanner Cam",
+    "category": "tools",
+    "subcategory": "miscellaneous",
+    "description": "Client-side interactive barcode scanner cam tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/miscellaneous/code-snippet-notebook.html",
+    "name": "Code Snippet Notebook",
+    "category": "tools",
+    "subcategory": "miscellaneous",
+    "description": "Client-side interactive code snippet notebook tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/miscellaneous/collaborative-whiteboard.html",
+    "name": "Collaborative Whiteboard",
+    "category": "tools",
+    "subcategory": "miscellaneous",
+    "description": "Client-side interactive collaborative whiteboard tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/miscellaneous/color-blindness-tester.html",
+    "name": "Color Blindness Tester",
+    "category": "tools",
+    "subcategory": "miscellaneous",
+    "description": "Client-side interactive color blindness tester tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/miscellaneous/dice-roll-simulator.html",
+    "name": "Dice Roll Simulator",
+    "category": "tools",
+    "subcategory": "miscellaneous",
+    "description": "Client-side interactive dice roll simulator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/miscellaneous/digital-tally-counter.html",
+    "name": "Digital Tally Counter",
+    "category": "tools",
+    "subcategory": "miscellaneous",
+    "description": "Client-side interactive digital tally counter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/miscellaneous/guitar-tuner-mic.html",
+    "name": "Guitar Tuner Mic",
+    "category": "tools",
+    "subcategory": "miscellaneous",
+    "description": "Client-side interactive guitar tuner mic tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/miscellaneous/morse-code-flasher.html",
+    "name": "Morse Code Flasher",
+    "category": "tools",
+    "subcategory": "miscellaneous",
+    "description": "Client-side interactive morse code flasher tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/miscellaneous/password-strength-meter.html",
+    "name": "Password Strength Meter",
+    "category": "tools",
+    "subcategory": "miscellaneous",
+    "description": "Client-side interactive password strength meter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/miscellaneous/pixel-art-canvas.html",
+    "name": "Pixel Art Canvas",
+    "category": "tools",
+    "subcategory": "miscellaneous",
+    "description": "Client-side interactive pixel art canvas tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/miscellaneous/pomodoro-focus-timer.html",
+    "name": "Pomodoro Focus Timer",
+    "category": "tools",
+    "subcategory": "miscellaneous",
+    "description": "Client-side interactive pomodoro focus timer tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/miscellaneous/protractor-canvas.html",
+    "name": "Protractor Canvas",
+    "category": "tools",
+    "subcategory": "miscellaneous",
+    "description": "Client-side interactive protractor canvas tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/miscellaneous/qr-code-designer.html",
+    "name": "Qr Code Designer",
+    "category": "tools",
+    "subcategory": "miscellaneous",
+    "description": "Client-side interactive qr code designer tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/miscellaneous/rich-text-notepad.html",
+    "name": "Rich Text Notepad",
+    "category": "tools",
+    "subcategory": "miscellaneous",
+    "description": "Client-side interactive rich text notepad tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/miscellaneous/screen-ruler.html",
+    "name": "Screen Ruler",
+    "category": "tools",
+    "subcategory": "miscellaneous",
+    "description": "Client-side interactive screen ruler tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/miscellaneous/sketchpad-drawer.html",
+    "name": "Sketchpad Drawer",
+    "category": "tools",
+    "subcategory": "miscellaneous",
+    "description": "Client-side interactive sketchpad drawer tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/miscellaneous/sticky-notes-board.html",
+    "name": "Sticky Notes Board",
+    "category": "tools",
+    "subcategory": "miscellaneous",
+    "description": "Client-side interactive sticky notes board tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/miscellaneous/todo-task-board.html",
+    "name": "Todo Task Board",
+    "category": "tools",
+    "subcategory": "miscellaneous",
+    "description": "Client-side interactive todo task board tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/miscellaneous/virtual-piano-keyboard.html",
+    "name": "Virtual Piano Keyboard",
+    "category": "tools",
+    "subcategory": "miscellaneous",
+    "description": "Client-side interactive virtual piano keyboard tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/blacklist-lookup.html",
+    "name": "Blacklist Lookup",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive blacklist lookup tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/broken-links-checker.html",
+    "name": "Broken Links Checker",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive broken links checker tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/dkim-record-checker.html",
+    "name": "Dkim Record Checker",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive dkim record checker tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/dmarc-generator.html",
+    "name": "Dmarc Generator",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive dmarc generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/dns-records-checker.html",
+    "name": "Dns Records Checker",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive dns records checker tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/domain-age-calculator.html",
+    "name": "Domain Age Calculator",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive domain age calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/email-header-analyzer.html",
+    "name": "Email Header Analyzer",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive email header analyzer tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/htaccess-redirect-generator.html",
+    "name": "Htaccess Redirect Generator",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive htaccess redirect generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/http-headers-viewer.html",
+    "name": "Http Headers Viewer",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive http headers viewer tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/ip-address-lookup.html",
+    "name": "Ip Address Lookup",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive ip address lookup tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/ip-subnet-mask-converter.html",
+    "name": "Ip Subnet Mask Converter",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive ip subnet mask converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/keyword-density-checker.html",
+    "name": "Keyword Density Checker",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive keyword density checker tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/link-price-calculator.html",
+    "name": "Link Price Calculator",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive link price calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/mac-address-lookup.html",
+    "name": "Mac Address Lookup",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive mac address lookup tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/meta-tags-generator.html",
+    "name": "Meta Tags Generator",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive meta tags generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/open-graph-generator.html",
+    "name": "Open Graph Generator",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive open graph generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/page-speed-insights-shortcut.html",
+    "name": "Page Speed Insights Shortcut",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive page speed insights shortcut tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/ping-test.html",
+    "name": "Ping Test",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive ping test tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/port-scanner.html",
+    "name": "Port Scanner",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive port scanner tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/proxy-checker.html",
+    "name": "Proxy Checker",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive proxy checker tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/redirect-checker.html",
+    "name": "Redirect Checker",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive redirect checker tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/robots-txt-generator.html",
+    "name": "Robots Txt Generator",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive robots txt generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/serp-preview-tool.html",
+    "name": "Serp Preview Tool",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive serp preview tool tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/sitemap-generator.html",
+    "name": "Sitemap Generator",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive sitemap generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/spf-record-generator.html",
+    "name": "Spf Record Generator",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive spf record generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/ssl-certificate-checker.html",
+    "name": "Ssl Certificate Checker",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive ssl certificate checker tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/subnet-calculator.html",
+    "name": "Subnet Calculator",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive subnet calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/txt-record-lookup.html",
+    "name": "Txt Record Lookup",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive txt record lookup tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/website-hosting-checker.html",
+    "name": "Website Hosting Checker",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive website hosting checker tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/network/whois-domain-lookup.html",
+    "name": "Whois Domain Lookup",
+    "category": "tools",
+    "subcategory": "network",
+    "description": "Client-side interactive whois domain lookup tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/binary-to-text.html",
+    "name": "Binary to Text",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive binary to text tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/case-converter.html",
+    "name": "Case Converter",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive case converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/character-counter.html",
+    "name": "Character Counter",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive character counter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/csv-to-xml.html",
+    "name": "Csv to XML",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive csv to xml tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/epub-to-pdf.html",
+    "name": "Epub to PDF",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive epub to pdf tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/excel-to-json.html",
+    "name": "Excel to JSON",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive excel to json tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/fax-cover-sheet-creator.html",
+    "name": "Fax Cover Sheet Creator",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive fax cover sheet creator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/find-and-replace.html",
+    "name": "Find and Replace",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive find and replace tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/flowchart-maker.html",
+    "name": "Flowchart Maker",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive flowchart maker tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/invisible-character-generator.html",
+    "name": "Invisible Character Generator",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive invisible character generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/invoice-generator.html",
+    "name": "Invoice Generator",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive invoice generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/lorem-ipsum-generator.html",
+    "name": "Lorem Ipsum Generator",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive lorem ipsum generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/markdown-editor.html",
+    "name": "Markdown Editor",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive markdown editor tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/mindmap-generator.html",
+    "name": "Mindmap Generator",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive mindmap generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/morse-code-translator.html",
+    "name": "Morse Code Translator",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive morse code translator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/nato-phonetic-alphabet-translator.html",
+    "name": "Nato Phonetic Alphabet Translator",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive nato phonetic alphabet translator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/pdf-compressor.html",
+    "name": "Pdf Compressor",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive pdf compressor tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/pdf-form-filler.html",
+    "name": "Pdf Form Filler",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive pdf form filler tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/pdf-merge.html",
+    "name": "Pdf Merge",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive pdf merge tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/pdf-password-remover.html",
+    "name": "Pdf Password Remover",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive pdf password remover tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/pdf-split.html",
+    "name": "Pdf Split",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive pdf split tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/pdf-to-word.html",
+    "name": "Pdf to Word",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive pdf to word tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/presentation-maker.html",
+    "name": "Presentation Maker",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive presentation maker tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/remove-duplicate-lines.html",
+    "name": "Remove Duplicate Lines",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive remove duplicate lines tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/resume-builder.html",
+    "name": "Resume Builder",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive resume builder tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/signature-generator.html",
+    "name": "Signature Generator",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive signature generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/slug-generator.html",
+    "name": "Slug Generator",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive slug generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/spreadsheet-editor.html",
+    "name": "Spreadsheet Editor",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive spreadsheet editor tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/strip-html-tags.html",
+    "name": "Strip HTML Tags",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive strip html tags tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/text-diff-checker.html",
+    "name": "Text Diff Checker",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive text diff checker tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/text-sorter.html",
+    "name": "Text Sorter",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive text sorter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/text-to-handwriting-converter.html",
+    "name": "Text to Handwriting Converter",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive text to handwriting converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/upside-down-text.html",
+    "name": "Upside Down Text",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive upside down text tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/vector-diagram-editor.html",
+    "name": "Vector Diagram Editor",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive vector diagram editor tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/word-counter.html",
+    "name": "Word Counter",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive word counter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/word-processor.html",
+    "name": "Word Processor",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive word processor tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/office/word-to-pdf.html",
+    "name": "Word to PDF",
+    "category": "tools",
+    "subcategory": "office",
+    "description": "Client-side interactive word to pdf tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/alarm-clock.html",
+    "name": "Alarm Clock",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive alarm clock tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/anagram-solver.html",
+    "name": "Anagram Solver",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive anagram solver tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/barcode-generator.html",
+    "name": "Barcode Generator",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive barcode generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/bubble-level-online.html",
+    "name": "Bubble Level Online",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive bubble level online tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/card-shuffler.html",
+    "name": "Card Shuffler",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive card shuffler tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/coin-flipper.html",
+    "name": "Coin Flipper",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive coin flipper tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/color-blindness-simulator.html",
+    "name": "Color Blindness Simulator",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive color blindness simulator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/countdown-timer.html",
+    "name": "Countdown Timer",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive countdown timer tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/credit-card-validator.html",
+    "name": "Credit Card Validator",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive credit card validator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/crossword-clue-solver.html",
+    "name": "Crossword Clue Solver",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive crossword clue solver tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/crypto-address-validator.html",
+    "name": "Crypto Address Validator",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive crypto address validator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/dice-roller.html",
+    "name": "Dice Roller",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive dice roller tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/iban-validator.html",
+    "name": "Iban Validator",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive iban validator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/list-randomizer.html",
+    "name": "List Randomizer",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive list randomizer tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/lottery-number-picker.html",
+    "name": "Lottery Number Picker",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive lottery number picker tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/morse-code-flasher.html",
+    "name": "Morse Code Flasher",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive morse code flasher tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/palette-extractor.html",
+    "name": "Palette Extractor",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive palette extractor tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/password-generator.html",
+    "name": "Password Generator",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive password generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/protractor-on-screen.html",
+    "name": "Protractor On Screen",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive protractor on screen tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/qr-code-generator.html",
+    "name": "Qr Code Generator",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive qr code generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/random-name-picker.html",
+    "name": "Random Name Picker",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive random name picker tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/ruler-on-screen.html",
+    "name": "Ruler On Screen",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive ruler on screen tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/sales-pitch-generator.html",
+    "name": "Sales Pitch Generator",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive sales pitch generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/scrabble-word-finder.html",
+    "name": "Scrabble Word Finder",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive scrabble word finder tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/screen-color-test.html",
+    "name": "Screen Color Test",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive screen color test tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/sound-level-meter-mock.html",
+    "name": "Sound Level Meter Mock",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive sound level meter mock tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/stopwatch.html",
+    "name": "Stopwatch",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive stopwatch tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/username-generator.html",
+    "name": "Username Generator",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive username generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/virtual-piano.html",
+    "name": "Virtual Piano",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive virtual piano tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/utilities/wheel-decider.html",
+    "name": "Wheel Decider",
+    "category": "tools",
+    "subcategory": "utilities",
+    "description": "Client-side interactive wheel decider tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/audio-cutter.html",
+    "name": "Audio Cutter",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive audio cutter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/audio-extractor.html",
+    "name": "Audio Extractor",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive audio extractor tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/audio-joiner.html",
+    "name": "Audio Joiner",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive audio joiner tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/audio-panner.html",
+    "name": "Audio Panner",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive audio panner tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/audio-spectrum-generator.html",
+    "name": "Audio Spectrum Generator",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive audio spectrum generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/bpm-counter.html",
+    "name": "Bpm Counter",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive bpm counter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/flac-to-mp3.html",
+    "name": "Flac to Mp3",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive flac to mp3 tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/frequency-generator.html",
+    "name": "Frequency Generator",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive frequency generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/metronome-online.html",
+    "name": "Metronome Online",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive metronome online tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/midi-visualizer.html",
+    "name": "Midi Visualizer",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive midi visualizer tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/mp3-volume-booster.html",
+    "name": "Mp3 Volume Booster",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive mp3 volume booster tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/mp4-compressor.html",
+    "name": "Mp4 Compressor",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive mp4 compressor tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/noise-gate-simulator.html",
+    "name": "Noise Gate Simulator",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive noise gate simulator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/ogg-converter.html",
+    "name": "Ogg Converter",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive ogg converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/pitch-shifter.html",
+    "name": "Pitch Shifter",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive pitch shifter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/screen-recorder.html",
+    "name": "Screen Recorder",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive screen recorder tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/srt-subtitle-generator.html",
+    "name": "Srt Subtitle Generator",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive srt subtitle generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/subtitle-merger.html",
+    "name": "Subtitle Merger",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive subtitle merger tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/text-to-speech-mp3.html",
+    "name": "Text to Speech Mp3",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive text to speech mp3 tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/video-aspect-ratio-calculator.html",
+    "name": "Video Aspect Ratio Calculator",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive video aspect ratio calculator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/video-mute.html",
+    "name": "Video Mute",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive video mute tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/video-playback-speed-changer.html",
+    "name": "Video Playback Speed Changer",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive video playback speed changer tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/video-resizer.html",
+    "name": "Video Resizer",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive video resizer tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/video-reverse-tool.html",
+    "name": "Video Reverse Tool",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive video reverse tool tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/video-thumbnail-generator.html",
+    "name": "Video Thumbnail Generator",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive video thumbnail generator tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/video-to-gif.html",
+    "name": "Video to Gif",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive video to gif tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/video-trimmer.html",
+    "name": "Video Trimmer",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive video trimmer tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/voice-recorder.html",
+    "name": "Voice Recorder",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive voice recorder tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/vtt-to-srt-converter.html",
+    "name": "Vtt to Srt Converter",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive vtt to srt converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "tools/videos/wav-to-mp3-converter.html",
+    "name": "Wav to Mp3 Converter",
+    "category": "tools",
+    "subcategory": "videos",
+    "description": "Client-side interactive wav to mp3 converter tool for productivity, web development, and educational reference."
+  },
+  {
+    "path": "games/arcade/asteroids-field.html",
+    "name": "Asteroids Field",
+    "category": "games",
+    "subcategory": "arcade",
+    "description": "Play Asteroids Field online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/arcade/brick-breaker.html",
+    "name": "Brick Breaker",
+    "category": "games",
+    "subcategory": "arcade",
+    "description": "Play Brick Breaker online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/arcade/flappy-bird-clone.html",
+    "name": "Flappy Bird Clone",
+    "category": "games",
+    "subcategory": "arcade",
+    "description": "Play Flappy Bird Clone online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/arcade/frogger-road.html",
+    "name": "Frogger Road",
+    "category": "games",
+    "subcategory": "arcade",
+    "description": "Play Frogger Road online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/arcade/helicopter-tunnel.html",
+    "name": "Helicopter Tunnel",
+    "category": "games",
+    "subcategory": "arcade",
+    "description": "Play Helicopter Tunnel online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/arcade/pacman-retro.html",
+    "name": "Pacman Retro",
+    "category": "games",
+    "subcategory": "arcade",
+    "description": "Play Pacman Retro online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/arcade/pong-paddle.html",
+    "name": "Pong Paddle",
+    "category": "games",
+    "subcategory": "arcade",
+    "description": "Play Pong Paddle online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/arcade/snake-canvas.html",
+    "name": "Snake Canvas",
+    "category": "games",
+    "subcategory": "arcade",
+    "description": "Play Snake Canvas online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/arcade/space-invaders.html",
+    "name": "Space Invaders",
+    "category": "games",
+    "subcategory": "arcade",
+    "description": "Play Space Invaders online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/arcade/whack-a-mole.html",
+    "name": "Whack a Mole",
+    "category": "games",
+    "subcategory": "arcade",
+    "description": "Play Whack a Mole online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/board/backgammon-board.html",
+    "name": "Backgammon Board",
+    "category": "games",
+    "subcategory": "board",
+    "description": "Play Backgammon Board online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/board/battleship-grid.html",
+    "name": "Battleship Grid",
+    "category": "games",
+    "subcategory": "board",
+    "description": "Play Battleship Grid online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/board/checkers-draughts.html",
+    "name": "Checkers Draughts",
+    "category": "games",
+    "subcategory": "board",
+    "description": "Play Checkers Draughts online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/board/chess-engine.html",
+    "name": "Chess Engine",
+    "category": "games",
+    "subcategory": "board",
+    "description": "Play Chess Engine online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/board/connect-four.html",
+    "name": "Connect Four",
+    "category": "games",
+    "subcategory": "board",
+    "description": "Play Connect Four online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/board/dominoes-chain.html",
+    "name": "Dominoes Chain",
+    "category": "games",
+    "subcategory": "board",
+    "description": "Play Dominoes Chain online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/board/ludo-classic.html",
+    "name": "Ludo Classic",
+    "category": "games",
+    "subcategory": "board",
+    "description": "Play Ludo Classic online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/board/mancala-pit.html",
+    "name": "Mancala Pit",
+    "category": "games",
+    "subcategory": "board",
+    "description": "Play Mancala Pit online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/board/reversi-othello.html",
+    "name": "Reversi Othello",
+    "category": "games",
+    "subcategory": "board",
+    "description": "Play Reversi Othello online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/board/tic-tac-toe.html",
+    "name": "Tic Tac Toe",
+    "category": "games",
+    "subcategory": "board",
+    "description": "Play Tic Tac Toe online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/cards/baccarat-table.html",
+    "name": "Baccarat Table",
+    "category": "games",
+    "subcategory": "cards",
+    "description": "Play Baccarat Table online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/cards/blackjack-twenty-one.html",
+    "name": "Blackjack Twenty One",
+    "category": "games",
+    "subcategory": "cards",
+    "description": "Play Blackjack Twenty One online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/cards/freecell-classic.html",
+    "name": "Freecell Classic",
+    "category": "games",
+    "subcategory": "cards",
+    "description": "Play Freecell Classic online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/cards/gin-rummy.html",
+    "name": "Gin Rummy",
+    "category": "games",
+    "subcategory": "cards",
+    "description": "Play Gin Rummy online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/cards/hearts-card-game.html",
+    "name": "Hearts Card Game",
+    "category": "games",
+    "subcategory": "cards",
+    "description": "Play Hearts Card Game online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/cards/memory-card-match.html",
+    "name": "Memory Card Match",
+    "category": "games",
+    "subcategory": "cards",
+    "description": "Play Memory Card Match online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/cards/poker-texas-holdem.html",
+    "name": "Poker Texas Holdem",
+    "category": "games",
+    "subcategory": "cards",
+    "description": "Play Poker Texas Holdem online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/cards/solitaire-klondike.html",
+    "name": "Solitaire Klondike",
+    "category": "games",
+    "subcategory": "cards",
+    "description": "Play Solitaire Klondike online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/cards/spider-solitaire.html",
+    "name": "Spider Solitaire",
+    "category": "games",
+    "subcategory": "cards",
+    "description": "Play Spider Solitaire online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/cards/uno-wild.html",
+    "name": "Uno Wild",
+    "category": "games",
+    "subcategory": "cards",
+    "description": "Play Uno Wild online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/puzzles/lights-out.html",
+    "name": "Lights Out",
+    "category": "games",
+    "subcategory": "puzzles",
+    "description": "Play Lights Out online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/puzzles/maze-generator.html",
+    "name": "Maze Generator",
+    "category": "games",
+    "subcategory": "puzzles",
+    "description": "Play Maze Generator online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/puzzles/minesweeper-classic.html",
+    "name": "Minesweeper Classic",
+    "category": "games",
+    "subcategory": "puzzles",
+    "description": "Play Minesweeper Classic online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/puzzles/nonogram-griddlers.html",
+    "name": "Nonogram Griddlers",
+    "category": "games",
+    "subcategory": "puzzles",
+    "description": "Play Nonogram Griddlers online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/puzzles/pipe-connector.html",
+    "name": "Pipe Connector",
+    "category": "games",
+    "subcategory": "puzzles",
+    "description": "Play Pipe Connector online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/puzzles/sliding-block.html",
+    "name": "Sliding Block",
+    "category": "games",
+    "subcategory": "puzzles",
+    "description": "Play Sliding Block online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/puzzles/sudoku-board.html",
+    "name": "Sudoku Board",
+    "category": "games",
+    "subcategory": "puzzles",
+    "description": "Play Sudoku Board online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/puzzles/tetris-blocks.html",
+    "name": "Tetris Blocks",
+    "category": "games",
+    "subcategory": "puzzles",
+    "description": "Play Tetris Blocks online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/puzzles/tower-stacker.html",
+    "name": "Tower Stacker",
+    "category": "games",
+    "subcategory": "puzzles",
+    "description": "Play Tower Stacker online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/puzzles/twenty-forty-eight.html",
+    "name": "Twenty Forty Eight",
+    "category": "games",
+    "subcategory": "puzzles",
+    "description": "Play Twenty Forty Eight online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/word/anagram-scramble.html",
+    "name": "Anagram Scramble",
+    "category": "games",
+    "subcategory": "word",
+    "description": "Play Anagram Scramble online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/word/crossword-puzzle.html",
+    "name": "Crossword Puzzle",
+    "category": "games",
+    "subcategory": "word",
+    "description": "Play Crossword Puzzle online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/word/geo-quiz-map.html",
+    "name": "Geo Quiz Map",
+    "category": "games",
+    "subcategory": "word",
+    "description": "Play Geo Quiz Map online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/word/hangman-classic.html",
+    "name": "Hangman Classic",
+    "category": "games",
+    "subcategory": "word",
+    "description": "Play Hangman Classic online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/word/riddle-me-this.html",
+    "name": "Riddle Me This",
+    "category": "games",
+    "subcategory": "word",
+    "description": "Play Riddle Me This online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/word/scrabble-helper-game.html",
+    "name": "Scrabble Helper Game",
+    "category": "games",
+    "subcategory": "word",
+    "description": "Play Scrabble Helper Game online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/word/trivia-quiz.html",
+    "name": "Trivia Quiz",
+    "category": "games",
+    "subcategory": "word",
+    "description": "Play Trivia Quiz online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/word/typing-speed-racer.html",
+    "name": "Typing Speed Racer",
+    "category": "games",
+    "subcategory": "word",
+    "description": "Play Typing Speed Racer online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/word/word-search-grid.html",
+    "name": "Word Search Grid",
+    "category": "games",
+    "subcategory": "word",
+    "description": "Play Word Search Grid online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "games/word/wordle-clone.html",
+    "name": "Wordle Clone",
+    "category": "games",
+    "subcategory": "word",
+    "description": "Play Wordle Clone online for free. A fully interactive, responsive, and client-side modern arcade game."
+  },
+  {
+    "path": "tutorials/backend/building-restful-apis-with-node.html",
+    "name": "Building Restful Apis with Node",
+    "category": "tutorials",
+    "subcategory": "backend",
+    "description": "Comprehensive developer tutorial and reference guide covering Building Restful Apis with Node best practices and implementation."
+  },
+  {
+    "path": "tutorials/backend/ci-cd-pipelines-with-github-actions.html",
+    "name": "Ci Cd Pipelines with GITHUB Actions",
+    "category": "tutorials",
+    "subcategory": "backend",
+    "description": "Comprehensive developer tutorial and reference guide covering Ci Cd Pipelines with GITHUB Actions best practices and implementation."
+  },
+  {
+    "path": "tutorials/backend/docker-containers-for-beginners.html",
+    "name": "Docker Containers for Beginners",
+    "category": "tutorials",
+    "subcategory": "backend",
+    "description": "Comprehensive developer tutorial and reference guide covering Docker Containers for Beginners best practices and implementation."
+  },
+  {
+    "path": "tutorials/backend/git-version-control-and-github.html",
+    "name": "Git Version Control and GITHUB",
+    "category": "tutorials",
+    "subcategory": "backend",
+    "description": "Comprehensive developer tutorial and reference guide covering Git Version Control and GITHUB best practices and implementation."
+  },
+  {
+    "path": "tutorials/backend/graphql-vs-rest-comparison-guide.html",
+    "name": "Graphql vs REST Comparison Guide",
+    "category": "tutorials",
+    "subcategory": "backend",
+    "description": "Comprehensive developer tutorial and reference guide covering Graphql vs REST Comparison Guide best practices and implementation."
+  },
+  {
+    "path": "tutorials/backend/linux-command-line-cheat-sheet.html",
+    "name": "Linux Command Line Cheat Sheet",
+    "category": "tutorials",
+    "subcategory": "backend",
+    "description": "Comprehensive developer tutorial and reference guide covering Linux Command Line Cheat Sheet best practices and implementation."
+  },
+  {
+    "path": "tutorials/backend/mongodb-crud-operations-guide.html",
+    "name": "Mongodb CRUD Operations Guide",
+    "category": "tutorials",
+    "subcategory": "backend",
+    "description": "Comprehensive developer tutorial and reference guide covering Mongodb CRUD Operations Guide best practices and implementation."
+  },
+  {
+    "path": "tutorials/backend/redis-caching-implementation-basics.html",
+    "name": "Redis Caching Implementation Basics",
+    "category": "tutorials",
+    "subcategory": "backend",
+    "description": "Comprehensive developer tutorial and reference guide covering Redis Caching Implementation Basics best practices and implementation."
+  },
+  {
+    "path": "tutorials/backend/sql-queries-join-and-select.html",
+    "name": "Sql Queries Join and Select",
+    "category": "tutorials",
+    "subcategory": "backend",
+    "description": "Comprehensive developer tutorial and reference guide covering Sql Queries Join and Select best practices and implementation."
+  },
+  {
+    "path": "tutorials/backend/ssh-key-setup-and-server-access.html",
+    "name": "Ssh Key Setup and Server Access",
+    "category": "tutorials",
+    "subcategory": "backend",
+    "description": "Comprehensive developer tutorial and reference guide covering Ssh Key Setup and Server Access best practices and implementation."
+  },
+  {
+    "path": "tutorials/design/blender-3d-modeling-introduction.html",
+    "name": "Blender 3d Modeling Introduction",
+    "category": "tutorials",
+    "subcategory": "design",
+    "description": "Comprehensive developer tutorial and reference guide covering Blender 3d Modeling Introduction best practices and implementation."
+  },
+  {
+    "path": "tutorials/design/color-theory-and-palette-selection.html",
+    "name": "Color Theory and Palette Selection",
+    "category": "tutorials",
+    "subcategory": "design",
+    "description": "Comprehensive developer tutorial and reference guide covering Color Theory and Palette Selection best practices and implementation."
+  },
+  {
+    "path": "tutorials/design/css-animations-and-transitions-guide.html",
+    "name": "Css Animations and Transitions Guide",
+    "category": "tutorials",
+    "subcategory": "design",
+    "description": "Comprehensive developer tutorial and reference guide covering Css Animations and Transitions Guide best practices and implementation."
+  },
+  {
+    "path": "tutorials/design/figma-prototyping-for-beginners.html",
+    "name": "Figma Prototyping for Beginners",
+    "category": "tutorials",
+    "subcategory": "design",
+    "description": "Comprehensive developer tutorial and reference guide covering Figma Prototyping for Beginners best practices and implementation."
+  },
+  {
+    "path": "tutorials/design/gimp-image-editing-basics.html",
+    "name": "Gimp Image Editing Basics",
+    "category": "tutorials",
+    "subcategory": "design",
+    "description": "Comprehensive developer tutorial and reference guide covering Gimp Image Editing Basics best practices and implementation."
+  },
+  {
+    "path": "tutorials/design/inkscape-vector-drawing-tutorial.html",
+    "name": "Inkscape Vector Drawing Tutorial",
+    "category": "tutorials",
+    "subcategory": "design",
+    "description": "Comprehensive developer tutorial and reference guide covering Inkscape Vector Drawing Tutorial best practices and implementation."
+  },
+  {
+    "path": "tutorials/design/svg-vector-graphics-optimization.html",
+    "name": "Svg Vector Graphics Optimization",
+    "category": "tutorials",
+    "subcategory": "design",
+    "description": "Comprehensive developer tutorial and reference guide covering Svg Vector Graphics Optimization best practices and implementation."
+  },
+  {
+    "path": "tutorials/design/typography-rules-for-web-interfaces.html",
+    "name": "Typography Rules for Web Interfaces",
+    "category": "tutorials",
+    "subcategory": "design",
+    "description": "Comprehensive developer tutorial and reference guide covering Typography Rules for Web Interfaces best practices and implementation."
+  },
+  {
+    "path": "tutorials/design/ui-ux-principles-for-clean-layouts.html",
+    "name": "Ui UX Principles for Clean Layouts",
+    "category": "tutorials",
+    "subcategory": "design",
+    "description": "Comprehensive developer tutorial and reference guide covering Ui UX Principles for Clean Layouts best practices and implementation."
+  },
+  {
+    "path": "tutorials/design/video-editing-timeline-fundamentals.html",
+    "name": "Video Editing Timeline Fundamentals",
+    "category": "tutorials",
+    "subcategory": "design",
+    "description": "Comprehensive developer tutorial and reference guide covering Video Editing Timeline Fundamentals best practices and implementation."
+  },
+  {
+    "path": "tutorials/programming/csharp-dotnet-core-fundamentals.html",
+    "name": "C# .NET Core Fundamentals",
+    "category": "tutorials",
+    "subcategory": "programming",
+    "description": "Comprehensive developer tutorial and reference guide covering C# .NET Core Fundamentals best practices and implementation."
+  },
+  {
+    "path": "tutorials/programming/data-structures-and-algorithms-guide.html",
+    "name": "Data Structures and Algorithms Guide",
+    "category": "tutorials",
+    "subcategory": "programming",
+    "description": "Comprehensive developer tutorial and reference guide covering Data Structures and Algorithms Guide best practices and implementation."
+  },
+  {
+    "path": "tutorials/programming/functional-programming-concepts.html",
+    "name": "Functional Programming Concepts",
+    "category": "tutorials",
+    "subcategory": "programming",
+    "description": "Comprehensive developer tutorial and reference guide covering Functional Programming Concepts best practices and implementation."
+  },
+  {
+    "path": "tutorials/programming/golang-concurrency-with-goroutines.html",
+    "name": "Go Concurrency with Goroutines",
+    "category": "tutorials",
+    "subcategory": "programming",
+    "description": "Comprehensive developer tutorial and reference guide covering Go Concurrency with Goroutines best practices and implementation."
+  },
+  {
+    "path": "tutorials/programming/java-memory-management-basics.html",
+    "name": "Java Memory Management Basics",
+    "category": "tutorials",
+    "subcategory": "programming",
+    "description": "Comprehensive developer tutorial and reference guide covering Java Memory Management Basics best practices and implementation."
+  },
+  {
+    "path": "tutorials/programming/object-oriented-programming-in-cpp.html",
+    "name": "Object Oriented Programming in CPP",
+    "category": "tutorials",
+    "subcategory": "programming",
+    "description": "Comprehensive developer tutorial and reference guide covering Object Oriented Programming in CPP best practices and implementation."
+  },
+  {
+    "path": "tutorials/programming/python-syntax-and-data-structures.html",
+    "name": "Python Syntax and Data Structures",
+    "category": "tutorials",
+    "subcategory": "programming",
+    "description": "Comprehensive developer tutorial and reference guide covering Python Syntax and Data Structures best practices and implementation."
+  },
+  {
+    "path": "tutorials/programming/regular-expressions-regex-tutorial.html",
+    "name": "Regular Expressions Regex Tutorial",
+    "category": "tutorials",
+    "subcategory": "programming",
+    "description": "Comprehensive developer tutorial and reference guide covering Regular Expressions Regex Tutorial best practices and implementation."
+  },
+  {
+    "path": "tutorials/programming/rust-ownership-and-borrowing.html",
+    "name": "Rust Ownership and Borrowing",
+    "category": "tutorials",
+    "subcategory": "programming",
+    "description": "Comprehensive developer tutorial and reference guide covering Rust Ownership and Borrowing best practices and implementation."
+  },
+  {
+    "path": "tutorials/programming/typescript-for-javascript-developers.html",
+    "name": "Typescript for Javascript Developers",
+    "category": "tutorials",
+    "subcategory": "programming",
+    "description": "Comprehensive developer tutorial and reference guide covering Typescript for Javascript Developers best practices and implementation."
+  },
+  {
+    "path": "tutorials/security/api-rate-limiting-strategies.html",
+    "name": "Api Rate Limiting Strategies",
+    "category": "tutorials",
+    "subcategory": "security",
+    "description": "Comprehensive developer tutorial and reference guide covering Api Rate Limiting Strategies best practices and implementation."
+  },
+  {
+    "path": "tutorials/security/cors-policy-errors-and-fixes.html",
+    "name": "Cors Policy Errors and Fixes",
+    "category": "tutorials",
+    "subcategory": "security",
+    "description": "Comprehensive developer tutorial and reference guide covering Cors Policy Errors and Fixes best practices and implementation."
+  },
+  {
+    "path": "tutorials/security/hashing-vs-encryption-explained.html",
+    "name": "Hashing vs Encryption Explained",
+    "category": "tutorials",
+    "subcategory": "security",
+    "description": "Comprehensive developer tutorial and reference guide covering Hashing vs Encryption Explained best practices and implementation."
+  },
+  {
+    "path": "tutorials/security/how-ssl-tls-certificates-work.html",
+    "name": "How SSL TLS Certificates Work",
+    "category": "tutorials",
+    "subcategory": "security",
+    "description": "Comprehensive developer tutorial and reference guide covering How SSL TLS Certificates Work best practices and implementation."
+  },
+  {
+    "path": "tutorials/security/how-to-prevent-xss-and-sql-injection.html",
+    "name": "How to Prevent XSS and SQL Injection",
+    "category": "tutorials",
+    "subcategory": "security",
+    "description": "Comprehensive developer tutorial and reference guide covering How to Prevent XSS and SQL Injection best practices and implementation."
+  },
+  {
+    "path": "tutorials/security/networking-basics-ip-subnets-dns.html",
+    "name": "Networking Basics IP Subnets DNS",
+    "category": "tutorials",
+    "subcategory": "security",
+    "description": "Comprehensive developer tutorial and reference guide covering Networking Basics IP Subnets DNS best practices and implementation."
+  },
+  {
+    "path": "tutorials/security/setting-up-a-secure-firewall.html",
+    "name": "Setting Up a Secure Firewall",
+    "category": "tutorials",
+    "subcategory": "security",
+    "description": "Comprehensive developer tutorial and reference guide covering Setting Up a Secure Firewall best practices and implementation."
+  },
+  {
+    "path": "tutorials/security/symmetric-vs-asymmetric-cryptography.html",
+    "name": "Symmetric vs Asymmetric Cryptography",
+    "category": "tutorials",
+    "subcategory": "security",
+    "description": "Comprehensive developer tutorial and reference guide covering Symmetric vs Asymmetric Cryptography best practices and implementation."
+  },
+  {
+    "path": "tutorials/security/understanding-jwt-and-session-auth.html",
+    "name": "Understanding JWT and Session Auth",
+    "category": "tutorials",
+    "subcategory": "security",
+    "description": "Comprehensive developer tutorial and reference guide covering Understanding JWT and Session Auth best practices and implementation."
+  },
+  {
+    "path": "tutorials/security/web-application-security-owasp-top-10.html",
+    "name": "Web Application Security OWASP Top 10",
+    "category": "tutorials",
+    "subcategory": "security",
+    "description": "Comprehensive developer tutorial and reference guide covering Web Application Security OWASP Top 10 best practices and implementation."
+  },
+  {
+    "path": "tutorials/web-dev/async-await-and-fetch-api.html",
+    "name": "Async Await and Fetch API",
+    "category": "tutorials",
+    "subcategory": "web-dev",
+    "description": "Comprehensive developer tutorial and reference guide covering Async Await and Fetch API best practices and implementation."
+  },
+  {
+    "path": "tutorials/web-dev/building-single-page-applications.html",
+    "name": "Building Single Page Applications",
+    "category": "tutorials",
+    "subcategory": "web-dev",
+    "description": "Comprehensive developer tutorial and reference guide covering Building Single Page Applications best practices and implementation."
+  },
+  {
+    "path": "tutorials/web-dev/css3-flexbox-and-grid-guide.html",
+    "name": "Css3 Flexbox and Grid Guide",
+    "category": "tutorials",
+    "subcategory": "web-dev",
+    "description": "Comprehensive developer tutorial and reference guide covering Css3 Flexbox and Grid Guide best practices and implementation."
+  },
+  {
+    "path": "tutorials/web-dev/deploying-static-websites-for-free.html",
+    "name": "Deploying Static Websites for Free",
+    "category": "tutorials",
+    "subcategory": "web-dev",
+    "description": "Comprehensive developer tutorial and reference guide covering Deploying Static Websites for Free best practices and implementation."
+  },
+  {
+    "path": "tutorials/web-dev/html5-basics-for-beginners.html",
+    "name": "Html5 Basics for Beginners",
+    "category": "tutorials",
+    "subcategory": "web-dev",
+    "description": "Comprehensive developer tutorial and reference guide covering Html5 Basics for Beginners best practices and implementation."
+  },
+  {
+    "path": "tutorials/web-dev/introduction-to-react-components.html",
+    "name": "Introduction to React Components",
+    "category": "tutorials",
+    "subcategory": "web-dev",
+    "description": "Comprehensive developer tutorial and reference guide covering Introduction to React Components best practices and implementation."
+  },
+  {
+    "path": "tutorials/web-dev/javascript-dom-manipulation.html",
+    "name": "Javascript Dom Manipulation",
+    "category": "tutorials",
+    "subcategory": "web-dev",
+    "description": "Comprehensive developer tutorial and reference guide covering Javascript Dom Manipulation best practices and implementation."
+  },
+  {
+    "path": "tutorials/web-dev/localstorage-and-indexeddb-guide.html",
+    "name": "Localstorage and Indexeddb Guide",
+    "category": "tutorials",
+    "subcategory": "web-dev",
+    "description": "Comprehensive developer tutorial and reference guide covering Localstorage and Indexeddb Guide best practices and implementation."
+  },
+  {
+    "path": "tutorials/web-dev/responsive-web-design-media-queries.html",
+    "name": "Responsive Web Design Media Queries",
+    "category": "tutorials",
+    "subcategory": "web-dev",
+    "description": "Comprehensive developer tutorial and reference guide covering Responsive Web Design Media Queries best practices and implementation."
+  },
+  {
+    "path": "tutorials/web-dev/webgl-and-html5-canvas-basics.html",
+    "name": "Webgl and Html5 Canvas Basics",
+    "category": "tutorials",
+    "subcategory": "web-dev",
+    "description": "Comprehensive developer tutorial and reference guide covering Webgl and Html5 Canvas Basics best practices and implementation."
+  },
+  {
+    "path": "education/finance/basics-of-real-estate-investing.html",
+    "name": "Basics of Real Estate Investing",
+    "category": "education",
+    "subcategory": "finance",
+    "description": "Educational topic and study guide covering key concepts of Basics of Real Estate Investing."
+  },
+  {
+    "path": "education/finance/basics-of-taxation-and-income.html",
+    "name": "Basics of Taxation and Income",
+    "category": "education",
+    "subcategory": "finance",
+    "description": "Educational topic and study guide covering key concepts of Basics of Taxation and Income."
+  },
+  {
+    "path": "education/finance/credit-scores-and-debt-management.html",
+    "name": "Credit Scores and Debt Management",
+    "category": "education",
+    "subcategory": "finance",
+    "description": "Educational topic and study guide covering key concepts of Credit Scores and Debt Management."
+  },
+  {
+    "path": "education/finance/cryptocurrency-and-blockchain-fundamentals.html",
+    "name": "Cryptocurrency and Blockchain Fundamentals",
+    "category": "education",
+    "subcategory": "finance",
+    "description": "Educational topic and study guide covering key concepts of Cryptocurrency and Blockchain Fundamentals."
+  },
+  {
+    "path": "education/finance/entrepreneurship-and-business-plan-creation.html",
+    "name": "Entrepreneurship and Business Plan Creation",
+    "category": "education",
+    "subcategory": "finance",
+    "description": "Educational topic and study guide covering key concepts of Entrepreneurship and Business Plan Creation."
+  },
+  {
+    "path": "education/finance/how-banking-and-central-banks-operate.html",
+    "name": "How Banking and Central Banks Operate",
+    "category": "education",
+    "subcategory": "finance",
+    "description": "Educational topic and study guide covering key concepts of How Banking and Central Banks Operate."
+  },
+  {
+    "path": "education/finance/how-compound-interest-works.html",
+    "name": "How Compound Interest Works",
+    "category": "education",
+    "subcategory": "finance",
+    "description": "Educational topic and study guide covering key concepts of How Compound Interest Works."
+  },
+  {
+    "path": "education/finance/introduction-to-corporate-accounting.html",
+    "name": "Introduction to Corporate Accounting",
+    "category": "education",
+    "subcategory": "finance",
+    "description": "Educational topic and study guide covering key concepts of Introduction to Corporate Accounting."
+  },
+  {
+    "path": "education/finance/personal-budgeting-and-saving-strategies.html",
+    "name": "Personal Budgeting and Saving Strategies",
+    "category": "education",
+    "subcategory": "finance",
+    "description": "Educational topic and study guide covering key concepts of Personal Budgeting and Saving Strategies."
+  },
+  {
+    "path": "education/finance/understanding-stocks-bonds-and-mutual-funds.html",
+    "name": "Understanding Stocks Bonds and Mutual Funds",
+    "category": "education",
+    "subcategory": "finance",
+    "description": "Educational topic and study guide covering key concepts of Understanding Stocks Bonds and Mutual Funds."
+  },
+  {
+    "path": "education/humanities/ancient-civilizations-egypt-greece-rome.html",
+    "name": "Ancient Civilizations Egypt Greece Rome",
+    "category": "education",
+    "subcategory": "humanities",
+    "description": "Educational topic and study guide covering key concepts of Ancient Civilizations Egypt Greece Rome."
+  },
+  {
+    "path": "education/humanities/basics-of-macroeconomics.html",
+    "name": "Basics of Macroeconomics",
+    "category": "education",
+    "subcategory": "humanities",
+    "description": "Educational topic and study guide covering key concepts of Basics of Macroeconomics."
+  },
+  {
+    "path": "education/humanities/environmental-geography-and-mapping.html",
+    "name": "Environmental Geography and Mapping",
+    "category": "education",
+    "subcategory": "humanities",
+    "description": "Educational topic and study guide covering key concepts of Environmental Geography and Mapping."
+  },
+  {
+    "path": "education/humanities/fundamentals-of-human-psychology.html",
+    "name": "Fundamentals of Human Psychology",
+    "category": "education",
+    "subcategory": "humanities",
+    "description": "Educational topic and study guide covering key concepts of Fundamentals of Human Psychology."
+  },
+  {
+    "path": "education/humanities/introduction-to-political-science.html",
+    "name": "Introduction to Political Science",
+    "category": "education",
+    "subcategory": "humanities",
+    "description": "Educational topic and study guide covering key concepts of Introduction to Political Science."
+  },
+  {
+    "path": "education/humanities/introduction-to-western-philosophy.html",
+    "name": "Introduction to Western Philosophy",
+    "category": "education",
+    "subcategory": "humanities",
+    "description": "Educational topic and study guide covering key concepts of Introduction to Western Philosophy."
+  },
+  {
+    "path": "education/humanities/microeconomics-supply-and-demand.html",
+    "name": "Microeconomics Supply and Demand",
+    "category": "education",
+    "subcategory": "humanities",
+    "description": "Educational topic and study guide covering key concepts of Microeconomics Supply and Demand."
+  },
+  {
+    "path": "education/humanities/sociology-and-cultural-studies.html",
+    "name": "Sociology and Cultural Studies",
+    "category": "education",
+    "subcategory": "humanities",
+    "description": "Educational topic and study guide covering key concepts of Sociology and Cultural Studies."
+  },
+  {
+    "path": "education/humanities/world-geography-continents-and-climate-zones.html",
+    "name": "World Geography Continents and Climate Zones",
+    "category": "education",
+    "subcategory": "humanities",
+    "description": "Educational topic and study guide covering key concepts of World Geography Continents and Climate Zones."
+  },
+  {
+    "path": "education/humanities/world-history-major-turning-points.html",
+    "name": "World History Major Turning Points",
+    "category": "education",
+    "subcategory": "humanities",
+    "description": "Educational topic and study guide covering key concepts of World History Major Turning Points."
+  },
+  {
+    "path": "education/languages/creative-writing-and-character-building.html",
+    "name": "Creative Writing and Character Building",
+    "category": "education",
+    "subcategory": "languages",
+    "description": "Educational topic and study guide covering key concepts of Creative Writing and Character Building."
+  },
+  {
+    "path": "education/languages/english-grammar-tenses-and-structures.html",
+    "name": "English Grammar Tenses and Structures",
+    "category": "education",
+    "subcategory": "languages",
+    "description": "Educational topic and study guide covering key concepts of English Grammar Tenses and Structures."
+  },
+  {
+    "path": "education/languages/essay-writing-and-structuring-arguments.html",
+    "name": "Essay Writing and Structuring Arguments",
+    "category": "education",
+    "subcategory": "languages",
+    "description": "Educational topic and study guide covering key concepts of Essay Writing and Structuring Arguments."
+  },
+  {
+    "path": "education/languages/french-pronunciation-and-basics.html",
+    "name": "French Pronunciation and Basics",
+    "category": "education",
+    "subcategory": "languages",
+    "description": "Educational topic and study guide covering key concepts of French Pronunciation and Basics."
+  },
+  {
+    "path": "education/languages/literary-devices-metaphor-irony-symbolism.html",
+    "name": "Literary Devices Metaphor Irony Symbolism",
+    "category": "education",
+    "subcategory": "languages",
+    "description": "Educational topic and study guide covering key concepts of Literary Devices Metaphor Irony Symbolism."
+  },
+  {
+    "path": "education/languages/professional-business-writing-etiquette.html",
+    "name": "Professional Business Writing Etiquette",
+    "category": "education",
+    "subcategory": "languages",
+    "description": "Educational topic and study guide covering key concepts of Professional Business Writing Etiquette."
+  },
+  {
+    "path": "education/languages/public-speaking-and-rhetoric.html",
+    "name": "Public Speaking and Rhetoric",
+    "category": "education",
+    "subcategory": "languages",
+    "description": "Educational topic and study guide covering key concepts of Public Speaking and Rhetoric."
+  },
+  {
+    "path": "education/languages/reading-comprehension-strategies.html",
+    "name": "Reading Comprehension Strategies",
+    "category": "education",
+    "subcategory": "languages",
+    "description": "Educational topic and study guide covering key concepts of Reading Comprehension Strategies."
+  },
+  {
+    "path": "education/languages/spanish-vocabulary-for-beginners.html",
+    "name": "Spanish Vocabulary for Beginners",
+    "category": "education",
+    "subcategory": "languages",
+    "description": "Educational topic and study guide covering key concepts of Spanish Vocabulary for Beginners."
+  },
+  {
+    "path": "education/languages/speed-reading-techniques.html",
+    "name": "Speed Reading Techniques",
+    "category": "education",
+    "subcategory": "languages",
+    "description": "Educational topic and study guide covering key concepts of Speed Reading Techniques."
+  },
+  {
+    "path": "education/math/algebra-linear-equations-solving.html",
+    "name": "Algebra Linear Equations Solving",
+    "category": "education",
+    "subcategory": "math",
+    "description": "Educational topic and study guide covering key concepts of Algebra Linear Equations Solving."
+  },
+  {
+    "path": "education/math/binary-and-hexadecimal-number-systems.html",
+    "name": "Binary and Hexadecimal Number Systems",
+    "category": "education",
+    "subcategory": "math",
+    "description": "Educational topic and study guide covering key concepts of Binary and Hexadecimal Number Systems."
+  },
+  {
+    "path": "education/math/calculus-limits-and-derivatives.html",
+    "name": "Calculus Limits and Derivatives",
+    "category": "education",
+    "subcategory": "math",
+    "description": "Educational topic and study guide covering key concepts of Calculus Limits and Derivatives."
+  },
+  {
+    "path": "education/math/discrete-mathematics-logic.html",
+    "name": "Discrete Mathematics Logic",
+    "category": "education",
+    "subcategory": "math",
+    "description": "Educational topic and study guide covering key concepts of Discrete Mathematics Logic."
+  },
+  {
+    "path": "education/math/introduction-to-geometry-shapes.html",
+    "name": "Introduction to Geometry Shapes",
+    "category": "education",
+    "subcategory": "math",
+    "description": "Educational topic and study guide covering key concepts of Introduction to Geometry Shapes."
+  },
+  {
+    "path": "education/math/matrices-and-linear-algebra.html",
+    "name": "Matrices and Linear Algebra",
+    "category": "education",
+    "subcategory": "math",
+    "description": "Educational topic and study guide covering key concepts of Matrices and Linear Algebra."
+  },
+  {
+    "path": "education/math/pre-algebra-essentials.html",
+    "name": "Pre Algebra Essentials",
+    "category": "education",
+    "subcategory": "math",
+    "description": "Educational topic and study guide covering key concepts of Pre Algebra Essentials."
+  },
+  {
+    "path": "education/math/probability-and-statistics-basics.html",
+    "name": "Probability and Statistics Basics",
+    "category": "education",
+    "subcategory": "math",
+    "description": "Educational topic and study guide covering key concepts of Probability and Statistics Basics."
+  },
+  {
+    "path": "education/math/trigonometry-sine-cosine-tangent.html",
+    "name": "Trigonometry Sine Cosine Tangent",
+    "category": "education",
+    "subcategory": "math",
+    "description": "Educational topic and study guide covering key concepts of Trigonometry Sine Cosine Tangent."
+  },
+  {
+    "path": "education/math/understanding-fractions-and-decimals.html",
+    "name": "Understanding Fractions and Decimals",
+    "category": "education",
+    "subcategory": "math",
+    "description": "Educational topic and study guide covering key concepts of Understanding Fractions and Decimals."
+  },
+  {
+    "path": "education/science/basics-of-astronomy-and-planets.html",
+    "name": "Basics of Astronomy and Planets",
+    "category": "education",
+    "subcategory": "science",
+    "description": "Educational topic and study guide covering key concepts of Basics of Astronomy and Planets."
+  },
+  {
+    "path": "education/science/cell-biology-structure-and-function.html",
+    "name": "Cell Biology Structure and Function",
+    "category": "education",
+    "subcategory": "science",
+    "description": "Educational topic and study guide covering key concepts of Cell Biology Structure and Function."
+  },
+  {
+    "path": "education/science/ecosystems-and-environmental-science.html",
+    "name": "Ecosystems and Environmental Science",
+    "category": "education",
+    "subcategory": "science",
+    "description": "Educational topic and study guide covering key concepts of Ecosystems and Environmental Science."
+  },
+  {
+    "path": "education/science/fundamentals-of-chemical-bonding.html",
+    "name": "Fundamentals of Chemical Bonding",
+    "category": "education",
+    "subcategory": "science",
+    "description": "Educational topic and study guide covering key concepts of Fundamentals of Chemical Bonding."
+  },
+  {
+    "path": "education/science/genetics-and-dna-replication-explained.html",
+    "name": "Genetics and Dna Replication Explained",
+    "category": "education",
+    "subcategory": "science",
+    "description": "Educational topic and study guide covering key concepts of Genetics and Dna Replication Explained."
+  },
+  {
+    "path": "education/science/human-anatomy-and-body-systems.html",
+    "name": "Human Anatomy and Body Systems",
+    "category": "education",
+    "subcategory": "science",
+    "description": "Educational topic and study guide covering key concepts of Human Anatomy and Body Systems."
+  },
+  {
+    "path": "education/science/introduction-to-organic-chemistry.html",
+    "name": "Introduction to Organic Chemistry",
+    "category": "education",
+    "subcategory": "science",
+    "description": "Educational topic and study guide covering key concepts of Introduction to Organic Chemistry."
+  },
+  {
+    "path": "education/science/newtons-laws-of-motion.html",
+    "name": "Newtons Laws of Motion",
+    "category": "education",
+    "subcategory": "science",
+    "description": "Educational topic and study guide covering key concepts of Newtons Laws of Motion."
+  },
+  {
+    "path": "education/science/thermodynamics-and-heat-transfer.html",
+    "name": "Thermodynamics and Heat Transfer",
+    "category": "education",
+    "subcategory": "science",
+    "description": "Educational topic and study guide covering key concepts of Thermodynamics and Heat Transfer."
+  },
+  {
+    "path": "education/science/understanding-the-periodic-table.html",
+    "name": "Understanding the Periodic Table",
+    "category": "education",
+    "subcategory": "science",
+    "description": "Educational topic and study guide covering key concepts of Understanding the Periodic Table."
+  }
+]
