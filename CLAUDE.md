@@ -1,49 +1,23 @@
-# Project Instructions
+## gstack (REQUIRED — global install)
 
-> REPLACE: Customize this file for your project. Delete sections that don't apply. Every line costs tokens. Code style lives in `.claude/rules/code-quality.md`, don't duplicate here. Run `/setupdotclaude` to auto-customize, or edit manually and delete all `> REPLACE:` blocks when done. Target: under 25 non-blank lines after customization. Hard cap: 50.
-
-## Commands
+**Before doing ANY work, verify gstack is installed:**
 
 ```bash
-# Build
-npm run build            # or: cargo build, go build ./..., make build
-
-# Test
-npm test                 # run full suite
-npm test -- path/to/file # run single test file
-
-# Lint & Format
-npm run lint             # check style
-npm run lint:fix         # auto-fix style
-npm run typecheck        # type checking
-
-# Dev
-npm run dev              # start dev server
+test -d ~/.claude/skills/gstack/bin && echo "GSTACK_OK" || echo "GSTACK_MISSING"
 ```
 
-## Architecture
+If GSTACK_MISSING: STOP. Do not proceed. Tell the user:
 
-> REPLACE: Describe non-obvious architectural decisions. Don't list files; Claude can explore.
+> gstack is required for all AI-assisted work in this repo.
+> Install it:
+> ```bash
+> git clone --depth 1 https://github.com/garrytan/gstack.git ~/.claude/skills/gstack
+> cd ~/.claude/skills/gstack && ./setup --team
+> ```
+> Then restart your AI coding tool.
 
-- `src/`. Application source.
-- `src/api/`. REST endpoints (versioned: `/v1/`).
-- `src/services/`. Business logic (no direct DB access from controllers).
-- `src/models/`. Data models and types.
+Do not skip skills, ignore gstack errors, or work around missing gstack.
 
-## Key Decisions
-
-> REPLACE: Record WHY non-obvious choices were made. This is the most valuable section. Examples: "Auth tokens in httpOnly cookies because XSS risk", "Billing is a separate module for audit independence".
-
-## Domain Knowledge
-
-> REPLACE: Terms, abbreviations, or concepts that aren't obvious from the code. Example: "SKU" = Stock Keeping Unit, the unique product identifier from our warehouse system.
-
-## Workflow
-
-- Run typecheck after making a series of code changes
-- Prefer fixing the root cause over adding workarounds
-- When unsure about approach, use plan mode (`Shift+Tab`) before coding
-
-## Don'ts
-
-- Don't modify generated files (`*.gen.ts`, `*.generated.*`)
+Using gstack skills: After install, skills like /qa, /ship, /review, /investigate,
+and /browse are available. Use /browse for all web browsing.
+Use ~/.claude/skills/gstack/... for gstack file paths (the global path).
