@@ -1,0 +1,3422 @@
+{
+  ".claude/hooks/auto-test.sh": {
+    "mtime": 1781898307.2109132,
+    "ast_hash": "1e436442691c2d80132fddec1d52a61f",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/block-dangerous-commands.sh": {
+    "mtime": 1781898307.2119143,
+    "ast_hash": "b1311e8ff18c4ff0d21d6cc24bfb52f9",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/format-on-save.sh": {
+    "mtime": 1781898307.212915,
+    "ast_hash": "aa822bf4e044020f15ee5cf7188b4edf",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/notify.sh": {
+    "mtime": 1781898307.2139144,
+    "ast_hash": "ff1807765d0239e3912770f82d86a961",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/protect-files.sh": {
+    "mtime": 1781898307.214915,
+    "ast_hash": "653c90037246be65270ec439ac1fd674",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/session-start.sh": {
+    "mtime": 1781898307.2179127,
+    "ast_hash": "8dfcd28778a929a298d69ec50521061c",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/auto-test/01-skip-missing-file-path.json": {
+    "mtime": 1781898307.2199128,
+    "ast_hash": "0f3efc22d1b33a9f92fbadce008f7b31",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/auto-test/02-skip-nonexistent-file.json": {
+    "mtime": 1781898307.2209127,
+    "ast_hash": "d2ba572714d1362ff61bdeca7f384609",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/auto-test/03-skip-test-file-itself.json": {
+    "mtime": 1781898307.223503,
+    "ast_hash": "36bf08a9d43c1499e3ba3993fd235bdc",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/auto-test/04-skip-config-extension.json": {
+    "mtime": 1781898307.224505,
+    "ast_hash": "ed5326ee8c2b9c8fa47b22a0b78fc384",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/auto-test/05-no-matching-test-silent.json": {
+    "mtime": 1781898307.226503,
+    "ast_hash": "248ada09dad7a7596a249a2334b58ace",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/auto-test/test_sample.py": {
+    "mtime": 1781898307.226503,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/block-dangerous-commands/01-allow-safe-ls.json": {
+    "mtime": 1781898307.230507,
+    "ast_hash": "b7502b9a7377744a299fc16607d31908",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/block-dangerous-commands/02-block-push-main.json": {
+    "mtime": 1781898307.231508,
+    "ast_hash": "3adc88c50b08ae80919d2270d24572be",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/block-dangerous-commands/03-block-push-HEAD-main.json": {
+    "mtime": 1781898307.2325068,
+    "ast_hash": "0871443eb722169ee2e93855ff1c4d16",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/block-dangerous-commands/04-block-push-upstream-main.json": {
+    "mtime": 1781898307.2335055,
+    "ast_hash": "91810335a0398f3158f03ef7eed407ef",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/block-dangerous-commands/05-allow-force-with-lease.json": {
+    "mtime": 1781898307.2345057,
+    "ast_hash": "0e2a22cdd133873ac832b91fa3c0025c",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/block-dangerous-commands/06-block-force-combined-flag.json": {
+    "mtime": 1781898307.2355046,
+    "ast_hash": "0f93af3b74ab02dfe9068f52476c3110",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/block-dangerous-commands/07-block-rm-rf-root.json": {
+    "mtime": 1781898307.23701,
+    "ast_hash": "005509316423df37ff2ea685d8b07942",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/block-dangerous-commands/08-block-rm-rf-quoted.json": {
+    "mtime": 1781898307.2385838,
+    "ast_hash": "0f96b7a33af2203fc71cdd39fc0b3e1f",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/block-dangerous-commands/09-block-rm-rf-var.json": {
+    "mtime": 1781898307.2405927,
+    "ast_hash": "f8fe5eb0f1e56083c6f557c97e590d3c",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/block-dangerous-commands/10-allow-rm-rf-subdir.json": {
+    "mtime": 1781898307.2416017,
+    "ast_hash": "1802d55b80ade043b697e61b9852c58a",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/block-dangerous-commands/11-allow-stderr-redirect.json": {
+    "mtime": 1781898307.2425985,
+    "ast_hash": "aea894caf1c91acad8000c15fdbb8a83",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/block-dangerous-commands/12-block-dev-sda.json": {
+    "mtime": 1781898307.2435973,
+    "ast_hash": "52051609822ebb6cf8fa7ea84a84becc",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/block-dangerous-commands/13-block-delete-no-where.json": {
+    "mtime": 1781898307.2455974,
+    "ast_hash": "6a2774c60625c3295d218ba65f074c0a",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/block-dangerous-commands/14-allow-delete-with-where.json": {
+    "mtime": 1781898307.2465973,
+    "ast_hash": "171fa0232d4eac9f8a902153fc827801",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/block-dangerous-commands/15-block-delete-multistatement.json": {
+    "mtime": 1781898307.2475977,
+    "ast_hash": "0be09082c3eb2ee2273968471698b8a2",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/block-dangerous-commands/16-block-chmod-0777.json": {
+    "mtime": 1781898307.2485974,
+    "ast_hash": "3c6c44d8f82bcb71481497220b9f73b3",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/block-dangerous-commands/17-block-chmod-R-777.json": {
+    "mtime": 1781898307.2505972,
+    "ast_hash": "70f30585ca8b13f43c50f55975f96a6b",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/block-dangerous-commands/18-allow-npm-publish-dry-run.json": {
+    "mtime": 1781898307.251601,
+    "ast_hash": "2323ccd2227e890b3017c3f8067bc36a",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/block-dangerous-commands/19-block-curl-pipe-sudo.json": {
+    "mtime": 1781898307.2525973,
+    "ast_hash": "2bcc659f109755ebcc1bf9f77b65a05a",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/block-dangerous-commands/20-block-push-develop-configurable.json": {
+    "mtime": 1781898307.253597,
+    "ast_hash": "aa4a4d9b620c446007e816f75ae1f827",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/format-on-save/01-missing-file-path.json": {
+    "mtime": 1781898307.2561069,
+    "ast_hash": "1010dcdacc1c46ebd6d616e122a76647",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/format-on-save/02-nonexistent-file.json": {
+    "mtime": 1781898307.2571163,
+    "ast_hash": "2a4c5000db175b460bfac20857d5d4fa",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/format-on-save/03-no-formatter-configured.json": {
+    "mtime": 1781898307.2581158,
+    "ast_hash": "dee4de9b149f83010d66559b473f1e42",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/notify/01-dryrun-custom-message.json": {
+    "mtime": 1781898307.2601144,
+    "ast_hash": "0d4fa49d25679733614181dc2f05d25b",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/notify/02-dryrun-default-message.json": {
+    "mtime": 1781898307.2621274,
+    "ast_hash": "cc949fd02c99a1d2770e7eb96561be62",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/protect-files/01-allow-src-file.json": {
+    "mtime": 1781898307.264113,
+    "ast_hash": "ae700dc88449e64939ef53e8e8bcea6e",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/protect-files/02-block-env.json": {
+    "mtime": 1781898307.2651615,
+    "ast_hash": "c0bae06a13ad15bc65e795c43a22fb42",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/protect-files/03-block-env-local.json": {
+    "mtime": 1781898307.2661638,
+    "ast_hash": "5ef2860261cee1bfbbe53afc68aadf74",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/protect-files/04-block-env-case-insensitive.json": {
+    "mtime": 1781898307.2671661,
+    "ast_hash": "0afa519ec5dffb3de1e1a9e7954f2cb4",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/protect-files/05-allow-env-suffix-file.json": {
+    "mtime": 1781898307.2691636,
+    "ast_hash": "8cb00975839eacd0386f6e3ec7318185",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/protect-files/06-block-pem.json": {
+    "mtime": 1781898307.2697601,
+    "ast_hash": "ed03f12294fef88a5c8b44b406e729b9",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/protect-files/07-block-id_rsa.json": {
+    "mtime": 1781898307.2717924,
+    "ast_hash": "a1dd97b9e15fef9c5d9fc82709457233",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/protect-files/08-block-lock-file.json": {
+    "mtime": 1781898307.2729373,
+    "ast_hash": "2027c323cae9e063550ec13eaa5ade0c",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/protect-files/09-block-generated.json": {
+    "mtime": 1781898307.2749486,
+    "ast_hash": "a19d124f73288961ef75f3617046af45",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/protect-files/10-block-git-dir.json": {
+    "mtime": 1781898307.275944,
+    "ast_hash": "f4c60272cd5fe4d3415e05c6e7243e69",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/protect-files/11-block-secrets-dir.json": {
+    "mtime": 1781898307.27695,
+    "ast_hash": "2f448216f4c296f8a55e020d98486cfe",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/protect-files/12-block-claude-hook-edit.json": {
+    "mtime": 1781898307.2779555,
+    "ast_hash": "8645bfd77838368997c7e4ba499e9740",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/protect-files/13-ask-settings.json": {
+    "mtime": 1781898307.2799487,
+    "ast_hash": "11bc0e365e9678cd154746e4c0f0c32b",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/protect-files/14-allow-missing-file_path.json": {
+    "mtime": 1781898307.2809525,
+    "ast_hash": "91e8bbca5ea7b61e087fbf83cef50e82",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/protect-files/15-block-pfx.json": {
+    "mtime": 1781898307.2829504,
+    "ast_hash": "cd1bc40497842514fb6a5e5ba77bce7f",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/protect-files/16-block-env-subpath.json": {
+    "mtime": 1781898307.2839482,
+    "ast_hash": "e122321edf4a1e23072fb86287c86c12",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/scan-secrets/01-allow-clean-source.json": {
+    "mtime": 1781898307.2849486,
+    "ast_hash": "1b04aed38d22693ad356c9e5ec46e53c",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/scan-secrets/02-allow-env-reference.json": {
+    "mtime": 1781898307.2869503,
+    "ast_hash": "e8ade7d334e17c4a1d84e5db65cbb886",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/scan-secrets/05-block-anthropic-hyphenated-key.json": {
+    "mtime": 1781898307.2909505,
+    "ast_hash": "6a40513640fdc77a5d755ab840aecb25",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/scan-secrets/06-block-aws-access-key.json": {
+    "mtime": 1781898307.2922294,
+    "ast_hash": "47eb421758511c4daf6421ace63e9529",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/scan-secrets/08-block-private-key.json": {
+    "mtime": 1781898307.2942283,
+    "ast_hash": "2b0febbe67651aa8888ae1b7d835873c",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/scan-secrets/09-block-conn-string-creds.json": {
+    "mtime": 1781898307.2952259,
+    "ast_hash": "64040986cc78a70e194d233a4694f3d4",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/scan-secrets/10-ignore-read-tool.json": {
+    "mtime": 1781898307.2972262,
+    "ast_hash": "265a0b46c5e8da133c51ee83c81aa054",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/session-start/01-default-minimal.json": {
+    "mtime": 1781898307.2992318,
+    "ast_hash": "fc99a3156a362d27cbb8281731a111bf",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/session-start/02-verbose-mode.json": {
+    "mtime": 1781898307.30096,
+    "ast_hash": "e77de69162f7ce6a570f530ea8d4d3d6",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/session-start/03-fingerprint-mode.json": {
+    "mtime": 1781898307.3029766,
+    "ast_hash": "6dc5e5a166e45d39226301029bd27449",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/session-start/04-drift-detected.json": {
+    "mtime": 1781898307.3039763,
+    "ast_hash": "a86ccaa23003a0b1c870e34438988ae0",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/session-start/05-no-drift-silent.json": {
+    "mtime": 1781898307.304976,
+    "ast_hash": "b67052584a0a232d2d47bd1b6c54edf0",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/session-start/data/meta-match.json": {
+    "mtime": 1781898307.3069768,
+    "ast_hash": "55ca54b2b31ed6f388f17b126700b2f8",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/session-start/data/meta-stale.json": {
+    "mtime": 1781898307.309225,
+    "ast_hash": "9f39dc36f4dedf5d1c666b653c4c357b",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/warn-large-files/01-allow-src-file.json": {
+    "mtime": 1781898307.3112226,
+    "ast_hash": "ae700dc88449e64939ef53e8e8bcea6e",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/warn-large-files/02-block-node-modules.json": {
+    "mtime": 1781898307.3122227,
+    "ast_hash": "cd30d90000df78bbe0535669da3f02bd",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/warn-large-files/03-block-nested-dist.json": {
+    "mtime": 1781898307.3142245,
+    "ast_hash": "06710add3db79b6783fcc4dccc3d4bcd",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/warn-large-files/04-block-wasm-binary.json": {
+    "mtime": 1781898307.3162248,
+    "ast_hash": "3fa117490760e82838555146ef886746",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/warn-large-files/05-block-archive.json": {
+    "mtime": 1781898307.3177297,
+    "ast_hash": "40f9ebb4072102449f2c3ecc44dab6a0",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/warn-large-files/06-block-pycache.json": {
+    "mtime": 1781898307.3187397,
+    "ast_hash": "9e554308dae6956c41f5722735cdde6e",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/fixtures/warn-large-files/07-allow-missing-file-path.json": {
+    "mtime": 1781898307.3202448,
+    "ast_hash": "0d425134cf8d87388f6455de812c9b4f",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/tests/run-all.sh": {
+    "mtime": 1781898307.3222506,
+    "ast_hash": "55b2693610a8da9bc04e345101b7e811",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/warn-large-files.sh": {
+    "mtime": 1781898307.3232543,
+    "ast_hash": "d5d2b9a27dd35b37e2f65c861313032b",
+    "semantic_hash": ""
+  },
+  ".claude/settings.json": {
+    "mtime": 1781898307.4636178,
+    "ast_hash": "d5dbb77f0c397eca9e771e6c53573fb4",
+    "semantic_hash": ""
+  },
+  ".specify/extensions/agent-context/scripts/bash/update-agent-context.sh": {
+    "mtime": 1781898499.9966433,
+    "ast_hash": "b1168bb9cffc02061aa72530000b76ef",
+    "semantic_hash": ""
+  },
+  ".specify/extensions/agent-context/scripts/powershell/update-agent-context.ps1": {
+    "mtime": 1781898500.0006423,
+    "ast_hash": "490a5c678c46baf04f36b571861a1045",
+    "semantic_hash": ""
+  },
+  ".specify/init-options.json": {
+    "mtime": 1781898542.0971186,
+    "ast_hash": "0eb74fcc74bc9996164770a46c3b32d2",
+    "semantic_hash": ""
+  },
+  ".specify/integration.json": {
+    "mtime": 1781898541.9708216,
+    "ast_hash": "bb6554d26050c486b1e21c4653dd4f89",
+    "semantic_hash": ""
+  },
+  ".specify/integrations/gemini.manifest.json": {
+    "mtime": 1781898541.9659512,
+    "ast_hash": "f2ba8b773b489b7547cf0dea7524421c",
+    "semantic_hash": ""
+  },
+  ".specify/integrations/speckit.manifest.json": {
+    "mtime": 1781898542.0656438,
+    "ast_hash": "159af081f750d3bff8affc190c8865b1",
+    "semantic_hash": ""
+  },
+  ".specify/scripts/powershell/check-prerequisites.ps1": {
+    "mtime": 1781898541.9985223,
+    "ast_hash": "a0a2d1d33e07a1e0554f8b89f2a125ab",
+    "semantic_hash": ""
+  },
+  ".specify/scripts/powershell/common.ps1": {
+    "mtime": 1781898542.0045216,
+    "ast_hash": "c604e11f097dd85cb28ebc76261e4018",
+    "semantic_hash": ""
+  },
+  ".specify/scripts/powershell/create-new-feature.ps1": {
+    "mtime": 1781898542.017814,
+    "ast_hash": "daf103b15370d4db120657d0c6bb039d",
+    "semantic_hash": ""
+  },
+  ".specify/scripts/powershell/setup-plan.ps1": {
+    "mtime": 1781898542.0246387,
+    "ast_hash": "b640ae1bd5b44d9a49a9481931cb4ab9",
+    "semantic_hash": ""
+  },
+  ".specify/scripts/powershell/setup-tasks.ps1": {
+    "mtime": 1781898542.0306406,
+    "ast_hash": "c3d27980bea268267881e03e161b9f30",
+    "semantic_hash": ""
+  },
+  ".specify/workflows/runs/234ef5ba/inputs.json": {
+    "mtime": 1781898774.6545293,
+    "ast_hash": "174b02815971fc031aea8b42967e2d4b",
+    "semantic_hash": ""
+  },
+  ".specify/workflows/runs/234ef5ba/state.json": {
+    "mtime": 1781898774.6535265,
+    "ast_hash": "46e463551dcfb4424e1e0773fc39e819",
+    "semantic_hash": ""
+  },
+  ".specify/workflows/workflow-registry.json": {
+    "mtime": 1781898542.0911553,
+    "ast_hash": "60a901d16d9445a0cbf6b4e77020a91c",
+    "semantic_hash": ""
+  },
+  "assets/data/tools.json": {
+    "mtime": 1781928320.3453832,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "assets/js/app.js": {
+    "mtime": 1781928320.3433788,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "assets/js/router.js": {
+    "mtime": 1781928320.3433788,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "assets/js/service-worker.js": {
+    "mtime": 1781928320.3443837,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  ".agents/rules/graphify.md": {
+    "mtime": 1781898812.697554,
+    "ast_hash": "a0e4d192b9e2e17256124dbfc8e24e6a",
+    "semantic_hash": ""
+  },
+  ".agents/workflows/graphify.md": {
+    "mtime": 1781898812.6989195,
+    "ast_hash": "637776aa6f7496d069afe7520c845c8a",
+    "semantic_hash": ""
+  },
+  ".claude/agents/README.md": {
+    "mtime": 1781898307.1916666,
+    "ast_hash": "86860b0427fc9025983584f3a32a5521",
+    "semantic_hash": ""
+  },
+  ".claude/agents/code-reviewer/code-reviewer.md": {
+    "mtime": 1781898307.1946745,
+    "ast_hash": "db5dfd6ab042662d42c30b2916a1beee",
+    "semantic_hash": ""
+  },
+  ".claude/agents/doc-reviewer/doc-reviewer.md": {
+    "mtime": 1781898307.1966891,
+    "ast_hash": "64655fee8007383004bad78ceb2052dc",
+    "semantic_hash": ""
+  },
+  ".claude/agents/frontend-designer/frontend-designer.md": {
+    "mtime": 1781898307.1986825,
+    "ast_hash": "59c19a3886319dec8c632da5ecb58b36",
+    "semantic_hash": ""
+  },
+  ".claude/agents/performance-reviewer/performance-reviewer.md": {
+    "mtime": 1781898307.2006836,
+    "ast_hash": "dfe7e15529ab142616a96ed87a931c66",
+    "semantic_hash": ""
+  },
+  ".claude/agents/pr-test-analyzer/pr-test-analyzer.md": {
+    "mtime": 1781898307.2026825,
+    "ast_hash": "4314a306643531d313df7a68a671bc21",
+    "semantic_hash": ""
+  },
+  ".claude/agents/security-reviewer/security-reviewer.md": {
+    "mtime": 1781898307.2039945,
+    "ast_hash": "01b16299362e1538170271155cff0dfb",
+    "semantic_hash": ""
+  },
+  ".claude/agents/silent-failure-hunter/silent-failure-hunter.md": {
+    "mtime": 1781898307.2060056,
+    "ast_hash": "9a8639c1ed947777111d5df73c323f08",
+    "semantic_hash": ""
+  },
+  ".claude/hooks/README.md": {
+    "mtime": 1781898307.2084005,
+    "ast_hash": "aa208c6d81ed536119996741d3e57a41",
+    "semantic_hash": ""
+  },
+  ".claude/rules/README.md": {
+    "mtime": 1781898307.45087,
+    "ast_hash": "013e1e637cef450b7e91315b70e8484c",
+    "semantic_hash": ""
+  },
+  ".claude/rules/code-quality.md": {
+    "mtime": 1781898307.4518716,
+    "ast_hash": "0fe6a35ab01df7bb697d1d0304d276f4",
+    "semantic_hash": ""
+  },
+  ".claude/rules/database.md": {
+    "mtime": 1781898307.4539118,
+    "ast_hash": "08e3cd66f669e564791f28513fc486dd",
+    "semantic_hash": ""
+  },
+  ".claude/rules/error-handling.md": {
+    "mtime": 1781898307.4549115,
+    "ast_hash": "85877fa3c8cdd939612cf7279558be51",
+    "semantic_hash": ""
+  },
+  ".claude/rules/frontend.md": {
+    "mtime": 1781898307.4569974,
+    "ast_hash": "f30df6fad1e4e80ebcc71f47ad7217ce",
+    "semantic_hash": ""
+  },
+  ".claude/rules/security.md": {
+    "mtime": 1781898307.4596179,
+    "ast_hash": "ca6f010dac706b985278bacf3c590d41",
+    "semantic_hash": ""
+  },
+  ".claude/rules/testing.md": {
+    "mtime": 1781898307.4616156,
+    "ast_hash": "097bbdd4e6b68d0ec225fdc08645837a",
+    "semantic_hash": ""
+  },
+  ".claude/skills/README.md": {
+    "mtime": 1781898307.4666173,
+    "ast_hash": "18bfb2d5fe2ff930a3e9494ca6b6a06a",
+    "semantic_hash": ""
+  },
+  ".claude/skills/catchup/SKILL.md": {
+    "mtime": 1781898307.4686172,
+    "ast_hash": "79a3c39566ba36e83ddad16ac8a91eeb",
+    "semantic_hash": ""
+  },
+  ".claude/skills/claude-md/SKILL.md": {
+    "mtime": 1781898307.4706175,
+    "ast_hash": "bda05d970ac62793719ba39a7101516c",
+    "semantic_hash": ""
+  },
+  ".claude/skills/context-budget/SKILL.md": {
+    "mtime": 1781898307.4736168,
+    "ast_hash": "0b05bed6ed6857c194cc1861cee67793",
+    "semantic_hash": ""
+  },
+  ".claude/skills/debug-fix/SKILL.md": {
+    "mtime": 1781898307.477132,
+    "ast_hash": "319b127a2b15a991cdda9c6daa499f69",
+    "semantic_hash": ""
+  },
+  ".claude/skills/explain/SKILL.md": {
+    "mtime": 1781898307.4806457,
+    "ast_hash": "58501dd303acca1b28d1265575847d91",
+    "semantic_hash": ""
+  },
+  ".claude/skills/fix-issue/SKILL.md": {
+    "mtime": 1781898307.4836452,
+    "ast_hash": "7fac3211f13b98c7eb5b198e529dfb1a",
+    "semantic_hash": ""
+  },
+  ".claude/skills/pr-review/SKILL.md": {
+    "mtime": 1781898307.485648,
+    "ast_hash": "284c9d4c059563eed00c171bf96a386f",
+    "semantic_hash": ""
+  },
+  ".claude/skills/refactor/SKILL.md": {
+    "mtime": 1781898307.487648,
+    "ast_hash": "d122b4067ac4bae68bcd321cffb07fac",
+    "semantic_hash": ""
+  },
+  ".claude/skills/setupdotclaude/SKILL.md": {
+    "mtime": 1781898307.4898078,
+    "ast_hash": "01efdbd7c37ace9f8a79b31bbaabae95",
+    "semantic_hash": ""
+  },
+  ".claude/skills/ship/SKILL.md": {
+    "mtime": 1781898307.493808,
+    "ast_hash": "ab7da808deda0d4334359fcfc6c962d4",
+    "semantic_hash": ""
+  },
+  ".claude/skills/speckit-agent-context-update/SKILL.md": {
+    "mtime": 1781898542.124117,
+    "ast_hash": "280c946ded3a1043f2c0b150f3d74a64",
+    "semantic_hash": ""
+  },
+  ".claude/skills/tdd/SKILL.md": {
+    "mtime": 1781898307.494807,
+    "ast_hash": "0b156412ced98386e6a8613a14c1b849",
+    "semantic_hash": ""
+  },
+  ".claude/skills/test-writer/SKILL.md": {
+    "mtime": 1781898307.4968078,
+    "ast_hash": "bf632142f4aad5ef76225da2585a0e71",
+    "semantic_hash": ""
+  },
+  ".specify/extensions.yml": {
+    "mtime": 1781898542.1341171,
+    "ast_hash": "6fc655d042586d15ec3356b836bfd8ab",
+    "semantic_hash": ""
+  },
+  ".specify/extensions/agent-context/README.md": {
+    "mtime": 1781898499.9846418,
+    "ast_hash": "1aa8a439be548ec0da2e3387a4925e4f",
+    "semantic_hash": ""
+  },
+  ".specify/extensions/agent-context/agent-context-config.yml": {
+    "mtime": 1781898542.1371171,
+    "ast_hash": "0eca7dfe1d5061c4d7870c5aa5f69879",
+    "semantic_hash": ""
+  },
+  ".specify/extensions/agent-context/commands/speckit.agent-context.update.md": {
+    "mtime": 1781898499.9926417,
+    "ast_hash": "7eecbfbef236c6af3e4003b32c6ffd2a",
+    "semantic_hash": ""
+  },
+  ".specify/extensions/agent-context/extension.yml": {
+    "mtime": 1781898499.9896424,
+    "ast_hash": "c09cdcdf8b86381d5955182b5eac0caf",
+    "semantic_hash": ""
+  },
+  ".specify/memory/constitution.md": {
+    "mtime": 1781898755.07432,
+    "ast_hash": "46bff0022e6d2545802ad6d1ebf0f13f",
+    "semantic_hash": ""
+  },
+  ".specify/templates/checklist-template.md": {
+    "mtime": 1781898542.036643,
+    "ast_hash": "87c4b390cebe71d15364bcd4690a102f",
+    "semantic_hash": ""
+  },
+  ".specify/templates/constitution-template.md": {
+    "mtime": 1781898542.040645,
+    "ast_hash": "dcefb6b60e7cb3db2e966977b6f02f18",
+    "semantic_hash": ""
+  },
+  ".specify/templates/plan-template.md": {
+    "mtime": 1781898542.050638,
+    "ast_hash": "a32b024d46f365191b4fd540f10912c2",
+    "semantic_hash": ""
+  },
+  ".specify/templates/spec-template.md": {
+    "mtime": 1781898542.0556388,
+    "ast_hash": "45ac8538bc1220324c9f0d610145b53f",
+    "semantic_hash": ""
+  },
+  ".specify/templates/tasks-template.md": {
+    "mtime": 1781898542.0596433,
+    "ast_hash": "b8ed482dd2103953e4f871e0ed12d4bd",
+    "semantic_hash": ""
+  },
+  ".specify/workflows/runs/234ef5ba/workflow.yml": {
+    "mtime": 1781898774.613147,
+    "ast_hash": "e898ca9646c7077a322c1cc8ab8cf29c",
+    "semantic_hash": ""
+  },
+  ".specify/workflows/speckit/workflow.yml": {
+    "mtime": 1781898500.129384,
+    "ast_hash": "eba6943b2a2f6407162ae12e0218bdac",
+    "semantic_hash": ""
+  },
+  "Agent.md": {
+    "mtime": 1781898307.1840594,
+    "ast_hash": "2462e80c297d020c86ff016f0fce8d6b",
+    "semantic_hash": ""
+  },
+  "Architecture.md": {
+    "mtime": 1781898864.1009893,
+    "ast_hash": "c5107b27803e29a975e904cb26475a67",
+    "semantic_hash": ""
+  },
+  "CLAUDE.md": {
+    "mtime": 1781898307.1840594,
+    "ast_hash": "2462e80c297d020c86ff016f0fce8d6b",
+    "semantic_hash": ""
+  },
+  "DESIGN.md": {
+    "mtime": 1781898861.3325589,
+    "ast_hash": "82502aadf37d41ecb6ca258e3482f049",
+    "semantic_hash": ""
+  },
+  "GEMINI.md": {
+    "mtime": 1781898541.962234,
+    "ast_hash": "af2a4aa2afc255f108b61414df63a311",
+    "semantic_hash": ""
+  },
+  "components/footer.html": {
+    "mtime": 1781928320.3473816,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "components/header.html": {
+    "mtime": 1781928320.3463821,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/finance/basics-of-real-estate-investing.html": {
+    "mtime": 1781928320.9877965,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/finance/basics-of-taxation-and-income.html": {
+    "mtime": 1781928320.982806,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/finance/credit-scores-and-debt-management.html": {
+    "mtime": 1781928320.9838111,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/finance/cryptocurrency-and-blockchain-fundamentals.html": {
+    "mtime": 1781928320.9897966,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/finance/entrepreneurship-and-business-plan-creation.html": {
+    "mtime": 1781928320.9918015,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/finance/how-banking-and-central-banks-operate.html": {
+    "mtime": 1781928320.9868073,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/finance/how-compound-interest-works.html": {
+    "mtime": 1781928320.9797902,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/finance/index.html": {
+    "mtime": 1781928320.9777863,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/finance/introduction-to-corporate-accounting.html": {
+    "mtime": 1781928320.9858108,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/finance/personal-budgeting-and-saving-strategies.html": {
+    "mtime": 1781928320.9787896,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/finance/understanding-stocks-bonds-and-mutual-funds.html": {
+    "mtime": 1781928320.9817972,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/humanities/ancient-civilizations-egypt-greece-rome.html": {
+    "mtime": 1781928320.94726,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/humanities/basics-of-macroeconomics.html": {
+    "mtime": 1781928320.9522598,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/humanities/environmental-geography-and-mapping.html": {
+    "mtime": 1781928320.9592679,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/humanities/fundamentals-of-human-psychology.html": {
+    "mtime": 1781928320.956269,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/humanities/index.html": {
+    "mtime": 1781928320.945264,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/humanities/introduction-to-political-science.html": {
+    "mtime": 1781928320.9512606,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/humanities/introduction-to-western-philosophy.html": {
+    "mtime": 1781928320.9572704,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/humanities/microeconomics-supply-and-demand.html": {
+    "mtime": 1781928320.9532807,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/humanities/sociology-and-cultural-studies.html": {
+    "mtime": 1781928320.95827,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/humanities/world-geography-continents-and-climate-zones.html": {
+    "mtime": 1781928320.9542732,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/humanities/world-history-major-turning-points.html": {
+    "mtime": 1781928320.9462612,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/languages/creative-writing-and-character-building.html": {
+    "mtime": 1781928320.9737864,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/languages/english-grammar-tenses-and-structures.html": {
+    "mtime": 1781928320.9622684,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/languages/essay-writing-and-structuring-arguments.html": {
+    "mtime": 1781928320.9632673,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/languages/french-pronunciation-and-basics.html": {
+    "mtime": 1781928320.9697797,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/languages/index.html": {
+    "mtime": 1781928320.9612684,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/languages/literary-devices-metaphor-irony-symbolism.html": {
+    "mtime": 1781928320.9662645,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/languages/professional-business-writing-etiquette.html": {
+    "mtime": 1781928320.9757895,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/languages/public-speaking-and-rhetoric.html": {
+    "mtime": 1781928320.9747894,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/languages/reading-comprehension-strategies.html": {
+    "mtime": 1781928320.9717765,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/languages/spanish-vocabulary-for-beginners.html": {
+    "mtime": 1781928320.9677696,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/languages/speed-reading-techniques.html": {
+    "mtime": 1781928320.976787,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/math/algebra-linear-equations-solving.html": {
+    "mtime": 1781928320.9202576,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/math/binary-and-hexadecimal-number-systems.html": {
+    "mtime": 1781928320.9262607,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/math/calculus-limits-and-derivatives.html": {
+    "mtime": 1781928320.922258,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/math/discrete-mathematics-logic.html": {
+    "mtime": 1781928320.928259,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/math/index.html": {
+    "mtime": 1781928320.9152646,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/math/introduction-to-geometry-shapes.html": {
+    "mtime": 1781928320.9192579,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/math/matrices-and-linear-algebra.html": {
+    "mtime": 1781928320.9242578,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/math/pre-algebra-essentials.html": {
+    "mtime": 1781928320.9162626,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/math/probability-and-statistics-basics.html": {
+    "mtime": 1781928320.9232576,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/math/trigonometry-sine-cosine-tangent.html": {
+    "mtime": 1781928320.9212575,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/math/understanding-fractions-and-decimals.html": {
+    "mtime": 1781928320.917263,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/science/basics-of-astronomy-and-planets.html": {
+    "mtime": 1781928320.9422607,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/science/cell-biology-structure-and-function.html": {
+    "mtime": 1781928320.9392638,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/science/ecosystems-and-environmental-science.html": {
+    "mtime": 1781928320.943261,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/science/fundamentals-of-chemical-bonding.html": {
+    "mtime": 1781928320.9342606,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/science/genetics-and-dna-replication-explained.html": {
+    "mtime": 1781928320.9402626,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/science/human-anatomy-and-body-systems.html": {
+    "mtime": 1781928320.943261,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/science/index.html": {
+    "mtime": 1781928320.9312668,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/science/introduction-to-organic-chemistry.html": {
+    "mtime": 1781928320.9382637,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/science/newtons-laws-of-motion.html": {
+    "mtime": 1781928320.9362638,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/science/thermodynamics-and-heat-transfer.html": {
+    "mtime": 1781928320.9372654,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "education/science/understanding-the-periodic-table.html": {
+    "mtime": 1781928320.9332623,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/arcade/asteroids-field.html": {
+    "mtime": 1781928320.788543,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/arcade/brick-breaker.html": {
+    "mtime": 1781928320.782532,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/arcade/flappy-bird-clone.html": {
+    "mtime": 1781928320.7835343,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/arcade/frogger-road.html": {
+    "mtime": 1781928320.7895422,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/arcade/helicopter-tunnel.html": {
+    "mtime": 1781928320.7905407,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/arcade/index.html": {
+    "mtime": 1781928320.7805316,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/arcade/pacman-retro.html": {
+    "mtime": 1781928320.7865424,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/arcade/pong-paddle.html": {
+    "mtime": 1781928320.7875402,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/arcade/snake-canvas.html": {
+    "mtime": 1781928320.7815318,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/arcade/space-invaders.html": {
+    "mtime": 1781928320.7845302,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/arcade/whack-a-mole.html": {
+    "mtime": 1781928320.7875402,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/board/backgammon-board.html": {
+    "mtime": 1781928320.813531,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/board/battleship-grid.html": {
+    "mtime": 1781928320.8175404,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/board/checkers-draughts.html": {
+    "mtime": 1781928320.8105314,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/board/chess-engine.html": {
+    "mtime": 1781928320.8095427,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/board/connect-four.html": {
+    "mtime": 1781928320.812536,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/board/dominoes-chain.html": {
+    "mtime": 1781928320.8155308,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/board/index.html": {
+    "mtime": 1781928320.808531,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/board/ludo-classic.html": {
+    "mtime": 1781928320.8145354,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/board/mancala-pit.html": {
+    "mtime": 1781928320.8185408,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/board/reversi-othello.html": {
+    "mtime": 1781928320.8145354,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/board/tic-tac-toe.html": {
+    "mtime": 1781928320.8115318,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/cards/baccarat-table.html": {
+    "mtime": 1781928320.8285398,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/cards/blackjack-twenty-one.html": {
+    "mtime": 1781928320.8215373,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/cards/freecell-classic.html": {
+    "mtime": 1781928320.8245325,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/cards/gin-rummy.html": {
+    "mtime": 1781928320.8275402,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/cards/hearts-card-game.html": {
+    "mtime": 1781928320.825542,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/cards/index.html": {
+    "mtime": 1781928320.8195424,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/cards/memory-card-match.html": {
+    "mtime": 1781928320.8245325,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/cards/poker-texas-holdem.html": {
+    "mtime": 1781928320.8235326,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/cards/solitaire-klondike.html": {
+    "mtime": 1781928320.820534,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/cards/spider-solitaire.html": {
+    "mtime": 1781928320.8225515,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/cards/uno-wild.html": {
+    "mtime": 1781928320.826542,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/puzzles/index.html": {
+    "mtime": 1781928320.7915406,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/puzzles/lights-out.html": {
+    "mtime": 1781928320.8005404,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/puzzles/maze-generator.html": {
+    "mtime": 1781928320.7965333,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/puzzles/minesweeper-classic.html": {
+    "mtime": 1781928320.795538,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/puzzles/nonogram-griddlers.html": {
+    "mtime": 1781928320.8065338,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/puzzles/pipe-connector.html": {
+    "mtime": 1781928320.7985427,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/puzzles/sliding-block.html": {
+    "mtime": 1781928320.797539,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/puzzles/sudoku-board.html": {
+    "mtime": 1781928320.7925384,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/puzzles/tetris-blocks.html": {
+    "mtime": 1781928320.7935548,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/puzzles/tower-stacker.html": {
+    "mtime": 1781928320.7985427,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/puzzles/twenty-forty-eight.html": {
+    "mtime": 1781928320.7945426,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/word/anagram-scramble.html": {
+    "mtime": 1781928320.837531,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/word/crossword-puzzle.html": {
+    "mtime": 1781928320.8345306,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/word/geo-quiz-map.html": {
+    "mtime": 1781928320.8425336,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/word/hangman-classic.html": {
+    "mtime": 1781928320.831541,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/word/index.html": {
+    "mtime": 1781928320.829542,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/word/riddle-me-this.html": {
+    "mtime": 1781928320.8455386,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/word/scrabble-helper-game.html": {
+    "mtime": 1781928320.8385317,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/word/trivia-quiz.html": {
+    "mtime": 1781928320.8405316,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/word/typing-speed-racer.html": {
+    "mtime": 1781928320.832536,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/word/word-search-grid.html": {
+    "mtime": 1781928320.8435411,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "games/word/wordle-clone.html": {
+    "mtime": 1781928320.8305397,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "index.html": {
+    "mtime": 1781928320.3383794,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/android/communication/index.html": {
+    "mtime": 1781928320.7660139,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/android/design/index.html": {
+    "mtime": 1781928320.7630208,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/android/development/index.html": {
+    "mtime": 1781928320.7620153,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/android/games/index.html": {
+    "mtime": 1781928320.7600143,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/android/multimedia/index.html": {
+    "mtime": 1781928320.767524,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/android/productivity/index.html": {
+    "mtime": 1781928320.7590144,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/android/security/index.html": {
+    "mtime": 1781928320.7650156,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/android/utility/index.html": {
+    "mtime": 1781928320.7580147,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/apple/communication/index.html": {
+    "mtime": 1781928320.7775314,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/apple/design/index.html": {
+    "mtime": 1781928320.775532,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/apple/development/index.html": {
+    "mtime": 1781928320.7735322,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/apple/games/index.html": {
+    "mtime": 1781928320.7725453,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/apple/multimedia/index.html": {
+    "mtime": 1781928320.779531,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/apple/productivity/index.html": {
+    "mtime": 1781928320.771531,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/apple/security/index.html": {
+    "mtime": 1781928320.776531,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/apple/utility/index.html": {
+    "mtime": 1781928320.7695315,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/linux/communication/index.html": {
+    "mtime": 1781928320.754015,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/linux/design/index.html": {
+    "mtime": 1781928320.751008,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/linux/development/index.html": {
+    "mtime": 1781928320.74884,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/linux/games/index.html": {
+    "mtime": 1781928320.7478516,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/linux/multimedia/index.html": {
+    "mtime": 1781928320.7560182,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/linux/productivity/index.html": {
+    "mtime": 1781928320.7458405,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/linux/security/index.html": {
+    "mtime": 1781928320.7530155,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/linux/utility/index.html": {
+    "mtime": 1781928320.744841,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/windows/communication/index.html": {
+    "mtime": 1781928320.7402065,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/windows/design/index.html": {
+    "mtime": 1781928320.7352164,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/windows/development/index.html": {
+    "mtime": 1781928320.7342162,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/windows/games/index.html": {
+    "mtime": 1781928320.7322118,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/windows/multimedia/index.html": {
+    "mtime": 1781928320.742834,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/windows/productivity/index.html": {
+    "mtime": 1781928320.7302132,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/windows/security/index.html": {
+    "mtime": 1781928320.7382085,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "software/windows/utility/index.html": {
+    "mtime": 1781928320.7282157,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "specs/001-bluetext-suite/checklists/requirements.md": {
+    "mtime": 1781898801.4639268,
+    "ast_hash": "48e748ed89b210444cbca2d025a006be",
+    "semantic_hash": ""
+  },
+  "specs/001-bluetext-suite/spec.md": {
+    "mtime": 1781898799.406877,
+    "ast_hash": "5dc8f84da99c300be62ca83ac2d8ff24",
+    "semantic_hash": ""
+  },
+  "tools/coding/base64-encoder.html": {
+    "mtime": 1781928320.4221106,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/bcrypt-hash-checker.html": {
+    "mtime": 1781928320.4371102,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/box-shadow-generator.html": {
+    "mtime": 1781928320.434112,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/cron-expression-descriptor.html": {
+    "mtime": 1781928320.425117,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/css-beautifier.html": {
+    "mtime": 1781928320.4201238,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/css-gradient-button-maker.html": {
+    "mtime": 1781928320.4301322,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/css-grid-generator.html": {
+    "mtime": 1781928320.4321105,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/flexbox-playground.html": {
+    "mtime": 1781928320.43111,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/gitignore-generator.html": {
+    "mtime": 1781928320.4411762,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/hmac-generator.html": {
+    "mtime": 1781928320.439111,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/html-entities-escape.html": {
+    "mtime": 1781928320.4291108,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/html-minifier.html": {
+    "mtime": 1781928320.4191122,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/htpasswd-generator.html": {
+    "mtime": 1781928320.4281108,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/index.html": {
+    "mtime": 1781928320.4181094,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/javascript-obfuscator.html": {
+    "mtime": 1781928320.4211142,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/json-formatter.html": {
+    "mtime": 1781928320.4191122,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/json-schema-validator.html": {
+    "mtime": 1781928320.4451852,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/jwt-decoder.html": {
+    "mtime": 1781928320.4261115,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/markdown-to-html.html": {
+    "mtime": 1781928320.4431849,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/md5-hash-generator.html": {
+    "mtime": 1781928320.423115,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/regex-tester.html": {
+    "mtime": 1781928320.4241102,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/rgba-to-hex-converter.html": {
+    "mtime": 1781928320.4361105,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/rsa-key-pair-generator.html": {
+    "mtime": 1781928320.4381118,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/sha256-hash-generator.html": {
+    "mtime": 1781928320.423115,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/sql-formatter.html": {
+    "mtime": 1781928320.427111,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/string-to-hex.html": {
+    "mtime": 1781928320.4401157,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/url-encoder-decoder.html": {
+    "mtime": 1781928320.4211142,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/user-agent-parser.html": {
+    "mtime": 1781928320.442189,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/uuid-v4-generator.html": {
+    "mtime": 1781928320.427111,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/xml-to-json.html": {
+    "mtime": 1781928320.425117,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/coding/yaml-to-json.html": {
+    "mtime": 1781928320.4281108,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/angle-converter.html": {
+    "mtime": 1781928320.515152,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/area-converter.html": {
+    "mtime": 1781928320.505711,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/braille-translator.html": {
+    "mtime": 1781928320.5253384,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/bytes-to-human-readable.html": {
+    "mtime": 1781928320.5283375,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/clothing-size-converter.html": {
+    "mtime": 1781928320.520337,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/cooking-measurement-converter.html": {
+    "mtime": 1781928320.5383387,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/data-storage-converter.html": {
+    "mtime": 1781928320.5107107,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/density-calculator.html": {
+    "mtime": 1781928320.5313368,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/energy-converter.html": {
+    "mtime": 1781928320.5117111,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/flow-rate-converter.html": {
+    "mtime": 1781928320.534337,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/force-converter.html": {
+    "mtime": 1781928320.5333376,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/fuel-consumption-converter.html": {
+    "mtime": 1781928320.518336,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/gmt-to-local-time.html": {
+    "mtime": 1781928320.5403376,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/hz-to-ms-converter.html": {
+    "mtime": 1781928320.5303364,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/index.html": {
+    "mtime": 1781928320.4997175,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/length-converter.html": {
+    "mtime": 1781928320.5007153,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/morse-to-text.html": {
+    "mtime": 1781928320.5263362,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/number-to-words-converter.html": {
+    "mtime": 1781928320.5233374,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/power-converter.html": {
+    "mtime": 1781928320.5137148,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/pressure-converter.html": {
+    "mtime": 1781928320.5137148,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/radiation-converter.html": {
+    "mtime": 1781928320.5363379,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/roman-numerals-converter.html": {
+    "mtime": 1781928320.522338,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/shoe-size-converter.html": {
+    "mtime": 1781928320.5193372,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/speed-converter.html": {
+    "mtime": 1781928320.5077107,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/temperature-converter.html": {
+    "mtime": 1781928320.50371,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/time-zone-converter.html": {
+    "mtime": 1781928320.5097108,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/torque-converter.html": {
+    "mtime": 1781928320.5173368,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/unix-timestamp-converter.html": {
+    "mtime": 1781928320.5273366,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/voltage-to-watts.html": {
+    "mtime": 1781928320.5373359,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/volume-converter.html": {
+    "mtime": 1781928320.506711,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/converters/weight-mass-converter.html": {
+    "mtime": 1781928320.5017202,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/ascii-to-binary.html": {
+    "mtime": 1781928320.687623,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/base32-encoder-decoder.html": {
+    "mtime": 1781928320.6826296,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/binary-to-ascii.html": {
+    "mtime": 1781928320.6896229,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/binary-to-hex.html": {
+    "mtime": 1781928320.686623,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/bson-to-json.html": {
+    "mtime": 1781928320.6916237,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/column-to-comma-separator.html": {
+    "mtime": 1781928320.701219,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/csv-to-json-converter.html": {
+    "mtime": 1781928320.6736183,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/data-anonymizer.html": {
+    "mtime": 1781928320.679631,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/data-sorting-matrix.html": {
+    "mtime": 1781928320.7002199,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/excel-to-markdown.html": {
+    "mtime": 1781928320.6926258,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/hex-dump-viewer.html": {
+    "mtime": 1781928320.6856234,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/hex-to-binary.html": {
+    "mtime": 1781928320.687623,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/html-table-generator.html": {
+    "mtime": 1781928320.6940846,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/index.html": {
+    "mtime": 1781928320.672618,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/ini-to-json-converter.html": {
+    "mtime": 1781928320.6962073,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/json-minify.html": {
+    "mtime": 1781928320.681624,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/json-to-csv-converter.html": {
+    "mtime": 1781928320.6746163,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/json-to-toml.html": {
+    "mtime": 1781928320.6992195,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/json-tree-viewer.html": {
+    "mtime": 1781928320.695201,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/latex-equation-editor.html": {
+    "mtime": 1781928320.694648,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/protobuf-decoder.html": {
+    "mtime": 1781928320.690623,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/query-string-generator.html": {
+    "mtime": 1781928320.6846237,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/regex-extractor.html": {
+    "mtime": 1781928320.6786256,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/serialized-php-parser.html": {
+    "mtime": 1781928320.6896229,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/sql-query-builder.html": {
+    "mtime": 1781928320.6776245,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/text-to-sql-insert-generator.html": {
+    "mtime": 1781928320.7032168,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/toml-to-json.html": {
+    "mtime": 1781928320.698219,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/tsv-to-json.html": {
+    "mtime": 1781928320.680627,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/url-parameter-parser.html": {
+    "mtime": 1781928320.683626,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/xml-to-yaml-converter.html": {
+    "mtime": 1781928320.6756167,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/data/yaml-to-xml-converter.html": {
+    "mtime": 1781928320.676619,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/ascii-art-generator.html": {
+    "mtime": 1781928320.364333,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/background-remover.html": {
+    "mtime": 1781928320.351373,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/base64-to-image.html": {
+    "mtime": 1781928320.3573823,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/canvas-paint-board.html": {
+    "mtime": 1781928320.366341,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/color-picker.html": {
+    "mtime": 1781928320.3533826,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/exif-data-viewer.html": {
+    "mtime": 1781928320.3583822,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/favicon-generator.html": {
+    "mtime": 1781928320.3563826,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/gif-maker.html": {
+    "mtime": 1781928320.3563826,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/heic-to-jpg.html": {
+    "mtime": 1781928320.3633351,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/icns-converter.html": {
+    "mtime": 1781928320.3613186,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/ico-converter.html": {
+    "mtime": 1781928320.3603122,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/image-blurrer.html": {
+    "mtime": 1781928320.3583822,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/image-flipper.html": {
+    "mtime": 1781928320.3633351,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/image-metadata-stripper.html": {
+    "mtime": 1781928320.3653338,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/image-resizer.html": {
+    "mtime": 1781928320.3523767,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/image-splitter.html": {
+    "mtime": 1781928320.3613186,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/index.html": {
+    "mtime": 1781928320.348384,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/jpeg-compressor.html": {
+    "mtime": 1781928320.3493838,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/meme-generator.html": {
+    "mtime": 1781928320.3553834,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/normal-map-generator.html": {
+    "mtime": 1781928320.3688667,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/palette-generator.html": {
+    "mtime": 1781928320.3543835,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/photo-cropper.html": {
+    "mtime": 1781928320.3533826,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/photo-filter-editor.html": {
+    "mtime": 1781928320.3593843,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/pixel-art-creator.html": {
+    "mtime": 1781928320.3593843,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/png-to-webp-converter.html": {
+    "mtime": 1781928320.3503766,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/qr-code-to-png.html": {
+    "mtime": 1781928320.3653338,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/sprite-sheet-generator.html": {
+    "mtime": 1781928320.3678527,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/svg-optimizer.html": {
+    "mtime": 1781928320.351373,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/svg-to-png.html": {
+    "mtime": 1781928320.3673384,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/tiff-to-pdf.html": {
+    "mtime": 1781928320.3623264,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/images/watermark-adder.html": {
+    "mtime": 1781928320.3553834,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/age-calculator.html": {
+    "mtime": 1781928320.6078374,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/biorhythm-calculator.html": {
+    "mtime": 1781928320.6133583,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/birthstone-finder.html": {
+    "mtime": 1781928320.6150267,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/blood-alcohol-concentration-calculator.html": {
+    "mtime": 1781928320.602851,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/bmi-calculator.html": {
+    "mtime": 1781928320.5832424,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/bmr-calculator.html": {
+    "mtime": 1781928320.5850062,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/body-fat-percentage-calculator.html": {
+    "mtime": 1781928320.587001,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/body-surface-area-calculator.html": {
+    "mtime": 1781928320.6331117,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/caffeine-metabolism-calculator.html": {
+    "mtime": 1781928320.627117,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/calorie-intake-calculator.html": {
+    "mtime": 1781928320.5888126,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/chronological-age-calculator.html": {
+    "mtime": 1781928320.611356,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/days-until-counter.html": {
+    "mtime": 1781928320.6088364,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/digital-poker-chips-counter.html": {
+    "mtime": 1781928320.6221035,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/habit-tracker-board.html": {
+    "mtime": 1781928320.6211038,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/hydration-reminder.html": {
+    "mtime": 1781928320.629113,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/ideal-weight-calculator.html": {
+    "mtime": 1781928320.6008472,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/index.html": {
+    "mtime": 1781928320.5812356,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/love-compatibility-calculator.html": {
+    "mtime": 1781928320.61911,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/macro-nutrients-calculator.html": {
+    "mtime": 1781928320.591819,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/military-time-converter.html": {
+    "mtime": 1781928320.6341171,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/one-rep-max-calculator.html": {
+    "mtime": 1781928320.631114,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/ovulation-calendar.html": {
+    "mtime": 1781928320.5968475,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/period-tracker.html": {
+    "mtime": 1781928320.5988488,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/pregnancy-due-date-calculator.html": {
+    "mtime": 1781928320.5948308,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/sleep-cycle-calculator.html": {
+    "mtime": 1781928320.605849,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/smoking-cost-calculator.html": {
+    "mtime": 1781928320.6048481,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/step-to-distance-converter.html": {
+    "mtime": 1781928320.6261132,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/target-heart-rate-calculator.html": {
+    "mtime": 1781928320.5938272,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/water-intake-tracker.html": {
+    "mtime": 1781928320.5908265,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/workout-interval-timer.html": {
+    "mtime": 1781928320.624103,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/lifestyle/zodiac-sign-finder.html": {
+    "mtime": 1781928320.6171033,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/binary-calculator.html": {
+    "mtime": 1781928320.4584699,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/car-lease-calculator.html": {
+    "mtime": 1781928320.4832191,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/compound-interest-calculator.html": {
+    "mtime": 1781928320.4543846,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/crypto-profit-calculator.html": {
+    "mtime": 1781928320.471983,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/currency-converter.html": {
+    "mtime": 1781928320.4709814,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/depreciation-calculator.html": {
+    "mtime": 1781928320.4809785,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/discount-calculator.html": {
+    "mtime": 1781928320.474991,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/factorial-calculator.html": {
+    "mtime": 1781928320.4947085,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/fraction-to-decimal.html": {
+    "mtime": 1781928320.4614708,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/gcd-lcm-calculator.html": {
+    "mtime": 1781928320.4644747,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/gpa-calculator.html": {
+    "mtime": 1781928320.4563804,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/index.html": {
+    "mtime": 1781928320.4476137,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/inflation-calculator.html": {
+    "mtime": 1781928320.4779804,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/loan-emi-calculator.html": {
+    "mtime": 1781928320.453396,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/margin-markup-calculator.html": {
+    "mtime": 1781928320.48771,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/matrix-multiplication-calculator.html": {
+    "mtime": 1781928320.4594698,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/mortgage-calculator.html": {
+    "mtime": 1781928320.4553816,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/percentage-calculator.html": {
+    "mtime": 1781928320.44862,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/prime-number-checker.html": {
+    "mtime": 1781928320.46247,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/probability-calculator.html": {
+    "mtime": 1781928320.4897096,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/quadratic-equation-solver.html": {
+    "mtime": 1781928320.4664693,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/random-number-generator.html": {
+    "mtime": 1781928320.4699807,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/retirement-planner.html": {
+    "mtime": 1781928320.484226,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/roi-calculator.html": {
+    "mtime": 1781928320.4769819,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/salary-paycheck-calculator.html": {
+    "mtime": 1781928320.4759908,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/sales-tax-vat-calculator.html": {
+    "mtime": 1781928320.4739876,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/scientific-calculator.html": {
+    "mtime": 1781928320.451377,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/standard-deviation-calculator.html": {
+    "mtime": 1781928320.4917097,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/statistics-mean-median-mode.html": {
+    "mtime": 1781928320.467975,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/stock-average-calculator.html": {
+    "mtime": 1781928320.4852252,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/math/tip-calculator.html": {
+    "mtime": 1781928320.4799798,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/miscellaneous/ambient-noise-mixer.html": {
+    "mtime": 1781928320.7182095,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/miscellaneous/barcode-scanner-cam.html": {
+    "mtime": 1781928320.7242157,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/miscellaneous/code-snippet-notebook.html": {
+    "mtime": 1781928320.710219,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/miscellaneous/collaborative-whiteboard.html": {
+    "mtime": 1781928320.7052176,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/miscellaneous/color-blindness-tester.html": {
+    "mtime": 1781928320.7212174,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/miscellaneous/dice-roll-simulator.html": {
+    "mtime": 1781928320.7202184,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/miscellaneous/digital-tally-counter.html": {
+    "mtime": 1781928320.7152188,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/miscellaneous/guitar-tuner-mic.html": {
+    "mtime": 1781928320.7192073,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/miscellaneous/index.html": {
+    "mtime": 1781928320.704218,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/miscellaneous/morse-code-flasher.html": {
+    "mtime": 1781928320.7232149,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/miscellaneous/password-strength-meter.html": {
+    "mtime": 1781928320.7242157,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/miscellaneous/pixel-art-canvas.html": {
+    "mtime": 1781928320.711218,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/miscellaneous/pomodoro-focus-timer.html": {
+    "mtime": 1781928320.7132103,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/miscellaneous/protractor-canvas.html": {
+    "mtime": 1781928320.7152188,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/miscellaneous/qr-code-designer.html": {
+    "mtime": 1781928320.7262177,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/miscellaneous/rich-text-notepad.html": {
+    "mtime": 1781928320.7072177,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/miscellaneous/screen-ruler.html": {
+    "mtime": 1781928320.7142165,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/miscellaneous/sketchpad-drawer.html": {
+    "mtime": 1781928320.706213,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/miscellaneous/sticky-notes-board.html": {
+    "mtime": 1781928320.708218,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/miscellaneous/todo-task-board.html": {
+    "mtime": 1781928320.7122068,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/miscellaneous/virtual-piano-keyboard.html": {
+    "mtime": 1781928320.7172127,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/blacklist-lookup.html": {
+    "mtime": 1781928320.5717268,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/broken-links-checker.html": {
+    "mtime": 1781928320.5573554,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/dkim-record-checker.html": {
+    "mtime": 1781928320.5742333,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/dmarc-generator.html": {
+    "mtime": 1781928320.5782337,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/dns-records-checker.html": {
+    "mtime": 1781928320.5443377,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/domain-age-calculator.html": {
+    "mtime": 1781928320.5623517,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/email-header-analyzer.html": {
+    "mtime": 1781928320.5732293,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/htaccess-redirect-generator.html": {
+    "mtime": 1781928320.566351,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/http-headers-viewer.html": {
+    "mtime": 1781928320.551345,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/index.html": {
+    "mtime": 1781928320.5423558,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/ip-address-lookup.html": {
+    "mtime": 1781928320.5433376,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/ip-subnet-mask-converter.html": {
+    "mtime": 1781928320.567351,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/keyword-density-checker.html": {
+    "mtime": 1781928320.5653508,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/link-price-calculator.html": {
+    "mtime": 1781928320.5792327,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/mac-address-lookup.html": {
+    "mtime": 1781928320.5493412,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/meta-tags-generator.html": {
+    "mtime": 1781928320.5543523,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/open-graph-generator.html": {
+    "mtime": 1781928320.5603504,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/page-speed-insights-shortcut.html": {
+    "mtime": 1781928320.5633507,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/ping-test.html": {
+    "mtime": 1781928320.547335,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/port-scanner.html": {
+    "mtime": 1781928320.54834,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/proxy-checker.html": {
+    "mtime": 1781928320.5697274,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/redirect-checker.html": {
+    "mtime": 1781928320.5583575,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/robots-txt-generator.html": {
+    "mtime": 1781928320.5563638,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/serp-preview-tool.html": {
+    "mtime": 1781928320.5603504,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/sitemap-generator.html": {
+    "mtime": 1781928320.5553672,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/spf-record-generator.html": {
+    "mtime": 1781928320.5752358,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/ssl-certificate-checker.html": {
+    "mtime": 1781928320.552346,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/subnet-calculator.html": {
+    "mtime": 1781928320.5503461,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/txt-record-lookup.html": {
+    "mtime": 1781928320.5762365,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/website-hosting-checker.html": {
+    "mtime": 1781928320.5707333,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/network/whois-domain-lookup.html": {
+    "mtime": 1781928320.5453439,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/binary-to-text.html": {
+    "mtime": 1781928320.4020815,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/case-converter.html": {
+    "mtime": 1781928320.3968592,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/character-counter.html": {
+    "mtime": 1781928320.4010828,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/csv-to-xml.html": {
+    "mtime": 1781928320.4090836,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/epub-to-pdf.html": {
+    "mtime": 1781928320.4080822,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/excel-to-json.html": {
+    "mtime": 1781928320.4080822,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/fax-cover-sheet-creator.html": {
+    "mtime": 1781928320.417081,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/find-and-replace.html": {
+    "mtime": 1781928320.4000635,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/flowchart-maker.html": {
+    "mtime": 1781928320.3938577,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/index.html": {
+    "mtime": 1781928320.3908582,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/invisible-character-generator.html": {
+    "mtime": 1781928320.4120817,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/invoice-generator.html": {
+    "mtime": 1781928320.4160845,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/lorem-ipsum-generator.html": {
+    "mtime": 1781928320.39786,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/markdown-editor.html": {
+    "mtime": 1781928320.4030826,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/mindmap-generator.html": {
+    "mtime": 1781928320.394859,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/morse-code-translator.html": {
+    "mtime": 1781928320.4020815,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/nato-phonetic-alphabet-translator.html": {
+    "mtime": 1781928320.413082,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/pdf-compressor.html": {
+    "mtime": 1781928320.4070807,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/pdf-form-filler.html": {
+    "mtime": 1781928320.3958585,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/pdf-merge.html": {
+    "mtime": 1781928320.4050822,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/pdf-password-remover.html": {
+    "mtime": 1781928320.4070807,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/pdf-split.html": {
+    "mtime": 1781928320.406081,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/pdf-to-word.html": {
+    "mtime": 1781928320.4040844,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/presentation-maker.html": {
+    "mtime": 1781928320.3928592,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/remove-duplicate-lines.html": {
+    "mtime": 1781928320.4100816,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/resume-builder.html": {
+    "mtime": 1781928320.4160845,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/signature-generator.html": {
+    "mtime": 1781928320.4150817,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/slug-generator.html": {
+    "mtime": 1781928320.4000635,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/spreadsheet-editor.html": {
+    "mtime": 1781928320.3918576,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/strip-html-tags.html": {
+    "mtime": 1781928320.411082,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/text-diff-checker.html": {
+    "mtime": 1781928320.3990576,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/text-sorter.html": {
+    "mtime": 1781928320.4100816,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/text-to-handwriting-converter.html": {
+    "mtime": 1781928320.4140847,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/upside-down-text.html": {
+    "mtime": 1781928320.4120817,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/vector-diagram-editor.html": {
+    "mtime": 1781928320.3938577,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/word-counter.html": {
+    "mtime": 1781928320.3958585,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/word-processor.html": {
+    "mtime": 1781928320.3918576,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/office/word-to-pdf.html": {
+    "mtime": 1781928320.4050822,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/alarm-clock.html": {
+    "mtime": 1781928320.6511147,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/anagram-solver.html": {
+    "mtime": 1781928320.6541135,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/barcode-generator.html": {
+    "mtime": 1781928320.6411042,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/bubble-level-online.html": {
+    "mtime": 1781928320.663109,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/card-shuffler.html": {
+    "mtime": 1781928320.6716177,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/coin-flipper.html": {
+    "mtime": 1781928320.6441143,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/color-blindness-simulator.html": {
+    "mtime": 1781928320.6521041,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/countdown-timer.html": {
+    "mtime": 1781928320.6491077,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/credit-card-validator.html": {
+    "mtime": 1781928320.6581192,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/crossword-clue-solver.html": {
+    "mtime": 1781928320.6561105,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/crypto-address-validator.html": {
+    "mtime": 1781928320.660108,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/dice-roller.html": {
+    "mtime": 1781928320.6451137,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/iban-validator.html": {
+    "mtime": 1781928320.6591096,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/index.html": {
+    "mtime": 1781928320.6361098,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/list-randomizer.html": {
+    "mtime": 1781928320.670618,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/lottery-number-picker.html": {
+    "mtime": 1781928320.6696186,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/morse-code-flasher.html": {
+    "mtime": 1781928320.666108,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/palette-extractor.html": {
+    "mtime": 1781928320.657112,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/protractor-on-screen.html": {
+    "mtime": 1781928320.6641083,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/qr-code-generator.html": {
+    "mtime": 1781928320.6391127,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/random-name-picker.html": {
+    "mtime": 1781928320.6421044,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/ruler-on-screen.html": {
+    "mtime": 1781928320.6641083,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/sales-pitch-generator.html": {
+    "mtime": 1781928320.6676123,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/scrabble-word-finder.html": {
+    "mtime": 1781928320.6551094,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/screen-color-test.html": {
+    "mtime": 1781928320.6531172,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/sound-level-meter-mock.html": {
+    "mtime": 1781928320.6611104,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/stopwatch.html": {
+    "mtime": 1781928320.6471117,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/username-generator.html": {
+    "mtime": 1781928320.6686187,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/virtual-piano.html": {
+    "mtime": 1781928320.6651087,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/utilities/wheel-decider.html": {
+    "mtime": 1781928320.6461136,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/audio-cutter.html": {
+    "mtime": 1781928320.3738644,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/audio-extractor.html": {
+    "mtime": 1781928320.3718655,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/audio-joiner.html": {
+    "mtime": 1781928320.3778605,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/audio-panner.html": {
+    "mtime": 1781928320.3838592,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/audio-spectrum-generator.html": {
+    "mtime": 1781928320.3888586,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/bpm-counter.html": {
+    "mtime": 1781928320.3788579,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/flac-to-mp3.html": {
+    "mtime": 1781928320.381859,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/frequency-generator.html": {
+    "mtime": 1781928320.3798573,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/index.html": {
+    "mtime": 1781928320.3698673,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/metronome-online.html": {
+    "mtime": 1781928320.3798573,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/midi-visualizer.html": {
+    "mtime": 1781928320.386859,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/mp3-volume-booster.html": {
+    "mtime": 1781928320.3728664,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/mp4-compressor.html": {
+    "mtime": 1781928320.3698673,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/noise-gate-simulator.html": {
+    "mtime": 1781928320.3898573,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/ogg-converter.html": {
+    "mtime": 1781928320.3808587,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/pitch-shifter.html": {
+    "mtime": 1781928320.3878586,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/screen-recorder.html": {
+    "mtime": 1781928320.3758671,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/srt-subtitle-generator.html": {
+    "mtime": 1781928320.3858583,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/subtitle-merger.html": {
+    "mtime": 1781928320.3748672,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/text-to-speech-mp3.html": {
+    "mtime": 1781928320.3848588,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/video-aspect-ratio-calculator.html": {
+    "mtime": 1781928320.3898573,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/video-mute.html": {
+    "mtime": 1781928320.3838592,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/video-playback-speed-changer.html": {
+    "mtime": 1781928320.3788579,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/video-resizer.html": {
+    "mtime": 1781928320.3748672,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/video-reverse-tool.html": {
+    "mtime": 1781928320.3768666,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/video-thumbnail-generator.html": {
+    "mtime": 1781928320.3878586,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/video-to-gif.html": {
+    "mtime": 1781928320.3708673,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/video-trimmer.html": {
+    "mtime": 1781928320.3728664,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/voice-recorder.html": {
+    "mtime": 1781928320.3768666,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/vtt-to-srt-converter.html": {
+    "mtime": 1781928320.3858583,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tools/videos/wav-to-mp3-converter.html": {
+    "mtime": 1781928320.3738644,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/backend/building-restful-apis-with-node.html": {
+    "mtime": 1781928320.8782575,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/backend/ci-cd-pipelines-with-github-actions.html": {
+    "mtime": 1781928320.8842614,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/backend/docker-containers-for-beginners.html": {
+    "mtime": 1781928320.876258,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/backend/git-version-control-and-github.html": {
+    "mtime": 1781928320.8752582,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/backend/graphql-vs-rest-comparison-guide.html": {
+    "mtime": 1781928320.8822608,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/backend/index.html": {
+    "mtime": 1781928320.8722577,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/backend/linux-command-line-cheat-sheet.html": {
+    "mtime": 1781928320.8772578,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/backend/mongodb-crud-operations-guide.html": {
+    "mtime": 1781928320.8742576,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/backend/redis-caching-implementation-basics.html": {
+    "mtime": 1781928320.880267,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/backend/sql-queries-join-and-select.html": {
+    "mtime": 1781928320.8732574,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/backend/ssh-key-setup-and-server-access.html": {
+    "mtime": 1781928320.8852606,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/design/blender-3d-modeling-introduction.html": {
+    "mtime": 1781928320.8972578,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/design/color-theory-and-palette-selection.html": {
+    "mtime": 1781928320.8912742,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/design/css-animations-and-transitions-guide.html": {
+    "mtime": 1781928320.893261,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/design/figma-prototyping-for-beginners.html": {
+    "mtime": 1781928320.8882618,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/design/gimp-image-editing-basics.html": {
+    "mtime": 1781928320.8942606,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/design/index.html": {
+    "mtime": 1781928320.8862643,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/design/inkscape-vector-drawing-tutorial.html": {
+    "mtime": 1781928320.8962576,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/design/svg-vector-graphics-optimization.html": {
+    "mtime": 1781928320.8902607,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/design/typography-rules-for-web-interfaces.html": {
+    "mtime": 1781928320.8922775,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/design/ui-ux-principles-for-clean-layouts.html": {
+    "mtime": 1781928320.8872657,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/design/video-editing-timeline-fundamentals.html": {
+    "mtime": 1781928320.8982613,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/programming/csharp-dotnet-core-fundamentals.html": {
+    "mtime": 1781928320.8677516,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/programming/data-structures-and-algorithms-guide.html": {
+    "mtime": 1781928320.8702576,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/programming/functional-programming-concepts.html": {
+    "mtime": 1781928320.8682544,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/programming/golang-concurrency-with-goroutines.html": {
+    "mtime": 1781928320.8667521,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/programming/index.html": {
+    "mtime": 1781928320.8590758,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/programming/java-memory-management-basics.html": {
+    "mtime": 1781928320.8620768,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/programming/object-oriented-programming-in-cpp.html": {
+    "mtime": 1781928320.8610756,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/programming/python-syntax-and-data-structures.html": {
+    "mtime": 1781928320.8600788,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/programming/regular-expressions-regex-tutorial.html": {
+    "mtime": 1781928320.8692577,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/programming/rust-ownership-and-borrowing.html": {
+    "mtime": 1781928320.8647523,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/programming/typescript-for-javascript-developers.html": {
+    "mtime": 1781928320.8637478,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/security/api-rate-limiting-strategies.html": {
+    "mtime": 1781928320.911258,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/security/cors-policy-errors-and-fixes.html": {
+    "mtime": 1781928320.9102578,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/security/hashing-vs-encryption-explained.html": {
+    "mtime": 1781928320.9072618,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/security/how-ssl-tls-certificates-work.html": {
+    "mtime": 1781928320.903267,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/security/how-to-prevent-xss-and-sql-injection.html": {
+    "mtime": 1781928320.9062614,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/security/index.html": {
+    "mtime": 1781928320.9012606,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/security/networking-basics-ip-subnets-dns.html": {
+    "mtime": 1781928320.9052684,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/security/setting-up-a-secure-firewall.html": {
+    "mtime": 1781928320.9092603,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/security/symmetric-vs-asymmetric-cryptography.html": {
+    "mtime": 1781928320.9122581,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/security/understanding-jwt-and-session-auth.html": {
+    "mtime": 1781928320.9042606,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/security/web-application-security-owasp-top-10.html": {
+    "mtime": 1781928320.9022608,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/web-dev/async-await-and-fetch-api.html": {
+    "mtime": 1781928320.852551,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/web-dev/building-single-page-applications.html": {
+    "mtime": 1781928320.8545508,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/web-dev/css3-flexbox-and-grid-guide.html": {
+    "mtime": 1781928320.849543,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/web-dev/deploying-static-websites-for-free.html": {
+    "mtime": 1781928320.8580651,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/web-dev/html5-basics-for-beginners.html": {
+    "mtime": 1781928320.848548,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/web-dev/index.html": {
+    "mtime": 1781928320.847546,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/web-dev/introduction-to-react-components.html": {
+    "mtime": 1781928320.85355,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/web-dev/javascript-dom-manipulation.html": {
+    "mtime": 1781928320.8515465,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/web-dev/localstorage-and-indexeddb-guide.html": {
+    "mtime": 1781928320.855552,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/web-dev/responsive-web-design-media-queries.html": {
+    "mtime": 1781928320.8545508,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "tutorials/web-dev/webgl-and-html5-canvas-basics.html": {
+    "mtime": 1781928320.8565497,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  }
+}
