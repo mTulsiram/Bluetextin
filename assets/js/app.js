@@ -8,13 +8,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Detects the path level from root to load components/assets correctly on any page
   const getPathPrefix = () => {
     const loc = window.location.pathname;
-    // Count directory depths
-    // E.g., /tools/coding/base64-encoder.html -> 2 levels deep -> "../../"
-    // E.g., /index.html or / -> 0 levels deep -> "./"
     const cleanPath = loc.replace(/^\/|index\.html$/g, '');
     const parts = cleanPath.split('/').filter(Boolean);
     
-    // For local file protocol: file:///C:/path/to/project/tools/coding/base64-encoder.html
+    // For local file protocol
     if (window.location.protocol === 'file:') {
       const index = loc.indexOf('/BlueTEXTin/');
       if (index !== -1) {
@@ -34,7 +31,312 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const prefix = getPathPrefix();
 
-  // 2. Load Components Dynamically
+  // 2. Global i18n Translations Dictionary
+  const TRANSLATIONS = {
+    en: {
+      "title": "Local static web directory",
+      "subtitle": "Browse offline-ready client-side utilities, retro arcade games, and comprehensive learning materials.",
+      "search_placeholder": "Search 470+ modules (e.g. base64, snake, calculus, git)...",
+      "tools": "Tools",
+      "games": "Games",
+      "software": "Software",
+      "tutorials": "Tutorials",
+      "education": "Education",
+      "all_categories": "All Categories",
+      
+      // Subcategories
+      "coding": "Coding",
+      "converters": "Converters",
+      "data": "Data",
+      "images": "Images",
+      "lifestyle": "Lifestyle",
+      "math": "Math",
+      "network": "Network",
+      "office": "Office",
+      "utilities": "Utilities",
+      "videos": "Videos",
+      "miscellaneous": "Miscellaneous",
+      "arcade": "Arcade",
+      "puzzles": "Puzzles",
+      "board": "Board",
+      "cards": "Cards",
+      "word": "Word",
+      "web-dev": "Web Development",
+      "programming": "Programming",
+      "backend": "Backend & DevOps",
+      "design": "UI/UX Design",
+      "security": "Cyber Security",
+      "science": "Science",
+      "humanities": "Humanities",
+      "languages": "Languages",
+      "finance": "Finance",
+      "windows": "Windows",
+      "linux": "Linux",
+      "android": "Android",
+      "apple": "Apple OS",
+      
+      // Sub-subcategories
+      "utility": "Utility Software",
+      "productivity": "Productivity Utilities",
+      "multimedia": "Multimedia Tools",
+      "development": "Development Software",
+      
+      // Explorer States
+      "showing_dirs": "Showing {n} directories",
+      "showing_folders": "Showing {n} folders",
+      "showing_files": "Showing {n} files",
+      "registered_items": "{n} items registered",
+      "sitemap_explorer_no_results": "No matching modules or files found."
+    },
+    es: {
+      "title": "Directorio web estático local",
+      "subtitle": "Explore utilidades del lado del cliente listas para usar sin conexión, juegos arcade retro y materiales de aprendizaje completos.",
+      "search_placeholder": "Buscar más de 470 módulos (por ejemplo, base64, snake, cálculo, git)...",
+      "tools": "Herramientas",
+      "games": "Juegos",
+      "software": "Software",
+      "tutorials": "Tutoriales",
+      "education": "Educación",
+      "all_categories": "Todas las categorías",
+      
+      // Subcategories
+      "coding": "Codificación",
+      "converters": "Conversores",
+      "data": "Datos",
+      "images": "Imágenes",
+      "lifestyle": "Estilo de vida",
+      "math": "Matemáticas",
+      "network": "Redes & SEO",
+      "office": "Oficina",
+      "utilities": "Utilidades",
+      "videos": "Videos & Audio",
+      "miscellaneous": "Miscelánea",
+      "arcade": "Arcade",
+      "puzzles": "Puzles",
+      "board": "Tablero",
+      "cards": "Cartas",
+      "word": "Palabras",
+      "web-dev": "Desarrollo Web",
+      "programming": "Programación",
+      "backend": "Backend & DevOps",
+      "design": "Diseño UI/UX",
+      "security": "Ciberseguridad",
+      "science": "Ciencia",
+      "humanities": "Humanidades",
+      "languages": "Idiomas",
+      "finance": "Finanzas",
+      "windows": "Windows",
+      "linux": "Linux",
+      "android": "Android",
+      "apple": "Sistemas Apple",
+      
+      // Sub-subcategories
+      "utility": "Software de Utilidad",
+      "productivity": "Herramientas de Productividad",
+      "multimedia": "Herramientas Multimedia",
+      "development": "Software de Desarrollo",
+      
+      // Explorer States
+      "showing_dirs": "Mostrando {n} directorios",
+      "showing_folders": "Mostrando {n} carpetas",
+      "showing_files": "Mostrando {n} archivos",
+      "registered_items": "{n} elementos registrados",
+      "sitemap_explorer_no_results": "No se encontraron módulos o archivos coincidentes."
+    },
+    fr: {
+      "title": "Répertoire web statique local",
+      "subtitle": "Parcourez des utilitaires côté client prêts pour le hors-ligne, des jeux d'arcade rétro et des documents d'apprentissage complets.",
+      "search_placeholder": "Rechercher plus de 470 modules (ex. base64, srt, calcul, git)...",
+      "tools": "Outils",
+      "games": "Jeux",
+      "software": "Logiciels",
+      "tutorials": "Tutoriels",
+      "education": "Éducation",
+      "all_categories": "Toutes les catégories",
+      
+      // Subcategories
+      "coding": "Codage",
+      "converters": "Convertisseurs",
+      "data": "Données",
+      "images": "Images",
+      "lifestyle": "Mode de vie",
+      "math": "Mathématiques",
+      "network": "Réseaux & SEO",
+      "office": "Bureau & Écriture",
+      "utilities": "Utilitaires",
+      "videos": "Vidéo & Son",
+      "miscellaneous": "Divers",
+      "arcade": "Arcade",
+      "puzzles": "Puzzles",
+      "board": "Plateau",
+      "cards": "Cartes",
+      "word": "Lettres",
+      "web-dev": "Développement Web",
+      "programming": "Programmation",
+      "backend": "Backend & DevOps",
+      "design": "Design UI/UX",
+      "security": "Cyber-sécurité",
+      "science": "Sciences",
+      "humanities": "Lettres & Histoire",
+      "languages": "Langues",
+      "finance": "Finance",
+      "windows": "Windows",
+      "linux": "Linux",
+      "android": "Android",
+      "apple": "Systèmes Apple",
+      
+      // Sub-subcategories
+      "utility": "Utilitaires Système",
+      "productivity": "Outils de Productivité",
+      "multimedia": "Création Multimédia",
+      "development": "Logiciels de Développement",
+      
+      // Explorer States
+      "showing_dirs": "Affichage de {n} répertoires",
+      "showing_folders": "Affichage de {n} dossiers",
+      "showing_files": "Affichage de {n} fichiers",
+      "registered_items": "{n} éléments enregistrés",
+      "sitemap_explorer_no_results": "Aucun module ou fichier correspondant trouvé."
+    },
+    de: {
+      "title": "Lokales statisches Webverzeichnis",
+      "subtitle": "Durchsuchen Sie offline-bereite clientseitige Dienstprogramme, Retro-Arcade-Spiele und umfassende Lernmaterialien.",
+      "search_placeholder": "Durchsuche 470+ Module (z. B. Base64, Snake, Calculus, Git)...",
+      "tools": "Werkzeuge",
+      "games": "Spiele",
+      "software": "Software",
+      "tutorials": "Tutorials",
+      "education": "Bildung",
+      "all_categories": "Alle Kategorien",
+      
+      // Subcategories
+      "coding": "Codierung",
+      "converters": "Konverter",
+      "data": "Datenformate",
+      "images": "Bilder & Grafiken",
+      "lifestyle": "Lebensstil",
+      "math": "Mathematik",
+      "network": "Netzwerk & SEO",
+      "office": "Büro & Schreiben",
+      "utilities": "Dienstprogramme",
+      "videos": "Video & Audio",
+      "miscellaneous": "Verschiedenes",
+      "arcade": "Arcade",
+      "puzzles": "Puzzles",
+      "board": "Brettspiele",
+      "cards": "Kartenspiele",
+      "word": "Wortspiele",
+      "web-dev": "Webentwicklung",
+      "programming": "Programmierung",
+      "backend": "Backend & DevOps",
+      "design": "UI/UX Design",
+      "security": "Cybersicherheit",
+      "science": "Wissenschaft",
+      "humanities": "Geisteswissenschaften",
+      "languages": "Sprachen",
+      "finance": "Finanzen",
+      "windows": "Windows",
+      "linux": "Linux",
+      "android": "Android",
+      "apple": "Apple OS",
+      
+      // Sub-subcategories
+      "utility": "Systemwerkzeuge",
+      "productivity": "Produktivitätstools",
+      "multimedia": "Multimedia-Software",
+      "development": "Entwicklerwerkzeuge",
+      
+      // Explorer States
+      "showing_dirs": "Zeige {n} Verzeichnisse",
+      "showing_folders": "Zeige {n} Ordner",
+      "showing_files": "Zeige {n} Dateien",
+      "registered_items": "{n} Module registriert",
+      "sitemap_explorer_no_results": "Keine passenden Module oder Dateien gefunden."
+    },
+    hi: {
+      "title": "स्थानीय स्थिर वेब निर्देशिका",
+      "subtitle": "ऑफ़लाइन-तैयार क्लाइंट-साइड उपयोगिताओं, रेट्रो आर्केड गेम और व्यापक शिक्षण सामग्री ब्राउज़ करें।",
+      "search_placeholder": "470+ मॉड्यूल खोजें (जैसे base64, snake, calculus, git)...",
+      "tools": "उपकरण",
+      "games": "खेल",
+      "software": "सॉफ्टवेयर",
+      "tutorials": "ट्यूटोरियल",
+      "education": "शिक्षा",
+      "all_categories": "सभी श्रेणियां",
+      
+      // Subcategories
+      "coding": "कोडिंग",
+      "converters": "कनवर्टर्स",
+      "data": "डेटा प्रारूप",
+      "images": "चित्र और ग्राफिक्स",
+      "lifestyle": "जीवन शैली",
+      "math": "गणित",
+      "network": "नेटवर्क और एसईओ",
+      "office": "कार्यालय उपकरण",
+      "utilities": "उपयोगिताएँ",
+      "videos": "वीडियो और ऑडियो",
+      "miscellaneous": "विविध",
+      "arcade": "आर्केड",
+      "puzzles": "पहेलियाँ",
+      "board": "बोर्ड गेम",
+      "cards": "ताश के खेल",
+      "word": "शब्द खेल",
+      "web-dev": "वेब विकास",
+      "programming": "प्रोग्रामिंग",
+      "backend": "बैकएंड और देवओप्स",
+      "design": "यूआई/यूएक्स डिजाइन",
+      "security": "साइबर सुरक्षा",
+      "science": "विज्ञान",
+      "humanities": "मानविकी",
+      "languages": "भाषाएँ",
+      "finance": "वित्त और धन",
+      "windows": "विंडोज",
+      "linux": "लिनक्स",
+      "android": "एंड्रॉयड",
+      "apple": "एप्पल ओएस",
+      
+      // Sub-subcategories
+      "utility": "उपयोगिता सॉफ्टवेयर",
+      "productivity": "उत्पादकता उपकरण",
+      "multimedia": "मल्टीमीडिया सॉफ्टवेयर",
+      "development": "विकास सॉफ्टवेयर",
+      
+      // Explorer States
+      "showing_dirs": "{n} निर्देशिकाएँ प्रदर्शित",
+      "showing_folders": "{n} फ़ोल्डर प्रदर्शित",
+      "showing_files": "{n} फ़ाइलें प्रदर्शित",
+      "registered_items": "{n} आइटम पंजीकृत",
+      "sitemap_explorer_no_results": "कोई मिलान मॉड्यूल या फ़ाइलें नहीं मिलीं।"
+    }
+  };
+
+  const getTranslation = (key, fallback = '') => {
+    const lang = localStorage.getItem('bluetext_lang') || 'en';
+    const dict = TRANSLATIONS[lang] || TRANSLATIONS.en;
+    return dict[key] || fallback || key;
+  };
+
+  const translatePage = (lang) => {
+    const dict = TRANSLATIONS[lang] || TRANSLATIONS.en;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (dict[key]) {
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          el.placeholder = dict[key];
+        } else {
+          el.textContent = dict[key];
+        }
+      }
+    });
+    
+    // Update search input placeholder dynamically
+    const sInput = document.getElementById('directory-search-input');
+    if (sInput && dict["search_placeholder"]) {
+      sInput.placeholder = dict["search_placeholder"];
+    }
+  };
+
+  // 3. Load Components Dynamically
   const loadDynamicComponents = async () => {
     try {
       // Load Header
@@ -43,7 +345,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         const res = await fetch(`${prefix}components/header.html`);
         if (res.ok) {
           let html = await res.text();
-          // Resolve absolute sitemap, index, category, and asset paths relatively
           html = html.replace(/href="\/(tools|games|software|tutorials|education|components|index\.html|sitemap\.xml)/g, (match, group) => {
             return `href="${prefix}${group}`;
           });
@@ -71,7 +372,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   };
 
-  // 3. Cookie Consent (GDPR/PIPL/CCPA/DPDP Compliance)
+  // 4. Cookie Consent
   const consentBanner = document.getElementById('consent-banner');
   const acceptBtn = document.getElementById('consent-accept-btn');
   const rejectBtn = document.getElementById('consent-reject-btn');
@@ -112,10 +413,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   checkConsent();
 
-  // 4. Theme & Dark Mode Manager
+  // 5. Theme & Dark Mode Manager
   const applyTheme = (theme) => {
     const sunIcons = document.querySelectorAll('.theme-icon-sun');
     const moonIcons = document.querySelectorAll('.theme-icon-moon');
+    
+    // Standardize setting data-theme attribute on root element
+    document.documentElement.setAttribute('data-theme', theme);
+    document.body.setAttribute('data-theme', theme);
     
     if (theme === 'light') {
       document.body.classList.remove('theme-dark');
@@ -133,14 +438,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   const setupThemeToggle = () => {
     const toggleBtns = document.querySelectorAll('.dark-mode-toggle, #theme-toggle-btn');
     toggleBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const currentTheme = document.body.classList.contains('theme-light') ? 'light' : 'dark';
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const currentTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
         const newTheme = currentTheme === 'light' ? 'dark' : 'light';
         localStorage.setItem('bluetext_theme', newTheme);
         applyTheme(newTheme);
       });
     });
-    // Apply current active theme status icons
+    
     let savedTheme = localStorage.getItem('bluetext_theme');
     if (!savedTheme) {
       savedTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
@@ -148,9 +454,27 @@ document.addEventListener('DOMContentLoaded', async () => {
     applyTheme(savedTheme);
   };
 
-  // Header Interactive Features: Navigation Toggles, Keyboard Controls, Login, Language Options
+  // Cookie Authentication Helpers
+  const setCookie = (name, value, days) => {
+    if (window.location.protocol === 'file:') return;
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/; SameSite=Lax; Secure`;
+  };
+
+  const getCookie = (name) => {
+    if (window.location.protocol === 'file:') return null;
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? match[2] : null;
+  };
+
+  const eraseCookie = (name) => {
+    if (window.location.protocol === 'file:') return;
+    document.cookie = `${name}=; Max-Age=-99999999; path=/; SameSite=Lax; Secure`;
+  };
+
+  // Header Interactive Features: Navigation, Keyboard, Sign-In Dialog, Settings Sync
   const setupHeaderInteractiveFeatures = () => {
-    // A. Dropdown Nav Toggles (Tools, Games, Software, etc.)
     const dropdownItems = document.querySelectorAll('.nav-item.has-dropdown');
     dropdownItems.forEach(item => {
       const trigger = item.querySelector('.nav-trigger');
@@ -158,8 +482,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       trigger.addEventListener('click', (e) => {
         e.stopPropagation();
         const isOpen = item.classList.contains('show');
-        
-        // Close all other dropdowns
         closeAllHeaderDropdowns();
         
         if (!isOpen) {
@@ -168,7 +490,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
       });
 
-      // Keyboard Trap inside Dropdown Panel
       item.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
           item.classList.remove('show');
@@ -178,90 +499,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
     });
 
-    // B. Language Selector Listbox
+    // Language Selector Toggles
     const langWrapper = document.querySelector('.lang-selector-wrapper');
     const langBtn = document.getElementById('lang-menu-btn');
     const langListbox = document.getElementById('lang-listbox');
     const currentLangLabel = document.getElementById('current-lang-label');
     const langOptions = document.querySelectorAll('#lang-listbox li');
-
-    // i18n Translations Dictionary
-    const TRANSLATIONS = {
-      en: {
-        "title": "Local static web directory",
-        "subtitle": "Browse offline-ready client-side utilities, retro arcade games, and comprehensive learning materials.",
-        "search_placeholder": "Search 470+ modules (e.g. base64, snake, calculus, git)...",
-        "tools": "Tools",
-        "games": "Games",
-        "software": "Software",
-        "tutorials": "Tutorials",
-        "education": "Education",
-        "all_categories": "All Categories"
-      },
-      es: {
-        "title": "Directorio web estático local",
-        "subtitle": "Explore utilidades del lado del cliente listas para usar sin conexión, juegos arcade retro y materiales de aprendizaje completos.",
-        "search_placeholder": "Buscar más de 470 módulos (por ejemplo, base64, snake, cálculo, git)...",
-        "tools": "Herramientas",
-        "games": "Juegos",
-        "software": "Software",
-        "tutorials": "Tutoriales",
-        "education": "Educación",
-        "all_categories": "Todas las categorías"
-      },
-      fr: {
-        "title": "Répertoire web statique local",
-        "subtitle": "Parcourez des utilitaires côté client prêts pour le hors-ligne, des jeux d'arcade rétro et des documents d'apprentissage complets.",
-        "search_placeholder": "Rechercher plus de 470 modules (ex. base64, snake, calcul, git)...",
-        "tools": "Outils",
-        "games": "Jeux",
-        "software": "Logiciels",
-        "tutorials": "Tutoriels",
-        "education": "Éducation",
-        "all_categories": "Toutes les catégories"
-      },
-      de: {
-        "title": "Lokales statisches Webverzeichnis",
-        "subtitle": "Durchsuchen Sie offline-bereite clientseitige Dienstprogramme, Retro-Arcade-Spiele und umfassende Lernmaterialien.",
-        "search_placeholder": "Durchsuche 470+ Module (z. B. Base64, Snake, Calculus, Git)...",
-        "tools": "Werkzeuge",
-        "games": "Spiele",
-        "software": "Software",
-        "tutorials": "Tutorials",
-        "education": "Bildung",
-        "all_categories": "Alle Kategorien"
-      },
-      hi: {
-        "title": "स्थानीय स्थिर वेब निर्देशिका",
-        "subtitle": "ऑफ़लाइन-तैयार क्लाइंट-साइड उपयोगिताओं, रेट्रो आर्केड गेम और व्यापक शिक्षण सामग्री ब्राउज़ करें।",
-        "search_placeholder": "470+ मॉड्यूल खोजें (जैसे base64, snake, calculus, git)...",
-        "tools": "उपकरण",
-        "games": "खेल",
-        "software": "सॉफ्टवेयर",
-        "tutorials": "ट्यूटोरियल",
-        "education": "शिक्षा",
-        "all_categories": "सभी श्रेणियां"
-      }
-    };
-
-    const translatePage = (lang) => {
-      const dict = TRANSLATIONS[lang] || TRANSLATIONS.en;
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.dataset.i18n;
-        if (dict[key]) {
-          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-            el.placeholder = dict[key];
-          } else {
-            el.textContent = dict[key];
-          }
-        }
-      });
-      // Also update search input placeholder dynamically
-      const sInput = document.getElementById('directory-search-input');
-      if (sInput && dict["search_placeholder"]) {
-        sInput.placeholder = dict["search_placeholder"];
-      }
-    };
 
     if (langBtn && langWrapper && langListbox) {
       langBtn.addEventListener('click', (e) => {
@@ -291,14 +534,13 @@ document.addEventListener('DOMContentLoaded', async () => {
           localStorage.setItem('bluetext_lang', langCode);
           currentLangLabel.textContent = langCode.toUpperCase();
           
-          langOptions.forEach(o => {
-            o.setAttribute('aria-selected', 'false');
-          });
+          langOptions.forEach(o => o.setAttribute('aria-selected', 'false'));
           element.setAttribute('aria-selected', 'true');
           
           langWrapper.classList.remove('show');
           langBtn.setAttribute('aria-expanded', 'false');
           translatePage(langCode);
+          renderExplorer(); // Refresh folder translations inexplorer
           langBtn.focus();
         };
 
@@ -321,26 +563,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       translatePage(savedLang);
     }
 
-    // C. Cookie Authentication Helpers
-    const setCookie = (name, value, days) => {
-      if (window.location.protocol === 'file:') return;
-      const date = new Date();
-      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-      document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/; SameSite=Lax; Secure`;
-    };
-
-    const getCookie = (name) => {
-      if (window.location.protocol === 'file:') return null;
-      const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-      return match ? match[2] : null;
-    };
-
-    const eraseCookie = (name) => {
-      if (window.location.protocol === 'file:') return;
-      document.cookie = `${name}=; Max-Age=-99999999; path=/; SameSite=Lax; Secure`;
-    };
-
-    // D. Settings JSON Import & Export Functions
+    // JSON Settings Export/Import
     const exportUserSettings = () => {
       const settings = {
         theme: localStorage.getItem('bluetext_theme') || 'dark',
@@ -363,17 +586,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       reader.onload = (event) => {
         try {
           const config = JSON.parse(event.target.result);
-          
-          // Validate import file schema
-          if (config.theme && (config.theme === 'light' || config.theme === 'dark')) {
-            localStorage.setItem('bluetext_theme', config.theme);
-          }
-          if (config.lang) {
-            localStorage.setItem('bluetext_lang', config.lang);
-          }
-          if (config.consent) {
-            localStorage.setItem('bluetext_privacy_consent', config.consent);
-          }
+          if (config.theme) localStorage.setItem('bluetext_theme', config.theme);
+          if (config.lang) localStorage.setItem('bluetext_lang', config.lang);
+          if (config.consent) localStorage.setItem('bluetext_privacy_consent', config.consent);
           if (config.logged !== undefined) {
             if (config.logged) {
               localStorage.setItem('bluetext_user_logged', 'true');
@@ -383,19 +598,90 @@ document.addEventListener('DOMContentLoaded', async () => {
               eraseCookie('bluetext_session');
             }
           }
-          
-          // Hot reload workspace config
           window.location.reload();
         } catch (e) {
-          alert("Error: Invalid JSON settings file format.");
+          alert("Error: Invalid JSON settings file.");
         }
       };
       reader.readAsText(file);
     };
 
-    // E. User Login Simulation
+    // User Profile Actions & Login Modal
     const userSection = document.getElementById('user-profile-section');
     
+    const showLoginModal = () => {
+      let modal = document.getElementById('login-modal');
+      if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'login-modal';
+        modal.className = 'login-modal-overlay';
+        modal.setAttribute('role', 'dialog');
+        modal.setAttribute('aria-modal', 'true');
+        modal.setAttribute('aria-labelledby', 'modal-login-title');
+        modal.innerHTML = `
+          <div class="login-modal-card">
+            <h3 id="modal-login-title" style="margin: 0; font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--accent-primary);">Sign In to BlueTEXT.in</h3>
+            <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary);">Access your developer dashboard. Default: admin / password.</p>
+            
+            <form id="login-modal-form" style="display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-2);">
+              <div class="login-form-group">
+                <label for="login-username">Username</label>
+                <input type="text" id="login-username" class="input" required style="padding: 0.55rem 1rem; border-radius: var(--radius-sm);" placeholder="Username">
+              </div>
+              <div class="login-form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" class="input" required style="padding: 0.55rem 1rem; border-radius: var(--radius-sm);" placeholder="Password">
+              </div>
+              <div id="login-error-msg" class="login-form-error" style="color: var(--accent-danger); font-size: 0.8rem; display: none;">Invalid username or password.</div>
+              
+              <div style="display: flex; justify-content: flex-end; gap: var(--space-3); margin-top: var(--space-2);">
+                <button type="button" class="btn btn--ghost" id="login-cancel-btn" style="padding: 0.45rem 1rem; font-size: 0.85rem;">Cancel</button>
+                <button type="submit" class="btn btn--primary" style="padding: 0.45rem 1.25rem; font-size: 0.85rem;">Login</button>
+              </div>
+            </form>
+          </div>
+        `;
+        document.body.appendChild(modal);
+
+        const closeBtn = document.getElementById('login-cancel-btn');
+        const closeForm = () => {
+          modal.classList.remove('show');
+          const loginBtn = document.getElementById('header-login-btn');
+          if (loginBtn) loginBtn.focus();
+        };
+        closeBtn.addEventListener('click', closeForm);
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeForm();
+        });
+
+        const form = document.getElementById('login-modal-form');
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const u = document.getElementById('login-username').value;
+          const p = document.getElementById('login-password').value;
+          const err = document.getElementById('login-error-msg');
+          
+          if (u === 'admin' && p === 'password') {
+            localStorage.setItem('bluetext_user_logged', 'true');
+            setCookie('bluetext_session', 'authorized_admin', 1);
+            modal.classList.remove('show');
+            updateLoginUI();
+          } else {
+            err.style.display = 'block';
+          }
+        });
+      }
+
+      document.getElementById('login-username').value = '';
+      document.getElementById('login-password').value = '';
+      document.getElementById('login-error-msg').style.display = 'none';
+
+      modal.classList.add('show');
+      setTimeout(() => {
+        document.getElementById('login-username').focus();
+      }, 100);
+    };
+
     const updateLoginUI = () => {
       if (!userSection) return;
       const isLoggedIn = localStorage.getItem('bluetext_user_logged') || getCookie('bluetext_session');
@@ -422,7 +708,6 @@ document.addEventListener('DOMContentLoaded', async () => {
           </div>
         `;
 
-        // Profile Menu toggle events
         const profileBtn = document.getElementById('profile-menu-btn');
         const profilePane = document.getElementById('profile-dropdown-pane');
         
@@ -436,11 +721,9 @@ document.addEventListener('DOMContentLoaded', async () => {
               profileBtn.setAttribute('aria-expanded', 'true');
             }
           });
-
           profilePane.addEventListener('click', (e) => e.stopPropagation());
         }
 
-        // Export/Import listeners
         document.getElementById('export-settings-btn').addEventListener('click', exportUserSettings);
         document.getElementById('settings-file-input').addEventListener('change', (e) => {
           if (e.target.files.length > 0) {
@@ -448,7 +731,6 @@ document.addEventListener('DOMContentLoaded', async () => {
           }
         });
 
-        // Logout
         document.getElementById('header-logout-btn').addEventListener('click', () => {
           localStorage.removeItem('bluetext_user_logged');
           eraseCookie('bluetext_session');
@@ -461,20 +743,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             Sign In
           </button>
         `;
-
         document.getElementById('header-login-btn').addEventListener('click', (e) => {
           e.stopPropagation();
-          // Mock login validation
-          localStorage.setItem('bluetext_user_logged', 'true');
-          setCookie('bluetext_session', 'authorized_admin', 1);
-          updateLoginUI();
+          showLoginModal();
         });
       }
     };
 
     updateLoginUI();
 
-    // Helper: Close all menus when clicking outside
     document.addEventListener('click', () => {
       closeAllHeaderDropdowns();
     });
@@ -497,13 +774,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   };
 
-
   // Run dynamic loading
   await loadDynamicComponents();
 
-
-
-  // 5. Explorer Dashboard Registry Navigation and Search
+  // 6. Explorer Dashboard Registry Navigation and Search
   let toolsRegistry = [];
   const filePane = document.getElementById('file-list-pane');
   const breadcrumbs = document.getElementById('explorer-breadcrumbs');
@@ -548,7 +822,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   function renderExplorer() {
     if (!filePane) return;
 
-    // Filter registry
     let filtered = toolsRegistry;
 
     // Search query matches
@@ -560,7 +833,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         item.path.toLowerCase().includes(q)
       );
     } else {
-      // Category / Subcategory drill down filter (only if not searching)
       if (activeCategory !== 'all') {
         filtered = filtered.filter(item => item.category === activeCategory);
         if (activeSubcategory) {
@@ -569,19 +841,19 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     }
 
-    // Build lists of items or folders to display
-    // If not searching, we want to group items by subcategory folder if we are at root or category level
+    // Render tree nodes based on state
     if (!searchQuery && activeCategory === 'all') {
-      // Root level: show category folders
       const folders = ['tools', 'games', 'software', 'tutorials', 'education'];
       const html = folders.map(f => {
         const itemCount = toolsRegistry.filter(item => item.category === f).length;
+        const displayName = getTranslation(f).toUpperCase();
+        const itemsLabel = getTranslation('registered_items').replace('{n}', itemCount);
         return `
           <div class="file-row" style="cursor: pointer;" onclick="window.appNavigate('${f}', '')">
             <span class="file-icon">📁</span>
             <div class="file-info">
-              <span class="file-name" style="color: var(--accent-primary-hover);">${f.toUpperCase()}</span>
-              <span class="file-path">${itemCount} items registered</span>
+              <span class="file-name" style="color: var(--accent-primary-hover);">${displayName}</span>
+              <span class="file-path">${itemsLabel}</span>
             </div>
             <span class="compliance-pill" style="text-align: right;">Directory</span>
           </div>
@@ -589,12 +861,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       }).join('');
       filePane.innerHTML = html;
       updateBreadcrumbs();
-      if (itemCounter) itemCounter.textContent = `Showing 5 directories`;
+      if (itemCounter) itemCounter.textContent = getTranslation('showing_dirs').replace('{n}', 5);
       return;
     }
 
     if (!searchQuery && activeCategory !== 'all' && !activeSubcategory) {
-      // Category level: show subcategory folders (e.g., coding, math, arcade)
       const subcategories = [...new Set(
         toolsRegistry.filter(item => item.category === activeCategory).map(item => item.subcategory)
       )].filter(Boolean);
@@ -602,12 +873,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (subcategories.length > 0) {
         const folderHtml = subcategories.map(sub => {
           const itemCount = toolsRegistry.filter(item => item.category === activeCategory && item.subcategory === sub).length;
+          const displayName = getTranslation(sub);
+          const filesLabel = getTranslation('showing_files').replace('{n}', itemCount);
           return `
             <div class="file-row" style="cursor: pointer;" onclick="window.appNavigate('${activeCategory}', '${sub}')">
               <span class="file-icon">📁</span>
               <div class="file-info">
-                <span class="file-name" style="color: var(--accent-primary-hover);">${sub.charAt(0).toUpperCase() + sub.slice(1)}</span>
-                <span class="file-path">${itemCount} files</span>
+                <span class="file-name" style="color: var(--accent-primary-hover);">${displayName}</span>
+                <span class="file-path">${filesLabel}</span>
               </div>
               <span class="compliance-pill" style="text-align: right;">Folder</span>
             </div>
@@ -615,20 +888,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         }).join('');
         filePane.innerHTML = folderHtml;
         updateBreadcrumbs();
-        if (itemCounter) itemCounter.textContent = `Showing ${subcategories.length} folders`;
+        if (itemCounter) itemCounter.textContent = getTranslation('showing_folders').replace('{n}', subcategories.length);
         return;
       }
     }
 
-    // Leaf view / List view (either because subcategory is active or user is searching)
+    // Leaf view / List view
     if (filtered.length === 0) {
       filePane.innerHTML = `
         <div style="text-align: center; padding: 3rem 1rem; color: var(--text-muted);">
           <div style="font-size: 2rem; margin-bottom: var(--space-3);">🔍</div>
-          No matching modules or files found.
+          ${getTranslation('sitemap_explorer_no_results')}
         </div>
       `;
-      if (itemCounter) itemCounter.textContent = `Showing 0 files`;
+      if (itemCounter) itemCounter.textContent = getTranslation('showing_files').replace('{n}', 0);
     } else {
       const fileIcon = (cat) => {
         if (cat === 'games') return '🎮';
@@ -639,19 +912,22 @@ document.addEventListener('DOMContentLoaded', async () => {
       };
 
       const fileHtml = filtered.map(item => {
+        // Look up translated name and description if available in translations
+        const displayName = getTranslation(item.name);
+        const displayDesc = getTranslation(item.description);
         return `
           <a class="file-row" href="${prefix}${item.path}" style="text-decoration: none;" target="_blank">
             <span class="file-icon">${fileIcon(item.category)}</span>
             <div class="file-info">
-              <span class="file-name">${item.name}</span>
-              <span class="file-path" style="margin-top: 0.15rem;">${item.description}</span>
+              <span class="file-name">${displayName}</span>
+              <span class="file-path" style="margin-top: 0.15rem;">${displayDesc}</span>
             </div>
-            <span class="compliance-pill" style="text-align: right;">${item.category.toUpperCase()}/${item.subcategory.toUpperCase()}</span>
+            <span class="compliance-pill" style="text-align: right;">${getTranslation(item.category).toUpperCase()}/${getTranslation(item.subcategory).toUpperCase()}</span>
           </a>
         `;
       }).join('');
       filePane.innerHTML = fileHtml;
-      if (itemCounter) itemCounter.textContent = `Showing ${filtered.length} files`;
+      if (itemCounter) itemCounter.textContent = getTranslation('showing_files').replace('{n}', filtered.length);
     }
 
     updateBreadcrumbs();
@@ -663,9 +939,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     let html = `<span style="cursor: pointer; text-decoration: underline;" onclick="window.appNavigate('all', '')">Root</span>`;
     
     if (activeCategory !== 'all') {
-      html += ` <span>/</span> <span style="cursor: pointer; text-decoration: underline;" onclick="window.appNavigate('${activeCategory}', '')">${activeCategory}</span>`;
+      html += ` <span>/</span> <span style="cursor: pointer; text-decoration: underline;" onclick="window.appNavigate('${activeCategory}', '')">${getTranslation(activeCategory)}</span>`;
       if (activeSubcategory) {
-        html += ` <span>/</span> <span>${activeSubcategory}</span>`;
+        html += ` <span>/</span> <span>${getTranslation(activeSubcategory)}</span>`;
       }
     }
 
@@ -676,7 +952,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     breadcrumbs.innerHTML = html;
   }
 
-  // Setup navigation globally so inline handlers can trigger it
+  // Setup navigation globally
   window.appNavigate = (category, subcategory) => {
     activeCategory = category;
     activeSubcategory = subcategory;
@@ -684,7 +960,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (searchInput) searchInput.value = '';
     if (searchClearBtn) searchClearBtn.style.display = 'none';
     
-    // Highlight category sidebar node
     categoryNodes.forEach(node => {
       if (node.dataset.category === category && !subcategory) {
         node.classList.add('active');
@@ -696,7 +971,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     renderExplorer();
   };
 
-  // Category nodes click handlers
   categoryNodes.forEach(node => {
     node.addEventListener('click', () => {
       const cat = node.dataset.category;
@@ -711,15 +985,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
-  // Search input handling
   if (searchInput) {
     searchInput.addEventListener('input', (e) => {
       searchQuery = e.target.value;
-      if (searchQuery) {
-        if (searchClearBtn) searchClearBtn.style.display = 'block';
-      } else {
-        if (searchClearBtn) searchClearBtn.style.display = 'none';
-      }
+      searchClearBtn.style.display = searchQuery ? 'block' : 'none';
       renderExplorer();
     });
   }
@@ -733,7 +1002,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // 6. Service Worker Registration (Standard PWA offline capability)
   if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
     try {
       await navigator.serviceWorker.register(`${prefix}assets/js/service-worker.js`);

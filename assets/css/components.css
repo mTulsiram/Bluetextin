@@ -475,3 +475,64 @@ select:focus-visible {
   font-weight: 600;
 }
 
+/* Sign-In Overlay Modal Dialog (WCAG compliant overlay) */
+.login-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.login-modal-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.login-modal-card {
+  background: rgba(8, 12, 20, 0.98);
+  border: 1px solid var(--accent-primary);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  width: 360px;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
+  backdrop-filter: var(--glass-blur);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  transform: translateY(-20px);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.login-modal-overlay.show .login-modal-card {
+  transform: translateY(0);
+}
+
+.login-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.login-form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.login-form-error {
+  font-size: 0.8rem;
+  color: var(--accent-danger);
+  display: none;
+}
+
+
