@@ -22,9 +22,9 @@
   <header class="global-header" id="global-header">
     <!-- Loaded dynamically by app.js -->
     <div class="header-content">
-      <a href="./index.html" class="logo-text" aria-label="BlueTEXT Home">
+      <a href="./index.html" class="logo-text" aria-label="BlueTEXT.in Home">
         <span class="logo-wordmark" aria-hidden="true">
-          <span class="logo-blue">Blue</span><span class="logo-text-pt">TEXT</span>
+          <span class="logo-blue">Blue</span><span class="logo-text-pt">TEXT</span><span class="logo-in" style="color: var(--accent-warning);">.in</span>
         </span>
       </a>
       <nav class="header-actions">
@@ -43,10 +43,10 @@
     
     <!-- Hero / Header Deck -->
     <section style="text-align: center; margin-bottom: var(--space-8);">
-      <h1 style="font-family: var(--font-display); font-size: 2.75rem; font-weight: 800; line-height: 1.15; margin-bottom: var(--space-3); background: linear-gradient(135deg, #fff 30%, var(--accent-primary-hover) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+      <h1 data-i18n="title" style="font-family: var(--font-display); font-size: 2.75rem; font-weight: 800; line-height: 1.15; margin-bottom: var(--space-3); background: linear-gradient(135deg, #fff 30%, var(--accent-primary-hover) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
         Local static web directory
       </h1>
-      <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto var(--space-6) auto; font-size: 1.125rem;">
+      <p data-i18n="subtitle" style="color: var(--text-secondary); max-width: 600px; margin: 0 auto var(--space-6) auto; font-size: 1.125rem;">
         Browse offline-ready client-side utilities, retro arcade games, and comprehensive learning materials.
       </p>
 
@@ -67,27 +67,27 @@
       <!-- Categories Sidebar -->
       <aside class="explorer-sidebar" aria-label="Directory categories">
         <div class="category-node active" id="node-all" data-category="all" role="button" tabindex="0">
-          <span>📁 All Categories</span>
+          <span>📁 <span data-i18n="all_categories">All Categories</span></span>
           <span style="font-size: 0.8rem; opacity: 0.7;" id="count-all">0</span>
         </div>
         <div class="category-node" id="node-tools" data-category="tools" role="button" tabindex="0">
-          <span>🛠️ Tools</span>
+          <span>🛠️ <span data-i18n="tools">Tools</span></span>
           <span style="font-size: 0.8rem; opacity: 0.7;" id="count-tools">0</span>
         </div>
         <div class="category-node" id="node-games" data-category="games" role="button" tabindex="0">
-          <span>🎮 Games</span>
+          <span>🎮 <span data-i18n="games">Games</span></span>
           <span style="font-size: 0.8rem; opacity: 0.7;" id="count-games">0</span>
         </div>
         <div class="category-node" id="node-software" data-category="software" role="button" tabindex="0">
-          <span>💿 Software</span>
+          <span>💿 <span data-i18n="software">Software</span></span>
           <span style="font-size: 0.8rem; opacity: 0.7;" id="count-software">0</span>
         </div>
         <div class="category-node" id="node-tutorials" data-category="tutorials" role="button" tabindex="0">
-          <span>📚 Tutorials</span>
+          <span>📚 <span data-i18n="tutorials">Tutorials</span></span>
           <span style="font-size: 0.8rem; opacity: 0.7;" id="count-tutorials">0</span>
         </div>
         <div class="category-node" id="node-education" data-category="education" role="button" tabindex="0">
-          <span>🎓 Education</span>
+          <span>🎓 <span data-i18n="education">Education</span></span>
           <span style="font-size: 0.8rem; opacity: 0.7;" id="count-education">0</span>
         </div>
       </aside>

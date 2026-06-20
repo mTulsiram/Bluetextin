@@ -185,6 +185,84 @@ document.addEventListener('DOMContentLoaded', async () => {
     const currentLangLabel = document.getElementById('current-lang-label');
     const langOptions = document.querySelectorAll('#lang-listbox li');
 
+    // i18n Translations Dictionary
+    const TRANSLATIONS = {
+      en: {
+        "title": "Local static web directory",
+        "subtitle": "Browse offline-ready client-side utilities, retro arcade games, and comprehensive learning materials.",
+        "search_placeholder": "Search 470+ modules (e.g. base64, snake, calculus, git)...",
+        "tools": "Tools",
+        "games": "Games",
+        "software": "Software",
+        "tutorials": "Tutorials",
+        "education": "Education",
+        "all_categories": "All Categories"
+      },
+      es: {
+        "title": "Directorio web estático local",
+        "subtitle": "Explore utilidades del lado del cliente listas para usar sin conexión, juegos arcade retro y materiales de aprendizaje completos.",
+        "search_placeholder": "Buscar más de 470 módulos (por ejemplo, base64, snake, cálculo, git)...",
+        "tools": "Herramientas",
+        "games": "Juegos",
+        "software": "Software",
+        "tutorials": "Tutoriales",
+        "education": "Educación",
+        "all_categories": "Todas las categorías"
+      },
+      fr: {
+        "title": "Répertoire web statique local",
+        "subtitle": "Parcourez des utilitaires côté client prêts pour le hors-ligne, des jeux d'arcade rétro et des documents d'apprentissage complets.",
+        "search_placeholder": "Rechercher plus de 470 modules (ex. base64, snake, calcul, git)...",
+        "tools": "Outils",
+        "games": "Jeux",
+        "software": "Logiciels",
+        "tutorials": "Tutoriels",
+        "education": "Éducation",
+        "all_categories": "Toutes les catégories"
+      },
+      de: {
+        "title": "Lokales statisches Webverzeichnis",
+        "subtitle": "Durchsuchen Sie offline-bereite clientseitige Dienstprogramme, Retro-Arcade-Spiele und umfassende Lernmaterialien.",
+        "search_placeholder": "Durchsuche 470+ Module (z. B. Base64, Snake, Calculus, Git)...",
+        "tools": "Werkzeuge",
+        "games": "Spiele",
+        "software": "Software",
+        "tutorials": "Tutorials",
+        "education": "Bildung",
+        "all_categories": "Alle Kategorien"
+      },
+      hi: {
+        "title": "स्थानीय स्थिर वेब निर्देशिका",
+        "subtitle": "ऑफ़लाइन-तैयार क्लाइंट-साइड उपयोगिताओं, रेट्रो आर्केड गेम और व्यापक शिक्षण सामग्री ब्राउज़ करें।",
+        "search_placeholder": "470+ मॉड्यूल खोजें (जैसे base64, snake, calculus, git)...",
+        "tools": "उपकरण",
+        "games": "खेल",
+        "software": "सॉफ्टवेयर",
+        "tutorials": "ट्यूटोरियल",
+        "education": "शिक्षा",
+        "all_categories": "सभी श्रेणियां"
+      }
+    };
+
+    const translatePage = (lang) => {
+      const dict = TRANSLATIONS[lang] || TRANSLATIONS.en;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (dict[key]) {
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = dict[key];
+          } else {
+            el.textContent = dict[key];
+          }
+        }
+      });
+      // Also update search input placeholder dynamically
+      const sInput = document.getElementById('directory-search-input');
+      if (sInput && dict["search_placeholder"]) {
+        sInput.placeholder = dict["search_placeholder"];
+      }
+    };
+
     if (langBtn && langWrapper && langListbox) {
       langBtn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -194,7 +272,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!isOpen) {
           langWrapper.classList.add('show');
           langBtn.setAttribute('aria-expanded', 'true');
-          // Focus first selectable language
           const selectedOption = langListbox.querySelector('[aria-selected="true"]');
           if (selectedOption) selectedOption.focus();
         }
@@ -208,7 +285,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
       });
 
-      // Handle selecting language
       langOptions.forEach(opt => {
         const selectLang = (element) => {
           const langCode = element.dataset.lang;
@@ -222,6 +298,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           
           langWrapper.classList.remove('show');
           langBtn.setAttribute('aria-expanded', 'false');
+          translatePage(langCode);
           langBtn.focus();
         };
 
@@ -234,7 +311,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
       });
 
-      // Restore active language selection
       const savedLang = localStorage.getItem('bluetext_lang') || 'en';
       const activeOption = langListbox.querySelector(`[data-lang="${savedLang}"]`);
       if (activeOption) {
@@ -242,32 +318,155 @@ document.addEventListener('DOMContentLoaded', async () => {
         activeOption.setAttribute('aria-selected', 'true');
         currentLangLabel.textContent = savedLang.toUpperCase();
       }
+      translatePage(savedLang);
     }
 
-    // C. User Login Simulation
+    // C. Cookie Authentication Helpers
+    const setCookie = (name, value, days) => {
+      if (window.location.protocol === 'file:') return;
+      const date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/; SameSite=Lax; Secure`;
+    };
+
+    const getCookie = (name) => {
+      if (window.location.protocol === 'file:') return null;
+      const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+      return match ? match[2] : null;
+    };
+
+    const eraseCookie = (name) => {
+      if (window.location.protocol === 'file:') return;
+      document.cookie = `${name}=; Max-Age=-99999999; path=/; SameSite=Lax; Secure`;
+    };
+
+    // D. Settings JSON Import & Export Functions
+    const exportUserSettings = () => {
+      const settings = {
+        theme: localStorage.getItem('bluetext_theme') || 'dark',
+        lang: localStorage.getItem('bluetext_lang') || 'en',
+        consent: localStorage.getItem('bluetext_privacy_consent') || 'accepted',
+        logged: !!(localStorage.getItem('bluetext_user_logged') || getCookie('bluetext_session'))
+      };
+
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(settings, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", "bluetext-settings.json");
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+    };
+
+    const importUserSettings = (file) => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        try {
+          const config = JSON.parse(event.target.result);
+          
+          // Validate import file schema
+          if (config.theme && (config.theme === 'light' || config.theme === 'dark')) {
+            localStorage.setItem('bluetext_theme', config.theme);
+          }
+          if (config.lang) {
+            localStorage.setItem('bluetext_lang', config.lang);
+          }
+          if (config.consent) {
+            localStorage.setItem('bluetext_privacy_consent', config.consent);
+          }
+          if (config.logged !== undefined) {
+            if (config.logged) {
+              localStorage.setItem('bluetext_user_logged', 'true');
+              setCookie('bluetext_session', 'authorized_admin', 1);
+            } else {
+              localStorage.removeItem('bluetext_user_logged');
+              eraseCookie('bluetext_session');
+            }
+          }
+          
+          // Hot reload workspace config
+          window.location.reload();
+        } catch (e) {
+          alert("Error: Invalid JSON settings file format.");
+        }
+      };
+      reader.readAsText(file);
+    };
+
+    // E. User Login Simulation
     const userSection = document.getElementById('user-profile-section');
     
     const updateLoginUI = () => {
       if (!userSection) return;
-      const isLoggedIn = localStorage.getItem('bluetext_user_logged');
+      const isLoggedIn = localStorage.getItem('bluetext_user_logged') || getCookie('bluetext_session');
       
       if (isLoggedIn) {
         userSection.innerHTML = `
-          <div style="display: flex; align-items: center; gap: 0.65rem;">
-            <span style="font-size: 0.85rem; color: var(--accent-success); font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">
-              <span style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--accent-success); box-shadow: 0 0 8px var(--accent-success);"></span> Admin
-            </span>
-            <button class="btn btn--ghost" id="header-logout-btn" style="padding: 0.35rem 0.65rem; font-size: 0.75rem;" type="button">Sign Out</button>
+          <button class="btn btn--primary nav-trigger" id="profile-menu-btn" aria-expanded="false" aria-haspopup="true" type="button" style="padding: 0.45rem 1rem; font-size: 0.85rem;">
+            👤 Admin <span aria-hidden="true" style="font-size: 0.65rem; margin-left: 4px;">▼</span>
+          </button>
+          <div class="dropdown-pane" id="profile-dropdown-pane" style="width: 220px; right: 0; left: auto; transform: translateY(10px); display: flex; flex-direction: column; gap: var(--space-3);">
+            <div style="font-weight: 600; font-size: 0.85rem; color: var(--accent-success); border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.5rem; margin-bottom: 0.25rem;">
+              Session: Active Admin
+            </div>
+            <button class="btn btn--ghost" id="export-settings-btn" type="button" style="width: 100%; justify-content: flex-start; font-size: 0.85rem; padding: 0.45rem 0.75rem;">
+              📤 Export Settings
+            </button>
+            <label class="btn btn--ghost" for="settings-file-input" style="width: 100%; justify-content: flex-start; font-size: 0.85rem; padding: 0.45rem 0.75rem; margin: 0; cursor: pointer;">
+              📥 Import Settings
+            </label>
+            <input type="file" id="settings-file-input" accept=".json" style="display: none;">
+            <button class="btn btn--primary" id="header-logout-btn" type="button" style="width: 100%; justify-content: center; font-size: 0.85rem; padding: 0.45rem 0.75rem; margin-top: 0.25rem;">
+              Sign Out
+            </button>
           </div>
         `;
+
+        // Profile Menu toggle events
+        const profileBtn = document.getElementById('profile-menu-btn');
+        const profilePane = document.getElementById('profile-dropdown-pane');
+        
+        if (profileBtn && profilePane) {
+          profileBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = profilePane.classList.contains('show');
+            closeAllHeaderDropdowns();
+            if (!isOpen) {
+              profilePane.classList.add('show');
+              profileBtn.setAttribute('aria-expanded', 'true');
+            }
+          });
+
+          profilePane.addEventListener('click', (e) => e.stopPropagation());
+        }
+
+        // Export/Import listeners
+        document.getElementById('export-settings-btn').addEventListener('click', exportUserSettings);
+        document.getElementById('settings-file-input').addEventListener('change', (e) => {
+          if (e.target.files.length > 0) {
+            importUserSettings(e.target.files[0]);
+          }
+        });
+
+        // Logout
         document.getElementById('header-logout-btn').addEventListener('click', () => {
           localStorage.removeItem('bluetext_user_logged');
+          eraseCookie('bluetext_session');
           updateLoginUI();
         });
+
       } else {
-        userSection.innerHTML = `<button class="btn btn--primary" id="header-login-btn" type="button" style="padding: 0.45rem 1rem; font-size: 0.85rem;">Sign In</button>`;
-        document.getElementById('header-login-btn').addEventListener('click', () => {
+        userSection.innerHTML = `
+          <button class="btn btn--primary" id="header-login-btn" type="button" style="padding: 0.45rem 1rem; font-size: 0.85rem;">
+            Sign In
+          </button>
+        `;
+
+        document.getElementById('header-login-btn').addEventListener('click', (e) => {
+          e.stopPropagation();
+          // Mock login validation
           localStorage.setItem('bluetext_user_logged', 'true');
+          setCookie('bluetext_session', 'authorized_admin', 1);
           updateLoginUI();
         });
       }
@@ -289,8 +488,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         langWrapper.classList.remove('show');
         langBtn.setAttribute('aria-expanded', 'false');
       }
+      const profilePane = document.getElementById('profile-dropdown-pane');
+      const profileBtn = document.getElementById('profile-menu-btn');
+      if (profilePane && profilePane.classList.contains('show')) {
+        profilePane.classList.remove('show');
+        profileBtn.setAttribute('aria-expanded', 'false');
+      }
     }
   };
+
 
   // Run dynamic loading
   await loadDynamicComponents();

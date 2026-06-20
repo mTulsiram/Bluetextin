@@ -135,8 +135,19 @@ Non-visual interfaces rely on semantic structures to read the application layout
 
 ## 4. Multisite & Subdomain Branding Coherence
 To support supplementary subdomains (e.g., `blog.bluetext.in` or specific documentation pages):
-- **Universal Header**: The navigation header must maintain a unified structure across subdomains, allowing users to jump back to `bluetext.in` dashboard via a persistent logo link.
+- **Universal Header & Logo**: The navigation header must maintain a unified structure across subdomains, allowing users to jump back to `bluetext.in` dashboard via a persistent logo link.
+- **Logo Typography**: The wordmark branding is structured as **BlueTEXT.in**, where `Blue` uses the electric blue accent, `TEXT` uses white/primary text, and `.in` is styled in amber yellow (`var(--accent-warning)`).
 - **Color Systems**: Subdomains must use the identical custom property variables (`themes.css`) to ensure consistent visual aesthetics across the entire network.
+- **JSON Configuration Schema**: All local-first settings (language, active theme, consent records) are exported in a standard format:
+  ```json
+  {
+    "theme": "dark" | "light",
+    "lang": "en" | "es" | "fr" | "de" | "hi",
+    "consent": "accepted" | "rejected",
+    "logged": true | false
+  }
+  ```
+
 
 ---
 
