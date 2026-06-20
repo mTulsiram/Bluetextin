@@ -318,6 +318,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const translatePage = (lang) => {
     const dict = TRANSLATIONS[lang] || TRANSLATIONS.en;
+    document.documentElement.setAttribute('lang', lang);
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.dataset.i18n;
       if (dict[key]) {
@@ -447,10 +448,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
     });
     
-    let savedTheme = localStorage.getItem('bluetext_theme');
-    if (!savedTheme) {
-      savedTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-    }
+    let savedTheme = localStorage.getItem('bluetext_theme') || 'light';
     applyTheme(savedTheme);
   };
 

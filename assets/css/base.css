@@ -27,7 +27,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--border-subtle);
   border-radius: var(--radius-pill);
   border: 2px solid var(--bg-canvas);
   transition: var(--transition-smooth);
