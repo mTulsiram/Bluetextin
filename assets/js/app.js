@@ -99,10 +99,20 @@ async function bootstrap() {
 	const headerTarget = document.getElementById("header-component") ? "header-component" : "site-header";
 	const footerTarget = document.getElementById("footer-component") ? "footer-component" : "site-footer";
 
-	await Promise.all([
-		loadHtmlInto(headerTarget, "/assets/components/header.html"),
-		loadHtmlInto(footerTarget, "/assets/components/footer.html")
-	]);
+	const headerEl = document.getElementById(headerTarget);
+	const footerEl = document.getElementById(footerTarget);
+
+	const promises = [];
+	if (headerEl && headerEl.innerHTML.trim() === "") {
+		promises.push(loadHtmlInto(headerTarget, "/assets/components/header.html"));
+	}
+	if (footerEl && footerEl.innerHTML.trim() === "") {
+		promises.push(loadHtmlInto(footerTarget, "/assets/components/footer.html"));
+	}
+
+	if (promises.length > 0) {
+		await Promise.all(promises);
+	}
 
 	hoistHeaderModals();
 

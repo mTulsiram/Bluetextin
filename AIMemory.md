@@ -82,6 +82,11 @@ Always append a new dated entry.
 - Synchronized project architecture documentation (`Architecture.md`), design system guidelines (`DESIGN.md`), and general runbook guides (`README.md`) to reflect the new pre-compiled offline translations pipeline and default dark mode layout.
 - Committed and pushed all modified templates, custom scripts, offline dictionary catalogs, sitemaps, and search indices.
 
+## 2026-06-21 (Static Header & Footer Build-Time Compilation)
+
+- Implemented build-time static header and footer compilation (`--inject` flag in `scripts/build.js`) using HTML comment markers (`<!-- HEADER_START -->`, etc.) to fully compile component templates directly into all 533 HTML pages.
+- Updated `assets/js/app.js` bootstrap sequence to bypass fetching components dynamically if they are already statically compiled in the DOM, completely resolving client-side layout shifts and loading lag.
+
 
 
 

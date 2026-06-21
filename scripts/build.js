@@ -793,6 +793,53 @@ async function generateSitemap() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Step 3: Inject Header & Footer in all HTML files
+// ─────────────────────────────────────────────────────────────────────────────
+
+async function injectHeaderFooter() {
+  const HEADER_FILE = path.join(ROOT, "assets", "components", "header.html");
+  const FOOTER_FILE = path.join(ROOT, "assets", "components", "footer.html");
+
+  const headerContent = await fs.readFile(HEADER_FILE, "utf8");
+  const footerContent = await fs.readFile(FOOTER_FILE, "utf8");
+
+  const allFiles = await walkHtmlFiles(ROOT);
+  let processedCount = 0;
+
+  for (const file of allFiles) {
+    if (file === HEADER_FILE || file === FOOTER_FILE) continue;
+
+    let content = await fs.readFile(file, "utf8");
+    let original = content;
+
+    // Inject Header
+    if (content.includes("<!-- HEADER_START -->")) {
+      content = content.replace(/<!-- HEADER_START -->[\s\S]*?<!-- HEADER_END -->/, `<!-- HEADER_START -->\n${headerContent}\n<!-- HEADER_END -->`);
+    } else {
+      content = content.replace(/<div\s+id="header-component"[^>]*>\s*<\/div>/, (match) => {
+        return match.replace("></div", `><!-- HEADER_START -->\n${headerContent}\n<!-- HEADER_END --></div`);
+      });
+    }
+
+    // Inject Footer
+    if (content.includes("<!-- FOOTER_START -->")) {
+      content = content.replace(/<!-- FOOTER_START -->[\s\S]*?<!-- FOOTER_END -->/, `<!-- FOOTER_START -->\n${footerContent}\n<!-- FOOTER_END -->`);
+    } else {
+      content = content.replace(/<div\s+id="footer-component"[^>]*>\s*<\/div>/, (match) => {
+        return match.replace("></div", `><!-- FOOTER_START -->\n${footerContent}\n<!-- FOOTER_END --></div`);
+      });
+    }
+
+    if (content !== original) {
+      await fs.writeFile(file, content, "utf8");
+      processedCount++;
+    }
+  }
+
+  console.log(`Injected header & footer into ${processedCount} HTML files`);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Main pipeline
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -808,12 +855,13 @@ Usage:
   node scripts/build.js                 Run full pipeline
   node scripts/build.js --legal         Normalize legal pages
   node scripts/build.js --indexes       Generate index pages
+  node scripts/build.js --inject        Inject header & footer into pages
   node scripts/build.js --search        Generate search index
   node scripts/build.js --i18n          Generate translation catalog
   node scripts/build.js --sitemap       Generate sitemap
   node scripts/build.js --help
 You can combine flags, e.g.:
-  node scripts/build.js --indexes --search
+  node scripts/build.js --indexes --inject
 `.trim());
 }
 
@@ -829,6 +877,7 @@ async function main() {
   const steps = {
     "--legal":   { name: "Normalize Legal Pages",        fn: normalizeLegalPages },
     "--indexes": { name: "Generate Index Pages",         fn: generateIndexPages },
+    "--inject":  { name: "Inject Header & Footer",       fn: injectHeaderFooter },
     "--search":  { name: "Generate Search Index",        fn: generateSearchIndex },
     "--i18n":    { name: "Generate Translation Catalog", fn: generateTranslationCatalog },
     "--sitemap": { name: "Generate Sitemap",             fn: generateSitemap },
