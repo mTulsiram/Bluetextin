@@ -2,4 +2,7 @@ body {
   font-family: var(--bt-font-family);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bt-bg-primary) !important;
+  color: var(--bt-text-primary) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }

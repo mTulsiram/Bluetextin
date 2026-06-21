@@ -1,15 +1,27 @@
-/* Category Card Premium Animations */
+/* Category Card Premium Animations & Styles */
 .bt-category-card {
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease;
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease, background-color 0.25s ease;
+}
+
+[data-bs-theme="light"] .bt-category-card {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
 }
 
 .bt-category-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(13, 110, 253, 0.08) !important;
-  border-color: rgba(13, 110, 253, 0.3) !important;
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(13, 110, 253, 0.08) !important;
+  border-color: rgba(13, 110, 253, 0.35) !important;
+}
+
+[data-bs-theme="light"] .bt-category-card:hover {
+  background-color: #ffffff !important;
 }
 
 [data-bs-theme="dark"] .bt-category-card:hover {
-  box-shadow: 0 12px 30px rgba(59, 130, 246, 0.12) !important;
-  border-color: rgba(59, 130, 246, 0.4) !important;
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2) !important;
+  border-color: rgba(59, 130, 246, 0.5) !important;
 }

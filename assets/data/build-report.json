@@ -1,33 +1,33 @@
 {
-  "generatedAt": "2026-06-20T18:16:13.275Z",
-  "startedAt": "2026-06-20T18:15:15.521Z",
-  "durationMs": 57754,
+  "generatedAt": "2026-06-21T09:10:04.695Z",
+  "startedAt": "2026-06-21T09:09:09.653Z",
+  "durationMs": 55042,
   "ok": true,
   "steps": [
     {
       "name": "Normalize Legal Pages",
       "ok": true,
-      "durationMs": 12
+      "durationMs": 15
     },
     {
       "name": "Generate Index Pages",
       "ok": true,
-      "durationMs": 86
+      "durationMs": 95
     },
     {
       "name": "Generate Search Index",
       "ok": true,
-      "durationMs": 169
+      "durationMs": 176
     },
     {
       "name": "Generate Translation Catalog",
       "ok": true,
-      "durationMs": 57447
+      "durationMs": 54723
     },
     {
       "name": "Generate Sitemap",
       "ok": true,
-      "durationMs": 34
+      "durationMs": 28
     }
   ],
   "outputs": {
