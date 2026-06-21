@@ -87,6 +87,13 @@ Always append a new dated entry.
 - Implemented build-time static header and footer compilation (`--inject` flag in `scripts/build.js`) using HTML comment markers (`<!-- HEADER_START -->`, etc.) to fully compile component templates directly into all 533 HTML pages.
 - Updated `assets/js/app.js` bootstrap sequence to bypass fetching components dynamically if they are already statically compiled in the DOM, completely resolving client-side layout shifts and loading lag.
 
+## 2026-06-21 (Google Translate Pipeline Fix & Offline zh-TW Conversion)
+
+- Fixed critical Google Translate query bug by joining batch terms with `" ||| "` into a single query parameter `q=`, resolving 400 errors and mapping segment outputs to correct dictionary keys.
+- Implemented recursive binary-split fallback inside `translateBatchWithRetry` to automatically split batches when API responses return mismatched delimiter lists or drop segments.
+- Excluded Traditional Chinese (`zh-TW`) from remote API translations, instead implementing an offline translation generator using `chinese-conv` to convert `zh-CN` Simplified Chinese into `zh-TW` Traditional Chinese offline in under 10ms.
+
+
 
 
 

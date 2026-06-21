@@ -11,5 +11,8 @@
     "generate:search": "node scripts/build.js --search",
     "generate:i18n": "node scripts/build.js --i18n",
     "normalize:legal": "node scripts/build.js --legal"
+  },
+  "dependencies": {
+    "chinese-conv": "^4.0.0"
   }
 }

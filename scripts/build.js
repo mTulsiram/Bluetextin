@@ -623,7 +623,7 @@ async function generateTranslationCatalog() {
   const allTexts = Array.from(uniqueStrings);
 
   const TARGET_LANGS = [
-    "es", "fr", "de", "zh-CN", "zh-TW", "ja", "hi", "pt", "ru",
+    "es", "fr", "de", "zh-CN", "ja", "hi", "pt", "ru",
     "ar", "bn", "it", "ko", "tr", "vi", "pl", "nl", "id", "fa", "uk"
   ];
 
@@ -634,8 +634,8 @@ async function generateTranslationCatalog() {
   function translateBatch(texts, targetLang) {
     if (texts.length === 0) return Promise.resolve({});
     return new Promise((resolve) => {
-      const query = texts.map(t => `q=${encodeURIComponent(t)}`).join("&");
-      const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${targetLang}&dt=t&${query}`;
+      const queryText = texts.join(" ||| ");
+      const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${targetLang}&dt=t&q=${encodeURIComponent(queryText)}`;
       
       https.get(url, { agent: keepAliveAgent }, (res) => {
         let data = "";
@@ -644,12 +644,19 @@ async function generateTranslationCatalog() {
           try {
             const parsed = JSON.parse(data);
             const results = {};
-            if (parsed && parsed[0]) {
+             if (parsed && parsed[0]) {
               parsed[0].forEach(item => {
                 if (item && item[0] && item[1]) {
                   const original = item[1].replace(/\s*\|\|\|\s*$/, "").trim();
                   const translated = item[0].replace(/\s*\|\|\|\s*$/, "").trim();
-                  results[original] = translated;
+                  
+                  const origParts = original.split("|||");
+                  const transParts = translated.split("|||");
+                  if (origParts.length === transParts.length) {
+                    for (let i = 0; i < origParts.length; i++) {
+                      results[origParts[i].trim()] = transParts[i].trim();
+                    }
+                  }
                 }
               });
             }
@@ -660,6 +667,39 @@ async function generateTranslationCatalog() {
         });
       }).on("error", () => resolve({}));
     });
+  }
+
+  async function translateBatchWithRetry(texts, targetLang, retries = 3) {
+    if (texts.length === 0) return {};
+
+    for (let attempt = 1; attempt <= retries; attempt++) {
+      const result = await translateBatch(texts, targetLang);
+      if (Object.keys(result).length > 0) {
+        return result;
+      }
+      if (attempt < retries) {
+        console.warn(`    ⚠ [Retry ${attempt}/${retries}] Translation returned empty/mismatched for ${targetLang}. Retrying in 1000ms...`);
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      }
+    }
+
+    if (texts.length <= 1) {
+      return {};
+    }
+
+    // Split batch in half and translate recursively
+    const mid = Math.floor(texts.length / 2);
+    const left = texts.slice(0, mid);
+    const right = texts.slice(mid);
+
+    console.log(`    ➔ Mismatched batch for ${targetLang} (size ${texts.length}). Splitting into ${left.length} and ${right.length}...`);
+
+    const [leftResult, rightResult] = await Promise.all([
+      translateBatchWithRetry(left, targetLang, retries),
+      translateBatchWithRetry(right, targetLang, retries)
+    ]);
+
+    return { ...leftResult, ...rightResult };
   }
 
   // Process all languages in parallel
@@ -697,12 +737,12 @@ async function generateTranslationCatalog() {
 
       let updated = false;
       for (const batch of batches) {
-        const trans = await translateBatch(batch, lang);
+        const trans = await translateBatchWithRetry(batch, lang);
         for (const orig in trans) {
           dict[orig] = trans[orig];
           updated = true;
         }
-        await new Promise(resolve => setTimeout(resolve, 50));
+        await new Promise(resolve => setTimeout(resolve, 200)); // slightly larger delay to respect API limits
       }
 
       if (updated) {
@@ -716,6 +756,24 @@ async function generateTranslationCatalog() {
       console.log(`  ✓ ${lang}: ${Object.keys(dict).length} translations verified (unchanged).`);
     }
   }));
+
+  // Generate zh-TW by converting Simplified Chinese translations offline
+  try {
+    const cnDictPath = path.join(OUT_DIR, "zh-CN-dictionary.json");
+    const twDictPath = path.join(OUT_DIR, "zh-TW-dictionary.json");
+    const cnDict = JSON.parse(await fs.readFile(cnDictPath, "utf8"));
+    
+    const chineseConv = require("chinese-conv");
+    const twDict = {};
+    for (const key in cnDict) {
+      twDict[key] = chineseConv.tify(cnDict[key]);
+    }
+    
+    await fs.writeFile(twDictPath, JSON.stringify(twDict, null, 2), "utf8");
+    console.log(`  ✓ zh-TW: ${Object.keys(twDict).length} translations generated offline from zh-CN.`);
+  } catch (err) {
+    console.error(`  ✗ Failed to generate zh-TW offline: ${err.message}`);
+  }
 
   return Object.keys(catalog).length;
 }
