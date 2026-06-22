@@ -133,7 +133,6 @@
             <button class="btn bt-vite-search d-none d-lg-inline-flex align-items-center gap-2" id="global-search-button" type="button" aria-label="Search" data-bs-toggle="modal" data-bs-target="#searchModal">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
               <span>Search</span>
-              <kbd class="bt-search-kbd ms-auto">Ctrl K</kbd>
             </button>
 
             <!-- Vertical Divider 1 -->
@@ -151,8 +150,9 @@
 
             <!-- Language select dropdown (no chevron, matches Vite) -->
             <div class="dropdown bt-lang-dropdown d-inline-block">
-              <button class="btn bt-lang-btn d-inline-flex align-items-center justify-content-center p-1" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Select Language">
+              <button class="btn bt-lang-btn d-inline-flex align-items-center justify-content-center gap-1 p-1" id="language-dropdown-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Select Language">
                 <svg class="bt-lang-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                <span class="bt-lang-selected-code text-uppercase font-monospace small" id="bt-lang-code" style="font-size: 0.72rem; font-weight: 700; margin-left: 2px;">EN</span>
               </button>
               <ul class="dropdown-menu dropdown-menu-end bt-lang-dropdown-menu" id="language-dropdown-menu" style="max-height: 320px; overflow-y: auto;">
                 <li><button class="dropdown-item d-flex align-items-center justify-content-between gap-3" type="button" data-value="en"><span>English</span><span class="text-muted small" style="font-size: 0.65rem;">↗</span></button></li>
@@ -449,7 +449,23 @@
       function setupLangDropdown() {
         const dropdownMenu = document.getElementById("language-dropdown-menu");
         const hiddenSelect = document.getElementById("language-select");
+        const langCodeSpan = document.getElementById("bt-lang-code");
         if (!dropdownMenu || !hiddenSelect) return;
+
+        function updateLangCodeLabel(val) {
+          if (!langCodeSpan) return;
+          const code = (val || "en").split("-")[0].toUpperCase();
+          langCodeSpan.textContent = code;
+        }
+
+        // Initialize label state safely
+        let initialVal = "en";
+        try {
+          initialVal = hiddenSelect.value || localStorage.getItem("bt_language_v1") || "en";
+        } catch (e) {
+          initialVal = hiddenSelect.value || "en";
+        }
+        updateLangCodeLabel(initialVal);
 
         dropdownMenu.querySelectorAll(".dropdown-item").forEach(item => {
           item.addEventListener("click", () => {
@@ -457,8 +473,13 @@
             if (val) {
               hiddenSelect.value = val;
               hiddenSelect.dispatchEvent(new Event("change"));
+              updateLangCodeLabel(val);
             }
           });
+        });
+
+        hiddenSelect.addEventListener("change", () => {
+          updateLangCodeLabel(hiddenSelect.value);
         });
       }
       if (document.readyState === "loading") {
