@@ -1,28 +1,28 @@
 {
-  "generatedAt": "2026-06-22T06:03:03.624Z",
-  "startedAt": "2026-06-22T06:02:33.046Z",
-  "durationMs": 30578,
+  "generatedAt": "2026-06-22T06:10:50.081Z",
+  "startedAt": "2026-06-22T06:10:34.909Z",
+  "durationMs": 15172,
   "ok": true,
   "steps": [
     {
       "name": "Bundle CSS Styles",
       "ok": true,
-      "durationMs": 9
+      "durationMs": 12
     },
     {
       "name": "Normalize Legal Pages",
       "ok": true,
-      "durationMs": 16
+      "durationMs": 18
     },
     {
       "name": "Generate Index Pages",
       "ok": true,
-      "durationMs": 247
+      "durationMs": 237
     },
     {
       "name": "Inject Header & Footer",
       "ok": true,
-      "durationMs": 1865
+      "durationMs": 1692
     },
     {
       "name": "Generate Search Index",
@@ -32,12 +32,12 @@
     {
       "name": "Generate Translation Catalog",
       "ok": true,
-      "durationMs": 28212
+      "durationMs": 13004
     },
     {
       "name": "Generate Sitemap",
       "ok": true,
-      "durationMs": 40
+      "durationMs": 29
     }
   ],
   "outputs": {

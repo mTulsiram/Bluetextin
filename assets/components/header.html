@@ -10,17 +10,20 @@
           <span>BlueTEXT.in</span>
         </a>
 
-        <!-- Mobile header action icons (search & account) -->
+        <!-- Mobile header action icons (search, support, account) -->
         <div class="d-flex align-items-center gap-2 d-lg-none ms-auto me-2">
           <button class="btn btn-link bt-mobile-icon-btn p-1" type="button" aria-label="Search" data-bs-toggle="modal" data-bs-target="#searchModal">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
           </button>
+          <a class="btn btn-link bt-mobile-icon-btn p-1 d-inline-flex align-items-center justify-content-center text-decoration-none" href="/support.html" aria-label="Supporters Wall" title="Supporters Wall">
+            <span style="font-size: 1.25rem; line-height: 1;">💖</span>
+          </a>
           <button class="btn btn-link bt-mobile-icon-btn p-1" id="mobile-auth-button" type="button" aria-label="Sign in" data-bs-toggle="modal" data-bs-target="#authModal">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
           </button>
         </div>
 
-        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar" aria-controls="mobileSidebar" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -222,9 +225,13 @@
             <!-- Vertical Divider 3 -->
             <div class="bt-header-divider d-none d-lg-block"></div>
             
-            <a class="btn fw-semibold bt-top-action d-inline-flex align-items-center gap-1 text-danger border-danger-subtle px-3" id="header-donate-button" href="/support.html">
-              <span>💖 Supporters</span>
+            <a class="btn fw-semibold bt-top-action d-inline-flex align-items-center justify-content-center text-danger border-danger-subtle px-2.5" id="header-supporters-button" href="/support.html" aria-label="Supporters" title="Supporters Wall">
+              <span>💖</span>
             </a>
+            
+            <button class="btn fw-semibold bt-top-action d-inline-flex align-items-center gap-1 text-success border-success-subtle px-3" id="header-donate-btn" type="button" data-bs-toggle="modal" data-bs-target="#donateModal">
+              <span>Donate</span>
+            </button>
 
             <button class="btn fw-semibold bt-top-action d-inline-flex align-items-center gap-2" id="auth-button" type="button" aria-label="Sign in" data-bs-toggle="modal" data-bs-target="#authModal">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -429,6 +436,85 @@
           </div>
           
           <p class="small text-muted mb-0" style="font-size: 0.75rem;">Note: Payment will open securely in a separate popup window so you can stay on BlueTEXT.in.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Left Offcanvas Navigation Menu (Mobile Slider) -->
+  <div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel" style="width: 280px; background-color: var(--bt-bg-primary); border-right: 1px solid var(--bt-border-color);">
+    <div class="offcanvas-header border-bottom py-3">
+      <h5 class="offcanvas-title fw-bold text-primary d-flex align-items-center gap-2" id="mobileSidebarLabel">
+        <svg class="bt-logo" width="24" height="24" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <rect width="28" height="28" rx="7" fill="currentColor"></rect>
+          <path d="M8 7H15.5C18.3 7 20.3 8.5 20.3 10.9C20.3 12.4 19.5 13.6 18.1 14.2C19.9 14.7 21 16 21 17.8C21 20.5 18.8 22 15.8 22H8V7ZM11.2 9.6V13.1H15.2C16.4 13.1 17.1 12.4 17.1 11.3C17.1 10.2 16.4 9.6 15.2 9.6H11.2ZM11.2 15.5V19.4H15.7C17 19.4 17.8 18.7 17.8 17.5C17.8 16.3 16.9 15.5 15.7 15.5H11.2Z" fill="white"></path>
+        </svg>
+        <span>BlueTEXT.in</span>
+      </h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body p-3">
+      <!-- Search Bar -->
+      <div class="mb-4">
+        <input class="form-control bt-mobile-search-input" type="search" placeholder="Search pages and tools..." aria-label="Search" data-bs-toggle="modal" data-bs-target="#searchModal" data-bs-dismiss="offcanvas" readonly>
+      </div>
+
+      <!-- Navigation List Links -->
+      <div class="list-group list-group-flush gap-1">
+        <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold" href="/" data-bs-dismiss="offcanvas">🏠 Home</a>
+        
+        <div class="mt-3">
+          <div class="fw-bold text-muted small text-uppercase px-3 mb-1.5" style="font-size: 0.72rem; letter-spacing: 0.5px;">Sections</div>
+          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold d-flex align-items-center justify-content-between" href="/pages/tools/" data-bs-dismiss="offcanvas">
+            <span>🛠️ Developer Tools</span>
+          </a>
+          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold d-flex align-items-center justify-content-between" href="/pages/games/" data-bs-dismiss="offcanvas">
+            <span>🎮 Browser Games</span>
+          </a>
+          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold" href="/pages/software/" data-bs-dismiss="offcanvas"><span>💻 Software Catalog</span></a>
+          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold" href="/pages/tutorials/" data-bs-dismiss="offcanvas"><span>📚 Tutorials</span></a>
+          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold" href="/pages/education/" data-bs-dismiss="offcanvas"><span>🎓 Education</span></a>
+          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold" href="/pages/blog/" data-bs-dismiss="offcanvas"><span>✍️ Blog</span></a>
+          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold text-danger d-flex align-items-center gap-2" href="/support.html" data-bs-dismiss="offcanvas">
+            <span>💖 Supporters Wall</span>
+          </a>
+        </div>
+
+        <hr class="my-3">
+
+        <!-- Settings & Controls -->
+        <div class="px-3">
+          <h6 class="fw-bold mb-2.5 small text-uppercase text-muted" style="font-size: 0.72rem; letter-spacing: 0.5px;">App Options</h6>
+          <div class="d-flex flex-column gap-3">
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="small text-body-secondary fw-semibold">Theme</span>
+              <button class="btn btn-sm btn-outline-secondary" onclick="document.getElementById('theme-button').click()" type="button" aria-label="Toggle Theme">
+                🌓 Toggle Theme
+              </button>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="small text-body-secondary fw-semibold">Language</span>
+              <div class="dropdown">
+                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  🌐 Language
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" style="max-height: 240px; overflow-y: auto;">
+                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=en]').click()">English</button></li>
+                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=es]').click()">Español</button></li>
+                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=fr]').click()">Français</button></li>
+                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=de]').click()">Deutsch</button></li>
+                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=hi]').click()">हिन्दी</button></li>
+                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=zh-CN]').click()">简体中文</button></li>
+                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=ja]').click()">日本語</button></li>
+                </ul>
+              </div>
+            </div>
+            
+            <button class="btn btn-sm btn-outline-danger w-100 mt-2" onclick="document.getElementById('clear-cache-button').click(); data-bs-dismiss='offcanvas'" type="button">
+              <span>🗑️ Clear Cache</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
