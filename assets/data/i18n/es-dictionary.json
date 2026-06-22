@@ -2060,5 +2060,10 @@
   "Transaction Reference ID (Private)": "ID de referencia de transacción (privado)",
   "WALL OF HONOR": "MURO ​​DE HONOR",
   "${supporter.date}": "${supporter.date}",
-  "${supporter.platform}": "${supporter.platform}"
+  "${supporter.platform}": "${supporter.platform}",
+  "☕ BlueTEXT Membership": "☕ Membresía BlueTEXT",
+  "Support BlueTEXT.in internationally on Patreon:": "Apoye a BlueTEXT.in internacionalmente en Patreon:",
+  "Become a member to help keep the servers active, fast, and completely ad-free.": "Conviértase en miembro para ayudar a mantener los servidores activos, rápidos y completamente libres de publicidad.",
+  "Note: Payment will open securely in a separate popup window so you can stay on BlueTEXT.in.": "Nota: El pago se abrirá de forma segura en una ventana emergente separada para que pueda permanecer en BlueTEXT.in.",
+  "Support on Patreon": "Soporte en Patreon"
 }

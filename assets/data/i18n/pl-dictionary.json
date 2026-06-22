@@ -227,7 +227,7 @@
   "📄 Redis Caching Implementation Basics": "📄 Podstawy implementacji buforowania Redis",
   "📄 Sql Queries Join And Select": "📄 Zapytania SQL Dołącz i wybierz",
   "📄 Ssh Key Setup And Server Access": "📄 Konfiguracja klucza Ssh i dostęp do serwera",
-  "Docker Containers For Beginners |": "Kontenery Docker dla pocz��tkujących |",
+  "Docker Containers For Beginners |": "Kontenery Docker dla początkujących |",
   "Docker Containers For Beginners": "Kontenery Docker dla początkujących",
   "Ci Cd Pipelines With Github Actions |": "Potoki Ci Cd z akcjami Github |",
   "Ci Cd Pipelines With Github Actions": "Potoki Ci Cd z akcjami Github",
@@ -1623,7 +1623,7 @@
   "Terms of Use |": "Warunki korzystania |",
   "Terms of Use": "Warunki korzystania",
   "Effective date: 28 March 2026 |": "Data wejścia w życie: 28 marca 2026 r. |",
-  "Last updated: May 9, 2026": "Ostatnia aktualizacja: 9 maja 2026 r.",
+  "Last updated: May 9, 2026": "Ostatnia aktualizacja: 9 maja 2026 r",
   "1. Acceptance of Terms": "1. Akceptacja Regulaminu",
   "2. Use License": "2. Użyj licencji",
   "Permission is granted to temporarily use the tools on BlueTEXT.in's website for personal, non-commercial transitory viewing only.": "Zezwala się na tymczasowe korzystanie z narzędzi znajdujących się na stronie BlueTEXT.in wyłącznie w celach osobistych, niekomercyjnych i przejściowych.",
@@ -2059,5 +2059,10 @@
   "Transaction Reference ID (Private)": "Identyfikator referencyjny transakcji (prywatny)",
   "WALL OF HONOR": "ŚCIANA HONORU",
   "${supporter.date}": "${supporter.date}",
-  "${supporter.platform}": "${supporter.platforma}"
+  "${supporter.platform}": "${supporter.platforma}",
+  "☕ BlueTEXT Membership": "☕ Członkostwo BlueTEXT",
+  "Support BlueTEXT.in internationally on Patreon:": "Wspieraj BlueTEXT.in na całym świecie na Patreonie:",
+  "Become a member to help keep the servers active, fast, and completely ad-free.": "Zostań członkiem, aby serwery były aktywne, szybkie i całkowicie wolne od reklam.",
+  "Note: Payment will open securely in a separate popup window so you can stay on BlueTEXT.in.": "Uwaga: płatność otworzy się bezpiecznie w osobnym wyskakującym oknie, dzięki czemu będziesz mógł pozostać na BlueTEXT.in.",
+  "Support on Patreon": "Wsparcie na Patreonie"
 }

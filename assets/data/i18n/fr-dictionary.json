@@ -723,7 +723,7 @@
   "Margin Markup Calculator": "Calculateur de majoration de marge",
   "Inflation Calculator |": "Calculateur d'inflation |",
   "Inflation Calculator": "Calculateur d'inflation",
-  "Math |": "Mathématiques |",
+  "Math |": "Math��matiques |",
   "Browse all math resources on BlueTEXT.": "Parcourez toutes les ressources mathématiques sur BlueTEXT.",
   "📄 Binary Calculator": "📄 Calculatrice binaire",
   "📄 Car Lease Calculator": "📄 Calculateur de location de voiture",
@@ -2059,5 +2059,10 @@
   "Transaction Reference ID (Private)": "ID de référence de transaction (privé)",
   "WALL OF HONOR": "MUR D'HONNEUR",
   "${supporter.date}": "${supporter.date}",
-  "${supporter.platform}": "${supporter.platform}"
+  "${supporter.platform}": "${supporter.platform}",
+  "☕ BlueTEXT Membership": "☕ Adhésion à BlueTEXT",
+  "Support BlueTEXT.in internationally on Patreon:": "Soutenez BlueTEXT.in à l’international sur Patreon :",
+  "Become a member to help keep the servers active, fast, and completely ad-free.": "Devenez membre pour aider à maintenir les serveurs actifs, rapides et totalement sans publicité.",
+  "Note: Payment will open securely in a separate popup window so you can stay on BlueTEXT.in.": "Remarque : le paiement s'ouvrira en toute sécurité dans une fenêtre contextuelle distincte afin que vous puissiez rester sur BlueTEXT.in.",
+  "Support on Patreon": "Assistance sur Patreon"
 }

@@ -1702,7 +1702,7 @@
   "Our website may contain links to external sites not operated by us.": "Web sitemiz tarafımızdan işletilmeyen harici sitelere bağlantılar içerebilir.",
   "We have no control over the content or privacy practices of those sites and cannot accept responsibility for their respective privacy policies.": "Bu sitelerin içeriği veya gizlilik uygulamaları üzerinde hiçbir kontrolümüz yoktur ve ilgili gizlilik politikalarının sorumluluğunu kabul edemeyiz.",
   "6. Changes to This Policy": "6. Bu Politikadaki Değişiklikler",
-  "We may update this Privacy Policy from time to time.": "Bu Gizlilik Politikasını zaman zaman g��ncelleyebiliriz.",
+  "We may update this Privacy Policy from time to time.": "Bu Gizlilik Politikasını zaman zaman güncelleyebiliriz.",
   "We will notify you of changes by posting the updated policy on this page.": "Güncellenen politikayı bu sayfada yayınlayarak sizi değişikliklerden haberdar edeceğiz.",
   "You are advised to review this page periodically for any changes.": "Herhangi bir değişiklik olup olmadığını görmek için bu sayfayı düzenli aralıklarla incelemeniz önerilir.",
   "7. Contact": "7. İletişim",
@@ -2059,5 +2059,10 @@
   "Transaction Reference ID (Private)": "İşlem Referans Kimliği (Özel)",
   "WALL OF HONOR": "ŞEREF DUVARI",
   "${supporter.date}": "${supporter.date}",
-  "${supporter.platform}": "${supporter.platform}"
+  "${supporter.platform}": "${supporter.platform}",
+  "☕ BlueTEXT Membership": "☕ BlueTEXT Üyeliği",
+  "Support BlueTEXT.in internationally on Patreon:": "BlueTEXT.in'i Patreon'da uluslararası olarak destekleyin:",
+  "Become a member to help keep the servers active, fast, and completely ad-free.": "Sunucuların aktif, hızlı ve tamamen reklamsız kalmasına yardımcı olmak için üye olun.",
+  "Note: Payment will open securely in a separate popup window so you can stay on BlueTEXT.in.": "Not: BlueTEXT.in'de kalabilmeniz için ödeme ayrı bir açılır pencerede güvenli bir şekilde açılacaktır.",
+  "Support on Patreon": "Patreon'da Destek"
 }

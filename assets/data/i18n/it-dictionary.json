@@ -1332,7 +1332,7 @@
   "Sudoku Board": "Tabellone Sudoku",
   "Pipe Connector |": "Connettore per tubi |",
   "Pipe Connector": "Connettore per tubi",
-  "Nonogram Griddlers |": "Griddlers Nonogram |",
+  "Nonogram Griddlers |": "Griddler Nonogram |",
   "Nonogram Griddlers": "Griddlers Nonogram",
   "Sliding Block |": "Blocco scorrevole |",
   "Sliding Block": "Blocco scorrevole",
@@ -2059,5 +2059,10 @@
   "Transaction Reference ID (Private)": "ID di riferimento della transazione (privato)",
   "WALL OF HONOR": "MURO ​​D'ONORE",
   "${supporter.date}": "${supporter.data}",
-  "${supporter.platform}": "${supporter.piattaforma}"
+  "${supporter.platform}": "${supporter.piattaforma}",
+  "☕ BlueTEXT Membership": "☕ Iscrizione a BlueTEXT",
+  "Support BlueTEXT.in internationally on Patreon:": "Supporta BlueTEXT.in a livello internazionale su Patreon:",
+  "Become a member to help keep the servers active, fast, and completely ad-free.": "Diventa un membro per contribuire a mantenere i server attivi, veloci e completamente privi di pubblicità.",
+  "Note: Payment will open securely in a separate popup window so you can stay on BlueTEXT.in.": "Nota: il pagamento si aprirà in modo sicuro in una finestra popup separata così potrai rimanere su BlueTEXT.in.",
+  "Support on Patreon": "Supporto su Patreon"
 }

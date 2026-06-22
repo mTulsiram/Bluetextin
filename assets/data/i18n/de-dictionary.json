@@ -803,7 +803,7 @@
   "Military Time Converter": "Militärzeitkonverter",
   "Love Compatibility Calculator |": "Liebeskompatibilitätsrechner |",
   "Love Compatibility Calculator": "Liebeskompatibilitätsrechner",
-  "Macro Nutrients Calculator |": "Makron��hrstoffrechner |",
+  "Macro Nutrients Calculator |": "Makronährstoffrechner |",
   "Macro Nutrients Calculator": "Makronährstoffrechner",
   "Lifestyle |": "Lebensstil |",
   "Browse all lifestyle resources on BlueTEXT.": "Durchsuchen Sie alle Lifestyle-Ressourcen auf BlueTEXT.",
@@ -2060,5 +2060,10 @@
   "Transaction Reference ID (Private)": "Transaktionsreferenz-ID (privat)",
   "WALL OF HONOR": "WAND DER EHRE",
   "${supporter.date}": "${supporter.date}",
-  "${supporter.platform}": "${supporter.platform}"
+  "${supporter.platform}": "${supporter.platform}",
+  "☕ BlueTEXT Membership": "☕ BlueTEXT-Mitgliedschaft",
+  "Support BlueTEXT.in internationally on Patreon:": "Unterstützen Sie BlueTEXT.in international auf Patreon:",
+  "Become a member to help keep the servers active, fast, and completely ad-free.": "Werden Sie Mitglied, um dazu beizutragen, dass die Server aktiv, schnell und völlig werbefrei bleiben.",
+  "Note: Payment will open securely in a separate popup window so you can stay on BlueTEXT.in.": "Hinweis: Die Zahlung wird sicher in einem separaten Popup-Fenster geöffnet, sodass Sie auf BlueTEXT.in bleiben können.",
+  "Support on Patreon": "Unterstützung auf Patreon"
 }

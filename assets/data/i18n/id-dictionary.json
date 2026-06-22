@@ -2061,5 +2061,10 @@
   "Transaction Reference ID (Private)": "ID Referensi Transaksi (Pribadi)",
   "WALL OF HONOR": "DINDING KEHORMATAN",
   "${supporter.date}": "${supporter.tanggal}",
-  "${supporter.platform}": "${supporter.platform}"
+  "${supporter.platform}": "${supporter.platform}",
+  "☕ BlueTEXT Membership": "☕ Keanggotaan BlueTEXT",
+  "Support BlueTEXT.in internationally on Patreon:": "Dukung BlueTEXT.in secara internasional di Patreon:",
+  "Become a member to help keep the servers active, fast, and completely ad-free.": "Jadilah anggota untuk membantu menjaga server tetap aktif, cepat, dan sepenuhnya bebas iklan.",
+  "Note: Payment will open securely in a separate popup window so you can stay on BlueTEXT.in.": "Catatan: Pembayaran akan terbuka dengan aman di jendela popup terpisah sehingga Anda dapat tetap menggunakan BlueTEXT.in.",
+  "Support on Patreon": "Dukungan pada Patreon"
 }
