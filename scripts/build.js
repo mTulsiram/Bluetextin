@@ -138,6 +138,7 @@ async function normalizeLegalPages() {
   <title>${escapeHtml(title)} | BlueTEXT</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="manifest" href="/manifest.json">
 </head>
 <body>
   <div id="header-component"></div>
@@ -223,6 +224,7 @@ async function generateIndexPages() {
   <title>${title} | BlueTEXT</title>
   <link class="bt-bootstrap-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="${assetBase}assets/css/main.css">
+  <link rel="manifest" href="/manifest.json">
 </head>
 <body>
   <div id="header-component"></div>
@@ -576,10 +578,15 @@ async function generateTranslationCatalog() {
     /<h1[^>]*>([\s\S]*?)<\/h1>/gi,
     /<h2[^>]*>([\s\S]*?)<\/h2>/gi,
     /<h3[^>]*>([\s\S]*?)<\/h3>/gi,
+    /<h4[^>]*>([\s\S]*?)<\/h4>/gi,
+    /<h5[^>]*>([\s\S]*?)<\/h5>/gi,
+    /<h6[^>]*>([\s\S]*?)<\/h6>/gi,
     /<p[^>]*>([\s\S]*?)<\/p>/gi,
     /<a[^>]*>([\s\S]*?)<\/a>/gi,
     /<button[^>]*>([\s\S]*?)<\/button>/gi,
     /<label[^>]*>([\s\S]*?)<\/label>/gi,
+    /<span[^>]*>([\s\S]*?)<\/span>/gi,
+    /<li[^>]*>([\s\S]*?)<\/li>/gi,
   ];
 
   function collectTexts(html) {
@@ -861,6 +868,15 @@ async function injectHeaderFooter() {
   const headerContent = await fs.readFile(HEADER_FILE, "utf8");
   const footerContent = await fs.readFile(FOOTER_FILE, "utf8");
 
+  // Separate header navbar from modals to prevent z-index stacking issues
+  let headerHtml = headerContent;
+  let modalsHtml = "";
+  const headerEndIndex = headerContent.indexOf("</header>");
+  if (headerEndIndex !== -1) {
+    headerHtml = headerContent.slice(0, headerEndIndex + 9);
+    modalsHtml = headerContent.slice(headerEndIndex + 9);
+  }
+
   const allFiles = await walkHtmlFiles(ROOT);
   let processedCount = 0;
 
@@ -870,13 +886,21 @@ async function injectHeaderFooter() {
     let content = await fs.readFile(file, "utf8");
     let original = content;
 
-    // Inject Header
+    // Inject Header Navbar
     if (content.includes("<!-- HEADER_START -->")) {
-      content = content.replace(/<!-- HEADER_START -->[\s\S]*?<!-- HEADER_END -->/, `<!-- HEADER_START -->\n${headerContent}\n<!-- HEADER_END -->`);
+      content = content.replace(/<!-- HEADER_START -->[\s\S]*?<!-- HEADER_END -->/, `<!-- HEADER_START -->\n${headerHtml}\n<!-- HEADER_END -->`);
     } else {
       content = content.replace(/<div\s+id="header-component"[^>]*>\s*<\/div>/, (match) => {
-        return match.replace("></div", `><!-- HEADER_START -->\n${headerContent}\n<!-- HEADER_END --></div`);
+        return match.replace("></div", `><!-- HEADER_START -->\n${headerHtml}\n<!-- HEADER_END --></div`);
       });
+    }
+
+    // Inject Modals (outside header-component to avoid stacking context locks)
+    if (content.includes("<!-- MODALS_START -->")) {
+      content = content.replace(/<!-- MODALS_START -->[\s\S]*?<!-- MODALS_END -->/, `<!-- MODALS_START -->\n${modalsHtml}\n<!-- MODALS_END -->`);
+    } else {
+      // Find the header-component closing div and append modals after it
+      content = content.replace(/<!-- HEADER_END -->\s*<\/div>/i, `<!-- HEADER_END --></div>\n<!-- MODALS_START -->\n${modalsHtml}\n<!-- MODALS_END -->`);
     }
 
     // Inject Footer
@@ -897,6 +921,31 @@ async function injectHeaderFooter() {
   console.log(`Injected header & footer into ${processedCount} HTML files`);
 }
 
+async function bundleCss() {
+  const CSS_DIR = path.join(ROOT, "assets", "css");
+  const files = [
+    "reset.css",
+    "config.css",
+    "base.css",
+    "layout.css",
+    "header.css",
+    "components.css",
+    "footer.css",
+    "themes.css"
+  ];
+  
+  let combined = "/* BlueTEXT Bundled Styles */\n";
+  for (const f of files) {
+    const filePath = path.join(CSS_DIR, f);
+    const content = await fs.readFile(filePath, "utf8").catch(() => "");
+    combined += `\n/* --- ${f} --- */\n${content}\n`;
+  }
+  
+  const mainPath = path.join(CSS_DIR, "main.css");
+  await fs.writeFile(mainPath, combined, "utf8");
+  console.log(`Bundled CSS: 8 files combined into ${mainPath}`);
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Main pipeline
 // ─────────────────────────────────────────────────────────────────────────────
@@ -914,6 +963,7 @@ Usage:
   node scripts/build.js --legal         Normalize legal pages
   node scripts/build.js --indexes       Generate index pages
   node scripts/build.js --inject        Inject header & footer into pages
+  node scripts/build.js --css           Bundle CSS styles to bust cache
   node scripts/build.js --search        Generate search index
   node scripts/build.js --i18n          Generate translation catalog
   node scripts/build.js --sitemap       Generate sitemap
@@ -933,6 +983,7 @@ async function main() {
   }
 
   const steps = {
+    "--css":     { name: "Bundle CSS Styles",            fn: bundleCss },
     "--legal":   { name: "Normalize Legal Pages",        fn: normalizeLegalPages },
     "--indexes": { name: "Generate Index Pages",         fn: generateIndexPages },
     "--inject":  { name: "Inject Header & Footer",       fn: injectHeaderFooter },

@@ -10,7 +10,7 @@
 
 	function getTheme() {
 		const saved = localStorage.getItem(STORAGE_KEY);
-		if (!saved) return "dark";
+		if (!saved) return "light";
 		return saved === "dark" ? "dark" : "light";
 	}
 

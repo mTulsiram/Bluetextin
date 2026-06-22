@@ -53,6 +53,7 @@ async function loadChildScripts() {
 		"/assets/js/config.js",
 		"/assets/js/auth.js",
 		"/assets/js/theme.js",
+		"/assets/js/settings.js",
 		"/assets/js/nav.js",
 		"/assets/js/router.js",
 		"/assets/js/service-worker.js"
@@ -84,17 +85,6 @@ async function loadData() {
 	}
 }
 
-function hoistHeaderModals() {
-	const modalIds = ["searchModal", "authModal"];
-
-	for (const modalId of modalIds) {
-		const modal = document.getElementById(modalId);
-		if (!modal) continue;
-		if (modal.parentElement === document.body) continue;
-		document.body.appendChild(modal);
-	}
-}
-
 async function bootstrap() {
 	const headerTarget = document.getElementById("header-component") ? "header-component" : "site-header";
 	const footerTarget = document.getElementById("footer-component") ? "footer-component" : "site-footer";
@@ -114,8 +104,6 @@ async function bootstrap() {
 		await Promise.all(promises);
 	}
 
-	hoistHeaderModals();
-
 	document.dispatchEvent(new CustomEvent("bt:components-ready"));
 
 	await loadData();
@@ -124,4 +112,8 @@ async function bootstrap() {
 	await loadChildScripts();
 }
 
-document.addEventListener("DOMContentLoaded", bootstrap);
+if (document.readyState === "loading") {
+	document.addEventListener("DOMContentLoaded", bootstrap);
+} else {
+	bootstrap();
+}

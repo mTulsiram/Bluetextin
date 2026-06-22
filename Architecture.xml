@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<architecture-specification>
+  <high-level-model>
+    BlueTEXT uses a static-site architecture with generated data files for runtime features.
+    <components>
+      <shell>index.html</shell>
+      <layouts>
+        <layout path="assets/components/header.html" name="header" />
+        <layout path="assets/components/footer.html" name="footer" />
+      </layouts>
+      <scripts path="assets/js/*.js" />
+      <runtime-data path="assets/data/*.json" />
+      <content-pages path="pages/**/*.html" />
+      <policy-pages path="assets/nav/*.html" />
+    </components>
+  </high-level-model>
+
+  <runtime-boot-sequence>
+    <step order="1">index.html loads Bootstrap 5.3.8 and assets/js/app.js</step>
+    <step order="2">app.js checks for inline pre-injected header/footer layouts, otherwise loads them asynchronously</step>
+    <step order="3">app.js hoists modals (searchModal, authModal) to body for Bootstrap modal stability</step>
+    <step order="4">app.js dispatches "bt:components-ready" event</step>
+    <step order="5">app.js loads tools data and dispatches "bt:data-ready" event</step>
+    <step order="6">Features modules like nav.js, auth.js, theme.js load and initialize</step>
+  </runtime-boot-sequence>
+
+  <modules>
+    <module name="nav.js">
+      <feature>Search utility utilizing assets/data/search-index.json</feature>
+      <feature>Translation engine mapping DOM elements to pre-compiled dictionaries at assets/data/i18n/[lang]-dictionary.json</feature>
+      <feature>Client cache clearing functionality</feature>
+    </module>
+    <module name="auth.js">
+      <feature>Client-side session mock registration, sign-in, and sign-out persisted in localStorage</feature>
+    </module>
+    <module name="theme.js">
+      <feature>Light/dark mode theme toggler preserving user choices</feature>
+    </module>
+  </modules>
+
+  <data-generation-layer entry-point="scripts/build.js">
+    <capability>Normalize legal/nav HTML stubs into full layout-integrated policy pages</capability>
+    <capability>Generate sub-folder indexes mapping inner tools dynamically</capability>
+    <capability>Produce search-index.json containing title, description, and keywords metadata</capability>
+    <capability>Compile multi-language dictionaries using Google Translate API delimiter batching</capability>
+    <capability>GenerateTraditional Chinese catalog offline utilizing chinese-conv package</capability>
+    <capability>Compile search, translation, and index maps into static sitemap.xml file</capability>
+  </data-generation-layer>
+
+  <accessibility-and-compliance>
+    <structure>Policy pages inside assets/nav, referenced cleanly from small footer panels</structure>
+    <aria>Landmark structures, keyboard navigability on controls, clear semantic heading tags</aria>
+  </accessibility-and-compliance>
+</architecture-specification>

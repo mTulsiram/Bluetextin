@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agent-configuration>
+  <purpose>
+    This configuration defines how automation and coding agents should operate in this repository.
+  </purpose>
+  
+  <execution-rules>
+    <always-do>
+      <rule>Treat assets/components as the source for reusable header and footer.</rule>
+      <rule>Treat assets/nav as the source for policy/legal pages.</rule>
+      <rule>Regenerate search index, translation catalog, and sitemap after content structure changes.</rule>
+      <rule>Keep accessibility and compliance notes synchronized with implementation.</rule>
+      <rule>Enforce shared layout mounts in all HTML pages: id="header-component", id="footer-component".</rule>
+    </always-do>
+  </execution-rules>
+
+  <generator-commands>
+    <command name="full-build">node scripts/build.js</command>
+    <command name="normalize-legal">node scripts/build.js --legal</command>
+    <command name="generate-indexes">node scripts/build.js --indexes</command>
+    <command name="generate-search">node scripts/build.js --search</command>
+    <command name="generate-i18n">node scripts/build.js --i18n</command>
+    <command name="generate-sitemap">node scripts/build.js --sitemap</command>
+  </generator-commands>
+
+  <path-rules>
+    <legacy-paths-forbidden>
+      <path>components/</path>
+      <path>nav/</path>
+    </legacy-paths-forbidden>
+    <canonical-paths-enforced>
+      <path>assets/components/</path>
+      <path>assets/nav/</path>
+    </canonical-paths-enforced>
+  </path-rules>
+
+  <memory-rule>
+    <append-only-history-file>AIMemory.xml</append-only-history-file>
+    <rule>Never overwrite or delete previous memory entries. Always add dated logs to the end of the history element.</rule>
+  </memory-rule>
+
+  <compliance-and-accessibility>
+    <standards-baselines>
+      <standard>GDPR</standard>
+      <standard>CCPA</standard>
+      <standard>PIPL</standard>
+      <standard>LGPD</standard>
+      <standard>DPDP</standard>
+      <standard>WCAG 2.2 AA</standard>
+    </standards-baselines>
+    <rule>Keep implementation details aligned with standard baselines. Keep wording and claims realistic; do not state formal certification without auditor evidence.</rule>
+  </compliance-and-accessibility>
+</agent-configuration>

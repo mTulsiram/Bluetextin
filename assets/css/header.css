@@ -274,3 +274,23 @@
 	transition: all 0.2s ease !important;
 }
 
+/* Mobile actions colors and toggler fix */
+.bt-mobile-icon-btn {
+	color: var(--bt-text-primary) !important;
+	transition: opacity 0.2s ease;
+}
+
+.bt-mobile-icon-btn:hover,
+.bt-mobile-icon-btn:focus {
+	opacity: 0.8;
+}
+
+[data-bs-theme="light"] .navbar-toggler-icon {
+	filter: invert(1) !important;
+}
+
+[data-bs-theme="light"] .navbar-toggler {
+	border-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+

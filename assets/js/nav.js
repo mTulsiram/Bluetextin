@@ -94,8 +94,62 @@
 		clearCacheBound = true;
 	}
 
+	function generateBreadcrumbs() {
+		const mainContent = document.getElementById("main-content");
+		if (!mainContent || document.querySelector(".breadcrumb")) return;
+
+		const path = window.location.pathname;
+		if (path === "/" || path === "/index.html" || path === "") return;
+
+		const segments = path.split("/").filter(Boolean);
+		const breadcrumbList = [];
+
+		breadcrumbList.push({ label: "Home", href: "/" });
+
+		let currentHref = "";
+		segments.forEach((segment, index) => {
+			if (index === segments.length - 1 && (segment === "index.html" || segment === "")) {
+				return;
+			}
+
+			currentHref += "/" + segment;
+			
+			let label = segment.replace(/\.html$/i, "");
+			label = label.replace(/[-_]/g, " ");
+			label = label.replace(/\b\w/g, c => c.toUpperCase());
+
+			if (label.toLowerCase() === "pages") return;
+
+			const isActive = index === segments.length - 1;
+			breadcrumbList.push({
+				label: label,
+				href: isActive ? null : currentHref + "/",
+				active: isActive
+			});
+		});
+
+		if (breadcrumbList.length <= 1) return;
+
+		const itemsHtml = breadcrumbList.map((item, idx) => {
+			const isActive = idx === breadcrumbList.length - 1;
+			if (isActive) {
+				return `<li class="breadcrumb-item active" aria-current="page">${item.label}</li>`;
+			} else {
+				return `<li class="breadcrumb-item"><a href="${item.href}">${item.label}</a></li>`;
+			}
+		}).join("\n");
+
+		const breadcrumbNav = document.createElement("nav");
+		breadcrumbNav.setAttribute("aria-label", "Breadcrumb");
+		breadcrumbNav.className = "mb-3";
+		breadcrumbNav.innerHTML = `<ol class="breadcrumb">${itemsHtml}</ol>`;
+
+		mainContent.insertBefore(breadcrumbNav, mainContent.firstChild);
+	}
+
 	function initNavFeatures() {
 		initClearCacheAction();
+		generateBreadcrumbs();
 		if (initialized) return;
 
 		const searchInput = document.getElementById("search-input");
@@ -182,13 +236,13 @@
 
 	function collectTranslatableElements() {
 		return Array.from(document.querySelectorAll(
-			"main h1, main h2, main h3, main p, main a, #header-component .nav-link, #header-component .dropdown-item, #header-component button, #header-component label, #footer-component h2, #footer-component h3, #footer-component p, #footer-component a"
+			"main h1, main h2, main h3, main h4, main h5, main h6, main p, main a, main span, main li, main button, main label, #header-component .nav-link, #header-component .dropdown-item, #header-component button, #header-component label, #footer-component h2, #footer-component h3, #footer-component p, #footer-component a, #footer-component span"
 		)).filter((element) => {
 			if (element.children.length > 0 && !element.classList.contains("nav-link") && !element.classList.contains("dropdown-item")) {
 				return false;
 			}
 
-			return !!(element.textContent || "").trim();
+			return !!(element.textContent || "").replace(/\s+/g, " ").trim();
 		});
 	}
 
@@ -198,7 +252,7 @@
 		// Cache original texts first
 		for (const element of elements) {
 			if (!element.dataset.btOriginalText) {
-				element.dataset.btOriginalText = (element.textContent || "").trim();
+				element.dataset.btOriginalText = (element.textContent || "").replace(/\s+/g, " ").trim();
 			}
 		}
 
@@ -246,6 +300,7 @@
 	languageSelect.addEventListener("change", async (event) => {
 		const targetLang = event.target.value || "en";
 		await applyLanguage(targetLang);
+		document.dispatchEvent(new CustomEvent("bt:language-changed", { detail: targetLang }));
 	});
 
 	buildSearchIndex().then(() => {
@@ -255,7 +310,9 @@
 	const savedLanguage = localStorage.getItem(languageKey) || "en";
 	languageSelect.value = savedLanguage;
 	if (savedLanguage !== "en") {
-		applyLanguage(savedLanguage);
+		applyLanguage(savedLanguage).then(() => {
+			document.dispatchEvent(new CustomEvent("bt:language-changed", { detail: savedLanguage }));
+		});
 	}
 	}
 

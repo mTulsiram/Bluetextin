@@ -25,10 +25,10 @@
 
         <!-- Mobile header action icons (search & account) -->
         <div class="d-flex align-items-center gap-2 d-lg-none ms-auto me-2">
-          <button class="btn btn-link text-white p-1" type="button" aria-label="Search" data-bs-toggle="modal" data-bs-target="#searchModal">
+          <button class="btn btn-link bt-mobile-icon-btn p-1" type="button" aria-label="Search" data-bs-toggle="modal" data-bs-target="#searchModal">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
           </button>
-          <button class="btn btn-link text-white p-1" id="mobile-auth-button" type="button" aria-label="Sign in" data-bs-toggle="modal" data-bs-target="#authModal">
+          <button class="btn btn-link bt-mobile-icon-btn p-1" id="mobile-auth-button" type="button" aria-label="Sign in" data-bs-toggle="modal" data-bs-target="#authModal">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
           </button>
         </div>
@@ -120,6 +120,9 @@
           <li class="nav-item">
             <a class="nav-link" href="/pages/blog/">Blog</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link fw-semibold text-primary" href="/support.html">💖 Supporters</a>
+          </li>
           </ul>
 
           <div class="d-flex flex-wrap align-items-center gap-2 pt-2 pt-lg-0 ms-lg-auto">
@@ -128,12 +131,30 @@
               <input class="form-control bt-mobile-search-input" type="search" placeholder="Search pages and tools..." aria-label="Search" data-bs-toggle="modal" data-bs-target="#searchModal" readonly>
             </div>
 
+            <!-- Social Media Icons -->
+            <a class="btn bt-top-action-circle d-inline-flex align-items-center justify-content-center text-body-secondary" href="https://github.com/mTulsiram" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            </a>
+            <a class="btn bt-top-action-circle d-inline-flex align-items-center justify-content-center text-body-secondary" href="https://www.youtube.com/@CodeOn?sub_confirmation=1" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+            </a>
+            <a class="btn bt-top-action-circle d-inline-flex align-items-center justify-content-center text-body-secondary" href="https://twitter.com/Tulsiram_Methre" target="_blank" rel="noopener noreferrer" aria-label="Twitter" title="Twitter">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+            </a>
+            <a class="btn bt-top-action-circle d-inline-flex align-items-center justify-content-center text-body-secondary" href="https://linkedin.com/company/bluetext-in" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+            <a class="btn bt-top-action-circle d-inline-flex align-items-center justify-content-center text-body-secondary" href="https://instagram.com/CodeOnOriginal" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+
             <button class="btn bt-top-action-circle d-none d-lg-inline-flex align-items-center justify-content-center" id="global-search-button" type="button" aria-label="Search" data-bs-toggle="modal" data-bs-target="#searchModal">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             </button>
 
-            <button class="btn bt-top-action-circle d-inline-flex align-items-center justify-content-center" id="clear-cache-button" type="button" aria-label="Clear cache">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+            <button class="btn btn-outline-danger fw-semibold d-inline-flex align-items-center gap-1 px-3" id="clear-cache-button" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+              <span>Clear Cache</span>
             </button>
 
             <select class="form-select form-select-sm w-auto bt-lang-select" id="language-select" name="language" aria-label="Language switcher">
@@ -157,11 +178,15 @@
               <option value="nl">Nederlands</option>
               <option value="id">Bahasa Indonesia</option>
               <option value="fa">فارسی</option>
-              <option value="uk">Українська</option>
+              <option value="uk">Ukranian</option>
             </select>
 
             <button class="btn bt-top-action-circle d-inline-flex align-items-center justify-content-center" id="theme-button" type="button" aria-label="Toggle dark mode">
               <span id="theme-icon" aria-hidden="true">🌙</span>
+            </button>
+            
+            <button class="btn fw-semibold bt-top-action d-inline-flex align-items-center gap-1 text-danger border-danger-subtle px-3" id="header-donate-button" type="button" data-bs-toggle="modal" data-bs-target="#donateModal">
+              <span>💖 Support</span>
             </button>
 
             <button class="btn fw-semibold bt-top-action d-inline-flex align-items-center gap-2" id="auth-button" type="button" aria-label="Sign in" data-bs-toggle="modal" data-bs-target="#authModal">
@@ -173,6 +198,10 @@
       </div>
     </nav>
   </div>
+</header>
+<!-- HEADER_END --></div>
+<!-- MODALS_START -->
+
 
   <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-scrollable">
@@ -220,6 +249,9 @@
                   <input class="form-control" id="signin-email" type="email" placeholder="Email" required>
                   <input class="form-control" id="signin-password" type="password" placeholder="Password" required>
                   <button class="btn btn-primary" type="submit">Sign In</button>
+                  <div class="small text-center mt-1 text-secondary">
+                    Hint: Use <strong>guest@bluetext.in</strong> / <strong>guest123</strong> to sign in.
+                  </div>
                 </form>
               </div>
 
@@ -235,13 +267,145 @@
           </div>
 
           <p class="small text-body-secondary mt-3 mb-0" id="auth-message" aria-live="polite"></p>
+          <hr class="my-3">
+          <div class="settings-actions">
+            <h6 class="fw-bold mb-2">App Options</h6>
+            <div class="d-grid gap-2">
+              <div class="d-flex gap-2">
+                <button class="btn btn-sm btn-outline-secondary flex-grow-1" id="export-settings-btn" type="button">📤 Export Settings</button>
+                <label class="btn btn-sm btn-outline-secondary flex-grow-1 mb-0 text-center" style="cursor: pointer;">
+                  📥 Import Settings
+                  <input type="file" id="import-settings-file" accept=".json" style="display: none;">
+                </label>
+              </div>
+              <button class="btn btn-sm btn-outline-primary w-100 d-none" id="install-app-btn" type="button">📱 Install App Locally</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</header>
 
-<!-- HEADER_END --></div>
+  <div class="modal fade" id="donateModal" tabindex="-1" aria-labelledby="donateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5 text-body-emphasis" id="donateModalLabel">💖 Support BlueTEXT.in</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="small text-body-secondary mb-3">Your support keeps our tools fast, accessible, and completely ad-free. Our monthly target goal is $10,000 to keep the servers active.</p>
+          
+          <h6 class="fw-bold mb-2 text-body-emphasis small">Choose Your Platform:</h6>
+          <div class="list-group mb-3">
+            <button type="button" data-bs-toggle="modal" data-bs-target="#patreonModal" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center text-start">
+              <div>
+                <strong class="text-primary">🧡 Patreon (International Support)</strong>
+                <div class="small text-muted" style="font-size: 0.75rem;">Best for international credit/debit card subscriptions</div>
+              </div>
+              <span class="badge rounded-pill bg-primary-subtle text-primary-emphasis" style="font-size: 0.7rem;">International</span>
+            </button>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#razorpayModal" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center text-start">
+              <div>
+                <strong class="text-info">💳 Razorpay (India Support)</strong>
+                <div class="small text-muted" style="font-size: 0.75rem;">Best for Indian Cards, UPI, Net Banking, and Wallets</div>
+              </div>
+              <span class="badge rounded-pill bg-info-subtle text-info-emphasis" style="font-size: 0.7rem;">India Friendly</span>
+            </button>
+          </div>
+
+          <div class="border rounded p-3 mb-3 text-center" style="background-color: var(--bt-bg-secondary);">
+            <h6 class="fw-bold mb-2.5 small text-body-emphasis text-start">🇮🇳 Direct Indian UPI (Zero Fees):</h6>
+            
+            <!-- Mobile App Deep Link -->
+            <div class="d-grid gap-2 mb-3">
+              <a href="upi://pay?pa=bluetextin@slc&pn=BlueTEXT.in&cu=INR" class="btn btn-primary btn-sm fw-semibold d-inline-flex align-items-center justify-content-center gap-2 py-2">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                <span>Pay via UPI App (Mobile)</span>
+              </a>
+            </div>
+
+            <!-- Desktop QR Code -->
+            <div class="mb-3 d-flex flex-column align-items-center">
+              <div class="p-2 bg-white rounded-3 shadow-sm d-inline-block border">
+                <img src="/assets/images/upi-qr.jpg" alt="UPI QR Code" style="max-width: 140px; height: auto; display: block;" class="rounded">
+              </div>
+              <span class="small text-muted mt-1.5" style="font-size: 0.75rem;">Scan QR to pay via GPay, PhonePe, Paytm, etc.</span>
+            </div>
+
+            <!-- Manual Copy ID -->
+            <div class="d-flex align-items-center justify-content-between border-top pt-2.5 mt-2">
+              <span class="small text-muted" style="font-size: 0.75rem;">UPI ID:</span>
+              <div class="d-flex align-items-center gap-1.5">
+                <code class="fs-6 text-primary fw-bold">bluetextin@slc</code>
+                <button class="btn btn-sm btn-outline-secondary py-0.5 px-2" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText('bluetextin@slc'); alert('UPI ID copied to clipboard!');">Copy</button>
+              </div>
+            </div>
+          </div>
+
+          <p class="small text-muted text-center mb-0">For business queries, contact us at <a href="mailto:codeon@bluetext.in" class="text-primary text-decoration-none">codeon@bluetext.in</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Secure Razorpay Popup Modal -->
+  <div class="modal fade" id="razorpayModal" tabindex="-1" aria-labelledby="razorpayModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5 text-body-emphasis" id="razorpayModalLabel">💳 Secure Razorpay Subscription</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center py-4 px-3" style="background-color: var(--bt-bg-primary);">
+          <p class="small text-body-secondary mb-4">Complete your support via cards, UPI, net banking, or wallet securely below:</p>
+          <div class="d-flex justify-content-center p-2 rounded" style="background-color: var(--bt-bg-secondary); border: 1px solid var(--bt-border-color);">
+            <form>
+              <script src="https://cdn.razorpay.com/static/widget/subscription-button.js" data-subscription_button_id="pl_T4XGfSg6ladpyP" data-button_theme="brand-color" async> </script>
+            </form>
+          </div>
+          <p class="small text-muted mt-3 mb-0" style="font-size: 0.75rem;">Your payment is safely processed by Razorpay. Zero trackers policy.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Secure Patreon Info Modal -->
+  <div class="modal fade" id="patreonModal" tabindex="-1" aria-labelledby="patreonModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5 text-body-emphasis" id="patreonModalLabel">🧡 Secure Patreon Support</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center py-4 px-3" style="background-color: var(--bt-bg-primary);">
+          <p class="small text-body-secondary mb-4">Support BlueTEXT.in internationally by joining our Patreon tiers:</p>
+          
+          <div class="d-grid gap-3 mb-4">
+            <div class="card p-3 border rounded text-start" style="background-color: var(--bt-bg-secondary); border-color: var(--bt-border-color) !important;">
+              <h6 class="fw-bold mb-1 text-primary">☕ Member Tier</h6>
+              <p class="small text-muted mb-2">Help keep the servers active and ad-free.</p>
+              <a href="https://www.patreon.com/BlueTEXTin/membership" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary w-100 fw-semibold">
+                Join Member Tier
+              </a>
+            </div>
+            
+            <div class="card p-3 border rounded text-start" style="background-color: var(--bt-bg-secondary); border-color: var(--bt-border-color) !important;">
+              <h6 class="fw-bold mb-1 text-success">🚀 Premium Tier</h6>
+              <p class="small text-muted mb-2">Get exclusive updates and priority tool requests.</p>
+              <a href="https://www.patreon.com/BlueTEXTin/membership" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-success w-100 fw-semibold">
+                Join Premium Tier
+              </a>
+            </div>
+          </div>
+          
+          <p class="small text-muted mb-0" style="font-size: 0.75rem;">Note: Make sure your Patreon page is published in your creator dashboard to make these tiers visible to public visitors.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- MODALS_END -->
 
   <main class="container py-4" id="main-content">
     <h1 class="mb-2">Canvas Paint Board</h1>
@@ -251,58 +415,67 @@
 
   <div id="footer-component"><!-- FOOTER_START -->
 <footer class="bt-footer mt-5">
-  <div class="container py-4 py-lg-5">
-    <div class="bt-footer-panel rounded-4 border shadow-sm p-4 p-lg-5">
-      <div class="row g-4">
-        <div class="col-12 col-lg-5">
-        <h2 class="h5 mb-3 d-flex align-items-center gap-2">
-          <svg class="bt-logo" width="24" height="24" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <div class="container py-3">
+    <div class="bt-footer-panel rounded-4 border shadow-sm p-3 px-4 d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
+      <div class="d-flex flex-column flex-md-row align-items-center gap-2 text-center text-md-start">
+        <div class="d-flex align-items-center gap-2">
+          <svg class="bt-logo text-primary" width="20" height="20" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
             <rect width="28" height="28" rx="7" fill="currentColor"></rect>
             <path d="M8 7H15.5C18.3 7 20.3 8.5 20.3 10.9C20.3 12.4 19.5 13.6 18.1 14.2C19.9 14.7 21 16 21 17.8C21 20.5 18.8 22 15.8 22H8V7ZM11.2 9.6V13.1H15.2C16.4 13.1 17.1 12.4 17.1 11.3C17.1 10.2 16.4 9.6 15.2 9.6H11.2ZM11.2 15.5V19.4H15.7C17 19.4 17.8 18.7 17.8 17.5C17.8 16.3 16.9 15.5 15.7 15.5H11.2Z" fill="white"></path>
           </svg>
-          <span>BlueTEXT.in</span>
-        </h2>
-          <p class="text-body-secondary mb-3">
-            Free platform for practical online tools, tutorials,
-            software listings, and educational resources.
-          </p>
-          <div class="d-flex flex-wrap gap-2">
-            <a class="btn btn-sm btn-outline-primary rounded-pill" href="/pages/tools/">Explore Tools</a>
-            <a class="btn btn-sm btn-outline-primary rounded-pill" href="/pages/tutorials/">Read Tutorials</a>
-            <a class="btn btn-sm btn-outline-primary rounded-pill" href="/pages/blog/">Visit Blog</a>
-          </div>
+          <span class="fw-semibold small text-body-emphasis">BlueTEXT.in</span>
         </div>
-
-        <div class="col-6 col-lg-3">
-          <h3 class="h6 text-uppercase mb-3">Company</h3>
-          <ul class="list-unstyled mb-0 d-grid gap-2">
-            <li><a class="link-body-emphasis text-decoration-none" href="/assets/nav/about.html">About</a></li>
-            <li><a class="link-body-emphasis text-decoration-none" href="/assets/nav/contact.html">Contact</a></li>
-            <li><a class="link-body-emphasis text-decoration-none" href="/assets/nav/security.html">Security</a></li>
-          </ul>
-        </div>
-
-        <div class="col-6 col-lg-4">
-          <h3 class="h6 text-uppercase mb-3">Legal</h3>
-          <ul class="list-unstyled mb-0 d-grid gap-2">
-            <li><a class="link-body-emphasis text-decoration-none" href="/assets/nav/privacy.html">Privacy</a></li>
-            <li><a class="link-body-emphasis text-decoration-none" href="/assets/nav/terms.html">Terms</a></li>
-            <li><a class="link-body-emphasis text-decoration-none" href="/assets/nav/disclaimer.html">Disclaimer</a></li>
-            <li><a class="link-body-emphasis text-decoration-none" href="/assets/nav/compliance.html">Compliance</a></li>
-            <li><a class="link-body-emphasis text-decoration-none" href="/assets/nav/accessibility.html">Accessibility</a></li>
-          </ul>
-        </div>
+        <span class="text-body-secondary small ms-md-2">© 2026. Client-side execution. Zero tracker policy.</span>
       </div>
-
-      <hr class="my-4">
-
-      <div class="d-flex flex-column flex-md-row justify-content-between gap-2 small text-body-secondary">
-        <p class="mb-0">&copy; 2026 BlueTEXT. All tools execute client-side. Zero tracker policy.</p>
-        <p class="mb-0">Built for speed, privacy, security, and accessibility.</p>
+      
+      <div class="d-flex flex-wrap justify-content-center gap-3 small">
+        <a class="link-secondary text-decoration-none fw-medium" href="/assets/nav/about.html">About</a>
+        <a class="link-secondary text-decoration-none fw-medium" href="/assets/nav/contact.html">Contact</a>
+        <a class="link-secondary text-decoration-none fw-medium" href="https://github.com/mTulsiram/bluetext/issues/new?template=bug_report.md" target="_blank" rel="noopener noreferrer">Report a Bug</a>
+        <a class="link-secondary text-decoration-none fw-medium" href="https://github.com/mTulsiram/bluetext/issues/new?template=feature_request.md" target="_blank" rel="noopener noreferrer">Suggest a Feature</a>
+        <a class="link-secondary text-decoration-none fw-medium" href="/assets/nav/privacy.html">Privacy</a>
+        <a class="link-secondary text-decoration-none fw-medium" href="/assets/nav/terms.html">Terms</a>
+        <a class="link-secondary text-decoration-none fw-medium" href="/assets/nav/security.html">Security</a>
+        <a class="link-secondary text-decoration-none fw-medium" href="/assets/nav/accessibility.html">Accessibility</a>
       </div>
     </div>
   </div>
 </footer>
+
+<!-- Floating Scroll to Top and Scroll to Bottom Buttons -->
+<div class="bt-scroll-buttons d-flex flex-column gap-2" style="position: fixed; bottom: 24px; right: 24px; z-index: 1040;">
+  <button class="btn bt-scroll-btn" id="scroll-to-top-btn" type="button" aria-label="Scroll to top" title="Scroll to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+  <button class="btn bt-scroll-btn" id="scroll-to-bottom-btn" type="button" aria-label="Scroll to bottom" title="Scroll to bottom">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+  </button>
+</div>
+
+<script>
+  (function initScrollButtons() {
+    function setup() {
+      const topBtn = document.getElementById("scroll-to-top-btn");
+      const bottomBtn = document.getElementById("scroll-to-bottom-btn");
+      
+      if (topBtn) {
+        topBtn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      
+      if (bottomBtn) {
+        bottomBtn.onclick = () => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "smooth" });
+      }
+    }
+    
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", setup, { once: true });
+    } else {
+      setup();
+    }
+    document.addEventListener("bt:components-ready", setup);
+  })();
+</script>
+
 
 <!-- FOOTER_END --></div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>

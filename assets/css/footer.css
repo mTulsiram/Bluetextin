@@ -1,51 +1,46 @@
-#footer-component .bt-logo {
-	color: #0d6efd;
-}
-
 #footer-component .bt-footer-panel {
-	background:
-		radial-gradient(1200px 220px at -20% -20%, rgba(13, 110, 253, 0.08), transparent 60%),
-		radial-gradient(900px 180px at 120% 0%, rgba(25, 135, 84, 0.07), transparent 55%),
-		var(--bs-body-bg);
-	border-color: rgba(13, 110, 253, 0.16) !important;
+	background-color: rgba(255, 255, 255, 0.02) !important;
+	border-color: var(--bt-border-color) !important;
 }
 
-#footer-component h3 {
-	letter-spacing: 0.05em;
+[data-bs-theme="light"] #footer-component .bt-footer-panel {
+	background-color: rgba(0, 0, 0, 0.01) !important;
 }
 
 #footer-component a {
-	transition: color 0.2s ease, transform 0.2s ease;
+	color: var(--bt-text-secondary) !important;
+	transition: color 0.2s ease;
 }
 
 #footer-component a:hover {
-	color: #0d6efd !important;
-	transform: translateX(2px);
+	color: var(--bt-accent-color) !important;
 }
 
-/* Mobile responsive improvements */
-@media (max-width: 767.98px) {
-	#footer-component .bt-footer-panel {
-		padding: 1.75rem !important;
-	}
-	#footer-component .row.g-4 {
-		--bs-gutter-y: 2rem; /* Extra breathing room between blocks */
-	}
-	#footer-component h2, 
-	#footer-component h3 {
-		font-size: 1.1rem;
-	}
-	#footer-component p {
-		font-size: 0.92rem;
-		line-height: 1.5;
-	}
-	#footer-component a {
-		font-size: 0.92rem;
-		display: inline-block;
-		padding: 0.35rem 0; /* Easily clickable touch target */
-	}
-	#footer-component .btn-outline-primary {
-		padding: 0.4rem 1rem !important; /* Premium button sizing for mobile */
-		font-weight: 500;
-	}
+/* Floating Scroll Buttons */
+.bt-scroll-btn {
+	background-color: var(--bt-bg-secondary) !important;
+	border: 1px solid var(--bt-border-color) !important;
+	color: var(--bt-text-primary) !important;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+	border-radius: 50% !important;
+	width: 42px !important;
+	height: 42px !important;
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+	cursor: pointer !important;
+	padding: 0 !important;
 }
+
+[data-bs-theme="light"] .bt-scroll-btn {
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+.bt-scroll-btn:hover {
+	background-color: var(--bt-accent-color) !important;
+	color: #ffffff !important;
+	border-color: var(--bt-accent-color) !important;
+	transform: translateY(-2px);
+}
+

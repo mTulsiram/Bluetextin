@@ -6,6 +6,18 @@
     "keywords": "BlueTEXT.in | Tools, Tutorials, Software, and Learning BlueTEXT.in - free tools, software, tutorials, and educational resources with a fast and accessible web experience. BlueTEXT.in | Tools, Tutorials, Software, and Learning BlueTEXT.in Tools All Tools Coding Converters Data Images Lifestyle Math Miscellaneous Network Office Utilities Videos Games All Games Arcade Board Cards Puzzles Word Software All Software Android Productivity Applications Utility Applications Apple Productivity Applications Utility Applications Linux Game Applications Productivity Applications Utility Applications Windows Game Applications Productivity Applications Utility Applications Tuto"
   },
   {
+    "title": "BlueTEXT.in | Assets Directory",
+    "url": "/assets",
+    "description": "You are viewing the assets container. All functional scripts, style bundles, translation dictionaries, and components are stored here.",
+    "keywords": "BlueTEXT.in | Assets Directory You are viewing the assets container. All functional scripts, style bundles, translation dictionaries, and components are stored here. BlueTEXT.in | Assets Directory 📁 Assets Directory Index You are viewing the assets container. All functional scripts, style bundles, translation dictionaries, and components are stored here. 🧩 Web Components Folder 🎨 Style Sheets (CSS) Folder 📊 Search & Dictionary Data Folder ⚙️ JavaScript Core Controllers Folder 🗺️ Site Navigation Utilities Folder Back to Dashboard"
+  },
+  {
+    "title": "BlueTEXT.in | Site Pages Index",
+    "url": "/assets/nav",
+    "description": "Direct directory index linking all compliance, legal, support, and administrative resource pages on BlueTEXT.in.",
+    "keywords": "BlueTEXT.in | Site Pages Index Direct directory index linking all compliance, legal, support, and administrative resource pages on BlueTEXT.in. BlueTEXT.in | Site Pages Index 📃 Site Utility Pages Direct directory index linking all compliance, legal, support, and administrative resource pages on BlueTEXT.in. ℹ️ About Us Information ✉️ Contact Support Support 🔒 Privacy Policy Legal ⚖️ Terms of Use Legal 🛡️ Security Statement Security ♿ Accessibility Statement Accessibility 📋 Compliance Center Compliance ⚠️ Site Disclaimer Legal Back to Dashboard"
+  },
+  {
     "title": "About Tulsiram Methre &amp; BlueTEXT.in | Our Mission",
     "url": "/assets/nav/about.html",
     "description": "Meet Tulsiram Methre, the creator of BlueTEXT.in. Learn about the mission to provide fast, free, and secure online tools for developers and creators.",
@@ -3196,5 +3208,11 @@
     "url": "/pages/tutorials/web-dev/webgl-and-html5-canvas-basics.html",
     "description": "Webgl And Html5 Canvas Basics on BlueTEXT.in.",
     "keywords": "Webgl And Html5 Canvas Basics | BlueTEXT Webgl And Html5 Canvas Basics on BlueTEXT.in. Webgl And Html5 Canvas Basics | BlueTEXT BlueTEXT.in Tools All Tools Coding Converters Data Images Lifestyle Math Miscellaneous Network Office Utilities Videos Games All Games Arcade Board Cards Puzzles Word Software All Software Android Productivity Applications Utility Applications Apple Productivity Applications Utility Applications Linux Game Applications Productivity Applications Utility Applications Windows Game Applications Productivity Applications Utility Applications Tutorials All Tuto"
+  },
+  {
+    "title": "Supporters Wall | BlueTEXT.in",
+    "url": "/support.html",
+    "description": "BlueTEXT.in Supporters Wall - Thank you to all our generous donors who keep the platform running.",
+    "keywords": "Supporters Wall | BlueTEXT.in BlueTEXT.in Supporters Wall - Thank you to all our generous donors who keep the platform running. Supporters Wall | BlueTEXT.in BlueTEXT.in Tools All Tools Coding Converters Data Images Lifestyle Math Miscellaneous Network Office Utilities Videos Games All Games Arcade Board Cards Puzzles Word Software All Software Android Productivity Applications Utility Applications Apple Productivity Applications Utility Applications Linux Game Applications Productivity Applications Utility Applications Windows Game Applications Productivity Applications Utility Applications Tutorials All Tutorials Backe"
   }
 ]
