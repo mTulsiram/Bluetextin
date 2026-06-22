@@ -189,15 +189,12 @@
             </ul>
           </li>
 
-          <li class="nav-item">
+           <li class="nav-item">
             <a class="nav-link" href="/pages/blog/">Blog</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link fw-semibold text-primary" href="/support.html">💖 Supporters</a>
           </li>
           </ul>
 
-          <div class="d-flex flex-wrap align-items-center gap-2 pt-2 pt-lg-0 ms-lg-auto">
+          <div class="d-flex flex-wrap align-items-center gap-1.5 pt-2 pt-lg-0 ms-lg-auto">
             <!-- Search field directly inside collapse for mobile screens -->
             <div class="d-lg-none w-100 mb-2">
               <input class="form-control bt-mobile-search-input" type="search" placeholder="Search pages and tools..." aria-label="Search" data-bs-toggle="modal" data-bs-target="#searchModal" readonly>
@@ -227,11 +224,6 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
               <span>Search</span>
               <kbd class="bt-search-kbd ms-auto">Ctrl K</kbd>
-            </button>
-
-            <button class="btn btn-outline-danger fw-semibold d-inline-flex align-items-center gap-1 px-3" id="clear-cache-button" type="button">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-              <span>Clear Cache</span>
             </button>
 
             <div class="bt-lang-switcher-wrapper position-relative d-inline-block">
@@ -365,6 +357,10 @@
                   <input type="file" id="import-settings-file" accept=".json" style="display: none;">
                 </label>
               </div>
+              <button class="btn btn-sm btn-outline-danger w-100 mt-2" id="clear-cache-button" type="button">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                <span>Clear Cache</span>
+              </button>
               <button class="btn btn-sm btn-outline-primary w-100 d-none" id="install-app-btn" type="button">📱 Install App Locally</button>
             </div>
           </div>
