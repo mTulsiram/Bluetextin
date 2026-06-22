@@ -443,7 +443,7 @@
   "Strip Html Tags": "Supprimer les balises HTML",
   "Slug Generator |": "Générateur de limaces |",
   "Slug Generator": "Générateur de limaces",
-  "Signature Generator |": "Générateur de signatures |",
+  "Signature Generator |": "Gén��rateur de signatures |",
   "Signature Generator": "Générateur de signatures",
   "Presentation Maker |": "Créateur de présentations |",
   "Presentation Maker": "Créateur de présentations",
@@ -691,7 +691,7 @@
   "Stock Average Calculator": "Calculateur de moyenne boursière",
   "Statistics Mean Median Mode |": "Statistiques Moyenne Mode Médian |",
   "Statistics Mean Median Mode": "Statistiques Moyenne Mode Médian",
-  "Standard Deviation Calculator |": "Calculateur d'��cart type |",
+  "Standard Deviation Calculator |": "Calculateur d'écart type |",
   "Standard Deviation Calculator": "Calculateur d'écart type",
   "Scientific Calculator |": "Calculatrice scientifique |",
   "Scientific Calculator": "Calculatrice scientifique",
@@ -992,7 +992,7 @@
   "Serialized Php Parser": "Analyseur Php sérialisé",
   "Regex Extractor |": "Extracteur d'expressions régulières |",
   "Regex Extractor": "Extracteur d'expressions régulières",
-  "Query String Generator |": "Générateur de chaîne de requête |",
+  "Query String Generator |": "Gén��rateur de chaîne de requête |",
   "Query String Generator": "Générateur de chaîne de requête",
   "Latex Equation Editor |": "Éditeur d'équations Latex |",
   "Latex Equation Editor": "Éditeur d'équations Latex",
@@ -2116,5 +2116,7 @@
   "Bahasa Indonesia": "Bahasa Indonésie",
   "فارسی": "فارسی",
   "Ukranian": "ukrainien",
-  "Search Ctrl K English ↗": "Rechercher Ctrl K Anglais ↗"
+  "Search Ctrl K English ↗": "Rechercher Ctrl K Anglais ↗",
+  "Search Ctrl K ☀️ 🌙 🌙 English ↗": "Recherche Ctrl K ☀️ 🌙 🌙 Anglais ↗",
+  "💖 Supporters Sign In Search BlueTEXT.in Type to search pages and tools Account Signed in as Sign Out Sign In": "💖 Supporters Connexion Rechercher BlueTEXT.in Tapez pour rechercher des pages et des outils Compte Connecté en tant que Déconnexion Connexion"
 }
