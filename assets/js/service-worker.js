@@ -9,7 +9,7 @@ if (typeof window !== "undefined") {
 	}
 } else {
 	// Service Worker context - implement basic caching
-	const CACHE_NAME = "bluetext-cache-v6";
+	const CACHE_NAME = "bluetext-cache-v7";
 	const URLS_TO_CACHE = [
 		"/",
 		"/index.html",

@@ -179,6 +179,11 @@
               </ul>
             </div>
 
+            <!-- Clear Cache button next to language selector -->
+            <button class="btn bt-lang-btn d-inline-flex align-items-center justify-content-center p-1" id="clear-cache-header-btn" type="button" aria-label="Clear Cache" title="Clear Cache & Reload">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+            </button>
+
             <!-- Hidden select element for original nav.js compatibility -->
             <select class="d-none" id="language-select" name="language">
               <option value="en" selected>English</option>
@@ -412,6 +417,7 @@
           <p class="small text-body-secondary mb-4">Complete your support via cards, UPI, net banking, or wallet securely below:</p>
           <div class="d-flex justify-content-center p-2 rounded" style="background-color: var(--bt-bg-secondary); border: 1px solid var(--bt-border-color);">
             <form>
+              <script>window.errorQueue = window.errorQueue || [];</script>
               <script src="https://cdn.razorpay.com/static/widget/subscription-button.js" data-subscription_button_id="pl_T4XGfSg6ladpyP" data-button_theme="brand-color" async> </script>
             </form>
           </div>
@@ -483,12 +489,50 @@
           updateLangCodeLabel(hiddenSelect.value);
         });
       }
+
+      function setupClearCacheHeader() {
+        const btn = document.getElementById("clear-cache-header-btn");
+        if (!btn) return;
+        btn.addEventListener("click", async () => {
+          const confirmed = window.confirm("Clear local cache and reload this page?");
+          if (!confirmed) return;
+          
+          try {
+            localStorage.clear();
+            sessionStorage.clear();
+          } catch (e) {}
+
+          if ("caches" in window) {
+            try {
+              const keys = await caches.keys();
+              await Promise.all(keys.map(k => caches.delete(k)));
+            } catch (e) {}
+          }
+
+          if ("serviceWorker" in navigator) {
+            try {
+              const regs = await navigator.serviceWorker.getRegistrations();
+              await Promise.all(regs.map(r => r.unregister()));
+            } catch (e) {}
+          }
+          
+          window.location.reload(true);
+        });
+      }
+
       if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", setupLangDropdown, { once: true });
+        document.addEventListener("DOMContentLoaded", () => {
+          setupLangDropdown();
+          setupClearCacheHeader();
+        }, { once: true });
       } else {
         setupLangDropdown();
+        setupClearCacheHeader();
       }
-      document.addEventListener("bt:components-ready", setupLangDropdown);
+      document.addEventListener("bt:components-ready", () => {
+        setupLangDropdown();
+        setupClearCacheHeader();
+      });
     })();
   </script>
 

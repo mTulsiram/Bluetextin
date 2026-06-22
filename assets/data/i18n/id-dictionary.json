@@ -1719,7 +1719,7 @@
   "Send a Message": "Kirim Pesan",
   "📧 Email": "📧 Surel",
   "💬 Community": "💬 Komunitas",
-  "🔧 Bug Reports & Feature Requests": "🔧 Laporan Bug & Permintaan Fitur",
+  "🔧 Bug Reports & Feature Requests": "�� Laporan Bug & Permintaan Fitur",
   "🌐 Social Media": "🌐 Media Sosial",
   "💝 Support the Project": "💝 Mendukung Proyek",
   "🛠️ More Links": "🛠️ Lebih Banyak Tautan",
@@ -2121,5 +2121,6 @@
   "Search Ctrl K ☀️ 🌙 🌙 English ↗": "Telusuri Ctrl K ☀️ 🌙 🌙 Bahasa Inggris ↗",
   "💖 Supporters Sign In Search BlueTEXT.in Type to search pages and tools Account Signed in as Sign Out Sign In": "💖 Pendukung Masuk Pencarian BlueTEXT.in Ketik untuk mencari halaman dan alat Akun Masuk sebagai Keluar Masuk",
   "EN": "DI DALAM",
-  "Search ☀️ 🌙 🌙 EN English ↗": "Cari ☀️ 🌙 🌙 EN Bahasa Inggris ↗"
+  "Search ☀️ 🌙 🌙 EN English ↗": "Cari ☀️ 🌙 🌙 EN Bahasa Inggris ↗",
+  "Core tools are intended to run client-side": "Alat inti dimaksudkan untuk dijalankan di sisi klien"
 }
