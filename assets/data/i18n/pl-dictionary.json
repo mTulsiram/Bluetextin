@@ -1623,7 +1623,7 @@
   "Terms of Use |": "Warunki korzystania |",
   "Terms of Use": "Warunki korzystania",
   "Effective date: 28 March 2026 |": "Data wejścia w życie: 28 marca 2026 r. |",
-  "Last updated: May 9, 2026": "Ostatnia aktualizacja: 9 maja 2026 r",
+  "Last updated: May 9, 2026": "Ostatnia aktualizacja: 9 maja 2026 r.",
   "1. Acceptance of Terms": "1. Akceptacja Regulaminu",
   "2. Use License": "2. Użyj licencji",
   "Permission is granted to temporarily use the tools on BlueTEXT.in's website for personal, non-commercial transitory viewing only.": "Zezwala się na tymczasowe korzystanie z narzędzi znajdujących się na stronie BlueTEXT.in wyłącznie w celach osobistych, niekomercyjnych i przejściowych.",
@@ -1783,7 +1783,7 @@
   "Effective date: 2026-06-20": "Data wejścia w życie: 20.06.2026",
   "BlueTEXT implementation is designed around the baseline control expectations of GDPR, CCPA, PIPL, LGPD, DPDP, and WCAG 2.2 AA.": "Wdrożenie BlueTEXT zostało zaprojektowane w oparciu o podstawowe oczekiwania dotyczące kontroli określone w RODO, CCPA, PIPL, LGPD, DPDP i WCAG 2.2 AA.",
   "This page documents implementation controls and operating intent.": "Ta strona dokumentuje kontrole wdrażania i zamiary operacyjne.",
-  "Formal legal compliance depends on operational policy, legal review, and periodic audits.": "Formalna zgodność z prawem zależy od polityki operacyjnej, przeglądu prawnego i okresowych audytów.",
+  "Formal legal compliance depends on operational policy, legal review, and periodic audits.": "Formalna zgodność z prawem zależy od polityki operacyjnej, przegl��du prawnego i okresowych audytów.",
   "About Tulsiram Methre & BlueTEXT.in |": "O Tulsiram Methre & BlueTEXT.in |",
   "Our Mission": "Nasza misja",
   "Why We Started BlueTEXT.in": "Dlaczego uruchomiliśmy BlueTEXT.in",
@@ -2064,5 +2064,13 @@
   "Support BlueTEXT.in internationally on Patreon:": "Wspieraj BlueTEXT.in na całym świecie na Patreonie:",
   "Become a member to help keep the servers active, fast, and completely ad-free.": "Zostań członkiem, aby serwery były aktywne, szybkie i całkowicie wolne od reklam.",
   "Note: Payment will open securely in a separate popup window so you can stay on BlueTEXT.in.": "Uwaga: płatność otworzy się bezpiecznie w osobnym wyskakującym oknie, dzięki czemu będziesz mógł pozostać na BlueTEXT.in.",
-  "Support on Patreon": "Wsparcie na Patreonie"
+  "Support on Patreon": "Wsparcie na Patreonie",
+  "Search Ctrl K": "Szukaj Ctrl K",
+  "☀️ 🌙 🌙": "☀️ 🌙 🌙",
+  "Search": "Szukaj",
+  "☀️": "☀️",
+  "Support via Donorbox": "Wsparcie poprzez Donorbox",
+  "Quick & secure international one-time or monthly donations.": "Szybkie i bezpieczne międzynarodowe datki jednorazowe lub miesięczne.",
+  "💧 Liquid Wall": "💧 Płynna ściana",
+  "📋 Grid View": "📋 Widok siatki"
 }
