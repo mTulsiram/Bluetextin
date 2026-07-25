@@ -1,7 +1,7 @@
 {
   "0": "0",
   "Webgl And Html5 Canvas Basics |": "Webgl ve Html5 Kanvas Temelleri |",
-  "BlueTEXT": "MaviMETİN",
+  "BlueTEXT": "BlueTEXT",
   "Webgl And Html5 Canvas Basics": "Webgl ve Html5 Kanvas Temelleri",
   "Search BlueTEXT.in": "BlueTEXT.in'de arama yapın",
   "Account": "Hesap",
@@ -516,7 +516,7 @@
   "📄 Word To Pdf": "📄 Word'den Pdf'e",
   "Invisible Character Generator |": "Görünmez Karakter Oluşturucu |",
   "Invisible Character Generator": "Görünmez Karakter Oluşturucu",
-  "Flowchart Maker |": "Akış Şeması Oluşturucu |",
+  "Flowchart Maker |": "Akı�� Şeması Oluşturucu |",
   "Flowchart Maker": "Akış Şeması Oluşturucu",
   "Excel To Json |": "Excel'den Json'a |",
   "Excel To Json": "Excel'den Json'a",
@@ -2174,5 +2174,7 @@
   "Left/Right Arrow : Rotate Ship": "Sol/Sağ Ok : Gemiyi Döndür",
   "Up Arrow : Thrust forward": "Yukarı Ok : İleriye doğru itme",
   "Spacebar : Shoot lasers": "Boşluk tuşu: Lazerleri vur",
-  "Goal : Destroy all incoming asteroids and survive as long as possible!": "Hedef: Gelen tüm asteroitleri yok edin ve mümkün olduğu kadar uzun süre hayatta kalın!"
+  "Goal : Destroy all incoming asteroids and survive as long as possible!": "Hedef: Gelen tüm asteroitleri yok edin ve mümkün olduğu kadar uzun süre hayatta kalın!",
+  "For business queries, contact us at codeon@bluetext.in": "İşle ilgili sorularınız için codeon@bluetext.in adresinden bize ulaşın",
+  "��本語": ""
 }

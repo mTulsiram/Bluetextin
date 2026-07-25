@@ -419,7 +419,7 @@
   "Card Shuffler": "Kartenmischer",
   "Anagram Solver |": "Anagrammlöser |",
   "Anagram Solver": "Anagrammlöser",
-  "Word Processor |": "Textverarbeitung |",
+  "Word Processor |": "Textverarbeitungsprogramm |",
   "Word Processor": "Textverarbeitungsprogramm",
   "Alarm Clock |": "Wecker |",
   "Alarm Clock": "Wecker",
@@ -755,7 +755,7 @@
   "📄 Statistics Mean Median Mode": "📄 Statistik-Mittelwert-Median-Modus",
   "📄 Stock Average Calculator": "📄 Aktiendurchschnittsrechner",
   "📄 Tip Calculator": "📄 Trinkgeldrechner",
-  "Gpa Calculator |": "GPA-Rechner |",
+  "Gpa Calculator |": "Gpa-Rechner |",
   "Gpa Calculator": "Gpa-Rechner",
   "Gcd Lcm Calculator |": "Gcd Lcm-Rechner |",
   "Gcd Lcm Calculator": "Gcd Lcm-Rechner",
@@ -1631,7 +1631,7 @@
   "Modify or copy the materials;": "Die Materialien ändern oder kopieren;",
   "Attempt to decompile or reverse-engineer any software on BlueTEXT.in;": "Versuchen Sie, Software auf BlueTEXT.in zu dekompilieren oder zurückzuentwickeln;",
   "Remove any copyright or other proprietary notations from the materials;": "Entfernen Sie jegliche Urheberrechts- oder andere Eigentumsvermerke aus den Materialien.",
-  "Transfer the materials to another person or \"mirror\" them on any other server.": "Übertragen Sie die Materialien an eine andere Person oder „spiegeln“ Sie sie auf einem anderen Server.",
+  "Transfer the materials to another person or \"mirror\" them on any other server.": "Übertragen Sie die Materialien an eine andere Person oder ���spiegeln“ Sie sie auf einem anderen Server.",
   "This license shall automatically terminate if you violate any of these restrictions and may be terminated by BlueTEXT.in at any time.": "Diese Lizenz erlischt automatisch, wenn Sie gegen eine dieser Einschränkungen verstoßen, und kann von BlueTEXT.in jederzeit gekündigt werden.",
   "3. Disclaimer of Warranties": "3. Gewährleistungsausschluss",
   "4. Limitations of Liability": "4. Haftungsbeschränkungen",
@@ -2175,5 +2175,6 @@
   "Left/Right Arrow : Rotate Ship": "Pfeil nach links/rechts: Schiff drehen",
   "Up Arrow : Thrust forward": "Pfeil nach oben: Nach vorne stoßen",
   "Spacebar : Shoot lasers": "Leertaste: Laser abfeuern",
-  "Goal : Destroy all incoming asteroids and survive as long as possible!": "Ziel: Zerstöre alle ankommenden Asteroiden und überlebe so lange wie möglich!"
+  "Goal : Destroy all incoming asteroids and survive as long as possible!": "Ziel: Zerstöre alle ankommenden Asteroiden und überlebe so lange wie möglich!",
+  "�� 2026. Client-side execution.": "© 2026. Clientseitige Ausführung."
 }

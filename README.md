@@ -1,79 +1,51 @@
 # BlueTEXT
 
-BlueTEXT is a static-first content platform for tools, games, tutorials, software catalogs, and education pages.
+BlueTEXT is a pure static web platform containing free online tools, games, tutorials, software catalogs, and educational resources. Zero external build dependencies required.
 
-## Core Stack
+## 🚀 Running the Project
 
-- HTML pages under pages/
-- Shared UI components in assets/components/
-- Shared scripts in assets/js/
-- Shared styles in assets/css/
-- Generated datasets in assets/data/
+BlueTEXT is completely static and can be served using Python standard library:
 
-## Shared Header and Footer
+```bash
+# Start local static server (Python 3)
+python server.py
+# or
+python3 server.py
+```
 
-- Canonical component files:
-	- assets/components/header.html
-	- assets/components/footer.html
-- Every HTML page now uses component mounts:
-	- div id="header-component"
-	- div id="footer-component"
-- Runtime loader:
-	- /assets/js/app.js
+Then open `http://localhost:8080` in your browser.
 
-## Unified Automation
+Alternatively, you can open any `index.html` file directly in a modern web browser or host the repository on GitHub Pages, Netlify, Vercel, or any standard static web host with **zero build step**.
 
-The repository now uses one combined script:
+---
 
-- scripts/build.js
+## 📁 Repository Structure
 
-This script handles:
+```
+├── index.html                  # Main homepage
+├── support.html                # Support and donation page
+├── sitemap.xml                 # Search engine sitemap
+├── server.py                   # Lightweight Python 3 static web server
+├── assets/
+│   ├── components/             # Reusable UI templates (header.html, footer.html)
+│   ├── css/                    # Consolidated stylesheets (main.css)
+│   ├── data/                   # Search index & pre-compiled translation dictionaries
+│   └── js/                     # Client-side JavaScript feature scripts (app.js, nav.js, auth.js, theme.js)
+├── pages/                      # Content & tool pages
+│   ├── tools/                  # Web applications & converters
+│   ├── games/                  # Web arcade & puzzle games
+│   ├── software/               # Open-source & utility software catalogs
+│   ├── tutorials/              # Developer & designer tutorials
+│   └── education/              # Learning & study resources
+└── AIMemory.md                 # System audit log and architectural memory
+```
 
-1. Legal page normalization
-2. Index page generation
-3. Search index generation
-4. Translation catalog generation
-5. Sitemap generation
-6. Build report generation
+---
 
-Run commands from project root:
+## ⚡ Key Features
 
-- npm run build
-- npm run build:data
-- npm run normalize:legal
-- npm run generate:indexes
-- npm run generate:search
-- npm run generate:i18n
-- npm run generate:sitemap
-
-## Output Artifacts
-
-- assets/data/search-index.json
-- assets/data/i18n/en-catalog.json
-- assets/data/i18n/[lang]-dictionary.json (for 20 major world languages)
-- assets/data/build-report.json
-- sitemap.xml
-
-## Privacy and Compliance Baseline
-
-BlueTEXT is client-side-first for tool execution, with no mandatory user tracking in core tool workflows.
-
-Implemented baseline pages:
-
-- assets/nav/privacy.html
-- assets/nav/terms.html
-- assets/nav/disclaimer.html
-- assets/nav/security.html
-- assets/nav/accessibility.html
-- assets/nav/compliance.html
-
-## Accessibility Baseline
-
-- Semantic landmarks and heading structure
-- Keyboard-reachable navigation and dialogs
-- ARIA labels and live regions for dynamic content
-- Theme mode support and visible focus
-
-## Important Compliance Note
-
-The codebase includes implementation controls aligned to GDPR, CCPA, PIPL, LGPD, DPDP, and WCAG 2.2 AA practices. Formal legal compliance still requires legal review and periodic audits.
+- **100% Client-Side**: All converters and tools execute locally in the user's browser.
+- **Dark / Light Mode**: Dynamic theme switching with persistent user preference.
+- **Offline Multi-Language Support**: Pre-compiled translation catalogs for 20 major languages.
+- **Accessibility & Contrast**: Built on Bootstrap 5 UI framework with WCAG 2.1 AA compliance.
+- **Zero Package Bloat**: No `node_modules`, npm, or build dependencies required to run or deploy.

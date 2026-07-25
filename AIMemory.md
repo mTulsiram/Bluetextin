@@ -93,7 +93,10 @@ Always append a new dated entry.
 - Implemented recursive binary-split fallback inside `translateBatchWithRetry` to automatically split batches when API responses return mismatched delimiter lists or drop segments.
 - Excluded Traditional Chinese (`zh-TW`) from remote API translations, instead implementing an offline translation generator using `chinese-conv` to convert `zh-CN` Simplified Chinese into `zh-TW` Traditional Chinese offline in under 10ms.
 
+## 2026-07-25 (Full Repository Audit, Patch Merging & Architecture Consolidation)
 
-
-
-
+- Conducted a systematic repository audit starting from root non-directory files, moving through assets/scripts, and auditing the `pages/` directory last.
+- Verified and cleaned up untracked/unmerged patch files (`phase1-css-files.patch`, `phase1-empty-files.patch`, `phase2-language-consolidation.patch`, `phase3-buildjs-fix.patch`, `phase3-css-consolidation.patch`, `phase3-css-consolidation-fixed.patch`).
+- Confirmed CSS consolidation: all 8 modular CSS stylesheets (`reset.css`, `config.css`, `base.css`, `layout.css`, `header.css`, `components.css`, `footer.css`, `themes.css`) are fully consolidated into `assets/css/main.css`.
+- Confirmed JS clean up: empty placeholders `assets/js/router.js` and `assets/js/config.js` deleted; runtime features driven by `app.js`, `nav.js`, `auth.js`, `theme.js`, `settings.js`, and `service-worker.js`.
+- Verified `pages/` directory structure containing over 500 static web application pages across tools, games, software, tutorials, and education categories.
