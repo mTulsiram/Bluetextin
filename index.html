@@ -718,14 +718,18 @@
 
       </aside>
 
-      <!-- Center Main Content Area (Desktop: col-lg-6) -->
-      <section class="col-12 col-lg-6 col-xl-6.5">
-        <!-- Live Filter Search Box -->
-        <div class="mb-4 position-relative">
-          <input class="form-control form-control-lg border rounded-pill shadow-sm" id="homepage-search-input" type="search" placeholder="Type to search and filter tools instantly..." aria-label="Search" style="padding-left: 24px; padding-right: 50px;">
-          <span style="position: absolute; right: 22px; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--bt-text-secondary);">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-          </span>
+        <!-- Live Filter Search Box & Active Filter Toolbar -->
+        <div class="card border-0 shadow-sm p-3 mb-4 rounded-4" style="background: var(--bt-header-bg); backdrop-filter: blur(12px); border: 1px solid var(--bt-header-border) !important;">
+          <div class="position-relative">
+            <input class="form-control form-control-lg border rounded-pill shadow-sm" id="homepage-search-input" type="search" placeholder="Type to search and filter tools instantly..." aria-label="Search" style="padding-left: 24px; padding-right: 50px; background-color: var(--bs-body-bg); color: var(--bs-body-color);">
+            <span style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--bt-header-muted);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </span>
+          </div>
+          <div class="d-flex align-items-center justify-content-between mt-2.5 px-2 text-body-secondary small">
+            <span id="active-filter-indicator" class="fw-semibold">Showing all tools</span>
+            <span id="active-count-indicator" class="badge rounded-pill bg-primary-subtle text-primary border border-primary-subtle">0 items</span>
+          </div>
         </div>
 
         <!-- Rendered Cards Viewport -->
@@ -1008,8 +1012,11 @@
           
           allItems = data.filter(item => {
             if (!item || !item.url) return false;
-            // Don't show index pages
+            // Exclude root/index pages and internal assets/nav stubs
             if (item.url === "/" || item.url.endsWith("/index.html") || item.url.endsWith("/")) {
+              return false;
+            }
+            if (item.url.startsWith("/assets") || item.url === "/pages") {
               return false;
             }
             return true;
@@ -1112,6 +1119,17 @@
                  (item.description || "").toLowerCase().includes(query) ||
                  (item.keywords || "").toLowerCase().includes(query);
         });
+
+        const filterIndicator = document.getElementById("active-filter-indicator");
+        const countIndicator = document.getElementById("active-count-indicator");
+        
+        if (filterIndicator) {
+          const catLabel = currentCategory === "all" ? "All Resources" : currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1);
+          filterIndicator.textContent = query ? `Search results for "${query}"` : `Showing ${catLabel}`;
+        }
+        if (countIndicator) {
+          countIndicator.textContent = `${filtered.length} items`;
+        }
 
         if (filtered.length === 0) {
           viewport.innerHTML = `
