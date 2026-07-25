@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -618,22 +618,475 @@
         setupLangDropdown();
         setupClearCacheHeader();
       });
+              <script src="https://cdn.razorpay.com/static/widget/subscription-button.js" data-subscription_button_id="pl_T4XGfSg6ladpyP" data-button_theme="brand-color" async> </script>
+            </form>
+          </div>
+          <p class="small text-muted mt-3 mb-0" style="font-size: 0.75rem;">Your payment is safely processed by Razorpay. Zero trackers policy.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Secure Patreon Info Modal -->
+  <div class="modal fade" id="patreonModal" tabindex="-1" aria-labelledby="patreonModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5 text-body-emphasis" id="patreonModalLabel">🧡 Secure Patreon Support</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center py-4 px-3" style="background-color: var(--bt-bg-primary);">
+          <p class="small text-body-secondary mb-4">Support BlueTEXT.in internationally on Patreon:</p>
+          
+          <div class="p-3 border rounded text-start mb-4" style="background-color: var(--bt-bg-secondary); border-color: var(--bt-border-color) !important;">
+            <h6 class="fw-bold mb-1 text-primary">☕ BlueTEXT Membership</h6>
+            <p class="small text-muted mb-3">Become a member to help keep the servers active, fast, and completely ad-free.</p>
+            <a href="https://www.patreon.com/BlueTEXTin" onclick="window.open(this.href, 'PatreonPayment', 'width=600,height=750,scrollbars=yes'); return false;" class="btn btn-primary w-100 fw-semibold">
+              Support on Patreon
+            </a>
+          </div>
+          
+          <p class="small text-muted mb-0" style="font-size: 0.75rem;">Note: Payment will open securely in a separate popup window so you can stay on BlueTEXT.in.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Left Offcanvas Navigation Menu (Mobile Slider) -->
+  <div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel" style="width: 280px; background-color: var(--bt-bg-primary); border-right: 1px solid var(--bt-border-color);">
+    <div class="offcanvas-header border-bottom py-3">
+      <h5 class="offcanvas-title fw-bold text-primary d-flex align-items-center gap-2" id="mobileSidebarLabel">
+        <svg class="bt-logo" width="24" height="24" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <rect width="28" height="28" rx="7" fill="currentColor"></rect>
+          <path d="M8 7H15.5C18.3 7 20.3 8.5 20.3 10.9C20.3 12.4 19.5 13.6 18.1 14.2C19.9 14.7 21 16 21 17.8C21 20.5 18.8 22 15.8 22H8V7ZM11.2 9.6V13.1H15.2C16.4 13.1 17.1 12.4 17.1 11.3C17.1 10.2 16.4 9.6 15.2 9.6H11.2ZM11.2 15.5V19.4H15.7C17 19.4 17.8 18.7 17.8 17.5C17.8 16.3 16.9 15.5 15.7 15.5H11.2Z" fill="white"></path>
+        </svg>
+        <span>BlueTEXT.in</span>
+      </h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body p-3">
+      <!-- Search Bar -->
+      <div class="mb-4">
+        <input class="form-control bt-mobile-search-input" type="search" placeholder="Search pages and tools..." aria-label="Search" data-bs-toggle="modal" data-bs-target="#searchModal" data-bs-dismiss="offcanvas" readonly>
+      </div>
+
+      <!-- Navigation List Links -->
+      <div class="list-group list-group-flush gap-1">
+        <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold" href="/" data-bs-dismiss="offcanvas">🏠 Home</a>
+        
+        <div class="mt-3">
+          <div class="fw-bold text-muted small text-uppercase px-3 mb-1.5" style="font-size: 0.72rem; letter-spacing: 0.5px;">Sections</div>
+          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold d-flex align-items-center justify-content-between" href="/pages/tools/" data-bs-dismiss="offcanvas">
+            <span>🛠️ Developer Tools</span>
+          </a>
+          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold d-flex align-items-center justify-content-between" href="/pages/games/" data-bs-dismiss="offcanvas">
+            <span>🎮 Browser Games</span>
+          </a>
+          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold" href="/pages/software/" data-bs-dismiss="offcanvas"><span>💻 Software Catalog</span></a>
+          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold" href="/pages/tutorials/" data-bs-dismiss="offcanvas"><span>📚 Tutorials</span></a>
+          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold" href="/pages/education/" data-bs-dismiss="offcanvas"><span>🎓 Education</span></a>
+          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold" href="/pages/blog/" data-bs-dismiss="offcanvas"><span>✍️ Blog</span></a>
+          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold text-danger d-flex align-items-center gap-2" href="/support.html" data-bs-dismiss="offcanvas">
+            <span>💖 Supporters Wall</span>
+          </a>
+        </div>
+
+        <hr class="my-3">
+
+        <!-- Settings & Controls -->
+        <div class="px-3">
+          <h6 class="fw-bold mb-2.5 small text-uppercase text-muted" style="font-size: 0.72rem; letter-spacing: 0.5px;">App Options</h6>
+          <div class="d-flex flex-column gap-3">
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="small text-body-secondary fw-semibold">Theme</span>
+              <button class="btn btn-sm btn-outline-secondary" onclick="document.getElementById('theme-button').click()" type="button" aria-label="Toggle Theme">
+                🌓 Toggle Theme
+              </button>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="small text-body-secondary fw-semibold">Language</span>
+              <div class="dropdown">
+                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  🌐 Language
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" style="max-height: 240px; overflow-y: auto;">
+                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=en]').click()">English</button></li>
+                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=es]').click()">Español</button></li>
+                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=fr]').click()">Français</button></li>
+                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=de]').click()">Deutsch</button></li>
+                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=hi]').click()">हिन्दी</button></li>
+                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=zh-CN]').click()">简体中文</button></li>
+                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=ja]').click()">日本語</button></li>
+                </ul>
+              </div>
+            </div>
+            
+            <button class="btn btn-sm btn-outline-danger w-100 mt-2" onclick="document.getElementById('clear-cache-button').click(); data-bs-dismiss='offcanvas'" type="button">
+              <span>🗑️ Clear Cache</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      function setupLangDropdown() {
+        const dropdownMenu = document.getElementById("language-dropdown-menu");
+        const hiddenSelect = document.getElementById("language-select");
+        const langCodeSpan = document.getElementById("bt-lang-code");
+        if (!dropdownMenu || !hiddenSelect) return;
+
+        function updateLangCodeLabel(val) {
+          if (!langCodeSpan) return;
+          const code = (val || "en").split("-")[0].toUpperCase();
+          langCodeSpan.textContent = code;
+        }
+
+        // Initialize label state safely
+        let initialVal = "en";
+        try {
+          initialVal = hiddenSelect.value || localStorage.getItem("bt_language_v1") || "en";
+        } catch (e) {
+          initialVal = hiddenSelect.value || "en";
+        }
+        updateLangCodeLabel(initialVal);
+
+        dropdownMenu.querySelectorAll(".dropdown-item").forEach(item => {
+          item.addEventListener("click", () => {
+            const val = item.getAttribute("data-value");
+            if (val) {
+              hiddenSelect.value = val;
+              hiddenSelect.dispatchEvent(new Event("change"));
+              updateLangCodeLabel(val);
+            }
+          });
+        });
+
+        hiddenSelect.addEventListener("change", () => {
+          updateLangCodeLabel(hiddenSelect.value);
+        });
+      }
+
+      function setupClearCacheHeader() {
+        const btn = document.getElementById("clear-cache-header-btn");
+        if (!btn) return;
+        btn.addEventListener("click", async () => {
+          const confirmed = window.confirm("Clear local cache and reload this page?");
+          if (!confirmed) return;
+          
+          try {
+            localStorage.clear();
+            sessionStorage.clear();
+          } catch (e) {}
+
+          if ("caches" in window) {
+            try {
+              const keys = await caches.keys();
+              await Promise.all(keys.map(k => caches.delete(k)));
+            } catch (e) {}
+          }
+
+          if ("serviceWorker" in navigator) {
+            try {
+              const regs = await navigator.serviceWorker.getRegistrations();
+              await Promise.all(regs.map(r => r.unregister()));
+            } catch (e) {}
+          }
+          
+          window.location.reload(true);
+        });
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", () => {
+          setupLangDropdown();
+          setupClearCacheHeader();
+        }, { once: true });
+      } else {
+        setupLangDropdown();
+        setupClearCacheHeader();
+      }
+      document.addEventListener("bt:components-ready", () => {
+        setupLangDropdown();
+        setupClearCacheHeader();
+      });
     })();
   </script>
 
 <!-- MODALS_END -->
 
   <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Wordle Clone</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <nav aria-label="Breadcrumb" class="mb-3">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/pages/games/">Games</a></li>
+        <li class="breadcrumb-item"><a href="/pages/games/word/">Word</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Wordle Clone</li>
+      </ol>
+    </nav>
+
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <div class="card shadow-sm border mb-4">
+          <div class="card-header bg-body-tertiary d-flex align-items-center justify-content-between py-3 px-4">
+            <h1 class="h4 mb-0 fw-bold">🔤 Wordle 5-Letter Guess</h1>
+            <div class="badge bg-primary fs-6" id="status-badge">Guess the 5-letter word!</div>
+          </div>
+          <div class="card-body p-4 text-center">
+            <div class="d-flex justify-content-center mb-4">
+              <div id="wordle-board" class="d-grid gap-2" style="grid-template-rows: repeat(6, 50px);">
+                <!-- 6 rows of 5 letter boxes -->
+              </div>
+            </div>
+
+            <!-- Virtual On-screen Keyboard -->
+            <div id="virtual-keyboard" class="d-flex flex-column gap-1.5 align-items-center mb-4">
+              <div class="d-flex gap-1 justify-content-center">
+                <button class="btn btn-outline-secondary key-btn" data-key="Q">Q</button>
+                <button class="btn btn-outline-secondary key-btn" data-key="W">W</button>
+                <button class="btn btn-outline-secondary key-btn" data-key="E">E</button>
+                <button class="btn btn-outline-secondary key-btn" data-key="R">R</button>
+                <button class="btn btn-outline-secondary key-btn" data-key="T">T</button>
+                <button class="btn btn-outline-secondary key-btn" data-key="Y">Y</button>
+                <button class="btn btn-outline-secondary key-btn" data-key="U">U</button>
+                <button class="btn btn-outline-secondary key-btn" data-key="I">I</button>
+                <button class="btn btn-outline-secondary key-btn" data-key="O">O</button>
+                <button class="btn btn-outline-secondary key-btn" data-key="P">P</button>
+              </div>
+              <div class="d-flex gap-1 justify-content-center">
+                <button class="btn btn-outline-secondary key-btn" data-key="A">A</button>
+                <button class="btn btn-outline-secondary key-btn" data-key="S">S</button>
+                <button class="btn btn-outline-secondary key-btn" data-key="D">D</button>
+                <button class="btn btn-outline-secondary key-btn" data-key="F">F</button>
+                <button class="btn btn-outline-secondary key-btn" data-key="G">G</button>
+                <button class="btn btn-outline-secondary key-btn" data-key="H">H</button>
+                <button class="btn btn-outline-secondary key-btn" data-key="J">J</button>
+                <button class="btn btn-outline-secondary key-btn" data-key="K">K</button>
+                <button class="btn btn-outline-secondary key-btn" data-key="L">L</button>
+              </div>
+              <div class="d-flex gap-1 justify-content-center">
+                <button class="btn btn-success key-btn fw-bold px-3" data-key="ENTER">ENTER</button>
+                <button class="btn btn-outline-secondary key-btn" data-key="Z">Z</button>
+                <button class="btn btn-outline-secondary key-btn" data-key="X">X</button>
+                <button class="btn btn-outline-secondary key-btn" data-key="C">C</button>
+                <button class="btn btn-outline-secondary key-btn" data-key="V">V</button>
+                <button class="btn btn-outline-secondary key-btn" data-key="B">B</button>
+                <button class="btn btn-outline-secondary key-btn" data-key="N">N</button>
+                <button class="btn btn-outline-secondary key-btn" data-key="M">M</button>
+                <button class="btn btn-danger key-btn fw-bold px-3" data-key="BACKSPACE">⌫</button>
+              </div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2 justify-content-center">
+              <button class="btn btn-primary" id="reset-btn">New Word</button>
+              <button class="btn btn-success" id="save-btn">Save Progress</button>
+              <label class="btn btn-info text-white mb-0" style="cursor:pointer;">
+                Import Progress
+                <input type="file" id="import-file" accept=".json" style="display:none;">
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="card shadow-sm border mb-4">
+          <div class="card-body text-center">
+            <h2 class="h5 mb-3">Stats</h2>
+            <div class="d-flex justify-content-around border rounded p-3 bg-body-tertiary">
+              <div>
+                <div class="small text-muted fw-bold">Played</div>
+                <div class="fs-3 fw-bold text-primary" id="played-val">0</div>
+              </div>
+              <div class="border-end"></div>
+              <div>
+                <div class="small text-muted fw-bold">Won</div>
+                <div class="fs-3 fw-bold text-success" id="won-val">0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card shadow-sm border">
+          <div class="card-body">
+            <h2 class="h5 mb-2">Instructions</h2>
+            <p class="small text-body-secondary mb-0">Guess the 5-letter hidden word in 6 tries. Green means correct letter and spot; Yellow means letter is in the word but wrong spot; Dark means letter isn't in the word.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
+  <script>
+    (function() {
+      const WORDS = ["PLANT", "SMART", "BRAIN", "LIGHT", "CLEAN", "DRIVE", "HOUSE", "WORLD", "APPLE", "SOLAR", "MUSIC", "WATER", "HEART", "HAPPY", "GREEN"];
+      let targetWord = "";
+      let currentRow = 0;
+      let currentCol = 0;
+      let guesses = ["", "", "", "", "", ""];
+      let gameActive = true;
+      let stats = { played: 0, won: 0 };
+
+      const boardContainer = document.getElementById("wordle-board");
+      const statusBadge = document.getElementById("status-badge");
+      const resetBtn = document.getElementById("reset-btn");
+      const saveBtn = document.getElementById("save-btn");
+      const importFile = document.getElementById("import-file");
+      const playedVal = document.getElementById("played-val");
+      const wonVal = document.getElementById("won-val");
+
+      function initBoard() {
+        boardContainer.innerHTML = "";
+        for (let r = 0; r < 6; r++) {
+          const rowDiv = document.createElement("div");
+          rowDiv.className = "d-flex gap-2 justify-content-center";
+          for (let c = 0; c < 5; c++) {
+            const box = document.createElement("div");
+            box.className = "d-flex align-items-center justify-content-center rounded-2 border border-2 fw-bold fs-3 text-uppercase shadow-sm";
+            box.style.width = "50px";
+            box.style.height = "50px";
+            box.dataset.row = r;
+            box.dataset.col = c;
+            rowDiv.appendChild(box);
+          }
+          boardContainer.appendChild(rowDiv);
+        }
+      }
+
+      function render() {
+        for (let r = 0; r < 6; r++) {
+          const guess = guesses[r];
+          for (let c = 0; c < 5; c++) {
+            const box = boardContainer.querySelector(`[data-row="${r}"][data-col="${c}"]`);
+            const char = guess[c] || "";
+            box.textContent = char;
+
+            if (r < currentRow) {
+              if (char === targetWord[c]) {
+                box.style.backgroundColor = "#198754";
+                box.style.color = "#fff";
+              } else if (targetWord.includes(char)) {
+                box.style.backgroundColor = "#ffc107";
+                box.style.color = "#000";
+              } else {
+                box.style.backgroundColor = "#6c757d";
+                box.style.color = "#fff";
+              }
+            }
+          }
+        }
+        playedVal.textContent = stats.played;
+        wonVal.textContent = stats.won;
+      }
+
+      function handleKey(key) {
+        if (!gameActive) return;
+
+        if (key === "BACKSPACE" || key === "BACK") {
+          if (guesses[currentRow].length > 0) {
+            guesses[currentRow] = guesses[currentRow].slice(0, -1);
+            render();
+          }
+        } else if (key === "ENTER") {
+          if (guesses[currentRow].length === 5) {
+            evaluateGuess();
+          }
+        } else if (/^[A-Z]$/.test(key)) {
+          if (guesses[currentRow].length < 5) {
+            guesses[currentRow] += key;
+            render();
+          }
+        }
+      }
+
+      function evaluateGuess() {
+        const currentGuess = guesses[currentRow];
+        currentRow++;
+        render();
+
+        if (currentGuess === targetWord) {
+          gameActive = false;
+          stats.played++;
+          stats.won++;
+          statusBadge.textContent = "🎉 Excellent! Correct Word!";
+          statusBadge.className = "badge bg-success fs-6";
+          render();
+        } else if (currentRow === 6) {
+          gameActive = false;
+          stats.played++;
+          statusBadge.textContent = `❌ Word was: ${targetWord}`;
+          statusBadge.className = "badge bg-danger fs-6";
+          render();
+        }
+      }
+
+      window.addEventListener("keydown", e => {
+        const k = e.key.toUpperCase();
+        if (k === "ENTER" || k === "BACKSPACE" || /^[A-Z]$/.test(k)) {
+          handleKey(k);
+        }
+      });
+
+      document.querySelectorAll(".key-btn").forEach(btn => {
+        btn.addEventListener("click", () => handleKey(btn.dataset.key));
+      });
+
+      function startNewGame() {
+        targetWord = WORDS[Math.floor(Math.random() * WORDS.length)];
+        currentRow = 0;
+        guesses = ["", "", "", "", "", ""];
+        gameActive = true;
+        statusBadge.textContent = "Guess the 5-letter word!";
+        statusBadge.className = "badge bg-primary fs-6";
+        initBoard();
+        render();
+      }
+
+      resetBtn.addEventListener("click", startNewGame);
+      saveBtn.addEventListener("click", () => {
+        const data = JSON.stringify({ targetWord, currentRow, guesses, gameActive, stats }, null, 2);
+        const blob = new Blob([data], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "wordle-progress.json";
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      importFile.addEventListener("change", e => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = evt => {
+          try {
+            const data = JSON.parse(evt.target.result);
+            if (data.targetWord && data.guesses) {
+              targetWord = data.targetWord;
+              currentRow = data.currentRow || 0;
+              guesses = data.guesses;
+              gameActive = data.gameActive !== undefined ? data.gameActive : true;
+              stats = data.stats || stats;
+              initBoard();
+              render();
+              statusBadge.textContent = gameActive ? "Progress Loaded" : "Game Ended";
+            }
+          } catch (err) {
+            alert("Invalid save file.");
+          }
+        };
+        reader.readAsText(file);
+      });
+
+      startNewGame();
+    })();
+  </script>
+
+
   <div id="footer-component"><!-- FOOTER_START -->
-<footer class="bt-footer mt-5">
-  <div class="container py-3">
-    <div class="bt-footer-panel rounded-4 border shadow-sm p-3 px-4 d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
-      <div class="d-flex flex-column flex-md-row align-items-center gap-2 text-center text-md-start">
         <div class="d-flex align-items-center gap-2">
           <svg class="bt-logo text-primary" width="20" height="20" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
             <rect width="28" height="28" rx="7" fill="currentColor"></rect>
