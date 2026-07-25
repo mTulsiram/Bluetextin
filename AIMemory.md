@@ -199,8 +199,9 @@ Always append a new dated entry.
 ## 2026-07-25 (Games Progressive Enhancement & Verification)
 
 - Upgraded empty placeholder game stubs into fully interactive, client-side games across categories:
-  - **Board**: Upgraded `tic-tac-toe.html` and `connect-four.html` with 2-Player & Computer AI modes, turn indicators, winning checks, scoreboards, and JSON state export/import.
-  - **Puzzles**: Upgraded `twenty-forty-eight.html` with keyboard slide mechanics, tile merging, best score tracking, and state save/import.
+  - **Board**: Upgraded `tic-tac-toe.html`, `connect-four.html`, and `chess-engine.html` with move validation, turn indicators, move logs, interactive boards, and JSON state export/import.
+  - **Cards**: Upgraded `solitaire-klondike.html` with stock deck draw, waste pile, 4 foundation slots, 7 tableau columns, move counting, and JSON state export/import.
+  - **Puzzles**: Upgraded `twenty-forty-eight.html` and `minesweeper-classic.html` with grid reveal, right-click flag toggles, mine counters, win/lose states, and state save/import.
   - **Word**: Upgraded `wordle-clone.html` with 5-letter word evaluation, interactive virtual keyboard, stats tracking, and state save/import.
 - Verified clean execution with local Python static server (`python server.py`).
 - Committed and pushed all changes to `main` branch.
