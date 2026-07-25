@@ -1,25 +1,36 @@
-/* BlueTEXT Bundled Styles */
-
-/* --- reset.css --- */
-
-
-/* --- config.css --- */
-
-
-/* --- base.css --- */
-
-
-/* --- layout.css --- */
-
-
-/* --- header.css --- */
-
-
-/* --- components.css --- */
-
-
-/* --- footer.css --- */
-
-
-/* --- themes.css --- */
+1: /* BlueTEXT Bundled Styles */
+2: 
+3: .bt-category-card {
+4:   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
+5:   border-color: var(--bs-border-color);
+6:   background-color: var(--bs-body-bg);
+7: }
+8: 
+9: .bt-category-card:hover {
+10:   transform: translateY(-3px);
+11:   box-shadow: 0 8px 24px rgba(13, 110, 253, 0.12) !important;
+12:   border-color: var(--bs-primary) !important;
+13: }
+14: 
+15: .subcategory-container .sub-category-btn {
+16:   border: 1px solid transparent;
+17:   color: var(--bs-body-color);
+18:   transition: all 0.15s ease;
+19: }
+20: 
+21: .subcategory-container .sub-category-btn:hover {
+22:   background-color: var(--bs-tertiary-bg);
+23: }
+24: 
+25: .subcategory-container .sub-category-btn.active {
+26:   background-color: var(--bs-primary-bg-subtle);
+27:   color: var(--bs-primary-emphasis);
+28:   border-color: var(--bs-primary-border-subtle);
+29:   font-weight: 600;
+30: }
+31: 
+32: #homepage-search-input:focus {
+33:   box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.18);
+34:   border-color: #0d6efd;
+35: }
 
