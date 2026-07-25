@@ -1006,8 +1006,11 @@
       async function loadDashboard() {
         try {
           await loadDictionary();
-          const res = await fetch("/assets/data/search-index.json");
-          if (!res.ok) throw new Error("Could not load index");
+          let res = await fetch("assets/data/search-index.json");
+          if (!res.ok) {
+            res = await fetch("/assets/data/search-index.json");
+          }
+          if (!res.ok) throw new Error("Could not load search index JSON");
           const data = await res.json();
           
           allItems = data.filter(item => {
