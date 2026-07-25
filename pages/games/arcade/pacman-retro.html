@@ -1,13 +1,14 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Pacman Retro on BlueTEXT.in.">
+  <meta name="description" content="Pacman Retro game on BlueTEXT.in.">
   <meta name="robots" content="index,follow">
   <title>Pacman Retro | BlueTEXT</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link class="bt-bootstrap-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="manifest" href="/manifest.json">
 </head>
 <body>
   <div id="header-component"><!-- HEADER_START -->
@@ -624,9 +625,55 @@
 <!-- MODALS_END -->
 
   <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Pacman Retro</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <nav aria-label="Breadcrumb" class="mb-3">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/pages/games/">Games</a></li>
+        <li class="breadcrumb-item"><a href="/pages/games/arcade/">Arcade</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Pacman Retro</li>
+      </ol>
+    </nav>
+
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <div class="card shadow-sm border mb-4">
+          <div class="card-body p-2 bg-dark rounded text-center">
+            <canvas id="game-canvas" width="600" height="450" class="border rounded bg-black w-100" style="max-width: 600px; touch-action: none;"></canvas>
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2 mb-4 justify-content-center">
+          <button class="btn btn-primary" id="start-btn">Start Game</button>
+          <button class="btn btn-secondary" id="pause-btn" disabled>Pause</button>
+          <button class="btn btn-danger" id="reset-btn">Reset</button>
+          <button class="btn btn-success" id="save-btn">Save Game State</button>
+          <label class="btn btn-info mb-0 text-white" style="cursor: pointer;">
+            Import Game State
+            <input type="file" id="import-file" accept=".json" style="display: none;">
+          </label>
+          <button class="btn btn-warning" id="game-donate-btn">💖 Donate</button>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="card shadow-sm border mb-4">
+          <div class="card-body">
+            <h2 class="h5 mb-3">Controls & Instructions</h2>
+            <ul class="list-unstyled mb-0">
+              <li class="mb-2"><strong>Up / Down / Left / Right Arrow Keys</strong>: Steer Pacman through the maze</li>
+              <li class="mb-2"><strong>Goal</strong>: Eat all the little yellow dots while dodging the red and pink ghosts!</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card shadow-sm border">
+          <div class="card-body">
+            <h2 class="h5 mb-2">Save & Continue</h2>
+            <p class="small text-body-secondary mb-0">You can save your current game score, lives, and level to a file and load it back later to continue playing right where you left off!</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->
@@ -694,7 +741,336 @@
 
 
 <!-- FOOTER_END --></div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="/assets/js/app.js" defer></script>
+
+  <script>
+    (function() {
+      const canvas = document.getElementById("game-canvas");
+      const ctx = canvas.getContext("2d");
+
+      // Game Variables
+      let score = 0;
+      let lives = 3;
+      let isPlaying = false;
+      let isPaused = false;
+
+      const tileSize = 25;
+      const mapCols = 24;
+      const mapRows = 15;
+
+      // 1 = wall, 0 = dot, 2 = empty
+      let maze = [
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        [1,0,0,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,1,0,0,0,0,1],
+        [1,0,1,1,0,1,0,1,1,1,0,1,1,0,1,1,1,0,1,0,1,1,0,1],
+        [1,0,1,1,0,0,0,1,1,1,0,0,0,0,1,1,1,0,0,0,1,1,0,1],
+        [1,0,0,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,1,0,0,0,0,1],
+        [1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,0,1,1,1,0,1,1,1,1],
+        [1,2,2,1,0,1,2,2,0,2,2,2,2,2,2,0,2,2,1,0,1,2,2,1],
+        [1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,0,1,1,1,0,1,1,1,1],
+        [1,0,0,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,1,0,0,0,0,1],
+        [1,0,1,1,0,1,0,1,1,1,0,1,1,0,1,1,1,0,1,0,1,1,0,1],
+        [1,0,1,1,0,0,0,1,1,1,0,0,0,0,1,1,1,0,0,0,1,1,0,1],
+        [1,0,0,1,1,1,0,0,0,0,0,1,1,0,0,0,0,0,1,1,1,0,0,1],
+        [1,1,0,1,1,1,0,1,1,1,0,1,1,0,1,1,1,0,1,1,1,0,1,1],
+        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+      ];
+
+      let originalMaze = JSON.parse(JSON.stringify(maze));
+
+      let pacman = { x: 1, y: 1, dirX: 0, dirY: 0, nextDirX: 0, nextDirY: 0 };
+      let ghosts = [
+        { x: 10, y: 6, color: "#ff5555", dirX: 1, dirY: 0 },
+        { x: 12, y: 6, color: "#ff79c6", dirX: -1, dirY: 0 }
+      ];
+
+      function initGame() {
+        score = 0;
+        lives = 3;
+        maze = JSON.parse(JSON.stringify(originalMaze));
+        resetPositions();
+      }
+
+      function resetPositions() {
+        pacman.x = 1;
+        pacman.y = 1;
+        pacman.dirX = 0;
+        pacman.dirY = 0;
+        pacman.nextDirX = 0;
+        pacman.nextDirY = 0;
+        ghosts[0].x = 10;
+        ghosts[0].y = 6;
+        ghosts[1].x = 12;
+        ghosts[1].y = 6;
+      }
+
+      // Input Keys
+      window.addEventListener("keydown", e => {
+        if (!isPlaying || isPaused) return;
+        if (e.code === "ArrowUp")   { pacman.nextDirX = 0; pacman.nextDirY = -1; e.preventDefault(); }
+        if (e.code === "ArrowDown") { pacman.nextDirX = 0; pacman.nextDirY = 1; e.preventDefault(); }
+        if (e.code === "ArrowLeft") { pacman.nextDirX = -1; pacman.nextDirY = 0; e.preventDefault(); }
+        if (e.code === "ArrowRight"){ pacman.nextDirX = 1; pacman.nextDirY = 0; e.preventDefault(); }
+      });
+
+      // Donate trigger
+      document.getElementById("game-donate-btn").addEventListener("click", () => {
+        const modalEl = document.getElementById("donateModal");
+        if (modalEl) {
+          const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+          modal.show();
+        }
+      });
+
+      // Save State
+      document.getElementById("save-btn").addEventListener("click", () => {
+        const state = {
+          score,
+          lives,
+          pacman: { x: pacman.x, y: pacman.y, dirX: pacman.dirX, dirY: pacman.dirY },
+          maze: maze,
+          ghosts: ghosts.map(g => ({ x: g.x, y: g.y, color: g.color }))
+        };
+        const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `pacman-retro-state.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
+
+      // Import State
+      document.getElementById("import-file").addEventListener("change", e => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = evt => {
+          try {
+            const data = JSON.parse(evt.target.result);
+            if (data.score !== undefined && data.lives !== undefined) {
+              score = data.score;
+              lives = data.lives;
+              if (data.pacman) pacman = { ...pacman, ...data.pacman };
+              if (data.maze) maze = data.maze;
+              if (data.ghosts) {
+                for (let i = 0; i < Math.min(ghosts.length, data.ghosts.length); i++) {
+                  ghosts[i].x = data.ghosts[i].x;
+                  ghosts[i].y = data.ghosts[i].y;
+                }
+              }
+              alert("Game State Loaded!");
+              if (!isPlaying) {
+                isPlaying = true;
+                requestAnimationFrame(gameLoop);
+              }
+            }
+          } catch (err) {
+            alert("Invalid save file.");
+          }
+        };
+        reader.readAsText(file);
+      });
+
+      // Buttons
+      const startBtn = document.getElementById("start-btn");
+      const pauseBtn = document.getElementById("pause-btn");
+      const resetBtn = document.getElementById("reset-btn");
+
+      startBtn.addEventListener("click", () => {
+        if (!isPlaying) {
+          initGame();
+          isPlaying = true;
+          isPaused = false;
+          startBtn.textContent = "Restart Game";
+          pauseBtn.disabled = false;
+          pauseBtn.textContent = "Pause";
+          requestAnimationFrame(gameLoop);
+        } else if (isPaused) {
+          isPaused = false;
+          pauseBtn.textContent = "Pause";
+          requestAnimationFrame(gameLoop);
+        }
+      });
+
+      pauseBtn.addEventListener("click", () => {
+        isPaused = !isPaused;
+        pauseBtn.textContent = isPaused ? "Resume" : "Pause";
+        if (!isPaused) {
+          requestAnimationFrame(gameLoop);
+        }
+      });
+
+      resetBtn.addEventListener("click", () => {
+        initGame();
+        isPaused = false;
+        pauseBtn.textContent = "Pause";
+      });
+
+      function drawAds() {
+        if (typeof ctx.drawHTML === "function") {
+          try {
+            ctx.drawHTML(`<div style="color: #f1fa8c; background: #282a36; padding: 4px; font-family: monospace; font-size: 11px;">AD: Support BlueTEXT keeping us ad-free!</div>`, 10, canvas.height - 35);
+            return;
+          } catch(e) {}
+        }
+        ctx.save();
+        ctx.fillStyle = "#1e1e2e";
+        ctx.fillRect(10, canvas.height - 40, canvas.width - 20, 30);
+        ctx.strokeStyle = "#44475a";
+        ctx.lineWidth = 1;
+        ctx.strokeRect(10, canvas.height - 40, canvas.width - 20, 30);
+        ctx.fillStyle = "#f1fa8c";
+        ctx.font = "bold 9px monospace";
+        ctx.fillText("ADVERTISEMENT", 20, canvas.height - 22);
+        ctx.fillStyle = "#f8f8f2";
+        ctx.font = "9px sans-serif";
+        ctx.fillText("Support BlueTEXT — keep our tools fast and completely ad-free!", 110, canvas.height - 22);
+        ctx.restore();
+      }
+
+      let lastTickTime = 0;
+
+      function update() {
+        if (!isPlaying || isPaused) return;
+
+        // Run game tick slower (Pacman tile steps)
+        let now = Date.now();
+        if (now - lastTickTime < 240) return;
+        lastTickTime = now;
+
+        // Turn Pacman if requested & path is clear
+        let nextX = pacman.x + pacman.nextDirX;
+        let nextY = pacman.y + pacman.nextDirY;
+        if (maze[nextY] && maze[nextY][nextX] !== 1) {
+          pacman.dirX = pacman.nextDirX;
+          pacman.dirY = pacman.nextDirY;
+        }
+
+        // Move Pacman
+        let newX = pacman.x + pacman.dirX;
+        let newY = pacman.y + pacman.dirY;
+        if (maze[newY] && maze[newY][newX] !== 1) {
+          pacman.x = newX;
+          pacman.y = newY;
+        }
+
+        // Eat dots
+        if (maze[pacman.y] && maze[pacman.y][pacman.x] === 0) {
+          maze[pacman.y][pacman.x] = 2; // set to empty
+          score += 10;
+        }
+
+        // Move ghosts
+        for (let g of ghosts) {
+          let directions = [
+            { dx: 1, dy: 0 },
+            { dx: -1, dy: 0 },
+            { dx: 0, dy: 1 },
+            { dx: 0, dy: -1 }
+          ];
+
+          // Filter paths without walls
+          let validPaths = directions.filter(d => maze[g.y + d.dy] && maze[g.y + d.dy][g.x + d.dx] !== 1);
+          if (validPaths.length > 0) {
+            let choice = validPaths[Math.floor(Math.random() * validPaths.length)];
+            g.x += choice.dx;
+            g.y += choice.dy;
+          }
+
+          // Check hit
+          if (pacman.x === g.x && pacman.y === g.y) {
+            lives--;
+            resetPositions();
+            if (lives <= 0) {
+              isPlaying = false;
+            }
+          }
+        }
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        if (!isPlaying) {
+          ctx.fillStyle = "#f1fa8c";
+          ctx.font = "bold 24px sans-serif";
+          ctx.textAlign = "center";
+          ctx.fillText("PACMAN RETRO", canvas.width / 2, canvas.height / 2 - 20);
+          ctx.fillStyle = "#f8f8f2";
+          ctx.font = "14px sans-serif";
+          ctx.fillText("Click 'Start Game' to Begin", canvas.width / 2, canvas.height / 2 + 20);
+          drawAds();
+          return;
+        }
+
+        // Draw Maze
+        for (let r = 0; r < mapRows; r++) {
+          for (let c = 0; c < mapCols; c++) {
+            let tile = maze[r][c];
+            if (tile === 1) {
+              ctx.fillStyle = "#6272a4";
+              ctx.fillRect(c * tileSize, r * tileSize, tileSize - 1, tileSize - 1);
+            } else if (tile === 0) {
+              ctx.fillStyle = "#ffb86c";
+              ctx.beginPath();
+              ctx.arc(c * tileSize + tileSize / 2, r * tileSize + tileSize / 2, 3, 0, Math.PI * 2);
+              ctx.fill();
+            }
+          }
+        }
+
+        // Draw Pacman
+        ctx.fillStyle = "#f1fa8c";
+        ctx.beginPath();
+        ctx.arc(pacman.x * tileSize + tileSize / 2, pacman.y * tileSize + tileSize / 2, tileSize / 2.3, 0.2 * Math.PI, 1.8 * Math.PI);
+        ctx.lineTo(pacman.x * tileSize + tileSize / 2, pacman.y * tileSize + tileSize / 2);
+        ctx.fill();
+
+        // Draw Ghosts
+        for (let g of ghosts) {
+          ctx.fillStyle = g.color;
+          ctx.beginPath();
+          ctx.arc(g.x * tileSize + tileSize / 2, g.y * tileSize + tileSize / 2, tileSize / 2.3, Math.PI, 0, false);
+          ctx.lineTo(g.x * tileSize + tileSize / 2 + tileSize / 2.3, g.y * tileSize + tileSize);
+          ctx.lineTo(g.x * tileSize + tileSize / 2 - tileSize / 2.3, g.y * tileSize + tileSize);
+          ctx.fill();
+        }
+
+        // Draw Info panel at bottom of maze
+        ctx.fillStyle = "#8be9fd";
+        ctx.font = "bold 14px sans-serif";
+        ctx.textAlign = "left";
+        ctx.fillText(`Score: ${score}`, 20, canvas.height - 18);
+        ctx.fillText(`Lives: ${lives}`, 150, canvas.height - 18);
+
+        if (isPaused) {
+          ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = "#ffb86c";
+          ctx.font = "bold 28px sans-serif";
+          ctx.textAlign = "center";
+          ctx.fillText("PAUSED", canvas.width / 2, canvas.height / 2);
+        }
+
+        drawAds();
+      }
+
+      function gameLoop() {
+        update();
+        draw();
+        if (isPlaying && !isPaused) {
+          requestAnimationFrame(gameLoop);
+        }
+      }
+
+      draw();
+    })();
+  </script>
 </body>
 </html>
