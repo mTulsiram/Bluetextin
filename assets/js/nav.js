@@ -163,6 +163,15 @@
 	const languageKey = "bt_language_v1";
 	const searchableItems = [];
 
+	// Performance optimization: Debounce function to prevent heavy matching and DOM updates on every keystroke
+	function debounce(fn, delay) {
+		let timeoutId;
+		return function (...args) {
+			clearTimeout(timeoutId);
+			timeoutId = setTimeout(() => fn.apply(this, args), delay);
+		};
+	}
+
 	async function buildSearchIndex() {
 		searchableItems.length = 0;
 
@@ -173,12 +182,19 @@
 			if (Array.isArray(items)) {
 				for (const item of items) {
 					if (!item || !item.title || !item.url) continue;
+					const title = String(item.title);
+					const url = String(item.url);
+					const description = String(item.description || "");
+					const keywords = String(item.keywords || "");
 					searchableItems.push({
-						title: String(item.title),
-						url: String(item.url),
-						description: String(item.description || ""),
-						keywords: String(item.keywords || ""),
-						source: "page"
+						title,
+						url,
+						description,
+						keywords,
+						source: "page",
+						// Performance optimization: Pre-compute the lowercased search key (haystack)
+						// to avoid building strings and calling .toLowerCase() repeatedly during searching.
+						haystack: `${title} ${url} ${description} ${keywords}`.toLowerCase()
 					});
 				}
 			}
@@ -189,7 +205,14 @@
 				const text = (link.textContent || "").trim();
 				const href = link.getAttribute("href") || "";
 				if (!text || !href || href.startsWith("#")) continue;
-				searchableItems.push({ title: text, url: href, description: "", keywords: text, source: "link" });
+				searchableItems.push({
+					title: text,
+					url: href,
+					description: "",
+					keywords: text,
+					source: "link",
+					haystack: `${text} ${href} ${text}`.toLowerCase()
+				});
 			}
 		}
 
@@ -199,7 +222,14 @@
 				const title = String(item.title || item.name || "").trim();
 				const url = String(item.url || item.link || "").trim();
 				if (!title) continue;
-				searchableItems.push({ title, url, description: "", keywords: title, source: "tool" });
+				searchableItems.push({
+					title,
+					url,
+					description: "",
+					keywords: title,
+					source: "tool",
+					haystack: `${title} ${url} ${title}`.toLowerCase()
+				});
 			}
 		}
 	}
@@ -226,9 +256,9 @@
 			return;
 		}
 
+		// Performance optimization: Use pre-computed lowercased haystack for O(1) query matching operations per item.
 		const matches = searchableItems.filter((item) => {
-			const haystack = `${item.title} ${item.url} ${item.description || ""} ${item.keywords || ""}`.toLowerCase();
-			return haystack.includes(q);
+			return (item.haystack || "").includes(q);
 		});
 
 		renderResults(matches);
@@ -284,8 +314,13 @@
 		localStorage.setItem(languageKey, targetLang);
 	}
 
+	// Performance optimization: Debounce search execution during continuous input (150ms delay)
+	const debouncedSearch = debounce((val) => {
+		runSearch(val);
+	}, 150);
+
 	searchInput.addEventListener("input", (event) => {
-		runSearch(event.target.value || "");
+		debouncedSearch(event.target.value || "");
 	});
 
 	document.getElementById("searchModal")?.addEventListener("shown.bs.modal", () => {
