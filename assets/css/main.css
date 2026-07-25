@@ -1,51 +1,62 @@
 /* BlueTEXT Design Tokens & Theme Engine */
 :root {
-  --bt-header-bg: #0f172a;
-  --bt-header-border: #1e293b;
+  --bt-header-bg: rgba(15, 23, 42, 0.85);
+  --bt-header-border: rgba(255, 255, 255, 0.1);
   --bt-header-text: #f8fafc;
-  --bt-header-muted: #94a3b8;
+  --bt-header-muted: #cbd5e1;
   --bt-header-hover: #38bdf8;
-  --bt-header-dropdown-bg: #1e293b;
+  --bt-header-dropdown-bg: rgba(30, 41, 59, 0.95);
   --bt-header-dropdown-text: #f1f5f9;
 }
 
 [data-bs-theme="light"] {
-  --bt-header-bg: #ffffff;
-  --bt-header-border: #e2e8f0;
+  --bt-header-bg: rgba(255, 255, 255, 0.88);
+  --bt-header-border: rgba(226, 232, 240, 0.8);
   --bt-header-text: #0f172a;
-  --bt-header-muted: #334155;
+  --bt-header-muted: #475569;
   --bt-header-hover: #0284c7;
   --bt-header-dropdown-bg: #ffffff;
   --bt-header-dropdown-text: #0f172a;
 }
 
 [data-bs-theme="dark"] {
-  --bt-header-bg: #090d16;
-  --bt-header-border: #1e293b;
+  --bt-header-bg: rgba(15, 23, 42, 0.9);
+  --bt-header-border: rgba(255, 255, 255, 0.08);
   --bt-header-text: #f8fafc;
-  --bt-header-muted: #e2e8f0;
+  --bt-header-muted: #cbd5e1;
   --bt-header-hover: #38bdf8;
-  --bt-header-dropdown-bg: #111827;
+  --bt-header-dropdown-bg: #0f172a;
   --bt-header-dropdown-text: #f9fafb;
 }
 
-/* --- Header Navbar & Navigation Styling --- */
+/* --- Header Navbar & Sticky Glassmorphism --- */
+.bt-header-shell {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
 .bt-header {
   background-color: var(--bt-header-bg) !important;
   border-color: var(--bt-header-border) !important;
-  transition: background-color 0.25s ease, border-color 0.25s ease;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .bt-header .navbar-brand {
   color: var(--bt-header-text) !important;
   font-weight: 700;
+  letter-spacing: -0.3px;
 }
 
 .bt-header .nav-link {
   color: var(--bt-header-muted) !important;
   font-weight: 600;
   padding: 0.5rem 0.85rem !important;
-  transition: color 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, transform 0.15s ease;
 }
 
 .bt-header .nav-link:hover,
@@ -57,49 +68,126 @@
 .bt-header .dropdown-menu {
   background-color: var(--bt-header-dropdown-bg) !important;
   border-color: var(--bt-header-border) !important;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.3) !important;
+  border-radius: 12px !important;
 }
 
 .bt-header .dropdown-item {
   color: var(--bt-header-dropdown-text) !important;
   font-weight: 500;
   padding: 0.45rem 1rem;
+  transition: all 0.15s ease;
 }
 
 .bt-header .dropdown-item:hover,
 .bt-header .dropdown-item:focus {
-  background-color: rgba(14, 165, 233, 0.12) !important;
+  background-color: rgba(56, 189, 248, 0.14) !important;
   color: var(--bt-header-hover) !important;
+  padding-left: 1.2rem;
+}
+
+/* Header Action Divider */
+.bt-header-divider {
+  width: 1px;
+  height: 20px;
+  background-color: var(--bt-header-border);
+}
+
+/* Header Social & Top Action Buttons */
+.bt-social-link {
+  color: var(--bt-header-muted);
+  padding: 5px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.bt-social-link:hover {
+  color: var(--bt-header-hover);
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
 /* --- Theme Switcher Pill --- */
 .bt-theme-switch-pill {
-  background-color: var(--bt-header-bg);
+  background-color: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--bt-header-border);
   border-radius: 9999px;
-  padding: 4px;
+  padding: 4px 8px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
+  transition: background-color 0.2s ease;
 }
 
-/* --- Category Cards & Subcategories --- */
+.bt-theme-switch-pill:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* --- Premium Tool Card Design --- */
+.bt-tool-card-wrapper {
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+}
+
+.bt-tool-card-wrapper:hover {
+  transform: translateY(-4px);
+}
+
 .bt-category-card {
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
-  border-color: var(--bs-border-color);
+  transition: all 0.25s ease;
+  border: 1px solid var(--bs-border-color);
   background-color: var(--bs-body-bg);
+  border-radius: 14px !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.bt-category-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #0d6efd, #a855f7, #38bdf8);
+  opacity: 0;
+  transition: opacity 0.25s ease;
 }
 
 .bt-category-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(13, 110, 253, 0.12) !important;
-  border-color: var(--bs-primary) !important;
+  border-color: rgba(56, 189, 248, 0.4) !important;
+  box-shadow: 0 12px 28px -8px rgba(13, 110, 253, 0.18) !important;
+}
+
+.bt-category-card:hover::before {
+  opacity: 1;
+}
+
+/* Card Icon Glow Container */
+.bt-card-icon-box {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(13, 110, 253, 0.12), rgba(168, 85, 247, 0.1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.bt-category-card:hover .bt-card-icon-box {
+  transform: scale(1.08) rotate(3deg);
 }
 
 .subcategory-container .sub-category-btn {
   border: 1px solid transparent;
   color: var(--bs-body-color);
   transition: all 0.15s ease;
+  border-radius: 8px;
 }
 
 .subcategory-container .sub-category-btn:hover {
@@ -117,3 +205,14 @@
   box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.18);
   border-color: #0d6efd;
 }
+
+/* Category Badge Styling */
+.bt-badge-category {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  padding: 0.35em 0.75em;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
