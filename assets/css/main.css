@@ -1,5 +1,89 @@
-/* BlueTEXT Bundled Styles */
+/* BlueTEXT Design Tokens & Theme Engine */
+:root {
+  --bt-header-bg: #0f172a;
+  --bt-header-border: #1e293b;
+  --bt-header-text: #f8fafc;
+  --bt-header-muted: #94a3b8;
+  --bt-header-hover: #38bdf8;
+  --bt-header-dropdown-bg: #1e293b;
+  --bt-header-dropdown-text: #f1f5f9;
+}
 
+[data-bs-theme="light"] {
+  --bt-header-bg: #ffffff;
+  --bt-header-border: #e2e8f0;
+  --bt-header-text: #0f172a;
+  --bt-header-muted: #334155;
+  --bt-header-hover: #0284c7;
+  --bt-header-dropdown-bg: #ffffff;
+  --bt-header-dropdown-text: #0f172a;
+}
+
+[data-bs-theme="dark"] {
+  --bt-header-bg: #090d16;
+  --bt-header-border: #1e293b;
+  --bt-header-text: #f8fafc;
+  --bt-header-muted: #e2e8f0;
+  --bt-header-hover: #38bdf8;
+  --bt-header-dropdown-bg: #111827;
+  --bt-header-dropdown-text: #f9fafb;
+}
+
+/* --- Header Navbar & Navigation Styling --- */
+.bt-header {
+  background-color: var(--bt-header-bg) !important;
+  border-color: var(--bt-header-border) !important;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.bt-header .navbar-brand {
+  color: var(--bt-header-text) !important;
+  font-weight: 700;
+}
+
+.bt-header .nav-link {
+  color: var(--bt-header-muted) !important;
+  font-weight: 600;
+  padding: 0.5rem 0.85rem !important;
+  transition: color 0.15s ease-in-out;
+}
+
+.bt-header .nav-link:hover,
+.bt-header .nav-link:focus,
+.bt-header .nav-link.show {
+  color: var(--bt-header-hover) !important;
+}
+
+.bt-header .dropdown-menu {
+  background-color: var(--bt-header-dropdown-bg) !important;
+  border-color: var(--bt-header-border) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2) !important;
+}
+
+.bt-header .dropdown-item {
+  color: var(--bt-header-dropdown-text) !important;
+  font-weight: 500;
+  padding: 0.45rem 1rem;
+}
+
+.bt-header .dropdown-item:hover,
+.bt-header .dropdown-item:focus {
+  background-color: rgba(14, 165, 233, 0.12) !important;
+  color: var(--bt-header-hover) !important;
+}
+
+/* --- Theme Switcher Pill --- */
+.bt-theme-switch-pill {
+  background-color: var(--bt-header-bg);
+  border: 1px solid var(--bt-header-border);
+  border-radius: 9999px;
+  padding: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* --- Category Cards & Subcategories --- */
 .bt-category-card {
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
   border-color: var(--bs-border-color);
