@@ -2,6 +2,7 @@
 """
 BlueTEXT Static Development & Production Web Server
 Zero external dependencies - Uses Python 3 standard library.
+Handles directory resolution, CORS, and clean URL routing for static pages.
 """
 
 import http.server
@@ -15,6 +16,14 @@ DIRECTORY = os.path.abspath(os.path.dirname(__file__))
 class Handler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=DIRECTORY, **kwargs)
+
+    def do_GET(self):
+        # Resolve clean directory URLs without trailing slashes
+        url_path = self.path.split('?')[0].split('#')[0]
+        local_path = os.path.join(DIRECTORY, url_path.lstrip('/'))
+        if os.path.isdir(local_path) and not self.path.endswith('/') and not self.path.split('?')[0].endswith('/'):
+            self.path = url_path + '/' + ('?' + self.path.split('?')[1] if '?' in self.path else '')
+        super().do_GET()
 
     def end_headers(self):
         # Enable CORS and caching headers for static assets
