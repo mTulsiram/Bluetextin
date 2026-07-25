@@ -1,49 +1,101 @@
-/* BlueTEXT Design Tokens & Theme Engine */
+/* --- Material 3 Expressive Design Tokens & Theme Engine --- */
 :root {
-  --bt-header-bg: rgba(15, 23, 42, 0.85);
-  --bt-header-border: rgba(255, 255, 255, 0.1);
-  --bt-header-text: #f8fafc;
-  --bt-header-muted: #cbd5e1;
-  --bt-header-hover: #38bdf8;
-  --bt-header-dropdown-bg: rgba(30, 41, 59, 0.95);
-  --bt-header-dropdown-text: #f1f5f9;
-}
+  /* M3 Light Color Tokens */
+  --md-sys-color-primary: #005ac1;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #d8e2ff;
+  --md-sys-color-on-primary-container: #001a41;
+  --md-sys-color-secondary: #575e71;
+  --md-sys-color-secondary-container: #dbe2f9;
+  --md-sys-color-on-secondary-container: #141b2c;
+  --md-sys-color-tertiary: #715573;
+  --md-sys-color-tertiary-container: #fbd7fc;
+  --md-sys-color-surface: #fbf8fd;
+  --md-sys-color-surface-container-lowest: #ffffff;
+  --md-sys-color-surface-container-low: #f6f2f7;
+  --md-sys-color-surface-container: #f0ecf1;
+  --md-sys-color-surface-container-high: #eae6ec;
+  --md-sys-color-surface-container-highest: #e4e0e6;
+  --md-sys-color-on-surface: #1b1b1f;
+  --md-sys-color-on-surface-variant: #44474f;
+  --md-sys-color-outline: #757780;
+  --md-sys-color-outline-variant: #c5c6d0;
 
-[data-bs-theme="light"] {
-  --bt-header-bg: rgba(255, 255, 255, 0.88);
-  --bt-header-border: rgba(226, 232, 240, 0.8);
-  --bt-header-text: #0f172a;
-  --bt-header-muted: #475569;
-  --bt-header-hover: #0284c7;
+  /* M3 Expressive Radii & Elevation */
+  --md-corner-full: 9999px;
+  --md-corner-xlarge: 28px;
+  --md-corner-large: 20px;
+  --md-corner-medium: 16px;
+  --md-corner-small: 12px;
+
+  --md-elevation-1: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+  --md-elevation-2: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+  --md-elevation-3: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.30);
+
+  /* Legacy Compatibility Variables */
+  --bt-header-bg: rgba(255, 255, 255, 0.85);
+  --bt-header-border: rgba(0, 0, 0, 0.08);
+  --bt-header-text: #1b1b1f;
+  --bt-header-muted: #44474f;
+  --bt-header-hover: #005ac1;
   --bt-header-dropdown-bg: #ffffff;
-  --bt-header-dropdown-text: #0f172a;
+  --bt-header-dropdown-text: #1b1b1f;
 }
 
 [data-bs-theme="dark"] {
-  --bt-header-bg: rgba(15, 23, 42, 0.9);
+  /* M3 Dark Expressive Color Tokens */
+  --md-sys-color-primary: #adc6ff;
+  --md-sys-color-on-primary: #002e69;
+  --md-sys-color-primary-container: #004494;
+  --md-sys-color-on-primary-container: #d8e2ff;
+  --md-sys-color-secondary: #bfc6dc;
+  --md-sys-color-secondary-container: #3f4759;
+  --md-sys-color-on-secondary-container: #dbe2f9;
+  --md-sys-color-tertiary: #dfbbde;
+  --md-sys-color-tertiary-container: #583e5a;
+  --md-sys-color-surface: #131316;
+  --md-sys-color-surface-container-lowest: #0e0e11;
+  --md-sys-color-surface-container-low: #1b1b1f;
+  --md-sys-color-surface-container: #1f1f23;
+  --md-sys-color-surface-container-high: #2a2a2e;
+  --md-sys-color-surface-container-highest: #353439;
+  --md-sys-color-on-surface: #e4e1e6;
+  --md-sys-color-on-surface-variant: #c5c6d0;
+  --md-sys-color-outline: #8f9099;
+  --md-sys-color-outline-variant: #44474f;
+
+  --bt-header-bg: rgba(19, 19, 22, 0.88);
   --bt-header-border: rgba(255, 255, 255, 0.08);
-  --bt-header-text: #f8fafc;
-  --bt-header-muted: #cbd5e1;
-  --bt-header-hover: #38bdf8;
-  --bt-header-dropdown-bg: #0f172a;
-  --bt-header-dropdown-text: #f9fafb;
+  --bt-header-text: #e4e1e6;
+  --bt-header-muted: #c5c6d0;
+  --bt-header-hover: #adc6ff;
+  --bt-header-dropdown-bg: #1f1f23;
+  --bt-header-dropdown-text: #e4e1e6;
 }
 
-/* --- Header Navbar & Sticky Glassmorphism --- */
+/* Base M3 Expressive Body Setup */
+body {
+  background-color: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* --- M3 Expressive Header Shell --- */
 .bt-header-shell {
   position: sticky;
   top: 0;
   z-index: 1030;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .bt-header {
   background-color: var(--bt-header-bg) !important;
   border-color: var(--bt-header-border) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: var(--md-corner-full) !important;
+  box-shadow: var(--md-elevation-1) !important;
+  transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
 }
 
 .bt-header .navbar-brand {
@@ -55,14 +107,16 @@
 .bt-header .nav-link {
   color: var(--bt-header-muted) !important;
   font-weight: 600;
-  padding: 0.5rem 0.85rem !important;
-  transition: color 0.15s ease-in-out, transform 0.15s ease;
+  padding: 0.5rem 0.9rem !important;
+  border-radius: var(--md-corner-full);
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
 }
 
 .bt-header .nav-link:hover,
 .bt-header .nav-link:focus,
 .bt-header .nav-link.show {
   color: var(--bt-header-hover) !important;
+  background-color: var(--md-sys-color-secondary-container);
 }
 
 .bt-header .dropdown-menu {
@@ -70,108 +124,94 @@
   border-color: var(--bt-header-border) !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.3) !important;
-  border-radius: 12px !important;
+  box-shadow: var(--md-elevation-3) !important;
+  border-radius: var(--md-corner-large) !important;
+  padding: 8px !important;
 }
 
 .bt-header .dropdown-item {
   color: var(--bt-header-dropdown-text) !important;
   font-weight: 500;
-  padding: 0.45rem 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--md-corner-medium);
   transition: all 0.15s ease;
 }
 
 .bt-header .dropdown-item:hover,
 .bt-header .dropdown-item:focus {
-  background-color: rgba(56, 189, 248, 0.14) !important;
-  color: var(--bt-header-hover) !important;
-  padding-left: 1.2rem;
+  background-color: var(--md-sys-color-primary-container) !important;
+  color: var(--md-sys-color-on-primary-container) !important;
 }
 
-/* Header Action Divider */
-.bt-header-divider {
-  width: 1px;
-  height: 20px;
-  background-color: var(--bt-header-border);
-}
-
-/* Header Social & Top Action Buttons */
-.bt-social-link {
-  color: var(--bt-header-muted);
-  padding: 5px;
-  border-radius: 6px;
-  display: inline-flex;
-  align-items: center;
+/* M3 Segmented Control Filter Chips */
+.m3-segmented-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
   justify-content: center;
-  transition: all 0.15s ease;
 }
 
-.bt-social-link:hover {
-  color: var(--bt-header-hover);
-  background-color: rgba(255, 255, 255, 0.08);
-}
-
-/* --- Theme Switcher Pill --- */
-.bt-theme-switch-pill {
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--bt-header-border);
-  border-radius: 9999px;
-  padding: 4px 8px;
+.m3-chip-btn {
+  border: 1px solid var(--md-sys-color-outline-variant);
+  background-color: var(--md-sys-color-surface-container-low);
+  color: var(--md-sys-color-on-surface);
+  border-radius: var(--md-corner-full);
+  padding: 8px 18px;
+  font-size: 0.88rem;
+  font-weight: 600;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  transition: background-color 0.2s ease;
+  gap: 8px;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.bt-theme-switch-pill:hover {
-  background-color: rgba(255, 255, 255, 0.12);
+.m3-chip-btn:hover {
+  background-color: var(--md-sys-color-surface-container-high);
+  border-color: var(--md-sys-color-primary);
+  transform: translateY(-1px);
 }
 
-/* --- Premium Tool Card Design --- */
+.m3-chip-btn.active {
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  border-color: var(--md-sys-color-primary);
+  box-shadow: var(--md-elevation-1);
+}
+
+/* --- M3 Expressive Tool Cards --- */
 .bt-tool-card-wrapper {
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .bt-tool-card-wrapper:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
 }
 
-.bt-category-card {
-  transition: all 0.25s ease;
-  border: 1px solid var(--bs-border-color);
-  background-color: var(--bs-body-bg);
-  border-radius: 14px !important;
+.m3-expressive-card {
+  background-color: var(--md-sys-color-surface-container);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-corner-xlarge) !important;
+  transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-.bt-category-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #0d6efd, #a855f7, #38bdf8);
-  opacity: 0;
-  transition: opacity 0.25s ease;
+.m3-expressive-card:hover {
+  background-color: var(--md-sys-color-surface-container-high);
+  border-color: var(--md-sys-color-primary);
+  box-shadow: var(--md-elevation-2);
 }
 
-.bt-category-card:hover {
-  border-color: rgba(56, 189, 248, 0.4) !important;
-  box-shadow: 0 12px 28px -8px rgba(13, 110, 253, 0.18) !important;
-}
-
-.bt-category-card:hover::before {
-  opacity: 1;
-}
-
-/* Card Icon Glow Container */
-.bt-card-icon-box {
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, rgba(13, 110, 253, 0.12), rgba(168, 85, 247, 0.1));
+.m3-card-icon-container {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--md-corner-medium);
+  background: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -179,40 +219,35 @@
   transition: transform 0.25s ease;
 }
 
-.bt-category-card:hover .bt-card-icon-box {
-  transform: scale(1.08) rotate(3deg);
+.m3-expressive-card:hover .m3-card-icon-container {
+  transform: scale(1.1) rotate(4deg);
+  background: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
 }
 
-.subcategory-container .sub-category-btn {
-  border: 1px solid transparent;
-  color: var(--bs-body-color);
-  transition: all 0.15s ease;
-  border-radius: 8px;
+/* Search Bar Pill in Hero */
+.m3-search-pill {
+  background-color: var(--md-sys-color-surface-container-high);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-corner-full);
+  padding: 12px 24px;
+  font-size: 1rem;
+  color: var(--md-sys-color-on-surface);
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
 }
 
-.subcategory-container .sub-category-btn:hover {
-  background-color: var(--bs-tertiary-bg);
+.m3-search-pill:focus {
+  background-color: var(--md-sys-color-surface-container-lowest);
+  border-color: var(--md-sys-color-primary);
+  box-shadow: 0 0 0 4px rgba(0, 90, 193, 0.15);
+  outline: none;
 }
 
-.subcategory-container .sub-category-btn.active {
-  background-color: var(--bs-primary-bg-subtle);
-  color: var(--bs-primary-emphasis);
-  border-color: var(--bs-primary-border-subtle);
+/* Pagination Buttons */
+.m3-pagination-btn {
+  border-radius: var(--md-corner-full);
+  padding: 8px 20px;
   font-weight: 600;
 }
 
-#homepage-search-input:focus {
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.18);
-  border-color: #0d6efd;
-}
-
-/* Category Badge Styling */
-.bt-badge-category {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.2px;
-  padding: 0.35em 0.75em;
-  border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
 
