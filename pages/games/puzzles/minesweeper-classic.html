@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -624,16 +624,255 @@
 <!-- MODALS_END -->
 
   <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Minesweeper Classic</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <nav aria-label="Breadcrumb" class="mb-3">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/pages/games/">Games</a></li>
+        <li class="breadcrumb-item"><a href="/pages/games/puzzles/">Puzzles</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Minesweeper Classic</li>
+      </ol>
+    </nav>
+
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <div class="card shadow-sm border mb-4">
+          <div class="card-header bg-body-tertiary d-flex align-items-center justify-content-between py-3 px-4">
+            <h1 class="h4 mb-0 fw-bold">💣 Minesweeper Classic</h1>
+            <div class="badge bg-primary fs-6" id="status-badge">Mines: 10</div>
+          </div>
+          <div class="card-body p-4 text-center">
+            <div class="d-flex justify-content-center mb-3">
+              <div id="minesweeper-board" class="p-3 bg-secondary rounded-3 shadow d-inline-block" style="background-color: #2b3e50 !important;">
+                <div class="d-grid gap-1" style="grid-template-columns: repeat(9, 36px); grid-template-rows: repeat(9, 36px);">
+                  <!-- 81 tiles rendered by JS -->
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2 justify-content-center mt-4">
+              <button class="btn btn-primary" id="reset-btn">New Game</button>
+              <button class="btn btn-success" id="save-btn">Save Game</button>
+              <label class="btn btn-info text-white mb-0" style="cursor:pointer;">
+                Import Game
+                <input type="file" id="import-file" accept=".json" style="display:none;">
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="card shadow-sm border mb-4">
+          <div class="card-body text-center">
+            <h2 class="h5 mb-3">Game Status</h2>
+            <div class="d-flex justify-content-around border rounded p-3 bg-body-tertiary">
+              <div>
+                <div class="small text-muted fw-bold">Mines Left</div>
+                <div class="fs-3 fw-bold text-danger" id="mines-val">10</div>
+              </div>
+              <div class="border-end"></div>
+              <div>
+                <div class="small text-muted fw-bold">Flags Used</div>
+                <div class="fs-3 fw-bold text-warning" id="flags-val">0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card shadow-sm border">
+          <div class="card-body">
+            <h2 class="h5 mb-2">Instructions</h2>
+            <p class="small text-body-secondary mb-0">Left-click a square to reveal it. Right-click (or long press) to flag a suspected mine! Reveal all non-mine squares to win.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
+  <script>
+    (function() {
+      const ROWS = 9;
+      const COLS = 9;
+      const MINES = 10;
+
+      let board = [];
+      let revealedCount = 0;
+      let flagsCount = 0;
+      let gameActive = true;
+
+      const boardEl = document.querySelector("#minesweeper-board > div");
+      const statusBadge = document.getElementById("status-badge");
+      const minesVal = document.getElementById("mines-val");
+      const flagsVal = document.getElementById("flags-val");
+      const resetBtn = document.getElementById("reset-btn");
+      const saveBtn = document.getElementById("save-btn");
+      const importFile = document.getElementById("import-file");
+
+      function initBoard() {
+        board = [];
+        revealedCount = 0;
+        flagsCount = 0;
+        gameActive = true;
+        statusBadge.textContent = "Mines: 10";
+        statusBadge.className = "badge bg-primary fs-6";
+
+        for (let r = 0; r < ROWS; r++) {
+          board[r] = [];
+          for (let c = 0; c < COLS; c++) {
+            board[r][c] = { mine: false, revealed: false, flagged: false, count: 0 };
+          }
+        }
+
+        // Place Mines
+        let placed = 0;
+        while (placed < MINES) {
+          let r = Math.floor(Math.random() * ROWS);
+          let c = Math.floor(Math.random() * COLS);
+          if (!board[r][c].mine) {
+            board[r][c].mine = true;
+            placed++;
+          }
+        }
+
+        // Calculate Neighbor Counts
+        for (let r = 0; r < ROWS; r++) {
+          for (let c = 0; c < COLS; c++) {
+            if (board[r][c].mine) continue;
+            let cnt = 0;
+            for (let dr = -1; dr <= 1; dr++) {
+              for (let dc = -1; dc <= 1; dc++) {
+                let nr = r + dr, nc = c + dc;
+                if (nr >= 0 && nr < ROWS && nc >= 0 && nc < COLS && board[nr][nc].mine) {
+                  cnt++;
+                }
+              }
+            }
+            board[r][c].count = cnt;
+          }
+        }
+        render();
+      }
+
+      function render() {
+        boardEl.innerHTML = "";
+        minesVal.textContent = MINES - flagsCount;
+        flagsVal.textContent = flagsCount;
+
+        for (let r = 0; r < ROWS; r++) {
+          for (let c = 0; c < COLS; c++) {
+            const cell = board[r][c];
+            const btn = document.createElement("button");
+            btn.className = "btn p-0 d-flex align-items-center justify-content-center fw-bold border shadow-sm";
+            btn.style.width = "36px";
+            btn.style.height = "36px";
+
+            if (cell.revealed) {
+              btn.className += " bg-body-tertiary text-body";
+              if (cell.mine) {
+                btn.textContent = "💣";
+                btn.className += " bg-danger text-white";
+              } else if (cell.count > 0) {
+                btn.textContent = cell.count;
+              }
+            } else if (cell.flagged) {
+              btn.textContent = "🚩";
+              btn.className += " bg-warning-subtle";
+            } else {
+              btn.className += " bg-primary text-white";
+            }
+
+            btn.addEventListener("click", () => revealCell(r, c));
+            btn.addEventListener("contextmenu", e => {
+              e.preventDefault();
+              toggleFlag(r, c);
+            });
+            boardEl.appendChild(btn);
+          }
+        }
+      }
+
+      function revealCell(r, c) {
+        if (!gameActive || board[r][c].revealed || board[r][c].flagged) return;
+        board[r][c].revealed = true;
+
+        if (board[r][c].mine) {
+          gameActive = false;
+          statusBadge.textContent = "💥 BOOM! Game Over!";
+          statusBadge.className = "badge bg-danger fs-6";
+          // Reveal all mines
+          board.forEach(row => row.forEach(cell => { if (cell.mine) cell.revealed = true; }));
+          render();
+          return;
+        }
+
+        revealedCount++;
+        if (board[r][c].count === 0) {
+          // Auto reveal adjacent
+          for (let dr = -1; dr <= 1; dr++) {
+            for (let dc = -1; dc <= 1; dc++) {
+              let nr = r + dr, nc = c + dc;
+              if (nr >= 0 && nr < ROWS && nc >= 0 && nc < COLS) {
+                revealCell(nr, nc);
+              }
+            }
+          }
+        }
+
+        if (revealedCount === ROWS * COLS - MINES) {
+          gameActive = false;
+          statusBadge.textContent = "🎉 Victory! All cleared!";
+          statusBadge.className = "badge bg-success fs-6";
+        }
+        render();
+      }
+
+      function toggleFlag(r, c) {
+        if (!gameActive || board[r][c].revealed) return;
+        board[r][c].flagged = !board[r][c].flagged;
+        flagsCount += board[r][c].flagged ? 1 : -1;
+        render();
+      }
+
+      resetBtn.addEventListener("click", initBoard);
+      saveBtn.addEventListener("click", () => {
+        const data = JSON.stringify({ board, revealedCount, flagsCount, gameActive }, null, 2);
+        const blob = new Blob([data], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "minesweeper-game-save.json";
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      importFile.addEventListener("change", e => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = evt => {
+          try {
+            const data = JSON.parse(evt.target.result);
+            if (data.board) {
+              board = data.board;
+              revealedCount = data.revealedCount || 0;
+              flagsCount = data.flagsCount || 0;
+              gameActive = data.gameActive !== undefined ? data.gameActive : true;
+              render();
+              statusBadge.textContent = gameActive ? "Game Loaded" : "Game Ended";
+            }
+          } catch (err) {
+            alert("Invalid save file.");
+          }
+        };
+        reader.readAsText(file);
+      });
+
+      initBoard();
+    })();
+  </script>
+
+
   <div id="footer-component"><!-- FOOTER_START -->
-<footer class="bt-footer mt-5">
-  <div class="container py-3">
-    <div class="bt-footer-panel rounded-4 border shadow-sm p-3 px-4 d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
-      <div class="d-flex flex-column flex-md-row align-items-center gap-2 text-center text-md-start">
         <div class="d-flex align-items-center gap-2">
           <svg class="bt-logo text-primary" width="20" height="20" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
             <rect width="28" height="28" rx="7" fill="currentColor"></rect>

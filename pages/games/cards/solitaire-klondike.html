@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -618,22 +618,447 @@
         setupLangDropdown();
         setupClearCacheHeader();
       });
+              <script src="https://cdn.razorpay.com/static/widget/subscription-button.js" data-subscription_button_id="pl_T4XGfSg6ladpyP" data-button_theme="brand-color" async> </script>
+            </form>
+          </div>
+          <p class="small text-muted mt-3 mb-0" style="font-size: 0.75rem;">Your payment is safely processed by Razorpay. Zero trackers policy.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Secure Patreon Info Modal -->
+  <div class="modal fade" id="patreonModal" tabindex="-1" aria-labelledby="patreonModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5 text-body-emphasis" id="patreonModalLabel">🧡 Secure Patreon Support</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center py-4 px-3" style="background-color: var(--bt-bg-primary);">
+          <p class="small text-body-secondary mb-4">Support BlueTEXT.in internationally on Patreon:</p>
+          
+          <div class="p-3 border rounded text-start mb-4" style="background-color: var(--bt-bg-secondary); border-color: var(--bt-border-color) !important;">
+            <h6 class="fw-bold mb-1 text-primary">☕ BlueTEXT Membership</h6>
+            <p class="small text-muted mb-3">Become a member to help keep the servers active, fast, and completely ad-free.</p>
+            <a href="https://www.patreon.com/BlueTEXTin" onclick="window.open(this.href, 'PatreonPayment', 'width=600,height=750,scrollbars=yes'); return false;" class="btn btn-primary w-100 fw-semibold">
+              Support on Patreon
+            </a>
+          </div>
+          
+          <p class="small text-muted mb-0" style="font-size: 0.75rem;">Note: Payment will open securely in a separate popup window so you can stay on BlueTEXT.in.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Left Offcanvas Navigation Menu (Mobile Slider) -->
+  <div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel" style="width: 280px; background-color: var(--bt-bg-primary); border-right: 1px solid var(--bt-border-color);">
+    <div class="offcanvas-header border-bottom py-3">
+      <h5 class="offcanvas-title fw-bold text-primary d-flex align-items-center gap-2" id="mobileSidebarLabel">
+        <svg class="bt-logo" width="24" height="24" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <rect width="28" height="28" rx="7" fill="currentColor"></rect>
+          <path d="M8 7H15.5C18.3 7 20.3 8.5 20.3 10.9C20.3 12.4 19.5 13.6 18.1 14.2C19.9 14.7 21 16 21 17.8C21 20.5 18.8 22 15.8 22H8V7ZM11.2 9.6V13.1H15.2C16.4 13.1 17.1 12.4 17.1 11.3C17.1 10.2 16.4 9.6 15.2 9.6H11.2ZM11.2 15.5V19.4H15.7C17 19.4 17.8 18.7 17.8 17.5C17.8 16.3 16.9 15.5 15.7 15.5H11.2Z" fill="white"></path>
+        </svg>
+        <span>BlueTEXT.in</span>
+      </h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body p-3">
+      <!-- Search Bar -->
+      <div class="mb-4">
+        <input class="form-control bt-mobile-search-input" type="search" placeholder="Search pages and tools..." aria-label="Search" data-bs-toggle="modal" data-bs-target="#searchModal" data-bs-dismiss="offcanvas" readonly>
+      </div>
+
+      <!-- Navigation List Links -->
+      <div class="list-group list-group-flush gap-1">
+        <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold" href="/" data-bs-dismiss="offcanvas">🏠 Home</a>
+        
+        <div class="mt-3">
+          <div class="fw-bold text-muted small text-uppercase px-3 mb-1.5" style="font-size: 0.72rem; letter-spacing: 0.5px;">Sections</div>
+          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold d-flex align-items-center justify-content-between" href="/pages/tools/" data-bs-dismiss="offcanvas">
+            <span>🛠️ Developer Tools</span>
+          </a>
+          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold d-flex align-items-center justify-content-between" href="/pages/games/" data-bs-dismiss="offcanvas">
+            <span>🎮 Browser Games</span>
+          </a>
+          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold" href="/pages/software/" data-bs-dismiss="offcanvas"><span>💻 Software Catalog</span></a>
+          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold" href="/pages/tutorials/" data-bs-dismiss="offcanvas"><span>📚 Tutorials</span></a>
+          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold" href="/pages/education/" data-bs-dismiss="offcanvas"><span>🎓 Education</span></a>
+          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold" href="/pages/blog/" data-bs-dismiss="offcanvas"><span>✍️ Blog</span></a>
+          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold text-danger d-flex align-items-center gap-2" href="/support.html" data-bs-dismiss="offcanvas">
+            <span>💖 Supporters Wall</span>
+          </a>
+        </div>
+
+        <hr class="my-3">
+
+        <!-- Settings & Controls -->
+        <div class="px-3">
+          <h6 class="fw-bold mb-2.5 small text-uppercase text-muted" style="font-size: 0.72rem; letter-spacing: 0.5px;">App Options</h6>
+          <div class="d-flex flex-column gap-3">
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="small text-body-secondary fw-semibold">Theme</span>
+              <button class="btn btn-sm btn-outline-secondary" onclick="document.getElementById('theme-button').click()" type="button" aria-label="Toggle Theme">
+                🌓 Toggle Theme
+              </button>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="small text-body-secondary fw-semibold">Language</span>
+              <div class="dropdown">
+                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  🌐 Language
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" style="max-height: 240px; overflow-y: auto;">
+                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=en]').click()">English</button></li>
+                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=es]').click()">Español</button></li>
+                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=fr]').click()">Français</button></li>
+                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=de]').click()">Deutsch</button></li>
+                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=hi]').click()">हिन्दी</button></li>
+                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=zh-CN]').click()">简体中文</button></li>
+                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=ja]').click()">日本語</button></li>
+                </ul>
+              </div>
+            </div>
+            
+            <button class="btn btn-sm btn-outline-danger w-100 mt-2" onclick="document.getElementById('clear-cache-button').click(); data-bs-dismiss='offcanvas'" type="button">
+              <span>🗑️ Clear Cache</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      function setupLangDropdown() {
+        const dropdownMenu = document.getElementById("language-dropdown-menu");
+        const hiddenSelect = document.getElementById("language-select");
+        const langCodeSpan = document.getElementById("bt-lang-code");
+        if (!dropdownMenu || !hiddenSelect) return;
+
+        function updateLangCodeLabel(val) {
+          if (!langCodeSpan) return;
+          const code = (val || "en").split("-")[0].toUpperCase();
+          langCodeSpan.textContent = code;
+        }
+
+        // Initialize label state safely
+        let initialVal = "en";
+        try {
+          initialVal = hiddenSelect.value || localStorage.getItem("bt_language_v1") || "en";
+        } catch (e) {
+          initialVal = hiddenSelect.value || "en";
+        }
+        updateLangCodeLabel(initialVal);
+
+        dropdownMenu.querySelectorAll(".dropdown-item").forEach(item => {
+          item.addEventListener("click", () => {
+            const val = item.getAttribute("data-value");
+            if (val) {
+              hiddenSelect.value = val;
+              hiddenSelect.dispatchEvent(new Event("change"));
+              updateLangCodeLabel(val);
+            }
+          });
+        });
+
+        hiddenSelect.addEventListener("change", () => {
+          updateLangCodeLabel(hiddenSelect.value);
+        });
+      }
+
+      function setupClearCacheHeader() {
+        const btn = document.getElementById("clear-cache-header-btn");
+        if (!btn) return;
+        btn.addEventListener("click", async () => {
+          const confirmed = window.confirm("Clear local cache and reload this page?");
+          if (!confirmed) return;
+          
+          try {
+            localStorage.clear();
+            sessionStorage.clear();
+          } catch (e) {}
+
+          if ("caches" in window) {
+            try {
+              const keys = await caches.keys();
+              await Promise.all(keys.map(k => caches.delete(k)));
+            } catch (e) {}
+          }
+
+          if ("serviceWorker" in navigator) {
+            try {
+              const regs = await navigator.serviceWorker.getRegistrations();
+              await Promise.all(regs.map(r => r.unregister()));
+            } catch (e) {}
+          }
+          
+          window.location.reload(true);
+        });
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", () => {
+          setupLangDropdown();
+          setupClearCacheHeader();
+        }, { once: true });
+      } else {
+        setupLangDropdown();
+        setupClearCacheHeader();
+      }
+      document.addEventListener("bt:components-ready", () => {
+        setupLangDropdown();
+        setupClearCacheHeader();
+      });
     })();
   </script>
 
 <!-- MODALS_END -->
 
   <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Solitaire Klondike</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <nav aria-label="Breadcrumb" class="mb-3">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/pages/games/">Games</a></li>
+        <li class="breadcrumb-item"><a href="/pages/games/cards/">Cards</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Solitaire Klondike</li>
+      </ol>
+    </nav>
+
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <div class="card shadow-sm border mb-4">
+          <div class="card-header bg-body-tertiary d-flex align-items-center justify-content-between py-3 px-4">
+            <h1 class="h4 mb-0 fw-bold">🃏 Solitaire Klondike Classic</h1>
+            <div class="badge bg-success fs-6" id="status-badge">Moves: 0</div>
+          </div>
+          <div class="card-body p-4 text-center">
+            <!-- Top Section: Stock, Waste, and Foundations -->
+            <div class="d-flex justify-content-between gap-2 mb-4 flex-wrap">
+              <div class="d-flex gap-2">
+                <button id="stock-pile" class="btn btn-dark border rounded d-flex align-items-center justify-content-center fs-3" style="width:58px; height:80px;">🂠</button>
+                <div id="waste-pile" class="border rounded d-flex align-items-center justify-content-center fs-3 bg-body-tertiary" style="width:58px; height:80px;"></div>
+              </div>
+              <div class="d-flex gap-2" id="foundation-piles">
+                <div class="foundation-pile border rounded d-flex align-items-center justify-content-center fs-3 bg-body-tertiary" data-suit="♠" style="width:58px; height:80px;">♠</div>
+                <div class="foundation-pile border rounded d-flex align-items-center justify-content-center fs-3 bg-body-tertiary" data-suit="♥" style="width:58px; height:80px;">♥</div>
+                <div class="foundation-pile border rounded d-flex align-items-center justify-content-center fs-3 bg-body-tertiary" data-suit="♣" style="width:58px; height:80px;">♣</div>
+                <div class="foundation-pile border rounded d-flex align-items-center justify-content-center fs-3 bg-body-tertiary" data-suit="♦" style="width:58px; height:80px;">♦</div>
+              </div>
+            </div>
+
+            <!-- Bottom Section: 7 Tableau Piles -->
+            <div id="tableau-piles" class="d-flex justify-content-between gap-1 overflow-auto pb-2">
+              <!-- 7 tableau columns generated by JS -->
+            </div>
+
+            <div class="d-flex flex-wrap gap-2 justify-content-center mt-4">
+              <button class="btn btn-primary" id="reset-btn">New Game</button>
+              <button class="btn btn-success" id="save-btn">Save Game</button>
+              <label class="btn btn-info text-white mb-0" style="cursor:pointer;">
+                Import Game
+                <input type="file" id="import-file" accept=".json" style="display:none;">
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="card shadow-sm border mb-4">
+          <div class="card-body text-center">
+            <h2 class="h5 mb-3">Scoreboard</h2>
+            <div class="d-flex justify-content-around border rounded p-3 bg-body-tertiary">
+              <div>
+                <div class="small text-muted fw-bold">Score</div>
+                <div class="fs-3 fw-bold text-primary" id="score-val">0</div>
+              </div>
+              <div class="border-end"></div>
+              <div>
+                <div class="small text-muted fw-bold">Moves</div>
+                <div class="fs-3 fw-bold text-secondary" id="moves-val">0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card shadow-sm border">
+          <div class="card-body">
+            <h2 class="h5 mb-2">Instructions</h2>
+            <p class="small text-body-secondary mb-0">Build the four foundations up by suit from Ace to King. Build columns down in alternating colors (Red/Black).</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
+  <script>
+    (function() {
+      const SUITS = ["♠", "♥", "♣", "♦"];
+      const VALUES = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+
+      let stock = [];
+      let waste = [];
+      let foundations = { "♠": [], "♥": [], "♣": [], "♦": [] };
+      let tableaus = [[], [], [], [], [], [], []];
+      let moves = 0;
+      let score = 0;
+
+      const stockBtn = document.getElementById("stock-pile");
+      const wasteEl = document.getElementById("waste-pile");
+      const tableauEl = document.getElementById("tableau-piles");
+      const statusBadge = document.getElementById("status-badge");
+      const scoreVal = document.getElementById("score-val");
+      const movesVal = document.getElementById("moves-val");
+      const resetBtn = document.getElementById("reset-btn");
+      const saveBtn = document.getElementById("save-btn");
+      const importFile = document.getElementById("import-file");
+
+      function createDeck() {
+        let deck = [];
+        for (let s of SUITS) {
+          for (let v of VALUES) {
+            deck.push({ suit: s, value: v, color: (s === "♥" || s === "♦") ? "red" : "black", faceUp: false });
+          }
+        }
+        return deck.sort(() => Math.random() - 0.5);
+      }
+
+      function initGame() {
+        const deck = createDeck();
+        tableaus = [[], [], [], [], [], [], []];
+        foundations = { "♠": [], "♥": [], "♣": [], "♦": [] };
+        waste = [];
+        moves = 0;
+        score = 0;
+
+        for (let i = 0; i < 7; i++) {
+          for (let j = 0; j <= i; j++) {
+            const card = deck.pop();
+            if (j === i) card.faceUp = true;
+            tableaus[i].push(card);
+          }
+        }
+        stock = deck;
+        render();
+      }
+
+      function render() {
+        movesVal.textContent = moves;
+        scoreVal.textContent = score;
+        statusBadge.textContent = `Moves: ${moves}`;
+
+        // Stock
+        stockBtn.textContent = stock.length > 0 ? "🂠" : "↻";
+
+        // Waste
+        wasteEl.innerHTML = "";
+        if (waste.length > 0) {
+          const topWaste = waste[waste.length - 1];
+          wasteEl.textContent = `${topWaste.value}${topWaste.suit}`;
+          wasteEl.style.color = topWaste.color === "red" ? "#dc3545" : "#212529";
+        }
+
+        // Foundations
+        document.querySelectorAll(".foundation-pile").forEach(el => {
+          const s = el.dataset.suit;
+          const list = foundations[s];
+          if (list.length > 0) {
+            const top = list[list.length - 1];
+            el.textContent = `${top.value}${top.suit}`;
+            el.style.color = top.color === "red" ? "#dc3545" : "#212529";
+          } else {
+            el.textContent = s;
+            el.style.color = "#6c757d";
+          }
+        });
+
+        // Tableaus
+        tableauEl.innerHTML = "";
+        for (let i = 0; i < 7; i++) {
+          const col = document.createElement("div");
+          col.className = "d-flex flex-column gap-1 bg-body-tertiary p-1 rounded border";
+          col.style.width = "58px";
+          col.style.minHeight = "180px";
+
+          const pile = tableaus[i];
+          if (pile.length === 0) {
+            col.innerHTML = '<span class="text-muted small text-center">K</span>';
+          } else {
+            pile.forEach((card, idx) => {
+              const cEl = document.createElement("div");
+              cEl.className = "border rounded p-1 text-center font-monospace fw-bold bg-body shadow-sm";
+              if (card.faceUp) {
+                cEl.textContent = `${card.value}${card.suit}`;
+                cEl.style.color = card.color === "red" ? "#dc3545" : "#212529";
+              } else {
+                cEl.textContent = "🂠";
+                cEl.className += " bg-dark text-white";
+              }
+              col.appendChild(cEl);
+            });
+          }
+          tableauEl.appendChild(col);
+        }
+      }
+
+      stockBtn.addEventListener("click", () => {
+        if (stock.length > 0) {
+          const card = stock.pop();
+          card.faceUp = true;
+          waste.push(card);
+        } else {
+          stock = waste.reverse().map(c => ({ ...c, faceUp: false }));
+          waste = [];
+        }
+        moves++;
+        render();
+      });
+
+      resetBtn.addEventListener("click", initGame);
+      saveBtn.addEventListener("click", () => {
+        const data = JSON.stringify({ stock, waste, foundations, tableaus, moves, score }, null, 2);
+        const blob = new Blob([data], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "solitaire-game-save.json";
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      importFile.addEventListener("change", e => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = evt => {
+          try {
+            const data = JSON.parse(evt.target.result);
+            if (data.tableaus) {
+              stock = data.stock || [];
+              waste = data.waste || [];
+              foundations = data.foundations || foundations;
+              tableaus = data.tableaus;
+              moves = data.moves || 0;
+              score = data.score || 0;
+              render();
+            }
+          } catch (err) {
+            alert("Invalid save file.");
+          }
+        };
+        reader.readAsText(file);
+      });
+
+      initGame();
+    })();
+  </script>
+
+
   <div id="footer-component"><!-- FOOTER_START -->
-<footer class="bt-footer mt-5">
-  <div class="container py-3">
-    <div class="bt-footer-panel rounded-4 border shadow-sm p-3 px-4 d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
-      <div class="d-flex flex-column flex-md-row align-items-center gap-2 text-center text-md-start">
         <div class="d-flex align-items-center gap-2">
           <svg class="bt-logo text-primary" width="20" height="20" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
             <rect width="28" height="28" rx="7" fill="currentColor"></rect>
