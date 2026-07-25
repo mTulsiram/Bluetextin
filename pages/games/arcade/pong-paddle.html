@@ -1,13 +1,14 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Pong Paddle on BlueTEXT.in.">
+  <meta name="description" content="Pong Paddle game on BlueTEXT.in.">
   <meta name="robots" content="index,follow">
   <title>Pong Paddle | BlueTEXT</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link class="bt-bootstrap-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="manifest" href="/manifest.json">
 </head>
 <body>
   <div id="header-component"><!-- HEADER_START -->
@@ -624,9 +625,56 @@
 <!-- MODALS_END -->
 
   <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Pong Paddle</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <nav aria-label="Breadcrumb" class="mb-3">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/pages/games/">Games</a></li>
+        <li class="breadcrumb-item"><a href="/pages/games/arcade/">Arcade</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Pong Paddle</li>
+      </ol>
+    </nav>
+
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <div class="card shadow-sm border mb-4">
+          <div class="card-body p-2 bg-dark rounded text-center">
+            <canvas id="game-canvas" width="600" height="450" class="border rounded bg-black w-100" style="max-width: 600px; touch-action: none;"></canvas>
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2 mb-4 justify-content-center">
+          <button class="btn btn-primary" id="start-btn">Start Game</button>
+          <button class="btn btn-secondary" id="pause-btn" disabled>Pause</button>
+          <button class="btn btn-danger" id="reset-btn">Reset</button>
+          <button class="btn btn-success" id="save-btn">Save Game State</button>
+          <label class="btn btn-info mb-0 text-white" style="cursor: pointer;">
+            Import Game State
+            <input type="file" id="import-file" accept=".json" style="display: none;">
+          </label>
+          <button class="btn btn-warning" id="game-donate-btn">💖 Donate</button>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="card shadow-sm border mb-4">
+          <div class="card-body">
+            <h2 class="h5 mb-3">Controls & Instructions</h2>
+            <ul class="list-unstyled mb-0">
+              <li class="mb-2"><strong>Up / Down Arrow Keys</strong>: Move your paddle up and down</li>
+              <li class="mb-2"><strong>W / S Keys</strong>: Alternative paddle movement control</li>
+              <li class="mb-2"><strong>Goal</strong>: Defeat the computer by bouncing the ball past their paddle! First to 10 points wins!</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card shadow-sm border">
+          <div class="card-body">
+            <h2 class="h5 mb-2">Save & Continue</h2>
+            <p class="small text-body-secondary mb-0">You can save your current game scores, ball position, and speed to a file and load it back later to continue playing right where you left off!</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->
@@ -694,7 +742,287 @@
 
 
 <!-- FOOTER_END --></div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="/assets/js/app.js" defer></script>
+
+  <script>
+    (function() {
+      const canvas = document.getElementById("game-canvas");
+      const ctx = canvas.getContext("2d");
+
+      // Game Variables
+      let playerScore = 0;
+      let compScore = 0;
+      let isPlaying = false;
+      let isPaused = false;
+
+      let player = { x: 20, y: 175, w: 12, h: 80, speed: 6 };
+      let comp = { x: 568, y: 175, w: 12, h: 80, speed: 4 };
+      let ball = { x: 300, y: 225, r: 6, vx: 4, vy: 3 };
+
+      function initGame() {
+        playerScore = 0;
+        compScore = 0;
+        resetBall(1);
+      }
+
+      function resetBall(dir) {
+        ball.x = 300;
+        ball.y = 225;
+        ball.vx = dir * 4;
+        ball.vy = (Math.random() - 0.5) * 6;
+      }
+
+      let keys = {};
+      window.addEventListener("keydown", e => { keys[e.code] = true; });
+      window.addEventListener("keyup", e => { keys[e.code] = false; });
+
+      // Donate trigger
+      document.getElementById("game-donate-btn").addEventListener("click", () => {
+        const modalEl = document.getElementById("donateModal");
+        if (modalEl) {
+          const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+          modal.show();
+        }
+      });
+
+      // Save State
+      document.getElementById("save-btn").addEventListener("click", () => {
+        const state = {
+          playerScore,
+          compScore,
+          player: { y: player.y },
+          comp: { y: comp.y },
+          ball: { x: ball.x, y: ball.y, vx: ball.vx, vy: ball.vy }
+        };
+        const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `pong-paddle-state.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
+
+      // Import State
+      document.getElementById("import-file").addEventListener("change", e => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = evt => {
+          try {
+            const data = JSON.parse(evt.target.result);
+            if (data.playerScore !== undefined && data.compScore !== undefined) {
+              playerScore = data.playerScore;
+              compScore = data.compScore;
+              if (data.player) player.y = data.player.y;
+              if (data.comp) comp.y = data.comp.y;
+              if (data.ball) ball = { ...ball, ...data.ball };
+              alert("Game State Loaded!");
+              if (!isPlaying) {
+                isPlaying = true;
+                requestAnimationFrame(gameLoop);
+              }
+            }
+          } catch (err) {
+            alert("Invalid save file.");
+          }
+        };
+        reader.readAsText(file);
+      });
+
+      // Buttons
+      const startBtn = document.getElementById("start-btn");
+      const pauseBtn = document.getElementById("pause-btn");
+      const resetBtn = document.getElementById("reset-btn");
+
+      startBtn.addEventListener("click", () => {
+        if (!isPlaying) {
+          initGame();
+          isPlaying = true;
+          isPaused = false;
+          startBtn.textContent = "Restart Game";
+          pauseBtn.disabled = false;
+          pauseBtn.textContent = "Pause";
+          requestAnimationFrame(gameLoop);
+        } else if (isPaused) {
+          isPaused = false;
+          pauseBtn.textContent = "Pause";
+          requestAnimationFrame(gameLoop);
+        }
+      });
+
+      pauseBtn.addEventListener("click", () => {
+        isPaused = !isPaused;
+        pauseBtn.textContent = isPaused ? "Resume" : "Pause";
+        if (!isPaused) {
+          requestAnimationFrame(gameLoop);
+        }
+      });
+
+      resetBtn.addEventListener("click", () => {
+        initGame();
+        isPaused = false;
+        pauseBtn.textContent = "Pause";
+      });
+
+      function drawAds() {
+        if (typeof ctx.drawHTML === "function") {
+          try {
+            ctx.drawHTML(`<div style="color: #ff5555; background: #282a36; padding: 4px; font-family: monospace; font-size: 11px;">AD: Keep BlueTEXT fast & completely ad-free!</div>`, 10, canvas.height - 35);
+            return;
+          } catch(e) {}
+        }
+        ctx.save();
+        ctx.fillStyle = "#1e1e2e";
+        ctx.fillRect(10, canvas.height - 40, canvas.width - 20, 30);
+        ctx.strokeStyle = "#44475a";
+        ctx.lineWidth = 1;
+        ctx.strokeRect(10, canvas.height - 40, canvas.width - 20, 30);
+        ctx.fillStyle = "#ff5555";
+        ctx.font = "bold 9px monospace";
+        ctx.fillText("ADVERTISEMENT", 20, canvas.height - 22);
+        ctx.fillStyle = "#f8f8f2";
+        ctx.font = "9px sans-serif";
+        ctx.fillText("Support BlueTEXT — keep our tools fast and completely ad-free!", 110, canvas.height - 22);
+        ctx.restore();
+      }
+
+      function update() {
+        if (!isPlaying || isPaused) return;
+
+        // Move Player paddle
+        if ((keys["ArrowUp"] || keys["KeyW"]) && player.y > 10) {
+          player.y -= player.speed;
+        }
+        if ((keys["ArrowDown"] || keys["KeyS"]) && player.y < canvas.height - player.h - 50) {
+          player.y += player.speed;
+        }
+
+        // Move Computer paddle (AI follow)
+        let compCenter = comp.y + comp.h / 2;
+        if (compCenter < ball.y - 10 && comp.y < canvas.height - comp.h - 50) {
+          comp.y += comp.speed;
+        } else if (compCenter > ball.y + 10 && comp.y > 10) {
+          comp.y -= comp.speed;
+        }
+
+        // Move Ball
+        ball.x += ball.vx;
+        ball.y += ball.vy;
+
+        // Top/Bottom bounce
+        if (ball.y < ball.r || ball.y > canvas.height - ball.r - 40) {
+          ball.vy = -ball.vy;
+        }
+
+        // Player paddle collision
+        if (ball.x - ball.r < player.x + player.w && ball.x + ball.r > player.x) {
+          if (ball.y > player.y && ball.y < player.y + player.h) {
+            ball.vx = -ball.vx * 1.05; // Speed up slightly on hit
+            let relativeIntersectY = (player.y + (player.h / 2)) - ball.y;
+            ball.vy = -relativeIntersectY * 0.12;
+          }
+        }
+
+        // Computer paddle collision
+        if (ball.x + ball.r > comp.x && ball.x - ball.r < comp.x + comp.w) {
+          if (ball.y > comp.y && ball.y < comp.y + comp.h) {
+            ball.vx = -ball.vx * 1.05;
+            let relativeIntersectY = (comp.y + (comp.h / 2)) - ball.y;
+            ball.vy = -relativeIntersectY * 0.12;
+          }
+        }
+
+        // Left / Right Score
+        if (ball.x < 0) {
+          compScore++;
+          if (compScore >= 10) {
+            isPlaying = false;
+          } else {
+            resetBall(1);
+          }
+        } else if (ball.x > canvas.width) {
+          playerScore++;
+          if (playerScore >= 10) {
+            isPlaying = false;
+          } else {
+            resetBall(-1);
+          }
+        }
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        if (!isPlaying) {
+          ctx.fillStyle = "#ff5555";
+          ctx.font = "bold 24px sans-serif";
+          ctx.textAlign = "center";
+          ctx.fillText("PONG PADDLE", canvas.width / 2, canvas.height / 2 - 20);
+          ctx.fillStyle = "#f8f8f2";
+          ctx.font = "14px sans-serif";
+          ctx.fillText("Click 'Start Game' to Begin", canvas.width / 2, canvas.height / 2 + 20);
+          drawAds();
+          return;
+        }
+
+        // Draw Middle net line
+        ctx.strokeStyle = "#44475a";
+        ctx.lineWidth = 2;
+        ctx.setLineDash([5, 15]);
+        ctx.beginPath();
+        ctx.moveTo(canvas.width / 2, 0);
+        ctx.lineTo(canvas.width / 2, canvas.height - 40);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Draw Player paddle
+        ctx.fillStyle = "#50fa7b";
+        ctx.fillRect(player.x, player.y, player.w, player.h);
+
+        // Draw Computer paddle
+        ctx.fillStyle = "#ffb86c";
+        ctx.fillRect(comp.x, comp.y, comp.w, comp.h);
+
+        // Draw Ball
+        ctx.fillStyle = "#ff5555";
+        ctx.beginPath();
+        ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI*2);
+        ctx.fill();
+
+        // Draw Score
+        ctx.fillStyle = "#f1fa8c";
+        ctx.font = "bold 28px monospace";
+        ctx.textAlign = "center";
+        ctx.fillText(playerScore, canvas.width / 4, 60);
+        ctx.fillText(compScore, (canvas.width * 3) / 4, 60);
+
+        if (isPaused) {
+          ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = "#ffb86c";
+          ctx.font = "bold 28px sans-serif";
+          ctx.textAlign = "center";
+          ctx.fillText("PAUSED", canvas.width / 2, canvas.height / 2);
+        }
+
+        drawAds();
+      }
+
+      function gameLoop() {
+        update();
+        draw();
+        if (isPlaying && !isPaused) {
+          requestAnimationFrame(gameLoop);
+        }
+      }
+
+      draw();
+    })();
+  </script>
 </body>
 </html>
