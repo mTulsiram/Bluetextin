@@ -531,17 +531,25 @@ async function generateSearchIndex() {
 
   const index = [];
   await runPool(htmlFiles, async (filePath) => {
-    const html = await fs.readFile(filePath, "utf8");
+    let rawHtml = await fs.readFile(filePath, "utf8");
+
+    // Performance optimization: Strip injected header, footer, and modals blocks to prevent search index keyword pollution.
+    // This reduces search index footprint drastically and improves match relevance.
+    rawHtml = rawHtml
+      .replace(/<!-- HEADER_START -->[\s\S]*?<!-- HEADER_END -->/gi, " ")
+      .replace(/<!-- FOOTER_START -->[\s\S]*?<!-- FOOTER_END -->/gi, " ")
+      .replace(/<!-- MODALS_START -->[\s\S]*?<!-- MODALS_END -->/gi, " ");
+
     const title =
-      extract(html, /<title[^>]*>([\s\S]*?)<\/title>/i) ||
-      extract(html, /<h1[^>]*>([\s\S]*?)<\/h1>/i) ||
+      extract(rawHtml, /<title[^>]*>([\s\S]*?)<\/title>/i) ||
+      extract(rawHtml, /<h1[^>]*>([\s\S]*?)<\/h1>/i) ||
       path.basename(filePath, ".html");
 
     const description =
-      extract(html, /<meta[^>]*name=["']description["'][^>]*content=["']([\s\S]*?)["'][^>]*>/i) ||
-      extract(html, /<p[^>]*>([\s\S]*?)<\/p>/i);
+      extract(rawHtml, /<meta[^>]*name=["']description["'][^>]*content=["']([\s\S]*?)["'][^>]*>/i) ||
+      extract(rawHtml, /<p[^>]*>([\s\S]*?)<\/p>/i);
 
-    const bodyText = stripHtml(html).slice(0, 500);
+    const bodyText = stripHtml(rawHtml).slice(0, 500);
 
     index.push({
       title,
