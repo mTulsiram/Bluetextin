@@ -1,167 +1,64 @@
-"use strict";
+/* =========================================================================
+   BlueTEXT.in — Auth Controller (Minimal Zero-Dependency Session Management)
+   ========================================================================= */
 
+(function () {
+  const AUTH_KEY = "bt_auth_user_v1";
 
-(function authModule() {
-	let initialized = false;
+  function getCurrentUser() {
+    try {
+      return localStorage.getItem(AUTH_KEY);
+    } catch (e) {
+      return null;
+    }
+  }
 
-	function initAuth() {
-		if (initialized) return;
-	const STORAGE_USERS = "bt_users_v1";
-	const STORAGE_CURRENT = "bt_current_user_v1";
+  function updateAuthUI() {
+    const btn = document.getElementById("auth-toggle-btn");
+    if (!btn) return;
 
-	const authButton = document.getElementById("auth-button");
-	const mobileAuthButton = document.getElementById("mobile-auth-button");
-	const authForms = document.getElementById("auth-forms");
-	const authLoggedIn = document.getElementById("auth-logged-in");
-	const currentUserLabel = document.getElementById("auth-current-user");
-	const message = document.getElementById("auth-message");
-	const signOutButton = document.getElementById("auth-signout-button");
-	const signInForm = document.getElementById("signin-form");
-	const signUpForm = document.getElementById("signup-form");
+    const user = getCurrentUser();
+    if (user) {
+      btn.textContent = `Account (${user.split("@")[0]})`;
+      btn.title = `Signed in as ${user}. Click to sign out.`;
+    } else {
+      btn.textContent = "Sign In";
+      btn.title = "Sign in to account";
+    }
+  }
 
-	if ((!authButton && !mobileAuthButton) || !signInForm || !signUpForm) return;
-	initialized = true;
+  function toggleAuth() {
+    const user = getCurrentUser();
+    if (user) {
+      const confirmSignout = window.confirm(`Sign out of ${user}?`);
+      if (confirmSignout) {
+        try {
+          localStorage.removeItem(AUTH_KEY);
+        } catch (e) {}
+        updateAuthUI();
+      }
+    } else {
+      const email = window.prompt("Enter your email to sign in (Demo mode):", "guest@bluetext.in");
+      if (email && email.trim()) {
+        try {
+          localStorage.setItem(AUTH_KEY, email.trim());
+        } catch (e) {}
+        updateAuthUI();
+      }
+    }
+  }
 
-	function getUsers() {
-		try {
-			return JSON.parse(localStorage.getItem(STORAGE_USERS) || "[]");
-		} catch {
-			return [];
-		}
-	}
+  function initAuth() {
+    updateAuthUI();
+    const btn = document.getElementById("auth-toggle-btn");
+    if (btn) {
+      btn.addEventListener("click", toggleAuth);
+    }
+  }
 
-	function saveUsers(users) {
-		localStorage.setItem(STORAGE_USERS, JSON.stringify(users));
-	}
-
-	function getCurrentUser() {
-		try {
-			return JSON.parse(localStorage.getItem(STORAGE_CURRENT) || "null");
-		} catch {
-			return null;
-		}
-	}
-
-	function setCurrentUser(user) {
-		if (!user) {
-			localStorage.removeItem(STORAGE_CURRENT);
-			return;
-		}
-
-		localStorage.setItem(STORAGE_CURRENT, JSON.stringify({
-			name: user.name,
-			email: user.email
-		}));
-	}
-
-	function setMessage(text, isError) {
-		if (!message) return;
-		message.textContent = text || "";
-		message.classList.toggle("text-danger", !!isError);
-		message.classList.toggle("text-success", !isError && !!text);
-	}
-
-	function refreshAuthUi() {
-		const currentUser = getCurrentUser();
-		const isLoggedIn = !!currentUser;
-
-		authForms?.classList.toggle("d-none", isLoggedIn);
-		authLoggedIn?.classList.toggle("d-none", !isLoggedIn);
-
-		const buttons = [authButton, mobileAuthButton].filter(Boolean);
-		for (const btn of buttons) {
-			if (isLoggedIn) {
-				if (btn.id === "mobile-auth-button") {
-					btn.setAttribute("aria-label", currentUser.name);
-					btn.title = currentUser.name;
-					btn.classList.add("text-warning");
-				} else {
-					btn.textContent = currentUser.name;
-				}
-			} else {
-				if (btn.id === "mobile-auth-button") {
-					btn.setAttribute("aria-label", "Sign In");
-					btn.title = "Sign In";
-					btn.classList.remove("text-warning");
-				} else {
-					btn.textContent = "Sign In";
-				}
-			}
-		}
-
-		if (isLoggedIn && currentUserLabel) {
-			currentUserLabel.textContent = `${currentUser.name} (${currentUser.email})`;
-		} else if (currentUserLabel) {
-			currentUserLabel.textContent = "";
-		}
-	}
-
-	signUpForm.addEventListener("submit", (event) => {
-		event.preventDefault();
-
-		const name = document.getElementById("signup-name")?.value.trim();
-		const email = document.getElementById("signup-email")?.value.trim().toLowerCase();
-		const password = document.getElementById("signup-password")?.value || "";
-
-		if (!name || !email || password.length < 6) {
-			setMessage("Please fill all fields. Password must be at least 6 characters.", true);
-			return;
-		}
-
-		const users = getUsers();
-		const exists = users.some((user) => user.email === email);
-		if (exists) {
-			setMessage("Account already exists. Please sign in.", true);
-			return;
-		}
-
-		const newUser = { name, email, password };
-		users.push(newUser);
-		saveUsers(users);
-		setCurrentUser(newUser);
-		setMessage("Account created successfully.", false);
-		signUpForm.reset();
-		refreshAuthUi();
-	});
-
-	signInForm.addEventListener("submit", (event) => {
-		event.preventDefault();
-
-		const email = document.getElementById("signin-email")?.value.trim().toLowerCase();
-		const password = document.getElementById("signin-password")?.value || "";
-
-		const users = getUsers();
-		let user = users.find((u) => u.email === email && u.password === password);
-
-		if (!user && email === "guest@bluetext.in" && password === "guest123") {
-			user = { name: "Guest User", email: "guest@bluetext.in", password: "guest123" };
-		}
-
-		if (!user) {
-			setMessage("Invalid email or password.", true);
-			return;
-		}
-
-		setCurrentUser(user);
-		setMessage("Signed in successfully.", false);
-		signInForm.reset();
-		refreshAuthUi();
-	});
-
-	signOutButton?.addEventListener("click", () => {
-		setCurrentUser(null);
-		setMessage("Signed out.", false);
-		refreshAuthUi();
-	});
-
-	refreshAuthUi();
-	}
-
-	if (document.readyState === "loading") {
-		document.addEventListener("DOMContentLoaded", initAuth, { once: true });
-	} else {
-		initAuth();
-	}
-
-	document.addEventListener("bt:components-ready", initAuth);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAuth, { once: true });
+  } else {
+    initAuth();
+  }
 })();

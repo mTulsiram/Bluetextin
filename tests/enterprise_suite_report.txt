@@ -1,0 +1,41 @@
+==========================================================================================
+From: bluetext-qa-automation@bluetext.in <bluetext-qa-automation@bluetext.in>
+Subject: LIVE : GREEN - Core Mobile & Web UI Health Check Snapshot - 2026/07/26 21:23:53 EST
+==========================================================================================
+ 
+User go to Mobile Menu page and verify offcanvas drawer : http://localhost:8080
+Step Description                                                       Status     Time
+------------------------------------------------------------------------------------------
+User opens mobile application homepage                                 PASSED     477ms
+user taps Menu hamburger button                                        PASSED     355ms
+mobile drawer panel should be displayed with logo and close button     PASSED     19ms
+------------------------------------------------------------------------------------------
+TOTAL EXECUTION TIME                                                   NA         3s 198ms
+ 
+User go to Mobile Search & Category Filters : http://localhost:8080
+Step Description                                                       Status     Time
+------------------------------------------------------------------------------------------
+User opens mobile catalog page                                         PASSED     523ms
+user types 'JSON' into instant search bar                              PASSED     421ms
+category chips carousel should display scrollable filters              PASSED     10ms
+------------------------------------------------------------------------------------------
+TOTAL EXECUTION TIME                                                   NA         3s 314ms
+ 
+This scenario verifies desktop header navigation & subcategory dropdowns : http://localhost:8080
+Step Description                                                       Status     Time
+------------------------------------------------------------------------------------------
+I open the web application homepage                                    PASSED     528ms
+I navigate to header menu Tools, Games, Software, Tutorials, Education dropdowns PASSED     78ms
+I verify mobile close button is hidden on desktop viewport             PASSED     24ms
+------------------------------------------------------------------------------------------
+TOTAL EXECUTION TIME                                                   NA         2s 978ms
+ 
+This scenario verifies deep route breadcrumb navigation : http://localhost:8080/pages/tools/coding/
+Step Description                                                       Status     Time
+------------------------------------------------------------------------------------------
+I navigate to subcategory page /pages/tools/coding/                    PASSED     508ms
+I verify breadcrumb hierarchy contains Home -> Pages -> Tools -> Coding PASSED     27ms
+I verify 'Tools' breadcrumb link resolves correctly to /pages/tools/   PASSED     20ms
+------------------------------------------------------------------------------------------
+TOTAL EXECUTION TIME                                                   NA         2s 847ms
+ 

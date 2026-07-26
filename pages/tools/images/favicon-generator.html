@@ -6,620 +6,135 @@
   <meta name="description" content="Favicon Generator on BlueTEXT.in.">
   <meta name="robots" content="index,follow">
   <title>Favicon Generator | BlueTEXT</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="/assets/js/app.js" defer></script>
 </head>
 <body>
   <div id="header-component"><!-- HEADER_START -->
-<header class="bt-header-shell">
-  <div class="container-fluid px-2 px-lg-3 py-2">
-    <nav class="navbar navbar-expand-lg bt-header navbar-dark rounded-4 shadow-sm border" aria-label="Primary">
-      <div class="container-fluid px-3 px-lg-4">
-        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="/" aria-label="BlueTEXT.in Home">
-        <svg class="bt-logo" width="28" height="28" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-          <rect width="28" height="28" rx="7" fill="currentColor"></rect>
-          <path d="M8 7H15.5C18.3 7 20.3 8.5 20.3 10.9C20.3 12.4 19.5 13.6 18.1 14.2C19.9 14.7 21 16 21 17.8C21 20.5 18.8 22 15.8 22H8V7ZM11.2 9.6V13.1H15.2C16.4 13.1 17.1 12.4 17.1 11.3C17.1 10.2 16.4 9.6 15.2 9.6H11.2ZM11.2 15.5V19.4H15.7C17 19.4 17.8 18.7 17.8 17.5C17.8 16.3 16.9 15.5 15.7 15.5H11.2Z" fill="white"></path>
-        </svg>
-          <span>BlueTEXT.in</span>
-        </a>
+<!-- =========================================================================
+     BlueTEXT.in — Clean Semantic Header Component
+     Sections: 1. Brand Logo | 2. Main Navigation | 3. User Actions (Donate/Login/Clear Cache/Theme)
+     ========================================================================= -->
 
-        <!-- Mobile header action icons (search, support, account) -->
-        <div class="d-flex align-items-center gap-2 d-lg-none ms-auto me-2">
-          <button class="btn btn-link bt-mobile-icon-btn p-1" type="button" aria-label="Search" data-bs-toggle="modal" data-bs-target="#searchModal">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-          </button>
-          <a class="btn btn-link bt-mobile-icon-btn p-1 d-inline-flex align-items-center justify-content-center text-decoration-none" href="/support.html" aria-label="Supporters Wall" title="Supporters Wall">
-            <span style="font-size: 1.25rem; line-height: 1;">💖</span>
-          </a>
-          <button class="btn btn-link bt-mobile-icon-btn p-1" id="mobile-auth-button" type="button" aria-label="Sign in" data-bs-toggle="modal" data-bs-target="#authModal">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-          </button>
-        </div>
+<header class="hdr" role="banner">
+  <div class="hdr-container">
+    
+    <!-- 1. Brand / Logo -->
+    <a class="brand" href="/" aria-label="BlueTEXT.in Homepage">
+      <svg class="brand-logo" width="24" height="24" viewBox="0 0 28 28" aria-hidden="true" focusable="false">
+        <rect width="28" height="28" rx="7" fill="currentColor"></rect>
+        <path d="M8 7H15.5C18.3 7 20.3 8.5 20.3 10.9C20.3 12.4 19.5 13.6 18.1 14.2C19.9 14.7 21 16 21 17.8C21 20.5 18.8 22 15.8 22H8V7ZM11.2 9.6V13.1H15.2C16.4 13.1 17.1 12.4 17.1 11.3C17.1 10.2 16.4 9.6 15.2 9.6H11.2ZM11.2 15.5V19.4H15.7C17 19.4 17.8 18.7 17.8 17.5C17.8 16.3 16.9 15.5 15.7 15.5H11.2Z" fill="#ffffff"></path>
+      </svg>
+      <span>BlueTEXT.in</span>
+    </a>
 
-        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar" aria-controls="mobileSidebar" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+    <!-- Mobile Navigation Toggle Button -->
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+      <span class="nav-toggle-icon" aria-hidden="true">☰</span>
+    </button>
 
-        <div class="collapse navbar-collapse" id="mainNavbar">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-lg-1">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="/pages/tools/" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tools</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/pages/tools/">All Tools</a></li>
-              <li><a class="dropdown-item" href="/pages/tools/coding/">Coding</a></li>
-              <li><a class="dropdown-item" href="/pages/tools/converters/">Converters</a></li>
-              <li><a class="dropdown-item" href="/pages/tools/data/">Data</a></li>
-              <li><a class="dropdown-item" href="/pages/tools/images/">Images</a></li>
-              <li><a class="dropdown-item" href="/pages/tools/lifestyle/">Lifestyle</a></li>
-              <li><a class="dropdown-item" href="/pages/tools/math/">Math</a></li>
-              <li><a class="dropdown-item" href="/pages/tools/miscellaneous/">Miscellaneous</a></li>
-              <li><a class="dropdown-item" href="/pages/tools/network/">Network</a></li>
-              <li><a class="dropdown-item" href="/pages/tools/office/">Office</a></li>
-              <li><a class="dropdown-item" href="/pages/tools/utilities/">Utilities</a></li>
-              <li><a class="dropdown-item" href="/pages/tools/videos/">Videos</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="/pages/games/" role="button" data-bs-toggle="dropdown" aria-expanded="false">Games</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/pages/games/">All Games</a></li>
-              <li><a class="dropdown-item" href="/pages/games/arcade/">Arcade</a></li>
-              <li><a class="dropdown-item" href="/pages/games/board/">Board</a></li>
-              <li><a class="dropdown-item" href="/pages/games/cards/">Cards</a></li>
-              <li><a class="dropdown-item" href="/pages/games/puzzles/">Puzzles</a></li>
-              <li><a class="dropdown-item" href="/pages/games/word/">Word</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="/pages/software/" role="button" data-bs-toggle="dropdown" aria-expanded="false">Software</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/pages/software/">All Software</a></li>
-              <li><h6 class="dropdown-header">Android</h6></li>
-              <li><a class="dropdown-item" href="/pages/software/android/productivity/">Productivity Applications</a></li>
-              <li><a class="dropdown-item" href="/pages/software/android/utility/">Utility Applications</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><h6 class="dropdown-header">Apple</h6></li>
-              <li><a class="dropdown-item" href="/pages/software/apple/productivity/">Productivity Applications</a></li>
-              <li><a class="dropdown-item" href="/pages/software/apple/utility/">Utility Applications</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><h6 class="dropdown-header">Linux</h6></li>
-              <li><a class="dropdown-item" href="/pages/software/linux/games/">Game Applications</a></li>
-              <li><a class="dropdown-item" href="/pages/software/linux/productivity/">Productivity Applications</a></li>
-              <li><a class="dropdown-item" href="/pages/software/linux/utility/">Utility Applications</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><h6 class="dropdown-header">Windows</h6></li>
-              <li><a class="dropdown-item" href="/pages/software/windows/games/">Game Applications</a></li>
-              <li><a class="dropdown-item" href="/pages/software/windows/productivity/">Productivity Applications</a></li>
-              <li><a class="dropdown-item" href="/pages/software/windows/utility/">Utility Applications</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="/pages/tutorials/" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tutorials</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/pages/tutorials/">All Tutorials</a></li>
-              <li><a class="dropdown-item" href="/pages/tutorials/backend/">Backend</a></li>
-              <li><a class="dropdown-item" href="/pages/tutorials/design/">Design</a></li>
-              <li><a class="dropdown-item" href="/pages/tutorials/programming/">Programming</a></li>
-              <li><a class="dropdown-item" href="/pages/tutorials/security/">Security</a></li>
-              <li><a class="dropdown-item" href="/pages/tutorials/web-dev/">Web Dev</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="/pages/education/" role="button" data-bs-toggle="dropdown" aria-expanded="false">Education</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/pages/education/">All Education</a></li>
-              <li><a class="dropdown-item" href="/pages/education/finance/">Finance</a></li>
-              <li><a class="dropdown-item" href="/pages/education/humanities/">Humanities</a></li>
-              <li><a class="dropdown-item" href="/pages/education/languages/">Languages</a></li>
-              <li><a class="dropdown-item" href="/pages/education/math/">Math</a></li>
-              <li><a class="dropdown-item" href="/pages/education/science/">Science</a></li>
-            </ul>
-          </li>
-
-           <li class="nav-item">
-            <a class="nav-link" href="/pages/blog/">Blog</a>
-          </li>
-          </ul>
-
-          <div class="d-flex flex-wrap align-items-center gap-3 pt-2 pt-lg-0 ms-lg-auto">
-            <!-- Search field directly inside collapse for mobile screens -->
-            <div class="d-lg-none w-100 mb-2">
-              <input class="form-control bt-mobile-search-input" type="search" placeholder="Search pages and tools..." aria-label="Search" data-bs-toggle="modal" data-bs-target="#searchModal" readonly>
-            </div>
-
-            <!-- Search Button (Desktop) -->
-            <button class="btn bt-vite-search d-none d-lg-inline-flex align-items-center gap-2" id="global-search-button" type="button" aria-label="Search" data-bs-toggle="modal" data-bs-target="#searchModal">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-              <span>Search</span>
-            </button>
-
-            <!-- Vertical Divider 1 -->
-            <div class="bt-header-divider d-none d-lg-block"></div>
-
-            <!-- Theme Switcher Pill -->
-            <button class="bt-theme-switch-pill" id="theme-button" type="button" aria-label="Toggle dark mode">
-              <span class="bt-theme-switch-track">
-                <span class="bt-theme-icon-sun">☀️</span>
-                <span class="bt-theme-icon-moon">🌙</span>
-                <span class="bt-theme-switch-thumb"></span>
-                <span id="theme-icon" class="d-none">🌙</span>
-              </span>
-            </button>
-
-            <!-- Language select dropdown (no chevron, matches Vite) -->
-            <div class="dropdown bt-lang-dropdown d-inline-block">
-              <button class="btn bt-lang-btn d-inline-flex align-items-center justify-content-center gap-1 p-1" id="language-dropdown-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Select Language">
-                <svg class="bt-lang-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                <span class="bt-lang-selected-code text-uppercase font-monospace small" id="bt-lang-code" style="font-size: 0.72rem; font-weight: 700; margin-left: 2px;">EN</span>
-              </button>
-              <ul class="dropdown-menu dropdown-menu-end bt-lang-dropdown-menu" id="language-dropdown-menu" style="max-height: 320px; overflow-y: auto;">
-                <li><button class="dropdown-item d-flex align-items-center justify-content-between gap-3" type="button" data-value="en"><span>English</span><span class="text-muted small" style="font-size: 0.65rem;">↗</span></button></li>
-                <li><button class="dropdown-item d-flex align-items-center justify-content-between gap-3" type="button" data-value="zh-CN"><span>简体中文</span><span class="text-muted small" style="font-size: 0.65rem;">↗</span></button></li>
-                <li><button class="dropdown-item d-flex align-items-center justify-content-between gap-3" type="button" data-value="ja"><span>日本語</span><span class="text-muted small" style="font-size: 0.65rem;">↗</span></button></li>
-                <li><button class="dropdown-item d-flex align-items-center justify-content-between gap-3" type="button" data-value="es"><span>Español</span><span class="text-muted small" style="font-size: 0.65rem;">↗</span></button></li>
-                <li><button class="dropdown-item d-flex align-items-center justify-content-between gap-3" type="button" data-value="de"><span>Deutsch</span><span class="text-muted small" style="font-size: 0.65rem;">↗</span></button></li>
-                <li><button class="dropdown-item d-flex align-items-center justify-content-between gap-3" type="button" data-value="hi"><span>हिन्दी</span><span class="text-muted small" style="font-size: 0.65rem;">↗</span></button></li>
-                <li><button class="dropdown-item d-flex align-items-center justify-content-between gap-3" type="button" data-value="fr"><span>Français</span><span class="text-muted small" style="font-size: 0.65rem;">↗</span></button></li>
-                <li><button class="dropdown-item d-flex align-items-center justify-content-between gap-3" type="button" data-value="pt"><span>Português</span><span class="text-muted small" style="font-size: 0.65rem;">↗</span></button></li>
-                <li><button class="dropdown-item d-flex align-items-center justify-content-between gap-3" type="button" data-value="ru"><span>Русский</span><span class="text-muted small" style="font-size: 0.65rem;">↗</span></button></li>
-                <li><button class="dropdown-item d-flex align-items-center justify-content-between gap-3" type="button" data-value="ar"><span>العربية</span><span class="text-muted small" style="font-size: 0.65rem;">↗</span></button></li>
-                <li><button class="dropdown-item d-flex align-items-center justify-content-between gap-3" type="button" data-value="bn"><span>বাংলা</span><span class="text-muted small" style="font-size: 0.65rem;">↗</span></button></li>
-                <li><button class="dropdown-item d-flex align-items-center justify-content-between gap-3" type="button" data-value="it"><span>Italiano</span><span class="text-muted small" style="font-size: 0.65rem;">↗</span></button></li>
-                <li><button class="dropdown-item d-flex align-items-center justify-content-between gap-3" type="button" data-value="ko"><span>한국어</span><span class="text-muted small" style="font-size: 0.65rem;">↗</span></button></li>
-                <li><button class="dropdown-item d-flex align-items-center justify-content-between gap-3" type="button" data-value="tr"><span>Türkçe</span><span class="text-muted small" style="font-size: 0.65rem;">↗</span></button></li>
-                <li><button class="dropdown-item d-flex align-items-center justify-content-between gap-3" type="button" data-value="vi"><span>Tiếng Việt</span><span class="text-muted small" style="font-size: 0.65rem;">↗</span></button></li>
-                <li><button class="dropdown-item d-flex align-items-center justify-content-between gap-3" type="button" data-value="pl"><span>Polski</span><span class="text-muted small" style="font-size: 0.65rem;">↗</span></button></li>
-                <li><button class="dropdown-item d-flex align-items-center justify-content-between gap-3" type="button" data-value="nl"><span>Nederlands</span><span class="text-muted small" style="font-size: 0.65rem;">↗</span></button></li>
-                <li><button class="dropdown-item d-flex align-items-center justify-content-between gap-3" type="button" data-value="id"><span>Bahasa Indonesia</span><span class="text-muted small" style="font-size: 0.65rem;">↗</span></button></li>
-                <li><button class="dropdown-item d-flex align-items-center justify-content-between gap-3" type="button" data-value="fa"><span>فارسی</span><span class="text-muted small" style="font-size: 0.65rem;">↗</span></button></li>
-                <li><button class="dropdown-item d-flex align-items-center justify-content-between gap-3" type="button" data-value="uk"><span>Ukranian</span><span class="text-muted small" style="font-size: 0.65rem;">↗</span></button></li>
-              </ul>
-            </div>
-
-            <!-- Clear Cache button next to language selector -->
-            <button class="btn bt-lang-btn d-inline-flex align-items-center justify-content-center p-1" id="clear-cache-header-btn" type="button" aria-label="Clear Cache" title="Clear Cache & Reload">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-            </button>
-
-            <!-- Hidden select element for original nav.js compatibility -->
-            <select class="d-none" id="language-select" name="language">
-              <option value="en" selected>English</option>
-              <option value="es">Español</option>
-              <option value="fr">Français</option>
-              <option value="de">Deutsch</option>
-              <option value="zh-CN">中文 (简体)</option>
-              <option value="zh-TW">繁體中文</option>
-              <option value="ja">日本語</option>
-              <option value="hi">हिन्दी</option>
-              <option value="pt">Português</option>
-              <option value="ru">Русский</option>
-              <option value="ar">العربية</option>
-              <option value="bn">বাংলা</option>
-              <option value="it">Italiano</option>
-              <option value="ko">한국어</option>
-              <option value="tr">Türkçe</option>
-              <option value="vi">Tiếng Việt</option>
-              <option value="pl">Polski</option>
-              <option value="nl">Nederlands</option>
-              <option value="id">Bahasa Indonesia</option>
-              <option value="fa">فارسی</option>
-              <option value="uk">Ukranian</option>
-            </select>
-
-            <!-- Vertical Divider 2 -->
-            <div class="bt-header-divider d-none d-lg-block"></div>
-
-            <!-- Social Media Icons (grouped) -->
-            <div class="d-flex align-items-center gap-1">
-              <a class="bt-social-link" href="https://discord.gg/yourinvite" target="_blank" rel="noopener noreferrer" aria-label="Discord" title="Discord">
-                <svg width="16" height="16" viewBox="0 0 127.14 96.36" fill="currentColor"><path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77,77,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77,77,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.5-5c.87-.64,1.71-1.32,2.51-2a75.46,75.46,0,0,0,73,0c.8.71,1.64,1.39,2.51,2a68.32,68.32,0,0,1-10.5,5,78.2,78.2,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31-18.83C129.87,50.12,123.82,27.31,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.83,46,53.83,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.07,46,96.07,53,91,65.69,84.69,65.69Z"/></svg>
-              </a>
-              <a class="bt-social-link" href="https://github.com/mTulsiram" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-              </a>
-              <a class="bt-social-link" href="https://www.youtube.com/@CodeOn?sub_confirmation=1" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
-              </a>
-              <a class="bt-social-link" href="https://twitter.com/Tulsiram_Methre" target="_blank" rel="noopener noreferrer" aria-label="Twitter" title="Twitter">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
-              </a>
-              <a class="bt-social-link" href="https://linkedin.com/company/bluetext-in" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-              </a>
-              <a class="bt-social-link" href="https://instagram.com/CodeOnOriginal" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-              </a>
-            </div>
-
-            <!-- Vertical Divider 3 -->
-            <div class="bt-header-divider d-none d-lg-block"></div>
-            
-            <a class="btn fw-semibold bt-top-action d-inline-flex align-items-center justify-content-center text-danger border-danger-subtle px-2.5" id="header-supporters-button" href="/support.html" aria-label="Supporters" title="Supporters Wall">
-              <span>💖</span>
-            </a>
-            
-            <button class="btn fw-semibold bt-top-action d-inline-flex align-items-center gap-1 text-success border-success-subtle px-3" id="header-donate-btn" type="button" data-bs-toggle="modal" data-bs-target="#donateModal">
-              <span>Donate</span>
-            </button>
-
-            <button class="btn fw-semibold bt-top-action d-inline-flex align-items-center gap-2" id="auth-button" type="button" aria-label="Sign in" data-bs-toggle="modal" data-bs-target="#authModal">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-              <span id="auth-button-text">Sign In</span>
-            </button>
-          </div>
+    <!-- 2. Primary Navigation Links with Subcategory Dropdowns -->
+    <nav class="nav-menu" id="nav-menu" aria-label="Primary Navigation">
+      <button class="nav-menu-close" aria-label="Close navigation menu">&times; Close Menu</button>
+      <div class="nav-dropdown">
+        <a href="/pages/tools/" class="nav-link">Tools ▾</a>
+        <div class="dropdown-menu">
+          <a href="/pages/tools/">All Tools</a>
+          <a href="/pages/tools/coding/">Coding</a>
+          <a href="/pages/tools/converters/">Converters</a>
+          <a href="/pages/tools/data/">Data</a>
+          <a href="/pages/tools/images/">Images</a>
+          <a href="/pages/tools/lifestyle/">Lifestyle</a>
+          <a href="/pages/tools/math/">Math</a>
+          <a href="/pages/tools/miscellaneous/">Miscellaneous</a>
+          <a href="/pages/tools/network/">Network</a>
+          <a href="/pages/tools/office/">Office</a>
+          <a href="/pages/tools/utilities/">Utilities</a>
+          <a href="/pages/tools/videos/">Videos</a>
         </div>
       </div>
+
+      <div class="nav-dropdown">
+        <a href="/pages/games/" class="nav-link">Games ▾</a>
+        <div class="dropdown-menu">
+          <a href="/pages/games/">All Games</a>
+          <a href="/pages/games/arcade/">Arcade</a>
+          <a href="/pages/games/board/">Board</a>
+          <a href="/pages/games/cards/">Cards</a>
+          <a href="/pages/games/puzzles/">Puzzles</a>
+          <a href="/pages/games/word/">Word</a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <a href="/pages/software/" class="nav-link">Software ▾</a>
+        <div class="dropdown-menu">
+          <a href="/pages/software/">All Software</a>
+          <a href="/pages/software/android/productivity/">Android Productivity</a>
+          <a href="/pages/software/android/utility/">Android Utilities</a>
+          <a href="/pages/software/apple/productivity/">Apple Productivity</a>
+          <a href="/pages/software/apple/utility/">Apple Utilities</a>
+          <a href="/pages/software/linux/games/">Linux Games</a>
+          <a href="/pages/software/linux/productivity/">Linux Productivity</a>
+          <a href="/pages/software/linux/utility/">Linux Utilities</a>
+          <a href="/pages/software/windows/games/">Windows Games</a>
+          <a href="/pages/software/windows/productivity/">Windows Productivity</a>
+          <a href="/pages/software/windows/utility/">Windows Utilities</a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <a href="/pages/tutorials/" class="nav-link">Tutorials ▾</a>
+        <div class="dropdown-menu">
+          <a href="/pages/tutorials/">All Tutorials</a>
+          <a href="/pages/tutorials/backend/">Backend</a>
+          <a href="/pages/tutorials/design/">Design</a>
+          <a href="/pages/tutorials/programming/">Programming</a>
+          <a href="/pages/tutorials/security/">Security</a>
+          <a href="/pages/tutorials/web-dev/">Web Dev</a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <a href="/pages/education/" class="nav-link">Education ▾</a>
+        <div class="dropdown-menu">
+          <a href="/pages/education/">All Education</a>
+          <a href="/pages/education/finance/">Finance</a>
+          <a href="/pages/education/humanities/">Humanities</a>
+          <a href="/pages/education/languages/">Languages</a>
+          <a href="/pages/education/math/">Math</a>
+          <a href="/pages/education/science/">Science</a>
+        </div>
+      </div>
+
+      <a href="/pages/blog/" class="nav-link">Blog</a>
+      
+      <!-- 3. Action Utility Buttons -->
+      <div class="hdr-actions">
+        <!-- Live Search Trigger -->
+        <button class="hdr-btn" id="hdr-search-btn" aria-label="Search site tools">🔍 Search</button>
+
+        <!-- Donate / Support Trigger -->
+        <a href="/support.html" class="hdr-btn hdr-btn-donate" aria-label="Support the project">💖 Support</a>
+
+        <!-- Sign In Button (Managed by auth.js) -->
+        <button class="hdr-btn" id="auth-toggle-btn" aria-label="Account login status">Sign In</button>
+
+        <!-- Clear Cache Utility Button -->
+        <button class="hdr-btn" id="clear-cache-btn" title="Clear local storage, cache, and reload" aria-label="Clear local cache">🧹 Clear Cache</button>
+
+        <!-- Dark / Light Theme Toggle -->
+        <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle dark/light mode">
+          <span id="theme-toggle-icon" aria-hidden="true">🌙</span>
+        </button>
+      </div>
     </nav>
+
   </div>
 </header>
 <!-- HEADER_END --></div>
 <!-- MODALS_START -->
 
-
-  <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title fs-5" id="searchModalLabel">Search BlueTEXT.in</h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <label class="form-label" for="search-input">Type to search pages and tools</label>
-          <input class="form-control" id="search-input" type="search" placeholder="Try: calculator, javascript, finance" autocomplete="off">
-          <div class="mt-3" id="search-results" aria-live="polite"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title fs-5" id="authModalLabel">Account</h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-
-        <div class="modal-body">
-          <div id="auth-logged-in" class="d-none">
-            <p class="mb-2">Signed in as <strong id="auth-current-user"></strong></p>
-            <button class="btn btn-outline-danger" id="auth-signout-button" type="button">Sign Out</button>
-          </div>
-
-          <div id="auth-forms">
-            <ul class="nav nav-tabs" id="authTab" role="tablist">
-              <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="signin-tab" data-bs-toggle="tab" data-bs-target="#signin-pane" type="button" role="tab" aria-controls="signin-pane" aria-selected="true">Sign In</button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="signup-tab" data-bs-toggle="tab" data-bs-target="#signup-pane" type="button" role="tab" aria-controls="signup-pane" aria-selected="false">Create Account</button>
-              </li>
-            </ul>
-
-            <div class="tab-content pt-3" id="authTabContent">
-              <div class="tab-pane fade show active" id="signin-pane" role="tabpanel" aria-labelledby="signin-tab" tabindex="0">
-                <form id="signin-form" class="d-grid gap-2">
-                  <input class="form-control" id="signin-email" type="email" placeholder="Email" required>
-                  <input class="form-control" id="signin-password" type="password" placeholder="Password" required>
-                  <button class="btn btn-primary" type="submit">Sign In</button>
-                  <div class="small text-center mt-1 text-secondary">
-                    Hint: Use <strong>guest@bluetext.in</strong> / <strong>guest123</strong> to sign in.
-                  </div>
-                </form>
-              </div>
-
-              <div class="tab-pane fade" id="signup-pane" role="tabpanel" aria-labelledby="signup-tab" tabindex="0">
-                <form id="signup-form" class="d-grid gap-2">
-                  <input class="form-control" id="signup-name" type="text" placeholder="Full name" required>
-                  <input class="form-control" id="signup-email" type="email" placeholder="Email" required>
-                  <input class="form-control" id="signup-password" type="password" minlength="6" placeholder="Password (min 6 chars)" required>
-                  <button class="btn btn-success" type="submit">Create Account</button>
-                </form>
-              </div>
-            </div>
-          </div>
-
-          <p class="small text-body-secondary mt-3 mb-0" id="auth-message" aria-live="polite"></p>
-          <hr class="my-3">
-          <div class="settings-actions">
-            <h6 class="fw-bold mb-2">App Options</h6>
-            <div class="d-grid gap-2">
-              <div class="d-flex gap-2">
-                <button class="btn btn-sm btn-outline-secondary flex-grow-1" id="export-settings-btn" type="button">📤 Export Settings</button>
-                <label class="btn btn-sm btn-outline-secondary flex-grow-1 mb-0 text-center" style="cursor: pointer;">
-                  📥 Import Settings
-                  <input type="file" id="import-settings-file" accept=".json" style="display: none;">
-                </label>
-              </div>
-              <button class="btn btn-sm btn-outline-danger w-100 mt-2" id="clear-cache-button" type="button">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                <span>Clear Cache</span>
-              </button>
-              <button class="btn btn-sm btn-outline-primary w-100 d-none" id="install-app-btn" type="button">📱 Install App Locally</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="donateModal" tabindex="-1" aria-labelledby="donateModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title fs-5 text-body-emphasis" id="donateModalLabel">💖 Support BlueTEXT.in</h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p class="small text-body-secondary mb-3">Your support keeps our tools fast, accessible, and completely ad-free. Our monthly target goal is $10,000 to keep the servers active.</p>
-          
-          <h6 class="fw-bold mb-2 text-body-emphasis small">Choose Your Platform:</h6>
-          <div class="list-group mb-3">
-            <button type="button" data-bs-toggle="modal" data-bs-target="#patreonModal" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center text-start">
-              <div>
-                <strong class="text-primary">🧡 Patreon (International Support)</strong>
-                <div class="small text-muted" style="font-size: 0.75rem;">Best for international credit/debit card subscriptions</div>
-              </div>
-              <span class="badge rounded-pill bg-primary-subtle text-primary-emphasis" style="font-size: 0.7rem;">International</span>
-            </button>
-            <button type="button" data-bs-toggle="modal" data-bs-target="#razorpayModal" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center text-start">
-              <div>
-                <strong class="text-info">💳 Razorpay (India Support)</strong>
-                <div class="small text-muted" style="font-size: 0.75rem;">Best for Indian Cards, UPI, Net Banking, and Wallets</div>
-              </div>
-              <span class="badge rounded-pill bg-info-subtle text-info-emphasis" style="font-size: 0.7rem;">India Friendly</span>
-            </button>
-          </div>
-
-          <div class="border rounded p-3 mb-3 text-center" style="background-color: var(--bt-bg-secondary);">
-            <h6 class="fw-bold mb-2.5 small text-body-emphasis text-start">🇮🇳 Direct Indian UPI (Zero Fees):</h6>
-            
-            <!-- Mobile App Deep Link -->
-            <div class="d-grid gap-2 mb-3">
-              <a href="upi://pay?pa=bluetextin@slc&pn=BlueTEXT.in&cu=INR" class="btn btn-primary btn-sm fw-semibold d-inline-flex align-items-center justify-content-center gap-2 py-2">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
-                <span>Pay via UPI App (Mobile)</span>
-              </a>
-            </div>
-
-            <!-- Desktop QR Code -->
-            <div class="mb-3 d-flex flex-column align-items-center">
-              <div class="p-2 bg-white rounded-3 shadow-sm d-inline-block border">
-                <img src="/assets/images/upi-qr.jpg" alt="UPI QR Code" style="max-width: 140px; height: auto; display: block;" class="rounded">
-              </div>
-              <span class="small text-muted mt-1.5" style="font-size: 0.75rem;">Scan QR to pay via GPay, PhonePe, Paytm, etc.</span>
-            </div>
-
-            <!-- Manual Copy ID -->
-            <div class="d-flex align-items-center justify-content-between border-top pt-2.5 mt-2">
-              <span class="small text-muted" style="font-size: 0.75rem;">UPI ID:</span>
-              <div class="d-flex align-items-center gap-1.5">
-                <code class="fs-6 text-primary fw-bold">bluetextin@slc</code>
-                <button class="btn btn-sm btn-outline-secondary py-0.5 px-2" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText('bluetextin@slc'); alert('UPI ID copied to clipboard!');">Copy</button>
-              </div>
-            </div>
-          </div>
-
-          <p class="small text-muted text-center mb-0">For business queries, contact us at <a href="mailto:codeon@bluetext.in" class="text-primary text-decoration-none">codeon@bluetext.in</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Secure Razorpay Popup Modal -->
-  <div class="modal fade" id="razorpayModal" tabindex="-1" aria-labelledby="razorpayModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title fs-5 text-body-emphasis" id="razorpayModalLabel">💳 Secure Razorpay Subscription</h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body text-center py-4 px-3" style="background-color: var(--bt-bg-primary);">
-          <p class="small text-body-secondary mb-4">Complete your support via cards, UPI, net banking, or wallet securely below:</p>
-          <div class="d-flex justify-content-center p-2 rounded" style="background-color: var(--bt-bg-secondary); border: 1px solid var(--bt-border-color);">
-            <form>
-              <script>window.errorQueue = window.errorQueue || [];</script>
-              <script src="https://cdn.razorpay.com/static/widget/subscription-button.js" data-subscription_button_id="pl_T4XGfSg6ladpyP" data-button_theme="brand-color" async> </script>
-            </form>
-          </div>
-          <p class="small text-muted mt-3 mb-0" style="font-size: 0.75rem;">Your payment is safely processed by Razorpay. Zero trackers policy.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Secure Patreon Info Modal -->
-  <div class="modal fade" id="patreonModal" tabindex="-1" aria-labelledby="patreonModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title fs-5 text-body-emphasis" id="patreonModalLabel">🧡 Secure Patreon Support</h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body text-center py-4 px-3" style="background-color: var(--bt-bg-primary);">
-          <p class="small text-body-secondary mb-4">Support BlueTEXT.in internationally on Patreon:</p>
-          
-          <div class="p-3 border rounded text-start mb-4" style="background-color: var(--bt-bg-secondary); border-color: var(--bt-border-color) !important;">
-            <h6 class="fw-bold mb-1 text-primary">☕ BlueTEXT Membership</h6>
-            <p class="small text-muted mb-3">Become a member to help keep the servers active, fast, and completely ad-free.</p>
-            <a href="https://www.patreon.com/BlueTEXTin" onclick="window.open(this.href, 'PatreonPayment', 'width=600,height=750,scrollbars=yes'); return false;" class="btn btn-primary w-100 fw-semibold">
-              Support on Patreon
-            </a>
-          </div>
-          
-          <p class="small text-muted mb-0" style="font-size: 0.75rem;">Note: Payment will open securely in a separate popup window so you can stay on BlueTEXT.in.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Left Offcanvas Navigation Menu (Mobile Slider) -->
-  <div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel" style="width: 280px; background-color: var(--bt-bg-primary); border-right: 1px solid var(--bt-border-color);">
-    <div class="offcanvas-header border-bottom py-3">
-      <h5 class="offcanvas-title fw-bold text-primary d-flex align-items-center gap-2" id="mobileSidebarLabel">
-        <svg class="bt-logo" width="24" height="24" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-          <rect width="28" height="28" rx="7" fill="currentColor"></rect>
-          <path d="M8 7H15.5C18.3 7 20.3 8.5 20.3 10.9C20.3 12.4 19.5 13.6 18.1 14.2C19.9 14.7 21 16 21 17.8C21 20.5 18.8 22 15.8 22H8V7ZM11.2 9.6V13.1H15.2C16.4 13.1 17.1 12.4 17.1 11.3C17.1 10.2 16.4 9.6 15.2 9.6H11.2ZM11.2 15.5V19.4H15.7C17 19.4 17.8 18.7 17.8 17.5C17.8 16.3 16.9 15.5 15.7 15.5H11.2Z" fill="white"></path>
-        </svg>
-        <span>BlueTEXT.in</span>
-      </h5>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body p-3">
-      <!-- Search Bar -->
-      <div class="mb-4">
-        <input class="form-control bt-mobile-search-input" type="search" placeholder="Search pages and tools..." aria-label="Search" data-bs-toggle="modal" data-bs-target="#searchModal" data-bs-dismiss="offcanvas" readonly>
-      </div>
-
-      <!-- Navigation List Links -->
-      <div class="list-group list-group-flush gap-1">
-        <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold" href="/" data-bs-dismiss="offcanvas">🏠 Home</a>
-        
-        <div class="mt-3">
-          <div class="fw-bold text-muted small text-uppercase px-3 mb-1.5" style="font-size: 0.72rem; letter-spacing: 0.5px;">Sections</div>
-          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold d-flex align-items-center justify-content-between" href="/pages/tools/" data-bs-dismiss="offcanvas">
-            <span>🛠️ Developer Tools</span>
-          </a>
-          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold d-flex align-items-center justify-content-between" href="/pages/games/" data-bs-dismiss="offcanvas">
-            <span>🎮 Browser Games</span>
-          </a>
-          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold" href="/pages/software/" data-bs-dismiss="offcanvas"><span>💻 Software Catalog</span></a>
-          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold" href="/pages/tutorials/" data-bs-dismiss="offcanvas"><span>📚 Tutorials</span></a>
-          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold" href="/pages/education/" data-bs-dismiss="offcanvas"><span>🎓 Education</span></a>
-          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold" href="/pages/blog/" data-bs-dismiss="offcanvas"><span>✍️ Blog</span></a>
-          <a class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 fw-semibold text-danger d-flex align-items-center gap-2" href="/support.html" data-bs-dismiss="offcanvas">
-            <span>💖 Supporters Wall</span>
-          </a>
-        </div>
-
-        <hr class="my-3">
-
-        <!-- Settings & Controls -->
-        <div class="px-3">
-          <h6 class="fw-bold mb-2.5 small text-uppercase text-muted" style="font-size: 0.72rem; letter-spacing: 0.5px;">App Options</h6>
-          <div class="d-flex flex-column gap-3">
-            <div class="d-flex align-items-center justify-content-between">
-              <span class="small text-body-secondary fw-semibold">Theme</span>
-              <button class="btn btn-sm btn-outline-secondary" onclick="document.getElementById('theme-button').click()" type="button" aria-label="Toggle Theme">
-                🌓 Toggle Theme
-              </button>
-            </div>
-
-            <div class="d-flex align-items-center justify-content-between">
-              <span class="small text-body-secondary fw-semibold">Language</span>
-              <div class="dropdown">
-                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  🌐 Language
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end" style="max-height: 240px; overflow-y: auto;">
-                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=en]').click()">English</button></li>
-                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=es]').click()">Español</button></li>
-                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=fr]').click()">Français</button></li>
-                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=de]').click()">Deutsch</button></li>
-                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=hi]').click()">हिन्दी</button></li>
-                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=zh-CN]').click()">简体中文</button></li>
-                  <li><button class="dropdown-item" type="button" onclick="document.querySelector('#language-dropdown-menu [data-value=ja]').click()">日本語</button></li>
-                </ul>
-              </div>
-            </div>
-            
-            <button class="btn btn-sm btn-outline-danger w-100 mt-2" onclick="document.getElementById('clear-cache-button').click(); data-bs-dismiss='offcanvas'" type="button">
-              <span>🗑️ Clear Cache</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    (function() {
-      function setupLangDropdown() {
-        const dropdownMenu = document.getElementById("language-dropdown-menu");
-        const hiddenSelect = document.getElementById("language-select");
-        const langCodeSpan = document.getElementById("bt-lang-code");
-        if (!dropdownMenu || !hiddenSelect) return;
-
-        function updateLangCodeLabel(val) {
-          if (!langCodeSpan) return;
-          const code = (val || "en").split("-")[0].toUpperCase();
-          langCodeSpan.textContent = code;
-        }
-
-        // Initialize label state safely
-        let initialVal = "en";
-        try {
-          initialVal = hiddenSelect.value || localStorage.getItem("bt_language_v1") || "en";
-        } catch (e) {
-          initialVal = hiddenSelect.value || "en";
-        }
-        updateLangCodeLabel(initialVal);
-
-        dropdownMenu.querySelectorAll(".dropdown-item").forEach(item => {
-          item.addEventListener("click", () => {
-            const val = item.getAttribute("data-value");
-            if (val) {
-              hiddenSelect.value = val;
-              hiddenSelect.dispatchEvent(new Event("change"));
-              updateLangCodeLabel(val);
-            }
-          });
-        });
-
-        hiddenSelect.addEventListener("change", () => {
-          updateLangCodeLabel(hiddenSelect.value);
-        });
-      }
-
-      function setupClearCacheHeader() {
-        const btn = document.getElementById("clear-cache-header-btn");
-        if (!btn) return;
-        btn.addEventListener("click", async () => {
-          const confirmed = window.confirm("Clear local cache and reload this page?");
-          if (!confirmed) return;
-          
-          try {
-            localStorage.clear();
-            sessionStorage.clear();
-          } catch (e) {}
-
-          if ("caches" in window) {
-            try {
-              const keys = await caches.keys();
-              await Promise.all(keys.map(k => caches.delete(k)));
-            } catch (e) {}
-          }
-
-          if ("serviceWorker" in navigator) {
-            try {
-              const regs = await navigator.serviceWorker.getRegistrations();
-              await Promise.all(regs.map(r => r.unregister()));
-            } catch (e) {}
-          }
-          
-          window.location.reload(true);
-        });
-      }
-
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", () => {
-          setupLangDropdown();
-          setupClearCacheHeader();
-        }, { once: true });
-      } else {
-        setupLangDropdown();
-        setupClearCacheHeader();
-      }
-      document.addEventListener("bt:components-ready", () => {
-        setupLangDropdown();
-        setupClearCacheHeader();
-      });
-    })();
-  </script>
 
 <!-- MODALS_END -->
 
@@ -630,71 +145,36 @@
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->
-<footer class="bt-footer mt-5">
-  <div class="container py-3">
-    <div class="bt-footer-panel rounded-4 border shadow-sm p-3 px-4 d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
-      <div class="d-flex flex-column flex-md-row align-items-center gap-2 text-center text-md-start">
-        <div class="d-flex align-items-center gap-2">
-          <svg class="bt-logo text-primary" width="20" height="20" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-            <rect width="28" height="28" rx="7" fill="currentColor"></rect>
-            <path d="M8 7H15.5C18.3 7 20.3 8.5 20.3 10.9C20.3 12.4 19.5 13.6 18.1 14.2C19.9 14.7 21 16 21 17.8C21 20.5 18.8 22 15.8 22H8V7ZM11.2 9.6V13.1H15.2C16.4 13.1 17.1 12.4 17.1 11.3C17.1 10.2 16.4 9.6 15.2 9.6H11.2ZM11.2 15.5V19.4H15.7C17 19.4 17.8 18.7 17.8 17.5C17.8 16.3 16.9 15.5 15.7 15.5H11.2Z" fill="white"></path>
-          </svg>
-          <span class="fw-semibold small text-body-emphasis">BlueTEXT.in</span>
-        </div>
-        <span class="text-body-secondary small ms-md-2">© 2026. Client-side execution. Zero tracker policy.</span>
-      </div>
-      
-      <div class="d-flex flex-wrap justify-content-center gap-3 small">
-        <a class="link-secondary text-decoration-none fw-medium" href="/assets/nav/about.html">About</a>
-        <a class="link-secondary text-decoration-none fw-medium" href="/assets/nav/contact.html">Contact</a>
-        <a class="link-secondary text-decoration-none fw-medium" href="https://github.com/mTulsiram/bluetext/issues/new?template=bug_report.md" target="_blank" rel="noopener noreferrer">Report a Bug</a>
-        <a class="link-secondary text-decoration-none fw-medium" href="https://github.com/mTulsiram/bluetext/issues/new?template=feature_request.md" target="_blank" rel="noopener noreferrer">Suggest a Feature</a>
-        <a class="link-secondary text-decoration-none fw-medium" href="/assets/nav/privacy.html">Privacy</a>
-        <a class="link-secondary text-decoration-none fw-medium" href="/assets/nav/terms.html">Terms</a>
-        <a class="link-secondary text-decoration-none fw-medium" href="/assets/nav/security.html">Security</a>
-        <a class="link-secondary text-decoration-none fw-medium" href="/assets/nav/accessibility.html">Accessibility</a>
-      </div>
+<!-- =========================================================================
+     BlueTEXT.in — Clean Semantic Footer Component
+     Sections: 1. Brand & Compliance Notice | 2. Navigation & Legal Links
+     ========================================================================= -->
+
+<footer class="ftr" role="contentinfo">
+  <div class="ftr-container">
+
+    <!-- 1. Brand & Privacy Compliance -->
+    <div class="ftr-brand">
+      <span class="ftr-logo">BlueTEXT.in</span>
+      <span class="ftr-compliance">© 2026. Client-side execution. Zero tracker policy.</span>
     </div>
+
+    <!-- 2. Footer Utility Links -->
+    <nav class="ftr-nav" aria-label="Footer Navigation">
+      <a href="/assets/nav/about.html" class="ftr-link">About</a>
+      <a href="/assets/nav/contact.html" class="ftr-link">Contact</a>
+      <a href="/support.html" class="ftr-link ftr-link-highlight">💖 Donate</a>
+      <a href="https://github.com/mTulsiram/bluetext/issues/new?template=bug_report.md" class="ftr-link" target="_blank" rel="noopener noreferrer">Report Bug</a>
+      <a href="https://github.com/mTulsiram/bluetext/issues/new?template=feature_request.md" class="ftr-link" target="_blank" rel="noopener noreferrer">Suggest Feature</a>
+      <a href="/assets/nav/privacy.html" class="ftr-link">Privacy</a>
+      <a href="/assets/nav/terms.html" class="ftr-link">Terms</a>
+      <a href="/assets/nav/security.html" class="ftr-link">Security</a>
+      <a href="/assets/nav/accessibility.html" class="ftr-link">Accessibility</a>
+    </nav>
+
   </div>
 </footer>
-
-<!-- Floating Scroll to Top and Scroll to Bottom Buttons -->
-<div class="bt-scroll-buttons d-flex flex-column gap-2" style="position: fixed; bottom: 24px; right: 24px; z-index: 1040;">
-  <button class="btn bt-scroll-btn" id="scroll-to-top-btn" type="button" aria-label="Scroll to top" title="Scroll to top">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg>
-  </button>
-  <button class="btn bt-scroll-btn" id="scroll-to-bottom-btn" type="button" aria-label="Scroll to bottom" title="Scroll to bottom">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
-  </button>
-</div>
-
-<script>
-  (function initScrollButtons() {
-    function setup() {
-      const topBtn = document.getElementById("scroll-to-top-btn");
-      const bottomBtn = document.getElementById("scroll-to-bottom-btn");
-      
-      if (topBtn) {
-        topBtn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-      
-      if (bottomBtn) {
-        bottomBtn.onclick = () => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "smooth" });
-      }
-    }
-    
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", setup, { once: true });
-    } else {
-      setup();
-    }
-    document.addEventListener("bt:components-ready", setup);
-  })();
-</script>
-
-
 <!-- FOOTER_END --></div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <script src="/assets/js/app.js" defer></script>
-</body>
+  </body>
 </html>

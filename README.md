@@ -1,43 +1,73 @@
-# BlueTEXT
+# BlueTEXT.in
 
-BlueTEXT is a pure static web platform containing free online tools, games, tutorials, software catalogs, and educational resources. Zero external build dependencies required.
+BlueTEXT.in is a high-performance, client-side web application platform containing 500+ free online tools, games, tutorials, software catalogs, and educational resources. 
 
-## 🚀 Running the Project
+---
 
-BlueTEXT is completely static and can be served using Python standard library:
+## 🚀 Running Locally
+
+Start the local static server using Python standard library:
 
 ```bash
 # Start local static server (Python 3)
 python server.py
-# or
-python3 server.py
 ```
 
 Then open `http://localhost:8080` in your browser.
 
-Alternatively, you can open any `index.html` file directly in a modern web browser or host the repository on GitHub Pages, Netlify, Vercel, or any standard static web host with **zero build step**.
+---
+
+## 🛠️ Build Pipeline & Single Command
+
+All site assets, search catalogs, category indices, translation dictionaries, and header/footer components are managed through a unified single build script:
+
+```bash
+# Execute complete build pipeline
+node scripts/build.js
+```
+
+### Pipeline Automated Tasks:
+- **Search Catalog Indexing**: Compiles `assets/data/search-index.json` across 536 pages.
+- **Component Injection**: Injects `assets/components/header.html` and `assets/components/footer.html` into `<!-- HEADER_START -->` and `<!-- FOOTER_START -->` placeholders.
+- **Offline Multi-Language Catalogs**: Generates translation dictionaries (`assets/data/i18n/*.json`) for 19 languages.
+- **XML Sitemap Generation**: Updates `sitemap.xml` with 536 canonical routes.
+
+---
+
+## 🧪 Automated Testing & Health Checks
+
+Run the automated Selenium E2E test suite:
+
+```bash
+# Run enterprise Selenium health checks
+python tests/run_enterprise_suite.py
+```
 
 ---
 
 ## 📁 Repository Structure
 
-```
+```text
 ├── index.html                  # Main homepage
-├── support.html                # Support and donation page
-├── sitemap.xml                 # Search engine sitemap
+├── support.html                # Support and donation landing page (Razorpay modal)
+├── sitemap.xml                 # Canonical XML sitemap (536 routes)
 ├── server.py                   # Lightweight Python 3 static web server
+├── scripts/
+│   └── build.js                # Consolidated build pipeline
+├── tests/
+│   ├── run_enterprise_suite.py # Enterprise Selenium health check runner
+│   └── selenium_test_suite.py  # E2E Selenium UI test scenarios
 ├── assets/
 │   ├── components/             # Reusable UI templates (header.html, footer.html)
-│   ├── css/                    # Consolidated stylesheets (main.css)
-│   ├── data/                   # Search index & pre-compiled translation dictionaries
-│   └── js/                     # Client-side JavaScript feature scripts (app.js, nav.js, auth.js, theme.js)
-├── pages/                      # Content & tool pages
-│   ├── tools/                  # Web applications & converters
-│   ├── games/                  # Web arcade & puzzle games
-│   ├── software/               # Open-source & utility software catalogs
-│   ├── tutorials/              # Developer & designer tutorials
-│   └── education/              # Learning & study resources
-└── AIMemory.md                 # System audit log and architectural memory
+│   ├── css/                    # Unified stylesheet (main.css)
+│   ├── data/                   # Search index & translation dictionaries
+│   └── js/                     # Client-side JavaScript (app.js)
+└── pages/                      # Content & category tree index pages
+    ├── tools/                  # Web applications & converters
+    ├── games/                  # Web arcade & puzzle games
+    ├── software/               # Open-source & utility software catalogs
+    ├── tutorials/              # Developer & designer guides
+    └── education/              # Learning & study resources
 ```
 
 ---
@@ -46,6 +76,6 @@ Alternatively, you can open any `index.html` file directly in a modern web brows
 
 - **100% Client-Side**: All converters and tools execute locally in the user's browser.
 - **Dark / Light Mode**: Dynamic theme switching with persistent user preference.
-- **Offline Multi-Language Support**: Pre-compiled translation catalogs for 20 major languages.
-- **Accessibility & Contrast**: Built on Bootstrap 5 UI framework with WCAG 2.1 AA compliance.
-- **Zero Package Bloat**: No `node_modules`, npm, or build dependencies required to run or deploy.
+- **Offline Multi-Language Support**: Pre-compiled translation catalogs for 19 major languages.
+- **WCAG 2.1 AA Compliant**: High contrast typography, accessible focus rings, and clean semantic markup.
+- **Clean Responsive Navigation**: Offcanvas drawer on mobile and absolute hover dropdowns on desktop viewports.

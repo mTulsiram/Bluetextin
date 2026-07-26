@@ -1,362 +1,117 @@
-"use strict";
+/* =========================================================================
+   BlueTEXT.in — Navigation & Utility Controller
+   Modules: 1. Theme Toggle | 2. Mobile Drawer | 3. Clear Cache Utility
+   ========================================================================= */
 
+(function () {
+  const THEME_KEY = "bt_theme_v1";
 
-(function navModule() {
-	let initialized = false;
-	let clearCacheBound = false;
-	const CACHE_BUST_KEY = "bt_cache_bust_v1";
+  // -------------------------------------------------------------------------
+  // 1. Theme Management (Dark/Light mode)
+  // -------------------------------------------------------------------------
+  function getSystemTheme() {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
 
-	async function clearClientData() {
-		try {
-			localStorage.clear();
-		} catch (error) {
-			console.warn("localStorage clear failed", error);
-		}
+  function applyTheme(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    const icon = document.getElementById("theme-toggle-icon");
+    if (icon) icon.textContent = theme === "dark" ? "☀️" : "🌙";
+  }
 
-		try {
-			sessionStorage.clear();
-		} catch (error) {
-			console.warn("sessionStorage clear failed", error);
-		}
+  function initTheme() {
+    let savedTheme;
+    try {
+      savedTheme = localStorage.getItem(THEME_KEY);
+    } catch (e) {}
+    const theme = savedTheme || getSystemTheme();
+    applyTheme(theme);
+  }
 
-		if ("caches" in window) {
-			try {
-				const cacheKeys = await caches.keys();
-				await Promise.all(cacheKeys.map((key) => caches.delete(key)));
-			} catch (error) {
-				console.warn("Cache storage clear failed", error);
-			}
-		}
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute("data-theme") || "light";
+    const next = current === "dark" ? "light" : "dark";
+    applyTheme(next);
+    try {
+      localStorage.setItem(THEME_KEY, next);
+    } catch (e) {}
+  }
 
-		if ("serviceWorker" in navigator) {
-			try {
-				const registrations = await navigator.serviceWorker.getRegistrations();
-				await Promise.all(registrations.map((registration) => registration.unregister()));
-			} catch (error) {
-				console.warn("Service worker unregister failed", error);
-			}
-		}
+  // -------------------------------------------------------------------------
+  // 2. Mobile Responsive Navigation Drawer
+  // -------------------------------------------------------------------------
+  function initMobileNav() {
+    const toggleBtn = document.querySelector(".nav-toggle");
+    const menu = document.getElementById("nav-menu");
 
-		if ("indexedDB" in window && typeof indexedDB.databases === "function") {
-			try {
-				const databases = await indexedDB.databases();
-				await Promise.all(
-					databases
-						.filter((db) => db && db.name)
-						.map((db) => new Promise((resolve) => {
-							const request = indexedDB.deleteDatabase(db.name);
-							request.onsuccess = () => resolve();
-							request.onerror = () => resolve();
-							request.onblocked = () => resolve();
-						}))
-				);
-			} catch (error) {
-				console.warn("IndexedDB clear failed", error);
-			}
-		}
+    if (!toggleBtn || !menu) return;
 
-		try {
-			for (const entry of document.cookie.split(";")) {
-				const name = entry.split("=")[0]?.trim();
-				if (!name) continue;
-				document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
-			}
-		} catch (error) {
-			console.warn("Cookie clear failed", error);
-		}
-	}
+    toggleBtn.addEventListener("click", () => {
+      const isOpen = menu.classList.toggle("open");
+      toggleBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
 
-	function initClearCacheAction() {
-		if (clearCacheBound) return;
+    // Close drawer on Escape key (WCAG compliance)
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && menu.classList.contains("open")) {
+        menu.classList.remove("open");
+        toggleBtn.setAttribute("aria-expanded", "false");
+        toggleBtn.focus();
+      }
+    });
+  }
 
-		const clearCacheButton = document.getElementById("clear-cache-button");
-		if (!clearCacheButton) return;
+  // -------------------------------------------------------------------------
+  // 3. Clear Cache Utility
+  // -------------------------------------------------------------------------
+  async function clearCacheAndReload() {
+    const confirmed = window.confirm("Clear all local storage, site caches, and reload page?");
+    if (!confirmed) return;
 
-		clearCacheButton.addEventListener("click", async () => {
-			const confirmed = window.confirm("Clear local cache and reload this page?");
-			if (!confirmed) return;
+    try {
+      localStorage.clear();
+      sessionStorage.clear();
+    } catch (e) {}
 
-			const cacheBustToken = String(Date.now());
-			try {
-				localStorage.setItem(CACHE_BUST_KEY, cacheBustToken);
-			} catch (error) {
-				console.warn("Unable to persist cache bust token", error);
-			}
+    if ("caches" in window) {
+      try {
+        const keys = await caches.keys();
+        await Promise.all(keys.map((k) => caches.delete(k)));
+      } catch (e) {}
+    }
 
-			await clearClientData();
+    if ("serviceWorker" in navigator) {
+      try {
+        const regs = await navigator.serviceWorker.getRegistrations();
+        await Promise.all(regs.map((r) => r.unregister()));
+      } catch (e) {}
+    }
 
-			const nextUrl = new URL(window.location.href);
-			nextUrl.searchParams.set("bt_cache_cleared", cacheBustToken);
-			nextUrl.searchParams.set("bt_cache_bust", cacheBustToken);
-			window.location.replace(nextUrl.toString());
-		});
+    window.location.reload(true);
+  }
 
-		clearCacheBound = true;
-	}
+  function initClearCache() {
+    const btn = document.getElementById("clear-cache-btn");
+    if (btn) {
+      btn.addEventListener("click", clearCacheAndReload);
+    }
+  }
 
-	function generateBreadcrumbs() {
-		const mainContent = document.getElementById("main-content");
-		if (!mainContent || document.querySelector(".breadcrumb")) return;
+  // -------------------------------------------------------------------------
+  // 4. Initialize Controllers
+  // -------------------------------------------------------------------------
+  initTheme();
 
-		const path = window.location.pathname;
-		if (path === "/" || path === "/index.html" || path === "") return;
+  function boot() {
+    initMobileNav();
+    initClearCache();
+    const themeBtn = document.getElementById("theme-toggle-btn");
+    if (themeBtn) themeBtn.addEventListener("click", toggleTheme);
+  }
 
-		const segments = path.split("/").filter(Boolean);
-		const breadcrumbList = [];
-
-		breadcrumbList.push({ label: "Home", href: "/" });
-
-		let currentHref = "";
-		segments.forEach((segment, index) => {
-			if (index === segments.length - 1 && (segment === "index.html" || segment === "")) {
-				return;
-			}
-
-			currentHref += "/" + segment;
-			
-			let label = segment.replace(/\.html$/i, "");
-			label = label.replace(/[-_]/g, " ");
-			label = label.replace(/\b\w/g, c => c.toUpperCase());
-
-			if (label.toLowerCase() === "pages") return;
-
-			const isActive = index === segments.length - 1;
-			breadcrumbList.push({
-				label: label,
-				href: isActive ? null : currentHref + "/",
-				active: isActive
-			});
-		});
-
-		if (breadcrumbList.length <= 1) return;
-
-		const itemsHtml = breadcrumbList.map((item, idx) => {
-			const isActive = idx === breadcrumbList.length - 1;
-			if (isActive) {
-				return `<li class="breadcrumb-item active" aria-current="page">${item.label}</li>`;
-			} else {
-				return `<li class="breadcrumb-item"><a href="${item.href}">${item.label}</a></li>`;
-			}
-		}).join("\n");
-
-		const breadcrumbNav = document.createElement("nav");
-		breadcrumbNav.setAttribute("aria-label", "Breadcrumb");
-		breadcrumbNav.className = "mb-3";
-		breadcrumbNav.innerHTML = `<ol class="breadcrumb">${itemsHtml}</ol>`;
-
-		mainContent.insertBefore(breadcrumbNav, mainContent.firstChild);
-	}
-
-	function initNavFeatures() {
-		initClearCacheAction();
-		generateBreadcrumbs();
-		if (initialized) return;
-
-		const searchInput = document.getElementById("search-input");
-		const searchResults = document.getElementById("search-results");
-		const searchButton = document.getElementById("global-search-button");
-		const languageSelect = document.getElementById("language-select");
-
-		if (!searchInput || !searchResults || !languageSelect) return;
-		initialized = true;
-
-	const languageKey = "bt_language_v1";
-	const searchableItems = [];
-
-	// Performance optimization: Debounce function to prevent heavy matching and DOM updates on every keystroke
-	function debounce(fn, delay) {
-		let timeoutId;
-		return function (...args) {
-			clearTimeout(timeoutId);
-			timeoutId = setTimeout(() => fn.apply(this, args), delay);
-		};
-	}
-
-	async function buildSearchIndex() {
-		searchableItems.length = 0;
-
-		try {
-			const response = await fetch("/assets/data/search-index.json", { cache: "no-cache" });
-			if (!response.ok) throw new Error("Unable to load search index");
-			const items = await response.json();
-			if (Array.isArray(items)) {
-				for (const item of items) {
-					if (!item || !item.title || !item.url) continue;
-					const title = String(item.title);
-					const url = String(item.url);
-					const description = String(item.description || "");
-					const keywords = String(item.keywords || "");
-					searchableItems.push({
-						title,
-						url,
-						description,
-						keywords,
-						source: "page",
-						// Performance optimization: Pre-compute the lowercased search key (haystack)
-						// to avoid building strings and calling .toLowerCase() repeatedly during searching.
-						haystack: `${title} ${url} ${description} ${keywords}`.toLowerCase()
-					});
-				}
-			}
-		} catch (error) {
-			console.warn("Search index unavailable, falling back to visible links", error);
-			const links = Array.from(document.querySelectorAll("a[href]"));
-			for (const link of links) {
-				const text = (link.textContent || "").trim();
-				const href = link.getAttribute("href") || "";
-				if (!text || !href || href.startsWith("#")) continue;
-				searchableItems.push({
-					title: text,
-					url: href,
-					description: "",
-					keywords: text,
-					source: "link",
-					haystack: `${text} ${href} ${text}`.toLowerCase()
-				});
-			}
-		}
-
-		if (Array.isArray(window.blueTextData)) {
-			for (const item of window.blueTextData) {
-				if (!item) continue;
-				const title = String(item.title || item.name || "").trim();
-				const url = String(item.url || item.link || "").trim();
-				if (!title) continue;
-				searchableItems.push({
-					title,
-					url,
-					description: "",
-					keywords: title,
-					source: "tool",
-					haystack: `${title} ${url} ${title}`.toLowerCase()
-				});
-			}
-		}
-	}
-
-	function renderResults(items) {
-		if (!items.length) {
-			searchResults.innerHTML = '<p class="text-body-secondary mb-0">No results found.</p>';
-			return;
-		}
-
-		const listItems = items.slice(0, 20).map((item) => {
-			const safeUrl = item.url || "#";
-			const badge = item.source === "tool" ? "<span class=\"badge text-bg-info ms-2\">Tool</span>" : "";
-			return `<li class=\"list-group-item\"><a class=\"text-decoration-none\" href=\"${safeUrl}\">${item.title}</a>${badge}</li>`;
-		});
-
-		searchResults.innerHTML = `<ul class=\"list-group\">${listItems.join("")}</ul>`;
-	}
-
-	function runSearch(query) {
-		const q = query.trim().toLowerCase();
-		if (!q) {
-			searchResults.innerHTML = '<p class="text-body-secondary mb-0">Start typing to search.</p>';
-			return;
-		}
-
-		// Performance optimization: Use pre-computed lowercased haystack for O(1) query matching operations per item.
-		const matches = searchableItems.filter((item) => {
-			return (item.haystack || "").includes(q);
-		});
-
-		renderResults(matches);
-	}
-
-	function collectTranslatableElements() {
-		return Array.from(document.querySelectorAll(
-			"main h1, main h2, main h3, main h4, main h5, main h6, main p, main a, main span, main li, main button, main label, #header-component .nav-link, #header-component .dropdown-item, #header-component button, #header-component label, #footer-component h2, #footer-component h3, #footer-component p, #footer-component a, #footer-component span"
-		)).filter((element) => {
-			if (element.children.length > 0 && !element.classList.contains("nav-link") && !element.classList.contains("dropdown-item")) {
-				return false;
-			}
-
-			return !!(element.textContent || "").replace(/\s+/g, " ").trim();
-		});
-	}
-
-	async function applyLanguage(targetLang) {
-		const elements = collectTranslatableElements();
-
-		// Cache original texts first
-		for (const element of elements) {
-			if (!element.dataset.btOriginalText) {
-				element.dataset.btOriginalText = (element.textContent || "").replace(/\s+/g, " ").trim();
-			}
-		}
-
-		if (targetLang === "en") {
-			for (const element of elements) {
-				element.textContent = element.dataset.btOriginalText || "";
-			}
-			localStorage.setItem(languageKey, "en");
-			return;
-		}
-
-		try {
-			const response = await fetch(`/assets/data/i18n/${targetLang}-dictionary.json`);
-			if (!response.ok) throw new Error(`Could not load translations for ${targetLang}`);
-			const dict = await response.json();
-
-			for (const element of elements) {
-				const original = element.dataset.btOriginalText || "";
-				if (!original) continue;
-				element.textContent = dict[original] || original;
-			}
-		} catch (error) {
-			console.warn("Translation failed, falling back to original", error);
-			for (const element of elements) {
-				element.textContent = element.dataset.btOriginalText || "";
-			}
-		}
-
-		localStorage.setItem(languageKey, targetLang);
-	}
-
-	// Performance optimization: Debounce search execution during continuous input (150ms delay)
-	const debouncedSearch = debounce((val) => {
-		runSearch(val);
-	}, 150);
-
-	searchInput.addEventListener("input", (event) => {
-		debouncedSearch(event.target.value || "");
-	});
-
-	document.getElementById("searchModal")?.addEventListener("shown.bs.modal", () => {
-		searchInput.focus();
-		runSearch(searchInput.value || "");
-	});
-
-	searchButton?.addEventListener("click", () => {
-		runSearch(searchInput.value || "");
-	});
-
-	languageSelect.addEventListener("change", async (event) => {
-		const targetLang = event.target.value || "en";
-		await applyLanguage(targetLang);
-		document.dispatchEvent(new CustomEvent("bt:language-changed", { detail: targetLang }));
-	});
-
-	buildSearchIndex().then(() => {
-		runSearch("");
-	});
-
-	const savedLanguage = localStorage.getItem(languageKey) || "en";
-	languageSelect.value = savedLanguage;
-	if (savedLanguage !== "en") {
-		applyLanguage(savedLanguage).then(() => {
-			document.dispatchEvent(new CustomEvent("bt:language-changed", { detail: savedLanguage }));
-		});
-	}
-	}
-
-	if (document.readyState === "loading") {
-		document.addEventListener("DOMContentLoaded", initNavFeatures, { once: true });
-	} else {
-		initNavFeatures();
-	}
-
-	document.addEventListener("bt:components-ready", initNavFeatures);
-	document.addEventListener("bt:data-ready", initNavFeatures);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot, { once: true });
+  } else {
+    boot();
+  }
 })();

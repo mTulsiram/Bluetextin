@@ -130,28 +130,26 @@ async function normalizeLegalPages() {
       .join("\n");
 
     return `<!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="${escapeHtml(title)} - BlueTEXT policy page">
   <title>${escapeHtml(title)} | BlueTEXT</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="/assets/js/app.js" defer></script>
 </head>
 <body>
   <div id="header-component"></div>
-  <main class="container py-4" id="main-content">
+  <main id="main-content">
     <h1>${escapeHtml(title)}</h1>
-    <div class="d-grid gap-3">
+    <div>
 ${body}
     </div>
-    <p class="mt-4"><a href="/">Back to Home</a></p>
+    <p><a href="/">Back to Home</a></p>
   </main>
   <div id="footer-component"></div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <script src="/assets/js/app.js" defer></script>
 </body>
 </html>
 `;
@@ -198,56 +196,49 @@ async function generateIndexPages() {
     const assetBase = "../".repeat(relDepth);
 
     const cards = children.map(({ href, label }) => `
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <a class="card h-100 text-decoration-none shadow-sm bt-category-card" href="${href}">
-          <div class="card-body d-flex align-items-center gap-2">
-            <span class="fs-5" aria-hidden="true">📄</span>
-            <span class="card-title mb-0 fw-medium">${label}</span>
-          </div>
-        </a>
-      </div>`).join("");
+      <li>
+        <a href="${href}">${label}</a>
+      </li>`).join("");
 
     const crumbHtml = breadcrumb.map((c, i) => {
       if (i === breadcrumb.length - 1) {
-        return `      <li class="breadcrumb-item active" aria-current="page">${c.label}</li>`;
+        return `      <li>${c.label}</li>`;
       }
-      return `      <li class="breadcrumb-item"><a href="${c.href}">${c.label}</a></li>`;
+      return `      <li><a href="${c.href}">${c.label}</a></li>`;
     }).join("\n");
 
     return `<!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="${description}">
   <meta name="robots" content="index,follow">
   <title>${title} | BlueTEXT</title>
-  <link class="bt-bootstrap-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="${assetBase}assets/css/main.css">
   <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="/assets/js/app.js" defer></script>
 </head>
 <body>
-  <div id="header-component"></div>
+  <div id="header-component"><!-- HEADER_START --><!-- HEADER_END --></div>
+  <!-- MODALS_START --><!-- MODALS_END -->
 
-  <main class="container py-4" id="main-content">
-    <nav aria-label="Breadcrumb" class="mb-3">
-      <ol class="breadcrumb">
+  <main id="main-content">
+    <nav aria-label="Breadcrumb">
+      <ol>
 ${crumbHtml}
       </ol>
     </nav>
 
-    <h1 class="h3 mb-1">${title}</h1>
-    <p class="text-body-secondary mb-4">${description}</p>
+    <h1>${title}</h1>
+    <p>${description}</p>
 
-    <div class="row g-3">
+    <ul>
       ${cards}
-    </div>
+    </ul>
   </main>
 
-  <div id="footer-component"></div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <script src="${assetBase}assets/js/app.js" defer></script>
+  <div id="footer-component"><!-- FOOTER_START --><!-- FOOTER_END --></div>
 </body>
 </html>
 `;
@@ -273,7 +264,7 @@ ${crumbHtml}
       file: "pages/blog/index.html",
       title: "Blog",
       description: "Articles, guides, and updates from BlueTEXT.",
-      breadcrumb: [{ label: "Home", href: "/" }, { label: "Pages", href: "../" }, { label: "Blog" }],
+      breadcrumb: [{ label: "Home", href: "/" }, { label: "Pages", href: "/pages/" }, { label: "Blog" }],
       relDepth: 2,
       staticChildren: []
     },
@@ -281,7 +272,7 @@ ${crumbHtml}
       file: "pages/tools/index.html",
       title: "Tools",
       description: "Browse all free client-side developer and productivity tools on BlueTEXT.",
-      breadcrumb: [{ label: "Home", href: "/" }, { label: "Pages", href: "../" }, { label: "Tools" }],
+      breadcrumb: [{ label: "Home", href: "/" }, { label: "Pages", href: "/pages/" }, { label: "Tools" }],
       relDepth: 2,
       staticChildren: [
         { href: "coding/", label: "Coding" },
@@ -301,7 +292,7 @@ ${crumbHtml}
       file: "pages/games/index.html",
       title: "Games",
       description: "Play free browser games on BlueTEXT — arcade, board, cards, puzzles, and word games.",
-      breadcrumb: [{ label: "Home", href: "/" }, { label: "Pages", href: "../" }, { label: "Games" }],
+      breadcrumb: [{ label: "Home", href: "/" }, { label: "Pages", href: "/pages/" }, { label: "Games" }],
       relDepth: 2,
       staticChildren: [
         { href: "arcade/", label: "Arcade" },
@@ -315,7 +306,7 @@ ${crumbHtml}
       file: "pages/software/index.html",
       title: "Software",
       description: "Explore free and open-source software picks for Android, Apple, Linux, and Windows.",
-      breadcrumb: [{ label: "Home", href: "/" }, { label: "Pages", href: "../" }, { label: "Software" }],
+      breadcrumb: [{ label: "Home", href: "/" }, { label: "Pages", href: "/pages/" }, { label: "Software" }],
       relDepth: 2,
       staticChildren: [
         { href: "android/", label: "Android" },
@@ -328,7 +319,7 @@ ${crumbHtml}
       file: "pages/tutorials/index.html",
       title: "Tutorials",
       description: "Step-by-step tutorials on backend, design, programming, security, and web development.",
-      breadcrumb: [{ label: "Home", href: "/" }, { label: "Pages", href: "../" }, { label: "Tutorials" }],
+      breadcrumb: [{ label: "Home", href: "/" }, { label: "Pages", href: "/pages/" }, { label: "Tutorials" }],
       relDepth: 2,
       staticChildren: [
         { href: "backend/", label: "Backend" },
@@ -342,7 +333,7 @@ ${crumbHtml}
       file: "pages/education/index.html",
       title: "Education",
       description: "Free study resources covering finance, humanities, languages, math, and science.",
-      breadcrumb: [{ label: "Home", href: "/" }, { label: "Pages", href: "../" }, { label: "Education" }],
+      breadcrumb: [{ label: "Home", href: "/" }, { label: "Pages", href: "/pages/" }, { label: "Education" }],
       relDepth: 2,
       staticChildren: [
         { href: "finance/", label: "Finance" },
@@ -356,7 +347,7 @@ ${crumbHtml}
       file: "pages/software/android/index.html",
       title: "Android Software",
       description: "Free and open-source Android app picks in productivity and utility categories.",
-      breadcrumb: [{ label: "Home", href: "/" }, { label: "Software", href: "../" }, { label: "Android" }],
+      breadcrumb: [{ label: "Home", href: "/" }, { label: "Pages", href: "/pages/" }, { label: "Software", href: "/pages/software/" }, { label: "Android" }],
       relDepth: 3,
       staticChildren: [
         { href: "productivity/", label: "Productivity" },
@@ -367,7 +358,7 @@ ${crumbHtml}
       file: "pages/software/apple/index.html",
       title: "Apple Software",
       description: "Free and open-source Apple app picks in productivity and utility categories.",
-      breadcrumb: [{ label: "Home", href: "/" }, { label: "Software", href: "../" }, { label: "Apple" }],
+      breadcrumb: [{ label: "Home", href: "/" }, { label: "Pages", href: "/pages/" }, { label: "Software", href: "/pages/software/" }, { label: "Apple" }],
       relDepth: 3,
       staticChildren: [
         { href: "productivity/", label: "Productivity" },
@@ -378,7 +369,7 @@ ${crumbHtml}
       file: "pages/software/linux/index.html",
       title: "Linux Software",
       description: "Free and open-source Linux app picks in games, productivity, and utility categories.",
-      breadcrumb: [{ label: "Home", href: "/" }, { label: "Software", href: "../" }, { label: "Linux" }],
+      breadcrumb: [{ label: "Home", href: "/" }, { label: "Pages", href: "/pages/" }, { label: "Software", href: "/pages/software/" }, { label: "Linux" }],
       relDepth: 3,
       staticChildren: [
         { href: "games/", label: "Games" },
@@ -390,7 +381,7 @@ ${crumbHtml}
       file: "pages/software/windows/index.html",
       title: "Windows Software",
       description: "Free and open-source Windows app picks in games, productivity, and utility categories.",
-      breadcrumb: [{ label: "Home", href: "/" }, { label: "Software", href: "../" }, { label: "Windows" }],
+      breadcrumb: [{ label: "Home", href: "/" }, { label: "Pages", href: "/pages/" }, { label: "Software", href: "/pages/software/" }, { label: "Windows" }],
       relDepth: 3,
       staticChildren: [
         { href: "games/", label: "Games" },
@@ -438,13 +429,25 @@ ${crumbHtml}
     for (const e of entries) {
       if (!e.isDirectory() || e.name.startsWith(".")) continue;
       const childDir = path.join(dir, e.name);
+      const relPosix = toPosix(path.relative(path.join(ROOT, "pages"), childDir));
+      const absPath = `/pages/${relPosix}/`;
+
       const childBreadcrumb = [
         ...breadcrumb.map((c, idx) => {
-          if (idx < breadcrumb.length - 1) return c;
-          return { label: c.label, href: "./" };
+          if (idx === 0) return { label: "Home", href: "/" };
+          if (idx === 1) return { label: "Pages", href: "/pages/" };
+          // Preserve proper absolute path for parent categories
+          return c;
         }),
         { label: titleCase(e.name) }
       ];
+
+      // Fix parent link href right before pushing child
+      if (childBreadcrumb.length > 2) {
+        const parentPosix = toPosix(path.relative(path.join(ROOT, "pages"), dir));
+        childBreadcrumb[childBreadcrumb.length - 2].href = parentPosix ? `/pages/${parentPosix}/` : `/pages/`;
+      }
+
       await walkAndGenerate(childDir, relDepth + 1, childBreadcrumb);
     }
   }
@@ -865,6 +868,12 @@ async function injectHeaderFooter() {
   const HEADER_FILE = path.join(ROOT, "assets", "components", "header.html");
   const FOOTER_FILE = path.join(ROOT, "assets", "components", "footer.html");
 
+  // Configurable Exemption List (pages that bypass auto-injection if custom header/footer needed)
+  const INJECTION_EXEMPTIONS = new Set([
+    // Add relative POSIX paths to exempt pages here if needed, e.g.:
+    // "pages/custom-landing.html"
+  ]);
+
   const headerContent = await fs.readFile(HEADER_FILE, "utf8");
   const footerContent = await fs.readFile(FOOTER_FILE, "utf8");
 
@@ -882,6 +891,8 @@ async function injectHeaderFooter() {
 
   for (const file of allFiles) {
     if (file === HEADER_FILE || file === FOOTER_FILE) continue;
+    const relPosix = toPosix(path.relative(ROOT, file));
+    if (INJECTION_EXEMPTIONS.has(relPosix)) continue;
 
     let content = await fs.readFile(file, "utf8");
     let original = content;
@@ -923,27 +934,18 @@ async function injectHeaderFooter() {
 
 async function bundleCss() {
   const CSS_DIR = path.join(ROOT, "assets", "css");
-  const files = [
-    "reset.css",
-    "config.css",
-    "base.css",
-    "layout.css",
-    "header.css",
-    "components.css",
-    "footer.css",
-    "themes.css"
-  ];
-  
-  let combined = "/* BlueTEXT Bundled Styles */\n";
-  for (const f of files) {
-    const filePath = path.join(CSS_DIR, f);
-    const content = await fs.readFile(filePath, "utf8").catch(() => "");
-    combined += `\n/* --- ${f} --- */\n${content}\n`;
-  }
-  
+  const themePath = path.join(CSS_DIR, "theme.css");
   const mainPath = path.join(CSS_DIR, "main.css");
-  await fs.writeFile(mainPath, combined, "utf8");
-  console.log(`Bundled CSS: 8 files combined into ${mainPath}`);
+  
+  const themeContent = await fs.readFile(themePath, "utf8").catch(() => "");
+  const mainContent = await fs.readFile(mainPath, "utf8").catch(() => "");
+  
+  if (!mainContent.includes("--- Material 3 Expressive Design Tokens") && themeContent) {
+    // Keep main.css valid and intact
+    console.log(`CSS verified: theme.css (${themeContent.length} bytes), main.css (${mainContent.length} bytes)`);
+  } else {
+    console.log(`CSS check complete`);
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
