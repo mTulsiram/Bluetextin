@@ -512,7 +512,14 @@ async function generateSearchIndex() {
   const htmlFiles = await walkHtmlFiles(ROOT);
 
   function stripHtml(input) {
-    return input
+    // ⚡ Bolt optimization: Strip out layout blocks enclosed by HEADER_START, FOOTER_START, and MODALS_START comments
+    // to prevent search-index keyword pollution and minimize payload size.
+    let cleaned = input
+      .replace(/<!-- HEADER_START -->[\s\S]*?<!-- HEADER_END -->/g, " ")
+      .replace(/<!-- FOOTER_START -->[\s\S]*?<!-- FOOTER_END -->/g, " ")
+      .replace(/<!-- MODALS_START -->[\s\S]*?<!-- MODALS_END -->/g, " ");
+
+    return cleaned
       .replace(/<script[\s\S]*?<\/script>/gi, " ")
       .replace(/<style[\s\S]*?<\/style>/gi, " ")
       .replace(/<[^>]+>/g, " ")
