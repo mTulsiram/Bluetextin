@@ -487,9 +487,10 @@
         const cat = getCategory(item.url);
         if (currentCategory !== "all" && cat !== currentCategory) return false;
         if (!query) return true;
-        return (item.title || "").toLowerCase().includes(query) ||
-               (item.description || "").toLowerCase().includes(query) ||
-               (item.keywords || "").toLowerCase().includes(query);
+        // Use pre-computed lowercased properties to avoid runtime string conversions
+        return item._titleLower.includes(query) ||
+               item._descLower.includes(query) ||
+               item._keywordsLower.includes(query);
       });
 
       if (countIndicator) {
@@ -558,10 +559,14 @@
       });
     });
 
+    let searchDebounceTimer;
     if (searchInput) {
       searchInput.addEventListener("input", () => {
         currentPage = 1;
-        render();
+        clearTimeout(searchDebounceTimer);
+        searchDebounceTimer = setTimeout(() => {
+          render();
+        }, 150); // 150ms debounce delay to prevent redundant DOM layouts/reflows and filtering on every keystroke
       });
     }
 
@@ -589,7 +594,17 @@
         return res.json();
       })
       .then(data => {
-        allItems = data.filter(item => item && item.url && item.url !== "/" && !item.url.endsWith("/index.html"));
+        // Pre-compute lowercased properties during index load to avoid expensive runtime conversions
+        allItems = data
+          .filter(item => item && item.url && item.url !== "/" && !item.url.endsWith("/index.html"))
+          .map(item => {
+            return {
+              ...item,
+              _titleLower: (item.title || "").toLowerCase(),
+              _descLower: (item.description || "").toLowerCase(),
+              _keywordsLower: (item.keywords || "").toLowerCase()
+            };
+          });
         render();
       })
       .catch(err => {
