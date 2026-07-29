@@ -487,9 +487,9 @@
         const cat = getCategory(item.url);
         if (currentCategory !== "all" && cat !== currentCategory) return false;
         if (!query) return true;
-        return (item.title || "").toLowerCase().includes(query) ||
-               (item.description || "").toLowerCase().includes(query) ||
-               (item.keywords || "").toLowerCase().includes(query);
+        return item._titleLower.includes(query) ||
+               item._descLower.includes(query) ||
+               item._keywordsLower.includes(query);
       });
 
       if (countIndicator) {
@@ -558,11 +558,20 @@
       });
     });
 
+    function debounce(func, wait) {
+      let timeout;
+      return function(...args) {
+        const context = this;
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(context, args), wait);
+      };
+    }
+
     if (searchInput) {
-      searchInput.addEventListener("input", () => {
+      searchInput.addEventListener("input", debounce(() => {
         currentPage = 1;
         render();
-      });
+      }, 150));
     }
 
     if (prevBtn) {
@@ -589,7 +598,14 @@
         return res.json();
       })
       .then(data => {
-        allItems = data.filter(item => item && item.url && item.url !== "/" && !item.url.endsWith("/index.html"));
+        allItems = data
+          .filter(item => item && item.url && item.url !== "/" && !item.url.endsWith("/index.html"))
+          .map(item => ({
+            ...item,
+            _titleLower: (item.title || "").toLowerCase(),
+            _descLower: (item.description || "").toLowerCase(),
+            _keywordsLower: (item.keywords || "").toLowerCase()
+          }));
         render();
       })
       .catch(err => {
