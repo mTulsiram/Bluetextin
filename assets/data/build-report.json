@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-07-26T15:53:19.966Z",
-  "startedAt": "2026-07-26T15:53:10.088Z",
-  "durationMs": 9878,
+  "generatedAt": "2026-07-30T06:47:42.946Z",
+  "startedAt": "2026-07-30T06:47:13.132Z",
+  "durationMs": 29814,
   "ok": true,
   "steps": [
     {
@@ -12,32 +12,32 @@
     {
       "name": "Normalize Legal Pages",
       "ok": true,
-      "durationMs": 19
+      "durationMs": 7
     },
     {
       "name": "Generate Index Pages",
       "ok": true,
-      "durationMs": 302
+      "durationMs": 112
     },
     {
       "name": "Inject Header & Footer",
       "ok": true,
-      "durationMs": 1062
+      "durationMs": 284
     },
     {
       "name": "Generate Search Index",
       "ok": true,
-      "durationMs": 231
+      "durationMs": 169
     },
     {
       "name": "Generate Translation Catalog",
       "ok": true,
-      "durationMs": 8196
+      "durationMs": 29182
     },
     {
       "name": "Generate Sitemap",
       "ok": true,
-      "durationMs": 52
+      "durationMs": 42
     }
   ],
   "outputs": {
