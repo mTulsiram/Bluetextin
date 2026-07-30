@@ -1,21 +1,21 @@
 ________________________________________
 From: Automated_QA_Runner@bluetext.in <Automated_QA_Runner@bluetext.in>
-Subject: LIVE : GREEN : Prod Local : BlueTEXT Automated Health Check Tests 2026/07/26 20:19:27 EST
+Subject: LIVE : GREEN : Prod Local : BlueTEXT Automated Health Check Tests 2026/07/30 06:49:28 EST
  
 Health Check Execution Result Snapshot
 Target Environment URL : http://localhost:8080
 Step Description                                                       Status     Time
 ------------------------------------------------------------------------------------------
-url baseURL : http://localhost:8080                                    PASSED     438ms
-match pageTitle == 'BlueTEXT.in'                                       PASSED     7ms
-TEST CASE : Mobile Navigation Drawer Open Toggle                       PASSED     413ms
-TEST CASE : Mobile Navigation Drawer Close Toggle                      PASSED     332ms
-TEST CASE : Support Razorpay Modal Trigger                             PASSED     565ms
-path 'assets/data/search-index.json' status 200                        PASSED     148ms
-Validate Subpage Route : /pages/tools/                                 PASSED     33ms
-Validate Subpage Route : /pages/games/                                 PASSED     31ms
-Validate Subpage Route : /pages/software/                              PASSED     32ms
-Validate Subpage Route : /pages/tutorials/                             PASSED     38ms
-Validate Subpage Route : /pages/education/                             PASSED     37ms
+url baseURL : http://localhost:8080                                    PASSED     116ms
+match pageTitle == 'BlueTEXT.in'                                       PASSED     20ms
+TEST CASE : Mobile Navigation Drawer Open Toggle                       PASSED     366ms
+TEST CASE : Mobile Navigation Drawer Close Toggle                      PASSED     335ms
+TEST CASE : Support Razorpay Modal Trigger                             PASSED     585ms
+path 'assets/data/search-index.json' status 200                        PASSED     143ms
+Validate Subpage Route : /pages/tools/                                 PASSED     60ms
+Validate Subpage Route : /pages/games/                                 PASSED     39ms
+Validate Subpage Route : /pages/software/                              PASSED     34ms
+Validate Subpage Route : /pages/tutorials/                             PASSED     34ms
+Validate Subpage Route : /pages/education/                             PASSED     33ms
 ------------------------------------------------------------------------------------------
-TOTAL EXECUTION TIME                                                   NA         8731ms
+TOTAL EXECUTION TIME                                                   NA         2559ms
