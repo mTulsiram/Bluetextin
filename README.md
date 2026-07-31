@@ -15,6 +15,13 @@ python server.py
 
 Then open `http://localhost:8080` in your browser.
 
+Quick project checks:
+
+```bash
+npm run lint
+npm test
+```
+
 ---
 
 ## 🛠️ Build Pipeline & Single Command

@@ -767,22 +767,28 @@ async function generateTranslationCatalog() {
     }
   }));
 
-  // Generate zh-TW by converting Simplified Chinese translations offline
+  // Generate zh-TW by converting Simplified Chinese translations offline.
+  // Fallback keeps build fully green when optional converter isn't installed.
   try {
     const cnDictPath = path.join(OUT_DIR, "zh-CN-dictionary.json");
     const twDictPath = path.join(OUT_DIR, "zh-TW-dictionary.json");
     const cnDict = JSON.parse(await fs.readFile(cnDictPath, "utf8"));
-    
-    const chineseConv = require("chinese-conv");
-    const twDict = {};
-    for (const key in cnDict) {
-      twDict[key] = chineseConv.tify(cnDict[key]);
+    let twDict = {};
+
+    try {
+      const chineseConv = require("chinese-conv");
+      for (const key in cnDict) {
+        twDict[key] = chineseConv.tify(cnDict[key]);
+      }
+      console.log(`  ✓ zh-TW: ${Object.keys(twDict).length} translations generated offline from zh-CN.`);
+    } catch (err) {
+      twDict = { ...cnDict };
+      console.warn(`  ⚠ zh-TW: chinese-conv not installed (${err.message}); copied zh-CN dictionary as fallback.`);
     }
-    
+
     await fs.writeFile(twDictPath, JSON.stringify(twDict, null, 2), "utf8");
-    console.log(`  ✓ zh-TW: ${Object.keys(twDict).length} translations generated offline from zh-CN.`);
   } catch (err) {
-    console.error(`  ✗ Failed to generate zh-TW offline: ${err.message}`);
+    console.error(`  ✗ Failed to generate zh-TW dictionary: ${err.message}`);
   }
 
   return Object.keys(catalog).length;
