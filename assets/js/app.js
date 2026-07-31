@@ -487,9 +487,10 @@
         const cat = getCategory(item.url);
         if (currentCategory !== "all" && cat !== currentCategory) return false;
         if (!query) return true;
-        return (item.title || "").toLowerCase().includes(query) ||
-               (item.description || "").toLowerCase().includes(query) ||
-               (item.keywords || "").toLowerCase().includes(query);
+        // Optimized: Use pre-computed lowercase fields to avoid costly on-the-fly allocations
+        return (item._titleLower || "").includes(query) ||
+               (item._descLower || "").includes(query) ||
+               (item._keywordsLower || "").includes(query);
       });
 
       if (countIndicator) {
@@ -559,9 +560,14 @@
     });
 
     if (searchInput) {
+      // Optimized: Debounce input handling to prevent layout thrashing and redundant renders
+      let debounceTimeout;
       searchInput.addEventListener("input", () => {
-        currentPage = 1;
-        render();
+        clearTimeout(debounceTimeout);
+        debounceTimeout = setTimeout(() => {
+          currentPage = 1;
+          render();
+        }, 150); // 150ms debounce window
       });
     }
 
@@ -589,7 +595,15 @@
         return res.json();
       })
       .then(data => {
-        allItems = data.filter(item => item && item.url && item.url !== "/" && !item.url.endsWith("/index.html"));
+        // Optimized: Map & pre-compute lowercase fields once upon data load to save memory allocation in render loop
+        allItems = data
+          .filter(item => item && item.url && item.url !== "/" && !item.url.endsWith("/index.html"))
+          .map(item => {
+            item._titleLower = (item.title || "").toLowerCase();
+            item._descLower = (item.description || "").toLowerCase();
+            item._keywordsLower = (item.keywords || "").toLowerCase();
+            return item;
+          });
         render();
       })
       .catch(err => {
