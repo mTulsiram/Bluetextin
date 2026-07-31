@@ -1,13 +1,18 @@
 {
-  "generatedAt": "2026-07-31T18:18:29.538Z",
-  "startedAt": "2026-07-31T18:18:28.290Z",
-  "durationMs": 1251,
+  "generatedAt": "2026-07-31T18:19:11.237Z",
+  "startedAt": "2026-07-31T18:19:09.336Z",
+  "durationMs": 1904,
   "ok": true,
   "steps": [
     {
+      "name": "Generate Index Pages",
+      "ok": true,
+      "durationMs": 424
+    },
+    {
       "name": "Inject Header & Footer",
       "ok": true,
-      "durationMs": 1233
+      "durationMs": 1465
     }
   ],
   "outputs": {
