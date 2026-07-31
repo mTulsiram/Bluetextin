@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Browse all games resources on BlueTEXT.">
+  <meta name="description" content="How to self-host email, file sync, password manager, and more using open-source software on a VPS or home server.">
   <meta name="robots" content="index,follow">
-  <title>Games | BlueTEXT</title>
+  <title>Self-Hosting Your Own Services: A Practical Guide | BlueTEXT Blog</title>
   <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" href="/assets/css/main.css">
   <script src="/assets/js/app.js" defer></script>
@@ -142,35 +142,53 @@
   <main id="main-content">
     <nav aria-label="Breadcrumb">
       <ol>
-      <li><a href="/">Home</a></li>
-      <li><a href="/pages/">Pages</a></li>
-      <li><a href="/pages/software/">Software</a></li>
-      <li><a href="/pages/software/linux/">Linux</a></li>
-      <li>Games</li>
+        <li><a href="/">Home</a></li><li><a href="/pages/blog/">Blog</a></li>
+        <li>Self-Hosting Your Own Services: A Practical Guide</li>
       </ol>
     </nav>
 
-    <h1>Games</h1>
-    <p>Browse all games resources on BlueTEXT.</p>
+    <article>
+      <header>
+        <h1>Self-Hosting Your Own Services: A Practical Guide</h1>
+        <p><time datetime="2026-05-12">2026-05-12</time> &middot; BlueTEXT Blog</p>
+        <p>How to self-host email, file sync, password manager, and more using open-source software on a VPS or home server.</p>
+      </header>
 
-    <ul>
-      
-      <li>
-        <a href="0ad.html">0ad</a>
-      </li>
-      <li>
-        <a href="minetest.html">Minetest</a>
-      </li>
-      <li>
-        <a href="openttd.html">Openttd</a>
-      </li>
-      <li>
-        <a href="supertux.html">Supertux</a>
-      </li>
-      <li>
-        <a href="xonotic.html">Xonotic</a>
-      </li>
-    </ul>
+      <section>
+  <h2>Why Self-Host?</h2>
+  <p>Self-hosting puts you in control: your data lives on hardware you own or rent, under software you can inspect and configure. You are not subject to terms-of-service changes, sudden price increases, or account suspensions. For developers, self-hosting is also the best way to learn how production services actually work.</p>
+  <p>The cost of a minimal VPS (Virtual Private Server) starts at around two to five dollars per month — comparable to a single streaming service subscription — and can run dozens of services simultaneously.</p>
+</section>
+
+<section>
+  <h2>Choosing a Server</h2>
+  <p>For cloud hosting, <strong>Hetzner</strong>, <strong>DigitalOcean</strong>, and <strong>Vultr</strong> are popular choices with competitive pricing. For home hosting, a Raspberry Pi 4 or a used mini PC (Intel NUC, Beelink) running Ubuntu Server works well for low-traffic services.</p>
+  <p>Pick a provider with a data center geographically close to you to minimize latency. For privacy-sensitive workloads, choose a jurisdiction with strong data protection laws. Germany and Switzerland are common choices for European users.</p>
+</section>
+
+<section>
+  <h2>Docker and Docker Compose</h2>
+  <p>Almost every self-hosted service ships a Docker image today. Docker Compose lets you define multi-container applications in a single YAML file, making setup reproducible and upgrades as simple as <code>docker compose pull &amp;&amp; docker compose up -d</code>.</p>
+  <p>Store your compose files in a Git repository. When your server is replaced or upgraded, you can restore all services by cloning the repo and running <code>docker compose up -d</code>. Pair this with automated backups of data volumes to an S3-compatible store.</p>
+</section>
+
+<section>
+  <h2>Essential Services to Self-Host</h2>
+  <p><strong>Nextcloud</strong> replaces Google Drive and Google Photos with file sync, contacts, and calendar via CalDAV/CardDAV. <strong>Bitwarden</strong> (self-hosted via Vaultwarden) is a full-featured password manager you control. <strong>Miniflux</strong> is a lightweight RSS reader with a clean API. <strong>Gitea</strong> is a self-hosted Git service with issues, pull requests, and CI runners.</p>
+  <p>For DNS-level ad blocking on your home network, <strong>Pi-hole</strong> or <strong>AdGuard Home</strong> block ads for every device on the network without per-device configuration.</p>
+</section>
+
+<section>
+  <h2>Security Baseline</h2>
+  <p>Before exposing any service to the internet, complete this security baseline: disable password SSH authentication (use keys only), install and configure <strong>fail2ban</strong> to block brute-force attempts, set up <strong>UFW</strong> to allow only ports 22, 80, and 443, and use <strong>Caddy</strong> or <strong>Nginx</strong> as a reverse proxy with automatic HTTPS via Let's Encrypt.</p>
+  <p>Enable automatic security updates with <code>unattended-upgrades</code> on Debian/Ubuntu. Set up a monitoring alert — even a simple cron job that emails you if the server stops responding — so you know about outages before your users do.</p>
+</section>
+
+<section>
+  <h2>Backup Strategy</h2>
+  <p>The 3-2-1 rule: three copies of data, on two different media, with one off-site. For self-hosters this typically means: data on the VPS, a daily snapshot to a second server or object storage, and an encrypted copy to a cloud provider like Backblaze B2. <strong>restic</strong> and <strong>Borgbackup</strong> are both excellent open-source backup tools that support encryption and deduplication.</p>
+</section>
+    </article>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->

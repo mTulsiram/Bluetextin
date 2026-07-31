@@ -6,11 +6,11 @@
   </url>
   <url>
     <loc>https://bluetext.in/assets</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-07-31</lastmod>
   </url>
   <url>
     <loc>https://bluetext.in/assets/nav</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-07-31</lastmod>
   </url>
   <url>
     <loc>https://bluetext.in/assets/nav/about.html</loc>
@@ -50,6 +50,26 @@
   </url>
   <url>
     <loc>https://bluetext.in/pages/blog</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/blog/best-privacy-tools-for-android.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/blog/getting-started-with-linux-for-developers.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/blog/git-workflows-every-developer-should-know.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/blog/self-hosting-your-own-services.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/blog/why-open-source-software-matters.html</loc>
     <lastmod>2026-07-31</lastmod>
   </url>
   <url>
@@ -513,7 +533,47 @@
     <lastmod>2026-07-31</lastmod>
   </url>
   <url>
+    <loc>https://bluetext.in/pages/software/android/productivity/antennapod.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/android/productivity/markor.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/android/productivity/orgzly.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/android/productivity/signal.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/android/productivity/tasks.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
     <loc>https://bluetext.in/pages/software/android/utility</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/android/utility/adaway.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/android/utility/fdroid.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/android/utility/shelter.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/android/utility/termux.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/android/utility/wireguard.html</loc>
     <lastmod>2026-07-31</lastmod>
   </url>
   <url>
@@ -525,7 +585,47 @@
     <lastmod>2026-07-31</lastmod>
   </url>
   <url>
+    <loc>https://bluetext.in/pages/software/apple/productivity/gimp.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/apple/productivity/inkscape.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/apple/productivity/libreoffice.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/apple/productivity/thunderbird.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/apple/productivity/vlc.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
     <loc>https://bluetext.in/pages/software/apple/utility</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/apple/utility/balenaetcher.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/apple/utility/gpg-suite.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/apple/utility/handbrake.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/apple/utility/keka.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/apple/utility/wireshark.html</loc>
     <lastmod>2026-07-31</lastmod>
   </url>
   <url>
@@ -537,11 +637,71 @@
     <lastmod>2026-07-31</lastmod>
   </url>
   <url>
+    <loc>https://bluetext.in/pages/software/linux/games/0ad.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/linux/games/minetest.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/linux/games/openttd.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/linux/games/supertux.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/linux/games/xonotic.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
     <loc>https://bluetext.in/pages/software/linux/productivity</loc>
     <lastmod>2026-07-31</lastmod>
   </url>
   <url>
+    <loc>https://bluetext.in/pages/software/linux/productivity/calibre.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/linux/productivity/gimp.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/linux/productivity/inkscape.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/linux/productivity/libreoffice.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/linux/productivity/thunderbird.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
     <loc>https://bluetext.in/pages/software/linux/utility</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/linux/utility/gnupg.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/linux/utility/gparted.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/linux/utility/htop.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/linux/utility/rsync.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/linux/utility/tmux.html</loc>
     <lastmod>2026-07-31</lastmod>
   </url>
   <url>
@@ -553,11 +713,71 @@
     <lastmod>2026-07-31</lastmod>
   </url>
   <url>
+    <loc>https://bluetext.in/pages/software/windows/games/flightgear.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/windows/games/freeciv.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/windows/games/openttd.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/windows/games/supertuxkart.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/windows/games/wesnoth.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
     <loc>https://bluetext.in/pages/software/windows/productivity</loc>
     <lastmod>2026-07-31</lastmod>
   </url>
   <url>
+    <loc>https://bluetext.in/pages/software/windows/productivity/gimp.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/windows/productivity/keepassxc.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/windows/productivity/libreoffice.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/windows/productivity/notepadplusplus.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/windows/productivity/thunderbird.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
     <loc>https://bluetext.in/pages/software/windows/utility</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/windows/utility/7zip.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/windows/utility/handbrake.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/windows/utility/vlc.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/windows/utility/winmerge.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://bluetext.in/pages/software/windows/utility/wireshark.html</loc>
     <lastmod>2026-07-31</lastmod>
   </url>
   <url>

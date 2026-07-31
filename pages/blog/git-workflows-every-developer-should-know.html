@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Browse all games resources on BlueTEXT.">
+  <meta name="description" content="A practical breakdown of the most important Git workflows: feature branches, Gitflow, trunk-based development, and more.">
   <meta name="robots" content="index,follow">
-  <title>Games | BlueTEXT</title>
+  <title>Git Workflows Every Developer Should Know | BlueTEXT Blog</title>
   <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" href="/assets/css/main.css">
   <script src="/assets/js/app.js" defer></script>
@@ -142,35 +142,56 @@
   <main id="main-content">
     <nav aria-label="Breadcrumb">
       <ol>
-      <li><a href="/">Home</a></li>
-      <li><a href="/pages/">Pages</a></li>
-      <li><a href="/pages/software/">Software</a></li>
-      <li><a href="/pages/software/linux/">Linux</a></li>
-      <li>Games</li>
+        <li><a href="/">Home</a></li><li><a href="/pages/blog/">Blog</a></li>
+        <li>Git Workflows Every Developer Should Know</li>
       </ol>
     </nav>
 
-    <h1>Games</h1>
-    <p>Browse all games resources on BlueTEXT.</p>
+    <article>
+      <header>
+        <h1>Git Workflows Every Developer Should Know</h1>
+        <p><time datetime="2026-04-20">2026-04-20</time> &middot; BlueTEXT Blog</p>
+        <p>A practical breakdown of the most important Git workflows: feature branches, Gitflow, trunk-based development, and more.</p>
+      </header>
 
-    <ul>
-      
-      <li>
-        <a href="0ad.html">0ad</a>
-      </li>
-      <li>
-        <a href="minetest.html">Minetest</a>
-      </li>
-      <li>
-        <a href="openttd.html">Openttd</a>
-      </li>
-      <li>
-        <a href="supertux.html">Supertux</a>
-      </li>
-      <li>
-        <a href="xonotic.html">Xonotic</a>
-      </li>
-    </ul>
+      <section>
+  <h2>Why Workflow Matters More Than Commands</h2>
+  <p>Most developers learn Git commands before they learn Git workflows. This creates teams where everyone knows how to commit and push, but nobody agrees on how to structure branches, handle releases, or review code. A shared workflow is the difference between a manageable codebase and a spaghetti of conflicting branches.</p>
+</section>
+
+<section>
+  <h2>Feature Branch Workflow</h2>
+  <p>The simplest useful workflow: every new feature or bug fix gets its own branch off <code>main</code>. When the work is ready, open a pull request, get a review, and merge. The <code>main</code> branch always reflects deployable code.</p>
+  <p>This works well for small teams and is the baseline most other workflows build on. The key discipline is keeping feature branches short-lived — ideally merged within a day or two — to minimize merge conflicts.</p>
+  <pre><code>git checkout -b feature/user-auth
+# ... work ...
+git push origin feature/user-auth
+# open pull request on GitHub</code></pre>
+</section>
+
+<section>
+  <h2>Gitflow</h2>
+  <p>Gitflow introduces a <code>develop</code> branch alongside <code>main</code>. Feature branches merge into <code>develop</code>, which accumulates changes until a release branch is cut. The release branch goes through QA, then merges to both <code>main</code> and <code>develop</code>. Hotfixes branch directly from <code>main</code>.</p>
+  <p>Gitflow suits products with scheduled release cycles and parallel version maintenance. It is overkill for continuous-delivery web apps, where trunk-based development is a better fit.</p>
+</section>
+
+<section>
+  <h2>Trunk-Based Development</h2>
+  <p>Trunk-based development (TBD) is the workflow used by Google, Facebook, and most high-velocity teams. Everyone commits to a single trunk branch (usually <code>main</code>) multiple times per day. Feature flags hide incomplete work from users. There are no long-lived branches.</p>
+  <p>TBD requires strong CI: every commit triggers a full test suite, and broken builds block merges. When it works, it produces the fastest feedback loops and the lowest merge conflict rate of any workflow.</p>
+</section>
+
+<section>
+  <h2>Squash, Merge, or Rebase?</h2>
+  <p>When merging a pull request, you have three options. <strong>Merge commit</strong> preserves the full branch history — useful when you want to see exactly which commits composed a feature. <strong>Squash and merge</strong> collapses all branch commits into one, keeping the main branch history clean. <strong>Rebase and merge</strong> replays commits on top of main, producing a linear history without a merge commit.</p>
+  <p>Choose one strategy per repository and enforce it consistently. Mixing strategies makes <code>git log</code> and <code>git bisect</code> confusing.</p>
+</section>
+
+<section>
+  <h2>Commit Message Conventions</h2>
+  <p>Adopt <a href="https://www.conventionalcommits.org/" target="_blank" rel="noopener noreferrer">Conventional Commits</a>: prefix messages with a type like <code>feat:</code>, <code>fix:</code>, <code>docs:</code>, <code>chore:</code>, or <code>refactor:</code>. This makes automated changelog generation possible and makes <code>git log --oneline</code> readable at a glance. The subject line should complete the sentence "If applied, this commit will..." in 50 characters or fewer.</p>
+</section>
+    </article>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->

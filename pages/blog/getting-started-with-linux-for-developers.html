@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Browse all games resources on BlueTEXT.">
+  <meta name="description" content="A practical guide to switching to Linux as your primary development environment, covering distro choice, tools, and workflow tips.">
   <meta name="robots" content="index,follow">
-  <title>Games | BlueTEXT</title>
+  <title>Getting Started with Linux for Developers | BlueTEXT Blog</title>
   <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" href="/assets/css/main.css">
   <script src="/assets/js/app.js" defer></script>
@@ -142,35 +142,48 @@
   <main id="main-content">
     <nav aria-label="Breadcrumb">
       <ol>
-      <li><a href="/">Home</a></li>
-      <li><a href="/pages/">Pages</a></li>
-      <li><a href="/pages/software/">Software</a></li>
-      <li><a href="/pages/software/linux/">Linux</a></li>
-      <li>Games</li>
+        <li><a href="/">Home</a></li><li><a href="/pages/blog/">Blog</a></li>
+        <li>Getting Started with Linux for Developers</li>
       </ol>
     </nav>
 
-    <h1>Games</h1>
-    <p>Browse all games resources on BlueTEXT.</p>
+    <article>
+      <header>
+        <h1>Getting Started with Linux for Developers</h1>
+        <p><time datetime="2026-02-10">2026-02-10</time> &middot; BlueTEXT Blog</p>
+        <p>A practical guide to switching to Linux as your primary development environment, covering distro choice, tools, and workflow tips.</p>
+      </header>
 
-    <ul>
-      
-      <li>
-        <a href="0ad.html">0ad</a>
-      </li>
-      <li>
-        <a href="minetest.html">Minetest</a>
-      </li>
-      <li>
-        <a href="openttd.html">Openttd</a>
-      </li>
-      <li>
-        <a href="supertux.html">Supertux</a>
-      </li>
-      <li>
-        <a href="xonotic.html">Xonotic</a>
-      </li>
-    </ul>
+      <section>
+  <h2>Choosing a Distribution</h2>
+  <p>The first decision is which Linux distribution to use. For developers new to Linux, Ubuntu LTS or Fedora Workstation are the most common starting points. Ubuntu LTS offers five years of support, a massive community, and near-universal package availability. Fedora tracks upstream projects more closely and ships newer software, making it preferred by developers who want cutting-edge toolchains.</p>
+  <p>If you prefer a minimal base you configure yourself, Arch Linux or Debian are excellent choices, though they demand more upfront investment to set up correctly. For WSL users on Windows, Ubuntu is the default and works well for most development tasks.</p>
+</section>
+
+<section>
+  <h2>Essential Developer Tools</h2>
+  <p>Linux ships with most developer tools either pre-installed or a single command away. Install build essentials first: <code>sudo apt install build-essential git curl wget</code> on Debian-based systems, or <code>sudo dnf groupinstall "Development Tools"</code> on Fedora.</p>
+  <p>For language runtimes, prefer version managers over system packages: use <strong>nvm</strong> for Node.js, <strong>pyenv</strong> for Python, <strong>rbenv</strong> for Ruby, and <strong>rustup</strong> for Rust. Version managers let you switch between project-specific versions without conflicts.</p>
+</section>
+
+<section>
+  <h2>Terminal Workflow</h2>
+  <p>The terminal is where Linux shines. Learn the basics: navigate with <code>cd</code>, list files with <code>ls -lah</code>, search text with <code>grep -r</code>, and find files with <code>find</code>. Pipe commands together — <code>cat file | grep error | sort | uniq -c</code> — to process data without writing a script.</p>
+  <p>Install <strong>tmux</strong> early. It lets you split terminals, run long processes in the background, and reconnect to sessions over SSH. Pair it with a <code>.tmux.conf</code> that remaps the prefix key and enables mouse mode for a smooth experience.</p>
+</section>
+
+<section>
+  <h2>Git and SSH Setup</h2>
+  <p>Generate an SSH key with <code>ssh-keygen -t ed25519 -C "your@email.com"</code> and add the public key to GitHub or your Git server. Configure Git globally with your name, email, and preferred editor. Use <code>git config --global core.editor "vim"</code> or swap vim for nano, code, or any editor you prefer.</p>
+  <p>Set up GPG commit signing early if your team requires it. GnuPG is usually pre-installed; generate a key, add it to GitHub, and configure Git to sign commits automatically with <code>git config --global commit.gpgsign true</code>.</p>
+</section>
+
+<section>
+  <h2>File System Basics Every Developer Should Know</h2>
+  <p>Linux follows the Filesystem Hierarchy Standard: binaries in <code>/usr/bin</code>, config in <code>/etc</code>, user homes in <code>/home</code>, and temporary files in <code>/tmp</code>. Understanding where things live helps when debugging PATH issues or setting up services.</p>
+  <p>Learn permissions early: <code>chmod 755 script.sh</code> makes a file executable, <code>chown user:group file</code> changes ownership. These basics prevent most permission-denied errors developers encounter when first moving to Linux.</p>
+</section>
+    </article>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->
