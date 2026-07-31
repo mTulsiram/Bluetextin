@@ -138,10 +138,33 @@
 
 <!-- MODALS_END -->
 
-  <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Html Minifier</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <main class="container py-4" id="main-content">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        <h1 class="mb-2">HTML Minifier</h1>
+        <p class="text-muted mb-3">Strip comments and compress extra whitespace from HTML markup.</p>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="htmlm-input" class="form-label">Input HTML</label>
+            <textarea id="htmlm-input" class="form-control" rows="16"><div class="card">
+  <!-- comment -->
+  <h2>Hello</h2>
+  <p>BlueTEXT tool page</p>
+</div></textarea>
+          </div>
+          <div class="col-md-6">
+            <label for="htmlm-output" class="form-label">Minified HTML</label>
+            <textarea id="htmlm-output" class="form-control" rows="16" readonly></textarea>
+          </div>
+          <div class="col-12 d-flex gap-2">
+            <button id="htmlm-run" class="btn btn-primary">Minify</button>
+            <button id="htmlm-copy" class="btn btn-outline-secondary">Copy Output</button>
+          </div>
+        </div>
+        <a href="../" class="btn btn-secondary btn-sm mt-3">← Back</a>
+      </div>
+    </div>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->

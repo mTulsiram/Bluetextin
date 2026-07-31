@@ -138,10 +138,35 @@
 
 <!-- MODALS_END -->
 
-  <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Css Gradient Button Maker</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <main class="container py-4" id="main-content">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        <h1 class="mb-2">CSS Gradient Button Maker</h1>
+        <p class="text-muted mb-3">Create a gradient button with live preview and copy-ready CSS.</p>
+
+        <div class="row g-4">
+          <div class="col-lg-5">
+            <div class="vstack gap-3">
+              <div><label class="form-label" for="grad-color-1">Start Color</label><input id="grad-color-1" class="form-control form-control-color" type="color" value="#6f42c1"></div>
+              <div><label class="form-label" for="grad-color-2">End Color</label><input id="grad-color-2" class="form-control form-control-color" type="color" value="#0d6efd"></div>
+              <div><label class="form-label" for="grad-direction">Direction</label><select id="grad-direction" class="form-select"><option value="90deg">Left → Right</option><option value="180deg">Top → Bottom</option><option value="45deg">Diagonal</option><option value="135deg">Diagonal Reverse</option></select></div>
+              <div><label class="form-label" for="grad-radius">Border Radius</label><input id="grad-radius" class="form-range" type="range" min="0" max="40" value="14"></div>
+              <div><label class="form-label" for="grad-px">Horizontal Padding</label><input id="grad-px" class="form-range" type="range" min="8" max="40" value="22"></div>
+              <div><label class="form-label" for="grad-py">Vertical Padding</label><input id="grad-py" class="form-range" type="range" min="6" max="24" value="12"></div>
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="border rounded-4 p-5 text-center bg-body-tertiary">
+              <button id="grad-preview" class="btn btn-lg text-white border-0">Gradient Button</button>
+            </div>
+            <label for="grad-css" class="form-label mt-3">CSS</label>
+            <textarea id="grad-css" class="form-control" rows="8" readonly></textarea>
+            <button id="grad-copy" class="btn btn-outline-primary mt-2">Copy CSS</button>
+          </div>
+        </div>
+        <a href="../" class="btn btn-secondary btn-sm mt-3">← Back</a>
+      </div>
+    </div>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->

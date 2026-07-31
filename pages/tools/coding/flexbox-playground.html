@@ -138,10 +138,31 @@
 
 <!-- MODALS_END -->
 
-  <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Flexbox Playground</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <main class="container py-4" id="main-content">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        <h1 class="mb-2">Flexbox Playground</h1>
+        <p class="text-muted mb-3">Experiment with flex container settings and see the layout update instantly.</p>
+
+        <div class="row g-4">
+          <div class="col-lg-4">
+            <div class="vstack gap-3">
+              <div><label class="form-label" for="flex-direction">Direction</label><select id="flex-direction" class="form-select"><option>row</option><option>row-reverse</option><option>column</option><option>column-reverse</option></select></div>
+              <div><label class="form-label" for="flex-wrap">Wrap</label><select id="flex-wrap" class="form-select"><option>nowrap</option><option>wrap</option><option>wrap-reverse</option></select></div>
+              <div><label class="form-label" for="flex-justify">Justify Content</label><select id="flex-justify" class="form-select"><option>flex-start</option><option>center</option><option>flex-end</option><option>space-between</option><option>space-around</option><option>space-evenly</option></select></div>
+              <div><label class="form-label" for="flex-align">Align Items</label><select id="flex-align" class="form-select"><option>stretch</option><option>center</option><option>flex-start</option><option>flex-end</option><option>baseline</option></select></div>
+              <div><label class="form-label" for="flex-gap">Gap (px)</label><input id="flex-gap" class="form-control" type="number" value="12" min="0" max="50"></div>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div id="flex-preview" class="border rounded-4 p-3 bg-body-tertiary" style="min-height:320px;"></div>
+            <label for="flex-css" class="form-label mt-3">CSS</label>
+            <textarea id="flex-css" class="form-control" rows="8" readonly></textarea>
+          </div>
+        </div>
+        <a href="../" class="btn btn-secondary btn-sm mt-3">← Back</a>
+      </div>
+    </div>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->

@@ -138,10 +138,33 @@
 
 <!-- MODALS_END -->
 
-  <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Base64 Encoder</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <main class="container py-4" id="main-content">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        <h1 class="mb-2">Base64 Encoder</h1>
+        <p class="text-muted mb-3">Encode or decode UTF-8 text to and from Base64 directly in your browser.</p>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="b64-input" class="form-label">Text</label>
+            <textarea id="b64-input" class="form-control" rows="10" placeholder="Enter plain text"></textarea>
+          </div>
+          <div class="col-md-6">
+            <label for="b64-output" class="form-label">Base64 / Decoded Output</label>
+            <textarea id="b64-output" class="form-control" rows="10" placeholder="Result appears here"></textarea>
+          </div>
+          <div class="col-12 d-flex flex-wrap gap-2">
+            <button id="b64-encode" class="btn btn-primary">Encode →</button>
+            <button id="b64-decode" class="btn btn-outline-primary">Decode →</button>
+            <button id="b64-swap" class="btn btn-outline-secondary">Swap</button>
+            <button id="b64-clear" class="btn btn-outline-danger">Clear</button>
+            <button id="b64-copy" class="btn btn-outline-success">Copy Output</button>
+          </div>
+          <div class="col-12"><div id="b64-status" class="small text-muted"></div></div>
+        </div>
+        <a href="../" class="btn btn-secondary btn-sm mt-3">← Back</a>
+      </div>
+    </div>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->

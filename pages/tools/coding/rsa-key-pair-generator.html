@@ -138,10 +138,31 @@
 
 <!-- MODALS_END -->
 
-  <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Rsa Key Pair Generator</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <main class="container py-4" id="main-content">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        <h1 class="mb-2">RSA Key Pair Generator</h1>
+        <p class="text-muted mb-3">Generate exportable RSA key pairs locally with the WebCrypto API.</p>
+
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label for="rsa-size" class="form-label">Key Size</label>
+            <select id="rsa-size" class="form-select"><option value="2048">2048-bit</option><option value="4096">4096-bit</option></select>
+          </div>
+          <div class="col-md-8 d-flex align-items-end"><button id="rsa-run" class="btn btn-primary">Generate Key Pair</button></div>
+          <div class="col-12"><div id="rsa-status" class="alert alert-secondary mb-0">Generation happens entirely in your browser.</div></div>
+          <div class="col-md-6">
+            <label for="rsa-public" class="form-label">Public Key (SPKI PEM)</label>
+            <textarea id="rsa-public" class="form-control" rows="14" readonly></textarea>
+          </div>
+          <div class="col-md-6">
+            <label for="rsa-private" class="form-label">Private Key (PKCS#8 PEM)</label>
+            <textarea id="rsa-private" class="form-control" rows="14" readonly></textarea>
+          </div>
+        </div>
+        <a href="../" class="btn btn-secondary btn-sm mt-3">← Back</a>
+      </div>
+    </div>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->

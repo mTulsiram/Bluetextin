@@ -138,10 +138,36 @@
 
 <!-- MODALS_END -->
 
-  <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Bcrypt Hash Checker</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <main class="container py-4" id="main-content">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        <h1 class="mb-2">SHA-256 Hash Checker</h1>
+        <p class="text-muted mb-3">bcrypt verification needs server-side libraries, so this page provides a safe SHA-256 password hash checker instead.</p>
+
+        <div class="alert alert-warning">Need real bcrypt? Use a server-side library. This client-side tool compares SHA-256 hashes for quick checks.</div>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="hash-password" class="form-label">Password / Plain Text</label>
+            <input id="hash-password" class="form-control" type="password" placeholder="Enter text to hash">
+          </div>
+          <div class="col-md-6">
+            <label for="hash-expected" class="form-label">Expected SHA-256 Hash</label>
+            <input id="hash-expected" class="form-control" type="text" placeholder="Paste a hex hash">
+          </div>
+          <div class="col-12">
+            <label for="hash-generated" class="form-label">Generated SHA-256 Hash</label>
+            <input id="hash-generated" class="form-control" type="text" readonly>
+          </div>
+          <div class="col-12 d-flex flex-wrap gap-2">
+            <button id="hash-generate" class="btn btn-primary">Generate Hash</button>
+            <button id="hash-compare" class="btn btn-success">Compare</button>
+            <button id="hash-copy" class="btn btn-outline-secondary">Copy Generated Hash</button>
+          </div>
+          <div class="col-12"><div id="hash-result" class="alert alert-secondary mb-0">Enter values to compare.</div></div>
+        </div>
+        <a href="../" class="btn btn-secondary btn-sm mt-3">← Back</a>
+      </div>
+    </div>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->

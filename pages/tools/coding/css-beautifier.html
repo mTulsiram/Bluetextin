@@ -138,10 +138,29 @@
 
 <!-- MODALS_END -->
 
-  <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Css Beautifier</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <main class="container py-4" id="main-content">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        <h1 class="mb-2">CSS Beautifier</h1>
+        <p class="text-muted mb-3">Reformat compressed CSS into readable, indented code.</p>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="cssb-input" class="form-label">Input CSS</label>
+            <textarea id="cssb-input" class="form-control" rows="16" placeholder="Paste CSS here">body{margin:0;font-family:sans-serif}.card{padding:16px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.15)}</textarea>
+          </div>
+          <div class="col-md-6">
+            <label for="cssb-output" class="form-label">Beautified CSS</label>
+            <textarea id="cssb-output" class="form-control" rows="16" readonly></textarea>
+          </div>
+          <div class="col-12 d-flex gap-2 flex-wrap">
+            <button id="cssb-run" class="btn btn-primary">Beautify</button>
+            <button id="cssb-copy" class="btn btn-outline-secondary">Copy Output</button>
+          </div>
+        </div>
+        <a href="../" class="btn btn-secondary btn-sm mt-3">← Back</a>
+      </div>
+    </div>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->

@@ -138,10 +138,36 @@
 
 <!-- MODALS_END -->
 
-  <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Cron Expression Descriptor</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <main class="container py-4" id="main-content">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        <h1 class="mb-2">Cron Expression Descriptor</h1>
+        <p class="text-muted mb-3">Describe 5-field or 6-field cron expressions in plain English.</p>
+
+        <div class="row g-3">
+          <div class="col-12">
+            <label for="cron-input" class="form-label">Cron Expression</label>
+            <input id="cron-input" class="form-control" type="text" value="*/15 9-17 * * 1-5" placeholder="Example: */5 * * * *">
+          </div>
+          <div class="col-12 d-flex gap-2 flex-wrap">
+            <button id="cron-describe" class="btn btn-primary">Describe</button>
+            <button id="cron-sample" class="btn btn-outline-secondary">Load 6-field Example</button>
+          </div>
+          <div class="col-12">
+            <div id="cron-output" class="alert alert-info mb-0">Enter a cron expression and click Describe.</div>
+          </div>
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <h2 class="h5">Field Breakdown</h2>
+                <ul id="cron-breakdown" class="mb-0 ps-3"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="../" class="btn btn-secondary btn-sm mt-3">← Back</a>
+      </div>
+    </div>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->

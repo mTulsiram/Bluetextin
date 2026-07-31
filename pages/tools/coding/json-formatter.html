@@ -138,10 +138,33 @@
 
 <!-- MODALS_END -->
 
-  <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Json Formatter</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <main class="container py-4" id="main-content">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        <h1 class="mb-2">JSON Formatter</h1>
+        <p class="text-muted mb-3">Prettify or minify JSON with configurable indentation.</p>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="jsonf-input" class="form-label">Input JSON</label>
+            <textarea id="jsonf-input" class="form-control" rows="16">{"site":"BlueTEXT","tools":["json","yaml","xml"],"active":true}</textarea>
+          </div>
+          <div class="col-md-6">
+            <label for="jsonf-output" class="form-label">Output</label>
+            <textarea id="jsonf-output" class="form-control" rows="16" readonly></textarea>
+          </div>
+          <div class="col-md-3">
+            <label for="jsonf-indent" class="form-label">Indentation</label>
+            <select id="jsonf-indent" class="form-select"><option value="2">2 spaces</option><option value="4">4 spaces</option><option value="0">Minify</option></select>
+          </div>
+          <div class="col-md-9 d-flex align-items-end gap-2 flex-wrap">
+            <button id="jsonf-format" class="btn btn-primary">Format</button>
+            <button id="jsonf-copy" class="btn btn-outline-secondary">Copy Output</button>
+          </div>
+        </div>
+        <a href="../" class="btn btn-secondary btn-sm mt-3">← Back</a>
+      </div>
+    </div>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->

@@ -138,10 +138,43 @@
 
 <!-- MODALS_END -->
 
-  <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Markdown To Html</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <main class="container py-4" id="main-content">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        <h1 class="mb-2">Markdown to HTML</h1>
+        <p class="text-muted mb-3">Convert basic Markdown syntax to HTML with a live rendered preview.</p>
+
+        <div class="row g-3">
+          <div class="col-lg-6">
+            <label for="md-input" class="form-label">Markdown</label>
+            <textarea id="md-input" class="form-control" rows="18"># BlueTEXT
+
+Convert **markdown** to *HTML*.
+
+- Fast
+- Local
+- Simple
+
+[Visit BlueTEXT](https://bluetext.in)
+
+\`\`\`
+const hello = 'world';
+\`\`\`</textarea>
+          </div>
+          <div class="col-lg-6">
+            <label for="md-output" class="form-label">Generated HTML</label>
+            <textarea id="md-output" class="form-control" rows="9" readonly></textarea>
+            <label class="form-label mt-3">Preview</label>
+            <div id="md-preview" class="border rounded-3 p-3 bg-body-tertiary" style="min-height:220px;"></div>
+          </div>
+          <div class="col-12 d-flex gap-2">
+            <button id="md-run" class="btn btn-primary">Convert</button>
+            <button id="md-copy" class="btn btn-outline-secondary">Copy HTML</button>
+          </div>
+        </div>
+        <a href="../" class="btn btn-secondary btn-sm mt-3">← Back</a>
+      </div>
+    </div>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->

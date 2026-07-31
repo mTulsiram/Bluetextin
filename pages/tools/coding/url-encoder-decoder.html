@@ -138,10 +138,30 @@
 
 <!-- MODALS_END -->
 
-  <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Url Encoder Decoder</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <main class="container py-4" id="main-content">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        <h1 class="mb-2">URL Encoder / Decoder</h1>
+        <p class="text-muted mb-3">Encode text for URLs or decode encoded strings instantly.</p>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="url-input" class="form-label">Input</label>
+            <textarea id="url-input" class="form-control" rows="12" placeholder="https://example.com?q=blue text"></textarea>
+          </div>
+          <div class="col-md-6">
+            <label for="url-output" class="form-label">Output</label>
+            <textarea id="url-output" class="form-control" rows="12"></textarea>
+          </div>
+          <div class="col-12 d-flex gap-2">
+            <button id="url-encode" class="btn btn-primary">Encode</button>
+            <button id="url-decode" class="btn btn-outline-primary">Decode</button>
+            <button id="url-copy" class="btn btn-outline-secondary">Copy Output</button>
+          </div>
+        </div>
+        <a href="../" class="btn btn-secondary btn-sm mt-3">← Back</a>
+      </div>
+    </div>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->

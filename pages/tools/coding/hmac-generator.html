@@ -138,10 +138,38 @@
 
 <!-- MODALS_END -->
 
-  <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Hmac Generator</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <main class="container py-4" id="main-content">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        <h1 class="mb-2">HMAC Generator</h1>
+        <p class="text-muted mb-3">Create HMAC signatures with WebCrypto using SHA-256 or SHA-512.</p>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="hmac-message" class="form-label">Message</label>
+            <textarea id="hmac-message" class="form-control" rows="8" placeholder="Message to sign">BlueTEXT</textarea>
+          </div>
+          <div class="col-md-6">
+            <label for="hmac-key" class="form-label">Secret Key</label>
+            <textarea id="hmac-key" class="form-control" rows="8" placeholder="Shared secret">my-secret-key</textarea>
+          </div>
+          <div class="col-md-4">
+            <label for="hmac-algo" class="form-label">Algorithm</label>
+            <select id="hmac-algo" class="form-select"><option>SHA-256</option><option>SHA-512</option></select>
+          </div>
+          <div class="col-md-8 d-flex align-items-end"><button id="hmac-run" class="btn btn-primary">Generate HMAC</button></div>
+          <div class="col-12">
+            <label for="hmac-hex" class="form-label">Hex Output</label>
+            <textarea id="hmac-hex" class="form-control" rows="3" readonly></textarea>
+          </div>
+          <div class="col-12">
+            <label for="hmac-b64" class="form-label">Base64 Output</label>
+            <textarea id="hmac-b64" class="form-control" rows="3" readonly></textarea>
+          </div>
+        </div>
+        <a href="../" class="btn btn-secondary btn-sm mt-3">← Back</a>
+      </div>
+    </div>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->

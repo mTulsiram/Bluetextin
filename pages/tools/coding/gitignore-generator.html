@@ -138,10 +138,38 @@
 
 <!-- MODALS_END -->
 
-  <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Gitignore Generator</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <main class="container py-4" id="main-content">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        <h1 class="mb-2">.gitignore Generator</h1>
+        <p class="text-muted mb-3">Choose common presets and build a combined .gitignore file.</p>
+
+        <div class="row g-4">
+          <div class="col-lg-4">
+            <div class="card">
+              <div class="card-body">
+                <h2 class="h5">Presets</h2>
+                <div class="form-check"><input class="form-check-input gi-preset" type="checkbox" value="node" id="gi-node" checked><label class="form-check-label" for="gi-node">Node.js</label></div>
+                <div class="form-check"><input class="form-check-input gi-preset" type="checkbox" value="python" id="gi-python"><label class="form-check-label" for="gi-python">Python</label></div>
+                <div class="form-check"><input class="form-check-input gi-preset" type="checkbox" value="java" id="gi-java"><label class="form-check-label" for="gi-java">Java</label></div>
+                <div class="form-check"><input class="form-check-input gi-preset" type="checkbox" value="react" id="gi-react" checked><label class="form-check-label" for="gi-react">React / Vite</label></div>
+                <div class="form-check"><input class="form-check-input gi-preset" type="checkbox" value="vscode" id="gi-vscode"><label class="form-check-label" for="gi-vscode">VS Code</label></div>
+                <div class="form-check"><input class="form-check-input gi-preset" type="checkbox" value="macos" id="gi-macos"><label class="form-check-label" for="gi-macos">macOS</label></div>
+                <div class="form-check"><input class="form-check-input gi-preset" type="checkbox" value="windows" id="gi-windows"><label class="form-check-label" for="gi-windows">Windows</label></div>
+                <div class="form-check"><input class="form-check-input gi-preset" type="checkbox" value="logs" id="gi-logs"><label class="form-check-label" for="gi-logs">Logs / Temp Files</label></div>
+                <button id="gi-generate" class="btn btn-primary mt-3">Generate</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <label for="gi-output" class="form-label">Generated .gitignore</label>
+            <textarea id="gi-output" class="form-control" rows="18" readonly></textarea>
+            <button id="gi-copy" class="btn btn-outline-primary mt-2">Copy Output</button>
+          </div>
+        </div>
+        <a href="../" class="btn btn-secondary btn-sm mt-3">← Back</a>
+      </div>
+    </div>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->

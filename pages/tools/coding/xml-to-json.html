@@ -138,10 +138,35 @@
 
 <!-- MODALS_END -->
 
-  <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Xml To Json</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <main class="container py-4" id="main-content">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        <h1 class="mb-2">XML to JSON</h1>
+        <p class="text-muted mb-3">Convert XML documents into JSON using a simple client-side parser.</p>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="xmlj-input" class="form-label">XML</label>
+            <textarea id="xmlj-input" class="form-control" rows="16"><note priority="high">
+  <title>BlueTEXT</title>
+  <tags>
+    <tag>coding</tag>
+    <tag>tools</tag>
+  </tags>
+</note></textarea>
+          </div>
+          <div class="col-md-6">
+            <label for="xmlj-output" class="form-label">JSON</label>
+            <textarea id="xmlj-output" class="form-control" rows="16" readonly></textarea>
+          </div>
+          <div class="col-12 d-flex gap-2">
+            <button id="xmlj-run" class="btn btn-primary">Convert XML → JSON</button>
+            <button id="xmlj-copy" class="btn btn-outline-secondary">Copy JSON</button>
+          </div>
+        </div>
+        <a href="../" class="btn btn-secondary btn-sm mt-3">← Back</a>
+      </div>
+    </div>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->

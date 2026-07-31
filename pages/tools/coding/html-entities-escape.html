@@ -138,10 +138,30 @@
 
 <!-- MODALS_END -->
 
-  <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Html Entities Escape</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <main class="container py-4" id="main-content">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        <h1 class="mb-2">HTML Entities Escape</h1>
+        <p class="text-muted mb-3">Escape or unescape special HTML characters safely.</p>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="ent-input" class="form-label">Input</label>
+            <textarea id="ent-input" class="form-control" rows="12" placeholder="<div>Hello & welcome</div>"></textarea>
+          </div>
+          <div class="col-md-6">
+            <label for="ent-output" class="form-label">Output</label>
+            <textarea id="ent-output" class="form-control" rows="12"></textarea>
+          </div>
+          <div class="col-12 d-flex gap-2 flex-wrap">
+            <button id="ent-escape" class="btn btn-primary">Escape</button>
+            <button id="ent-unescape" class="btn btn-outline-primary">Unescape</button>
+            <button id="ent-copy" class="btn btn-outline-secondary">Copy Output</button>
+          </div>
+        </div>
+        <a href="../" class="btn btn-secondary btn-sm mt-3">← Back</a>
+      </div>
+    </div>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->

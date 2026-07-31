@@ -138,10 +138,37 @@
 
 <!-- MODALS_END -->
 
-  <main class="container py-4" id="main-content">
-    <h1 class="mb-2">User Agent Parser</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <main class="container py-4" id="main-content">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        <h1 class="mb-2">User Agent Parser</h1>
+        <p class="text-muted mb-3">Break a user agent string into browser, version, OS, and device type.</p>
+
+        <div class="row g-3">
+          <div class="col-12">
+            <label for="ua-input" class="form-label">User Agent String</label>
+            <textarea id="ua-input" class="form-control" rows="6"></textarea>
+          </div>
+          <div class="col-12 d-flex gap-2">
+            <button id="ua-run" class="btn btn-primary">Parse User Agent</button>
+            <button id="ua-current" class="btn btn-outline-secondary">Use Current Browser</button>
+          </div>
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="row g-3">
+                  <div class="col-md-3"><strong>Browser</strong><div id="ua-browser" class="text-muted">—</div></div>
+                  <div class="col-md-3"><strong>Version</strong><div id="ua-version" class="text-muted">—</div></div>
+                  <div class="col-md-3"><strong>OS</strong><div id="ua-os" class="text-muted">—</div></div>
+                  <div class="col-md-3"><strong>Device</strong><div id="ua-device" class="text-muted">—</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="../" class="btn btn-secondary btn-sm mt-3">← Back</a>
+      </div>
+    </div>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->

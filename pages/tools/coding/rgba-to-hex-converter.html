@@ -138,10 +138,33 @@
 
 <!-- MODALS_END -->
 
-  <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Rgba To Hex Converter</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <main class="container py-4" id="main-content">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        <h1 class="mb-2">RGBA to Hex Converter</h1>
+        <p class="text-muted mb-3">Convert RGBA channel values to hex with alpha and preview the color.</p>
+
+        <div class="row g-4">
+          <div class="col-lg-4">
+            <div class="vstack gap-3">
+              <div><label class="form-label" for="rgba-r">Red</label><input id="rgba-r" class="form-range" type="range" min="0" max="255" value="13"></div>
+              <div><label class="form-label" for="rgba-g">Green</label><input id="rgba-g" class="form-range" type="range" min="0" max="255" value="110"></div>
+              <div><label class="form-label" for="rgba-b">Blue</label><input id="rgba-b" class="form-range" type="range" min="0" max="255" value="253"></div>
+              <div><label class="form-label" for="rgba-a">Alpha</label><input id="rgba-a" class="form-range" type="range" min="0" max="1" step="0.01" value="0.75"></div>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div id="rgba-preview" class="rounded-4 border" style="height:180px;"></div>
+            <div class="row g-3 mt-1">
+              <div class="col-md-6"><label class="form-label" for="rgba-hex">Hex</label><input id="rgba-hex" class="form-control" readonly></div>
+              <div class="col-md-6"><label class="form-label" for="rgba-css">CSS rgba()</label><input id="rgba-css" class="form-control" readonly></div>
+            </div>
+            <button id="rgba-copy" class="btn btn-outline-primary mt-3">Copy Hex</button>
+          </div>
+        </div>
+        <a href="../" class="btn btn-secondary btn-sm mt-3">← Back</a>
+      </div>
+    </div>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->

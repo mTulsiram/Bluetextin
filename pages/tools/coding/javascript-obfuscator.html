@@ -138,10 +138,33 @@
 
 <!-- MODALS_END -->
 
-  <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Javascript Obfuscator</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <main class="container py-4" id="main-content">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        <h1 class="mb-2">JavaScript Obfuscator</h1>
+        <p class="text-muted mb-3">Apply a lightweight client-side obfuscation pass by removing comments and renaming declared identifiers.</p>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="jsob-input" class="form-label">Input JavaScript</label>
+            <textarea id="jsob-input" class="form-control" rows="16">const greeting = 'Hello';
+function welcome(name) {
+  const message = greeting + ', ' + name;
+  return message;
+}</textarea>
+          </div>
+          <div class="col-md-6">
+            <label for="jsob-output" class="form-label">Obfuscated Output</label>
+            <textarea id="jsob-output" class="form-control" rows="16" readonly></textarea>
+          </div>
+          <div class="col-12 d-flex gap-2">
+            <button id="jsob-run" class="btn btn-primary">Obfuscate</button>
+            <button id="jsob-copy" class="btn btn-outline-secondary">Copy Output</button>
+          </div>
+        </div>
+        <a href="../" class="btn btn-secondary btn-sm mt-3">← Back</a>
+      </div>
+    </div>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->

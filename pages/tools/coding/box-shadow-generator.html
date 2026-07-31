@@ -138,10 +138,35 @@
 
 <!-- MODALS_END -->
 
-  <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Box Shadow Generator</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <main class="container py-4" id="main-content">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        <h1 class="mb-2">Box Shadow Generator</h1>
+        <p class="text-muted mb-3">Build CSS box-shadow values with live controls and copy-ready output.</p>
+
+        <div class="row g-4">
+          <div class="col-lg-5">
+            <div class="vstack gap-3">
+              <div><label class="form-label" for="shadow-x">Horizontal Offset</label><input id="shadow-x" class="form-range" type="range" min="-50" max="50" value="12"><div class="small text-muted"><span id="shadow-xv">12</span>px</div></div>
+              <div><label class="form-label" for="shadow-y">Vertical Offset</label><input id="shadow-y" class="form-range" type="range" min="-50" max="50" value="12"><div class="small text-muted"><span id="shadow-yv">12</span>px</div></div>
+              <div><label class="form-label" for="shadow-blur">Blur</label><input id="shadow-blur" class="form-range" type="range" min="0" max="100" value="30"><div class="small text-muted"><span id="shadow-blurv">30</span>px</div></div>
+              <div><label class="form-label" for="shadow-spread">Spread</label><input id="shadow-spread" class="form-range" type="range" min="-30" max="50" value="0"><div class="small text-muted"><span id="shadow-spreadv">0</span>px</div></div>
+              <div><label class="form-label" for="shadow-opacity">Opacity</label><input id="shadow-opacity" class="form-range" type="range" min="0" max="1" step="0.01" value="0.3"><div class="small text-muted"><span id="shadow-opacityv">0.30</span></div></div>
+              <div><label class="form-label" for="shadow-color">Shadow Color</label><input id="shadow-color" class="form-control form-control-color" type="color" value="#0d6efd"></div>
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="border rounded-4 p-5 bg-body-tertiary text-center">
+              <div id="shadow-preview" class="bg-white rounded-4 mx-auto d-flex align-items-center justify-content-center" style="width:220px;height:160px;">Preview</div>
+            </div>
+            <label for="shadow-css" class="form-label mt-3">CSS</label>
+            <textarea id="shadow-css" class="form-control" rows="4" readonly></textarea>
+            <button id="shadow-copy" class="btn btn-outline-primary mt-2">Copy CSS</button>
+          </div>
+        </div>
+        <a href="../" class="btn btn-secondary btn-sm mt-3">← Back</a>
+      </div>
+    </div>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->
