@@ -568,7 +568,7 @@
             <div class="space-y-1.5">
               <div class="flex justify-between text-xs">
                 <label class="text-[10px] text-zinc-400">Rotation</label>
-                <span class="font-mono text-zinc-200" id="prop-rotation-label">0Â°</span>
+                <span class="font-mono text-zinc-200" id="prop-rotation-label">0&deg;</span>
               </div>
               <input type="range" id="prop-rotation" min="-180" max="180" value="0" class="w-full" />
             </div>
@@ -1575,7 +1575,7 @@
     // 4. PROPERTIES INSPECTOR BINDING
     function updatePropertyLabels() {
       propScaleLabel.textContent = `${propScale.value}%`;
-      propRotationLabel.textContent = `${propRotation.value}Â°`;
+      propRotationLabel.textContent = `${propRotation.value}\u00B0`;
       propOpacityLabel.textContent = `${propOpacity.value}%`;
       propSaturationLabel.textContent = `${propSaturation.value}%`;
       propContrastLabel.textContent = `${propContrast.value}%`;
@@ -1606,7 +1606,7 @@
         clip.trackId === 'track-3' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' : 
         'bg-amber-500/10 text-amber-400 border-amber-500/20'
       }`;
-      propMeta.textContent = `Duration: ${clip.duration.toFixed(2)}s â€¢ Trim In: ${clip.trimIn.toFixed(2)}s`;
+      propMeta.textContent = `Duration: ${clip.duration.toFixed(2)}s \u2022 Trim In: ${clip.trimIn.toFixed(2)}s`;
 
       // Enable panels
       propTransformGroup.classList.remove('opacity-50', 'pointer-events-none');
@@ -1762,13 +1762,17 @@
           const width = clip.duration * EditorState.zoomPxPerSecond;
           clipEl.style.left = `${left}px`;
           clipEl.style.width = `${width}px`;
+          clipEl.style.minWidth = '32px';
+
+          const isCompact = width < 75;
+          const isUltraCompact = width < 45;
 
           clipEl.innerHTML = `
-            <div class="min-w-0 flex items-center gap-2 pointer-events-none">
+            <div class="flex-1 min-w-0 flex items-center gap-2 pointer-events-none ${isCompact ? 'mr-0' : 'mr-2'}">
               <svg class="w-3.5 h-3.5 shrink-0 ${clipTextColor}" fill="none" stroke="currentColor"><use href="#icon-${iconType}"></use></svg>
-              <span class="font-medium truncate text-[11px] text-zinc-200">${media ? media.name : 'Untitled Text'}</span>
+              ${!isCompact ? `<span class="font-medium truncate text-[11px] text-zinc-200">${media ? media.name : 'Untitled Text'}</span>` : ''}
             </div>
-            <span class="text-[9px] font-mono pointer-events-none ${clipTextColor}">${clip.duration.toFixed(1)}s</span>
+            ${!isUltraCompact ? `<span class="flex-shrink-0 text-[9px] font-mono pointer-events-none ${clipTextColor}">${clip.duration.toFixed(1)}s</span>` : ''}
             
             <!-- Left/Right Trim Handle Overlays (Only if track is unlocked) -->
             ${!track.locked ? `
