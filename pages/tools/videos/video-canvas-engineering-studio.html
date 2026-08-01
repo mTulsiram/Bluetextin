@@ -3,367 +3,809 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Aspect ratios, reverse, and mute frame processing.">
+  <meta name="description" content="Video Canvas Engineering Studio — apply real-time filters, aspect-ratio crop, reverse playback, speed control, and frame extraction on any video — all client-side, zero upload.">
   <meta name="robots" content="index,follow">
   <title>Video Canvas Engineering Studio | BlueTEXT</title>
   <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" href="/assets/css/main.css">
   <style>
-    
-  .ide-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    background: #1e1e1e;
-    color: #d4d4d4;
-    border-radius: 12px;
-    padding: 1.5rem;
-    font-family: 'Fira Code', monospace, Consolas, Courier;
-    border: 1px solid #333;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  }
-  .ide-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #333;
-    padding-bottom: 0.8rem;
-    margin-bottom: 1rem;
-  }
-  .ide-title {
-    font-size: 1.25rem;
-    color: #61afef;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .ide-body {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-  }
-  @media (max-width: 992px) {
-    .ide-body {
-      grid-template-columns: 1fr;
+    /* ── Layout ─────────────────────────────────────────────────── */
+    .studio-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      background: #141414;
+      color: #d4d4d4;
+      border-radius: 14px;
+      padding: 1.5rem;
+      font-family: 'Fira Code', Consolas, monospace;
+      border: 1px solid #2a2a2a;
+      box-shadow: 0 12px 40px rgba(0,0,0,.5);
     }
-  }
-  .ide-panel {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    background: #252526;
-    border-radius: 8px;
-    padding: 1.2rem;
-    border: 1px solid #3c3c3c;
-  }
-  .ide-panel-title {
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #abb2bf;
-    border-bottom: 1px solid #3c3c3c;
-    padding-bottom: 0.5rem;
-    margin-bottom: 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .ide-input, .ide-output {
-    width: 100%;
-    background: #1e1e1e;
-    color: #9cdcfe;
-    border: 1px solid #3c3c3c;
-    border-radius: 6px;
-    padding: 0.8rem;
-    font-family: inherit;
-    font-size: 0.9rem;
-    resize: vertical;
-  }
-  .ide-input:focus, .ide-output:focus {
-    outline: none;
-    border-color: #61afef;
-  }
-  .ide-control-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-  }
-  .ide-btn {
-    background: #3a3d41;
-    color: #fff;
-    border: 1px solid #4b4e52;
-    border-radius: 6px;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 0.85rem;
-    transition: background 0.2s;
-  }
-  .ide-btn:hover {
-    background: #4b4e52;
-  }
-  .ide-btn-primary {
-    background: #007acc;
-    border-color: #0062a3;
-  }
-  .ide-btn-primary:hover {
-    background: #0062a3;
-  }
-  .ide-status {
-    font-size: 0.8rem;
-    color: #98c379;
-  }
-  .ide-error {
-    color: #e06c75;
-  }
-  .drop-zone {
-    border: 2px dashed #4b4e52;
-    border-radius: 6px;
-    padding: 1.5rem;
-    text-align: center;
-    cursor: pointer;
-    background: #1e1e1e;
-    transition: border-color 0.2s;
-  }
+    .studio-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #2e2e2e;
+      padding-bottom: .8rem;
+    }
+    .studio-title {
+      font-size: 1.2rem;
+      color: #61afef;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .status-bar {
+      font-size: .78rem;
+      color: #98c379;
+      background: #1e1e1e;
+      border: 1px solid #3c3c3c;
+      border-radius: 6px;
+      padding: .3rem .8rem;
+    }
+    .studio-body {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 900px) { .studio-body { grid-template-columns: 1fr; } }
 
+    /* ── Panels ─────────────────────────────────────────────────── */
+    .panel {
+      background: #1e1e1e;
+      border: 1px solid #2e2e2e;
+      border-radius: 10px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+    }
+    .panel-title {
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #61afef;
+      border-bottom: 1px solid #2e2e2e;
+      padding-bottom: .4rem;
+      margin-bottom: .2rem;
+    }
+
+    /* ── Drop Zone ──────────────────────────────────────────────── */
+    .drop-zone {
+      border: 2px dashed #3c3c3c;
+      border-radius: 8px;
+      padding: 1.2rem;
+      text-align: center;
+      cursor: pointer;
+      color: #abb2bf;
+      font-size: .85rem;
+      transition: border-color .2s, background .2s;
+    }
+    .drop-zone:hover, .drop-zone.active { border-color: #61afef; background: #1a2433; color: #61afef; }
+
+    /* ── Controls ───────────────────────────────────────────────── */
+    label.ctrl-label { font-size: .78rem; color: #abb2bf; display: block; margin-bottom: .2rem; }
+    .ctrl-row { display: flex; align-items: center; gap: .5rem; }
+    .ctrl-row label.ctrl-label { min-width: 80px; margin: 0; }
+    input[type="range"] {
+      flex: 1;
+      accent-color: #61afef;
+      background: transparent;
+    }
+    .val-badge {
+      min-width: 42px;
+      text-align: right;
+      font-size: .75rem;
+      color: #9cdcfe;
+      font-weight: 700;
+    }
+    select, input[type="number"] {
+      width: 100%;
+      background: #252526;
+      color: #9cdcfe;
+      border: 1px solid #3c3c3c;
+      border-radius: 6px;
+      padding: .45rem .65rem;
+      font-family: inherit;
+      font-size: .82rem;
+    }
+    select:focus, input[type="number"]:focus { outline: none; border-color: #61afef; }
+
+    /* ── Buttons ────────────────────────────────────────────────── */
+    .btn { background: #2d2d30; color: #d4d4d4; border: 1px solid #3e3e42; border-radius: 6px; padding: .45rem .9rem; cursor: pointer; font-family: inherit; font-size: .82rem; transition: background .15s, border-color .15s; white-space: nowrap; }
+    .btn:hover { background: #3e3e42; }
+    .btn-primary { background: #007acc; border-color: #005fa3; color: #fff; }
+    .btn-primary:hover { background: #005fa3; }
+    .btn-danger  { background: #6b2020; border-color: #a33; color: #fcc; }
+    .btn-danger:hover { background: #a33; }
+    .btn-row { display: flex; flex-wrap: wrap; gap: .4rem; }
+
+    /* ── Canvas Viewport ────────────────────────────────────────── */
+    .canvas-viewport {
+      background: #000;
+      border: 1px solid #2e2e2e;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .canvas-viewport canvas {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .canvas-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #3c3c3c;
+      font-size: 1rem;
+      pointer-events: none;
+    }
+    .canvas-overlay.hidden { display: none; }
+
+    /* ── Seek Bar ───────────────────────────────────────────────── */
+    .seek-bar-wrap { padding: .5rem 1rem; background: #111; border-top: 1px solid #2e2e2e; }
+    #seek-bar { width: 100%; accent-color: #61afef; cursor: pointer; }
+
+    /* ── Transport Controls ─────────────────────────────────────── */
+    .transport { display: flex; align-items: center; gap: .5rem; padding: .6rem 1rem; background: #161616; border-top: 1px solid #2e2e2e; flex-wrap: wrap; }
+    .transport .time-display { font-size: .8rem; color: #9cdcfe; margin-left: auto; }
+
+    /* ── Filter Badges ──────────────────────────────────────────── */
+    .filter-badge {
+      display: inline-block;
+      padding: .2rem .6rem;
+      border-radius: 12px;
+      font-size: .72rem;
+      background: #252526;
+      border: 1px solid #3c3c3c;
+      color: #abb2bf;
+      cursor: pointer;
+      transition: all .15s;
+      user-select: none;
+    }
+    .filter-badge.on { background: #007acc22; border-color: #61afef; color: #61afef; }
+
+    /* ── Frame Strip ────────────────────────────────────────────── */
+    #frame-strip { display: flex; gap: 4px; overflow-x: auto; padding: .4rem 0; flex-wrap: nowrap; }
+    #frame-strip canvas { height: 56px; width: auto; border-radius: 4px; cursor: pointer; border: 2px solid transparent; flex-shrink: 0; }
+    #frame-strip canvas:hover { border-color: #61afef; }
+
+    /* ── Misc ───────────────────────────────────────────────────── */
+    .section-sep { border: none; border-top: 1px solid #2e2e2e; margin: .2rem 0; }
+    .info-chip { font-size: .72rem; color: #abb2bf; background: #252526; border-radius: 6px; padding: .3rem .6rem; }
+    .info-row { display: flex; flex-wrap: wrap; gap: .4rem; }
   </style>
-  <script src="/assets/js/media-engine.js" defer></script>
   <script src="/assets/js/app.js" defer></script>
 </head>
 <body>
-  <div id="header-component"><!-- HEADER_START -->
-<!-- =========================================================================
-     BlueTEXT.in — Clean Semantic Header Component
-     Sections: 1. Brand Logo | 2. Main Navigation | 3. User Actions (Donate/Login/Clear Cache/Theme)
-     ========================================================================= -->
-
-<header class="hdr" role="banner">
-  <div class="hdr-container">
-    
-    <!-- 1. Brand / Logo -->
-    <a class="brand" href="/" aria-label="BlueTEXT.in Homepage">
-      <svg class="brand-logo" width="24" height="24" viewBox="0 0 28 28" aria-hidden="true" focusable="false">
-        <rect width="28" height="28" rx="7" fill="currentColor"></rect>
-        <path d="M8 7H15.5C18.3 7 20.3 8.5 20.3 10.9C20.3 12.4 19.5 13.6 18.1 14.2C19.9 14.7 21 16 21 17.8C21 20.5 18.8 22 15.8 22H8V7ZM11.2 9.6V13.1H15.2C16.4 13.1 17.1 12.4 17.1 11.3C17.1 10.2 16.4 9.6 15.2 9.6H11.2ZM11.2 15.5V19.4H15.7C17 19.4 17.8 18.7 17.8 17.5C17.8 16.3 16.9 15.5 15.7 15.5H11.2Z" fill="#ffffff"></path>
-      </svg>
-      <span>BlueTEXT.in</span>
-    </a>
-
-    <!-- Mobile Navigation Toggle Button -->
-    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
-      <span class="nav-toggle-icon" aria-hidden="true">☰</span>
-    </button>
-
-    <!-- 2. Primary Navigation Links with Subcategory Dropdowns -->
-    <nav class="nav-menu" id="nav-menu" aria-label="Primary Navigation">
-      <button class="nav-menu-close" aria-label="Close navigation menu">&times; Close Menu</button>
-      <div class="nav-dropdown">
-        <a href="/pages/tools/" class="nav-link">Tools ▾</a>
-        <div class="dropdown-menu">
-          <a href="/pages/tools/">All Tools</a>
-          <a href="/pages/tools/coding/">Coding</a>
-          <a href="/pages/tools/converters/">Converters</a>
-          <a href="/pages/tools/data/">Data</a>
-          <a href="/pages/tools/images/">Images</a>
-          <a href="/pages/tools/lifestyle/">Lifestyle</a>
-          <a href="/pages/tools/math/">Math</a>
-          <a href="/pages/tools/miscellaneous/">Miscellaneous</a>
-          <a href="/pages/tools/network/">Network</a>
-          <a href="/pages/tools/office/">Office</a>
-          <a href="/pages/tools/utilities/">Utilities</a>
-          <a href="/pages/tools/videos/">Videos</a>
-        </div>
-      </div>
-
-      <div class="nav-dropdown">
-        <a href="/pages/games/" class="nav-link">Games ▾</a>
-        <div class="dropdown-menu">
-          <a href="/pages/games/">All Games</a>
-          <a href="/pages/games/arcade/">Arcade</a>
-          <a href="/pages/games/board/">Board</a>
-          <a href="/pages/games/cards/">Cards</a>
-          <a href="/pages/games/puzzles/">Puzzles</a>
-          <a href="/pages/games/word/">Word</a>
-        </div>
-      </div>
-
-      <div class="nav-dropdown">
-        <a href="/pages/software/" class="nav-link">Software ▾</a>
-        <div class="dropdown-menu">
-          <a href="/pages/software/">All Software</a>
-          <a href="/pages/software/android/productivity/">Android Productivity</a>
-          <a href="/pages/software/android/utility/">Android Utilities</a>
-          <a href="/pages/software/apple/productivity/">Apple Productivity</a>
-          <a href="/pages/software/apple/utility/">Apple Utilities</a>
-          <a href="/pages/software/linux/games/">Linux Games</a>
-          <a href="/pages/software/linux/productivity/">Linux Productivity</a>
-          <a href="/pages/software/linux/utility/">Linux Utilities</a>
-          <a href="/pages/software/windows/games/">Windows Games</a>
-          <a href="/pages/software/windows/productivity/">Windows Productivity</a>
-          <a href="/pages/software/windows/utility/">Windows Utilities</a>
-        </div>
-      </div>
-
-      <div class="nav-dropdown">
-        <a href="/pages/tutorials/" class="nav-link">Tutorials ▾</a>
-        <div class="dropdown-menu">
-          <a href="/pages/tutorials/">All Tutorials</a>
-          <a href="/pages/tutorials/backend/">Backend</a>
-          <a href="/pages/tutorials/design/">Design</a>
-          <a href="/pages/tutorials/programming/">Programming</a>
-          <a href="/pages/tutorials/security/">Security</a>
-          <a href="/pages/tutorials/web-dev/">Web Dev</a>
-        </div>
-      </div>
-
-      <div class="nav-dropdown">
-        <a href="/pages/education/" class="nav-link">Education ▾</a>
-        <div class="dropdown-menu">
-          <a href="/pages/education/">All Education</a>
-          <a href="/pages/education/finance/">Finance</a>
-          <a href="/pages/education/humanities/">Humanities</a>
-          <a href="/pages/education/languages/">Languages</a>
-          <a href="/pages/education/math/">Math</a>
-          <a href="/pages/education/science/">Science</a>
-        </div>
-      </div>
-
-      <a href="/pages/blog/" class="nav-link">Blog</a>
-      
-      <!-- 3. Action Utility Buttons -->
-      <div class="hdr-actions">
-        <!-- Live Search Trigger -->
-        <button class="hdr-btn" id="hdr-search-btn" aria-label="Search site tools">🔍 Search</button>
-
-        <!-- Donate / Support Trigger -->
-        <a href="/support.html" class="hdr-btn hdr-btn-donate" aria-label="Support the project">💖 Support</a>
-
-        <!-- Sign In Button (Managed by auth.js) -->
-        <button class="hdr-btn" id="auth-toggle-btn" aria-label="Account login status">Sign In</button>
-
-        <!-- Clear Cache Utility Button -->
-        <button class="hdr-btn" id="clear-cache-btn" title="Clear local storage, cache, and reload" aria-label="Clear local cache">🧹 Clear Cache</button>
-
-        <!-- Dark / Light Theme Toggle -->
-        <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle dark/light mode">
-          <span id="theme-toggle-icon" aria-hidden="true">🌙</span>
-        </button>
-      </div>
-    </nav>
-
-  </div>
-</header>
-<!-- HEADER_END --></div>
-<!-- MODALS_START -->
-
-
-<!-- MODALS_END -->
+  <div id="header-component"><!-- HEADER_START --><!-- HEADER_END --></div>
+  <!-- MODALS_START --><!-- MODALS_END -->
 
   <main class="container py-4" id="main-content">
-    <div class="ide-container">
-      <div class="ide-header">
-        <div class="ide-title">🎬 Video Canvas Engineering Studio</div>
-        <div class="ide-status" id="global-status">DSP Engine Ready</div>
-      </div>
-      
-      <div class="ide-body">
-        
-  <div class="ide-panel">
-    <div class="ide-panel-title">Media Controls</div>
-    <div class="drop-zone" id="vid-drop">Select Input Video</div>
-    <input type="file" id="vid-file" style="display: none;">
-    <label class="mt-2">Aspect Ratio Target</label>
-    <select id="vid-ratio" class="ide-input">
-      <option value="16:9">Widescreen (16:9)</option>
-      <option value="9:16">Vertical Short (9:16)</option>
-      <option value="1:1">Square (1:1)</option>
-    </select>
-  </div>
-  <div class="ide-panel">
-    <div class="ide-panel-title">Rendering Viewport</div>
-    <div class="border rounded bg-dark text-center p-2" style="height: 200px;">
-      <canvas id="vid-canvas" style="max-width: 100%; height: 100%;"></canvas>
-    </div>
-  </div>
+    <div class="studio-wrap">
 
+      <!-- ── Header ─────────────────────────────────────────────── -->
+      <div class="studio-header">
+        <div class="studio-title">🎬 Video Canvas Engineering Studio</div>
+        <div class="status-bar" id="global-status">Drop a video to start</div>
+      </div>
+
+      <!-- ── Body ──────────────────────────────────────────────── -->
+      <div class="studio-body">
+
+        <!-- ═══════════════════ LEFT PANEL ══════════════════════ -->
+        <div style="display:flex;flex-direction:column;gap:1rem;">
+
+          <!-- Load Video -->
+          <div class="panel">
+            <div class="panel-title">📁 Source Video</div>
+            <div class="drop-zone" id="vid-drop">
+              🎞️ Click or drag a video here<br>
+              <span style="font-size:.72rem;color:#555">MP4, WebM, OGG, MOV</span>
+            </div>
+            <input type="file" id="vid-file" accept="video/*" style="display:none">
+            <div class="info-row" id="vid-info" style="display:none">
+              <span class="info-chip" id="info-name">—</span>
+              <span class="info-chip" id="info-size">—</span>
+              <span class="info-chip" id="info-dims">—</span>
+              <span class="info-chip" id="info-dur">—</span>
+            </div>
+          </div>
+
+          <!-- Aspect Ratio -->
+          <div class="panel">
+            <div class="panel-title">✂️ Aspect Ratio Crop</div>
+            <label class="ctrl-label">Target Ratio</label>
+            <select id="vid-ratio">
+              <option value="free">Free (No Crop)</option>
+              <option value="16:9" selected>16:9 — Widescreen</option>
+              <option value="9:16">9:16 — Vertical / Short</option>
+              <option value="1:1">1:1 — Square</option>
+              <option value="4:3">4:3 — Classic TV</option>
+              <option value="21:9">21:9 — Cinematic</option>
+              <option value="4:5">4:5 — Instagram Portrait</option>
+            </select>
+            <div class="ctrl-row">
+              <label class="ctrl-label" style="min-width:60px">Output W</label>
+              <input type="number" id="out-w" value="1280" min="64" max="3840" style="width:90px">
+              <label class="ctrl-label" style="min-width:10px">×</label>
+              <input type="number" id="out-h" value="720" min="64" max="2160" style="width:90px">
+            </div>
+          </div>
+
+          <!-- Speed & Reverse -->
+          <div class="panel">
+            <div class="panel-title">⏱ Playback</div>
+            <div class="ctrl-row">
+              <label class="ctrl-label">Speed</label>
+              <input type="range" id="vid-speed" min="0.1" max="4" step="0.1" value="1">
+              <span class="val-badge" id="speed-val">1.0×</span>
+            </div>
+            <div class="btn-row">
+              <button class="btn" id="btn-reverse">⏪ Simulate Reverse</button>
+              <button class="btn btn-danger" id="btn-stopreverse" style="display:none">⏹ Stop Reverse</button>
+            </div>
+            <div style="font-size:.72rem;color:#555;margin-top:-.3rem">Reads frames backwards frame-by-frame using canvas capture.</div>
+          </div>
+
+          <!-- Visual Filters -->
+          <div class="panel">
+            <div class="panel-title">🎨 Real-time Filters</div>
+            <div class="btn-row" id="filter-badges">
+              <span class="filter-badge" data-filter="grayscale">Grayscale</span>
+              <span class="filter-badge" data-filter="sepia">Sepia</span>
+              <span class="filter-badge" data-filter="invert">Invert</span>
+              <span class="filter-badge" data-filter="saturate">Vivid</span>
+              <span class="filter-badge" data-filter="contrast">Hi-Contrast</span>
+              <span class="filter-badge" data-filter="blur">Blur</span>
+              <span class="filter-badge" data-filter="hue-rotate">Hue Shift</span>
+            </div>
+            <hr class="section-sep">
+            <div class="ctrl-row">
+              <label class="ctrl-label">Brightness</label>
+              <input type="range" id="f-brightness" min="0" max="3" step="0.05" value="1">
+              <span class="val-badge" id="fv-brightness">1.00</span>
+            </div>
+            <div class="ctrl-row">
+              <label class="ctrl-label">Contrast</label>
+              <input type="range" id="f-contrast" min="0" max="3" step="0.05" value="1">
+              <span class="val-badge" id="fv-contrast">1.00</span>
+            </div>
+            <div class="ctrl-row">
+              <label class="ctrl-label">Saturate</label>
+              <input type="range" id="f-saturate" min="0" max="4" step="0.1" value="1">
+              <span class="val-badge" id="fv-saturate">1.0</span>
+            </div>
+            <div class="ctrl-row">
+              <label class="ctrl-label">Blur (px)</label>
+              <input type="range" id="f-blur" min="0" max="20" step="0.5" value="0">
+              <span class="val-badge" id="fv-blur">0</span>
+            </div>
+            <div class="ctrl-row">
+              <label class="ctrl-label">Hue°</label>
+              <input type="range" id="f-hue" min="0" max="360" step="1" value="0">
+              <span class="val-badge" id="fv-hue">0°</span>
+            </div>
+          </div>
+
+          <!-- Frame Capture -->
+          <div class="panel">
+            <div class="panel-title">📸 Frame Tools</div>
+            <div class="btn-row">
+              <button class="btn btn-primary" id="btn-snapshot">Capture Frame</button>
+              <button class="btn" id="btn-extract">Extract 10 Frames</button>
+            </div>
+            <div id="frame-strip"></div>
+          </div>
+
+          <!-- Export -->
+          <div class="panel">
+            <div class="panel-title">💾 Export</div>
+            <div class="btn-row">
+              <button class="btn btn-primary" id="btn-export-frame">Download Current Frame (PNG)</button>
+            </div>
+            <div style="font-size:.72rem;color:#555">Full video re-encoding (with filters applied) requires MediaRecorder. Click Record below to capture processed canvas output as WebM.</div>
+            <div class="btn-row">
+              <button class="btn btn-primary" id="btn-record">⏺ Start Recording</button>
+              <button class="btn btn-danger" id="btn-stop-record" style="display:none">⏹ Stop & Download</button>
+            </div>
+          </div>
+
+        </div>
+        <!-- ═══════════════════ RIGHT PANEL ══════════════════════ -->
+        <div style="display:flex;flex-direction:column;gap:0;">
+
+          <!-- Canvas Viewport -->
+          <div class="canvas-viewport">
+            <div class="canvas-overlay" id="canvas-overlay">
+              <span style="font-size:2rem;opacity:.3">🎞️</span>
+            </div>
+            <canvas id="vid-canvas"></canvas>
+
+            <!-- Seek bar -->
+            <div class="seek-bar-wrap">
+              <input type="range" id="seek-bar" min="0" max="1000" value="0">
+            </div>
+
+            <!-- Transport -->
+            <div class="transport">
+              <button class="btn btn-primary" id="btn-play">▶ Play</button>
+              <button class="btn" id="btn-pause">⏸ Pause</button>
+              <button class="btn" id="btn-rewind">⏮ Rewind</button>
+              <button class="btn" id="btn-step-back">← Frame</button>
+              <button class="btn" id="btn-step-fwd">Frame →</button>
+              <button class="btn" id="btn-mute">🔇 Mute</button>
+              <span class="time-display" id="time-display">0:00 / 0:00</span>
+            </div>
+          </div>
+
+          <!-- Waveform / metadata info strip -->
+          <div class="panel" style="margin-top:1rem">
+            <div class="panel-title">📊 Canvas Info</div>
+            <div class="info-row" id="canvas-info">
+              <span class="info-chip" id="ci-resolution">Resolution: —</span>
+              <span class="info-chip" id="ci-ratio">Ratio: —</span>
+              <span class="info-chip" id="ci-filter">Filter: none</span>
+              <span class="info-chip" id="ci-fps">FPS: —</span>
+              <span class="info-chip" id="ci-speed">Speed: 1×</span>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   </main>
 
-  <div id="footer-component"><!-- FOOTER_START -->
-<!-- =========================================================================
-     BlueTEXT.in — Clean Semantic Footer Component
-     Sections: 1. Brand & Compliance Notice | 2. Navigation & Legal Links
-     ========================================================================= -->
-
-<footer class="ftr" role="contentinfo">
-  <div class="ftr-container">
-
-    <!-- 1. Brand & Privacy Compliance -->
-    <div class="ftr-brand">
-      <span class="ftr-logo">BlueTEXT.in</span>
-      <span class="ftr-compliance">© 2026. Client-side execution. Zero tracker policy.</span>
-    </div>
-
-    <!-- 2. Footer Utility Links -->
-    <nav class="ftr-nav" aria-label="Footer Navigation">
-      <a href="/assets/nav/about.html" class="ftr-link">About</a>
-      <a href="/assets/nav/contact.html" class="ftr-link">Contact</a>
-      <a href="/support.html" class="ftr-link ftr-link-highlight">💖 Donate</a>
-      <a href="https://github.com/mTulsiram/bluetext/issues/new?template=bug_report.md" class="ftr-link" target="_blank" rel="noopener noreferrer">Report Bug</a>
-      <a href="https://github.com/mTulsiram/bluetext/issues/new?template=feature_request.md" class="ftr-link" target="_blank" rel="noopener noreferrer">Suggest Feature</a>
-      <a href="/assets/nav/privacy.html" class="ftr-link">Privacy</a>
-      <a href="/assets/nav/terms.html" class="ftr-link">Terms</a>
-      <a href="/assets/nav/security.html" class="ftr-link">Security</a>
-      <a href="/assets/nav/accessibility.html" class="ftr-link">Accessibility</a>
-    </nav>
-
-  </div>
-</footer>
-<!-- FOOTER_END --></div>
+  <div id="footer-component"><!-- FOOTER_START --><!-- FOOTER_END --></div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  
   <script>
-    (function() {
-      "use strict";
-      
-      function setStatus(text, isError = false) {
-        const el = document.getElementById('global-status');
-        if (el) {
-          el.textContent = text;
-          el.className = isError ? 'ide-status ide-error' : 'ide-status';
-        }
+  (function () {
+    "use strict";
+
+    // ── DOM refs ────────────────────────────────────────────────────
+    const dropZone    = document.getElementById('vid-drop');
+    const fileInput   = document.getElementById('vid-file');
+    const canvas      = document.getElementById('vid-canvas');
+    const ctx         = canvas.getContext('2d');
+    const overlay     = document.getElementById('canvas-overlay');
+    const seekBar     = document.getElementById('seek-bar');
+    const timeDisplay = document.getElementById('time-display');
+    const statusEl    = document.getElementById('global-status');
+
+    // ── State ───────────────────────────────────────────────────────
+    let video       = null;
+    let rafId       = null;
+    let filterSet   = new Set();
+    let reverseMode = false;
+    let reverseBuf  = [];
+    let reverseIdx  = 0;
+    let reverseRafId = null;
+    let mediaRecorder = null;
+    let recordedChunks = [];
+
+    // ── Helpers ─────────────────────────────────────────────────────
+    function setStatus(txt, isError) {
+      statusEl.textContent = txt;
+      statusEl.style.color = isError ? '#e06c75' : '#98c379';
+    }
+
+    function fmt(s) {
+      const m = Math.floor(s / 60);
+      const sec = Math.floor(s % 60);
+      return m + ':' + String(sec).padStart(2, '0');
+    }
+
+    function buildFilter() {
+      const sliders = {
+        brightness : parseFloat(document.getElementById('f-brightness').value),
+        contrast   : parseFloat(document.getElementById('f-contrast').value),
+        saturate   : parseFloat(document.getElementById('f-saturate').value),
+        blur       : parseFloat(document.getElementById('f-blur').value) + 'px',
+        'hue-rotate': document.getElementById('f-hue').value + 'deg',
+      };
+
+      let f = `brightness(${sliders.brightness}) contrast(${sliders.contrast}) saturate(${sliders.saturate}) blur(${sliders.blur}) hue-rotate(${sliders['hue-rotate']})`;
+
+      if (filterSet.has('grayscale'))  f += ' grayscale(1)';
+      if (filterSet.has('sepia'))      f += ' sepia(0.8)';
+      if (filterSet.has('invert'))     f += ' invert(1)';
+      if (filterSet.has('saturate'))   f += ' saturate(3)';
+      if (filterSet.has('contrast'))   f += ' contrast(2)';
+      if (filterSet.has('blur'))       f += ' blur(4px)';
+      if (filterSet.has('hue-rotate')) f += ' hue-rotate(90deg)';
+
+      return f;
+    }
+
+    function getCropRect() {
+      const ratio = document.getElementById('vid-ratio').value;
+      const vw = video.videoWidth, vh = video.videoHeight;
+      if (ratio === 'free') return { sx: 0, sy: 0, sw: vw, sh: vh };
+
+      const [rw, rh] = ratio.split(':').map(Number);
+      const targetRatio = rw / rh;
+      const srcRatio = vw / vh;
+
+      let sw, sh;
+      if (srcRatio > targetRatio) {
+        sh = vh;
+        sw = Math.floor(vh * targetRatio);
+      } else {
+        sw = vw;
+        sh = Math.floor(vw / targetRatio);
+      }
+      const sx = Math.floor((vw - sw) / 2);
+      const sy = Math.floor((vh - sh) / 2);
+      return { sx, sy, sw, sh };
+    }
+
+    function drawFrame() {
+      if (!video) return;
+
+      const outW = parseInt(document.getElementById('out-w').value) || canvas.width;
+      const outH = parseInt(document.getElementById('out-h').value) || canvas.height;
+
+      if (canvas.width !== outW || canvas.height !== outH) {
+        canvas.width  = outW;
+        canvas.height = outH;
       }
 
-      function setupCopy(btnId, outputId) {
-        document.getElementById(btnId)?.addEventListener('click', () => {
-          const out = document.getElementById(outputId);
-          if (out) {
-            navigator.clipboard.writeText(out.value || out.textContent);
-            setStatus('Copied to clipboard! ✓');
-          }
+      ctx.save();
+      ctx.filter = buildFilter();
+      const { sx, sy, sw, sh } = getCropRect();
+      ctx.drawImage(video, sx, sy, sw, sh, 0, 0, outW, outH);
+      ctx.restore();
+
+      // update seek bar & time
+      if (!isNaN(video.duration)) {
+        seekBar.value = Math.floor((video.currentTime / video.duration) * 1000);
+        timeDisplay.textContent = fmt(video.currentTime) + ' / ' + fmt(video.duration);
+      }
+
+      updateInfoBar();
+
+      rafId = requestAnimationFrame(drawFrame);
+    }
+
+    function stopRaf() {
+      if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+    }
+
+    function updateInfoBar() {
+      if (!video) return;
+      document.getElementById('ci-resolution').textContent = 'Output: ' + canvas.width + '×' + canvas.height;
+      document.getElementById('ci-ratio').textContent = 'Ratio: ' + document.getElementById('vid-ratio').value;
+      document.getElementById('ci-filter').textContent = 'Filters: ' + (filterSet.size ? [...filterSet].join(', ') : 'none');
+      document.getElementById('ci-speed').textContent = 'Speed: ' + document.getElementById('vid-speed').value + '×';
+    }
+
+    // ── Load video ──────────────────────────────────────────────────
+    function loadFile(file) {
+      if (!file || !file.type.startsWith('video/')) {
+        setStatus('Please select a valid video file.', true);
+        return;
+      }
+      if (video) { video.pause(); video.src = ''; }
+      stopRaf();
+      stopReverse();
+
+      video = document.createElement('video');
+      video.src = URL.createObjectURL(file);
+      video.playsInline = true;
+      video.muted = false;
+      video.loop = false;
+      video.preload = 'auto';
+
+      video.addEventListener('loadedmetadata', () => {
+        canvas.width  = parseInt(document.getElementById('out-w').value) || 1280;
+        canvas.height = parseInt(document.getElementById('out-h').value) || 720;
+        overlay.classList.add('hidden');
+
+        document.getElementById('vid-info').style.display = 'flex';
+        document.getElementById('info-name').textContent = '📄 ' + file.name.slice(0, 24);
+        document.getElementById('info-size').textContent = '💾 ' + (file.size / 1024 / 1024).toFixed(1) + ' MB';
+        document.getElementById('info-dims').textContent = '📐 ' + video.videoWidth + '×' + video.videoHeight;
+        document.getElementById('info-dur').textContent  = '⏱ ' + fmt(video.duration);
+        document.getElementById('ci-fps').textContent = 'Source: ' + video.videoWidth + '×' + video.videoHeight;
+        setStatus('Loaded: ' + file.name);
+        drawFrame();
+      });
+
+      video.addEventListener('ended', () => setStatus('Playback complete.'));
+    }
+
+    dropZone.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', e => loadFile(e.target.files[0]));
+    dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('active'); });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('active'));
+    dropZone.addEventListener('drop', e => {
+      e.preventDefault();
+      dropZone.classList.remove('active');
+      loadFile(e.dataTransfer.files[0]);
+    });
+
+    // ── Transport ────────────────────────────────────────────────────
+    document.getElementById('btn-play').addEventListener('click', () => {
+      if (!video) return;
+      stopReverse();
+      video.play();
+      stopRaf();
+      drawFrame();
+      setStatus('Playing…');
+    });
+
+    document.getElementById('btn-pause').addEventListener('click', () => {
+      if (!video) return;
+      video.pause();
+      stopRaf();
+      setStatus('Paused at ' + fmt(video.currentTime));
+    });
+
+    document.getElementById('btn-rewind').addEventListener('click', () => {
+      if (!video) return;
+      video.currentTime = 0;
+      setStatus('Rewound to start.');
+    });
+
+    document.getElementById('btn-step-back').addEventListener('click', () => {
+      if (!video) return;
+      video.pause();
+      stopRaf();
+      video.currentTime = Math.max(0, video.currentTime - (1 / 30));
+      setTimeout(() => drawFrame(), 40);
+      setStatus('Step back.');
+    });
+
+    document.getElementById('btn-step-fwd').addEventListener('click', () => {
+      if (!video) return;
+      video.pause();
+      stopRaf();
+      video.currentTime = Math.min(video.duration || 0, video.currentTime + (1 / 30));
+      setTimeout(() => drawFrame(), 40);
+      setStatus('Step forward.');
+    });
+
+    document.getElementById('btn-mute').addEventListener('click', function () {
+      if (!video) return;
+      video.muted = !video.muted;
+      this.textContent = video.muted ? '🔊 Unmute' : '🔇 Mute';
+      setStatus(video.muted ? 'Muted.' : 'Unmuted.');
+    });
+
+    // ── Seek bar ─────────────────────────────────────────────────────
+    seekBar.addEventListener('input', () => {
+      if (!video) return;
+      video.currentTime = (seekBar.value / 1000) * video.duration;
+    });
+
+    // ── Speed ────────────────────────────────────────────────────────
+    document.getElementById('vid-speed').addEventListener('input', function () {
+      document.getElementById('speed-val').textContent = parseFloat(this.value).toFixed(1) + '×';
+      if (video) video.playbackRate = parseFloat(this.value);
+      updateInfoBar();
+    });
+
+    // ── Filter badges ─────────────────────────────────────────────────
+    document.querySelectorAll('.filter-badge').forEach(badge => {
+      badge.addEventListener('click', function () {
+        const f = this.dataset.filter;
+        if (filterSet.has(f)) { filterSet.delete(f); this.classList.remove('on'); }
+        else                  { filterSet.add(f);    this.classList.add('on'); }
+        setStatus('Filter: ' + (filterSet.size ? [...filterSet].join(', ') : 'none'));
+        updateInfoBar();
+      });
+    });
+
+    // ── Slider real-time labels ──────────────────────────────────────
+    [
+      ['f-brightness','fv-brightness', v => v],
+      ['f-contrast',  'fv-contrast',  v => v],
+      ['f-saturate',  'fv-saturate',  v => v],
+      ['f-blur',      'fv-blur',      v => v + 'px'],
+      ['f-hue',       'fv-hue',       v => v + '°'],
+    ].forEach(([slId, valId, fmt]) => {
+      const sl = document.getElementById(slId);
+      const vl = document.getElementById(valId);
+      sl.addEventListener('input', () => { vl.textContent = fmt(sl.value); });
+    });
+
+    // ── Aspect ratio → auto-update W/H ──────────────────────────────
+    document.getElementById('vid-ratio').addEventListener('change', function () {
+      if (this.value === 'free') return;
+      const [rw, rh] = this.value.split(':').map(Number);
+      const w = parseInt(document.getElementById('out-w').value) || 1280;
+      document.getElementById('out-h').value = Math.round(w * rh / rw);
+    });
+
+    // ── Reverse Simulation ───────────────────────────────────────────
+    // Captures N frames into a buffer then plays them backwards
+    document.getElementById('btn-reverse').addEventListener('click', async () => {
+      if (!video) return;
+      setStatus('Capturing frames for reverse…');
+      video.pause();
+      stopRaf();
+
+      const totalDur = video.duration;
+      const FRAMES = 120; // capture 120 frames evenly spaced
+      reverseBuf = [];
+      const interval = totalDur / FRAMES;
+
+      for (let i = 0; i < FRAMES; i++) {
+        await new Promise(res => {
+          video.currentTime = i * interval;
+          video.addEventListener('seeked', function handler() {
+            video.removeEventListener('seeked', handler);
+            const offscreen = document.createElement('canvas');
+            offscreen.width = canvas.width;
+            offscreen.height = canvas.height;
+            const octx = offscreen.getContext('2d');
+            octx.filter = buildFilter();
+            const { sx, sy, sw, sh } = getCropRect();
+            octx.drawImage(video, sx, sy, sw, sh, 0, 0, offscreen.width, offscreen.height);
+            reverseBuf.push(offscreen);
+            res();
+          });
         });
       }
 
-      
-  const drop = document.getElementById('vid-drop');
-  const file = document.getElementById('vid-file');
-  const canvas = document.getElementById('vid-canvas');
-  const ctx = canvas.getContext('2d');
+      reverseIdx = reverseBuf.length - 1;
+      reverseMode = true;
+      document.getElementById('btn-reverse').style.display = 'none';
+      document.getElementById('btn-stopreverse').style.display = '';
+      setStatus('Playing reverse (' + FRAMES + ' frames)…');
 
-  drop.addEventListener('click', () => file.click());
-  file.addEventListener('change', (e) => {
-    const f = e.target.files[0];
-    if (f) {
-      setStatus('Video loaded: ' + f.name);
-      ctx.fillStyle = '#61afef';
-      ctx.fillRect(20, 20, canvas.width - 40, canvas.height - 40);
+      function playReverse() {
+        if (!reverseMode || reverseIdx < 0) {
+          stopReverse();
+          setStatus('Reverse playback complete.');
+          return;
+        }
+        ctx.drawImage(reverseBuf[reverseIdx--], 0, 0);
+        reverseRafId = setTimeout(playReverse, 40); // ~25 fps
+      }
+      playReverse();
+    });
+
+    function stopReverse() {
+      reverseMode = false;
+      if (reverseRafId) { clearTimeout(reverseRafId); reverseRafId = null; }
+      reverseBuf = [];
+      reverseIdx = 0;
+      document.getElementById('btn-reverse').style.display = '';
+      document.getElementById('btn-stopreverse').style.display = 'none';
     }
-  });
 
+    document.getElementById('btn-stopreverse').addEventListener('click', () => {
+      stopReverse();
+      setStatus('Reverse stopped.');
+    });
 
-    })();
+    // ── Frame snapshot ───────────────────────────────────────────────
+    document.getElementById('btn-snapshot').addEventListener('click', () => {
+      if (!video) return;
+      const offscreen = document.createElement('canvas');
+      offscreen.width = canvas.width;
+      offscreen.height = canvas.height;
+      offscreen.getContext('2d').drawImage(canvas, 0, 0);
+      addFrameToStrip(offscreen, fmt(video.currentTime));
+      setStatus('Frame captured at ' + fmt(video.currentTime));
+    });
+
+    function addFrameToStrip(cvs, label) {
+      const thumb = document.createElement('canvas');
+      const ratio = cvs.width / cvs.height;
+      thumb.height = 56;
+      thumb.width = Math.round(56 * ratio);
+      thumb.getContext('2d').drawImage(cvs, 0, 0, thumb.width, thumb.height);
+      thumb.title = 'Click to download — ' + label;
+      thumb.addEventListener('click', () => {
+        cvs.toBlob(blob => {
+          const a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          a.download = 'frame-' + label.replace(':', '-') + '.png';
+          a.click();
+        }, 'image/png');
+      });
+      document.getElementById('frame-strip').prepend(thumb);
+    }
+
+    // ── Extract 10 frames ─────────────────────────────────────────────
+    document.getElementById('btn-extract').addEventListener('click', async () => {
+      if (!video) return;
+      setStatus('Extracting 10 frames…');
+      video.pause();
+      stopRaf();
+      const strip = document.getElementById('frame-strip');
+      strip.innerHTML = '';
+      const dur = video.duration;
+      const COUNT = 10;
+
+      for (let i = 0; i < COUNT; i++) {
+        await new Promise(res => {
+          video.currentTime = (i / (COUNT - 1)) * dur;
+          video.addEventListener('seeked', function handler() {
+            video.removeEventListener('seeked', handler);
+            const cvs = document.createElement('canvas');
+            cvs.width = canvas.width; cvs.height = canvas.height;
+            const c = cvs.getContext('2d');
+            c.filter = buildFilter();
+            const { sx, sy, sw, sh } = getCropRect();
+            c.drawImage(video, sx, sy, sw, sh, 0, 0, cvs.width, cvs.height);
+            addFrameToStrip(cvs, fmt(video.currentTime));
+            res();
+          });
+        });
+      }
+      setStatus('10 frames extracted. Click any thumbnail to download.');
+    });
+
+    // ── Export current frame ──────────────────────────────────────────
+    document.getElementById('btn-export-frame').addEventListener('click', () => {
+      if (!video) return;
+      canvas.toBlob(blob => {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'frame-' + Math.floor(video.currentTime * 100) + '.png';
+        a.click();
+        setStatus('Frame downloaded.');
+      }, 'image/png');
+    });
+
+    // ── MediaRecorder — record canvas output ──────────────────────────
+    document.getElementById('btn-record').addEventListener('click', () => {
+      if (!video) return;
+      recordedChunks = [];
+      const stream = canvas.captureStream(30);
+
+      // add audio track if available
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const src = audioCtx.createMediaElementSource(video);
+        const dest = audioCtx.createMediaStreamDestination();
+        src.connect(dest);
+        src.connect(audioCtx.destination);
+        dest.stream.getAudioTracks().forEach(t => stream.addTrack(t));
+      } catch (e) { /* no audio — canvas-only */ }
+
+      const mime = MediaRecorder.isTypeSupported('video/webm;codecs=vp9')
+        ? 'video/webm;codecs=vp9'
+        : 'video/webm';
+      mediaRecorder = new MediaRecorder(stream, { mimeType: mime });
+      mediaRecorder.ondataavailable = e => { if (e.data.size > 0) recordedChunks.push(e.data); };
+      mediaRecorder.onstop = () => {
+        const blob = new Blob(recordedChunks, { type: 'video/webm' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'canvas-recording.webm';
+        a.click();
+        setStatus('Recording saved as WebM.');
+      };
+      mediaRecorder.start(100);
+
+      document.getElementById('btn-record').style.display = 'none';
+      document.getElementById('btn-stop-record').style.display = '';
+      setStatus('⏺ Recording canvas output…');
+
+      // auto-play video while recording
+      video.play();
+      stopRaf();
+      drawFrame();
+    });
+
+    document.getElementById('btn-stop-record').addEventListener('click', () => {
+      if (mediaRecorder && mediaRecorder.state !== 'inactive') mediaRecorder.stop();
+      document.getElementById('btn-record').style.display = '';
+      document.getElementById('btn-stop-record').style.display = 'none';
+    });
+
+  })();
   </script>
 </body>
 </html>

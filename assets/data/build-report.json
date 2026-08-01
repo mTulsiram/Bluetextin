@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-08-01T10:56:13.907Z",
-  "startedAt": "2026-08-01T10:56:13.074Z",
-  "durationMs": 835,
+  "generatedAt": "2026-08-01T11:35:09.545Z",
+  "startedAt": "2026-08-01T11:35:08.853Z",
+  "durationMs": 694,
   "ok": true,
   "steps": [
     {
       "name": "Inject Header & Footer",
       "ok": true,
-      "durationMs": 821
+      "durationMs": 681
     }
   ],
   "outputs": {
