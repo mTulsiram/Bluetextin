@@ -899,6 +899,7 @@ async function injectHeaderFooter() {
     if (file === HEADER_FILE || file === FOOTER_FILE) continue;
     const relPosix = toPosix(path.relative(ROOT, file));
     if (INJECTION_EXEMPTIONS.has(relPosix)) continue;
+    if (relPosix.startsWith("pages/tools/images/") || relPosix.startsWith("pages/tools/videos/")) continue;
 
     let content = await fs.readFile(file, "utf8");
     let original = content;
