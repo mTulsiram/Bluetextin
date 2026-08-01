@@ -1,1041 +1,1918 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Professional Video Canvas Engineering Studio — WebGL2 GPU shaders, FFmpeg.wasm MP4/GIF, 3D LUT color grading, Web Audio waveform, frame-accurate editing. 100% client-side, zero upload.">
+  <meta name="description" content="Video Canvas Engineering Studio - UI-only mock of a high-performance browser-based video editor.">
   <meta name="robots" content="index,follow">
   <title>Video Canvas Engineering Studio | BlueTEXT</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Manifest & Core CSS -->
   <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" href="/assets/css/main.css">
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            premiere: {
-              shell: '#141414',
-              panel: '#1E1E1E',
-              border: '#2C2C2C',
-              accent: '#1473E6',
-              accentHover: '#1580F6',
-              warn: '#D7373F',
-              accentLo: 'rgba(20,115,230,0.12)'
-            }
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace']
-          }
-        }
-      }
+  
+  <!-- Local Custom Stylesheet replacing Tailwind CSS CDN -->
+  <link rel="stylesheet" href="/assets/css/video-canvas-engineering-studio.css">
+
+  <!-- Core App Controller (Maintains site-wide logic) -->
+  <script src="/assets/js/app.js" defer></script>
+
+  <style>
+    /* Absolute reset to enforce full-screen viewport layout */
+    html, body {
+      max-width: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      height: 100vh !important;
+      overflow: hidden !important;
+      background-color: #09090b !important;
+      font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     }
-  </script>
-  <style type="text/css">
-    /* Custom styles for native input ranges matching Premiere Pro style */
+
+    /* Scrollbars customization for premium dark UI */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #18181b;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #3f3f46;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #52525b;
+    }
+
+    /* Custom styles for slider tracks */
     input[type="range"] {
       -webkit-appearance: none;
       appearance: none;
-      background: #101010;
+      background: transparent;
+      cursor: pointer;
+    }
+    input[type="range"]::-webkit-slider-runnable-track {
+      background: #3f3f46;
       height: 4px;
-      border-radius: 0;
-      outline: none;
+      border-radius: 2px;
     }
     input[type="range"]::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: 10px;
-      height: 10px;
-      background: #1473E6;
-      border-radius: 0px;
-      cursor: pointer;
+      margin-top: -6px;
+      background-color: #3b82f6;
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      border: 2px solid #18181b;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      transition: background-color 0.15s, transform 0.15s;
     }
-    input[type="range"]::-moz-range-thumb {
-      width: 10px;
-      height: 10px;
-      background: #1473E6;
-      border-radius: 0px;
-      cursor: pointer;
-      border: none;
+    input[type="range"]::-webkit-slider-thumb:hover {
+      background-color: #60a5fa;
+      transform: scale(1.1);
     }
-    .timeline-track::-webkit-scrollbar { display: none; }
-    .no-scrollbar::-webkit-scrollbar { display: none; }
+
+    /* Prevent custom header/footer components of BlueTEXT from taking space in viewport */
+    #header-component, #footer-component {
+      display: none !important;
+    }
+
+    /* Highlight class for scrubber clips */
+    .clip-selected {
+      outline: 2px solid #3b82f6 !important;
+      outline-offset: 1px;
+      box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+    }
   </style>
-  <script src="/assets/js/app.js" defer></script>
 </head>
-<body class="bg-premiere-shell text-gray-300 font-sans antialiased min-h-screen flex flex-col selection:bg-premiere-accent selection:text-white text-xs">
-<div id="header-component"><!-- HEADER_START --><!-- HEADER_END --></div>
+<body class="text-zinc-100 flex flex-col h-screen select-none antialiased">
 
-<main class="flex-1 flex flex-col p-2 max-w-[1800px] mx-auto w-full gap-2">
-  <!-- ── ADOBE PREMIERE STYLE SUITE ── -->
-  <div class="flex flex-col bg-premiere-shell border border-premiere-border overflow-hidden flex-1 min-h-[calc(100vh-160px)]">
+  <!-- =========================================================================
+       0. SVG SPRITE SHEET FOR LOCAL RUNTIME-SAFE ICONS
+       ========================================================================= -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="icon-volume-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M11 5L6 9H2v6h4l5 4V5z"></path><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>
+    </symbol>
+    <symbol id="icon-volume-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+    </symbol>
+    <symbol id="icon-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+    </symbol>
+    <symbol id="icon-unlock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
+    </symbol>
+    <symbol id="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>
+    </symbol>
+    <symbol id="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>
+    </symbol>
+    <symbol id="icon-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m11.32 11.32l.707.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"></path>
+    </symbol>
+    <symbol id="icon-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+    </symbol>
+    <symbol id="icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
+    </symbol>
+    <symbol id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </symbol>
+    <symbol id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </symbol>
+    <symbol id="icon-chevron-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"></polyline>
+    </symbol>
+    <symbol id="icon-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </symbol>
+    <symbol id="icon-upload-cloud" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="16 16 12 12 8 16"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path><polyline points="16 16 12 12 8 16"></polyline>
+    </symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+    </symbol>
+    <symbol id="icon-blend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="7"></circle><circle cx="12" cy="12" r="3"></circle>
+    </symbol>
+    <symbol id="icon-move-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline>
+    </symbol>
+    <symbol id="icon-scan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"></path>
+    </symbol>
+    <symbol id="icon-film" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="2" ry="2"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line>
+    </symbol>
+    <symbol id="icon-skip-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5"></line>
+    </symbol>
+    <symbol id="icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="5 3 19 12 5 21 5 3"></polygon>
+    </symbol>
+    <symbol id="icon-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect>
+    </symbol>
+    <symbol id="icon-skip-forward" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line>
+    </symbol>
+    <symbol id="icon-maximize" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+    </symbol>
+    <symbol id="icon-undo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 7v6h6M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"></path>
+    </symbol>
+    <symbol id="icon-redo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 7v6h-6M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3l3 2.7"></path>
+    </symbol>
+    <symbol id="icon-scissors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" y1="4" x2="8.12" y2="15.88"></line><line x1="14.47" y1="14.48" x2="20" y2="20"></line><line x1="8.12" y1="8.12" x2="12" y2="12"></line>
+    </symbol>
+    <symbol id="icon-trash-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line>
+    </symbol>
+    <symbol id="icon-magnet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 9a7 7 0 0 1 14 0v3a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2V9a3 3 0 0 0-6 0v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"></path>
+    </symbol>
+    <symbol id="icon-zoom-in" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line>
+    </symbol>
+    <symbol id="icon-zoom-out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="8" y1="11" x2="14" y2="11"></line>
+    </symbol>
+    <symbol id="icon-loader-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+    </symbol>
+    <symbol id="icon-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline>
+    </symbol>
+    <symbol id="icon-music" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle>
+    </symbol>
+    <symbol id="icon-video" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M23 7l-7 5 7 5V7z"></path><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+    </symbol>
+    <symbol id="icon-type" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line>
+    </symbol>
+    <symbol id="icon-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+    </symbol>
+    <symbol id="icon-cloud-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="16 16 12 12 8 16"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
+    </symbol>
+  </svg>
 
-    <!-- ── TOP BAR / HEADER ── -->
-    <div class="flex items-center justify-between px-3 py-2 bg-premiere-panel border-b border-premiere-border flex-wrap gap-2">
+  <!-- =========================================================================
+       1. TOP NAVBAR
+       ========================================================================= -->
+  <header class="h-14 bg-editor-panel border-b border-editor-surface flex items-center justify-between px-4 shrink-0 z-30">
+    <!-- Left: Logo & Home navigation -->
+    <div class="flex items-center gap-3">
+      <a href="/" class="flex items-center gap-2 text-editor-accent hover:opacity-85 transition-opacity" title="Back to BlueTEXT Home">
+        <svg class="brand-logo" width="22" height="22" viewBox="0 0 28 28" aria-hidden="true" focusable="false">
+          <rect width="28" height="28" rx="7" fill="currentColor"></rect>
+          <path d="M8 7H15.5C18.3 7 20.3 8.5 20.3 10.9C20.3 12.4 19.5 13.6 18.1 14.2C19.9 14.7 21 16 21 17.8C21 20.5 18.8 22 15.8 22H8V7ZM11.2 9.6V13.1H15.2C16.4 13.1 17.1 12.4 17.1 11.3C17.1 10.2 16.4 9.6 15.2 9.6H11.2ZM11.2 15.5V19.4H15.7C17 19.4 17.8 18.7 17.8 17.5C17.8 16.3 16.9 15.5 15.7 15.5H11.2Z" fill="#ffffff"></path>
+        </svg>
+      </a>
+      <div class="h-4 w-px bg-zinc-700"></div>
       <div class="flex items-center gap-2">
-        <span class="text-sm">🎬</span>
-        <span class="text-[11px] font-bold tracking-tight text-white uppercase">Video Canvas Studio</span>
-        <div class="w-px h-4 bg-premiere-border"></div>
-        <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-sm" id="status-bar">
-          Engine: WebGL2 · Ready
+        <span class="font-bold text-sm tracking-wider uppercase text-zinc-100">
+          Video Canvas Engineering Studio
         </span>
+        <span class="text-[10px] bg-zinc-800 text-zinc-400 px-1.5 py-0.5 rounded font-mono border border-zinc-700">v1.0-stage2</span>
       </div>
+    </div>
+
+    <!-- Center/Right: Project Title and Save Status -->
+    <div class="flex items-center gap-3">
+      <input type="text" id="project-title-input" value="My Cinematic Masterpiece.mp4" 
+        class="bg-transparent border border-transparent hover:border-zinc-700 focus:border-editor-accent focus:bg-zinc-950/60 rounded px-2 py-1 text-xs text-zinc-200 transition-colors w-64 text-center font-medium focus:outline-none"
+        title="Rename project (non-functional)" />
       
-      <!-- Export Progress -->
-      <div class="hidden items-center gap-2" id="progress-wrap">
-        <div class="w-20 h-1 bg-[#101010] rounded-none overflow-hidden">
-          <div class="h-full bg-premiere-accent transition-all duration-150" id="progress-fill" style="width: 0%"></div>
-        </div>
-        <span class="text-[9px] font-mono text-premiere-accent" id="progress-pct">0%</span>
-      </div>
-
-      <div class="flex items-center gap-2">
-        <span class="text-[9px] font-mono bg-premiere-shell text-gray-400 px-2 py-0.5 border border-premiere-border">WebGL2 GPU</span>
-        <span class="text-[9px] font-mono bg-premiere-shell text-gray-400 px-2 py-0.5 border border-premiere-border">Zero Uploads</span>
+      <div class="flex items-center gap-1.5 text-[11px] text-emerald-400/90 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+        <svg class="w-3.5 h-3.5"><use href="#icon-cloud-check"></use></svg>
+        <span>Saved to Cloud</span>
       </div>
     </div>
 
-    <!-- ── 3-COLUMN WORKSPACE GRID ── -->
-    <div class="grid grid-cols-1 md:grid-cols-[280px_1fr_260px] lg:grid-cols-[300px_1fr_280px] flex-1 overflow-hidden studio-main">
+    <!-- Right: Action Commands, Profiles, Theme -->
+    <div class="flex items-center gap-2">
+      <!-- Export / Render primary CTA -->
+      <button id="btn-render-video" class="bg-editor-accent hover:bg-editor-accentHover text-white text-xs font-semibold px-3 py-1.5 rounded flex items-center gap-1.5 transition-colors shadow-lg shadow-blue-500/20 active:scale-95">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"><use href="#icon-sparkles"></use></svg>
+        <span>Render Video</span>
+      </button>
 
-      <!-- █ LEFT COLUMN: PROJECT BIN & SOURCE CONTROL █ -->
-      <div class="bg-premiere-panel border-r border-premiere-border overflow-y-auto p-2 flex flex-col gap-2 max-h-[calc(100vh-220px)] md:max-h-none s-sidebar s-sidebar-left" id="sidebar-left">
+      <div class="h-4 w-px bg-zinc-700 mx-1"></div>
+
+      <!-- Quick Action Menu -->
+      <button class="text-zinc-400 hover:text-white p-1.5 hover:bg-zinc-800 rounded transition-colors" title="Settings / Configuration">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor"><use href="#icon-settings"></use></svg>
+      </button>
+
+      <!-- Account Profile -->
+      <button class="text-zinc-400 hover:text-white p-1.5 hover:bg-zinc-800 rounded transition-colors" title="User Account">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor"><use href="#icon-user"></use></svg>
+      </button>
+
+      <!-- Theme Switcher -->
+      <button id="editor-theme-toggle" class="text-zinc-400 hover:text-white p-1.5 hover:bg-zinc-800 rounded transition-colors" title="Toggle Theme (Interface is Dark-Locked)">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor"><use href="#icon-moon"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       2. MAIN WORKSPACE (Left Panel, Preview Canvas, Right Panel)
+       ========================================================================= -->
+  <div class="flex-1 flex overflow-hidden min-h-0 relative">
+    
+    <!-- A. LEFT PANEL â€” MEDIA BIN -->
+    <aside id="left-panel" class="w-80 bg-editor-panel border-r border-editor-surface flex flex-col shrink-0 transition-all duration-300 relative z-20">
+      
+      <!-- Panel Header & Collapser Button -->
+      <div class="flex items-center justify-between p-3 border-b border-editor-surface">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-zinc-400">Project Workspace</h2>
+        <button onclick="toggleLeftPanel()" class="text-zinc-400 hover:text-white p-1 hover:bg-zinc-800 rounded transition-all" title="Collapse Panel">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor"><use href="#icon-chevron-left"></use></svg>
+        </button>
+      </div>
+
+      <!-- Search & Filters -->
+      <div class="p-3 border-b border-editor-surface/60">
+        <div class="relative">
+          <input type="text" id="media-search" placeholder="Search project assets..." 
+            class="w-full bg-zinc-950/80 border border-zinc-700/80 rounded-md py-1.5 pl-8 pr-3 text-xs focus:outline-none focus:border-editor-accent focus:ring-1 focus:ring-editor-accent text-zinc-300" />
+          <svg class="w-3.5 h-3.5 text-zinc-500 absolute left-2.5 top-2.5" fill="none" stroke="currentColor"><use href="#icon-search"></use></svg>
+        </div>
+      </div>
+
+      <!-- Tab Switch Controls -->
+      <div class="flex border-b border-editor-surface/60 text-xs">
+        <button onclick="switchLeftTab('media')" id="tab-btn-media" class="flex-1 py-2 text-center font-medium border-b-2 border-editor-accent text-zinc-100 transition-colors">
+          Media
+        </button>
+        <button onclick="switchLeftTab('text')" id="tab-btn-text" class="flex-1 py-2 text-center font-medium border-b-2 border-transparent text-zinc-400 hover:text-zinc-200 transition-colors">
+          Text
+        </button>
+        <button onclick="switchLeftTab('transitions')" id="tab-btn-transitions" class="flex-1 py-2 text-center font-medium border-b-2 border-transparent text-zinc-400 hover:text-zinc-200 transition-colors">
+          Effects
+        </button>
+        <button onclick="switchLeftTab('audio')" id="tab-btn-audio" class="flex-1 py-2 text-center font-medium border-b-2 border-transparent text-zinc-400 hover:text-zinc-200 transition-colors">
+          Audio
+        </button>
+      </div>
+
+      <!-- Tab Content Frame -->
+      <div class="flex-1 overflow-y-auto p-3">
         
-        <!-- Project Media / Source Panel -->
-        <div class="bg-premiere-shell border border-premiere-border p-2 flex flex-col gap-2 sidebar-pane active" id="tab-pane-source">
-          <div class="flex items-center justify-between text-[10px] font-bold tracking-wider text-white uppercase border-b border-premiere-border pb-1">
-            <span>📁 Project Bin: Clip Ingest</span>
+        <!-- Media Bin Tab content -->
+        <div id="left-pane-media" class="space-y-4">
+          <!-- Hidden Input for File Handling -->
+          <input type="file" id="media-file-input" multiple accept="video/*,audio/*,image/*" class="hidden" />
+
+          <!-- Drag and Drop/Click to Upload Button -->
+          <button id="media-upload-btn" class="w-full border-2 border-dashed border-zinc-700 hover:border-zinc-500 hover:bg-zinc-800/40 rounded-lg p-4 flex flex-col items-center justify-center gap-1.5 transition-all group">
+            <svg class="w-6 h-6 text-zinc-500 group-hover:text-editor-accent transition-colors" fill="none" stroke="currentColor"><use href="#icon-upload-cloud"></use></svg>
+            <span class="text-xs font-semibold text-zinc-400 group-hover:text-zinc-200">Import Media</span>
+            <span class="text-[10px] text-zinc-600">Video, Audio, Image files</span>
+          </button>
+
+          <!-- Grid of media -->
+          <div id="media-grid" class="grid grid-cols-2 gap-2">
+            <!-- Dynamic elements loaded from EditorState -->
           </div>
-          <div class="border border-dashed border-premiere-border rounded-none p-3 text-center cursor-pointer text-[10px] text-gray-500 hover:border-premiere-accent hover:text-white hover:bg-premiere-accentLo transition-all duration-150" id="drop-zone">
-            <span class="text-xl block mb-1">📥</span>
-            Drag & Drop Media to Ingest
-            <span class="block text-[9px] text-gray-600 mt-0.5">MP4 · WebM · MOV · MKV</span>
-          </div>
-          <input type="file" id="file-input" accept="video/*" class="hidden">
-          
-          <div class="flex gap-2 bg-premiere-panel border border-premiere-border p-2 items-center hidden" id="source-info-box">
-            <div class="w-12 h-9 bg-black flex items-center justify-center text-[10px] flex-shrink-0 border border-premiere-border" id="src-thumb-preview">🎬</div>
-            <div class="flex flex-col min-w-0 flex-1">
-              <span class="text-[10px] font-semibold text-gray-200 truncate" id="info-name">—</span>
-              <span class="text-[9px] text-gray-400 font-mono mt-0.5" id="info-size">—</span>
-              <span class="text-[9px] text-gray-400 font-mono" id="info-dims">—</span>
-              <span class="text-[9px] text-gray-400 font-mono" id="info-dur">—</span>
+        </div>
+
+        <!-- Text Elements Tab content -->
+        <div id="left-pane-text" class="space-y-3 hidden">
+          <p class="text-[10px] text-zinc-500 font-medium uppercase tracking-wider mb-2">Text Presets</p>
+          <div class="space-y-2">
+            <div draggable="true" data-preset="Default Title" class="p-2.5 bg-zinc-900 border border-zinc-800 rounded-md hover:border-zinc-600 cursor-grab flex items-center justify-between text-preset-item">
+              <span class="text-xs font-semibold text-zinc-300">Default Title</span>
+              <svg class="w-3.5 h-3.5 text-zinc-500" fill="none" stroke="currentColor"><use href="#icon-plus"></use></svg>
+            </div>
+            <div draggable="true" data-preset="Modern Heading" class="p-2.5 bg-zinc-900 border border-zinc-800 rounded-md hover:border-zinc-600 cursor-grab flex items-center justify-between text-preset-item">
+              <span class="text-xs font-bold font-serif text-zinc-300">Modern Heading</span>
+              <svg class="w-3.5 h-3.5 text-zinc-500" fill="none" stroke="currentColor"><use href="#icon-plus"></use></svg>
+            </div>
+            <div draggable="true" data-preset="Subtext Caption" class="p-2.5 bg-zinc-900 border border-zinc-800 rounded-md hover:border-zinc-600 cursor-grab flex items-center justify-between text-preset-item">
+              <span class="text-xs italic font-mono text-zinc-300">Subtext Caption</span>
+              <svg class="w-3.5 h-3.5 text-zinc-500" fill="none" stroke="currentColor"><use href="#icon-plus"></use></svg>
             </div>
           </div>
         </div>
 
-        <!-- Controls -->
-        <div class="bg-premiere-shell border border-premiere-border p-2 flex flex-col gap-2 sidebar-pane active" id="tab-pane-controls">
-          <div class="flex items-center justify-between text-[10px] font-bold tracking-wider text-white uppercase border-b border-premiere-border pb-1">
-            <span>⚙️ Effect Controls</span>
+        <!-- Transitions Tab content -->
+        <div id="left-pane-transitions" class="space-y-3 hidden">
+          <p class="text-[10px] text-zinc-500 font-medium uppercase tracking-wider mb-2">Transitions & FX</p>
+          <div class="grid grid-cols-2 gap-2">
+            <div class="p-3 bg-zinc-900 border border-zinc-800 rounded-lg hover:border-zinc-600 cursor-grab text-center space-y-1.5">
+              <div class="w-8 h-8 rounded bg-zinc-800 mx-auto flex items-center justify-center">
+                <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor"><use href="#icon-blend"></use></svg>
+              </div>
+              <span class="text-[10px] block font-medium">Cross Dissolve</span>
+            </div>
+            <div class="p-3 bg-zinc-900 border border-zinc-800 rounded-lg hover:border-zinc-600 cursor-grab text-center space-y-1.5">
+              <div class="w-8 h-8 rounded bg-zinc-800 mx-auto flex items-center justify-center">
+                <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor"><use href="#icon-move-right"></use></svg>
+              </div>
+              <span class="text-[10px] block font-medium">Slide Right</span>
+            </div>
+            <div class="p-3 bg-zinc-900 border border-zinc-800 rounded-lg hover:border-zinc-600 cursor-grab text-center space-y-1.5">
+              <div class="w-8 h-8 rounded bg-zinc-800 mx-auto flex items-center justify-center">
+                <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor"><use href="#icon-scan"></use></svg>
+              </div>
+              <span class="text-[10px] block font-medium">Fade Zoom</span>
+            </div>
+            <div class="p-3 bg-zinc-900 border border-zinc-800 rounded-lg hover:border-zinc-600 cursor-grab text-center space-y-1.5">
+              <div class="w-8 h-8 rounded bg-zinc-800 mx-auto flex items-center justify-center">
+                <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor"><use href="#icon-sparkles"></use></svg>
+              </div>
+              <span class="text-[10px] block font-medium">Glitch Shift</span>
+            </div>
           </div>
-          <div class="flex flex-col gap-2">
-            <div class="flex items-center justify-between gap-2">
-              <label class="text-[10px] text-gray-400">Play Speed</label>
-              <div class="flex items-center gap-2 flex-1 max-w-[120px]">
-                <input type="range" id="speed-sl" min="0.1" max="4" step="0.1" value="1" class="flex-1">
-                <span class="text-[9px] font-mono text-premiere-accent w-8 text-right" id="speed-val">1.0×</span>
+        </div>
+
+        <!-- Audio Bin Tab content -->
+        <div id="left-pane-audio" class="space-y-3 hidden">
+          <p class="text-[10px] text-zinc-500 font-medium uppercase tracking-wider mb-2">Music & Effects</p>
+          <div class="space-y-2" id="audio-presets-list">
+            <!-- Populated dynamically via MediaBin renderer filter -->
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- EXPAND TOGGLE FOR LEFT PANEL -->
+    <button id="left-panel-expand-btn" onclick="toggleLeftPanel()" 
+      class="hidden absolute left-0 top-1/2 -translate-y-1/2 bg-editor-panel border border-l-0 border-editor-surface p-1 rounded-r-md text-zinc-400 hover:text-white hover:bg-zinc-800 z-30 shadow-md">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor"><use href="#icon-chevron-right"></use></svg>
+    </button>
+
+
+    <!-- B. CENTER â€” PREVIEW CANVAS -->
+    <main class="flex-1 bg-editor-bg flex flex-col min-w-0 p-4 justify-between relative">
+      
+      <!-- Zoom & Canvas Format Overlays -->
+      <div class="flex items-center justify-between text-xs px-2 mb-2">
+        <div class="flex items-center gap-2 bg-zinc-900/80 backdrop-blur border border-zinc-800 px-2 py-1 rounded-md">
+          <span class="text-[10px] text-zinc-400">Aspect Ratio:</span>
+          <select id="canvas-aspect-select" class="bg-transparent text-zinc-200 border-none font-semibold focus:ring-0 focus:outline-none">
+            <option value="16-9">16:9 (Landscape)</option>
+            <option value="9-16">9:16 (Vertical)</option>
+            <option value="1-1">1:1 (Square)</option>
+          </select>
+        </div>
+
+        <div class="flex items-center gap-2 bg-zinc-900/80 backdrop-blur border border-zinc-800 px-2.5 py-1 rounded-md">
+          <svg class="w-3.5 h-3.5 text-zinc-400" fill="none" stroke="currentColor"><use href="#icon-zoom-in"></use></svg>
+          <span id="zoom-indicator" class="font-mono text-zinc-200 text-[10px]">Fit (52%)</span>
+        </div>
+      </div>
+
+      <!-- Preview Canvas Area -->
+      <div class="flex-1 flex items-center justify-center p-4">
+        <div id="canvas-container" class="aspect-video w-full max-w-3xl bg-zinc-950 border border-zinc-800 rounded-xl relative shadow-2xl overflow-hidden flex flex-col justify-center items-center">
+          <!-- Real 2D Canvas Target -->
+          <canvas id="preview-canvas" width="1920" height="1080" class="w-full h-full object-contain absolute inset-0 z-10"></canvas>
+          
+          <!-- Grid Overlay Pattern -->
+          <div class="absolute inset-0 bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:16px_16px] opacity-15 z-0"></div>
+          
+          <!-- Mock Video Rendering Frame -->
+          <div id="canvas-fallback-text" class="text-center z-0 space-y-4">
+            <svg class="w-16 h-16 text-zinc-800 mx-auto animate-pulse" fill="none" stroke="currentColor"><use href="#icon-film"></use></svg>
+            <div>
+              <p class="text-zinc-600 text-sm font-semibold tracking-wide uppercase">Preview Monitor</p>
+              <p class="text-zinc-700 text-xs">Stage 2: Live Canvas Active</p>
+            </div>
+          </div>
+
+          <!-- Smart Safe Area Guides Overlay -->
+          <div class="absolute inset-6 border border-dashed border-zinc-800/30 pointer-events-none rounded z-20"></div>
+        </div>
+      </div>
+
+      <!-- Playback Controls Bar -->
+      <div class="w-full max-w-xl mx-auto bg-editor-panel/90 backdrop-blur border border-editor-surface/80 rounded-xl p-3 flex flex-col gap-2 mt-4 shadow-xl">
+        
+        <!-- Scrubber Progress Slider -->
+        <div id="preview-scrub-bar" class="relative w-full h-1.5 bg-zinc-800 rounded-full group cursor-pointer">
+          <div id="preview-scrub-progress" class="absolute top-0 left-0 w-0 h-full bg-editor-accent rounded-full"></div>
+          <div id="preview-scrub-handle" class="absolute top-1/2 left-0 -translate-y-1/2 w-3.5 h-3.5 bg-white border-2 border-editor-accent rounded-full scale-0 group-hover:scale-100 transition-transform shadow-md"></div>
+        </div>
+
+        <div class="flex items-center justify-between mt-1 text-zinc-300">
+          
+          <!-- Playback Actions -->
+          <div class="flex items-center gap-1.5">
+            <button id="btn-step-backward" class="p-1.5 hover:bg-zinc-800 rounded-md transition-colors" title="Previous Frame (1/30s)">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor"><use href="#icon-skip-back"></use></svg>
+            </button>
+            
+            <button id="btn-play-pause" class="bg-editor-accent hover:bg-editor-accentHover text-white p-2 rounded-full transition-transform active:scale-95 shadow" title="Play">
+              <svg class="w-4 h-4" fill="currentColor"><use href="#icon-play"></use></svg>
+            </button>
+            
+            <button id="btn-step-forward" class="p-1.5 hover:bg-zinc-800 rounded-md transition-colors" title="Next Frame (1/30s)">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor"><use href="#icon-skip-forward"></use></svg>
+            </button>
+          </div>
+
+          <!-- Time Codes display -->
+          <div class="font-mono text-xs text-zinc-400">
+            <span id="preview-time-current" class="text-zinc-200">00:00:04:12</span> / <span id="preview-time-total">00:00:30:00</span>
+          </div>
+
+          <!-- Utility features -->
+          <div class="flex items-center gap-2">
+            <button id="btn-volume-toggle" class="p-1.5 hover:bg-zinc-800 rounded-md transition-colors" title="Toggle Audio Monitor">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor"><use href="#icon-volume-2"></use></svg>
+            </button>
+            
+            <button class="p-1.5 hover:bg-zinc-800 rounded-md transition-colors" title="Canvas Resolution Options">
+              <span class="text-[10px] font-bold font-mono bg-zinc-800 px-1 py-0.5 rounded text-zinc-400">1080p</span>
+            </button>
+
+            <button id="btn-fullscreen" class="p-1.5 hover:bg-zinc-800 rounded-md transition-colors" title="Fullscreen Preview">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor"><use href="#icon-maximize"></use></svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+
+    <!-- C. RIGHT PANEL â€” PROPERTIES & AI ASSISTANT -->
+    <aside id="right-panel" class="w-80 bg-editor-panel border-l border-editor-surface flex flex-col shrink-0 transition-all duration-300 relative z-20">
+      
+      <!-- Panel Header & Collapser Button -->
+      <div class="flex items-center justify-between p-3 border-b border-editor-surface">
+        <button onclick="toggleRightPanel()" class="text-zinc-400 hover:text-white p-1 hover:bg-zinc-800 rounded transition-all" title="Collapse Panel">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor"><use href="#icon-chevron-right"></use></svg>
+        </button>
+        <h2 class="text-xs font-bold uppercase tracking-widest text-zinc-400">Inspector</h2>
+      </div>
+
+      <!-- Tab Switches -->
+      <div class="flex border-b border-editor-surface/60 text-xs">
+        <button onclick="switchRightTab('properties')" id="tab-btn-properties" class="flex-1 py-2 text-center font-medium border-b-2 border-editor-accent text-zinc-100 transition-colors">
+          Properties
+        </button>
+        <button onclick="switchRightTab('chat')" id="tab-btn-chat" class="flex-1 py-2 text-center font-medium border-b-2 border-transparent text-zinc-400 hover:text-zinc-200 transition-colors flex items-center justify-center gap-1">
+          <svg class="w-3 h-3 text-indigo-400" fill="currentColor"><use href="#icon-sparkles"></use></svg>
+          <span>Vibe AI Chat</span>
+        </button>
+      </div>
+
+      <!-- Content Container -->
+      <div class="flex-1 overflow-y-auto p-4">
+        
+        <!-- Tab: Properties Inspector -->
+        <div id="right-pane-properties" class="space-y-6">
+          
+          <!-- Element identity tag -->
+          <div class="bg-zinc-950/60 p-3 rounded-lg border border-zinc-800/80" id="properties-identity-box">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-bold text-zinc-200" id="selected-clip-name">No Clip Selected</span>
+              <span id="selected-clip-type-badge" class="text-[9px] uppercase tracking-wider bg-zinc-800 text-zinc-400 border border-zinc-700 px-1 py-0.5 rounded">None</span>
+            </div>
+            <p class="text-[10px] text-zinc-500" id="selected-clip-meta-desc">Select a clip on the timeline to edit properties.</p>
+          </div>
+
+          <!-- Video Transform Properties Group -->
+          <div id="properties-transform-group" class="space-y-4 opacity-50 pointer-events-none">
+            <h3 class="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Transformations</h3>
+            
+            <!-- Pos X/Y -->
+            <div class="grid grid-cols-2 gap-3 text-xs">
+              <div class="space-y-1">
+                <label class="text-[10px] text-zinc-400">Position X</label>
+                <div class="flex items-center bg-zinc-950 rounded border border-zinc-850 px-2 py-1">
+                  <input type="number" id="prop-pos-x" value="0" class="bg-transparent w-full focus:outline-none text-zinc-200" />
+                  <span class="text-zinc-600 select-none">px</span>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <label class="text-[10px] text-zinc-400">Position Y</label>
+                <div class="flex items-center bg-zinc-950 rounded border border-zinc-850 px-2 py-1">
+                  <input type="number" id="prop-pos-y" value="0" class="bg-transparent w-full focus:outline-none text-zinc-200" />
+                  <span class="text-zinc-600 select-none">px</span>
+                </div>
               </div>
             </div>
-            
-            <div class="flex items-center justify-between">
-              <label class="text-[10px] text-gray-400">Ratio Preset</label>
-              <select id="ratio-sel" class="bg-premiere-panel text-gray-300 border border-premiere-border rounded-none px-2 py-0.5 text-[10px] w-28 outline-none focus:border-premiere-accent">
-                <option value="free">Free</option>
-                <option value="16:9" selected>16:9</option>
-                <option value="9:16">9:16</option>
-                <option value="1:1">1:1</option>
-                <option value="4:3">4:3</option>
-                <option value="21:9">21:9</option>
-                <option value="4:5">4:5</option>
-              </select>
+
+            <!-- Scale -->
+            <div class="space-y-1.5">
+              <div class="flex justify-between text-xs">
+                <label class="text-[10px] text-zinc-400">Scale</label>
+                <span class="font-mono text-zinc-200" id="prop-scale-label">100%</span>
+              </div>
+              <input type="range" id="prop-scale" min="10" max="300" value="100" class="w-full" />
             </div>
 
-            <div class="flex items-center justify-between">
-              <label class="text-[10px] text-gray-400">Output Resolution</label>
-              <div class="flex items-center gap-1 w-28">
-                <input type="number" id="out-w" value="1280" min="64" max="3840" class="w-12 bg-premiere-panel text-gray-300 border border-premiere-border rounded-none px-1 py-0.5 text-center text-[10px] outline-none focus:border-premiere-accent">
-                <span class="text-gray-600 text-[10px]">×</span>
-                <input type="number" id="out-h" value="720" min="64" max="2160" class="w-12 bg-premiere-panel text-gray-300 border border-premiere-border rounded-none px-1 py-0.5 text-center text-[10px] outline-none focus:border-premiere-accent">
+            <!-- Rotation -->
+            <div class="space-y-1.5">
+              <div class="flex justify-between text-xs">
+                <label class="text-[10px] text-zinc-400">Rotation</label>
+                <span class="font-mono text-zinc-200" id="prop-rotation-label">0Â°</span>
+              </div>
+              <input type="range" id="prop-rotation" min="-180" max="180" value="0" class="w-full" />
+            </div>
+
+            <!-- Opacity -->
+            <div class="space-y-1.5">
+              <div class="flex justify-between text-xs">
+                <label class="text-[10px] text-zinc-400">Opacity</label>
+                <span class="font-mono text-zinc-200" id="prop-opacity-label">100%</span>
+              </div>
+              <input type="range" id="prop-opacity" min="0" max="100" value="100" class="w-full" />
+            </div>
+          </div>
+
+          <!-- Color Correction Group -->
+          <div id="properties-color-group" class="space-y-4 pt-4 border-t border-editor-surface opacity-50 pointer-events-none">
+            <h3 class="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Color & Tint</h3>
+            
+            <!-- Saturation -->
+            <div class="space-y-1.5">
+              <div class="flex justify-between text-xs">
+                <label class="text-[10px] text-zinc-400">Saturation</label>
+                <span class="font-mono text-zinc-200" id="prop-saturation-label">100%</span>
+              </div>
+              <input type="range" id="prop-saturation" min="0" max="200" value="100" class="w-full" />
+            </div>
+
+            <!-- Contrast -->
+            <div class="space-y-1.5">
+              <div class="flex justify-between text-xs">
+                <label class="text-[10px] text-zinc-400">Contrast</label>
+                <span class="font-mono text-zinc-200" id="prop-contrast-label">100%</span>
+              </div>
+              <input type="range" id="prop-contrast" min="0" max="200" value="100" class="w-full" />
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Tab: Vibe AI Chat Assistant -->
+        <div id="right-pane-chat" class="space-y-4 hidden flex flex-col h-full min-h-[350px]">
+          
+          <!-- Message history canvas -->
+          <div class="flex-1 space-y-3 overflow-y-auto text-xs p-1">
+            <!-- AI intro bubble -->
+            <div class="flex gap-2 items-start">
+              <div class="w-6 h-6 rounded-full bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 shrink-0">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"><use href="#icon-sparkles"></use></svg>
+              </div>
+              <div class="bg-indigo-950/20 border border-indigo-900/30 rounded-lg p-2.5 max-w-[85%] text-zinc-300">
+                Hi! I can help you color-grade, split clips, apply filter cards, or create text presets using layout metadata. Tell me what changes you want to apply to this project!
               </div>
             </div>
 
-            <div class="flex items-center justify-between mt-1">
-              <label class="text-[10px] text-gray-400">REVERSE PLAY</label>
-              <label class="switch">
-                <input type="checkbox" id="toggle-reverse">
-                <span class="switch-slider"></span>
-              </label>
+            <!-- User bubble dummy -->
+            <div class="flex gap-2 items-start justify-end">
+              <div class="bg-zinc-800 border border-zinc-700/80 rounded-lg p-2.5 max-w-[85%] text-zinc-200">
+                Make the drone beach clip look warm and add cinematic black borders.
+              </div>
+              <div class="w-6 h-6 rounded-full bg-zinc-700 flex items-center justify-center text-zinc-300 shrink-0 font-bold text-[10px]">
+                ME
+              </div>
             </div>
-            <button class="w-full btn btn-danger btn-sm mt-1 text-[10px]" id="btn-reverse" style="display: none">⏪ Run Reverse Sim</button>
-          </div>
-        </div>
 
-        <!-- Color Grade -->
-        <div class="bg-premiere-shell border border-premiere-border p-2 flex flex-col gap-2 sidebar-pane active" id="tab-pane-grade">
-          <div class="flex items-center justify-between text-[10px] font-bold tracking-wider text-white uppercase border-b border-premiere-border pb-1">
-            <span>🎨 Lumetri Color</span>
-            <span class="text-[8px] bg-premiere-accentLo border border-premiere-accent/20 text-premiere-accent px-1 py-0.2 rounded-none">Basic</span>
-          </div>
-          
-          <div class="flex flex-col gap-2">
-            <div class="flex items-center justify-between gap-2">
-              <label class="text-[10px] text-gray-400 min-w-[70px]">Brightness</label>
-              <input type="range" id="f-bright" min="0" max="3" step="0.02" value="1" class="flex-1">
-              <span class="text-[9px] font-mono text-premiere-accent w-10 text-right" id="v-bright">1.00</span>
-            </div>
-            <div class="flex items-center justify-between gap-2">
-              <label class="text-[10px] text-gray-400 min-w-[70px]">Contrast</label>
-              <input type="range" id="f-contrast" min="0" max="3" step="0.02" value="1" class="flex-1">
-              <span class="text-[9px] font-mono text-premiere-accent w-10 text-right" id="v-contrast">1.00</span>
-            </div>
-            <div class="flex items-center justify-between gap-2">
-              <label class="text-[10px] text-gray-400 min-w-[70px]">Saturation</label>
-              <input type="range" id="f-sat" min="0" max="4" step="0.05" value="1" class="flex-1">
-              <span class="text-[9px] font-mono text-premiere-accent w-10 text-right" id="v-sat">1.00</span>
-            </div>
-            <div class="flex items-center justify-between gap-2">
-              <label class="text-[10px] text-gray-400 min-w-[70px]">Hue°</label>
-              <input type="range" id="f-hue" min="0" max="360" step="1" value="0" class="flex-1">
-              <span class="text-[9px] font-mono text-premiere-accent w-10 text-right" id="v-hue">0°</span>
-            </div>
-            <div class="flex items-center justify-between gap-2">
-              <label class="text-[10px] text-gray-400 min-w-[70px]">Exposure</label>
-              <input type="range" id="f-exp" min="-3" max="3" step="0.05" value="0" class="flex-1">
-              <span class="text-[9px] font-mono text-premiere-accent w-10 text-right" id="v-exp">0.00</span>
-            </div>
-            <div class="flex items-center justify-between gap-2">
-              <label class="text-[10px] text-gray-400 min-w-[70px]">Lift (Black)</label>
-              <input type="range" id="f-lift" min="-0.2" max="0.2" step="0.005" value="0" class="flex-1">
-              <span class="text-[9px] font-mono text-premiere-accent w-10 text-right" id="v-lift">0.000</span>
-            </div>
-            <div class="flex items-center justify-between gap-2">
-              <label class="text-[10px] text-gray-400 min-w-[70px]">Gain (White)</label>
-              <input type="range" id="f-gain" min="0.5" max="2" step="0.02" value="1" class="flex-1">
-              <span class="text-[9px] font-mono text-premiere-accent w-10 text-right" id="v-gain">1.00</span>
+            <!-- AI response bubble -->
+            <div class="flex gap-2 items-start">
+              <div class="w-6 h-6 rounded-full bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 shrink-0">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"><use href="#icon-sparkles"></use></svg>
+              </div>
+              <div class="bg-indigo-950/20 border border-indigo-900/30 rounded-lg p-2.5 max-w-[85%] text-zinc-300">
+                Adjusting saturation to <span class="text-indigo-400 font-mono">115%</span> and contrast to <span class="text-indigo-400 font-mono">105%</span> for a golden glow. I've also prepared letterbox bars. Click <strong class="underline cursor-pointer" onclick="applyAIVibePreset()">Apply</strong> to modify properties.
+              </div>
             </div>
           </div>
 
-          <div class="pill-grid flex flex-wrap gap-1 mt-1">
-            <span class="pill" data-f="grayscale">Grayscale</span>
-            <span class="pill" data-f="sepia">Sepia</span>
-            <span class="pill" data-f="invert">Invert</span>
-            <span class="pill" data-f="vignette">Vignette</span>
-            <span class="pill" data-f="sharpen">Sharpen</span>
+          <!-- Input bar -->
+          <div class="border-t border-editor-surface pt-3 space-y-1">
+            <div class="flex gap-1">
+              <input type="text" placeholder="Type AI instruction..." 
+                class="flex-1 bg-zinc-950 border border-zinc-750 rounded-md px-2.5 py-1.5 text-xs focus:outline-none focus:border-indigo-500 text-zinc-200" />
+              <button class="bg-indigo-600 hover:bg-indigo-500 text-white px-2.5 py-1.5 rounded-md flex items-center justify-center transition-colors">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"><use href="#icon-send"></use></svg>
+              </button>
+            </div>
+            <span class="text-[9px] text-zinc-500 block text-right font-medium">Powering your edits with natural language</span>
           </div>
-          <button class="w-full btn btn-sm mt-1 py-1" id="btn-reset-grade">Reset Grade</button>
-        </div>
 
-        <!-- LUT -->
-        <div class="bg-premiere-shell border border-premiere-border p-2 flex flex-col gap-2 sidebar-pane active" id="tab-pane-lut">
-          <div class="flex items-center justify-between text-[10px] font-bold tracking-wider text-white uppercase border-b border-premiere-border pb-1">
-            <span>🎞 Creative LUT</span>
-          </div>
-          <div class="border border-dashed border-premiere-border rounded-none p-2 text-center cursor-pointer text-[10px] text-gray-500 hover:border-premiere-accent hover:text-white transition-all" id="lut-drop">
-            LUT drop area (.cube)
-          </div>
-          <input type="file" id="lut-file" accept=".cube" class="hidden">
-          <div class="flex items-center justify-between gap-2">
-            <label class="text-[10px] text-gray-400">LUT Mix</label>
-            <input type="range" id="lut-mix" min="0" max="1" step="0.01" value="1" class="flex-1">
-            <span class="text-[9px] font-mono text-premiere-accent w-8 text-right" id="v-lut-mix">1.00</span>
-          </div>
-          <button class="w-full btn btn-danger btn-sm py-1" id="btn-clear-lut">Clear LUT</button>
         </div>
 
       </div>
+    </aside>
 
-      <!-- █ CENTER COLUMN: MAIN VIEWPORT, PLAYER & TIMELINE █ -->
-      <div class="flex flex-col bg-black overflow-hidden flex-1 s-workspace" id="center-workspace">
-        
-        <!-- Canvas Viewport Frame -->
-        <div class="flex-1 relative flex items-center justify-center min-h-[300px] vp-container" id="viewport">
-          <div class="absolute inset-0 flex flex-col items-center justify-center text-gray-600 gap-2 pointer-events-none bg-black z-10 vp-placeholder" id="vp-placeholder">
-            <span class="text-4xl opacity-20">🎬</span>
-            <span class="text-[11px] font-semibold tracking-wide uppercase">Source: No Media Loaded</span>
-          </div>
-          <!-- Hidden Native element -->
-          <video id="vid-el" class="hidden" playsinline preload="auto" muted></video>
-          <canvas id="gl-canvas" class="max-w-full max-h-full w-full h-auto object-contain block"></canvas>
-        </div>
-
-        <!-- Timeline Controllers -->
-        <div class="bg-premiere-panel border-t border-premiere-border p-2 flex flex-col gap-2 timeline-control-panel">
-          
-          <!-- Visual Timeline Track (NLE-Style) -->
-          <div class="bg-[#080A0E] border border-premiere-border rounded-none h-12 relative overflow-x-auto flex items-center gap-px timeline-track visual-timeline-track" id="timeline-track">
-            <div class="absolute top-0 bottom-0 w-0.5 bg-premiere-accent pointer-events-none z-10 transition-all duration-75 ease-linear visual-timeline-playhead" id="timeline-playhead" style="left: 0%"></div>
-            <!-- Thumbnails loaded dynamically -->
-          </div>
-
-          <!-- Playback seekbar -->
-          <div class="flex items-center gap-3 timeline-slider-row">
-            <input type="range" id="seek-bar" min="0" max="10000" value="0" class="flex-1">
-            <span class="text-[10px] font-mono text-premiere-accent tracking-wide whitespace-nowrap timecode-display" id="time-disp">00:00 / 00:00</span>
-          </div>
-
-          <!-- Actions toolbar -->
-          <div class="flex items-center gap-1.5 flex-wrap text-gray-300 transport-row">
-            <button class="btn btn-sm btn-accent" id="btn-play">▶ Play</button>
-            <button class="btn btn-sm" id="btn-pause">⏸ Pause</button>
-            <button class="btn btn-sm" id="btn-rewind">⏮ Rewind</button>
-            <div class="w-px h-4 bg-premiere-border mx-1 transport-sep"></div>
-            <button class="btn btn-sm" id="btn-frame-back" title="Step Back (,)">← Frame</button>
-            <button class="btn btn-sm" id="btn-frame-fwd" title="Step Fwd (.)">Frame →</button>
-            <div class="w-px h-4 bg-premiere-border mx-1 transport-sep"></div>
-            <button class="btn btn-sm" id="btn-mute">🔇 Mute</button>
-            <div class="w-px h-4 bg-premiere-border mx-1 transport-sep"></div>
-            <button class="btn btn-sm btn-success" id="btn-snapshot">📸 Capture</button>
-            <button class="btn btn-sm" id="btn-extract-frames">Extract 12F</button>
-            
-            <span class="text-[9px] font-mono text-gray-600 ml-auto fps-counter" id="fps-badge">— fps · WebGL2</span>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- █ RIGHT COLUMN: AUDIO METERS & EXPORT █ -->
-      <div class="bg-premiere-panel border-l border-premiere-border overflow-y-auto p-2 flex flex-col gap-2 max-h-[calc(100vh-220px)] md:max-h-none s-sidebar s-sidebar-right" id="sidebar-right">
-        
-        <!-- Audio Node controls -->
-        <div class="bg-premiere-shell border border-premiere-border p-2 flex flex-col gap-2 sidebar-pane active" id="tab-pane-audio">
-          <div class="flex items-center justify-between text-[10px] font-bold tracking-wider text-white uppercase border-b border-premiere-border pb-1">
-            <span>🎵 Essential Sound</span>
-          </div>
-          <div class="flex flex-col gap-1 audio-waveform-wrap">
-            <canvas id="waveform-canvas" class="w-full h-12 bg-[#101010] border border-premiere-border"></canvas>
-            <canvas id="spectrogram-canvas" class="w-full h-10 bg-[#101010] border border-premiere-border"></canvas>
-          </div>
-          <div class="flex flex-col gap-2 mt-1">
-            <div class="flex items-center justify-between gap-2">
-              <label class="text-[10px] text-gray-400 min-w-[70px]">Gain (dB)</label>
-              <input type="range" id="audio-gain" min="-20" max="20" step="0.5" value="0" class="flex-1">
-              <span class="text-[9px] font-mono text-premiere-accent w-8 text-right" id="v-gain-db">0dB</span>
-            </div>
-            <div class="flex items-center justify-between gap-2">
-              <label class="text-[10px] text-gray-400 min-w-[70px]">Noise Gate</label>
-              <input type="range" id="noise-gate" min="-80" max="0" step="1" value="-80" class="flex-1">
-              <span class="text-[9px] font-mono text-premiere-accent w-8 text-right" id="v-gate">OFF</span>
-            </div>
-            <div class="flex items-center justify-between gap-2">
-              <label class="text-[10px] text-gray-400 min-w-[70px]">EQ Bass</label>
-              <input type="range" id="eq-bass" min="-12" max="12" step="0.5" value="0" class="flex-1">
-              <span class="text-[9px] font-mono text-premiere-accent w-8 text-right" id="v-bass">0dB</span>
-            </div>
-            <div class="flex items-center justify-between gap-2">
-              <label class="text-[10px] text-gray-400 min-w-[70px]">EQ Treble</label>
-              <input type="range" id="eq-treble" min="-12" max="12" step="0.5" value="0" class="flex-1">
-              <span class="text-[9px] font-mono text-premiere-accent w-8 text-right" id="v-treble">0dB</span>
-            </div>
-          </div>
-          <div class="flex gap-1.5 mt-1">
-            <span class="text-[9px] font-mono bg-premiere-panel text-gray-400 px-2 py-0.5 border border-premiere-border" id="chip-audio-sr">SR: —</span>
-            <span class="text-[9px] font-mono bg-premiere-panel text-gray-400 px-2 py-0.5 border border-premiere-border" id="chip-audio-rms">RMS: —</span>
-          </div>
-        </div>
-
-        <!-- Frame strip output list -->
-        <div class="bg-premiere-shell border border-premiere-border p-2 flex flex-col gap-2 sidebar-pane active" id="tab-pane-frames">
-          <div class="flex items-center justify-between text-[10px] font-bold tracking-wider text-white uppercase border-b border-premiere-border pb-1">
-            <span>🖼 Frame Strip</span>
-            <span class="text-[8px] bg-premiere-accentLo border border-premiere-accent/20 text-premiere-accent px-1.5 py-0.2 rounded-none">click to DL</span>
-          </div>
-          <div class="flex gap-1 overflow-x-auto py-1 frame-strip-gallery" id="frame-strip"></div>
-        </div>
-
-        <!-- Export settings -->
-        <div class="bg-premiere-shell border border-premiere-border p-2 flex flex-col gap-2 sidebar-pane active" id="tab-pane-export">
-          <div class="flex items-center justify-between text-[10px] font-bold tracking-wider text-white uppercase border-b border-premiere-border pb-1">
-            <span>💾 Export Mode</span>
-          </div>
-          <div class="flex flex-col gap-2">
-            <div class="flex flex-col gap-1">
-              <label class="text-[10px] text-gray-400">Format</label>
-              <select id="export-fmt" class="w-full bg-[#2B2B2B] text-gray-200 border border-premiere-border px-2 py-1 text-[10px] outline-none focus:border-premiere-accent">
-                <option value="png">PNG — Current Frame</option>
-                <option value="webm-mr">WebM — MediaRecorder (fast)</option>
-                <option value="mp4-ffmpeg">MP4 H.264 — FFmpeg.wasm</option>
-                <option value="gif-ffmpeg">Animated GIF — FFmpeg.wasm</option>
-              </select>
-            </div>
-            <div class="flex flex-col gap-1" id="quality-row">
-              <label class="text-[10px] text-gray-400">Encode Quality</label>
-              <select id="export-quality" class="w-full bg-[#2B2B2B] text-gray-200 border border-premiere-border px-2 py-1 text-[10px] outline-none focus:border-premiere-accent">
-                <option value="ultrafast">Ultrafast (draft)</option>
-                <option value="fast" selected>Fast</option>
-                <option value="medium">Medium</option>
-                <option value="slow">Slow (best)</option>
-              </select>
-            </div>
-            <button class="w-full btn btn-accent py-1.5 text-[10px] uppercase font-bold tracking-wider" id="btn-export">EXPORT</button>
-            <button class="w-full btn btn-danger py-1.5 text-[10px] uppercase font-bold tracking-wider hidden" id="btn-stop-export">STOP EXPORT</button>
-          </div>
-        </div>
-
-        <!-- Memory diagnostics console -->
-        <div class="bg-premiere-shell border border-premiere-border p-2 flex flex-col gap-2">
-          <div class="flex items-center justify-between text-[10px] font-bold tracking-wider text-white uppercase border-b border-premiere-border pb-1">
-            <span>🧠 Memory Diagnostics</span>
-          </div>
-          <div class="flex gap-1.5">
-            <span class="text-[9px] font-mono bg-premiere-panel text-gray-400 px-2 py-0.5 border border-premiere-border" id="chip-blob-count">URLs: 0</span>
-            <span class="text-[9px] font-mono bg-premiere-panel text-gray-400 px-2 py-0.5 border border-premiere-border" id="chip-heap">Heap: —</span>
-          </div>
-          <div class="flex gap-2 mt-1">
-            <button class="flex-1 btn btn-sm py-1" id="btn-gc">🧹 Release URLs</button>
-            <button class="flex-1 btn btn-danger btn-sm py-1 hidden" id="btn-kill-ffmpeg">💣 Kill FFmpeg</button>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- Mobile tab-switching navigation drawer bottom-bar -->
-    <div class="mobile-nav-tabs">
-      <button class="mobile-tab-btn active" data-target="tab-pane-source,tab-pane-controls">Media</button>
-      <button class="mobile-tab-btn" data-target="tab-pane-grade,tab-pane-lut">Color</button>
-      <button class="mobile-tab-btn" data-target="tab-pane-audio">Audio</button>
-      <button class="mobile-tab-btn" data-target="tab-pane-frames,tab-pane-export">Export</button>
-    </div>
+    <!-- EXPAND TOGGLE FOR RIGHT PANEL -->
+    <button id="right-panel-expand-btn" onclick="toggleRightPanel()" 
+      class="hidden absolute right-0 top-1/2 -translate-y-1/2 bg-editor-panel border border-r-0 border-editor-surface p-1 rounded-l-md text-zinc-400 hover:text-white hover:bg-zinc-800 z-30 shadow-md">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor"><use href="#icon-chevron-left"></use></svg>
+    </button>
 
   </div>
-</main>
 
-<div id="footer-component"><!-- FOOTER_START --><!-- FOOTER_END --></div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-<!-- PLACE ALL JS LOGIC / ENGINE BINDINGS IN A DEDICATED BLOCK APART FROM STYLING -->
-<script type="module">
-// ═══════════════════════════════════════════════════════════════════
-//  Video Canvas Engineering Studio — Redesigned Production Engine
-// ═══════════════════════════════════════════════════════════════════
-
-/* ── SHADERS (WebGL2 / GLSL ES 3.00) ── */
-const VERT = `#version 300 es
-in vec2 a_pos;
-in vec2 a_uv;
-out vec2 v_uv;
-void main() {
-  v_uv = a_uv;
-  gl_Position = vec4(a_pos, 0.0, 1.0);
-}`;
-
-const FRAG = `#version 300 es
-precision highp float;
-in vec2 v_uv;
-out vec4 fragColor;
-
-uniform sampler2D u_tex;
-uniform sampler3D u_lut;
-
-uniform float u_brightness;
-uniform float u_contrast;
-uniform float u_saturation;
-uniform float u_hue;
-uniform float u_exposure;
-uniform float u_lift;
-uniform float u_gain;
-uniform float u_lut_mix;
-uniform float u_lut_size;
-uniform bool  u_use_lut;
-uniform bool  u_grayscale;
-uniform bool  u_sepia;
-uniform bool  u_invert;
-uniform bool  u_vignette;
-uniform bool  u_sharpen;
-uniform vec4  u_crop; // (ox, oy, sw, sh) normalized UV
-
-vec3 rotHue(vec3 c, float deg) {
-  float r = deg * 3.14159265 / 180.0, co = cos(r), si = sin(r);
-  float k = 0.333333, sq = 0.577350;
-  float a = co+k*(1.0-co), b = k*(1.0-co)-sq*si, cv = k*(1.0-co)+sq*si;
-  return clamp(mat3(a,cv,b, b,a,cv, cv,b,a) * c, 0.0, 1.0);
-}
-
-void main() {
-  vec2 uv = u_crop.xy + v_uv * u_crop.zw;
-
-  vec3 rgb;
-  if (u_sharpen) {
-    vec2 px = 1.0 / vec2(textureSize(u_tex, 0));
-    vec3 c = texture(u_tex, uv).rgb;
-    vec3 nb = (texture(u_tex,uv+vec2(px.x,0)).rgb +
-               texture(u_tex,uv-vec2(px.x,0)).rgb +
-               texture(u_tex,uv+vec2(0,px.y)).rgb +
-               texture(u_tex,uv-vec2(0,px.y)).rgb) * 0.25;
-    rgb = clamp(c + (c - nb) * 1.5, 0.0, 1.0);
-  } else {
-    rgb = texture(u_tex, uv).rgb;
-  }
-
-  rgb = clamp(rgb * u_gain + u_lift, 0.0, 1.0);
-  rgb *= pow(2.0, u_exposure);
-  rgb = clamp((rgb - 0.5) * u_contrast + 0.5, 0.0, 1.0);
-  rgb = clamp(rgb * u_brightness, 0.0, 1.0);
-  float lum = dot(rgb, vec3(0.2126, 0.7152, 0.0722));
-  rgb = clamp(mix(vec3(lum), rgb, u_saturation), 0.0, 1.0);
-  if (u_hue != 0.0) rgb = rotHue(rgb, u_hue);
-
-  if (u_use_lut) {
-    float scale = (u_lut_size-1.0)/u_lut_size, bias = 0.5/u_lut_size;
-    vec3 luted = texture(u_lut, clamp(rgb,0.0,1.0)*scale+bias).rgb;
-    rgb = mix(rgb, luted, u_lut_mix);
-  }
-
-  if (u_grayscale) { float g=dot(rgb,vec3(0.2126,0.7152,0.0722)); rgb=vec3(g); }
-  if (u_sepia)     rgb = clamp(vec3(dot(rgb,vec3(.393,.769,.189)),dot(rgb,vec3(.349,.686,.168)),dot(rgb,vec3(.272,.534,.131))),0.0,1.0);
-  if (u_invert)    rgb = 1.0 - rgb;
-  if (u_vignette)  { float d=length((v_uv-0.5)*2.0); rgb*=smoothstep(1.4,0.4,d); }
-
-  fragColor = vec4(rgb, 1.0);
-}`;
-
-/* ── Blob URLs Manager ── */
-const BlobMgr = (() => {
-  const map = new Map(); let n = 0;
-  const upd = () => { const el=document.getElementById('chip-blob-count'); if(el) el.textContent='URLs: '+n; };
-  return {
-    create(obj)  { const u=URL.createObjectURL(obj); map.set(u,obj); n++; upd(); return u; },
-    revoke(u)    { if(map.has(u)){ URL.revokeObjectURL(u); map.delete(u); n--; upd(); } },
-    revokeAll()  { map.forEach((_,u)=>URL.revokeObjectURL(u)); map.clear(); n=0; upd(); },
-  };
-})();
-window.addEventListener('beforeunload', ()=>BlobMgr.revokeAll());
-
-/* ── Fallback 2D Canvas Engine ── */
-class Canvas2DEngine {
-  constructor(canvas) {
-    this.canvas = canvas;
-    this.ctx = canvas.getContext('2d');
-    this.filters = new Set();
-    this.grade = { brightness:1, contrast:1, saturation:1, hue:0, exposure:0, lift:0, gain:1, lutMix:1 };
-    this.crop = [0, 0, 1, 1];
-  }
-  loadLut() {}
-  clearLut() {}
-  resetGrade() {
-    this.grade = { brightness:1, contrast:1, saturation:1, hue:0, exposure:0, lift:0, gain:1, lutMix:1 };
-    this.filters.clear();
-    [['f-bright',1],['f-contrast',1],['f-sat',1],['f-hue',0],['f-exp',0],['f-lift',0],['f-gain',1],['lut-mix',1]].forEach(([id,v]) => {
-      const el=document.getElementById(id); if(el) el.value=v;
-    });
-    document.querySelectorAll('.pill').forEach(p => p.classList.remove('on'));
-    syncGradeLabels();
-  }
-  drawVideoFrame(video) {
-    const ctx = this.ctx;
-    const vw = video.videoWidth, vh = video.videoHeight;
-    let f = `brightness(${this.grade.brightness * 100}%) contrast(${this.grade.contrast * 100}%) saturate(${this.grade.saturation * 100}%) hue-rotate(${this.grade.hue}deg)`;
-    if (this.filters.has('grayscale')) f += ' grayscale(100%)';
-    if (this.filters.has('sepia')) f += ' sepia(80%)';
-    if (this.filters.has('invert')) f += ' invert(100%)';
-    ctx.filter = f;
-    const sx = this.crop[0] * vw, sy = this.crop[1] * vh;
-    const sw = this.crop[2] * vw, sh = this.crop[3] * vh;
-    ctx.drawImage(video, sx, sy, sw, sh, 0, 0, this.canvas.width, this.canvas.height);
-  }
-}
-
-/* ── WebGLEngine ── */
-class WebGLEngine {
-  constructor(canvas) {
-    this.canvas  = canvas;
-    const gl = canvas.getContext('webgl2', { alpha:false, antialias:false, preserveDrawingBuffer:true });
-    if (!gl) throw new Error('WebGL2 not available.');
-    this.gl = gl;
-    this.prog    = this._compile(VERT, FRAG);
-    this.vidTex  = null;
-    this.lutTex  = null;
-    this.lutSize = 0;
-    this.filters = new Set();
-    this.grade   = { brightness:1, contrast:1, saturation:1, hue:0, exposure:0, lift:0, gain:1, lutMix:1 };
-    this.crop    = [0, 0, 1, 1];
-    this.uloc    = {};
-    this._setup();
-  }
-
-  _compile(vs, fs) {
-    const gl = this.gl;
-    const sh = (src, t) => {
-      const s = gl.createShader(t);
-      gl.shaderSource(s, src); gl.compileShader(s);
-      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error('Shader compilation error');
-      return s;
-    };
-    const p = gl.createProgram();
-    gl.attachShader(p, sh(vs, gl.VERTEX_SHADER));
-    gl.attachShader(p, sh(fs, gl.FRAGMENT_SHADER));
-    gl.linkProgram(p);
-    if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error('Link failed');
-    return p;
-  }
-
-  _setup() {
-    const gl = this.gl;
-    gl.useProgram(this.prog);
-    gl.viewport(0, 0, this.canvas.width, this.canvas.height);
-
-    const verts = new Float32Array([
-      -1,-1, 0,1,   1,-1, 1,1,  -1,1, 0,0,
-      -1, 1, 0,0,   1,-1, 1,1,   1,1, 1,0,
-    ]);
-    const buf = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-    gl.bufferData(gl.ARRAY_BUFFER, verts, gl.STATIC_DRAW);
-
-    const posL = gl.getAttribLocation(this.prog, 'a_pos');
-    const uvL  = gl.getAttribLocation(this.prog, 'a_uv');
-    gl.enableVertexAttribArray(posL);
-    gl.enableVertexAttribArray(uvL);
-    gl.vertexAttribPointer(posL, 2, gl.FLOAT, false, 16, 0);
-    gl.vertexAttribPointer(uvL,  2, gl.FLOAT, false, 16, 8);
-
-    this.vidTex = gl.createTexture();
-    gl.activeTexture(gl.TEXTURE0);
-    gl.bindTexture(gl.TEXTURE_2D, this.vidTex);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-
-    this.lutTex  = this._identityLut(2);
-    this.lutSize = 2;
-
-    ['u_tex','u_lut','u_brightness','u_contrast','u_saturation','u_hue',
-     'u_exposure','u_lift','u_gain','u_lut_mix','u_lut_size','u_use_lut',
-     'u_grayscale','u_sepia','u_invert','u_vignette','u_sharpen','u_crop'
-    ].forEach(n => { this.uloc[n] = gl.getUniformLocation(this.prog, n); });
-
-    gl.uniform1i(this.uloc['u_tex'], 0);
-    gl.uniform1i(this.uloc['u_lut'], 1);
-    this._pushUniforms();
-  }
-
-  _identityLut(size) {
-    const gl = this.gl;
-    const tex = gl.createTexture();
-    gl.activeTexture(gl.TEXTURE1);
-    gl.bindTexture(gl.TEXTURE_3D, tex);
-    ['WRAP_S','WRAP_T','WRAP_R'].forEach(w => gl.texParameteri(gl.TEXTURE_3D, gl['TEXTURE_'+w], gl.CLAMP_TO_EDGE));
-    gl.texParameteri(gl.TEXTURE_3D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-    gl.texParameteri(gl.TEXTURE_3D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-    const d = new Uint8Array(size**3 * 3); let i=0;
-    for (let b=0;b<size;b++) for (let g=0;g<size;g++) for (let r=0;r<size;r++) {
-      d[i++]=Math.round(r/(size-1)*255);
-      d[i++]=Math.round(g/(size-1)*255);
-      d[i++]=Math.round(b/(size-1)*255);
-    }
-    gl.texImage3D(gl.TEXTURE_3D, 0, gl.RGB, size, size, size, 0, gl.RGB, gl.UNSIGNED_BYTE, d);
-    return tex;
-  }
-
-  loadLut(cubeText) {
-    const lines = cubeText.split(/\r?\n/);
-    let size = 0; const vals = [];
-    for (const l of lines) {
-      const t = l.trim();
-      if (t.startsWith('LUT_3D_SIZE')) { size = parseInt(t.split(/\s+/)[1]); continue; }
-      if (!t || t.startsWith('#') || /^[A-Z]/.test(t)) continue;
-      const p = t.split(/\s+/).map(Number);
-      if (p.length===3 && !isNaN(p[0])) vals.push(...p);
-    }
-    if (!size || vals.length !== size**3*3) throw new Error('Invalid LUT dimensions');
-    const gl = this.gl;
-    gl.activeTexture(gl.TEXTURE1);
-    gl.bindTexture(gl.TEXTURE_3D, this.lutTex);
-    gl.texImage3D(gl.TEXTURE_3D, 0, gl.RGB, size, size, size, 0, gl.RGB, gl.UNSIGNED_BYTE,
-      new Uint8Array(vals.map(v => Math.round(Math.max(0,Math.min(1,v))*255))));
-    this.lutSize = size;
-    this.filters.add('lut');
-  }
-
-  clearLut() {
-    this.lutTex  = this._identityLut(2);
-    this.lutSize = 2;
-    this.filters.delete('lut');
-  }
-
-  _pushUniforms() {
-    const { gl, uloc: u, grade: g, filters: f } = this;
-    gl.uniform1f(u['u_brightness'], g.brightness);
-    gl.uniform1f(u['u_contrast'],   g.contrast);
-    gl.uniform1f(u['u_saturation'], g.saturation);
-    gl.uniform1f(u['u_hue'],        g.hue);
-    gl.uniform1f(u['u_exposure'],   g.exposure);
-    gl.uniform1f(u['u_lift'],       g.lift);
-    gl.uniform1f(u['u_gain'],       g.gain);
-    gl.uniform1f(u['u_lut_mix'],    g.lutMix);
-    gl.uniform1f(u['u_lut_size'],   this.lutSize);
-    gl.uniform1i(u['u_use_lut'],    f.has('lut') ? 1 : 0);
-    gl.uniform1i(u['u_grayscale'],  f.has('grayscale') ? 1 : 0);
-    gl.uniform1i(u['u_sepia'],      f.has('sepia')     ? 1 : 0);
-    gl.uniform1i(u['u_invert'],     f.has('invert')    ? 1 : 0);
-    gl.uniform1i(u['u_vignette'],   f.has('vignette')  ? 1 : 0);
-    gl.uniform1i(u['u_sharpen'],    f.has('sharpen')   ? 1 : 0);
-    gl.uniform4fv(u['u_crop'],      this.crop);
-  }
-
-  drawVideoFrame(video) {
-    if (video.readyState < 2) return;
-    const gl = this.gl;
-    gl.activeTexture(gl.TEXTURE0);
-    gl.bindTexture(gl.TEXTURE_2D, this.vidTex);
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, video);
-    gl.activeTexture(gl.TEXTURE1);
-    gl.bindTexture(gl.TEXTURE_3D, this.lutTex);
-    this._pushUniforms();
-    gl.drawArrays(gl.TRIANGLES, 0, 6);
-  }
-
-  resetGrade() {
-    this.grade = { brightness:1, contrast:1, saturation:1, hue:0, exposure:0, lift:0, gain:1, lutMix:1 };
-    this.filters.clear();
-    [['f-bright',1],['f-contrast',1],['f-sat',1],['f-hue',0],
-     ['f-exp',0],['f-lift',0],['f-gain',1],['lut-mix',1]
-    ].forEach(([id,v]) => { const el=document.getElementById(id); if(el) el.value=v; });
-    document.querySelectorAll('.pill').forEach(p => p.classList.remove('on'));
-    syncGradeLabels();
-  }
-}
-
-/* ── AudioEngine ── */
-class AudioEngine {
-  constructor() { this.ctx=null; this.src=null; this.analyser=null; this.rafId=null; }
-  attach(videoEl) {
-    if (this.ctx) return;
-    try {
-      this.ctx      = new (window.AudioContext || window.webkitAudioContext)();
-      this.src      = this.ctx.createMediaElementSource(videoEl);
-      this.analyser = this.ctx.createAnalyser();
-      this.analyser.fftSize = 1024;
-      this.src.connect(this.analyser);
-      this.analyser.connect(this.ctx.destination);
-      document.getElementById('chip-audio-sr').textContent = 'SR: ' + this.ctx.sampleRate + 'Hz';
-      this._draw();
-    } catch(e) {}
-  }
-  setGain(db) {}
-  setBass(db) {}
-  setTreble(db) {}
-  _draw() {
-    const wCvs = document.getElementById('waveform-canvas');
-    const sCvs = document.getElementById('spectrogram-canvas');
-    const wCtx = wCvs.getContext('2d');
-    const sCtx = sCvs.getContext('2d');
-    const td = new Uint8Array(this.analyser.frequencyBinCount);
-    const tick = () => {
-      this.rafId = requestAnimationFrame(tick);
-      this.analyser.getByteTimeDomainData(td);
-      wCvs.width = wCvs.offsetWidth || 200; wCvs.height = wCvs.offsetHeight || 72;
-      const W = wCvs.width, H = wCvs.height;
-      wCtx.fillStyle = '#0F1115'; wCtx.fillRect(0,0,W,H);
-      wCtx.strokeStyle = '#1473E6'; wCtx.lineWidth = 1.5; wCtx.beginPath();
-      const sw = W / td.length;
-      td.forEach((v,i) => { const x=i*sw, y=(v/128)*H/2; i?wCtx.lineTo(x,y):wCtx.moveTo(x,y); });
-      wCtx.stroke();
-    };
-    tick();
-  }
-  destroy() {
-    if (this.rafId) cancelAnimationFrame(this.rafId);
-    if (this.ctx) { this.ctx.close(); this.ctx = null; }
-  }
-}
-
-/* ── FFmpegEngine ── */
-class FFmpegEngine {
-  constructor() { this.ff=null; this.ready=false; }
-  async load() { return false; }
-  async exportMP4() {}
-  async exportGIF() {}
-  abort() {}
-  terminate() {}
-}
-
-/* ── Helper functions ── */
-function fmtT(s) {
-  if (isNaN(s)) return '0:00.000';
-  const m = Math.floor(s/60);
-  const sec = Math.floor(s%60);
-  const ms = Math.floor((s%1)*1000);
-  return `${m}:${String(sec).padStart(2,'0')}.${String(ms).padStart(3,'0')}`;
-}
-function dlLink(url, name) { const a=document.createElement('a'); a.href=url; a.download=name; a.click(); }
-function setStatus(txt, isErr=false) {
-  const el=document.getElementById('status-bar'); if(!el) return;
-  el.textContent=txt; el.className='status-indicator ' + (isErr ? 'text-premiere-warn bg-red-500/10 border-red-500/20' : 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20');
-}
-function showProg(pct) {
-  document.getElementById('progress-wrap').style.display='inline-flex';
-  document.getElementById('progress-fill').style.width=Math.min(pct,100)+'%';
-  document.getElementById('progress-pct').textContent=Math.round(pct)+'%';
-}
-function hideProg() { document.getElementById('progress-wrap').style.display='none'; }
-function cropUV(vw, vh, ratioStr) {
-  if (ratioStr==='free') return [0,0,1,1];
-  const [rw,rh]=ratioStr.split(':').map(Number), t=rw/rh, s=vw/vh;
-  let sw,sh;
-  if (s>t) { sh=1; sw=t/s; } else { sw=1; sh=s/t; }
-  return [(1-sw)/2,(1-sh)/2,sw,sh];
-}
-function syncGradeLabels() {
-  [['f-bright','v-bright',v=>Number(v).toFixed(2)],
-   ['f-contrast','v-contrast',v=>Number(v).toFixed(2)],
-   ['f-sat','v-sat',v=>Number(v).toFixed(2)],
-   ['f-hue','v-hue',v=>v+'°'],
-   ['f-exp','v-exp',v=>(v>=0?'+':'')+Number(v).toFixed(2)+'EV'],
-   ['f-lift','v-lift',v=>(v>=0?'+':'')+Number(v).toFixed(3)],
-   ['f-gain','v-gain',v=>Number(v).toFixed(2)],
-   ['lut-mix','v-lut-mix',v=>Number(v).toFixed(2)],
-  ].forEach(([s,v,f])=>{ const se=document.getElementById(s),ve=document.getElementById(v); if(se&&ve)ve.textContent=f(se.value); });
-}
-
-/* ── Main Setup ── */
-const canvas   = document.getElementById('gl-canvas');
-const videoEl  = document.getElementById('vid-el');
-const audioEng = new AudioEngine();
-let glEngine   = null;
-let rafId      = null;
-let seekThrottle = null; let pendingSeek = null;
-let fpsCount=0, fpsLast=performance.now();
-
-function handleFile(file) {
-  if (!file) return;
-  const url = BlobMgr.create(file);
-  videoEl.pause();
-  videoEl.src = url;
-
-  videoEl.addEventListener('loadedmetadata', () => {
-    const vw = videoEl.videoWidth||640, vh = videoEl.videoHeight||360;
-    canvas.width = vw;
-    canvas.height = vh;
+  <!-- =========================================================================
+       3. BOTTOM PANEL â€” TIMELINE
+       ========================================================================= -->
+  <footer class="h-64 bg-editor-panel border-t border-editor-surface flex flex-col shrink-0 z-30 relative select-none">
     
-    try {
-      glEngine = new WebGLEngine(canvas);
-      setStatus('WebGL2 shader pipeline running.');
-    } catch(e) {
-      glEngine = new Canvas2DEngine(canvas);
-      setStatus('WebGL2 unsupported. Using 2D context fallback.');
+    <!-- Timeline Toolbar -->
+    <div class="h-10 border-b border-editor-surface/65 px-4 flex items-center justify-between bg-zinc-900/60">
+      
+      <!-- Left side edit tools -->
+      <div class="flex items-center gap-1">
+        <button id="btn-undo" class="p-1.5 hover:bg-zinc-800 rounded text-zinc-400 hover:text-white transition-colors" title="Undo Edit (Ctrl+Z)">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor"><use href="#icon-undo"></use></svg>
+        </button>
+        <button id="btn-redo" class="p-1.5 hover:bg-zinc-800 rounded text-zinc-400 hover:text-white transition-colors" title="Redo Edit (Ctrl+Shift+Z / Ctrl+Y)">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor"><use href="#icon-redo"></use></svg>
+        </button>
+        
+        <div class="h-4 w-px bg-zinc-800 mx-1"></div>
+
+        <button id="btn-split" class="p-1.5 bg-zinc-850 hover:bg-zinc-800 rounded text-zinc-200 transition-colors flex items-center gap-1.5 text-xs font-semibold" title="Split Selected Clip (S)">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"><use href="#icon-scissors"></use></svg>
+          <span>Split</span>
+        </button>
+        
+        <button id="btn-delete" class="p-1.5 hover:bg-zinc-800 rounded text-rose-400 hover:text-rose-350 transition-colors flex items-center gap-1 text-xs" title="Delete Selection (Del)">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"><use href="#icon-trash-2"></use></svg>
+        </button>
+      </div>
+
+      <!-- Center playhead time status -->
+      <div class="bg-zinc-950 border border-zinc-800 px-3 py-1 rounded font-mono text-xs text-editor-accent font-bold">
+        <span id="timeline-time-display">00:00:04:12</span>
+      </div>
+
+      <!-- Right zoom and snapping tools -->
+      <div class="flex items-center gap-2">
+        <button id="btn-snapping-toggle" class="p-1.5 hover:bg-zinc-800 rounded text-zinc-400 hover:text-white transition-colors" title="Toggle Snapping (N)">
+          <svg id="snapping-icon" class="w-4 h-4 text-sky-400 fill-current"><use href="#icon-magnet"></use></svg>
+        </button>
+
+        <div class="h-4 w-px bg-zinc-800 mx-1"></div>
+
+        <div class="flex items-center gap-1 bg-zinc-950 border border-zinc-800 rounded px-1.5 py-0.5">
+          <button id="btn-zoom-out" class="p-1 hover:bg-zinc-800 rounded text-zinc-400 hover:text-white" title="Zoom Out">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"><use href="#icon-zoom-out"></use></svg>
+          </button>
+          <span id="zoom-percentage" class="text-[10px] font-mono text-zinc-500 px-1">100%</span>
+          <button id="btn-zoom-in" class="p-1 hover:bg-zinc-800 rounded text-zinc-400 hover:text-white" title="Zoom In">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"><use href="#icon-zoom-in"></use></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline Workspace (Ruler + Tracks Area) -->
+    <div id="timeline-workspace" class="flex-1 overflow-auto flex flex-col min-h-0 relative">
+      
+      <!-- Ruler bar -->
+      <div id="timeline-ruler" class="h-6 border-b border-editor-surface bg-zinc-900 flex select-none shrink-0 sticky top-0 z-20 cursor-pointer">
+        <!-- Track labels header spacer -->
+        <div class="w-48 border-r border-editor-surface shrink-0 bg-zinc-900/90 sticky left-0 z-20"></div>
+        <!-- Time Markers Container (Populated dynamically) -->
+        <div id="ruler-markers" class="flex-1 flex relative h-full bg-zinc-900/40 text-[9px] font-mono text-zinc-500">
+        </div>
+      </div>
+
+      <!-- Tracks Grid System -->
+      <div id="tracks-container" class="flex-1 flex flex-col divide-y divide-zinc-800/80 relative">
+        <!-- Tracks are rendered dynamically -->
+      </div>
+
+      <!-- Playhead Red Line Overlay -->
+      <div id="playhead-line" class="absolute top-0 bottom-0 left-[192px] w-0.5 bg-rose-500 pointer-events-none z-10">
+        <!-- Playhead handle cap on Ruler -->
+        <div class="absolute -top-1 -left-[5px] w-3 h-3 bg-rose-500 rotate-45 border-b border-r border-rose-600 shadow cursor-ew-resize pointer-events-auto" id="playhead-handle"></div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       4. CLIENT INTERACTIVITY SCRIPTS
+       ========================================================================= -->
+  <script type="module">
+    // Import single source of truth state
+    import { EditorState } from '../../../assets/js/editor-state.js';
+    import { registerMediaElement, updateTrackAudioMix, setGlobalPreviewMute, getAudioContext } from '../../../assets/js/audio-mixer.js';
+    import { startExport, updateExportProgress, isCurrentlyExporting } from '../../../assets/js/exporter.js';
+
+    // Global references
+    window.EditorState = EditorState;
+
+    // Cache elements
+    const mediaGrid = document.getElementById('media-grid');
+    const mediaSearch = document.getElementById('media-search');
+    const fileInput = document.getElementById('media-file-input');
+    const uploadBtn = document.getElementById('media-upload-btn');
+    const previewCanvas = document.getElementById('preview-canvas');
+    const ctx = previewCanvas.getContext('2d');
+    const tracksContainer = document.getElementById('tracks-container');
+    const playheadLine = document.getElementById('playhead-line');
+    const playheadHandle = document.getElementById('playhead-handle');
+    const timelineWorkspace = document.getElementById('timeline-workspace');
+    const ruler = document.getElementById('timeline-ruler');
+    
+    // Properties inputs
+    const propName = document.getElementById('selected-clip-name');
+    const propBadge = document.getElementById('selected-clip-type-badge');
+    const propMeta = document.getElementById('selected-clip-meta-desc');
+    const propTransformGroup = document.getElementById('properties-transform-group');
+    const propColorGroup = document.getElementById('properties-color-group');
+    const propX = document.getElementById('prop-pos-x');
+    const propY = document.getElementById('prop-pos-y');
+    const propScale = document.getElementById('prop-scale');
+    const propScaleLabel = document.getElementById('prop-scale-label');
+    const propRotation = document.getElementById('prop-rotation');
+    const propRotationLabel = document.getElementById('prop-rotation-label');
+    const propOpacity = document.getElementById('prop-opacity');
+    const propOpacityLabel = document.getElementById('prop-opacity-label');
+    const propSaturation = document.getElementById('prop-saturation');
+    const propSaturationLabel = document.getElementById('prop-saturation-label');
+    const propContrast = document.getElementById('prop-contrast');
+    const propContrastLabel = document.getElementById('prop-contrast-label');
+
+    // Controls
+    const btnPlayPause = document.getElementById('btn-play-pause');
+    const playTimeCurrent = document.getElementById('preview-time-current');
+    const playTimeTotal = document.getElementById('preview-time-total');
+    const timelineTimeDisplay = document.getElementById('timeline-time-display');
+    const scrubProgress = document.getElementById('preview-scrub-progress');
+    const scrubHandle = document.getElementById('preview-scrub-handle');
+    const scrubBar = document.getElementById('preview-scrub-bar');
+
+    // Muted tracks & locking
+    let playTimer = null;
+    let isPlaying = false;
+    let isSnappingEnabled = true;
+
+    // Cache object for loaded HTMLMediaElements to avoid continuous loading
+    const mediaPool = {};
+
+    // Initial load
+    init();
+
+    function init() {
+      // Bind events
+      uploadBtn.addEventListener('click', () => fileInput.click());
+      fileInput.addEventListener('change', handleFileImport);
+      mediaSearch.addEventListener('input', renderMediaBin);
+      
+      // Setup Drag & Drop
+      const leftPanel = document.getElementById('left-panel');
+      leftPanel.addEventListener('dragover', (e) => e.preventDefault());
+      leftPanel.addEventListener('drop', handleLeftPanelDrop);
+
+      // Render Video Export button in Stage 3 (WebM Capture only)
+      document.getElementById('btn-render-video').addEventListener('click', () => {
+        startExport(EditorState, previewCanvas, () => {
+          if (!isPlaying) togglePlayback();
+        }, () => {
+          if (isPlaying) togglePlayback();
+        }, (time) => {
+          EditorState.playheadTime = time;
+        }, render);
+      });
+
+      // Timeline events
+      document.getElementById('btn-zoom-in').addEventListener('click', () => zoom(1.2));
+      document.getElementById('btn-zoom-out').addEventListener('click', () => zoom(0.8));
+      document.getElementById('btn-undo').addEventListener('click', triggerUndo);
+      document.getElementById('btn-redo').addEventListener('click', triggerRedo);
+      document.getElementById('btn-split').addEventListener('click', splitSelectedClip);
+      document.getElementById('btn-delete').addEventListener('click', deleteSelectedClip);
+
+      // Playback events
+      btnPlayPause.addEventListener('click', togglePlayback);
+      document.getElementById('btn-step-forward').addEventListener('click', () => stepFrame(1));
+      document.getElementById('btn-step-backward').addEventListener('click', () => stepFrame(-1));
+      document.getElementById('btn-volume-toggle').addEventListener('click', toggleGlobalVolume);
+      document.getElementById('btn-snapping-toggle').addEventListener('click', toggleSnapping);
+
+      // Ruler seeking
+      ruler.addEventListener('mousedown', startRulerSeek);
+      playheadHandle.addEventListener('mousedown', startPlayheadDrag);
+
+      // Window keyboard events
+      window.addEventListener('keydown', handleGlobalKeydown);
+
+      // Property panel updates
+      [propX, propY].forEach(el => el.addEventListener('input', updateSelectedClipTransforms));
+      [propScale, propRotation, propOpacity, propSaturation, propContrast].forEach(el => {
+        el.addEventListener('input', (e) => {
+          updateSelectedClipTransforms();
+          updatePropertyLabels();
+        });
+      });
+
+      // Wire dragstart event for Text Preset items
+      document.querySelectorAll('.text-preset-item').forEach(item => {
+        item.addEventListener('dragstart', (e) => {
+          e.dataTransfer.setData('text/plain', 'text-preset:' + item.dataset.preset);
+          e.dataTransfer.setData('mediatype/text', 'true');
+        });
+      });
+
+      // Load initial mock media pool
+      loadInitialMockPool();
+
+      // Trigger AudioContext resume on user gesture
+      setupAudioContextResume();
+
+      // First render
+      render();
     }
-    
-    const crop = cropUV(vw, vh, document.getElementById('ratio-sel').value);
-    glEngine.crop = crop;
-    
-    audioEng.attach(videoEl);
 
-    document.getElementById('source-info-box').classList.remove('hidden');
-    document.getElementById('info-name').textContent = file.name;
-    document.getElementById('info-size').textContent = (file.size/1024/1024).toFixed(1)+' MB';
-    document.getElementById('info-dims').textContent = `${vw}×${vh}`;
-    document.getElementById('info-dur').textContent  = fmtT(videoEl.duration);
-    document.getElementById('vp-placeholder').classList.add('hidden');
-
-    document.getElementById('out-w').value = vw;
-    document.getElementById('out-h').value = vh;
-
-    generateTimelineStrip(videoEl);
-    startRAF();
-  }, {once:true});
-}
-
-async function generateTimelineStrip(vid) {
-  const track = document.getElementById('timeline-track');
-  track.innerHTML = '<div class="absolute top-0 bottom-0 w-0.5 bg-premiere-accent pointer-events-none z-10 transition-all duration-75 ease-linear visual-timeline-playhead" id="timeline-playhead" style="left:0%"></div>';
-  const dur = vid.duration;
-  const steps = 15;
-  const canvasTemp = document.createElement('canvas');
-  canvasTemp.width = 80; canvasTemp.height = 45;
-  const ctxTemp = canvasTemp.getContext('2d');
-  
-  const tempVid = document.createElement('video');
-  tempVid.src = vid.src;
-  tempVid.muted = true;
-  tempVid.playsInline = true;
-  
-  tempVid.addEventListener('loadedmetadata', async () => {
-    for (let i = 0; i < steps; i++) {
-      await new Promise(res => {
-        tempVid.currentTime = (i / (steps - 1)) * dur;
-        tempVid.addEventListener('seeked', () => {
-          ctxTemp.drawImage(tempVid, 0, 0, 80, 45);
-          const img = document.createElement('img');
-          img.src = canvasTemp.toDataURL('image/jpeg', 0.5);
-          img.className = 'h-full w-auto object-cover flex-shrink-0 opacity-65 hover:opacity-100 transition-opacity duration-200';
-          track.appendChild(img);
-          res();
-        }, {once:true});
+    // Load initial HTML5 media elements for mock files so canvas renders instantly
+    function loadInitialMockPool() {
+      EditorState.mediaBin.forEach(media => {
+        if (media.type === 'video' || media.type === 'audio') {
+          const el = document.createElement(media.type);
+          el.preload = 'auto';
+          mediaPool[media.id] = el;
+          
+          // Connect to audio graph if clip exists
+          const clip = EditorState.clips.find(c => c.mediaId === media.id);
+          if (clip) {
+            registerMediaElement(el, clip.trackId);
+          }
+        }
       });
     }
-  }, {once:true});
-}
 
-function startRAF() {
-  stopRAF();
-  const tick = () => {
-    rafId = requestAnimationFrame(tick);
-    if (!glEngine||!videoEl.src) return;
-    glEngine.drawVideoFrame(videoEl);
-    
-    fpsCount++;
-    const now=performance.now();
-    if (now-fpsLast>1000) {
-      const fps=Math.round(fpsCount*1000/(now-fpsLast));
-      fpsCount=0; fpsLast=now;
-      document.getElementById('fps-badge').textContent = fps+' fps · WebGL2';
+    // User gesture handler to resume AudioContext on first page interaction
+    function setupAudioContextResume() {
+      const resumeAudio = () => {
+        const ctx = getAudioContext();
+        if (ctx && ctx.state === 'suspended') {
+          ctx.resume().then(() => {
+            console.log("AudioContext resumed on user interaction. State: " + ctx.state);
+          });
+        }
+        document.removeEventListener('click', resumeAudio);
+        document.removeEventListener('pointerdown', resumeAudio);
+        document.removeEventListener('keydown', resumeAudio);
+      };
+      document.addEventListener('click', resumeAudio);
+      document.addEventListener('pointerdown', resumeAudio);
+      document.addEventListener('keydown', resumeAudio);
     }
-    const dur=videoEl.duration;
-    if (!isNaN(dur)&&dur>0) {
-      const pct = (videoEl.currentTime/dur);
-      document.getElementById('seek-bar').value = Math.floor(pct*10000);
-      document.getElementById('time-disp').textContent = fmtT(videoEl.currentTime)+' / '+fmtT(dur);
+
+    // Toggle snapping helper
+    function toggleSnapping() {
+      isSnappingEnabled = !isSnappingEnabled;
+      const icon = document.getElementById('snapping-icon');
+      if (isSnappingEnabled) {
+        icon.classList.add('text-sky-400');
+        icon.setAttribute('fill', 'currentColor');
+      } else {
+        icon.classList.remove('text-sky-400');
+        icon.removeAttribute('fill');
+      }
+    }
+
+    // Zoom timeline view
+    function zoom(factor) {
+      if (isCurrentlyExporting()) return;
+      EditorState.zoomPxPerSecond = Math.max(10, Math.min(200, EditorState.zoomPxPerSecond * factor));
+      document.getElementById('zoom-percentage').textContent = `${Math.round(EditorState.zoomPxPerSecond / 30 * 100)}%`;
+      render();
+    }
+
+    // Global Keydown bindings
+    function handleGlobalKeydown(e) {
+      if (isCurrentlyExporting()) return;
+      if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') return;
+
+      if (e.ctrlKey && e.key.toLowerCase() === 'z') {
+        e.preventDefault();
+        if (e.shiftKey) {
+          triggerRedo();
+        } else {
+          triggerUndo();
+        }
+      } else if (e.ctrlKey && e.key.toLowerCase() === 'y') {
+        e.preventDefault();
+        triggerRedo();
+      } else if (e.key === 'Delete' || e.key === 'Backspace') {
+        deleteSelectedClip();
+      } else if (e.key.toLowerCase() === 's') {
+        splitSelectedClip();
+      } else if (e.key === ' ') {
+        e.preventDefault();
+        togglePlayback();
+      }
+    }
+
+    function triggerUndo() {
+      if (isCurrentlyExporting()) return;
+      if (EditorState.undo()) {
+        render();
+      }
+    }
+
+    function triggerRedo() {
+      if (isCurrentlyExporting()) return;
+      if (EditorState.redo()) {
+        render();
+      }
+    }
+
+    // 1. FILE HANDLERS
+    function handleFileImport(e) {
+      const files = Array.from(e.target.files);
+      processFiles(files);
+    }
+
+    function handleLeftPanelDrop(e) {
+      e.preventDefault();
+      const files = Array.from(e.dataTransfer.files);
+      if (files.length > 0) {
+        processFiles(files);
+      }
+    }
+
+    // Define media type to track compatibility map
+    const TRACK_ACCEPTS = {
+      'video': ['video', 'image'], // Video tracks accept video clips and still images
+      'audio': ['audio'],          // Audio tracks accept only audio-only files
+      'text': ['text']             // Text tracks accept only text overlays
+    };
+
+    function processFiles(files) {
+      files.forEach(file => {
+        const id = 'media-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+        const url = URL.createObjectURL(file);
+        const type = file.type.startsWith('video/') ? 'video' : file.type.startsWith('audio/') ? 'audio' : 'image';
+        
+        const mediaItem = {
+          id,
+          name: file.name,
+          type,
+          url,
+          duration: 5.0, // default if metadata loaded fails
+          thumbnailUrl: ''
+        };
+
+        if (type === 'video' || type === 'audio') {
+          const el = document.createElement(type);
+          el.src = url;
+          el.preload = 'metadata';
+
+          // Set 3-second hard timeout for metadata / seek loads
+          let timeoutId = setTimeout(() => {
+            cleanupAndFallback();
+          }, 3000);
+
+          function cleanupAndFallback() {
+            if (timeoutId) clearTimeout(timeoutId);
+            timeoutId = null;
+            el.onloadedmetadata = null;
+            el.onseeked = null;
+            el.onerror = null;
+            el.removeAttribute('src');
+            el.load();
+            
+            mediaItem.thumbnailUrl = ''; // Fallback to generic icon
+            EditorState.mediaBin.push(mediaItem);
+            renderMediaBin();
+            console.warn("Thumbnail generation timed out or failed for: " + file.name);
+          }
+
+          el.onerror = () => {
+            cleanupAndFallback();
+          };
+          
+          el.onloadedmetadata = () => {
+            mediaItem.duration = el.duration;
+            mediaPool[id] = el;
+            
+            if (type === 'video') {
+              // Bind seeked listener first to capture currentTime updates reliably
+              el.onseeked = () => {
+                if (!timeoutId) return; // Ignore if already timed out
+                clearTimeout(timeoutId);
+                timeoutId = null;
+
+                try {
+                  const tempCanvas = document.createElement('canvas');
+                  tempCanvas.width = 160;
+                  tempCanvas.height = 90;
+                  const tempCtx = tempCanvas.getContext('2d');
+                  tempCtx.drawImage(el, 0, 0, tempCanvas.width, tempCanvas.height);
+                  const dataUrl = tempCanvas.toDataURL();
+                  
+                  if (dataUrl && dataUrl.length > 50 && dataUrl !== 'data:,') {
+                    mediaItem.thumbnailUrl = dataUrl;
+                  } else {
+                    console.warn("Empty or invalid thumbnail generated for: " + file.name);
+                    mediaItem.thumbnailUrl = '';
+                  }
+                } catch (err) {
+                  console.warn("Thumbnail Canvas draw error for: " + file.name, err);
+                  mediaItem.thumbnailUrl = '';
+                } finally {
+                  // Release video element decoder resources
+                  el.onseeked = null;
+                  el.removeAttribute('src');
+                  el.load();
+                }
+
+                EditorState.mediaBin.push(mediaItem);
+                renderMediaBin();
+              };
+
+              // Clamp target seek position to video length
+              el.currentTime = Math.min(1.0, el.duration / 2);
+            } else {
+              if (timeoutId) {
+                clearTimeout(timeoutId);
+                timeoutId = null;
+              }
+              EditorState.mediaBin.push(mediaItem);
+              renderMediaBin();
+            }
+          };
+        } else {
+          // Images
+          const img = new Image();
+          img.src = url;
+          img.onload = () => {
+            mediaItem.thumbnailUrl = url;
+            mediaPool[id] = img;
+            EditorState.mediaBin.push(mediaItem);
+            renderMediaBin();
+          };
+        }
+      });
+    }
+
+    // 2. TIMELINE DRAG & DROP & CLIPS MANAGEMENT
+    function renderMediaBin() {
+      const searchVal = mediaSearch.value.toLowerCase();
+      mediaGrid.innerHTML = '';
+
+      const filtered = EditorState.mediaBin.filter(item => item.name.toLowerCase().includes(searchVal));
+
+      filtered.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'bg-zinc-950/40 border border-zinc-800 rounded-lg overflow-hidden group hover:border-zinc-700 cursor-grab active:cursor-grabbing';
+        card.draggable = true;
+        
+        card.addEventListener('dragstart', (e) => {
+          e.dataTransfer.setData('text/plain', item.id);
+          e.dataTransfer.setData('mediatype/' + item.type, 'true'); // Custom type format for dragover query
+        });
+
+        const iconName = item.type === 'audio' ? 'music' : item.type === 'video' ? 'video' : 'image';
+        const thumbContent = item.thumbnailUrl 
+          ? `<img src="${item.thumbnailUrl}" class="w-full h-full object-cover" />` 
+          : `<svg class="w-6 h-6 text-zinc-600 group-hover:text-zinc-400 transition-colors" fill="none" stroke="currentColor"><use href="#icon-${iconName}"></use></svg>`;
+
+        const durationBadge = item.type !== 'image' ? `<span class="absolute bottom-1 right-1 text-[9px] bg-zinc-950/80 text-zinc-400 px-1 rounded font-mono">${formatSeconds(item.duration)}</span>` : '';
+
+        card.innerHTML = `
+          <div class="aspect-video bg-zinc-900 flex items-center justify-center relative">
+            ${thumbContent}
+            ${durationBadge}
+          </div>
+          <div class="p-1.5">
+            <p class="text-[10px] font-medium truncate text-zinc-300" title="${item.name}">${item.name}</p>
+            <p class="text-[9px] text-zinc-500 uppercase">${item.type}</p>
+          </div>
+        `;
+        mediaGrid.appendChild(card);
+      });
+    }
+
+    // Helper to render toast notifications on dropped items
+    function showDropWarning(targetElement, message) {
+      const toast = document.createElement('div');
+      toast.className = 'absolute bg-rose-600/95 text-white text-[10px] font-bold px-2 py-1 rounded shadow-md z-30 transition-opacity duration-300 pointer-events-none';
+      toast.textContent = message;
       
-      const playhead = document.getElementById('timeline-playhead');
-      if (playhead) playhead.style.left = (pct * 100) + '%';
+      toast.style.left = '20px';
+      toast.style.top = '10px';
+      
+      targetElement.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+      }, 1500);
     }
-  };
-  tick();
-}
-function stopRAF() { if(rafId){cancelAnimationFrame(rafId);rafId=null;} }
 
-document.getElementById('btn-play').addEventListener('click', ()=>videoEl.play());
-document.getElementById('btn-pause').addEventListener('click', ()=>videoEl.pause());
-document.getElementById('btn-rewind').addEventListener('click', ()=>{ videoEl.currentTime=0; });
+    // Setup timeline drop zones dynamically during render
+    function setupTimelineDropZones() {
+      const lanes = document.querySelectorAll('.track-lane');
+      lanes.forEach(lane => {
+        lane.addEventListener('dragover', (e) => {
+          if (isCurrentlyExporting()) return;
 
-const dropEl  = document.getElementById('drop-zone');
-const fileInp = document.getElementById('file-input');
-dropEl.addEventListener('click', ()=>fileInp.click());
-fileInp.addEventListener('change', e=>handleFile(e.target.files[0]));
-dropEl.addEventListener('dragover', e=>{ e.preventDefault(); dropEl.classList.add('drag'); });
-dropEl.addEventListener('dragleave', ()=>dropEl.classList.remove('drag'));
-dropEl.addEventListener('drop', e=>{ e.preventDefault(); dropEl.classList.remove('drag'); handleFile(e.dataTransfer.files[0]); });
+          // Retrieve drag media type via custom types
+          const dragType = Array.from(e.dataTransfer.types)
+            .find(t => t.startsWith('mediatype/'))
+            ?.split('/')[1];
 
-function nudge(dir) {
-  if (!videoEl.src) return;
-  videoEl.pause();
-  videoEl.currentTime = Math.max(0, Math.min(videoEl.duration, videoEl.currentTime + dir/30));
-  videoEl.addEventListener('seeked', ()=>{ if(glEngine) glEngine.drawVideoFrame(videoEl); }, {once:true});
-}
-document.getElementById('btn-frame-back').addEventListener('click', ()=>nudge(-1));
-document.getElementById('btn-frame-fwd' ).addEventListener('click', ()=>nudge(+1));
+          const trackId = lane.dataset.trackId;
+          const track = EditorState.tracks.find(t => t.id === trackId);
 
-document.getElementById('seek-bar').addEventListener('input', function() {
-  const t = (this.value/10000)*(videoEl.duration||0);
-  if (seekThrottle) { pendingSeek=t; return; }
-  videoEl.currentTime=t;
-  seekThrottle=setTimeout(()=>{
-    seekThrottle=null;
-    if (pendingSeek!==null) { videoEl.currentTime=pendingSeek; pendingSeek=null; }
-  }, 40);
-});
+          if (track && track.locked) {
+            e.dataTransfer.dropEffect = 'none';
+            return;
+          }
 
-document.getElementById('speed-sl').addEventListener('input', function(){
-  document.getElementById('speed-val').textContent=parseFloat(this.value).toFixed(1)+'×';
-  videoEl.playbackRate=parseFloat(this.value);
-});
+          if (dragType && track) {
+            const acceptedTypes = TRACK_ACCEPTS[track.type];
+            if (acceptedTypes && acceptedTypes.includes(dragType)) {
+              e.preventDefault(); // Accept drop
+              e.dataTransfer.dropEffect = 'copy';
+              lane.classList.add('bg-zinc-800/20');
+            } else {
+              e.dataTransfer.dropEffect = 'none';
+              lane.classList.remove('bg-zinc-800/20');
+            }
+          }
+        });
 
-document.getElementById('ratio-sel').addEventListener('change', function(){
-  if (!videoEl.videoWidth) return;
-  const crop=cropUV(videoEl.videoWidth,videoEl.videoHeight,this.value);
-  if(glEngine) glEngine.crop=crop;
-  if (this.value!=='free') {
-    const [rw,rh]=this.value.split(':').map(Number);
-    document.getElementById('out-h').value=Math.round(parseInt(document.getElementById('out-w').value)*rh/rw);
-  }
-});
+        lane.addEventListener('dragleave', () => {
+          lane.classList.remove('bg-zinc-800/20');
+        });
 
-document.getElementById('btn-snapshot').addEventListener('click',()=>{
-  if(!glEngine||!videoEl.src) return;
-  addThumb(canvas, fmtT(videoEl.currentTime), document.getElementById('frame-strip'));
-});
+        lane.addEventListener('drop', (e) => {
+          lane.classList.remove('bg-zinc-800/20');
+          if (isCurrentlyExporting()) return;
+          e.preventDefault();
+          
+          const mediaId = e.dataTransfer.getData('text/plain');
+          
+          let mediaType = '';
+          let mediaName = '';
+          let mediaDuration = 5.0;
+          
+          if (mediaId.startsWith('text-preset:')) {
+            mediaType = 'text';
+            mediaName = mediaId.split(':')[1];
+          } else {
+            const media = EditorState.mediaBin.find(m => m.id === mediaId);
+            if (!media) return;
+            mediaType = media.type;
+            mediaName = media.name;
+            mediaDuration = media.duration;
+          }
 
-// Single Reader pipeline for LUT dropzone & file-input
-const lutDropEl = document.getElementById('lut-drop');
-const lutFileEl = document.getElementById('lut-file');
+          const trackId = lane.dataset.trackId;
+          const track = EditorState.tracks.find(t => t.id === trackId);
+          if (track.locked) return;
 
-const handleLutFile = file => {
-  if (!file) return;
-  const r = new FileReader();
-  r.onload = ev => {
-    try {
-      if(!glEngine) { setStatus('Load a video first.', true); return; }
-      glEngine.loadLut(ev.target.result);
-      lutDropEl.classList.add('border-premiere-accent', 'text-premiere-accent');
-      lutDropEl.textContent = '✓ ' + file.name + ' (' + glEngine.lutSize + '³)';
-      setStatus('LUT loaded successfully.');
-    } catch(er) {
-      setStatus('LUT error: ' + er.message, true);
+          // Double check compatibility map constraints
+          const acceptedTypes = TRACK_ACCEPTS[track.type];
+          if (!acceptedTypes || !acceptedTypes.includes(mediaType)) {
+            showDropWarning(lane, `${mediaType.toUpperCase()} cannot be placed on a ${track.type.toUpperCase()} track.`);
+            return;
+          }
+
+          const rect = lane.getBoundingClientRect();
+          const dropX = e.clientX - rect.left;
+          let startTime = dropX / EditorState.zoomPxPerSecond;
+          if (startTime < 0) startTime = 0;
+
+          // Apply snapping to playhead or edges on drop
+          if (isSnappingEnabled) {
+            startTime = getSnappedTime(startTime, null);
+          }
+
+          EditorState.pushHistory();
+          
+          const newClip = {
+            id: 'clip-' + Date.now(),
+            trackId,
+            mediaId,
+            startTime,
+            duration: Math.min(mediaDuration, 5.0),
+            trimIn: 0,
+            trimOut: Math.min(mediaDuration, 5.0),
+            x: 0,
+            y: 0,
+            scaleX: 100,
+            scaleY: 100,
+            rotation: 0,
+            opacity: 100,
+            saturation: 100,
+            contrast: 100
+          };
+
+          EditorState.clips.push(newClip);
+          EditorState.selectedClipId = newClip.id;
+
+          // Register in audio mixer immediately
+          const el = mediaPool[mediaId];
+          if (el && (mediaType === 'video' || mediaType === 'audio')) {
+            registerMediaElement(el, trackId);
+          }
+
+          render();
+        });
+      });
     }
-  };
-  r.readAsText(file);
-};
 
-lutDropEl.addEventListener('click', () => lutFileEl.click());
-lutFileEl.addEventListener('change', e => handleLutFile(e.target.files[0]));
-lutDropEl.addEventListener('dragover', e => { e.preventDefault(); lutDropEl.classList.add('border-premiere-accent'); });
-lutDropEl.addEventListener('dragleave', () => { lutDropEl.classList.remove('border-premiere-accent'); });
-lutDropEl.addEventListener('drop', e => {
-  e.preventDefault(); lutDropEl.classList.remove('border-premiere-accent');
-  handleLutFile(e.dataTransfer.files[0]);
-});
+    // Snapping calculation helper
+    function getSnappedTime(targetTime, ignoreClipId) {
+      const snapThreshold = 8 / EditorState.zoomPxPerSecond; // 8px window
+      let bestTime = targetTime;
+      let minDiff = snapThreshold;
 
-document.getElementById('btn-clear-lut').addEventListener('click', () => {
-  if (glEngine) glEngine.clearLut();
-  lutDropEl.className = 'border border-dashed border-premiere-border rounded-none p-2 text-center cursor-pointer text-[10px] text-gray-500 hover:border-premiere-accent hover:text-white transition-all';
-  lutDropEl.textContent = 'LUT drop area (.cube)';
-  setStatus('LUT cleared.');
-});
+      // Snap to playhead
+      let diff = Math.abs(targetTime - EditorState.playheadTime);
+      if (diff < minDiff) {
+        bestTime = EditorState.playheadTime;
+        minDiff = diff;
+      }
 
-[['f-bright','brightness'],['f-contrast','contrast'],['f-sat','saturation'],
- ['f-hue','hue'],['f-exp','exposure'],['f-lift','lift'],['f-gain','gain']
-].forEach(([id,key])=>{
-  document.getElementById(id).addEventListener('input',function(){
-    if(glEngine) glEngine.grade[key]=parseFloat(this.value);
-    syncGradeLabels();
-  });
-});
-document.getElementById('lut-mix').addEventListener('input',function(){
-  if(glEngine) glEngine.grade.lutMix=parseFloat(this.value);
-  syncGradeLabels();
-});
-document.getElementById('btn-reset-grade').addEventListener('click',()=>{ if(glEngine) glEngine.resetGrade(); });
+      // Snap to other clip start/end boundaries
+      EditorState.clips.forEach(c => {
+        if (c.id === ignoreClipId) return;
+        
+        // Start boundary
+        diff = Math.abs(targetTime - c.startTime);
+        if (diff < minDiff) {
+          bestTime = c.startTime;
+          minDiff = diff;
+        }
 
-document.querySelectorAll('.pill[data-f]').forEach(pill=>{
-  pill.addEventListener('click',function(){
-    const f=pill.dataset.f;
-    if(!glEngine) return;
-    if(glEngine.filters.has(f)){glEngine.filters.delete(f);pill.classList.remove('on');}
-    else{glEngine.filters.add(f);pill.classList.add('on');}
-  });
-});
+        // End boundary
+        diff = Math.abs(targetTime - (c.startTime + c.duration));
+        if (diff < minDiff) {
+          bestTime = c.startTime + c.duration;
+          minDiff = diff;
+        }
+      });
 
-document.querySelectorAll('.mobile-tab-btn').forEach(btn=>{
-  btn.addEventListener('click',function(){
-    document.querySelectorAll('.mobile-tab-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    const targets=(btn.dataset.target||'').split(',').map(s=>s.trim());
-    document.querySelectorAll('.s-sidebar .panel-card').forEach(c=>{
-      if (window.innerWidth<=900) c.style.display='none';
-    });
-    targets.forEach(id=>{
-      const el=document.getElementById(id); if(el) el.style.display='flex';
-    });
-  });
-});
+      return bestTime;
+    }
 
-window.addEventListener('resize', () => {
-  if (window.innerWidth>900) {
-    document.querySelectorAll('.s-sidebar .panel-card').forEach(c=>c.style.display='');
-  }
-});
+    // Split selected clip at playhead time
+    function splitSelectedClip() {
+      if (isCurrentlyExporting()) return;
+      if (!EditorState.selectedClipId) return;
+      const clipIndex = EditorState.clips.findIndex(c => c.id === EditorState.selectedClipId);
+      if (clipIndex === -1) return;
 
-syncGradeLabels();
-</script>
+      const clip = EditorState.clips[clipIndex];
+      const track = EditorState.tracks.find(t => t.id === clip.trackId);
+      if (track.locked) return;
+
+      const playhead = EditorState.playheadTime;
+      if (playhead > clip.startTime && playhead < (clip.startTime + clip.duration)) {
+        EditorState.pushHistory();
+
+        const splitOffset = playhead - clip.startTime;
+        
+        // Create duplicate second clip
+        const secondClip = JSON.parse(JSON.stringify(clip));
+        secondClip.id = 'clip-' + Date.now();
+        secondClip.startTime = playhead;
+        secondClip.duration = clip.duration - splitOffset;
+        secondClip.trimIn = clip.trimIn + splitOffset;
+
+        // Resize first clip
+        clip.duration = splitOffset;
+        clip.trimOut = clip.trimIn + splitOffset;
+
+        EditorState.clips.push(secondClip);
+        EditorState.selectedClipId = secondClip.id;
+        render();
+      }
+    }
+
+    // Delete selected clip
+    function deleteSelectedClip() {
+      if (isCurrentlyExporting()) return;
+      if (!EditorState.selectedClipId) return;
+      const clip = EditorState.clips.find(c => c.id === EditorState.selectedClipId);
+      if (!clip) return;
+
+      const track = EditorState.tracks.find(t => t.id === clip.trackId);
+      if (track.locked) return;
+
+      EditorState.pushHistory();
+      EditorState.clips = EditorState.clips.filter(c => c.id !== EditorState.selectedClipId);
+      EditorState.selectedClipId = null;
+      render();
+    }
+
+    // 3. PREVIEW & SYNCED RENDERING
+    function updateCanvasPreview() {
+      // Clear canvas
+      ctx.fillStyle = '#09090b';
+      ctx.fillRect(0, 0, previewCanvas.width, previewCanvas.height);
+
+      // Draw active clips sequentially from lowest track to highest track
+      const orderedTracks = ['track-1', 'track-2', 'track-3', 'track-4'];
+
+      orderedTracks.forEach(trackId => {
+        const track = EditorState.tracks.find(t => t.id === trackId);
+        if (track.muted) return;
+
+        const activeClips = EditorState.clips.filter(c => 
+          c.trackId === trackId && 
+          EditorState.playheadTime >= c.startTime && 
+          EditorState.playheadTime < (c.startTime + c.duration)
+        );
+
+        activeClips.forEach(clip => {
+          const media = EditorState.mediaBin.find(m => m.id === clip.mediaId);
+          if (!media) return;
+
+          ctx.save();
+          
+          // Apply transforms
+          ctx.globalAlpha = clip.opacity / 100;
+
+          // Simple saturation & contrast filter simulation on 2d canvas
+          if (clip.saturation !== 100 || clip.contrast !== 100) {
+            ctx.filter = `saturate(${clip.saturation}%) contrast(${clip.contrast}%)`;
+          }
+
+          // Center-offset origin transforms
+          ctx.translate(previewCanvas.width / 2 + (clip.x || 0), previewCanvas.height / 2 + (clip.y || 0));
+          ctx.rotate((clip.rotation || 0) * Math.PI / 180);
+          ctx.scale((clip.scaleX || 100) / 100, (clip.scaleY || 100) / 100);
+
+          if (media.type === 'video') {
+            const videoEl = mediaPool[media.id];
+            if (videoEl) {
+              const videoTime = (EditorState.playheadTime - clip.startTime) + clip.trimIn;
+              // Synchronize video timeline currentTime accurately
+              if (Math.abs(videoEl.currentTime - videoTime) > 0.15) {
+                videoEl.currentTime = videoTime;
+              }
+              try {
+                ctx.drawImage(videoEl, -previewCanvas.width / 2, -previewCanvas.height / 2, previewCanvas.width, previewCanvas.height);
+              } catch (e) {}
+            }
+          } else if (media.type === 'image') {
+            const imgEl = mediaPool[media.id];
+            if (imgEl) {
+              try {
+                ctx.drawImage(imgEl, -previewCanvas.width / 2, -previewCanvas.height / 2, previewCanvas.width, previewCanvas.height);
+              } catch (e) {}
+            }
+          }
+
+          ctx.restore();
+        });
+      });
+
+      // Update time display labels
+      const timeStr = formatTimeCode(EditorState.playheadTime);
+      playTimeCurrent.textContent = timeStr;
+      timelineTimeDisplay.textContent = timeStr;
+
+      // Update playhead line position
+      const leftOffset = 192 + (EditorState.playheadTime * EditorState.zoomPxPerSecond);
+      playheadLine.style.left = `${leftOffset}px`;
+
+      // Update scrub slider
+      const totalDur = getProjectTotalDuration();
+      const pct = totalDur > 0 ? (EditorState.playheadTime / totalDur) * 100 : 0;
+      scrubProgress.style.width = `${pct}%`;
+      scrubHandle.style.left = `calc(${pct}% - 7px)`;
+    }
+
+    // Playhead timeline sync loop using requestVideoFrameCallback or requestAnimationFrame
+    function playbackLoop() {
+      if (!isPlaying) return;
+
+      const now = performance.now();
+      if (!playbackLoop.lastTime) playbackLoop.lastTime = now;
+      const delta = (now - playbackLoop.lastTime) / 1000;
+      playbackLoop.lastTime = now;
+
+      // Advance playhead time
+      EditorState.playheadTime += delta;
+      
+      // Update export progress UI
+      updateExportProgress(EditorState.playheadTime);
+
+      const totalDur = getProjectTotalDuration();
+      if (EditorState.playheadTime >= totalDur) {
+        EditorState.playheadTime = 0;
+        togglePlayback(); // pause at end
+      }
+
+      // Sync elements
+      syncActiveMediaPlayback();
+      updateCanvasPreview();
+
+      requestAnimationFrame(playbackLoop);
+    }
+
+    function syncActiveMediaPlayback() {
+      // Toggle play/pause state of underlying media items
+      EditorState.clips.forEach(clip => {
+        const media = EditorState.mediaBin.find(m => m.id === clip.mediaId);
+        if (!media || media.type !== 'video' && media.type !== 'audio') return;
+
+        const el = mediaPool[media.id];
+        if (!el) return;
+
+        const track = EditorState.tracks.find(t => t.id === clip.trackId);
+        
+        const isActive = isPlaying && 
+                         EditorState.playheadTime >= clip.startTime && 
+                         EditorState.playheadTime < (clip.startTime + clip.duration);
+
+        if (isActive) {
+          // Never mute the element itself. Muting is done via Web Audio previewMasterGain/exportMasterGain.
+          el.muted = false;
+          // Dynamically map node connections
+          registerMediaElement(el, clip.trackId);
+          if (el.paused) {
+            el.play().catch(() => {});
+          }
+        } else {
+          if (!el.paused) {
+            el.pause();
+          }
+        }
+      });
+    }
+
+    function togglePlayback() {
+      isPlaying = !isPlaying;
+      if (isPlaying) {
+        playbackLoop.lastTime = performance.now();
+        btnPlayPause.innerHTML = '<svg class="w-4 h-4" fill="currentColor"><use href="#icon-pause"></use></svg>';
+        requestAnimationFrame(playbackLoop);
+      } else {
+        btnPlayPause.innerHTML = '<svg class="w-4 h-4" fill="currentColor"><use href="#icon-play"></use></svg>';
+        // Pause all media items
+        Object.values(mediaPool).forEach(el => {
+          if (typeof el.pause === 'function') el.pause();
+        });
+      }
+    }
+
+    function stepFrame(framesCount) {
+      if (isPlaying) togglePlayback();
+      EditorState.playheadTime = Math.max(0, EditorState.playheadTime + (framesCount / 30));
+      updateCanvasPreview();
+    }
+
+    function toggleGlobalVolume() {
+      // Toggle global state for audio
+      const btn = document.getElementById('btn-volume-toggle');
+      const isMuted = btn.querySelector('use[href="#icon-volume-x"]');
+      if (isMuted) {
+        btn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor"><use href="#icon-volume-2"></use></svg>';
+      } else {
+        btn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor"><use href="#icon-volume-x"></use></svg>';
+      }
+    }
+
+    // Ruler & Playhead Drag Seekers
+    function startRulerSeek(e) {
+      const rect = ruler.getBoundingClientRect();
+      const updatePosition = (clientX) => {
+        const x = clientX - rect.left - 192; // 192px left spacer
+        const time = Math.max(0, x / EditorState.zoomPxPerSecond);
+        EditorState.playheadTime = time;
+        updateCanvasPreview();
+      };
+      
+      updatePosition(e.clientX);
+
+      const moveHandler = (moveEvent) => updatePosition(moveEvent.clientX);
+      const upHandler = () => {
+        window.removeEventListener('mousemove', moveHandler);
+        window.removeEventListener('mouseup', upHandler);
+      };
+      window.addEventListener('mousemove', moveHandler);
+      window.addEventListener('mouseup', upHandler);
+    }
+
+    function startPlayheadDrag(e) {
+      e.stopPropagation();
+      const rect = ruler.getBoundingClientRect();
+      const updatePosition = (clientX) => {
+        const x = clientX - rect.left - 192;
+        EditorState.playheadTime = Math.max(0, x / EditorState.zoomPxPerSecond);
+        updateCanvasPreview();
+      };
+
+      const moveHandler = (moveEvent) => updatePosition(moveEvent.clientX);
+      const upHandler = () => {
+        window.removeEventListener('mousemove', moveHandler);
+        window.removeEventListener('mouseup', upHandler);
+      };
+      window.addEventListener('mousemove', moveHandler);
+      window.addEventListener('mouseup', upHandler);
+    }
+
+    // 4. PROPERTIES INSPECTOR BINDING
+    function updatePropertyLabels() {
+      propScaleLabel.textContent = `${propScale.value}%`;
+      propRotationLabel.textContent = `${propRotation.value}Â°`;
+      propOpacityLabel.textContent = `${propOpacity.value}%`;
+      propSaturationLabel.textContent = `${propSaturation.value}%`;
+      propContrastLabel.textContent = `${propContrast.value}%`;
+    }
+
+    function populateInspector() {
+      if (!EditorState.selectedClipId) {
+        // Clear properties panel
+        propName.textContent = 'No Clip Selected';
+        propBadge.textContent = 'None';
+        propBadge.className = 'text-[9px] uppercase tracking-wider bg-zinc-800 text-zinc-400 border border-zinc-700 px-1 py-0.5 rounded';
+        propMeta.textContent = 'Select a clip on the timeline to edit properties.';
+        
+        propTransformGroup.classList.add('opacity-50', 'pointer-events-none');
+        propColorGroup.classList.add('opacity-50', 'pointer-events-none');
+        return;
+      }
+
+      const clip = EditorState.clips.find(c => c.id === EditorState.selectedClipId);
+      if (!clip) return;
+
+      const media = EditorState.mediaBin.find(m => m.id === clip.mediaId);
+      
+      propName.textContent = media ? media.name : 'Unknown Layer';
+      propBadge.textContent = media ? media.type : 'text';
+      propBadge.className = `text-[9px] uppercase tracking-wider border px-1 py-0.5 rounded ${
+        clip.trackId === 'track-1' || clip.trackId === 'track-2' ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' : 
+        clip.trackId === 'track-3' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' : 
+        'bg-amber-500/10 text-amber-400 border-amber-500/20'
+      }`;
+      propMeta.textContent = `Duration: ${clip.duration.toFixed(2)}s â€¢ Trim In: ${clip.trimIn.toFixed(2)}s`;
+
+      // Enable panels
+      propTransformGroup.classList.remove('opacity-50', 'pointer-events-none');
+      propColorGroup.classList.remove('opacity-50', 'pointer-events-none');
+
+      // Populate input values
+      propX.value = clip.x || 0;
+      propY.value = clip.y || 0;
+      propScale.value = clip.scaleX || 100;
+      propRotation.value = clip.rotation || 0;
+      propOpacity.value = clip.opacity || 100;
+      propSaturation.value = clip.saturation || 100;
+      propContrast.value = clip.contrast || 100;
+
+      updatePropertyLabels();
+    }
+
+    function updateSelectedClipTransforms() {
+      if (!EditorState.selectedClipId) return;
+      const clip = EditorState.clips.find(c => c.id === EditorState.selectedClipId);
+      if (!clip) return;
+
+      // Read values and write to EditorState
+      clip.x = parseInt(propX.value) || 0;
+      clip.y = parseInt(propY.value) || 0;
+      clip.scaleX = parseInt(propScale.value);
+      clip.scaleY = parseInt(propScale.value);
+      clip.rotation = parseInt(propRotation.value);
+      clip.opacity = parseInt(propOpacity.value);
+      clip.saturation = parseInt(propSaturation.value);
+      clip.contrast = parseInt(propContrast.value);
+
+      updateCanvasPreview();
+    }
+
+    // AI presets trigger helper
+    window.applyAIVibePreset = function() {
+      if (!EditorState.selectedClipId) return alert('Select a clip first');
+      const clip = EditorState.clips.find(c => c.id === EditorState.selectedClipId);
+      if (clip) {
+        EditorState.pushHistory();
+        clip.saturation = 115;
+        clip.contrast = 105;
+        populateInspector();
+        updateCanvasPreview();
+        alert('Applied vibe golden grade properties via AI suggestion!');
+      }
+    };
+
+    // 5. RENDER SYSTEM (Main UI Sync)
+    function render() {
+      renderMediaBin();
+      renderRuler();
+      renderTimelineTracks();
+      populateInspector();
+      updateCanvasPreview();
+
+      // Sync mixer gains with track muted configurations
+      EditorState.tracks.forEach(track => {
+        updateTrackAudioMix(track.id, track.muted);
+      });
+    }
+
+    // Timeline Ruler Tick Generator
+    function renderRuler() {
+      const markersContainer = document.getElementById('ruler-markers');
+      markersContainer.innerHTML = '';
+
+      const totalSeconds = 30; // standard display length
+      const step = 5;
+
+      for (let sec = 0; sec <= totalSeconds; sec += step) {
+        const left = sec * EditorState.zoomPxPerSecond;
+        const tick = document.createElement('div');
+        tick.className = 'absolute border-l border-zinc-700 h-2 pl-1.5 select-none pointer-events-none';
+        tick.style.left = `${left}px`;
+        tick.textContent = `${sec}s`;
+        markersContainer.appendChild(tick);
+      }
+    }
+
+    // Render horizontal Tracks & Scrubber elements
+    function renderTimelineTracks() {
+      tracksContainer.innerHTML = '';
+
+      EditorState.tracks.forEach(track => {
+        const trackRow = document.createElement('div');
+        trackRow.className = 'h-12 flex items-center relative group/track';
+        
+        // Mute/Lock toggle styling
+        const muteIcon = track.muted ? (track.type === 'audio' ? 'volume-x' : 'eye-off') : (track.type === 'audio' ? 'volume-2' : 'eye');
+        const lockIcon = track.locked ? 'lock' : 'unlock';
+        
+        trackRow.innerHTML = `
+          <!-- Control label on Left -->
+          <div class="w-48 h-full bg-editor-panel border-r border-editor-surface flex items-center justify-between px-3 shrink-0 sticky left-0 z-20 shadow-md">
+            <span class="text-xs font-semibold ${track.locked ? 'text-zinc-500' : 'text-zinc-300'}">${track.name}</span>
+            <div class="flex items-center gap-1.5">
+              <button class="track-btn-mute text-zinc-500 hover:text-zinc-200 p-0.5" title="Mute Track" data-track-id="${track.id}"><svg class="w-3.5 h-3.5 ${track.muted ? 'text-rose-400' : ''}" fill="none" stroke="currentColor"><use href="#icon-${muteIcon}"></use></svg></button>
+              <button class="track-btn-lock text-zinc-500 hover:text-zinc-200 p-0.5" title="Lock Track" data-track-id="${track.id}"><svg class="w-3.5 h-3.5 ${track.locked ? 'text-amber-400' : ''}" fill="none" stroke="currentColor"><use href="#icon-${lockIcon}"></use></svg></button>
+            </div>
+          </div>
+          <!-- Track lane container -->
+          <div class="flex-1 h-full bg-zinc-950/20 relative track-lane" data-track-id="${track.id}">
+            <!-- Scrubber Clips will be placed here -->
+          </div>
+        `;
+
+        // Wire Mute & Lock controls
+        trackRow.querySelector('.track-btn-mute').addEventListener('click', (e) => {
+          track.muted = !track.muted;
+          render();
+        });
+        trackRow.querySelector('.track-btn-lock').addEventListener('click', (e) => {
+          track.locked = !track.locked;
+          render();
+        });
+
+        // Append lane container
+        const lane = trackRow.querySelector('.track-lane');
+        
+        // Find clips for this track
+        const trackClips = EditorState.clips.filter(c => c.trackId === track.id);
+        trackClips.forEach(clip => {
+          const media = EditorState.mediaBin.find(m => m.id === clip.mediaId);
+          const clipEl = document.createElement('div');
+
+          // Derive media type of the clip (handles media items vs text presets)
+          const clipType = media ? media.type : 'text';
+
+          // Set classes dynamically based on the clip's actual media type, not the track it is on
+          const clipColorClass = 
+            clipType === 'video' ? 'bg-blue-500/20 hover:bg-blue-500/35 border-blue-500/60' :
+            clipType === 'image' ? 'bg-indigo-500/20 hover:bg-indigo-500/35 border-indigo-500/60' :
+            clipType === 'audio' ? 'bg-emerald-500/15 hover:bg-emerald-500/25 border-emerald-500/40' :
+            'bg-amber-500/20 hover:bg-amber-500/30 border-amber-500/60';
+
+          const iconType = 
+            clipType === 'audio' ? 'music' : 
+            clipType === 'text' ? 'type' : 
+            clipType === 'image' ? 'image' : 'video';
+
+          const clipTextColor = 
+            clipType === 'audio' ? 'text-emerald-400' : 
+            clipType === 'text' ? 'text-amber-400' : 
+            clipType === 'image' ? 'text-indigo-400' : 'text-blue-400';
+          
+          clipEl.className = `absolute top-1 bottom-1 border rounded-md p-1.5 cursor-pointer flex items-center justify-between text-xs select-none transition-colors duration-150 ${
+            EditorState.selectedClipId === clip.id ? 'clip-selected' : ''
+          } ${clipColorClass}`;
+
+          const left = clip.startTime * EditorState.zoomPxPerSecond;
+          const width = clip.duration * EditorState.zoomPxPerSecond;
+          clipEl.style.left = `${left}px`;
+          clipEl.style.width = `${width}px`;
+
+          clipEl.innerHTML = `
+            <div class="min-w-0 flex items-center gap-2 pointer-events-none">
+              <svg class="w-3.5 h-3.5 shrink-0 ${clipTextColor}" fill="none" stroke="currentColor"><use href="#icon-${iconType}"></use></svg>
+              <span class="font-medium truncate text-[11px] text-zinc-200">${media ? media.name : 'Untitled Text'}</span>
+            </div>
+            <span class="text-[9px] font-mono pointer-events-none ${clipTextColor}">${clip.duration.toFixed(1)}s</span>
+            
+            <!-- Left/Right Trim Handle Overlays (Only if track is unlocked) -->
+            ${!track.locked ? `
+              <div class="absolute left-0 top-0 bottom-0 w-1.5 cursor-ew-resize hover:bg-white/30 trim-handle-left"></div>
+              <div class="absolute right-0 top-0 bottom-0 w-1.5 cursor-ew-resize hover:bg-white/30 trim-handle-right"></div>
+            ` : ''}
+          `;
+
+          // Handle clip selection
+          clipEl.addEventListener('click', (e) => {
+            e.stopPropagation();
+            EditorState.selectedClipId = clip.id;
+            render();
+          });
+
+          // Handle clip drag & trim
+          if (!track.locked) {
+            setupClipInteractivity(clipEl, clip, media);
+          }
+
+          lane.appendChild(clipEl);
+        });
+
+        tracksContainer.appendChild(trackRow);
+      });
+
+      setupTimelineDropZones();
+    }
+
+    // Trim & drag handles implementation
+    function setupClipInteractivity(el, clip, media) {
+      let isDragging = false;
+      let isTrimmingLeft = false;
+      let isTrimmingRight = false;
+      let startX = 0;
+      let startLeft = 0;
+      let startWidth = 0;
+      let startStartTime = 0;
+      let startTrimIn = 0;
+      let startTrimOut = 0;
+
+      const handleMouseDown = (e, mode) => {
+        e.stopPropagation();
+        EditorState.pushHistory();
+        
+        isDragging = mode === 'drag';
+        isTrimmingLeft = mode === 'left';
+        isTrimmingRight = mode === 'right';
+        
+        startX = e.clientX;
+        startLeft = parseFloat(el.style.left);
+        startWidth = parseFloat(el.style.width);
+        startStartTime = clip.startTime;
+        startTrimIn = clip.trimIn;
+        startTrimOut = clip.trimOut;
+
+        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('mouseup', handleMouseUp);
+      };
+
+      const handleMouseMove = (e) => {
+        const dx = e.clientX - startX;
+        const dt = dx / EditorState.zoomPxPerSecond;
+
+        if (isDragging) {
+          let newStart = startStartTime + dt;
+          if (newStart < 0) newStart = 0;
+          
+          if (isSnappingEnabled) {
+            newStart = getSnappedTime(newStart, clip.id);
+          }
+          
+          clip.startTime = newStart;
+        } else if (isTrimmingLeft) {
+          let delta = dt;
+          // limit trim offset so clip doesn't drop below 0.1s
+          if (startTrimIn + delta < 0) delta = -startTrimIn;
+          if (clip.duration - delta < 0.1) delta = clip.duration - 0.1;
+
+          clip.startTime = startStartTime + delta;
+          clip.trimIn = startTrimIn + delta;
+          clip.duration = startTrimOut - clip.trimIn;
+        } else if (isTrimmingRight) {
+          let delta = dt;
+          // limit trim boundary
+          const sourceMax = media ? media.duration : 999.0;
+          if (startTrimOut + delta > sourceMax) delta = sourceMax - startTrimOut;
+          if (clip.duration + delta < 0.1) delta = 0.1 - clip.duration;
+
+          clip.duration = startTrimOut + delta - clip.trimIn;
+          clip.trimOut = startTrimOut + delta;
+        }
+
+        // Live update position and width
+        el.style.left = `${clip.startTime * EditorState.zoomPxPerSecond}px`;
+        el.style.width = `${clip.duration * EditorState.zoomPxPerSecond}px`;
+        updateCanvasPreview();
+      };
+
+      const handleMouseUp = () => {
+        window.removeEventListener('mousemove', handleMouseMove);
+        window.removeEventListener('mouseup', handleMouseUp);
+        render();
+      };
+
+      // Wire drag
+      el.addEventListener('mousedown', (e) => {
+        if (e.target.classList.contains('trim-handle-left') || e.target.classList.contains('trim-handle-right')) return;
+        handleMouseDown(e, 'drag');
+      });
+
+      // Wire trim left/right
+      const leftHandle = el.querySelector('.trim-handle-left');
+      const rightHandle = el.querySelector('.trim-handle-right');
+      
+      if (leftHandle) leftHandle.addEventListener('mousedown', (e) => handleMouseDown(e, 'left'));
+      if (rightHandle) rightHandle.addEventListener('mousedown', (e) => handleMouseDown(e, 'right'));
+    }
+
+    // Helper functions
+    function getProjectTotalDuration() {
+      let maxTime = 30.0;
+      EditorState.clips.forEach(clip => {
+        const endTime = clip.startTime + clip.duration;
+        if (endTime > maxTime) maxTime = endTime;
+      });
+      return maxTime;
+    }
+
+    function formatTimeCode(seconds) {
+      const hrs = Math.floor(seconds / 3600);
+      const mins = Math.floor((seconds % 3600) / 60);
+      const secs = Math.floor(seconds % 60);
+      const frames = Math.floor((seconds % 1) * 30);
+
+      const pad = (num) => String(num).padStart(2, '0');
+      return `${pad(mins)}:${pad(secs)}:${pad(frames)}`;
+    }
+
+    function formatSeconds(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${String(secs).padStart(2, '0')}`;
+    }
+  </script>
 </body>
 </html>
