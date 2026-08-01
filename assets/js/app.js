@@ -487,9 +487,11 @@
         const cat = getCategory(item.url);
         if (currentCategory !== "all" && cat !== currentCategory) return false;
         if (!query) return true;
-        return (item.title || "").toLowerCase().includes(query) ||
-               (item.description || "").toLowerCase().includes(query) ||
-               (item.keywords || "").toLowerCase().includes(query);
+        // ⚡ Bolt Optimization: Use pre-computed lowercase search fields mapped on fetch to avoid
+        // O(N) .toLowerCase() conversions on every single filter evaluation.
+        return item._titleLower.includes(query) ||
+               item._descLower.includes(query) ||
+               item._keywordsLower.includes(query);
       });
 
       if (countIndicator) {
@@ -559,9 +561,15 @@
     });
 
     if (searchInput) {
+      let debounceTimeout;
+      // ⚡ Bolt Optimization: Debounce search input with a 150ms window to prevent
+      // expensive redundant catalog filtering and layout reflows on every keystroke.
       searchInput.addEventListener("input", () => {
-        currentPage = 1;
-        render();
+        clearTimeout(debounceTimeout);
+        debounceTimeout = setTimeout(() => {
+          currentPage = 1;
+          render();
+        }, 150);
       });
     }
 
@@ -589,7 +597,15 @@
         return res.json();
       })
       .then(data => {
-        allItems = data.filter(item => item && item.url && item.url !== "/" && !item.url.endsWith("/index.html"));
+        // ⚡ Bolt Optimization: Map results to pre-compute lowercase search properties on initial load
+        allItems = data
+          .filter(item => item && item.url && item.url !== "/" && !item.url.endsWith("/index.html"))
+          .map(item => ({
+            ...item,
+            _titleLower: (item.title || "").toLowerCase(),
+            _descLower: (item.description || "").toLowerCase(),
+            _keywordsLower: (item.keywords || "").toLowerCase()
+          }));
         render();
       })
       .catch(err => {
