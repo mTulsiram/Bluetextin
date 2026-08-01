@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,587 +11,378 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" href="/assets/css/main.css">
-  <style>
-  /* ══════════════════════════════════════════════════════════════
-     DESIGN TOKENS — 60-30-10 Obsidian System
-     Matches the professional Figma/native editor mockup
-  ══════════════════════════════════════════════════════════════ */
-  :root {
-    --bg:        #0B0D11;
-    --card:      #13161C;
-    --card-hi:   #171B24;
-    --border:    #1F242E;
-    --border-hi: #2E3646;
-    --accent:    #2563EB;
-    --accent-hi: #3B82F6;
-    --accent-lo: rgba(37,99,235,.15);
-    --text:      #F1F5F9;
-    --text-2:    #94A3B8;
-    --text-3:    #475569;
-    --green:     #10B981;
-    --red:       #EF4444;
-    --sans:      'Inter', system-ui, sans-serif;
-    --mono:      'JetBrains Mono', monospace;
-    --radius:    6px;
-    --radius-lg: 10px;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    overflow-x: hidden;
-  }
-
-  /* ── STUDIO CONTAINER ────────────────────────────────────────── */
-  .studio {
-    display: flex; flex-direction: column;
-    background: var(--bg);
-    min-height: 100vh;
-  }
-
-  /* ── HEADER ──────────────────────────────────────────────────── */
-  .s-header {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 12px 20px; background: var(--card);
-    border-bottom: 1px solid var(--border);
-  }
-  .brand-group { display: flex; align-items: center; gap: 8px; }
-  .brand-logo { font-size: 1.2rem; }
-  .brand-name { font-size: 0.95rem; font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
-  .status-indicator {
-    font-size: 0.72rem; font-family: var(--mono); color: var(--green);
-    background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2);
-    border-radius: 12px; padding: 3px 10px;
-  }
-  .status-indicator.err {
-    color: var(--red); background: rgba(239,68,68,0.08); border-color: rgba(239,68,68,0.2);
-  }
-  .engine-badge-group { display: flex; gap: 6px; }
-
-  /* ── THREE-COLUMN LAYOUT ──────────────────────────────────────── */
-  .studio-main {
-    display: grid;
-    grid-template-columns: 300px 1fr 280px;
-    flex: 1;
-    height: calc(100vh - 120px);
-    overflow: hidden;
-  }
-  @media (max-width: 1100px) {
-    .studio-main { grid-template-columns: 260px 1fr 240px; }
-  }
-  @media (max-width: 900px) {
-    .studio-main { grid-template-columns: 1fr; height: auto; overflow: visible; }
-  }
-
-  /* ── SIDEBARS ─────────────────────────────────────────────────── */
-  .s-sidebar {
-    background: var(--card);
-    border-right: 1px solid var(--border);
-    overflow-y: auto;
-    padding: 12px;
-    display: flex; flex-direction: column; gap: 10px;
-  }
-  .s-sidebar-right {
-    border-right: none;
-    border-left: 1px solid var(--border);
-  }
-
-  /* ── CARDS ───────────────────────────────────────────────────── */
-  .panel-card {
-    background: var(--card-hi);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 12px;
-    display: flex; flex-direction: column; gap: 8px;
-  }
-  .panel-hdr {
-    display: flex; align-items: center; justify-content: space-between;
-    font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.08em; color: var(--text-2);
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 6px; margin-bottom: 2px;
-  }
-  .panel-hdr-badge {
-    font-size: 0.6rem; text-transform: none; letter-spacing: 0;
-    color: var(--accent-hi); background: var(--accent-lo);
-    padding: 1px 6px; border-radius: 4px; border: 1px solid rgba(59,130,246,0.2);
-  }
-
-  /* ── SOURCE PANEL ────────────────────────────────────────────── */
-  .source-drop {
-    border: 1px dashed var(--border-hi); border-radius: var(--radius);
-    padding: 16px 10px; text-align: center; cursor: pointer;
-    font-size: 0.75rem; color: var(--text-3); transition: all 0.2s;
-    background: var(--bg);
-  }
-  .source-drop:hover { border-color: var(--accent); color: var(--accent-hi); background: var(--accent-lo); }
-  .source-icon { font-size: 1.5rem; display: block; margin-bottom: 4px; }
-  
-  .src-info-box {
-    display: flex; gap: 10px; background: var(--bg);
-    border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 8px; align-items: center;
-  }
-  .src-info-thumb {
-    width: 48px; height: 36px; background: #000; border-radius: 3px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.8rem; flex-shrink: 0; border: 1px solid var(--border-hi);
-  }
-  .src-info-details {
-    display: flex; flex-direction: column; gap: 2px; min-width: 0;
-  }
-  .src-info-title {
-    font-size: 0.72rem; font-weight: 600; color: var(--text);
-    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-  }
-  .src-info-meta { font-size: 0.62rem; color: var(--text-2); font-family: var(--mono); }
-
-  /* ── SLIDERS & CONTROLS ───────────────────────────────────────── */
-  .ctrl-group { display: flex; flex-direction: column; gap: 8px; }
-  .row-field { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-  .lbl { font-size: 0.72rem; color: var(--text-2); font-weight: 500; }
-  
-  .slider-row { display: flex; align-items: center; gap: 8px; }
-  .slider-row .lbl { min-width: 74px; }
-  .slider-row input[type="range"] {
-    flex: 1; accent-color: var(--accent); height: 4px;
-    background: var(--border); border-radius: 2px; cursor: pointer;
-  }
-  .slider-val {
-    min-width: 44px; text-align: right; font-size: 0.7rem;
-    font-family: var(--mono); color: var(--accent-hi); font-weight: 600;
-  }
-
-  /* Form Elements */
-  select, input[type="number"], input[type="text"] {
-    background: var(--bg); color: var(--text);
-    border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 6px 10px; font-family: var(--sans); font-size: 0.75rem;
-    outline: none; transition: border-color 0.15s;
-  }
-  select:focus, input:focus { border-color: var(--accent); }
-  select {
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%2364748B'/%3E%3C/svg%3E");
-    background-repeat: no-repeat; background-position: right 10px center;
-    padding-right: 24px;
-  }
-
-  /* Toggle Switch */
-  .switch { position: relative; width: 34px; height: 18px; }
-  .switch input { opacity: 0; width: 0; height: 0; }
-  .switch-slider {
-    position: absolute; inset: 0; cursor: pointer;
-    background: var(--border); border-radius: 18px; transition: 0.2s;
-  }
-  .switch-slider:before {
-    content: ""; position: absolute; left: 2px; top: 2px;
-    width: 14px; height: 14px; background: var(--text-2);
-    border-radius: 50%; transition: 0.2s;
-  }
-  input:checked + .switch-slider { background: var(--accent); }
-  input:checked + .switch-slider:before { transform: translateX(16px); background: #fff; }
-
-  /* Redesigned Button styles */
-  .btn {
-    background: var(--border); color: var(--text); border: 1px solid var(--border-hi);
-    border-radius: var(--radius); padding: 7px 12px; font-size: 0.72rem;
-    font-weight: 600; cursor: pointer; display: inline-flex; align-items: center;
-    gap: 4px; justify-content: center; transition: all 0.15s;
-  }
-  .btn:hover:not(:disabled) { background: var(--border-hi); color: #fff; }
-  .btn-accent { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .btn-accent:hover:not(:disabled) { background: var(--accent-hi); border-color: var(--accent-hi); }
-  .btn-danger { background: rgba(239,68,68,0.1); border-color: rgba(239,68,68,0.25); color: var(--red); }
-  .btn-danger:hover:not(:disabled) { background: rgba(239,68,68,0.2); }
-  .btn-sm { padding: 4px 8px; font-size: 0.68rem; }
-  .btn-group { display: flex; gap: 4px; }
-
-  .pill-grid { display: flex; flex-wrap: wrap; gap: 4px; }
-  .pill {
-    background: var(--bg); border: 1px solid var(--border);
-    color: var(--text-2); border-radius: 12px; padding: 3px 8px;
-    font-size: 0.65rem; font-weight: 500; cursor: pointer; transition: all 0.15s;
-  }
-  .pill:hover { border-color: var(--border-hi); }
-  .pill.on { background: var(--accent-lo); border-color: var(--accent); color: var(--accent-hi); }
-
-  /* ── CENTER WORKSPACE ─────────────────────────────────────────── */
-  .s-workspace {
-    display: flex; flex-direction: column;
-    background: #060709;
-    overflow: hidden;
-  }
-
-  /* Viewport Frame */
-  .vp-container {
-    flex: 1; position: relative; background: #000;
-    display: flex; align-items: center; justify-content: center;
-    overflow: hidden;
-  }
-  #gl-canvas {
-    display: block; max-width: 100%; max-height: 100%;
-    width: 100%; height: auto; object-fit: contain;
-  }
-  .vp-placeholder {
-    position: absolute; inset: 0; display: flex;
-    flex-direction: column; align-items: center; justify-content: center;
-    color: var(--text-3); gap: 10px; pointer-events: none;
-    background: #000; z-index: 10;
-  }
-  .vp-placeholder.hidden { display: none; }
-  .vp-placeholder-icon { font-size: 3rem; opacity: 0.2; }
-  .vp-placeholder-txt { font-size: 0.8rem; font-weight: 500; }
-
-  /* Timeline & Playback control HUD */
-  .timeline-control-panel {
-    background: var(--card);
-    border-top: 1px solid var(--border);
-    padding: 8px 16px;
-    display: flex; flex-direction: column; gap: 8px;
-  }
-  .timeline-slider-row { display: flex; align-items: center; gap: 12px; }
-  #seek-bar { flex: 1; accent-color: var(--accent); cursor: pointer; }
-  .timecode-display { font-size: 0.72rem; font-family: var(--mono); color: var(--accent-hi); white-space: nowrap; }
-
-  /* Transport strip */
-  .transport-row {
-    display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
-  }
-  .transport-sep { width: 1px; height: 20px; background: var(--border); margin: 0 4px; }
-  .fps-counter { font-size: 0.68rem; font-family: var(--mono); color: var(--text-3); margin-left: auto; }
-
-  /* Visual Timeline thumbnails track */
-  .visual-timeline-track {
-    background: #080A0E; border: 1px solid var(--border);
-    border-radius: var(--radius); height: 48px; position: relative;
-    overflow-x: auto; display: flex; align-items: center; gap: 1px;
-    scrollbar-width: none;
-  }
-  .visual-timeline-track::-webkit-scrollbar { display: none; }
-  .visual-timeline-thumb {
-    height: 100%; width: auto; object-fit: cover; flex-shrink: 0;
-    opacity: 0.65; transition: opacity 0.2s;
-  }
-  .visual-timeline-thumb:hover { opacity: 1; }
-  .visual-timeline-playhead {
-    position: absolute; top: 0; bottom: 0; width: 2px;
-    background: var(--accent-hi); pointer-events: none; z-index: 5;
-    left: 0%; transition: left 0.05s linear;
-  }
-
-  /* ── RIGHT PANEL ────────────────────────────────────────────── */
-  .audio-waveform-wrap { display: flex; flex-direction: column; gap: 6px; }
-  
-  /* Frame strip gallery */
-  .frame-strip-gallery {
-    display: flex; gap: 4px; overflow-x: auto; padding: 4px 0;
-    min-height: 54px; scrollbar-width: thin;
-    scrollbar-color: var(--border) transparent;
-  }
-  .frame-strip-gallery::-webkit-scrollbar { height: 2px; }
-  .frame-strip-gallery::-webkit-scrollbar-thumb { background: var(--border); }
-  
-  /* Export Section block */
-  .export-block { display: flex; flex-direction: column; gap: 8px; }
-
-  /* ── MOBILE TABS ────────────────────────────────────────────── */
-  .mobile-nav-tabs { display: none; }
-  @media (max-width: 900px) {
-    .studio-main { grid-template-columns: 1fr; }
-    .mobile-nav-tabs {
-      display: flex; background: var(--card); border-top: 1px solid var(--border);
-      position: sticky; bottom: 0; z-index: 50; overflow-x: auto;
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            obsidian: {
+              DEFAULT: '#0F1115',
+              card: '#1A1D24',
+              border: '#2A2E39',
+              borderHi: '#3B4255'
+            },
+            accent: {
+              DEFAULT: '#2563EB',
+              hi: '#3B82F6',
+              lo: 'rgba(37,99,235,0.12)'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'Fira Code', 'monospace']
+          }
+        }
+      }
     }
-    .mobile-tab-btn {
-      flex: 1; padding: 12px 6px; font-size: 0.72rem; font-weight: 600;
-      background: none; border: none; color: var(--text-3); text-align: center;
-      cursor: pointer; white-space: nowrap; border-top: 2px solid transparent;
-      transition: all 0.15s;
-    }
-    .mobile-tab-btn.active { color: var(--accent-hi); border-top-color: var(--accent); }
-    .sidebar-pane { display: none; }
-    .sidebar-pane.active { display: flex; flex-direction: column; gap: 10px; }
-  }
+  </script>
+  <style type="text/css">
+    /* Custom non-Tailwind overrides for timeline seek & track scroll */
+    .timeline-track::-webkit-scrollbar { display: none; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
   </style>
   <script src="/assets/js/app.js" defer></script>
 </head>
-<body>
+<body class="bg-obsidian text-slate-200 font-sans antialiased min-h-screen flex flex-col selection:bg-accent selection:text-white">
 <div id="header-component"><!-- HEADER_START --><!-- HEADER_END --></div>
-<!-- MODALS_START --><!-- MODALS_END -->
 
-<main class="container py-4" id="main-content">
-<div class="studio">
+<main class="flex-1 flex flex-col p-4 max-w-[1600px] mx-auto w-full gap-4">
+  <!-- ── STUDIO CONTAINER ── -->
+  <div class="flex flex-col bg-obsidian border border-obsidian-border rounded-xl shadow-2xl overflow-hidden flex-1 min-h-[calc(100vh-160px)]">
 
-  <!-- ── TOP BAR / HEADER ── -->
-  <div class="s-header">
-    <div class="brand-group">
-      <span class="brand-logo">🎬</span>
-      <span class="brand-name">Video Canvas Engineering Studio</span>
-    </div>
-    <span class="status-indicator" id="status-bar">WebGL2 + Audio Engine initialized. Drop a video to start.</span>
-    <div class="progress-wrap" id="progress-wrap" style="display:none">
-      <div class="progress-track" style="width:100px;height:4px;background:var(--border);border-radius:2px;overflow:hidden;display:inline-block;vertical-align:middle;margin-right:8px">
-        <div class="progress-fill" id="progress-fill" style="height:100%;width:0%;background:var(--accent)"></div>
+    <!-- ── TOP BAR / HEADER ── -->
+    <div class="flex items-center justify-between px-5 py-3 bg-obsidian-card border-b border-obsidian-border flex-wrap gap-3">
+      <div class="flex items-center gap-3">
+        <span class="text-xl">🎬</span>
+        <span class="text-sm font-bold tracking-tight text-accent-hi">Video Canvas Studio</span>
+        <div class="w-px h-5 bg-obsidian-border hidden sm:block"></div>
+        <span class="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full hidden sm:inline-block" id="status-bar">
+          Engine: WebGL2 · Ready
+        </span>
       </div>
-      <span class="progress-pct" id="progress-pct" style="font-size:0.7rem;font-family:var(--mono)">0%</span>
-    </div>
-    <div class="engine-badge-group">
-      <span class="top-chip" style="font-size:0.65rem;background:var(--border);padding:3px 8px;border-radius:12px;color:var(--text-2)">Engine: WebGL2</span>
-      <span class="top-chip" style="font-size:0.65rem;background:var(--border);padding:3px 8px;border-radius:12px;color:var(--text-2)">Zero Uploads</span>
-    </div>
-  </div>
-
-  <!-- ── THREE-COLUMN STUDIO LAYOUT ── -->
-  <div class="studio-main">
-
-    <!-- █ LEFT COLUMN: INPUT, CONTROLS, GRADING █ -->
-    <div class="s-sidebar s-sidebar-left" id="sidebar-left">
       
-      <!-- Source Panel -->
-      <div class="panel-card sidebar-pane active" id="tab-pane-source">
-        <div class="panel-hdr">📁 Source & Clip Info</div>
-        <div class="source-drop" id="drop-zone">
-          <span class="source-icon">🎞️</span>
-          Click or drag video here<br>
-          <small style="color:var(--text-3);font-size:0.65rem">MP4 · WebM · MOV · MKV</small>
+      <!-- Export Progress -->
+      <div class="hidden items-center gap-3" id="progress-wrap">
+        <div class="w-24 h-1 bg-obsidian-border rounded-full overflow-hidden">
+          <div class="h-full bg-accent transition-all duration-150" id="progress-fill" style="width: 0%"></div>
         </div>
-        <input type="file" id="file-input" accept="video/*" style="display:none">
+        <span class="text-[10px] font-mono text-accent-hi" id="progress-pct">0%</span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <span class="text-[10px] font-mono bg-obsidian-border text-slate-400 px-2 py-1 rounded">WebGL2 GPU</span>
+        <span class="text-[10px] font-mono bg-obsidian-border text-slate-400 px-2 py-1 rounded">100% Client-Side</span>
+      </div>
+    </div>
+
+    <!-- ── 3-COLUMN WORKSPACE GRID ── -->
+    <div class="grid grid-cols-1 md:grid-cols-[280px_1fr_260px] lg:grid-cols-[300px_1fr_280px] flex-1 overflow-hidden">
+
+      <!-- █ LEFT COLUMN: CONTROLS & GRADING █ -->
+      <div class="bg-obsidian-card border-r border-obsidian-border overflow-y-auto p-3 flex flex-col gap-3 max-h-[calc(100vh-220px)] md:max-h-none" id="sidebar-left">
         
-        <div class="src-info-box" id="source-info-box" style="display:none">
-          <div class="src-info-thumb" id="src-thumb-preview">🎬</div>
-          <div class="src-info-details">
-            <span class="src-info-title" id="info-name">—</span>
-            <span class="src-info-meta" id="info-size">—</span>
-            <span class="src-info-meta" id="info-dims">—</span>
-            <span class="src-info-meta" id="info-dur">—</span>
+        <!-- Source & Clip Info -->
+        <div class="bg-obsidian-card/60 border border-obsidian-border rounded-lg p-3 flex flex-col gap-2 sidebar-pane active" id="tab-pane-source">
+          <div class="flex items-center justify-between text-[10px] font-bold tracking-wider text-accent-hi uppercase border-b border-obsidian-border pb-2">
+            <span>📁 Source & Clip Info</span>
+          </div>
+          <div class="border border-dashed border-obsidian-borderHi rounded-lg p-4 text-center cursor-pointer text-xs text-slate-500 hover:border-accent hover:text-accent-hi hover:bg-accent-lo transition-all duration-200" id="drop-zone">
+            <span class="text-2xl block mb-1">🎞️</span>
+            Click or drag video here
+            <span class="block text-[10px] text-slate-600 mt-1">MP4 · WebM · MOV · MKV</span>
+          </div>
+          <input type="file" id="file-input" accept="video/*" class="hidden">
+          
+          <div class="flex gap-3 bg-obsidian border border-obsidian-border rounded-lg p-2.5 items-center hidden" id="source-info-box">
+            <div class="w-12 h-9 bg-black rounded flex items-center justify-content-center text-sm flex-shrink-0 border border-obsidian-borderHi" id="src-thumb-preview">🎬</div>
+            <div class="flex flex-col min-w-0 flex-1">
+              <span class="text-[11px] font-semibold text-slate-200 truncate" id="info-name">—</span>
+              <span class="text-[9px] text-slate-400 font-mono mt-0.5" id="info-size">—</span>
+              <span class="text-[9px] text-slate-400 font-mono" id="info-dims">—</span>
+              <span class="text-[9px] text-slate-400 font-mono" id="info-dur">—</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Controls Panel -->
-      <div class="panel-card sidebar-pane active" id="tab-pane-controls">
-        <div class="panel-hdr">⚙️ Controls</div>
-        
-        <div class="ctrl-group">
-          <div class="slider-row">
-            <label class="lbl">Speed</label>
-            <input type="range" id="speed-sl" min="0.1" max="4" step="0.1" value="1">
-            <span class="slider-val" id="speed-val">1.0×</span>
+        <!-- Controls -->
+        <div class="bg-obsidian-card/60 border border-obsidian-border rounded-lg p-3 flex flex-col gap-3 sidebar-pane active" id="tab-pane-controls">
+          <div class="flex items-center justify-between text-[10px] font-bold tracking-wider text-accent-hi uppercase border-b border-obsidian-border pb-2">
+            <span>⚙️ Controls</span>
+          </div>
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center justify-between gap-2">
+              <label class="text-[11px] font-medium text-slate-400">Speed</label>
+              <div class="flex items-center gap-2 flex-1 max-w-[140px]">
+                <input type="range" id="speed-sl" min="0.1" max="4" step="0.1" value="1" class="flex-1">
+                <span class="text-[10px] font-mono text-accent-hi w-8 text-right" id="speed-val">1.0×</span>
+              </div>
+            </div>
+            
+            <div class="flex items-center justify-between">
+              <label class="text-[11px] font-medium text-slate-400">Aspect Ratio</label>
+              <select id="ratio-sel" class="bg-obsidian text-slate-300 border border-obsidian-border rounded px-2 py-1 text-xs w-32 outline-none focus:border-accent">
+                <option value="free">Free</option>
+                <option value="16:9" selected>16:9</option>
+                <option value="9:16">9:16</option>
+                <option value="1:1">1:1</option>
+                <option value="4:3">4:3</option>
+                <option value="21:9">21:9</option>
+                <option value="4:5">4:5</option>
+              </select>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <label class="text-[11px] font-medium text-slate-400">Output Res</label>
+              <div class="flex items-center gap-1 w-32">
+                <input type="number" id="out-w" value="1280" min="64" max="3840" class="w-14 bg-obsidian text-slate-300 border border-obsidian-border rounded px-1.5 py-0.5 text-center text-xs outline-none focus:border-accent">
+                <span class="text-slate-600 text-xs">×</span>
+                <input type="number" id="out-h" value="720" min="64" max="2160" class="w-14 bg-obsidian text-slate-300 border border-obsidian-border rounded px-1.5 py-0.5 text-center text-xs outline-none focus:border-accent">
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between mt-1">
+              <label class="text-[11px] font-medium text-slate-400">REVERSE</label>
+              <label class="switch">
+                <input type="checkbox" id="toggle-reverse">
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+            <button class="w-full btn btn-danger mt-1 text-[11px]" id="btn-reverse" style="display: none">⏪ Run Reverse Sim</button>
+          </div>
+        </div>
+
+        <!-- Color Grade -->
+        <div class="bg-obsidian-card/60 border border-obsidian-border rounded-lg p-3 flex flex-col gap-3 sidebar-pane active" id="tab-pane-grade">
+          <div class="flex items-center justify-between text-[10px] font-bold tracking-wider text-accent-hi uppercase border-b border-obsidian-border pb-2">
+            <span>🎨 Color Grade</span>
+            <span class="text-[9px] bg-accent-lo border border-accent/20 text-accent-hi px-1.5 py-0.5 rounded">WebGL2 GPU</span>
           </div>
           
-          <div class="row-field">
-            <label class="lbl">Ratio</label>
-            <select id="ratio-sel" style="width:140px">
-              <option value="free">Free</option>
-              <option value="16:9" selected>16:9</option>
-              <option value="9:16">9:16</option>
-              <option value="1:1">1:1</option>
-              <option value="4:3">4:3</option>
-              <option value="21:9">21:9</option>
-              <option value="4:5">4:5</option>
-            </select>
-          </div>
-
-          <div class="row-field">
-            <label class="lbl">Output W×H</label>
-            <div style="display:flex;gap:4px;align-items:center;width:140px">
-              <input type="number" id="out-w" value="1280" min="64" max="3840" style="width:64px">
-              <span style="color:var(--text-3);font-size:0.75rem">×</span>
-              <input type="number" id="out-h" value="720" min="64" max="2160" style="width:64px">
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center justify-between gap-2">
+              <label class="text-[11px] text-slate-400 min-w-[70px]">Brightness</label>
+              <input type="range" id="f-bright" min="0" max="3" step="0.02" value="1" class="flex-1">
+              <span class="text-[10px] font-mono text-accent-hi w-10 text-right" id="v-bright">1.00</span>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <label class="text-[11px] text-slate-400 min-w-[70px]">Contrast</label>
+              <input type="range" id="f-contrast" min="0" max="3" step="0.02" value="1" class="flex-1">
+              <span class="text-[10px] font-mono text-accent-hi w-10 text-right" id="v-contrast">1.00</span>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <label class="text-[11px] text-slate-400 min-w-[70px]">Saturation</label>
+              <input type="range" id="f-sat" min="0" max="4" step="0.05" value="1" class="flex-1">
+              <span class="text-[10px] font-mono text-accent-hi w-10 text-right" id="v-sat">1.00</span>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <label class="text-[11px] text-slate-400 min-w-[70px]">Hue°</label>
+              <input type="range" id="f-hue" min="0" max="360" step="1" value="0" class="flex-1">
+              <span class="text-[10px] font-mono text-accent-hi w-10 text-right" id="v-hue">0°</span>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <label class="text-[11px] text-slate-400 min-w-[70px]">Exposure</label>
+              <input type="range" id="f-exp" min="-3" max="3" step="0.05" value="0" class="flex-1">
+              <span class="text-[10px] font-mono text-accent-hi w-10 text-right" id="v-exp">0.00</span>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <label class="text-[11px] text-slate-400 min-w-[70px]">Lift (Black)</label>
+              <input type="range" id="f-lift" min="-0.2" max="0.2" step="0.005" value="0" class="flex-1">
+              <span class="text-[10px] font-mono text-accent-hi w-10 text-right" id="v-lift">0.000</span>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <label class="text-[11px] text-slate-400 min-w-[70px]">Gain (White)</label>
+              <input type="range" id="f-gain" min="0.5" max="2" step="0.02" value="1" class="flex-1">
+              <span class="text-[10px] font-mono text-accent-hi w-10 text-right" id="v-gain">1.00</span>
             </div>
           </div>
 
-          <div class="row-field">
-            <label class="lbl">REVERSE</label>
-            <label class="switch">
-              <input type="checkbox" id="toggle-reverse">
-              <span class="switch-slider"></span>
-            </label>
+          <div class="pill-grid flex flex-wrap gap-1 mt-1">
+            <span class="pill" data-f="grayscale">Grayscale</span>
+            <span class="pill" data-f="sepia">Sepia</span>
+            <span class="pill" data-f="invert">Invert</span>
+            <span class="pill" data-f="vignette">Vignette</span>
+            <span class="pill" data-f="sharpen">Sharpen</span>
           </div>
-          <button class="btn btn-danger btn-sm" id="btn-reverse" style="display:none">⏪ Run Reverse Sim</button>
-        </div>
-      </div>
-
-      <!-- Color Grade Panel -->
-      <div class="panel-card sidebar-pane active" id="tab-pane-grade">
-        <div class="panel-hdr">🎨 Color Grade <span class="panel-hdr-badge">WebGL2 GPU</span></div>
-        
-        <div class="ctrl-group">
-          <div class="slider-row"><label class="lbl">Brightness</label><input type="range" id="f-bright" min="0" max="3" step="0.02" value="1"><span class="slider-val" id="v-bright">1.00</span></div>
-          <div class="slider-row"><label class="lbl">Contrast</label><input type="range" id="f-contrast" min="0" max="3" step="0.02" value="1"><span class="slider-val" id="v-contrast">1.00</span></div>
-          <div class="slider-row"><label class="lbl">Saturation</label><input type="range" id="f-sat" min="0" max="4" step="0.05" value="1"><span class="slider-val" id="v-sat">1.00</span></div>
-          <div class="slider-row"><label class="lbl">Hue°</label><input type="range" id="f-hue" min="0" max="360" step="1" value="0"><span class="slider-val" id="v-hue">0°</span></div>
-          <div class="slider-row"><label class="lbl">Exposure</label><input type="range" id="f-exp" min="-3" max="3" step="0.05" value="0"><span class="slider-val" id="v-exp">0.00</span></div>
-          <div class="slider-row"><label class="lbl">Lift (Black)</label><input type="range" id="f-lift" min="-0.2" max="0.2" step="0.005" value="0"><span class="slider-val" id="v-lift">0.000</span></div>
-          <div class="slider-row"><label class="lbl">Gain (White)</label><input type="range" id="f-gain" min="0.5" max="2" step="0.02" value="1"><span class="slider-val" id="v-gain">1.00</span></div>
+          <button class="w-full btn btn-sm mt-1 py-1.5" id="btn-reset-grade">Reset Grade</button>
         </div>
 
-        <div class="pill-grid" style="margin-top:4px">
-          <span class="pill" data-f="grayscale">Grayscale</span>
-          <span class="pill" data-f="sepia">Sepia</span>
-          <span class="pill" data-f="invert">Invert</span>
-          <span class="pill" data-f="vignette">Vignette</span>
-          <span class="pill" data-f="sharpen">Sharpen</span>
-        </div>
-        <button class="btn btn-sm" id="btn-reset-grade">Reset Grade</button>
-      </div>
-
-      <!-- LUT Panel -->
-      <div class="panel-card sidebar-pane active" id="tab-pane-lut">
-        <div class="panel-hdr">🎞 LUT Color Grade</div>
-        <div class="lut-zone" id="lut-drop">
-          LUT drop area (.cube)
-        </div>
-        <input type="file" id="lut-file" accept=".cube" style="display:none">
-        <div class="ctrl-group">
-          <div class="slider-row">
-            <label class="lbl">LUT Mix</label>
-            <input type="range" id="lut-mix" min="0" max="1" step="0.01" value="1">
-            <span class="slider-val" id="v-lut-mix">1.00</span>
+        <!-- LUT -->
+        <div class="bg-obsidian-card/60 border border-obsidian-border rounded-lg p-3 flex flex-col gap-2 sidebar-pane active" id="tab-pane-lut">
+          <div class="flex items-center justify-between text-[10px] font-bold tracking-wider text-accent-hi uppercase border-b border-obsidian-border pb-2">
+            <span>🎞 LUT Color Grade</span>
           </div>
+          <div class="border border-dashed border-obsidian-borderHi rounded p-2.5 text-center cursor-pointer text-[11px] text-slate-500 hover:border-accent hover:text-accent-hi transition-all" id="lut-drop">
+            LUT drop area (.cube)
+          </div>
+          <input type="file" id="lut-file" accept=".cube" class="hidden">
+          <div class="flex items-center justify-between gap-2">
+            <label class="text-[11px] text-slate-400">LUT Mix</label>
+            <input type="range" id="lut-mix" min="0" max="1" step="0.01" value="1" class="flex-1">
+            <span class="text-[10px] font-mono text-accent-hi w-8 text-right" id="v-lut-mix">1.00</span>
+          </div>
+          <button class="w-full btn btn-danger btn-sm py-1.5" id="btn-clear-lut">Clear LUT</button>
         </div>
-        <button class="btn btn-danger btn-sm" id="btn-clear-lut">Clear LUT</button>
+
       </div>
 
-    </div>
-
-    <!-- █ CENTER COLUMN: MAIN VIEWPORT, PLAYER & TIMELINE █ -->
-    <div class="s-workspace">
-      
-      <!-- Video Viewport -->
-      <div class="vp-container" id="viewport">
-        <div class="vp-placeholder" id="vp-placeholder">
-          <span class="vp-placeholder-icon">🎬</span>
-          <span class="vp-placeholder-txt">Drop a video to begin</span>
-        </div>
-        <!-- hidden video player element -->
-        <video id="vid-el" style="display:none" playsInline preload="auto" muted></video>
-        <canvas id="gl-canvas"></canvas>
-      </div>
-
-      <!-- Timeline, Seek Bar and Transport Panel -->
-      <div class="timeline-control-panel">
+      <!-- █ CENTER COLUMN: PLAYBACK VIEW & TIMELINE █ -->
+      <div class="flex flex-col bg-black overflow-hidden flex-1" id="center-workspace">
         
-        <!-- Timeline track thumbnails (Visual NLE Timeline style) -->
-        <div class="visual-timeline-track" id="timeline-track">
-          <div class="visual-timeline-playhead" id="timeline-playhead"></div>
-          <!-- Thumbnails injected dynamically on file load -->
+        <!-- Canvas Viewport Frame -->
+        <div class="flex-1 relative flex items-center justify-center min-h-[300px]" id="viewport">
+          <div class="absolute inset-0 flex flex-col items-center justify-center text-slate-600 gap-2 pointer-events-none bg-black z-10" id="vp-placeholder">
+            <span class="text-5xl opacity-20">🎬</span>
+            <span class="text-sm font-semibold tracking-wide">Drop a video to begin</span>
+          </div>
+          <!-- Hidden Native element -->
+          <video id="vid-el" class="hidden" playsinline preload="auto" muted></video>
+          <canvas id="gl-canvas" class="max-w-full max-h-full w-full h-auto object-contain block"></canvas>
         </div>
 
-        <!-- Timeline seek slider -->
-        <div class="timeline-slider-row">
-          <input type="range" id="seek-bar" min="0" max="10000" value="0">
-          <span class="timecode-display" id="time-disp">00:00 / 00:00</span>
-        </div>
-
-        <!-- Playback controls toolbar -->
-        <div class="transport-row">
-          <button class="btn btn-sm btn-accent" id="btn-play">▶ Play</button>
-          <button class="btn btn-sm" id="btn-pause">⏸ Pause</button>
-          <button class="btn btn-sm" id="btn-rewind">⏮ Rewind</button>
-          <span class="transport-sep"></span>
-          <button class="btn btn-sm" id="btn-frame-back" title="Step Back 1 Frame (,)">← Frame</button>
-          <button class="btn btn-sm" id="btn-frame-fwd" title="Step Forward 1 Frame (.)">Frame →</button>
-          <span class="transport-sep"></span>
-          <button class="btn btn-sm" id="btn-mute">🔇 Mute</button>
-          <span class="transport-sep"></span>
-          <button class="btn btn-sm btn-success" id="btn-snapshot">📸 Capture</button>
-          <button class="btn btn-sm" id="btn-extract-frames">Extract 12F</button>
+        <!-- Timeline Controllers -->
+        <div class="bg-obsidian-card border-t border-obsidian-border p-4 flex flex-col gap-3">
           
-          <span class="fps-counter" id="fps-badge">— fps · WebGL2</span>
+          <!-- Visual Timeline Track (NLE-Style) -->
+          <div class="bg-[#080A0E] border border-obsidian-border rounded h-14 relative overflow-x-auto flex items-center gap-px timeline-track" id="timeline-track">
+            <div class="absolute top-0 bottom-0 w-0.5 bg-accent-hi pointer-events-none z-10 transition-all duration-75 ease-linear" id="timeline-playhead" style="left: 0%"></div>
+            <!-- Thumbnails loaded dynamically -->
+          </div>
+
+          <!-- Playback seekbar -->
+          <div class="flex items-center gap-4">
+            <input type="range" id="seek-bar" min="0" max="10000" value="0" class="flex-1">
+            <span class="text-xs font-mono text-accent-hi tracking-wide whitespace-nowrap" id="time-disp">00:00 / 00:00</span>
+          </div>
+
+          <!-- Actions toolbar -->
+          <div class="flex items-center gap-2 flex-wrap text-slate-300">
+            <button class="btn btn-sm btn-accent" id="btn-play">▶ Play</button>
+            <button class="btn btn-sm" id="btn-pause">⏸ Pause</button>
+            <button class="btn btn-sm" id="btn-rewind">⏮ Rewind</button>
+            <div class="w-px h-5 bg-obsidian-border mx-1"></div>
+            <button class="btn btn-sm" id="btn-frame-back" title="Step Back (,)">← Frame</button>
+            <button class="btn btn-sm" id="btn-frame-fwd" title="Step Fwd (.)">Frame →</button>
+            <div class="w-px h-5 bg-obsidian-border mx-1"></div>
+            <button class="btn btn-sm" id="btn-mute">🔇 Mute</button>
+            <div class="w-px h-5 bg-obsidian-border mx-1"></div>
+            <button class="btn btn-sm btn-success" id="btn-snapshot">📸 Capture</button>
+            <button class="btn btn-sm" id="btn-extract-frames">Extract 12F</button>
+            
+            <span class="text-[10px] font-mono text-slate-600 ml-auto" id="fps-badge">— fps · WebGL2</span>
+          </div>
         </div>
 
       </div>
 
-    </div>
-
-    <!-- █ RIGHT COLUMN: AUDIO, FRAME STRIP, EXPORT █ -->
-    <div class="s-sidebar s-sidebar-right" id="sidebar-right">
-      
-      <!-- Audio Panel -->
-      <div class="panel-card sidebar-pane active" id="tab-pane-audio">
-        <div class="panel-hdr">🎵 Web Audio Engine</div>
-        <div class="audio-waveform-wrap">
-          <canvas id="waveform-canvas"></canvas>
-          <canvas id="spectrogram-canvas"></canvas>
+      <!-- █ RIGHT COLUMN: AUDIO METERS & EXPORT █ -->
+      <div class="bg-obsidian-card border-l border-obsidian-border overflow-y-auto p-3 flex flex-col gap-3 max-h-[calc(100vh-220px)] md:max-h-none" id="sidebar-right">
+        
+        <!-- Audio Node controls -->
+        <div class="bg-obsidian-card/60 border border-obsidian-border rounded-lg p-3 flex flex-col gap-2 sidebar-pane active" id="tab-pane-audio">
+          <div class="flex items-center justify-between text-[10px] font-bold tracking-wider text-accent-hi uppercase border-b border-obsidian-border pb-2">
+            <span>🎵 Web Audio Engine</span>
+          </div>
+          <div class="flex flex-col gap-1.5">
+            <canvas id="waveform-canvas" class="w-full h-16 bg-obsidian rounded border border-obsidian-border"></canvas>
+            <canvas id="spectrogram-canvas" class="w-full h-12 bg-obsidian rounded border border-obsidian-border"></canvas>
+          </div>
+          <div class="flex flex-col gap-2 mt-2">
+            <div class="flex items-center justify-between gap-2">
+              <label class="text-[10px] text-slate-400 min-w-[70px]">Gain (dB)</label>
+              <input type="range" id="audio-gain" min="-20" max="20" step="0.5" value="0" class="flex-1">
+              <span class="text-[10px] font-mono text-accent-hi w-8 text-right" id="v-gain-db">0dB</span>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <label class="text-[10px] text-slate-400 min-w-[70px]">Noise Gate</label>
+              <input type="range" id="noise-gate" min="-80" max="0" step="1" value="-80" class="flex-1">
+              <span class="text-[10px] font-mono text-accent-hi w-8 text-right" id="v-gate">OFF</span>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <label class="text-[10px] text-slate-400 min-w-[70px]">EQ Bass</label>
+              <input type="range" id="eq-bass" min="-12" max="12" step="0.5" value="0" class="flex-1">
+              <span class="text-[10px] font-mono text-accent-hi w-8 text-right" id="v-bass">0dB</span>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <label class="text-[10px] text-slate-400 min-w-[70px]">EQ Treble</label>
+              <input type="range" id="eq-treble" min="-12" max="12" step="0.5" value="0" class="flex-1">
+              <span class="text-[10px] font-mono text-accent-hi w-8 text-right" id="v-treble">0dB</span>
+            </div>
+          </div>
+          <div class="flex gap-1.5 mt-1">
+            <span class="text-[9px] font-mono bg-obsidian text-slate-400 px-2 py-0.5 rounded border border-obsidian-border" id="chip-audio-sr">SR: —</span>
+            <span class="text-[9px] font-mono bg-obsidian text-slate-400 px-2 py-0.5 rounded border border-obsidian-border" id="chip-audio-rms">RMS: —</span>
+          </div>
         </div>
-        <div class="ctrl-group" style="margin-top:6px">
-          <div class="slider-row"><label class="lbl">Gain (dB)</label><input type="range" id="audio-gain" min="-20" max="20" step="0.5" value="0"><span class="slider-val" id="v-gain-db">0dB</span></div>
-          <div class="slider-row"><label class="lbl">Noise Gate</label><input type="range" id="noise-gate" min="-80" max="0" step="1" value="-80"><span class="slider-val" id="v-gate">OFF</span></div>
-          <div class="slider-row"><label class="lbl">EQ Bass</label><input type="range" id="eq-bass" min="-12" max="12" step="0.5" value="0"><span class="slider-val" id="v-bass">0dB</span></div>
-          <div class="slider-row"><label class="lbl">EQ Treble</label><input type="range" id="eq-treble" min="-12" max="12" step="0.5" value="0"><span class="slider-val" id="v-treble">0dB</span></div>
-        </div>
-        <div class="chips" style="margin-top:4px">
-          <span class="chip" id="chip-audio-sr">SR: —</span>
-          <span class="chip" id="chip-audio-rms">RMS: —</span>
-        </div>
-      </div>
 
-      <!-- Frame Strip Panel -->
-      <div class="panel-card sidebar-pane active" id="tab-pane-frames">
-        <div class="panel-hdr">🖼 Frame Strip <span class="panel-hdr-badge">click to DL</span></div>
-        <div class="frame-strip-gallery" id="frame-strip"></div>
-      </div>
+        <!-- Frame strip output list -->
+        <div class="bg-obsidian-card/60 border border-obsidian-border rounded-lg p-3 flex flex-col gap-2 sidebar-pane active" id="tab-pane-frames">
+          <div class="flex items-center justify-between text-[10px] font-bold tracking-wider text-accent-hi uppercase border-b border-obsidian-border pb-2">
+            <span>🖼 Frame Strip</span>
+            <span class="text-[8px] bg-accent-lo border border-accent/20 text-accent-hi px-1 rounded">click to DL</span>
+          </div>
+          <div class="flex gap-1 overflow-x-auto py-1 frame-strip-gallery" id="frame-strip"></div>
+        </div>
 
-      <!-- Export Panel -->
-      <div class="panel-card sidebar-pane active" id="tab-pane-export">
-        <div class="panel-hdr">💾 Export Engine</div>
-        <div class="export-block">
-          <div class="ctrl-group">
-            <div class="field">
-              <label class="lbl" style="margin-bottom:2px;display:block">Format</label>
-              <select id="export-fmt" style="width:100%">
+        <!-- Export settings -->
+        <div class="bg-obsidian-card/60 border border-obsidian-border rounded-lg p-3 flex flex-col gap-2 sidebar-pane active" id="tab-pane-export">
+          <div class="flex items-center justify-between text-[10px] font-bold tracking-wider text-accent-hi uppercase border-b border-obsidian-border pb-2">
+            <span>💾 Export Engine</span>
+          </div>
+          <div class="flex flex-col gap-2.5">
+            <div class="flex flex-col gap-1">
+              <label class="text-[10px] text-slate-400">Format</label>
+              <select id="export-fmt" class="w-full bg-obsidian text-slate-300 border border-obsidian-border rounded px-2 py-1 text-xs outline-none focus:border-accent">
                 <option value="png">PNG — Current Frame</option>
                 <option value="webm-mr">WebM — MediaRecorder (fast)</option>
                 <option value="mp4-ffmpeg">MP4 H.264 — FFmpeg.wasm</option>
                 <option value="gif-ffmpeg">Animated GIF — FFmpeg.wasm</option>
               </select>
             </div>
-            <div class="field" id="quality-row">
-              <label class="lbl" style="margin-bottom:2px;display:block">Quality</label>
-              <select id="export-quality" style="width:100%">
+            <div class="flex flex-col gap-1" id="quality-row">
+              <label class="text-[10px] text-slate-400">Quality</label>
+              <select id="export-quality" class="w-full bg-obsidian text-slate-300 border border-obsidian-border rounded px-2 py-1 text-xs outline-none focus:border-accent">
                 <option value="ultrafast">Ultrafast (draft)</option>
                 <option value="fast" selected>Fast</option>
                 <option value="medium">Medium</option>
                 <option value="slow">Slow (best)</option>
               </select>
             </div>
+            <button class="w-full btn btn-accent py-2 text-xs uppercase font-bold tracking-wider" id="btn-export">EXPORT</button>
+            <button class="w-full btn btn-danger py-2 text-xs uppercase font-bold tracking-wider hidden" id="btn-stop-export">STOP EXPORT</button>
           </div>
-          <button class="btn btn-accent" id="btn-export" style="width:100%;margin-top:4px">EXPORT</button>
-          <button class="btn btn-danger" id="btn-stop-export" style="width:100%;margin-top:4px;display:none">STOP EXPORT</button>
         </div>
-      </div>
 
-      <!-- Memory Manager Panel -->
-      <div class="panel-card">
-        <div class="panel-hdr">🧠 Memory Manager</div>
-        <div class="chips">
-          <span class="chip" id="chip-blob-count">URLs: 0</span>
-          <span class="chip" id="chip-heap">Heap: —</span>
+        <!-- Memory diagnostics console -->
+        <div class="bg-obsidian-card/60 border border-obsidian-border rounded-lg p-3 flex flex-col gap-2">
+          <div class="flex items-center justify-between text-[10px] font-bold tracking-wider text-accent-hi uppercase border-b border-obsidian-border pb-2">
+            <span>🧠 Memory Manager</span>
+          </div>
+          <div class="flex gap-1.5">
+            <span class="text-[9px] font-mono bg-obsidian text-slate-400 px-2 py-0.5 rounded border border-obsidian-border" id="chip-blob-count">URLs: 0</span>
+            <span class="text-[9px] font-mono bg-obsidian text-slate-400 px-2 py-0.5 rounded border border-obsidian-border" id="chip-heap">Heap: —</span>
+          </div>
+          <div class="flex gap-2 mt-1">
+            <button class="flex-1 btn btn-sm py-1.5" id="btn-gc">🧹 Release URLs</button>
+            <button class="flex-1 btn btn-danger btn-sm py-1.5 hidden" id="btn-kill-ffmpeg">💣 Kill FFmpeg</button>
+          </div>
         </div>
-        <div class="btn-row" style="display:flex;gap:4px;margin-top:4px">
-          <button class="btn btn-sm" id="btn-gc" style="flex:1">🧹 Release URLs</button>
-          <button class="btn btn-danger btn-sm" id="btn-kill-ffmpeg" style="display:none;flex:1">💣 Kill FFmpeg</button>
-        </div>
+
       </div>
 
     </div>
 
-  </div>
+    <!-- Mobile tab-switching navigation drawer bottom-bar -->
+    <div class="mobile-nav-tabs">
+      <button class="mobile-tab-btn active" data-target="tab-pane-source,tab-pane-controls">Source</button>
+      <button class="mobile-tab-btn" data-target="tab-pane-grade,tab-pane-lut">Grade</button>
+      <button class="mobile-tab-btn" data-target="tab-pane-audio">Audio</button>
+      <button class="mobile-tab-btn" data-target="tab-pane-frames,tab-pane-export">Export</button>
+    </div>
 
-  <!-- Mobile navigation tab bar -->
-  <div class="mobile-nav-tabs">
-    <button class="mobile-tab-btn active" data-target="tab-pane-source,tab-pane-controls">Source</button>
-    <button class="mobile-tab-btn" data-target="tab-pane-grade,tab-pane-lut">Grade</button>
-    <button class="mobile-tab-btn" data-target="tab-pane-audio">Audio</button>
-    <button class="mobile-tab-btn" data-target="tab-pane-frames,tab-pane-export">Export</button>
   </div>
-
-</div>
 </main>
 
 <div id="footer-component"><!-- FOOTER_START --><!-- FOOTER_END --></div>
@@ -599,7 +390,7 @@
 
 <script type="module">
 // ═══════════════════════════════════════════════════════════════════
-//  Video Canvas Engineering Studio — Complete Robust Engine
+//  Video Canvas Engineering Studio — Redesigned Production Engine
 // ═══════════════════════════════════════════════════════════════════
 
 /* ── SHADERS (WebGL2 / GLSL ES 3.00) ── */
@@ -701,7 +492,7 @@ class Canvas2DEngine {
     this.ctx = canvas.getContext('2d');
     this.filters = new Set();
     this.grade = { brightness:1, contrast:1, saturation:1, hue:0, exposure:0, lift:0, gain:1, lutMix:1 };
-    this.crop = [0, 0, 1, 1]; // sx, sy, sw, sh
+    this.crop = [0, 0, 1, 1];
   }
   loadLut() {}
   clearLut() {}
@@ -717,14 +508,11 @@ class Canvas2DEngine {
   drawVideoFrame(video) {
     const ctx = this.ctx;
     const vw = video.videoWidth, vh = video.videoHeight;
-    
-    // Set canvas filter string dynamically based on adjustments
     let f = `brightness(${this.grade.brightness * 100}%) contrast(${this.grade.contrast * 100}%) saturate(${this.grade.saturation * 100}%) hue-rotate(${this.grade.hue}deg)`;
     if (this.filters.has('grayscale')) f += ' grayscale(100%)';
     if (this.filters.has('sepia')) f += ' sepia(80%)';
     if (this.filters.has('invert')) f += ' invert(100%)';
     ctx.filter = f;
-    
     const sx = this.crop[0] * vw, sy = this.crop[1] * vh;
     const sw = this.crop[2] * vw, sh = this.crop[3] * vh;
     ctx.drawImage(video, sx, sy, sw, sh, 0, 0, this.canvas.width, this.canvas.height);
@@ -958,10 +746,10 @@ function fmtT(s) {
 function dlLink(url, name) { const a=document.createElement('a'); a.href=url; a.download=name; a.click(); }
 function setStatus(txt, isErr=false) {
   const el=document.getElementById('status-bar'); if(!el) return;
-  el.textContent=txt; el.className='status-indicator'+(isErr?' err':'');
+  el.textContent=txt; el.className='status-indicator ' + (isErr ? 'text-red-400 bg-red-500/10 border-red-500/20' : 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20');
 }
 function showProg(pct) {
-  document.getElementById('progress-wrap').style.display='inline-block';
+  document.getElementById('progress-wrap').style.display='inline-flex';
   document.getElementById('progress-fill').style.width=Math.min(pct,100)+'%';
   document.getElementById('progress-pct').textContent=Math.round(pct)+'%';
 }
@@ -1002,12 +790,9 @@ function handleFile(file) {
 
   videoEl.addEventListener('loadedmetadata', () => {
     const vw = videoEl.videoWidth||640, vh = videoEl.videoHeight||360;
-    
-    // Set sizes
     canvas.width = vw;
     canvas.height = vh;
     
-    // Initialize WebGLEngine with Fallback to Canvas2D
     try {
       glEngine = new WebGLEngine(canvas);
       setStatus('WebGL2 shader pipeline running.');
@@ -1016,15 +801,12 @@ function handleFile(file) {
       setStatus('WebGL2 unsupported. Using 2D context fallback.');
     }
     
-    // Set crop UV based on current ratio selection
     const crop = cropUV(vw, vh, document.getElementById('ratio-sel').value);
     glEngine.crop = crop;
     
-    // Try Web Audio hook
     audioEng.attach(videoEl);
 
-    // Populate source info card
-    document.getElementById('source-info-box').style.display = 'flex';
+    document.getElementById('source-info-box').classList.remove('hidden');
     document.getElementById('info-name').textContent = file.name;
     document.getElementById('info-size').textContent = (file.size/1024/1024).toFixed(1)+' MB';
     document.getElementById('info-dims').textContent = `${vw}×${vh}`;
@@ -1034,23 +816,20 @@ function handleFile(file) {
     document.getElementById('out-w').value = vw;
     document.getElementById('out-h').value = vh;
 
-    // Generate timeline thumbnails list
     generateTimelineStrip(videoEl);
-
     startRAF();
   }, {once:true});
 }
 
 async function generateTimelineStrip(vid) {
   const track = document.getElementById('timeline-track');
-  track.innerHTML = '<div class="visual-timeline-playhead" id="timeline-playhead"></div>';
+  track.innerHTML = '<div class="absolute top-0 bottom-0 w-0.5 bg-accent-hi pointer-events-none z-10 transition-all duration-75 ease-linear" id="timeline-playhead" style="left:0%"></div>';
   const dur = vid.duration;
   const steps = 15;
   const canvasTemp = document.createElement('canvas');
   canvasTemp.width = 80; canvasTemp.height = 45;
   const ctxTemp = canvasTemp.getContext('2d');
   
-  // Create virtual video to extract frames sequentially
   const tempVid = document.createElement('video');
   tempVid.src = vid.src;
   tempVid.muted = true;
@@ -1064,7 +843,7 @@ async function generateTimelineStrip(vid) {
           ctxTemp.drawImage(tempVid, 0, 0, 80, 45);
           const img = document.createElement('img');
           img.src = canvasTemp.toDataURL('image/jpeg', 0.5);
-          img.className = 'visual-timeline-thumb';
+          img.className = 'h-full w-auto object-cover flex-shrink-0 opacity-65 hover:opacity-100 transition-opacity duration-200';
           track.appendChild(img);
           res();
         }, {once:true});
@@ -1080,7 +859,6 @@ function startRAF() {
     if (!glEngine||!videoEl.src) return;
     glEngine.drawVideoFrame(videoEl);
     
-    // FPS counter
     fpsCount++;
     const now=performance.now();
     if (now-fpsLast>1000) {
@@ -1088,7 +866,6 @@ function startRAF() {
       fpsCount=0; fpsLast=now;
       document.getElementById('fps-badge').textContent = fps+' fps · WebGL2';
     }
-    // Update seek bar, timecode and NLE playhead
     const dur=videoEl.duration;
     if (!isNaN(dur)&&dur>0) {
       const pct = (videoEl.currentTime/dur);
@@ -1103,7 +880,6 @@ function startRAF() {
 }
 function stopRAF() { if(rafId){cancelAnimationFrame(rafId);rafId=null;} }
 
-// Bind standard actions
 document.getElementById('btn-play').addEventListener('click', ()=>videoEl.play());
 document.getElementById('btn-pause').addEventListener('click', ()=>videoEl.pause());
 document.getElementById('btn-rewind').addEventListener('click', ()=>{ videoEl.currentTime=0; });
@@ -1116,7 +892,6 @@ dropEl.addEventListener('dragover', e=>{ e.preventDefault(); dropEl.classList.ad
 dropEl.addEventListener('dragleave', ()=>dropEl.classList.remove('drag'));
 dropEl.addEventListener('drop', e=>{ e.preventDefault(); dropEl.classList.remove('drag'); handleFile(e.dataTransfer.files[0]); });
 
-// Frame step
 function nudge(dir) {
   if (!videoEl.src) return;
   videoEl.pause();
@@ -1126,7 +901,6 @@ function nudge(dir) {
 document.getElementById('btn-frame-back').addEventListener('click', ()=>nudge(-1));
 document.getElementById('btn-frame-fwd' ).addEventListener('click', ()=>nudge(+1));
 
-// Seek bar input
 document.getElementById('seek-bar').addEventListener('input', function() {
   const t = (this.value/10000)*(videoEl.duration||0);
   if (seekThrottle) { pendingSeek=t; return; }
@@ -1137,13 +911,11 @@ document.getElementById('seek-bar').addEventListener('input', function() {
   }, 40);
 });
 
-// Speed Adjust
 document.getElementById('speed-sl').addEventListener('input', function(){
   document.getElementById('speed-val').textContent=parseFloat(this.value).toFixed(1)+'×';
   videoEl.playbackRate=parseFloat(this.value);
 });
 
-// Ratio Change
 document.getElementById('ratio-sel').addEventListener('change', function(){
   if (!videoEl.videoWidth) return;
   const crop=cropUV(videoEl.videoWidth,videoEl.videoHeight,this.value);
@@ -1154,13 +926,49 @@ document.getElementById('ratio-sel').addEventListener('change', function(){
   }
 });
 
-// Capture frame snapshot
 document.getElementById('btn-snapshot').addEventListener('click',()=>{
   if(!glEngine||!videoEl.src) return;
   addThumb(canvas, fmtT(videoEl.currentTime), document.getElementById('frame-strip'));
 });
 
-// Color grade sliders
+// Single Reader pipeline for LUT dropzone & file-input
+const r = new FileReader();
+r.onload = ev => {
+  try {
+    if(!glEngine) { setStatus('Load a video first.', true); return; }
+    glEngine.loadLut(ev.target.result);
+    const dropzone = document.getElementById('lut-drop');
+    dropzone.classList.add('border-emerald-500', 'text-emerald-400');
+    dropzone.textContent = '✓ LUT Loaded (' + glEngine.lutSize + '³)';
+    setStatus('LUT loaded successfully.');
+  } catch(er) {
+    setStatus('LUT error: ' + er.message, true);
+  }
+};
+
+const handleLutFile = file => {
+  if (file) r.readAsText(file);
+};
+
+const lutDropEl = document.getElementById('lut-drop');
+const lutFileEl = document.getElementById('lut-file');
+lutDropEl.addEventListener('click', () => lutFileEl.click());
+lutFileEl.addEventListener('change', e => handleLutFile(e.target.files[0]));
+lutDropEl.addEventListener('dragover', e => { e.preventDefault(); lutDropEl.classList.add('border-accent'); });
+lutDropEl.addEventListener('dragleave', () => { lutDropEl.classList.remove('border-accent'); });
+lutDropEl.addEventListener('drop', e => {
+  e.preventDefault(); lutDropEl.classList.remove('border-accent');
+  handleLutFile(e.dataTransfer.files[0]);
+});
+
+document.getElementById('btn-clear-lut').addEventListener('click', () => {
+  if (glEngine) glEngine.clearLut();
+  const dropzone = document.getElementById('lut-drop');
+  dropzone.className = 'border border-dashed border-obsidian-borderHi rounded p-2.5 text-center cursor-pointer text-[11px] text-slate-500 hover:border-accent hover:text-accent-hi transition-all';
+  dropzone.textContent = 'LUT drop area (.cube)';
+  setStatus('LUT cleared.');
+});
+
 [['f-bright','brightness'],['f-contrast','contrast'],['f-sat','saturation'],
  ['f-hue','hue'],['f-exp','exposure'],['f-lift','lift'],['f-gain','gain']
 ].forEach(([id,key])=>{
@@ -1184,7 +992,6 @@ document.querySelectorAll('.pill[data-f]').forEach(pill=>{
   });
 });
 
-// Mobile Tab switcher
 document.querySelectorAll('.mobile-tab-btn').forEach(btn=>{
   btn.addEventListener('click',function(){
     document.querySelectorAll('.mobile-tab-btn').forEach(b=>b.classList.remove('active'));
@@ -1199,7 +1006,6 @@ document.querySelectorAll('.mobile-tab-btn').forEach(btn=>{
   });
 });
 
-// Handle browser window resize
 window.addEventListener('resize', () => {
   if (window.innerWidth>900) {
     document.querySelectorAll('.s-sidebar .panel-card').forEach(c=>c.style.display='');
