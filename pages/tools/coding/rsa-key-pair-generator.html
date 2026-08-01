@@ -1,12 +1,137 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Rsa Key Pair Generator on BlueTEXT.in.">
+  <meta name="description" content="Generate highly secure RSA public/private key pairs on BlueTEXT.in.">
   <meta name="robots" content="index,follow">
-  <title>Rsa Key Pair Generator | BlueTEXT</title>
-    <link rel="stylesheet" href="/assets/css/main.css">
+  <title>RSA Key Pair Generator | BlueTEXT</title>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <style>
+    
+  .ide-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background: #1e1e1e;
+    color: #d4d4d4;
+    border-radius: 12px;
+    padding: 1.5rem;
+    font-family: 'Fira Code', monospace, Consolas, Courier;
+    border: 1px solid #333;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+  .ide-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    padding-bottom: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  .ide-title {
+    font-size: 1.25rem;
+    color: #61afef;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .ide-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  @media (max-width: 992px) {
+    .ide-body {
+      grid-template-columns: 1fr;
+    }
+  }
+  .ide-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: #252526;
+    border-radius: 8px;
+    padding: 1.2rem;
+    border: 1px solid #3c3c3c;
+  }
+  .ide-panel-title {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #abb2bf;
+    border-bottom: 1px solid #3c3c3c;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .ide-input, .ide-output {
+    width: 100%;
+    background: #1e1e1e;
+    color: #9cdcfe;
+    border: 1px solid #3c3c3c;
+    border-radius: 6px;
+    padding: 0.8rem;
+    font-family: inherit;
+    font-size: 0.9rem;
+    resize: vertical;
+  }
+  .ide-input:focus, .ide-output:focus {
+    outline: none;
+    border-color: #61afef;
+  }
+  .ide-control-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .ide-btn {
+    background: #3a3d41;
+    color: #fff;
+    border: 1px solid #4b4e52;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+  }
+  .ide-btn:hover {
+    background: #4b4e52;
+  }
+  .ide-btn-primary {
+    background: #007acc;
+    border-color: #0062a3;
+  }
+  .ide-btn-primary:hover {
+    background: #0062a3;
+  }
+  .ide-status {
+    font-size: 0.8rem;
+    color: #98c379;
+  }
+  .ide-error {
+    color: #e06c75;
+  }
+  .drop-zone {
+    border: 2px dashed #4b4e52;
+    border-radius: 6px;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    background: #1e1e1e;
+    transition: border-color 0.2s;
+  }
+  .drop-zone.dragover {
+    border-color: #61afef;
+    background: #2b2b2b;
+  }
+
+  </style>
   <script src="/assets/js/app.js" defer></script>
 </head>
 <body>
@@ -138,29 +263,37 @@
 
 <!-- MODALS_END -->
 
-    <main class="container py-4" id="main-content">
-    <div class="row justify-content-center">
-      <div class="col-12 col-xl-10">
-        <h1 class="mb-2">RSA Key Pair Generator</h1>
-        <p class="text-muted mb-3">Generate exportable RSA key pairs locally with the WebCrypto API.</p>
-
-        <div class="row g-3">
-          <div class="col-md-4">
-            <label for="rsa-size" class="form-label">Key Size</label>
-            <select id="rsa-size" class="form-select"><option value="2048">2048-bit</option><option value="4096">4096-bit</option></select>
-          </div>
-          <div class="col-md-8 d-flex align-items-end"><button id="rsa-run" class="btn btn-primary">Generate Key Pair</button></div>
-          <div class="col-12"><div id="rsa-status" class="alert alert-secondary mb-0">Generation happens entirely in your browser.</div></div>
-          <div class="col-md-6">
-            <label for="rsa-public" class="form-label">Public Key (SPKI PEM)</label>
-            <textarea id="rsa-public" class="form-control" rows="14" readonly></textarea>
-          </div>
-          <div class="col-md-6">
-            <label for="rsa-private" class="form-label">Private Key (PKCS#8 PEM)</label>
-            <textarea id="rsa-private" class="form-control" rows="14" readonly></textarea>
-          </div>
+  <main class="container py-4" id="main-content">
+    <div class="ide-container">
+      <div class="ide-header">
+        <div class="ide-title">💻 RSA Key Pair Generator</div>
+        <div class="ide-status" id="global-status">IDE Mode Ready</div>
+      </div>
+      
+      <div class="ide-body">
+        
+      <div class="ide-panel">
+        <div class="ide-panel-title">Configuration</div>
+        <label>Key Bit Size</label>
+        <select id="rsa-bits" class="ide-input">
+          <option value="1024">1024 bit (Fast, Legacy)</option>
+          <option value="2048" selected>2048 bit (Standard, Recommended)</option>
+          <option value="4096">4096 bit (Highly Secure, Slower)</option>
+        </select>
+        
+        <div class="ide-control-group mt-3">
+          <button id="rsa-generate" class="ide-btn ide-btn-primary">Generate Keys</button>
         </div>
-        <a href="../" class="btn btn-secondary btn-sm mt-3">← Back</a>
+      </div>
+      <div class="ide-panel">
+        <div class="ide-panel-title">Generated Key Pairs</div>
+        <label>Public Key (PKCS#1)</label>
+        <textarea id="rsa-pub" class="ide-input" rows="6" readonly placeholder="Public key output..."></textarea>
+
+        <label class="mt-2">Private Key (PKCS#8)</label>
+        <textarea id="rsa-priv" class="ide-input" rows="8" readonly placeholder="Private key output..."></textarea>
+      </div>
+    
       </div>
     </div>
   </main>
@@ -197,5 +330,80 @@
 </footer>
 <!-- FOOTER_END --></div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  </body>
+  
+  <script>
+    (function() {
+      "use strict";
+      
+      // Shared helpers
+      function setStatus(text, isError = false) {
+        const el = document.getElementById('global-status');
+        if (el) {
+          el.textContent = text;
+          el.className = isError ? 'ide-status ide-error' : 'ide-status';
+        }
+      }
+
+      function setupDragDrop(zoneId, callback) {
+        const zone = document.getElementById(zoneId);
+        if (!zone) return;
+        zone.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          zone.classList.add('dragover');
+        });
+        zone.addEventListener('dragleave', () => {
+          zone.classList.remove('dragover');
+        });
+        zone.addEventListener('drop', (e) => {
+          e.preventDefault();
+          zone.classList.remove('dragover');
+          const file = e.dataTransfer.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => callback(event.target.result, file.name);
+            reader.readAsText(file);
+          }
+        });
+      }
+
+      function setupCopy(btnId, outputId) {
+        document.getElementById(btnId)?.addEventListener('click', () => {
+          const out = document.getElementById(outputId);
+          if (out) {
+            navigator.clipboard.writeText(out.value || out.textContent);
+            setStatus('Copied to clipboard! ✓');
+          }
+        });
+      }
+
+      
+      document.getElementById('rsa-generate').addEventListener('click', async () => {
+        setStatus('Generating keypair. Please wait...');
+        try {
+          const bits = parseInt(document.getElementById('rsa-bits').value);
+          const pair = await crypto.subtle.generateKey(
+            {
+              name: "RSASSA-PKCS1-v1_5",
+              modulusLength: bits,
+              publicExponent: new Uint8Array([1, 0, 1]),
+              hash: { name: "SHA-256" }
+            },
+            true,
+            ["sign", "verify"]
+          );
+          const pubExport = await crypto.subtle.exportKey("spki", pair.publicKey);
+          const privExport = await crypto.subtle.exportKey("pkcs8", pair.privateKey);
+          
+          document.getElementById('rsa-pub').value = "-----BEGIN PUBLIC KEY-----\n" + btoa(String.fromCharCode(...new Uint8Array(pubExport))) + "\n-----END PUBLIC KEY-----";
+          document.getElementById('rsa-priv').value = "-----BEGIN PRIVATE KEY-----\n" + btoa(String.fromCharCode(...new Uint8Array(privExport))) + "\n-----END PRIVATE KEY-----";
+          setStatus('RSA key pair generated successfully.');
+        } catch(e) {
+          setStatus('Error: ' + e.message, true);
+        }
+      });
+    
+
+    })();
+  </script>
+</body>
 </html>

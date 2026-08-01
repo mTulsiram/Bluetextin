@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MediaRecorder screen, voice, and text-to-speech loops.">
+  <meta name="robots" content="index,follow">
+  <title>Web Media Capture Hub | BlueTEXT</title>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <style>
+    
+  .ide-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background: #1e1e1e;
+    color: #d4d4d4;
+    border-radius: 12px;
+    padding: 1.5rem;
+    font-family: 'Fira Code', monospace, Consolas, Courier;
+    border: 1px solid #333;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+  .ide-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    padding-bottom: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  .ide-title {
+    font-size: 1.25rem;
+    color: #61afef;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .ide-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  @media (max-width: 992px) {
+    .ide-body {
+      grid-template-columns: 1fr;
+    }
+  }
+  .ide-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: #252526;
+    border-radius: 8px;
+    padding: 1.2rem;
+    border: 1px solid #3c3c3c;
+  }
+  .ide-panel-title {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #abb2bf;
+    border-bottom: 1px solid #3c3c3c;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .ide-input, .ide-output {
+    width: 100%;
+    background: #1e1e1e;
+    color: #9cdcfe;
+    border: 1px solid #3c3c3c;
+    border-radius: 6px;
+    padding: 0.8rem;
+    font-family: inherit;
+    font-size: 0.9rem;
+    resize: vertical;
+  }
+  .ide-input:focus, .ide-output:focus {
+    outline: none;
+    border-color: #61afef;
+  }
+  .ide-control-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .ide-btn {
+    background: #3a3d41;
+    color: #fff;
+    border: 1px solid #4b4e52;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+  }
+  .ide-btn:hover {
+    background: #4b4e52;
+  }
+  .ide-btn-primary {
+    background: #007acc;
+    border-color: #0062a3;
+  }
+  .ide-btn-primary:hover {
+    background: #0062a3;
+  }
+  .ide-status {
+    font-size: 0.8rem;
+    color: #98c379;
+  }
+  .ide-error {
+    color: #e06c75;
+  }
+  .drop-zone {
+    border: 2px dashed #4b4e52;
+    border-radius: 6px;
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    background: #1e1e1e;
+    transition: border-color 0.2s;
+  }
+
+  </style>
+  <script src="/assets/js/media-engine.js" defer></script>
+  <script src="/assets/js/app.js" defer></script>
+</head>
+<body>
+  <div id="header-component"><!-- HEADER_START -->
+<!-- =========================================================================
+     BlueTEXT.in — Clean Semantic Header Component
+     Sections: 1. Brand Logo | 2. Main Navigation | 3. User Actions (Donate/Login/Clear Cache/Theme)
+     ========================================================================= -->
+
+<header class="hdr" role="banner">
+  <div class="hdr-container">
+    
+    <!-- 1. Brand / Logo -->
+    <a class="brand" href="/" aria-label="BlueTEXT.in Homepage">
+      <svg class="brand-logo" width="24" height="24" viewBox="0 0 28 28" aria-hidden="true" focusable="false">
+        <rect width="28" height="28" rx="7" fill="currentColor"></rect>
+        <path d="M8 7H15.5C18.3 7 20.3 8.5 20.3 10.9C20.3 12.4 19.5 13.6 18.1 14.2C19.9 14.7 21 16 21 17.8C21 20.5 18.8 22 15.8 22H8V7ZM11.2 9.6V13.1H15.2C16.4 13.1 17.1 12.4 17.1 11.3C17.1 10.2 16.4 9.6 15.2 9.6H11.2ZM11.2 15.5V19.4H15.7C17 19.4 17.8 18.7 17.8 17.5C17.8 16.3 16.9 15.5 15.7 15.5H11.2Z" fill="#ffffff"></path>
+      </svg>
+      <span>BlueTEXT.in</span>
+    </a>
+
+    <!-- Mobile Navigation Toggle Button -->
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+      <span class="nav-toggle-icon" aria-hidden="true">☰</span>
+    </button>
+
+    <!-- 2. Primary Navigation Links with Subcategory Dropdowns -->
+    <nav class="nav-menu" id="nav-menu" aria-label="Primary Navigation">
+      <button class="nav-menu-close" aria-label="Close navigation menu">&times; Close Menu</button>
+      <div class="nav-dropdown">
+        <a href="/pages/tools/" class="nav-link">Tools ▾</a>
+        <div class="dropdown-menu">
+          <a href="/pages/tools/">All Tools</a>
+          <a href="/pages/tools/coding/">Coding</a>
+          <a href="/pages/tools/converters/">Converters</a>
+          <a href="/pages/tools/data/">Data</a>
+          <a href="/pages/tools/images/">Images</a>
+          <a href="/pages/tools/lifestyle/">Lifestyle</a>
+          <a href="/pages/tools/math/">Math</a>
+          <a href="/pages/tools/miscellaneous/">Miscellaneous</a>
+          <a href="/pages/tools/network/">Network</a>
+          <a href="/pages/tools/office/">Office</a>
+          <a href="/pages/tools/utilities/">Utilities</a>
+          <a href="/pages/tools/videos/">Videos</a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <a href="/pages/games/" class="nav-link">Games ▾</a>
+        <div class="dropdown-menu">
+          <a href="/pages/games/">All Games</a>
+          <a href="/pages/games/arcade/">Arcade</a>
+          <a href="/pages/games/board/">Board</a>
+          <a href="/pages/games/cards/">Cards</a>
+          <a href="/pages/games/puzzles/">Puzzles</a>
+          <a href="/pages/games/word/">Word</a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <a href="/pages/software/" class="nav-link">Software ▾</a>
+        <div class="dropdown-menu">
+          <a href="/pages/software/">All Software</a>
+          <a href="/pages/software/android/productivity/">Android Productivity</a>
+          <a href="/pages/software/android/utility/">Android Utilities</a>
+          <a href="/pages/software/apple/productivity/">Apple Productivity</a>
+          <a href="/pages/software/apple/utility/">Apple Utilities</a>
+          <a href="/pages/software/linux/games/">Linux Games</a>
+          <a href="/pages/software/linux/productivity/">Linux Productivity</a>
+          <a href="/pages/software/linux/utility/">Linux Utilities</a>
+          <a href="/pages/software/windows/games/">Windows Games</a>
+          <a href="/pages/software/windows/productivity/">Windows Productivity</a>
+          <a href="/pages/software/windows/utility/">Windows Utilities</a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <a href="/pages/tutorials/" class="nav-link">Tutorials ▾</a>
+        <div class="dropdown-menu">
+          <a href="/pages/tutorials/">All Tutorials</a>
+          <a href="/pages/tutorials/backend/">Backend</a>
+          <a href="/pages/tutorials/design/">Design</a>
+          <a href="/pages/tutorials/programming/">Programming</a>
+          <a href="/pages/tutorials/security/">Security</a>
+          <a href="/pages/tutorials/web-dev/">Web Dev</a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <a href="/pages/education/" class="nav-link">Education ▾</a>
+        <div class="dropdown-menu">
+          <a href="/pages/education/">All Education</a>
+          <a href="/pages/education/finance/">Finance</a>
+          <a href="/pages/education/humanities/">Humanities</a>
+          <a href="/pages/education/languages/">Languages</a>
+          <a href="/pages/education/math/">Math</a>
+          <a href="/pages/education/science/">Science</a>
+        </div>
+      </div>
+
+      <a href="/pages/blog/" class="nav-link">Blog</a>
+      
+      <!-- 3. Action Utility Buttons -->
+      <div class="hdr-actions">
+        <!-- Live Search Trigger -->
+        <button class="hdr-btn" id="hdr-search-btn" aria-label="Search site tools">🔍 Search</button>
+
+        <!-- Donate / Support Trigger -->
+        <a href="/support.html" class="hdr-btn hdr-btn-donate" aria-label="Support the project">💖 Support</a>
+
+        <!-- Sign In Button (Managed by auth.js) -->
+        <button class="hdr-btn" id="auth-toggle-btn" aria-label="Account login status">Sign In</button>
+
+        <!-- Clear Cache Utility Button -->
+        <button class="hdr-btn" id="clear-cache-btn" title="Clear local storage, cache, and reload" aria-label="Clear local cache">🧹 Clear Cache</button>
+
+        <!-- Dark / Light Theme Toggle -->
+        <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle dark/light mode">
+          <span id="theme-toggle-icon" aria-hidden="true">🌙</span>
+        </button>
+      </div>
+    </nav>
+
+  </div>
+</header>
+<!-- HEADER_END --></div>
+<!-- MODALS_START -->
+
+
+<!-- MODALS_END -->
+
+  <main class="container py-4" id="main-content">
+    <div class="ide-container">
+      <div class="ide-header">
+        <div class="ide-title">🎬 Web Media Capture Hub</div>
+        <div class="ide-status" id="global-status">DSP Engine Ready</div>
+      </div>
+      
+      <div class="ide-body">
+        
+  <div class="ide-panel">
+    <div class="ide-panel-title">Screen Recorder</div>
+    <button id="cap-screen" class="ide-btn ide-btn-primary">Toggle Screen Recording</button>
+  </div>
+  <div class="ide-panel">
+    <div class="ide-panel-title">Voice Recording Stream</div>
+    <textarea id="cap-log" class="ide-output" rows="8" readonly placeholder="Recorders log stream..."></textarea>
+  </div>
+
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-component"><!-- FOOTER_START -->
+<!-- =========================================================================
+     BlueTEXT.in — Clean Semantic Footer Component
+     Sections: 1. Brand & Compliance Notice | 2. Navigation & Legal Links
+     ========================================================================= -->
+
+<footer class="ftr" role="contentinfo">
+  <div class="ftr-container">
+
+    <!-- 1. Brand & Privacy Compliance -->
+    <div class="ftr-brand">
+      <span class="ftr-logo">BlueTEXT.in</span>
+      <span class="ftr-compliance">© 2026. Client-side execution. Zero tracker policy.</span>
+    </div>
+
+    <!-- 2. Footer Utility Links -->
+    <nav class="ftr-nav" aria-label="Footer Navigation">
+      <a href="/assets/nav/about.html" class="ftr-link">About</a>
+      <a href="/assets/nav/contact.html" class="ftr-link">Contact</a>
+      <a href="/support.html" class="ftr-link ftr-link-highlight">💖 Donate</a>
+      <a href="https://github.com/mTulsiram/bluetext/issues/new?template=bug_report.md" class="ftr-link" target="_blank" rel="noopener noreferrer">Report Bug</a>
+      <a href="https://github.com/mTulsiram/bluetext/issues/new?template=feature_request.md" class="ftr-link" target="_blank" rel="noopener noreferrer">Suggest Feature</a>
+      <a href="/assets/nav/privacy.html" class="ftr-link">Privacy</a>
+      <a href="/assets/nav/terms.html" class="ftr-link">Terms</a>
+      <a href="/assets/nav/security.html" class="ftr-link">Security</a>
+      <a href="/assets/nav/accessibility.html" class="ftr-link">Accessibility</a>
+    </nav>
+
+  </div>
+</footer>
+<!-- FOOTER_END --></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  
+  <script>
+    (function() {
+      "use strict";
+      
+      function setStatus(text, isError = false) {
+        const el = document.getElementById('global-status');
+        if (el) {
+          el.textContent = text;
+          el.className = isError ? 'ide-status ide-error' : 'ide-status';
+        }
+      }
+
+      function setupCopy(btnId, outputId) {
+        document.getElementById(btnId)?.addEventListener('click', () => {
+          const out = document.getElementById(outputId);
+          if (out) {
+            navigator.clipboard.writeText(out.value || out.textContent);
+            setStatus('Copied to clipboard! ✓');
+          }
+        });
+      }
+
+      
+  const screenBtn = document.getElementById('cap-screen');
+  const log = document.getElementById('cap-log');
+  let active = false;
+
+  screenBtn.addEventListener('click', () => {
+    active = !active;
+    screenBtn.textContent = active ? 'Recording (Click to stop)' : 'Toggle Screen Recording';
+    log.value = active ? 'Screen capture recording initialized.' : 'Recording complete.';
+    setStatus('Screen capture loop toggled.');
+  });
+
+
+    })();
+  </script>
+</body>
+</html>
