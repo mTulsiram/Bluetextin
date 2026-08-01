@@ -10,7 +10,7 @@
 
     :root {
       --bg0: #0b0b0b; --bg1: #141414; --bg2: #1c1c1c; --bg3: #242424; --bg4: #2e2e2e;
-      --border: #2a2a2a; --text: #d8d8d8; --text2: #787878;
+      --border: #4a4a4a; --text: #f2f2f2; --text2: #c0c0c0;
       --accent: #4f7ef5; --accent2: #6691ff; --danger: #e05050; --success: #40c870;
       --r: 5px; --nav-h: 46px; --left-w: 255px; --right-w: 272px;
       --tl-h: 252px; --label-w: 108px; --track-h: 46px; --ruler-h: 24px;
@@ -347,6 +347,7 @@ const MIN_CLIP_DUR  = 0.1;
 const THUMB_TIMEOUT = 3500;
 const CANVAS_W      = 1280;
 const CANVAS_H      = 720;
+const DEFAULT_TIMELINE_DURATION = 14400; // 4 hours in seconds
 
 // ── STATE ──────────────────────────────────────────────────────────────────────
 // mediaBin: { id, name, type, url, duration, thumbnailUrl, w, h }
@@ -494,9 +495,10 @@ function uid() { return 'c' + (++_uid); }
 
 function fmtTime(sec) {
   if (!isFinite(sec) || sec < 0) sec = 0;
-  const m = Math.floor(sec / 60);
+  const h = Math.floor(sec / 3600);
+  const m = Math.floor((sec % 3600) / 60);
   const s = (sec % 60).toFixed(2).padStart(5, '0');
-  return m + ':' + s;
+  return h + ':' + m.toString().padStart(2, '0') + ':' + s;
 }
 
 function fmtLong(sec) {
@@ -521,7 +523,7 @@ function totalDur() {
   return S.clips.length ? Math.max(...S.clips.map(c => c.startTime + c.duration)) : 0;
 }
 
-function tlWidth() { return Math.max(totalDur() * S.zoomPxPerSec + 300, 600); }
+function tlWidth() { return Math.max(totalDur() * S.zoomPxPerSec, DEFAULT_TIMELINE_DURATION * S.zoomPxPerSec); }
 
 // ── CANVAS ─────────────────────────────────────────────────────────────────────
 const canvas = document.getElementById('preview-canvas');
