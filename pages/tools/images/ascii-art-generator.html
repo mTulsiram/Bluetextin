@@ -273,15 +273,24 @@
       <div class="ide-body">
         
     <div class="ide-panel">
-      <div class="ide-panel-title">Source / Input</div>
-      <textarea id="gen-input" class="ide-input" rows="12" placeholder="Type or paste parameters..."></textarea>
+      <div class="ide-panel-title">Image Source & Settings</div>
+      <div class="drop-zone" id="ascii-drop">Click / Drag Image File</div>
+      <input type="file" id="ascii-file" style="display: none;" accept="image/*">
+      <label class="mt-2">Resolution / Character Width</label>
+      <input id="ascii-width" type="range" class="ide-input" min="20" max="150" value="80">
+      <label class="mt-2">Character Set</label>
+      <select id="ascii-charset" class="ide-input">
+        <option value="standard">Standard (@#S%?*+;:,. )</option>
+        <option value="blocks">Blocks (█▓▒░ )</option>
+        <option value="minimal">Minimal (#. )</option>
+      </select>
     </div>
     <div class="ide-panel">
       <div class="ide-panel-title">
-        <span>Output View</span>
-        <button id="gen-copy" class="ide-btn" style="padding: 2px 8px; font-size: 0.75rem;">Copy</button>
+        <span>Monospaced ASCII Output</span>
+        <button id="ascii-copy" class="ide-btn" style="padding: 2px 8px; font-size: 0.75rem;">Copy ASCII</button>
       </div>
-      <textarea id="gen-output" class="ide-input" rows="16" readonly placeholder="Result appears here..."></textarea>
+      <pre id="ascii-output" style="background: #111; color: #9cdcfe; font-family: monospace; font-size: 8px; line-height: 8px; white-space: pre; overflow: auto; height: 260px; padding: 0.5rem;"></pre>
     </div>
   
       </div>
@@ -344,26 +353,72 @@
       }
 
       
-    const input = document.getElementById('gen-input');
-    const output = document.getElementById('gen-output');
+    const drop = document.getElementById('ascii-drop');
+    const fileInput = document.getElementById('ascii-file');
+    const widthSlider = document.getElementById('ascii-width');
+    const charsetSel = document.getElementById('ascii-charset');
+    const output = document.getElementById('ascii-output');
+    let loadedImg = null;
 
-    function process() {
-      const val = input.value;
-      if (!val) {
-        output.value = '';
-        return;
-      }
-      try {
-        output.value = val.toUpperCase();
-        setStatus('Processed successfully.');
-      } catch(e) {
-        output.value = 'Error: ' + e.message;
-        setStatus('Processor error.', true);
-      }
+    const charSets = {
+      standard: '@#S%?*+;:,. ',
+      blocks: '█▓▒░ ',
+      minimal: '#. '
+    };
+
+    drop.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', (e) => {
+      const f = e.target.files[0];
+      if (f) loadFile(f);
+    });
+
+    function loadFile(f) {
+      const r = new FileReader();
+      r.onload = (evt) => {
+        const img = new Image();
+        img.onload = () => {
+          loadedImg = img;
+          renderAscii();
+        };
+        img.src = evt.target.result;
+      };
+      r.readAsDataURL(f);
     }
 
-    input.addEventListener('input', process);
-    setupCopy('gen-copy', 'gen-output');
+    function renderAscii() {
+      if (!loadedImg) return;
+      const targetWidth = parseInt(widthSlider.value);
+      const aspect = loadedImg.height / loadedImg.width;
+      const targetHeight = Math.floor(targetWidth * aspect * 0.5);
+
+      const canvas = document.createElement('canvas');
+      canvas.width = targetWidth;
+      canvas.height = targetHeight;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(loadedImg, 0, 0, targetWidth, targetHeight);
+
+      const imgData = ctx.getImageData(0, 0, targetWidth, targetHeight).data;
+      const ramp = charSets[charsetSel.value] || charSets.standard;
+      let ascii = '';
+
+      for (let y = 0; y < targetHeight; y++) {
+        for (let x = 0; x < targetWidth; x++) {
+          const idx = (y * targetWidth + x) * 4;
+          const r = imgData[idx];
+          const g = imgData[idx + 1];
+          const b = imgData[idx + 2];
+          const avg = (r + g + b) / 3;
+          const charIdx = Math.floor((avg / 255) * (ramp.length - 1));
+          ascii += ramp[charIdx];
+        }
+        ascii += '\n';
+      }
+      output.textContent = ascii;
+      setStatus('ASCII art generated successfully.');
+    }
+
+    [widthSlider, charsetSel].forEach(el => el.addEventListener('input', renderAscii));
+    setupCopy('ascii-copy', 'ascii-output');
   
 
     })();

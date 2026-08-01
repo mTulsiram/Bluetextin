@@ -273,15 +273,18 @@
       <div class="ide-body">
         
     <div class="ide-panel">
-      <div class="ide-panel-title">Source / Input</div>
-      <textarea id="gen-input" class="ide-input" rows="12" placeholder="Type or paste parameters..."></textarea>
+      <div class="ide-panel-title">Frame Queue Settings</div>
+      <div class="drop-zone" id="gif-drop">Click / Drag Multiple Image Frames</div>
+      <input type="file" id="gif-file" style="display: none;" accept="image/*" multiple>
+      <label class="mt-2">Frame Delay (ms): <span id="gif-delay-val">200</span>ms</label>
+      <input id="gif-delay" type="range" class="ide-input" min="50" max="1000" value="200" step="50">
     </div>
     <div class="ide-panel">
-      <div class="ide-panel-title">
-        <span>Output View</span>
-        <button id="gen-copy" class="ide-btn" style="padding: 2px 8px; font-size: 0.75rem;">Copy</button>
+      <div class="ide-panel-title">Animation Preview Canvas</div>
+      <div class="border rounded text-center p-3 bg-dark">
+        <canvas id="gif-canvas" style="max-width: 100%; max-height: 250px;"></canvas>
       </div>
-      <textarea id="gen-output" class="ide-input" rows="16" readonly placeholder="Result appears here..."></textarea>
+      <div id="gif-frame-info" class="small text-muted mt-2">0 frames queued. Upload images to preview animation.</div>
     </div>
   
       </div>
@@ -344,26 +347,63 @@
       }
 
       
-    const input = document.getElementById('gen-input');
-    const output = document.getElementById('gen-output');
+    const drop = document.getElementById('gif-drop');
+    const fileInput = document.getElementById('gif-file');
+    const delaySlider = document.getElementById('gif-delay');
+    const delayVal = document.getElementById('gif-delay-val');
+    const canvas = document.getElementById('gif-canvas');
+    const ctx = canvas.getContext('2d');
+    const frameInfo = document.getElementById('gif-frame-info');
 
-    function process() {
-      const val = input.value;
-      if (!val) {
-        output.value = '';
-        return;
-      }
-      try {
-        output.value = val.toUpperCase();
-        setStatus('Processed successfully.');
-      } catch(e) {
-        output.value = 'Error: ' + e.message;
-        setStatus('Processor error.', true);
-      }
+    let frames = [];
+    let currentFrame = 0;
+    let animTimer = null;
+
+    drop.addEventListener('click', () => fileInput.click());
+    delaySlider.addEventListener('input', () => {
+      delayVal.textContent = delaySlider.value;
+      startAnim();
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      const files = Array.from(e.target.files);
+      if (!files.length) return;
+
+      frames = [];
+      let loaded = 0;
+
+      files.forEach((f) => {
+        const r = new FileReader();
+        r.onload = (evt) => {
+          const img = new Image();
+          img.onload = () => {
+            frames.push(img);
+            loaded++;
+            if (loaded === files.length) {
+              frameInfo.textContent = frames.length + ' frames loaded into animation queue.';
+              canvas.width = frames[0].width;
+              canvas.height = frames[0].height;
+              startAnim();
+              setStatus('Loaded ' + frames.length + ' frames.');
+            }
+          };
+          img.src = evt.target.result;
+        };
+        r.readAsDataURL(f);
+      });
+    });
+
+    function startAnim() {
+      if (animTimer) clearInterval(animTimer);
+      if (!frames.length) return;
+
+      currentFrame = 0;
+      animTimer = setInterval(() => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(frames[currentFrame], 0, 0);
+        currentFrame = (currentFrame + 1) % frames.length;
+      }, parseInt(delaySlider.value));
     }
-
-    input.addEventListener('input', process);
-    setupCopy('gen-copy', 'gen-output');
   
 
     })();

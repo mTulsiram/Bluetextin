@@ -3,123 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Cooking Measurement Converter utility tool on BlueTEXT.in.">
+  <meta name="description" content="Cooking Measurement Converter — free client-side tool on BlueTEXT.in.">
   <meta name="robots" content="index,follow">
   <title>Cooking Measurement Converter | BlueTEXT</title>
   <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" href="/assets/css/main.css">
   <style>
-    
-  .ide-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    background: #1e1e1e;
-    color: #d4d4d4;
-    border-radius: 12px;
-    padding: 1.5rem;
-    font-family: 'Fira Code', monospace, Consolas, Courier;
-    border: 1px solid #333;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  }
-  .ide-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #333;
-    padding-bottom: 0.8rem;
-    margin-bottom: 1rem;
-  }
-  .ide-title {
-    font-size: 1.25rem;
-    color: #61afef;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .ide-body {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-  }
-  @media (max-width: 992px) {
-    .ide-body {
-      grid-template-columns: 1fr;
-    }
-  }
-  .ide-panel {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    background: #252526;
-    border-radius: 8px;
-    padding: 1.2rem;
-    border: 1px solid #3c3c3c;
-  }
-  .ide-panel-title {
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #abb2bf;
-    border-bottom: 1px solid #3c3c3c;
-    padding-bottom: 0.5rem;
-    margin-bottom: 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .ide-input, .ide-output {
-    width: 100%;
-    background: #1e1e1e;
-    color: #9cdcfe;
-    border: 1px solid #3c3c3c;
-    border-radius: 6px;
-    padding: 0.8rem;
-    font-family: inherit;
-    font-size: 0.9rem;
-    resize: vertical;
-  }
-  .ide-input:focus, .ide-output:focus {
-    outline: none;
-    border-color: #61afef;
-  }
-  .ide-control-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-  }
-  .ide-btn {
-    background: #3a3d41;
-    color: #fff;
-    border: 1px solid #4b4e52;
-    border-radius: 6px;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 0.85rem;
-    transition: background 0.2s;
-  }
-  .ide-btn:hover {
-    background: #4b4e52;
-  }
-  .ide-btn-primary {
-    background: #007acc;
-    border-color: #0062a3;
-  }
-  .ide-btn-primary:hover {
-    background: #0062a3;
-  }
-  .ide-status {
-    font-size: 0.8rem;
-    color: #98c379;
-  }
-  .ide-error {
-    color: #e06c75;
-  }
-
-  </style>
-  <script src="/assets/js/converter-engine.js" defer></script>
+  .ide-container { display:flex;flex-direction:column;gap:1.5rem;background:#1e1e1e;color:#d4d4d4;border-radius:12px;padding:1.5rem;font-family:'Fira Code',monospace,Consolas,Courier;border:1px solid #333;box-shadow:0 10px 30px rgba(0,0,0,.3); }
+  .ide-header { display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #333;padding-bottom:.8rem;margin-bottom:1rem; }
+  .ide-title { font-size:1.25rem;color:#61afef;font-weight:bold;display:flex;align-items:center;gap:.5rem; }
+  .ide-body { display:grid;grid-template-columns:1fr 1fr;gap:1.5rem; }
+  @media(max-width:992px){ .ide-body{ grid-template-columns:1fr; } }
+  .ide-panel { display:flex;flex-direction:column;gap:1rem;background:#252526;border-radius:8px;padding:1.2rem;border:1px solid #3c3c3c; }
+  .ide-panel-title { font-size:.95rem;text-transform:uppercase;letter-spacing:.05em;color:#abb2bf;border-bottom:1px solid #3c3c3c;padding-bottom:.5rem;margin-bottom:.5rem;display:flex;justify-content:space-between;align-items:center; }
+  .ide-input { width:100%;background:#1e1e1e;color:#9cdcfe;border:1px solid #3c3c3c;border-radius:6px;padding:.8rem;font-family:inherit;font-size:.9rem;resize:vertical; }
+  .ide-input:focus { outline:none;border-color:#61afef; }
+  .ide-control-group { display:flex;flex-wrap:wrap;gap:.6rem; }
+  .ide-btn { background:#3a3d41;color:#fff;border:1px solid #4b4e52;border-radius:6px;padding:.5rem 1rem;cursor:pointer;font-family:inherit;font-size:.85rem;transition:background .2s; }
+  .ide-btn:hover { background:#4b4e52; }
+  .ide-btn-primary { background:#007acc;border-color:#0062a3; }
+  .ide-btn-primary:hover { background:#0062a3; }
+  .ide-status { font-size:.8rem;color:#98c379; }
+  .ide-error { color:#e06c75; }
+  .drop-zone { border:2px dashed #4b4e52;border-radius:6px;padding:1.5rem;text-align:center;cursor:pointer;background:#1e1e1e;transition:border-color .2s; }
+</style>
   <script src="/assets/js/app.js" defer></script>
 </head>
 <body>
@@ -246,36 +153,37 @@
   </div>
 </header>
 <!-- HEADER_END --></div>
-<!-- MODALS_START -->
+  <!-- MODALS_START -->
 
 
 <!-- MODALS_END -->
-
   <main class="container py-4" id="main-content">
     <div class="ide-container">
       <div class="ide-header">
-        <div class="ide-title">🔄 Cooking Measurement Converter</div>
-        <div class="ide-status" id="global-status">Scalar Engine Active</div>
+        <div class="ide-title">🔧 Cooking Measurement Converter</div>
+        <div class="ide-status" id="global-status">Ready</div>
       </div>
-      
       <div class="ide-body">
-        
     <div class="ide-panel">
-      <div class="ide-panel-title">Source / Input</div>
-      <textarea id="gen-input" class="ide-input" rows="12" placeholder="Type or paste parameters..."></textarea>
+      <div class="ide-panel-title">Cooking Units - Volume</div>
+      <label>Cups (US)</label>
+      <input id="cook-cups" type="number" class="ide-input" placeholder="1">
+      <label class="mt-2">Tablespoons</label>
+      <input id="cook-tbsp" type="number" class="ide-input" placeholder="16">
+      <label class="mt-2">Teaspoons</label>
+      <input id="cook-tsp" type="number" class="ide-input" placeholder="48">
     </div>
     <div class="ide-panel">
-      <div class="ide-panel-title">
-        <span>Output View</span>
-        <button id="gen-copy" class="ide-btn" style="padding: 2px 8px; font-size: 0.75rem;">Copy</button>
-      </div>
-      <textarea id="gen-output" class="ide-input" rows="16" readonly placeholder="Result appears here..."></textarea>
-    </div>
-  
-      </div>
+      <div class="ide-panel-title">Metric Equivalents</div>
+      <label>Milliliters (mL)</label>
+      <input id="cook-ml" type="number" class="ide-input" placeholder="236.6">
+      <label class="mt-2">Fluid Ounces (fl oz)</label>
+      <input id="cook-floz" type="number" class="ide-input" placeholder="8">
+      <label class="mt-2">Liters (L)</label>
+      <input id="cook-l" type="number" class="ide-input" placeholder="0.2366">
+    </div></div>
     </div>
   </main>
-
   <div id="footer-component"><!-- FOOTER_START -->
 <!-- =========================================================================
      BlueTEXT.in — Clean Semantic Footer Component
@@ -308,53 +216,31 @@
 </footer>
 <!-- FOOTER_END --></div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  
   <script>
-    (function() {
-      "use strict";
-      
-      function setStatus(text, isError = false) {
-        const el = document.getElementById('global-status');
-        if (el) {
-          el.textContent = text;
-          el.className = isError ? 'ide-status ide-error' : 'ide-status';
-        }
-      }
-
-      function setupCopy(btnId, outputId) {
-        document.getElementById(btnId)?.addEventListener('click', () => {
-          const out = document.getElementById(outputId);
-          if (out) {
-            navigator.clipboard.writeText(out.value || out.textContent);
-            setStatus('Copied to clipboard! ✓');
-          }
-        });
-      }
-
-      
-    const input = document.getElementById('gen-input');
-    const output = document.getElementById('gen-output');
-
-    function process() {
-      const val = input.value;
-      if (!val) {
-        output.value = '';
-        return;
-      }
-      try {
-        output.value = val.toUpperCase();
-        setStatus('Processed successfully.');
-      } catch(e) {
-        output.value = 'Error: ' + e.message;
-        setStatus('Processor error.', true);
-      }
+  (function(){
+    "use strict";
+    function setStatus(text, isError) {
+      const el = document.getElementById('global-status');
+      if (el) { el.textContent = text; el.className = isError ? 'ide-status ide-error' : 'ide-status'; }
     }
-
-    input.addEventListener('input', process);
-    setupCopy('gen-copy', 'gen-output');
-  
-
-    })();
+    
+    const cookFields = [
+      {id: 'cook-cups', factor: 1},
+      {id: 'cook-tbsp', factor: 16},
+      {id: 'cook-tsp', factor: 48},
+      {id: 'cook-ml', factor: 236.588},
+      {id: 'cook-floz', factor: 8},
+      {id: 'cook-l', factor: 0.236588}
+    ];
+    cookFields.forEach(f => {
+      document.getElementById(f.id).addEventListener('input', function() {
+        const cups = (parseFloat(this.value) || 0) / f.factor;
+        cookFields.forEach(t => {
+          if (t.id !== f.id) document.getElementById(t.id).value = Number((cups * t.factor).toPrecision(6));
+        });
+      });
+    });
+  })();
   </script>
 </body>
 </html>

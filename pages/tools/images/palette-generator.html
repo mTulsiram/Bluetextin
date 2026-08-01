@@ -273,15 +273,17 @@
       <div class="ide-body">
         
     <div class="ide-panel">
-      <div class="ide-panel-title">Source / Input</div>
-      <textarea id="gen-input" class="ide-input" rows="12" placeholder="Type or paste parameters..."></textarea>
+      <div class="ide-panel-title">Upload Image for Color Palette</div>
+      <div class="drop-zone" id="pal-drop">Click / Drag Image File</div>
+      <input type="file" id="pal-file" style="display: none;" accept="image/*">
+      <label class="mt-2">Color Count (Swatches)</label>
+      <input id="pal-count" type="range" class="ide-input" min="4" max="10" value="6">
     </div>
     <div class="ide-panel">
-      <div class="ide-panel-title">
-        <span>Output View</span>
-        <button id="gen-copy" class="ide-btn" style="padding: 2px 8px; font-size: 0.75rem;">Copy</button>
+      <div class="ide-panel-title">Extracted Color Palette Swatches</div>
+      <div id="pal-swatches" class="d-flex flex-wrap gap-2 p-3 border rounded bg-dark" style="min-height: 120px;">
+        <span class="text-muted small">Upload an image to extract key color palette swatches.</span>
       </div>
-      <textarea id="gen-output" class="ide-input" rows="16" readonly placeholder="Result appears here..."></textarea>
     </div>
   
       </div>
@@ -344,26 +346,78 @@
       }
 
       
-    const input = document.getElementById('gen-input');
-    const output = document.getElementById('gen-output');
+    const drop = document.getElementById('pal-drop');
+    const fileInput = document.getElementById('pal-file');
+    const palCount = document.getElementById('pal-count');
+    const swatchesContainer = document.getElementById('pal-swatches');
+    let loadedImg = null;
 
-    function process() {
-      const val = input.value;
-      if (!val) {
-        output.value = '';
-        return;
+    drop.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', (e) => {
+      const f = e.target.files[0];
+      if (f) {
+        const r = new FileReader();
+        r.onload = (evt) => {
+          const img = new Image();
+          img.onload = () => {
+            loadedImg = img;
+            extractPalette();
+          };
+          img.src = evt.target.result;
+        };
+        r.readAsDataURL(f);
       }
-      try {
-        output.value = val.toUpperCase();
-        setStatus('Processed successfully.');
-      } catch(e) {
-        output.value = 'Error: ' + e.message;
-        setStatus('Processor error.', true);
+    });
+
+    function extractPalette() {
+      if (!loadedImg) return;
+      const count = parseInt(palCount.value);
+      const canvas = document.createElement('canvas');
+      canvas.width = 50;
+      canvas.height = 50;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(loadedImg, 0, 0, 50, 50);
+
+      const imgData = ctx.getImageData(0, 0, 50, 50).data;
+      const colors = [];
+      const step = Math.floor(imgData.length / 4 / count);
+
+      for (let i = 0; i < count; i++) {
+        const idx = i * step * 4;
+        const r = imgData[idx];
+        const g = imgData[idx + 1];
+        const b = imgData[idx + 2];
+        const hex = '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+        colors.push(hex);
       }
+
+      swatchesContainer.innerHTML = '';
+      colors.forEach(hex => {
+        const card = document.createElement('div');
+        card.style.flex = '1 1 80px';
+        card.style.height = '60px';
+        card.style.backgroundColor = hex;
+        card.style.borderRadius = '6px';
+        card.style.display = 'flex';
+        card.style.alignItems = 'flex-end';
+        card.style.justifyContent = 'center';
+        card.style.padding = '4px';
+        card.style.color = '#fff';
+        card.style.textShadow = '0 1px 2px #000';
+        card.style.fontSize = '11px';
+        card.style.fontWeight = 'bold';
+        card.style.cursor = 'pointer';
+        card.textContent = hex;
+        card.addEventListener('click', () => {
+          navigator.clipboard.writeText(hex);
+          setStatus('Copied ' + hex + ' to clipboard! ✓');
+        });
+        swatchesContainer.appendChild(card);
+      });
+      setStatus('Extracted ' + count + ' color swatches.');
     }
 
-    input.addEventListener('input', process);
-    setupCopy('gen-copy', 'gen-output');
+    palCount.addEventListener('input', extractPalette);
   
 
     })();

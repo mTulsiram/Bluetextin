@@ -273,15 +273,16 @@
       <div class="ide-body">
         
     <div class="ide-panel">
-      <div class="ide-panel-title">Source / Input</div>
-      <textarea id="gen-input" class="ide-input" rows="12" placeholder="Type or paste parameters..."></textarea>
+      <div class="ide-panel-title">Base64 Code Input</div>
+      <textarea id="b64-input" class="ide-input" rows="12" placeholder="Paste data:image/png;base64,... string here"></textarea>
     </div>
     <div class="ide-panel">
-      <div class="ide-panel-title">
-        <span>Output View</span>
-        <button id="gen-copy" class="ide-btn" style="padding: 2px 8px; font-size: 0.75rem;">Copy</button>
+      <div class="ide-panel-title">Rendered Image View</div>
+      <div class="border rounded text-center p-3 bg-dark">
+        <img id="b64-img" style="max-width: 100%; max-height: 300px; display: none;" alt="Base64 Rendered Image">
+        <div id="b64-placeholder" class="text-muted">Image preview will appear here</div>
       </div>
-      <textarea id="gen-output" class="ide-input" rows="16" readonly placeholder="Result appears here..."></textarea>
+      <a id="b64-download" class="ide-btn ide-btn-primary mt-2 text-center" style="display: none;" download="decoded-image.png">Download Image File</a>
     </div>
   
       </div>
@@ -344,26 +345,31 @@
       }
 
       
-    const input = document.getElementById('gen-input');
-    const output = document.getElementById('gen-output');
 
-    function process() {
-      const val = input.value;
-      if (!val) {
-        output.value = '';
+
+    const input = document.getElementById('b64-input');
+    const img = document.getElementById('b64-img');
+    const placeholder = document.getElementById('b64-placeholder');
+    const download = document.getElementById('b64-download');
+
+    input.addEventListener('input', () => {
+      let str = input.value.trim();
+      if (!str) {
+        img.style.display = 'none';
+        download.style.display = 'none';
+        placeholder.style.display = 'block';
         return;
       }
-      try {
-        output.value = val.toUpperCase();
-        setStatus('Processed successfully.');
-      } catch(e) {
-        output.value = 'Error: ' + e.message;
-        setStatus('Processor error.', true);
+      if (!str.startsWith('data:image/')) {
+        str = 'data:image/png;base64,' + str;
       }
-    }
-
-    input.addEventListener('input', process);
-    setupCopy('gen-copy', 'gen-output');
+      img.src = str;
+      img.style.display = 'inline-block';
+      download.href = str;
+      download.style.display = 'block';
+      placeholder.style.display = 'none';
+      setStatus('Rendered Base64 image successfully.');
+    });
   
 
     })();
