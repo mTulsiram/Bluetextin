@@ -1,28 +1,28 @@
 {
-  "generatedAt": "2026-08-01T10:21:24.424Z",
-  "startedAt": "2026-08-01T10:21:23.118Z",
-  "durationMs": 1306,
+  "generatedAt": "2026-08-01T10:28:13.931Z",
+  "startedAt": "2026-08-01T10:28:12.742Z",
+  "durationMs": 1189,
   "ok": true,
   "steps": [
     {
       "name": "Generate Index Pages",
       "ok": true,
-      "durationMs": 329
+      "durationMs": 254
     },
     {
       "name": "Inject Header & Footer",
       "ok": true,
-      "durationMs": 757
+      "durationMs": 730
     },
     {
       "name": "Generate Search Index",
       "ok": true,
-      "durationMs": 168
+      "durationMs": 163
     },
     {
       "name": "Generate Sitemap",
       "ok": true,
-      "durationMs": 42
+      "durationMs": 29
     }
   ],
   "outputs": {
