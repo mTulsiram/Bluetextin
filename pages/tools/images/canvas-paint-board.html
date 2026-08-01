@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Canvas Paint Board utility tool on BlueTEXT.in.">
+  <meta name="description" content="HTML5 canvas drawing and sketch board editor.">
   <meta name="robots" content="index,follow">
   <title>Canvas Paint Board | BlueTEXT</title>
   <link rel="manifest" href="/manifest.json">
@@ -126,12 +126,20 @@
     background: #1e1e1e;
     transition: border-color 0.2s;
   }
-  .drop-zone.dragover {
-    border-color: #61afef;
-    background: #2b2b2b;
+  .pixel-grid {
+    display: grid;
+    gap: 1px;
+    background: #444;
+    border: 1px solid #444;
+  }
+  .pixel-cell {
+    background: #1e1e1e;
+    aspect-ratio: 1;
+    cursor: pointer;
   }
 
   </style>
+  <script src="/assets/js/images-engine.js" defer></script>
   <script src="/assets/js/app.js" defer></script>
 </head>
 <body>
@@ -267,23 +275,25 @@
     <div class="ide-container">
       <div class="ide-header">
         <div class="ide-title">📷 Canvas Paint Board</div>
-        <div class="ide-status" id="global-status">Studio Ready</div>
+        <div class="ide-status" id="global-status">Studio Canvas Online</div>
       </div>
       
       <div class="ide-body">
         
-    <div class="ide-panel">
-      <div class="ide-panel-title">Source / Input</div>
-      <textarea id="gen-input" class="ide-input" rows="12" placeholder="Type or paste parameters..."></textarea>
+  <div class="ide-panel">
+    <div class="ide-panel-title">Paint Palette</div>
+    <label>Stroke Color</label>
+    <input id="paint-color" type="color" class="ide-input" value="#61afef">
+    <label class="mt-2">Brush Thickness</label>
+    <input id="paint-weight" type="range" class="ide-input" min="1" max="25" value="5">
+  </div>
+  <div class="ide-panel">
+    <div class="ide-panel-title">Paint Canvas View</div>
+    <div class="border rounded bg-white" style="height: 300px;">
+      <canvas id="paint-canvas" width="400" height="300" style="max-width: 100%; height: 100%; cursor: crosshair;"></canvas>
     </div>
-    <div class="ide-panel">
-      <div class="ide-panel-title">
-        <span>Output View</span>
-        <button id="gen-copy" class="ide-btn" style="padding: 2px 8px; font-size: 0.75rem;">Copy</button>
-      </div>
-      <textarea id="gen-output" class="ide-input" rows="16" readonly placeholder="Result appears here..."></textarea>
-    </div>
-  
+  </div>
+
       </div>
     </div>
   </main>
@@ -344,27 +354,29 @@
       }
 
       
-    const input = document.getElementById('gen-input');
-    const output = document.getElementById('gen-output');
+  const canvas = document.getElementById('paint-canvas');
+  const ctx = canvas.getContext('2d');
+  const color = document.getElementById('paint-color');
+  const weight = document.getElementById('paint-weight');
+  let drawing = false;
 
-    function process() {
-      const val = input.value;
-      if (!val) {
-        output.value = '';
-        return;
-      }
-      try {
-        output.value = val.toUpperCase();
-        setStatus('Processed successfully.');
-      } catch(e) {
-        output.value = 'Error: ' + e.message;
-        setStatus('Processor error.', true);
-      }
-    }
+  canvas.addEventListener('mousedown', (e) => {
+    drawing = true;
+    ctx.beginPath();
+    ctx.strokeStyle = color.value;
+    ctx.lineWidth = weight.value;
+    ctx.lineCap = 'round';
+    ctx.moveTo(e.offsetX, e.offsetY);
+  });
 
-    input.addEventListener('input', process);
-    setupCopy('gen-copy', 'gen-output');
-  
+  canvas.addEventListener('mousemove', (e) => {
+    if (!drawing) return;
+    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.stroke();
+  });
+
+  canvas.addEventListener('mouseup', () => drawing = false);
+
 
     })();
   </script>
