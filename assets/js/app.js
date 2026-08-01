@@ -611,6 +611,14 @@
 
     const themeBtn = document.getElementById("theme-toggle-btn");
     if (themeBtn) themeBtn.addEventListener("click", toggleTheme);
+
+    // Dynamically load tools-handler.js on coding pages
+    if (window.location.pathname.includes("/pages/tools/coding/")) {
+      const script = document.createElement("script");
+      script.src = "/assets/js/tools-handler.js";
+      script.defer = true;
+      document.body.appendChild(script);
+    }
   }
 
   if (document.readyState === "loading") {

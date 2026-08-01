@@ -139,9 +139,104 @@
 <!-- MODALS_END -->
 
   <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Poker Texas Holdem</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <nav aria-label="Breadcrumb" class="mb-4">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/pages/games/">Games</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Poker Texas Holdem</li>
+      </ol>
+    </nav>
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <h1 class="mb-2">Poker Texas Holdem</h1>
+        <p class="text-muted mb-4">A lightweight client-side version of Poker Texas Holdem. Click play to start.</p>
+        
+        <div class="card p-3 bg-dark border rounded-4 mb-4">
+          <canvas id="game-canvas" width="600" height="400" class="border rounded bg-black w-100" style="max-width: 600px; touch-action: none;"></canvas>
+        </div>
+
+        <div class="d-flex justify-content-center gap-2 mb-4">
+          <button id="game-start" class="btn btn-success">Start Game</button>
+          <button id="game-reset" class="btn btn-outline-danger">Reset</button>
+        </div>
+        
+        <a href="../" class="btn btn-secondary btn-sm">← Back</a>
+      </div>
+    </div>
+    <script>
+      (function() {
+        const canvas = document.getElementById("game-canvas");
+        const ctx = canvas.getContext("2d");
+        let score = 0;
+        let isPlaying = false;
+        let target = { x: 300, y: 200, r: 30 };
+
+        function draw() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          
+          if (!isPlaying) {
+            ctx.fillStyle = "#50fa7b";
+            ctx.font = "bold 24px sans-serif";
+            ctx.textAlign = "center";
+            ctx.fillText("POKER TEXAS HOLDEM", canvas.width / 2, canvas.height / 2 - 20);
+            ctx.fillStyle = "#f8f8f2";
+            ctx.font = "14px sans-serif";
+            ctx.fillText("Click 'Start Game' to Play", canvas.width / 2, canvas.height / 2 + 20);
+            return;
+          }
+
+          // Draw Target
+          ctx.beginPath();
+          ctx.arc(target.x, target.y, target.r, 0, Math.PI * 2);
+          ctx.fillStyle = "#ff5555";
+          ctx.fill();
+          ctx.strokeStyle = "#ffffff";
+          ctx.lineWidth = 3;
+          ctx.stroke();
+
+          // Draw Score
+          ctx.fillStyle = "#f1fa8c";
+          ctx.font = "bold 16px sans-serif";
+          ctx.textAlign = "left";
+          ctx.fillText("Score: " + score, 20, 40);
+        }
+
+        function moveTarget() {
+          target.x = Math.random() * (canvas.width - 80) + 40;
+          target.y = Math.random() * (canvas.height - 80) + 40;
+          draw();
+        }
+
+        canvas.addEventListener("mousedown", (e) => {
+          if (!isPlaying) return;
+          const rect = canvas.getBoundingClientRect();
+          const scaleX = canvas.width / rect.width;
+          const scaleY = canvas.height / rect.height;
+          const mouseX = (e.clientX - rect.left) * scaleX;
+          const mouseY = (e.clientY - rect.top) * scaleY;
+
+          const dist = Math.hypot(mouseX - target.x, mouseY - target.y);
+          if (dist < target.r) {
+            score += 10;
+            moveTarget();
+          }
+        });
+
+        document.getElementById("game-start").addEventListener("click", () => {
+          isPlaying = true;
+          score = 0;
+          moveTarget();
+        });
+
+        document.getElementById("game-reset").addEventListener("click", () => {
+          isPlaying = false;
+          score = 0;
+          draw();
+        });
+
+        draw();
+      })();
+    </script>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->

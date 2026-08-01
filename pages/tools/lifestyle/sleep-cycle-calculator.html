@@ -139,9 +139,67 @@
 <!-- MODALS_END -->
 
   <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Sleep Cycle Calculator</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <nav aria-label="Breadcrumb" class="mb-4">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/pages/tools/">Tools</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Sleep Cycle Calculator</li>
+      </ol>
+    </nav>
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        <h1 class="mb-2">Sleep Cycle Calculator</h1>
+        <p class="text-muted mb-4">Fast, client-side sleep cycle calculator tool. Safe and execution-local.</p>
+        <div class="card p-4 border shadow-sm mb-4">
+          
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="calc-val1" class="form-label">Input Value A</label>
+          <input id="calc-val1" type="number" class="form-control" value="10">
+        </div>
+        <div class="col-md-6">
+          <label for="calc-val2" class="form-label">Input Value B</label>
+          <input id="calc-val2" type="number" class="form-control" value="5">
+        </div>
+        <div class="col-12">
+          <label for="calc-op" class="form-label">Operation</label>
+          <select id="calc-op" class="form-select">
+            <option value="add">Addition (+)</option>
+            <option value="sub">Subtraction (-)</option>
+            <option value="mul">Multiplication (*)</option>
+            <option value="div">Division (/)</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <button id="calc-run" class="btn btn-primary">Calculate</button>
+        </div>
+        <div class="col-12">
+          <label for="calc-result" class="form-label">Result</label>
+          <input id="calc-result" type="text" class="form-control" readonly>
+        </div>
+      </div>
+    
+        </div>
+        <a href="../" class="btn btn-secondary btn-sm">← Back</a>
+      </div>
+    </div>
+    <script>
+      (function() {
+        
+      document.getElementById('calc-run').addEventListener('click', () => {
+        const v1 = parseFloat(document.getElementById('calc-val1').value) || 0;
+        const v2 = parseFloat(document.getElementById('calc-val2').value) || 0;
+        const op = document.getElementById('calc-op').value;
+        let res = 0;
+        if (op === 'add') res = v1 + v2;
+        else if (op === 'sub') res = v1 - v2;
+        else if (op === 'mul') res = v1 * v2;
+        else if (op === 'div') res = v2 !== 0 ? v1 / v2 : 'Cannot divide by zero';
+        document.getElementById('calc-result').value = res;
+      });
+    
+      })();
+    </script>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->

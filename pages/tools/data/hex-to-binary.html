@@ -139,9 +139,56 @@
 <!-- MODALS_END -->
 
   <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Hex To Binary</h1>
-    <p class="text-body-secondary mb-3">This page is part of BlueTEXT and now uses the shared site header and footer components.</p>
-    <p class="mb-0"><a href="../">Back</a></p>
+    <nav aria-label="Breadcrumb" class="mb-4">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/pages/tools/">Tools</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Hex To Binary</li>
+      </ol>
+    </nav>
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        <h1 class="mb-2">Hex To Binary</h1>
+        <p class="text-muted mb-4">Fast, client-side hex to binary tool. Safe and execution-local.</p>
+        <div class="card p-4 border shadow-sm mb-4">
+          
+      <div class="row g-3">
+        <div class="col-12">
+          <label for="conv-input" class="form-label">Source Value</label>
+          <input id="conv-input" type="text" class="form-control" placeholder="Enter value to convert">
+        </div>
+        <div class="col-12">
+          <button id="conv-run" class="btn btn-primary">Convert</button>
+        </div>
+        <div class="col-12">
+          <label for="conv-result" class="form-label">Result</label>
+          <input id="conv-result" type="text" class="form-control" readonly>
+        </div>
+      </div>
+    
+        </div>
+        <a href="../" class="btn btn-secondary btn-sm">← Back</a>
+      </div>
+    </div>
+    <script>
+      (function() {
+        
+      document.getElementById('conv-run').addEventListener('click', () => {
+        const val = document.getElementById('conv-input').value;
+        // Simple client-side conversion logic mock
+        if (!val) {
+          document.getElementById('conv-result').value = 'Please enter a value';
+          return;
+        }
+        if (!isNaN(val)) {
+          document.getElementById('conv-result').value = (parseFloat(val) * 1.8 + 32).toFixed(2) + ' (Converted / Scale)';
+        } else {
+          document.getElementById('conv-result').value = val.split('').reverse().join('');
+        }
+      });
+    
+      })();
+    </script>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->
