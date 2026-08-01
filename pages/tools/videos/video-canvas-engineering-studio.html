@@ -3,204 +3,311 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Professional Video Canvas Engineering Studio — WebGL GPU shaders, FFmpeg.wasm MP4 encoding, LUT color grading, Web Audio waveform, frame-accurate editing. 100% client-side, zero upload.">
+  <meta name="description" content="Professional Video Canvas Engineering Studio — WebGL2 GPU shaders, FFmpeg.wasm MP4/GIF, 3D LUT color grading, Web Audio waveform, frame-accurate scrubbing. 100% client-side, zero upload.">
   <meta name="robots" content="index,follow">
   <title>Video Canvas Engineering Studio | BlueTEXT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" href="/assets/css/main.css">
   <style>
-  /* ── RESET / BASE ──────────────────────────────────────────────── */
-  *, *::before, *::after { box-sizing: border-box; }
+  /* ══════════════════════════════════════════════════════════════
+     DESIGN TOKENS — 60-30-10 Obsidian System
+  ══════════════════════════════════════════════════════════════ */
+  :root {
+    --bg:        #0F1115;
+    --card:      #1A1D24;
+    --card-hi:   #1E222B;
+    --border:    #2A2E39;
+    --border-hi: #3B4255;
+    --accent:    #2563EB;
+    --accent-hi: #3B82F6;
+    --accent-lo: rgba(37,99,235,.12);
+    --text:      #E2E8F0;
+    --text-2:    #94A3B8;
+    --text-3:    #4B5563;
+    --green:     #10B981;
+    --red:       #EF4444;
+    --amber:     #F59E0B;
+    --sans:      'Inter', system-ui, sans-serif;
+    --mono:      'JetBrains Mono', 'Fira Code', monospace;
+    --radius:    8px;
+    --radius-lg: 12px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ══════════════════════════════════════════════════════════════
+     STUDIO SHELL
+  ══════════════════════════════════════════════════════════════ */
   .studio {
-    display: flex; flex-direction: column; gap: 0;
-    background: #0d0d0d; color: #d4d4d4;
-    border-radius: 14px; overflow: hidden;
-    border: 1px solid #1e1e1e;
-    box-shadow: 0 20px 60px rgba(0,0,0,.7);
-    font-family: 'Fira Code', Consolas, ui-monospace, monospace;
-    min-height: 90vh;
+    display: flex; flex-direction: column;
+    background: var(--bg); color: var(--text);
+    border-radius: var(--radius-lg); overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 24px 80px rgba(0,0,0,.8);
+    font-family: var(--sans);
+    min-height: calc(100vh - 160px);
   }
 
-  /* ── TOP BAR ───────────────────────────────────────────────────── */
-  .s-topbar {
-    display: flex; align-items: center; gap: .75rem;
-    padding: .65rem 1.2rem; background: #111;
-    border-bottom: 1px solid #1e1e1e; flex-wrap: wrap;
+  /* ── TOP BAR ─────────────────────────────────────────────────── */
+  .topbar {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 20px; background: var(--card);
+    border-bottom: 1px solid var(--border); flex-wrap: wrap;
+    position: sticky; top: 0; z-index: 100;
   }
-  .s-title { font-size: 1rem; font-weight: 700; color: #61afef; white-space: nowrap; }
-  .s-status {
-    flex: 1; font-size: .72rem; color: #98c379;
-    background: #1a1a1a; border: 1px solid #2a2a2a;
-    border-radius: 4px; padding: .25rem .7rem;
-    min-width: 160px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  .app-icon { font-size: 1.1rem; }
+  .app-title {
+    font-size: .9rem; font-weight: 700; color: var(--accent-hi);
+    letter-spacing: -.01em; white-space: nowrap;
   }
-  .s-status.err { color: #e06c75; }
-  /* progress bar */
-  .s-progress-wrap { width: 160px; display: none; align-items: center; gap: .5rem; }
-  .s-progress-wrap.visible { display: flex; }
-  .s-progress-bg { flex: 1; height: 6px; background: #222; border-radius: 3px; overflow: hidden; }
-  .s-progress-fill { height: 100%; background: #007acc; border-radius: 3px; width: 0%; transition: width .2s; }
-  .s-progress-pct { font-size: .7rem; color: #9cdcfe; min-width: 32px; }
+  .top-sep { width: 1px; height: 20px; background: var(--border); }
+  .status-pill {
+    flex: 1; font-size: .72rem; color: var(--green);
+    font-family: var(--mono); padding: 4px 10px;
+    background: rgba(16,185,129,.08); border: 1px solid rgba(16,185,129,.2);
+    border-radius: 20px; min-width: 0; overflow: hidden;
+    text-overflow: ellipsis; white-space: nowrap;
+  }
+  .status-pill.err { color: var(--red); background: rgba(239,68,68,.08); border-color: rgba(239,68,68,.2); }
+  /* Progress */
+  .progress-wrap { display: none; align-items: center; gap: 8px; }
+  .progress-wrap.show { display: flex; }
+  .progress-track { width: 120px; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .progress-fill  { height: 100%; background: var(--accent); border-radius: 2px; transition: width .15s; }
+  .progress-pct   { font-size: .68rem; font-family: var(--mono); color: var(--accent-hi); min-width: 30px; }
+  .top-chip {
+    font-size: .65rem; font-family: var(--mono); color: var(--text-2);
+    background: var(--border); padding: 3px 8px; border-radius: 20px;
+    white-space: nowrap;
+  }
 
-  /* ── BODY: 3-COLUMN ───────────────────────────────────────────── */
-  .s-body {
+  /* ── BODY GRID — 3-column desktop ───────────────────────────── */
+  .studio-body {
     display: grid;
-    grid-template-columns: 270px 1fr 260px;
-    gap: 0;
-    flex: 1;
-    overflow: hidden;
+    grid-template-columns: 272px 1fr 256px;
+    gap: 0; flex: 1; overflow: hidden;
   }
-  @media (max-width: 1100px) { .s-body { grid-template-columns: 240px 1fr; } }
-  @media (max-width: 780px)  { .s-body { grid-template-columns: 1fr; } }
+  @media (max-width: 1200px) { .studio-body { grid-template-columns: 240px 1fr 240px; } }
+  @media (max-width: 900px)  { .studio-body { grid-template-columns: 1fr; } }
 
   /* ── SIDEBARS ─────────────────────────────────────────────────── */
-  .s-left, .s-right {
-    background: #111;
-    border-right: 1px solid #1e1e1e;
-    overflow-y: auto;
-    padding: .75rem;
-    display: flex; flex-direction: column; gap: .65rem;
+  .sidebar {
+    background: var(--card); overflow-y: auto;
+    padding: 12px; display: flex; flex-direction: column; gap: 8px;
+    scrollbar-width: thin; scrollbar-color: var(--border) transparent;
   }
-  .s-right { border-right: none; border-left: 1px solid #1e1e1e; }
+  .sidebar::-webkit-scrollbar { width: 3px; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  .sidebar-left  { border-right: 1px solid var(--border); }
+  .sidebar-right { border-left: 1px solid var(--border); }
 
-  .panel {
-    background: #161616; border: 1px solid #222;
-    border-radius: 8px; padding: .75rem;
-    display: flex; flex-direction: column; gap: .55rem;
+  /* ── CARDS ───────────────────────────────────────────────────── */
+  .card {
+    background: var(--card-hi); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 12px;
+    display: flex; flex-direction: column; gap: 10px;
   }
-  .panel-title {
-    font-size: .68rem; text-transform: uppercase; letter-spacing: .1em;
-    color: #61afef; padding-bottom: .35rem;
-    border-bottom: 1px solid #1e1e1e; margin-bottom: .1rem;
+  .card-title {
+    font-size: .65rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: .1em; color: var(--accent-hi);
+    padding-bottom: 8px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .card-title .badge {
+    font-size: .55rem; background: var(--accent-lo); color: var(--accent-hi);
+    border: 1px solid var(--accent); border-radius: 10px;
+    padding: 1px 6px; text-transform: none; letter-spacing: 0;
   }
 
-  /* ── CONTROLS ─────────────────────────────────────────────────── */
+  /* ── DROP ZONE ───────────────────────────────────────────────── */
   .drop-zone {
-    border: 2px dashed #2a2a2a; border-radius: 6px;
-    padding: 1rem .75rem; text-align: center;
-    cursor: pointer; color: #555; font-size: .78rem;
+    border: 2px dashed var(--border); border-radius: var(--radius);
+    padding: 20px 12px; text-align: center; cursor: pointer;
+    color: var(--text-3); font-size: .8rem; line-height: 1.5;
     transition: border-color .2s, color .2s, background .2s;
   }
-  .drop-zone:hover, .drop-zone.drag-over { border-color: #61afef; color: #61afef; background: #0d1e2e; }
+  .drop-zone:hover, .drop-zone.drag { border-color: var(--accent); color: var(--accent-hi); background: var(--accent-lo); }
+  .drop-zone .drop-icon { font-size: 1.8rem; display: block; margin-bottom: 6px; }
 
-  label.lbl { font-size: .72rem; color: #abb2bf; display: block; margin-bottom: .15rem; }
-  .ctrl-row { display: flex; align-items: center; gap: .4rem; }
-  .ctrl-row .lbl { min-width: 72px; margin: 0; white-space: nowrap; }
-  input[type="range"] { flex: 1; accent-color: #61afef; cursor: pointer; }
-  .val { min-width: 38px; text-align: right; font-size: .7rem; color: #9cdcfe; font-weight: 700; }
+  /* ── FORM ELEMENTS ───────────────────────────────────────────── */
+  .field { display: flex; flex-direction: column; gap: 4px; }
+  .lbl   { font-size: .7rem; font-weight: 500; color: var(--text-2); }
+  .ctrl-row { display: flex; align-items: center; gap: 8px; }
+  .ctrl-row .lbl { min-width: 74px; white-space: nowrap; }
+
   select, input[type="number"], input[type="text"] {
-    width: 100%; background: #1a1a1a; color: #9cdcfe;
-    border: 1px solid #2a2a2a; border-radius: 5px;
-    padding: .35rem .55rem; font-family: inherit; font-size: .78rem;
+    width: 100%; background: var(--bg); color: var(--text);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 7px 10px; font-family: var(--sans); font-size: .78rem;
+    appearance: none; -webkit-appearance: none;
+    transition: border-color .15s;
+    min-height: 36px;
   }
-  select:focus, input:focus { outline: none; border-color: #61afef; }
+  select:focus, input:focus { outline: none; border-color: var(--accent); }
+  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2364748B'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; padding-right: 28px; }
 
-  .btn-row { display: flex; flex-wrap: wrap; gap: .35rem; }
+  input[type="range"] {
+    flex: 1; accent-color: var(--accent);
+    cursor: pointer; height: 4px; padding: 0;
+    background: var(--border); border: none; border-radius: 2px;
+    min-height: auto;
+  }
+  .val-badge {
+    min-width: 46px; text-align: right; font-size: .7rem;
+    font-family: var(--mono); color: var(--accent-hi); font-weight: 500;
+  }
+
+  /* ── BUTTONS ─────────────────────────────────────────────────── */
   .btn {
-    background: #1e1e1e; color: #d4d4d4; border: 1px solid #2a2a2a;
-    border-radius: 5px; padding: .35rem .75rem; cursor: pointer;
-    font-family: inherit; font-size: .75rem;
-    transition: background .15s, border-color .15s; white-space: nowrap;
+    background: var(--card); color: var(--text); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 8px 14px; cursor: pointer;
+    font-family: var(--sans); font-size: .76rem; font-weight: 500;
+    transition: all .15s; white-space: nowrap; min-height: 36px;
+    display: inline-flex; align-items: center; gap: 5px;
   }
-  .btn:hover { background: #2a2a2a; border-color: #3a3a3a; }
+  .btn:hover:not(:disabled) { background: var(--border); border-color: var(--border-hi); }
   .btn:disabled { opacity: .4; cursor: not-allowed; }
-  .btn-p { background: #003d5c; border-color: #005fa3; color: #9cdcfe; }
-  .btn-p:hover { background: #005fa3; }
-  .btn-d { background: #3d0000; border-color: #a33; color: #fcc; }
-  .btn-d:hover { background: #a33; }
-  .btn-g { background: #0f2d1a; border-color: #2a6b3d; color: #98c379; }
-  .btn-g:hover { background: #2a6b3d; }
+  .btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn-primary:hover:not(:disabled) { background: var(--accent-hi); border-color: var(--accent-hi); }
+  .btn-danger  { background: rgba(239,68,68,.12); border-color: rgba(239,68,68,.3); color: var(--red); }
+  .btn-danger:hover:not(:disabled) { background: rgba(239,68,68,.25); }
+  .btn-success { background: rgba(16,185,129,.12); border-color: rgba(16,185,129,.3); color: var(--green); }
+  .btn-success:hover:not(:disabled) { background: rgba(16,185,129,.25); }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 6px; }
+  .btn-sm { padding: 5px 10px; font-size: .72rem; min-height: 30px; }
 
-  /* filter toggle badges */
-  .flt-badge {
-    display: inline-block; padding: .2rem .55rem; border-radius: 10px;
-    font-size: .68rem; background: #1a1a1a; border: 1px solid #2a2a2a;
-    color: #555; cursor: pointer; transition: all .15s; user-select: none;
+  /* ── FILTER PILLS ─────────────────────────────────────────────── */
+  .pill-grid { display: flex; flex-wrap: wrap; gap: 5px; }
+  .pill {
+    padding: 4px 10px; border-radius: 20px; font-size: .68rem; font-weight: 500;
+    background: var(--bg); border: 1px solid var(--border);
+    color: var(--text-3); cursor: pointer; transition: all .15s; user-select: none;
   }
-  .flt-badge.on { background: rgba(97,175,239,.12); border-color: #61afef; color: #61afef; }
+  .pill:hover { border-color: var(--border-hi); color: var(--text-2); }
+  .pill.on  { background: var(--accent-lo); border-color: var(--accent); color: var(--accent-hi); }
 
-  .info-chip {
-    display: inline-block; font-size: .68rem; color: #abb2bf;
-    background: #1a1a1a; border: 1px solid #222; border-radius: 4px;
-    padding: .2rem .5rem;
+  /* ── CHIPS / INFO ────────────────────────────────────────────── */
+  .chips { display: flex; flex-wrap: wrap; gap: 5px; }
+  .chip {
+    font-size: .68rem; font-family: var(--mono); color: var(--text-2);
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 5px; padding: 3px 8px;
   }
-  .chips { display: flex; flex-wrap: wrap; gap: .3rem; }
 
-  /* ── CENTER COLUMN ─────────────────────────────────────────────── */
-  .s-center {
+  /* ── CENTER COLUMN ───────────────────────────────────────────── */
+  .center-col {
     display: flex; flex-direction: column;
     background: #000; overflow: hidden;
   }
-  .viewport {
-    position: relative; flex: 1; display: flex;
-    align-items: center; justify-content: center;
-    background: #000; min-height: 300px;
+
+  /* Viewport — aspect ratio container */
+  .vp-wrap {
+    flex: 1; position: relative; background: #000;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; min-height: 240px;
   }
   #gl-canvas {
-    display: block; max-width: 100%; max-height: 100%;
+    display: block;
+    max-width: 100%; max-height: 100%;
+    /* canvas CSS size = display size; internal w/h set by JS */
     width: 100%; height: auto;
-    object-fit: contain;
   }
-  .vp-overlay {
+  .vp-idle {
     position: absolute; inset: 0; display: flex;
     align-items: center; justify-content: center;
-    color: #222; font-size: 2.5rem; pointer-events: none;
+    flex-direction: column; gap: 8px;
+    color: var(--text-3); pointer-events: none;
   }
-  .vp-overlay.hidden { display: none; }
+  .vp-idle.gone { display: none; }
+  .vp-idle-icon { font-size: 3rem; opacity: .3; }
+  .vp-idle-txt  { font-size: .8rem; }
 
-  /* timeline / seek */
+  /* Timeline */
   .timeline-wrap {
-    background: #080808; border-top: 1px solid #1e1e1e; padding: .4rem .75rem;
+    background: #090B10; padding: 8px 16px; border-top: 1px solid var(--border);
   }
-  .seek-row { display: flex; align-items: center; gap: .5rem; }
-  #seek-bar { flex: 1; accent-color: #61afef; cursor: pointer; height: 4px; }
-  .time-disp { font-size: .72rem; color: #9cdcfe; white-space: nowrap; }
+  .seek-row { display: flex; align-items: center; gap: 10px; }
+  #seek-bar { flex: 1; accent-color: var(--accent); cursor: pointer; }
+  .timecode { font-size: .72rem; font-family: var(--mono); color: var(--accent-hi); white-space: nowrap; }
 
-  /* transport */
+  /* Transport strip */
   .transport {
-    display: flex; align-items: center; gap: .35rem;
-    padding: .5rem .75rem; background: #0a0a0a;
-    border-top: 1px solid #1e1e1e; flex-wrap: wrap;
+    display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+    padding: 8px 16px; background: #0C0E13; border-top: 1px solid var(--border);
   }
-  .fps-badge { font-size: .68rem; color: #555; margin-left: auto; }
+  .transport .sep { width: 1px; height: 24px; background: var(--border); margin: 0 2px; }
+  .fps-info { margin-left: auto; font-size: .68rem; font-family: var(--mono); color: var(--text-3); }
 
-  /* ── AUDIO WAVEFORM ────────────────────────────────────────────── */
-  #waveform-canvas {
-    width: 100%; height: 80px; display: block;
-    background: #0a0a0a; border-radius: 4px;
-    border: 1px solid #1e1e1e;
+  /* ── LUT drop ────────────────────────────────────────────────── */
+  .lut-zone {
+    border: 1px dashed var(--border); border-radius: var(--radius);
+    padding: 10px; text-align: center; cursor: pointer;
+    font-size: .72rem; color: var(--text-3); transition: all .2s;
   }
-  #spectrogram-canvas {
-    width: 100%; height: 60px; display: block;
-    background: #0a0a0a; border-radius: 4px;
-    border: 1px solid #1e1e1e; margin-top: .4rem;
-  }
+  .lut-zone:hover { border-color: var(--accent); color: var(--accent-hi); }
+  .lut-zone.loaded { border-color: var(--green); color: var(--green); }
 
-  /* ── FRAME STRIP ───────────────────────────────────────────────── */
+  /* ── Audio canvases ──────────────────────────────────────────── */
+  #waveform-canvas   { width: 100%; height: 72px; display: block; background: var(--bg); border-radius: 6px; border: 1px solid var(--border); }
+  #spectrogram-canvas{ width: 100%; height: 52px; display: block; background: var(--bg); border-radius: 6px; border: 1px solid var(--border); }
+
+  /* ── Frame strip ─────────────────────────────────────────────── */
   #frame-strip {
-    display: flex; gap: 4px; overflow-x: auto;
-    padding: .4rem 0; min-height: 60px; flex-shrink: 0;
+    display: flex; gap: 4px; overflow-x: auto; padding: 4px 0;
+    min-height: 58px; scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
   }
   #frame-strip canvas {
-    height: 52px; width: auto; border-radius: 4px;
+    height: 50px; width: auto; border-radius: 5px;
     border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
     transition: border-color .15s;
   }
-  #frame-strip canvas:hover { border-color: #61afef; }
+  #frame-strip canvas:hover { border-color: var(--accent); }
 
-  /* ── LUT FILE LOAD ─────────────────────────────────────────────── */
-  .lut-drop {
-    border: 1px dashed #2a2a2a; border-radius: 5px;
-    padding: .5rem; text-align: center; cursor: pointer;
-    color: #444; font-size: .72rem; transition: all .2s;
+  /* ── Mobile tabs ─────────────────────────────────────────────── */
+  .mobile-tabs { display: none; }
+  @media (max-width: 900px) {
+    .sidebar-left, .sidebar-right { border: none; }
+    .mobile-tabs {
+      display: flex; background: var(--card); border-top: 1px solid var(--border);
+      position: sticky; bottom: 0; z-index: 50; overflow-x: auto;
+    }
+    .tab-btn {
+      flex: 1; padding: 10px 8px; font-size: .72rem; font-weight: 600;
+      background: none; border: none; color: var(--text-3);
+      cursor: pointer; white-space: nowrap; border-top: 2px solid transparent;
+      transition: all .15s; min-height: 44px;
+    }
+    .tab-btn.active { color: var(--accent-hi); border-top-color: var(--accent); }
+    .tab-pane { display: none; }
+    .tab-pane.active { display: flex; flex-direction: column; gap: 8px; }
+    .studio-body { grid-template-columns: 1fr; }
+    .sidebar-left  { order: 2; }
+    .sidebar-right { order: 3; }
+    .center-col    { order: 1; }
   }
-  .lut-drop:hover { border-color: #61afef; color: #61afef; }
-  .lut-drop.loaded { border-color: #98c379; color: #98c379; }
 
-  /* scrollbar */
-  .s-left::-webkit-scrollbar, .s-right::-webkit-scrollbar { width: 4px; }
-  .s-left::-webkit-scrollbar-track, .s-right::-webkit-scrollbar-track { background: #0d0d0d; }
-  .s-left::-webkit-scrollbar-thumb, .s-right::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 2px; }
+  /* ── Toggle switch ───────────────────────────────────────────── */
+  .toggle-row { display: flex; align-items: center; justify-content: space-between; }
+  .toggle-switch { position: relative; width: 36px; height: 20px; }
+  .toggle-switch input { opacity: 0; width: 0; height: 0; }
+  .toggle-slider {
+    position: absolute; cursor: pointer; inset: 0;
+    background: var(--border); border-radius: 20px; transition: .2s;
+  }
+  .toggle-slider:before {
+    content: ''; position: absolute; width: 14px; height: 14px;
+    left: 3px; top: 3px; background: var(--text-2);
+    border-radius: 50%; transition: .2s;
+  }
+  input:checked + .toggle-slider { background: var(--accent); }
+  input:checked + .toggle-slider:before { transform: translateX(16px); background: #fff; }
+
+  /* ── Export format row ───────────────────────────────────────── */
+  .export-block { display: flex; flex-direction: column; gap: 8px; }
   </style>
   <script src="/assets/js/app.js" defer></script>
 </head>
@@ -211,258 +318,262 @@
 <main class="container py-4" id="main-content">
 <div class="studio">
 
-  <!-- ── TOP BAR ───────────────────────────────────────────────── -->
-  <div class="s-topbar">
-    <span class="s-title">🎬 Video Canvas Engineering Studio</span>
-    <span class="s-status" id="status-bar">Drop a video to begin · 100% client-side · zero upload</span>
-    <div class="s-progress-wrap" id="progress-wrap">
-      <div class="s-progress-bg"><div class="s-progress-fill" id="progress-fill"></div></div>
-      <span class="s-progress-pct" id="progress-pct">0%</span>
+  <!-- ══════════ TOP BAR ══════════ -->
+  <div class="topbar">
+    <span class="app-icon">🎬</span>
+    <span class="app-title">Video Canvas Engineering Studio</span>
+    <span class="top-sep"></span>
+    <span class="status-pill" id="status-bar">Drop a video to begin · WebGL2 + Web Audio + FFmpeg.wasm · zero upload</span>
+    <div class="progress-wrap" id="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      <span class="progress-pct" id="progress-pct">0%</span>
     </div>
-    <span class="info-chip" id="top-codec">WebGL · Web Audio · FFmpeg.wasm</span>
+    <span class="top-chip" id="top-chip">WebGL2 · Web Audio · FFmpeg.wasm</span>
   </div>
 
-  <!-- ── BODY ─────────────────────────────────────────────────── -->
-  <div class="s-body">
+  <!-- ══════════ 3-COLUMN BODY ══════════ -->
+  <div class="studio-body">
 
-    <!-- ════════════════ LEFT SIDEBAR ════════════════ -->
-    <div class="s-left">
+    <!-- ████████████ LEFT SIDEBAR ████████████ -->
+    <div class="sidebar sidebar-left" id="panel-left">
 
       <!-- Source -->
-      <div class="panel">
-        <div class="panel-title">📁 Source Video</div>
+      <div class="card" id="tab-source">
+        <div class="card-title">📁 Source Video</div>
         <div class="drop-zone" id="drop-zone">
-          🎞️ Click or drag video here<br>
-          <span style="color:#333;font-size:.68rem">MP4 · WebM · OGG · MOV · MKV</span>
+          <span class="drop-icon">🎞️</span>
+          Click or drag video here<br>
+          <small style="color:var(--text-3);font-size:.68rem">MP4 · WebM · MOV · OGG · MKV</small>
         </div>
         <input type="file" id="file-input" accept="video/*" style="display:none">
         <div class="chips" id="source-chips" style="display:none">
-          <span class="info-chip" id="chip-name">—</span>
-          <span class="info-chip" id="chip-size">—</span>
-          <span class="info-chip" id="chip-dims">—</span>
-          <span class="info-chip" id="chip-dur">—</span>
+          <span class="chip" id="chip-name">—</span>
+          <span class="chip" id="chip-size">—</span>
+          <span class="chip" id="chip-dims">—</span>
+          <span class="chip" id="chip-dur">—</span>
         </div>
       </div>
 
       <!-- Clip Controls -->
-      <div class="panel">
-        <div class="panel-title">⏱ Clip Controls</div>
+      <div class="card" id="tab-clip">
+        <div class="card-title">⚙️ Clip Controls</div>
+
         <div class="ctrl-row">
           <label class="lbl">Speed</label>
           <input type="range" id="speed-sl" min="0.1" max="4" step="0.1" value="1">
-          <span class="val" id="speed-val">1.0×</span>
+          <span class="val-badge" id="speed-val">1.0×</span>
         </div>
-        <div class="ctrl-row">
-          <label class="lbl">Ratio</label>
+
+        <div class="field">
+          <label class="lbl">Aspect Ratio</label>
           <select id="ratio-sel">
-            <option value="free">Free</option>
-            <option value="16:9" selected>16:9 Widescreen</option>
-            <option value="9:16">9:16 Vertical</option>
-            <option value="1:1">1:1 Square</option>
-            <option value="4:3">4:3 Classic</option>
-            <option value="21:9">21:9 Cinematic</option>
-            <option value="4:5">4:5 Portrait</option>
+            <option value="free">Free (no crop)</option>
+            <option value="16:9" selected>16:9 — Widescreen</option>
+            <option value="9:16">9:16 — Vertical / Short</option>
+            <option value="1:1">1:1 — Square</option>
+            <option value="4:3">4:3 — Classic TV</option>
+            <option value="21:9">21:9 — Cinematic</option>
+            <option value="4:5">4:5 — Portrait</option>
           </select>
         </div>
-        <div class="ctrl-row" style="gap:.35rem">
-          <label class="lbl">Out W</label>
-          <input type="number" id="out-w" value="1280" min="64" max="3840" style="width:80px">
-          <span style="font-size:.72rem;color:#555">×</span>
-          <input type="number" id="out-h" value="720" min="64" max="2160" style="width:80px">
+
+        <div class="field">
+          <label class="lbl">Output Resolution</label>
+          <div style="display:flex;gap:6px;align-items:center">
+            <input type="number" id="out-w" value="1280" min="64" max="3840" style="flex:1">
+            <span style="color:var(--text-3);font-size:.8rem">×</span>
+            <input type="number" id="out-h" value="720"  min="64" max="2160" style="flex:1">
+          </div>
         </div>
-        <div class="btn-row">
-          <button class="btn btn-d" id="btn-reverse">⏪ Reverse (captured)</button>
+
+        <div class="toggle-row">
+          <span class="lbl">Reverse Sim (captured)</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="toggle-reverse">
+            <span class="toggle-slider"></span>
+          </label>
         </div>
+        <button class="btn btn-danger btn-sm" id="btn-reverse" style="display:none">⏪ Run Reverse</button>
       </div>
 
-      <!-- WebGL Color Grading -->
-      <div class="panel">
-        <div class="panel-title">🎨 WebGL Color Grade <span style="font-size:.6rem;color:#555">(GPU shader)</span></div>
-        <div class="ctrl-row">
-          <label class="lbl">Brightness</label>
-          <input type="range" id="f-bright" min="0" max="3" step="0.02" value="1">
-          <span class="val" id="v-bright">1.00</span>
+      <!-- Color Grade -->
+      <div class="card" id="tab-grade">
+        <div class="card-title">🎨 Color Grade <span class="badge">WebGL2 GPU</span></div>
+
+        <div class="ctrl-row"><label class="lbl">Brightness</label><input type="range" id="f-bright"   min="0"   max="3"   step="0.02" value="1"><span class="val-badge" id="v-bright">1.00</span></div>
+        <div class="ctrl-row"><label class="lbl">Contrast</label>  <input type="range" id="f-contrast" min="0"   max="3"   step="0.02" value="1"><span class="val-badge" id="v-contrast">1.00</span></div>
+        <div class="ctrl-row"><label class="lbl">Saturation</label><input type="range" id="f-sat"      min="0"   max="4"   step="0.05" value="1"><span class="val-badge" id="v-sat">1.00</span></div>
+        <div class="ctrl-row"><label class="lbl">Hue°</label>      <input type="range" id="f-hue"      min="0"   max="360" step="1"    value="0"><span class="val-badge" id="v-hue">0°</span></div>
+        <div class="ctrl-row"><label class="lbl">Exposure EV</label><input type="range" id="f-exp"     min="-3"  max="3"   step="0.05" value="0"><span class="val-badge" id="v-exp">0.00</span></div>
+        <div class="ctrl-row"><label class="lbl">Lift (Black)</label><input type="range" id="f-lift"   min="-0.2" max="0.2" step="0.005" value="0"><span class="val-badge" id="v-lift">0.000</span></div>
+        <div class="ctrl-row"><label class="lbl">Gain (White)</label><input type="range" id="f-gain"   min="0.5" max="2"   step="0.02" value="1"><span class="val-badge" id="v-gain">1.00</span></div>
+
+        <div class="pill-grid" id="filter-pills">
+          <span class="pill" data-f="grayscale">Grayscale</span>
+          <span class="pill" data-f="sepia">Sepia</span>
+          <span class="pill" data-f="invert">Invert</span>
+          <span class="pill" data-f="vignette">Vignette</span>
+          <span class="pill" data-f="sharpen">Sharpen</span>
         </div>
-        <div class="ctrl-row">
-          <label class="lbl">Contrast</label>
-          <input type="range" id="f-contrast" min="0" max="3" step="0.02" value="1">
-          <span class="val" id="v-contrast">1.00</span>
-        </div>
-        <div class="ctrl-row">
-          <label class="lbl">Saturation</label>
-          <input type="range" id="f-sat" min="0" max="4" step="0.05" value="1">
-          <span class="val" id="v-sat">1.00</span>
-        </div>
-        <div class="ctrl-row">
-          <label class="lbl">Hue°</label>
-          <input type="range" id="f-hue" min="0" max="360" step="1" value="0">
-          <span class="val" id="v-hue">0°</span>
-        </div>
-        <div class="ctrl-row">
-          <label class="lbl">Exposure</label>
-          <input type="range" id="f-exp" min="-2" max="2" step="0.05" value="0">
-          <span class="val" id="v-exp">0.00</span>
-        </div>
-        <div class="ctrl-row">
-          <label class="lbl">Lift (Black)</label>
-          <input type="range" id="f-lift" min="-0.2" max="0.2" step="0.005" value="0">
-          <span class="val" id="v-lift">0.000</span>
-        </div>
-        <div class="ctrl-row">
-          <label class="lbl">Gain (White)</label>
-          <input type="range" id="f-gain" min="0.5" max="2" step="0.02" value="1">
-          <span class="val" id="v-gain">1.00</span>
-        </div>
-        <!-- Toggle Filter Badges -->
-        <div class="btn-row" style="margin-top:.2rem">
-          <span class="flt-badge" data-f="grayscale">Grayscale</span>
-          <span class="flt-badge" data-f="sepia">Sepia</span>
-          <span class="flt-badge" data-f="invert">Invert</span>
-          <span class="flt-badge" data-f="vignette">Vignette</span>
-          <span class="flt-badge" data-f="sharpen">Sharpen</span>
-        </div>
-        <button class="btn" id="btn-reset-grade">Reset Grade</button>
+        <button class="btn btn-sm" id="btn-reset-grade">↺ Reset Grade</button>
       </div>
 
-      <!-- LUT Support -->
-      <div class="panel">
-        <div class="panel-title">🎞 LUT Color Grading <span style="font-size:.6rem;color:#555">(.cube file)</span></div>
-        <div class="lut-drop" id="lut-drop">
-          Drop a .cube LUT file here<br>
-          <span style="color:#333;font-size:.68rem">Standard 3D LUT · identity passthrough by default</span>
+      <!-- LUT -->
+      <div class="card" id="tab-lut">
+        <div class="card-title">🎞 LUT Color Grade <span class="badge">.cube</span></div>
+        <div class="lut-zone" id="lut-drop">
+          Drop a <strong>.cube</strong> LUT file here<br>
+          <span style="color:var(--text-3);font-size:.67rem">Standard 3D LUT · 16³ / 32³ / 64³</span>
         </div>
         <input type="file" id="lut-file" accept=".cube" style="display:none">
         <div class="ctrl-row">
           <label class="lbl">LUT Mix</label>
           <input type="range" id="lut-mix" min="0" max="1" step="0.01" value="1">
-          <span class="val" id="v-lut-mix">1.00</span>
+          <span class="val-badge" id="v-lut-mix">1.00</span>
         </div>
-        <div class="btn-row">
-          <button class="btn btn-d" id="btn-clear-lut">Clear LUT</button>
-        </div>
+        <button class="btn btn-danger btn-sm" id="btn-clear-lut">✕ Clear LUT</button>
       </div>
 
-    </div>
+    </div><!-- /sidebar-left -->
 
-    <!-- ════════════════ CENTER: CANVAS + TIMELINE ════════════════ -->
-    <div class="s-center">
+    <!-- ████████████ CENTER ████████████ -->
+    <div class="center-col">
 
-      <!-- WebGL viewport -->
-      <div class="viewport" id="viewport">
-        <div class="vp-overlay" id="vp-overlay">🎞️</div>
+      <!-- Viewport -->
+      <div class="vp-wrap" id="viewport">
+        <div class="vp-idle" id="vp-idle">
+          <span class="vp-idle-icon">🎬</span>
+          <span class="vp-idle-txt">Drop a video to begin</span>
+        </div>
+        <!-- hidden video decoder — NO crossorigin attribute (local blob URLs) -->
+        <video id="vid-el" style="display:none" playsInline preload="auto" muted></video>
         <canvas id="gl-canvas"></canvas>
-        <!-- hidden video decoder -->
-        <video id="vid-el" style="display:none" playsInline preload="auto" crossorigin="anonymous"></video>
       </div>
 
-      <!-- Timeline seek -->
+      <!-- Seek / Timeline -->
       <div class="timeline-wrap">
         <div class="seek-row">
           <input type="range" id="seek-bar" min="0" max="10000" value="0">
-          <span class="time-disp" id="time-disp">0:00.000 / 0:00.000</span>
+          <span class="timecode" id="time-disp">0:00.000 / 0:00.000</span>
         </div>
       </div>
 
       <!-- Transport -->
       <div class="transport">
-        <button class="btn btn-p" id="btn-play">▶ Play</button>
-        <button class="btn" id="btn-pause">⏸</button>
-        <button class="btn" id="btn-rewind">⏮</button>
-        <button class="btn" id="btn-frame-back">‹F</button>
-        <button class="btn" id="btn-frame-fwd">F›</button>
-        <button class="btn" id="btn-mute">🔇</button>
-        <button class="btn btn-g" id="btn-snapshot">📸 Capture</button>
-        <button class="btn" id="btn-extract-frames">Extract 12F</button>
-        <span class="fps-badge" id="fps-badge">—fps · WebGL2</span>
+        <button class="btn btn-primary btn-sm" id="btn-play">▶ Play</button>
+        <button class="btn btn-sm"             id="btn-pause">⏸</button>
+        <button class="btn btn-sm"             id="btn-rewind">⏮</button>
+        <span class="sep"></span>
+        <button class="btn btn-sm" id="btn-frame-back" title="Step back 1 frame (,)">‹F</button>
+        <button class="btn btn-sm" id="btn-frame-fwd"  title="Step forward 1 frame (.)">F›</button>
+        <span class="sep"></span>
+        <button class="btn btn-sm" id="btn-mute">🔇</button>
+        <span class="sep"></span>
+        <button class="btn btn-success btn-sm" id="btn-snapshot">📸 Capture</button>
+        <button class="btn btn-sm"             id="btn-extract-frames">🖼 Extract 12F</button>
+        <span class="fps-info" id="fps-badge">— fps · WebGL2</span>
       </div>
 
-    </div>
+    </div><!-- /center-col -->
 
-    <!-- ════════════════ RIGHT SIDEBAR ════════════════ -->
-    <div class="s-right" id="s-right">
+    <!-- ████████████ RIGHT SIDEBAR ████████████ -->
+    <div class="sidebar sidebar-right" id="panel-right">
 
       <!-- Web Audio -->
-      <div class="panel">
-        <div class="panel-title">🎵 Web Audio Engine</div>
+      <div class="card" id="tab-audio">
+        <div class="card-title">🎵 Web Audio Engine</div>
         <canvas id="waveform-canvas"></canvas>
         <canvas id="spectrogram-canvas"></canvas>
         <div class="ctrl-row">
           <label class="lbl">Gain (dB)</label>
           <input type="range" id="audio-gain" min="-20" max="20" step="0.5" value="0">
-          <span class="val" id="v-gain-db">0dB</span>
+          <span class="val-badge" id="v-gain-db">0dB</span>
         </div>
         <div class="ctrl-row">
           <label class="lbl">Noise Gate</label>
           <input type="range" id="noise-gate" min="-80" max="0" step="1" value="-80">
-          <span class="val" id="v-gate">OFF</span>
+          <span class="val-badge" id="v-gate">OFF</span>
         </div>
         <div class="ctrl-row">
           <label class="lbl">EQ Bass</label>
           <input type="range" id="eq-bass" min="-12" max="12" step="0.5" value="0">
-          <span class="val" id="v-bass">0dB</span>
+          <span class="val-badge" id="v-bass">0dB</span>
         </div>
         <div class="ctrl-row">
           <label class="lbl">EQ Treble</label>
           <input type="range" id="eq-treble" min="-12" max="12" step="0.5" value="0">
-          <span class="val" id="v-treble">0dB</span>
+          <span class="val-badge" id="v-treble">0dB</span>
         </div>
-        <div class="chips" id="audio-info-chips">
-          <span class="info-chip" id="chip-audio-sr">—</span>
-          <span class="info-chip" id="chip-audio-rms">RMS: —</span>
+        <div class="chips">
+          <span class="chip" id="chip-audio-sr">SR: —</span>
+          <span class="chip" id="chip-audio-rms">RMS: —</span>
         </div>
       </div>
 
       <!-- Frame Strip -->
-      <div class="panel">
-        <div class="panel-title">🖼 Frame Strip <span style="font-size:.6rem;color:#555">click to download</span></div>
+      <div class="card">
+        <div class="card-title">🖼 Frame Strip <span class="badge">click to DL</span></div>
         <div id="frame-strip"></div>
       </div>
 
       <!-- Export -->
-      <div class="panel">
-        <div class="panel-title">💾 Export Engine</div>
-        <label class="lbl">Format</label>
-        <select id="export-fmt">
-          <option value="png">PNG Frame (current)</option>
-          <option value="webm-mr">WebM — MediaRecorder (fast)</option>
-          <option value="mp4-ffmpeg">MP4 H.264 — FFmpeg.wasm (quality)</option>
-          <option value="gif-ffmpeg">Animated GIF — FFmpeg.wasm</option>
-        </select>
-        <div class="ctrl-row" id="quality-row">
-          <label class="lbl">Quality</label>
-          <select id="export-quality">
-            <option value="ultrafast">Ultrafast (draft)</option>
-            <option value="fast" selected>Fast</option>
-            <option value="medium">Medium</option>
-            <option value="slow">Slow (best)</option>
-          </select>
-        </div>
-        <div class="btn-row">
-          <button class="btn btn-p" id="btn-export">⬇ Export</button>
-          <button class="btn btn-d" id="btn-stop-export" style="display:none">⏹ Stop</button>
-        </div>
-        <div style="font-size:.68rem;color:#444;margin-top:.2rem">
-          FFmpeg.wasm loads on first use (~10s). All encoding is client-side.<br>
-          For multi-thread (2× speed), serve with COOP/COEP headers.
+      <div class="card" id="tab-export">
+        <div class="card-title">💾 Export Engine</div>
+        <div class="export-block">
+          <div class="field">
+            <label class="lbl">Format</label>
+            <select id="export-fmt">
+              <option value="png">PNG — Current Frame</option>
+              <option value="webm-mr">WebM — MediaRecorder (fast)</option>
+              <option value="mp4-ffmpeg">MP4 H.264 — FFmpeg.wasm</option>
+              <option value="gif-ffmpeg">Animated GIF — FFmpeg.wasm</option>
+            </select>
+          </div>
+          <div class="field" id="quality-row">
+            <label class="lbl">Encode Quality</label>
+            <select id="export-quality">
+              <option value="ultrafast">Ultrafast (draft)</option>
+              <option value="fast" selected>Fast</option>
+              <option value="medium">Medium</option>
+              <option value="slow">Slow (best)</option>
+            </select>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-primary" id="btn-export">⬇ Export</button>
+            <button class="btn btn-danger" id="btn-stop-export" style="display:none">⏹ Stop</button>
+          </div>
+          <p style="font-size:.67rem;color:var(--text-3);line-height:1.5;margin-top:2px">
+            FFmpeg.wasm loads on first use (~10–30s). All encoding is 100% client-side.
+            For 2× speed, serve with <code>COOP/COEP</code> headers.
+          </p>
         </div>
       </div>
 
-      <!-- Memory Manager info -->
-      <div class="panel">
-        <div class="panel-title">🧠 Memory Manager</div>
+      <!-- Memory Manager -->
+      <div class="card">
+        <div class="card-title">🧠 Memory Manager</div>
         <div class="chips">
-          <span class="info-chip" id="chip-blob-count">URLs: 0</span>
-          <span class="info-chip" id="chip-heap">Heap: —</span>
+          <span class="chip" id="chip-blob-count">URLs: 0</span>
+          <span class="chip" id="chip-heap">Heap: —</span>
         </div>
         <div class="btn-row">
-          <button class="btn" id="btn-gc">🧹 Release URLs</button>
-          <button class="btn btn-d" id="btn-kill-ffmpeg" style="display:none">💣 Kill FFmpeg</button>
+          <button class="btn btn-sm" id="btn-gc">🧹 Release URLs</button>
+          <button class="btn btn-danger btn-sm" id="btn-kill-ffmpeg" style="display:none">💣 Kill FFmpeg</button>
         </div>
       </div>
 
-    </div>
-  </div><!-- s-body -->
-</div><!-- studio -->
+    </div><!-- /sidebar-right -->
+  </div><!-- /studio-body -->
+
+  <!-- Mobile Tab Bar -->
+  <div class="mobile-tabs">
+    <button class="tab-btn active" data-target="tab-source,tab-clip">Source</button>
+    <button class="tab-btn" data-target="tab-grade,tab-lut">Grade</button>
+    <button class="tab-btn" data-target="tab-audio">Audio</button>
+    <button class="tab-btn" data-target="tab-export">Export</button>
+  </div>
+
+</div><!-- /studio -->
 </main>
 
 <div id="footer-component"><!-- FOOTER_START --><!-- FOOTER_END --></div>
@@ -470,18 +581,19 @@
 
 <script type="module">
 // ═══════════════════════════════════════════════════════════════════
-// BlueTEXT — Video Canvas Engineering Studio
-// Architecture:
-//   • WebGLEngine  — GPU fragment-shader pipeline (WebGL2)
-//   • AudioEngine  — Web Audio API: waveform, EQ, noise gate
-//   • Timeline     — Frame-accurate seeking (seeked + 40ms throttle)
-//   • FFmpegEngine — Lazy-loaded FFmpeg.wasm: MP4/GIF export
-//   • BlobManager  — Lifecycle tracking + auto-revoke
-//   • UI           — Event bindings, status, progress
+//  Video Canvas Engineering Studio — Complete Engine
+//
+//  BUG FIX: The previous version resized canvas.width/height inside
+//  drawVideoFrame(), which silently resets the entire WebGL context
+//  (MDN: "Resizing an HTML canvas resets its rendering context").
+//  Fix: set canvas.width/height ONCE in loadedmetadata BEFORE
+//  constructing WebGLEngine. drawVideoFrame() never touches canvas dims.
 // ═══════════════════════════════════════════════════════════════════
 
-// ── WEBGL2 SHADERS ──────────────────────────────────────────────────
-const VERT_SRC = `#version 300 es
+/* ─────────────────────────────────────────────────────────────────
+   GLSL SHADERS (WebGL2 / GLSL ES 3.00)
+───────────────────────────────────────────────────────────────── */
+const VERT = `#version 300 es
 in vec2 a_pos;
 in vec2 a_uv;
 out vec2 v_uv;
@@ -490,7 +602,7 @@ void main() {
   gl_Position = vec4(a_pos, 0.0, 1.0);
 }`;
 
-const FRAG_SRC = `#version 300 es
+const FRAG = `#version 300 es
 precision highp float;
 in vec2 v_uv;
 out vec4 fragColor;
@@ -498,13 +610,13 @@ out vec4 fragColor;
 uniform sampler2D u_tex;
 uniform sampler3D u_lut;
 
-uniform float u_brightness; // raw multiplier
+uniform float u_brightness;
 uniform float u_contrast;
 uniform float u_saturation;
-uniform float u_hue;        // degrees
-uniform float u_exposure;   // stops: pow(2, stops)
-uniform float u_lift;       // black point shift
-uniform float u_gain;       // white point multiplier
+uniform float u_hue;
+uniform float u_exposure;
+uniform float u_lift;
+uniform float u_gain;
 uniform float u_lut_mix;
 uniform float u_lut_size;
 uniform bool  u_use_lut;
@@ -513,166 +625,127 @@ uniform bool  u_sepia;
 uniform bool  u_invert;
 uniform bool  u_vignette;
 uniform bool  u_sharpen;
-
-// Crop / aspect rect [sx,sy,sw,sh] in UV space
-uniform vec4 u_crop; // (cropX, cropY, cropW, cropH) normalized 0..1
+uniform vec4  u_crop; // (ox, oy, sw, sh) normalized UV
 
 vec3 rotHue(vec3 c, float deg) {
-  float r = deg * 3.14159265 / 180.0;
-  float co = cos(r), si = sin(r);
+  float r = deg * 3.14159265 / 180.0, co = cos(r), si = sin(r);
   float k = 0.333333, sq = 0.577350;
-  float a = co + k*(1.0-co);
-  float b = k*(1.0-co) - sq*si;
-  float cv = k*(1.0-co) + sq*si;
-  // column-major mat3
+  float a = co+k*(1.0-co), b = k*(1.0-co)-sq*si, cv = k*(1.0-co)+sq*si;
   return clamp(mat3(a,cv,b, b,a,cv, cv,b,a) * c, 0.0, 1.0);
 }
 
 void main() {
-  // Remap UV through crop rect
   vec2 uv = u_crop.xy + v_uv * u_crop.zw;
 
-  // Sharpen: 5-tap unsharp mask
   vec3 rgb;
   if (u_sharpen) {
     vec2 px = 1.0 / vec2(textureSize(u_tex, 0));
-    vec3 center = texture(u_tex, uv).rgb;
-    vec3 nb = (
-      texture(u_tex, uv + vec2( px.x, 0)).rgb +
-      texture(u_tex, uv + vec2(-px.x, 0)).rgb +
-      texture(u_tex, uv + vec2(0,  px.y)).rgb +
-      texture(u_tex, uv + vec2(0, -px.y)).rgb
-    ) * 0.25;
-    rgb = clamp(center + (center - nb) * 1.5, 0.0, 1.0);
+    vec3 c = texture(u_tex, uv).rgb;
+    vec3 nb = (texture(u_tex,uv+vec2(px.x,0)).rgb +
+               texture(u_tex,uv-vec2(px.x,0)).rgb +
+               texture(u_tex,uv+vec2(0,px.y)).rgb +
+               texture(u_tex,uv-vec2(0,px.y)).rgb) * 0.25;
+    rgb = clamp(c + (c - nb) * 1.5, 0.0, 1.0);
   } else {
     rgb = texture(u_tex, uv).rgb;
   }
 
-  // Exposure (stops)
-  rgb *= pow(2.0, u_exposure);
-
-  // Lift / Gain (S-curve simplification)
   rgb = clamp(rgb * u_gain + u_lift, 0.0, 1.0);
-
-  // Brightness
-  rgb = clamp(rgb * u_brightness, 0.0, 1.0);
-
-  // Contrast: (x - 0.5) * c + 0.5
+  rgb *= pow(2.0, u_exposure);
   rgb = clamp((rgb - 0.5) * u_contrast + 0.5, 0.0, 1.0);
-
-  // Saturation
+  rgb = clamp(rgb * u_brightness, 0.0, 1.0);
   float lum = dot(rgb, vec3(0.2126, 0.7152, 0.0722));
   rgb = clamp(mix(vec3(lum), rgb, u_saturation), 0.0, 1.0);
-
-  // Hue rotation
   if (u_hue != 0.0) rgb = rotHue(rgb, u_hue);
 
-  // LUT 3D lookup (WebGL2 sampler3D)
   if (u_use_lut) {
-    float scale = (u_lut_size - 1.0) / u_lut_size;
-    float bias  = 0.5 / u_lut_size;
-    vec3 luted = texture(u_lut, clamp(rgb, 0.0, 1.0) * scale + bias).rgb;
+    float scale = (u_lut_size-1.0)/u_lut_size, bias = 0.5/u_lut_size;
+    vec3 luted = texture(u_lut, clamp(rgb,0.0,1.0)*scale+bias).rgb;
     rgb = mix(rgb, luted, u_lut_mix);
   }
 
-  // Grayscale
-  if (u_grayscale) { float g = dot(rgb, vec3(0.2126,0.7152,0.0722)); rgb = vec3(g); }
-
-  // Sepia
-  if (u_sepia) {
-    rgb = clamp(vec3(
-      dot(rgb, vec3(0.393,0.769,0.189)),
-      dot(rgb, vec3(0.349,0.686,0.168)),
-      dot(rgb, vec3(0.272,0.534,0.131))
-    ), 0.0, 1.0);
-  }
-
-  // Invert
-  if (u_invert) rgb = 1.0 - rgb;
-
-  // Radial vignette
-  if (u_vignette) {
-    float d = length((v_uv - 0.5) * 2.0);
-    rgb *= smoothstep(1.4, 0.4, d);
-  }
+  if (u_grayscale) { float g=dot(rgb,vec3(0.2126,0.7152,0.0722)); rgb=vec3(g); }
+  if (u_sepia)     rgb = clamp(vec3(dot(rgb,vec3(.393,.769,.189)),dot(rgb,vec3(.349,.686,.168)),dot(rgb,vec3(.272,.534,.131))),0.0,1.0);
+  if (u_invert)    rgb = 1.0 - rgb;
+  if (u_vignette)  { float d=length((v_uv-0.5)*2.0); rgb*=smoothstep(1.4,0.4,d); }
 
   fragColor = vec4(rgb, 1.0);
 }`;
 
-// ═══════════════════════════════════════════════════════════════════
-// BlobManager — prevents memory leaks
-// ═══════════════════════════════════════════════════════════════════
-const BlobManager = (() => {
-  const map = new Map(); // url → {time, obj}
-  let count = 0;
+/* ─────────────────────────────────────────────────────────────────
+   BlobManager — URL lifecycle tracking
+───────────────────────────────────────────────────────────────── */
+const BlobMgr = (() => {
+  const map = new Map(); let n = 0;
+  const upd = () => { const el=document.getElementById('chip-blob-count'); if(el) el.textContent='URLs: '+n; };
   return {
-    create(obj) {
-      const url = URL.createObjectURL(obj);
-      map.set(url, { time: Date.now(), obj });
-      count++;
-      updateBlobChip();
-      return url;
-    },
-    revoke(url) {
-      if (map.has(url)) { URL.revokeObjectURL(url); map.delete(url); count--; updateBlobChip(); }
-    },
-    revokeAll() {
-      map.forEach((_, url) => URL.revokeObjectURL(url));
-      map.clear(); count = 0; updateBlobChip();
-    },
-    count() { return count; }
+    create(obj)  { const u=URL.createObjectURL(obj); map.set(u,obj); n++; upd(); return u; },
+    revoke(u)    { if(map.has(u)){ URL.revokeObjectURL(u); map.delete(u); n--; upd(); } },
+    revokeAll()  { map.forEach((_,u)=>URL.revokeObjectURL(u)); map.clear(); n=0; upd(); },
   };
-  function updateBlobChip() {
-    const el = document.getElementById('chip-blob-count');
-    if (el) el.textContent = 'URLs: ' + count;
-  }
 })();
+window.addEventListener('beforeunload', ()=>BlobMgr.revokeAll());
 
-window.addEventListener('beforeunload', () => BlobManager.revokeAll());
-
-// ═══════════════════════════════════════════════════════════════════
-// WebGLEngine
-// ═══════════════════════════════════════════════════════════════════
+/* ─────────────────────────────────────────────────────────────────
+   WebGLEngine — GPU shader pipeline
+   IMPORTANT: Constructor assumes canvas already has correct width/height.
+   Never change canvas.width or canvas.height after construction.
+───────────────────────────────────────────────────────────────── */
 class WebGLEngine {
   constructor(canvas) {
-    this.canvas = canvas;
-    this.gl = canvas.getContext('webgl2', { alpha: false, antialias: false });
-    if (!this.gl) throw new Error('WebGL2 not supported in this browser.');
-    this._init();
-    this.uniforms = {};
-    this.lutTex = null;
+    this.canvas  = canvas;
+    const gl = canvas.getContext('webgl2', { alpha:false, antialias:false, preserveDrawingBuffer:true });
+    if (!gl) throw new Error('WebGL2 not available in this browser.');
+    this.gl = gl;
+    this.prog    = this._compile(VERT, FRAG);
+    this.vidTex  = null;
+    this.lutTex  = null;
     this.lutSize = 0;
     this.filters = new Set();
-    this.gradeState = { brightness:1, contrast:1, saturation:1, hue:0, exposure:0, lift:0, gain:1, lutMix:1 };
-    this.cropRect = [0, 0, 1, 1]; // sx,sy,sw,sh UV
-    this.frameCount = 0;
-    this.lastFpsTime = performance.now();
-    this.fps = 0;
+    this.grade   = { brightness:1, contrast:1, saturation:1, hue:0, exposure:0, lift:0, gain:1, lutMix:1 };
+    this.crop    = [0, 0, 1, 1]; // UV offset + scale
+    this.uloc    = {};
+    this._setup();
   }
 
-  _init() {
+  _compile(vs, fs) {
     const gl = this.gl;
-    const prog = this._compile(VERT_SRC, FRAG_SRC);
-    this.prog = prog;
-    gl.useProgram(prog);
+    const sh = (src, t) => {
+      const s = gl.createShader(t);
+      gl.shaderSource(s, src); gl.compileShader(s);
+      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error('Shader: ' + gl.getShaderInfoLog(s));
+      return s;
+    };
+    const p = gl.createProgram();
+    gl.attachShader(p, sh(vs, gl.VERTEX_SHADER));
+    gl.attachShader(p, sh(fs, gl.FRAGMENT_SHADER));
+    gl.linkProgram(p);
+    if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error('Link: ' + gl.getProgramInfoLog(p));
+    return p;
+  }
 
-    // Full-screen quad
+  _setup() {
+    const gl = this.gl;
+    gl.useProgram(this.prog);
+    gl.viewport(0, 0, this.canvas.width, this.canvas.height);
+
+    // Full-screen quad: [pos.xy, uv.xy] × 6 verts — UV y-flipped so video is upright
+    const verts = new Float32Array([
+      -1,-1, 0,1,   1,-1, 1,1,  -1,1, 0,0,
+      -1, 1, 0,0,   1,-1, 1,1,   1,1, 1,0,
+    ]);
     const buf = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-    // pos(x,y), uv(u,v) — y flipped so video is right-side up
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
-      -1,-1, 0,1,   1,-1, 1,1,   -1,1, 0,0,
-      -1, 1, 0,0,   1,-1, 1,1,    1,1, 1,0,
-    ]), gl.STATIC_DRAW);
+    gl.bufferData(gl.ARRAY_BUFFER, verts, gl.STATIC_DRAW);
 
-    const posLoc = gl.getAttribLocation(prog, 'a_pos');
-    const uvLoc  = gl.getAttribLocation(prog, 'a_uv');
-    gl.enableVertexAttribArray(posLoc);
-    gl.enableVertexAttribArray(uvLoc);
-    gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 16, 0);
-    gl.vertexAttribPointer(uvLoc,  2, gl.FLOAT, false, 16, 8);
+    const posL = gl.getAttribLocation(this.prog, 'a_pos');
+    const uvL  = gl.getAttribLocation(this.prog, 'a_uv');
+    gl.enableVertexAttribArray(posL);
+    gl.enableVertexAttribArray(uvL);
+    gl.vertexAttribPointer(posL, 2, gl.FLOAT, false, 16, 0);
+    gl.vertexAttribPointer(uvL,  2, gl.FLOAT, false, 16, 8);
 
-    // Video texture (unit 0)
+    // Video texture — unit 0
     this.vidTex = gl.createTexture();
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, this.vidTex);
@@ -681,125 +754,91 @@ class WebGLEngine {
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
 
-    // LUT texture slot (unit 1) — create identity 2x2x2 default
-    this.lutTex = this._createIdentityLut(2);
+    // Identity LUT — unit 1
+    this.lutTex  = this._identityLut(2);
+    this.lutSize = 2;
 
     // Cache uniform locations
-    const names = [
-      'u_tex','u_lut','u_brightness','u_contrast','u_saturation','u_hue',
-      'u_exposure','u_lift','u_gain','u_lut_mix','u_lut_size','u_use_lut',
-      'u_grayscale','u_sepia','u_invert','u_vignette','u_sharpen','u_crop'
-    ];
-    names.forEach(n => { this.uniforms[n] = gl.getUniformLocation(prog, n); });
-    gl.uniform1i(this.uniforms['u_tex'], 0);
-    gl.uniform1i(this.uniforms['u_lut'], 1);
-    this._applyUniforms();
+    ['u_tex','u_lut','u_brightness','u_contrast','u_saturation','u_hue',
+     'u_exposure','u_lift','u_gain','u_lut_mix','u_lut_size','u_use_lut',
+     'u_grayscale','u_sepia','u_invert','u_vignette','u_sharpen','u_crop'
+    ].forEach(n => { this.uloc[n] = gl.getUniformLocation(this.prog, n); });
+
+    gl.uniform1i(this.uloc['u_tex'], 0);
+    gl.uniform1i(this.uloc['u_lut'], 1);
+    this._pushUniforms();
   }
 
-  _compile(vs, fs) {
-    const gl = this.gl;
-    const sh = (src, type) => {
-      const s = gl.createShader(type);
-      gl.shaderSource(s, src);
-      gl.compileShader(s);
-      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s));
-      return s;
-    };
-    const p = gl.createProgram();
-    gl.attachShader(p, sh(vs, gl.VERTEX_SHADER));
-    gl.attachShader(p, sh(fs, gl.FRAGMENT_SHADER));
-    gl.linkProgram(p);
-    if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p));
-    return p;
-  }
-
-  _createIdentityLut(size) {
+  _identityLut(size) {
     const gl = this.gl;
     const tex = gl.createTexture();
     gl.activeTexture(gl.TEXTURE1);
     gl.bindTexture(gl.TEXTURE_3D, tex);
-    gl.texParameteri(gl.TEXTURE_3D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_3D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_3D, gl.TEXTURE_WRAP_R, gl.CLAMP_TO_EDGE);
+    ['WRAP_S','WRAP_T','WRAP_R'].forEach(w => gl.texParameteri(gl.TEXTURE_3D, gl['TEXTURE_'+w], gl.CLAMP_TO_EDGE));
     gl.texParameteri(gl.TEXTURE_3D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
     gl.texParameteri(gl.TEXTURE_3D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-    const data = new Uint8Array(size * size * size * 3);
-    let i = 0;
-    for (let b = 0; b < size; b++)
-      for (let g = 0; g < size; g++)
-        for (let r = 0; r < size; r++) {
-          data[i++] = Math.round(r / (size-1) * 255);
-          data[i++] = Math.round(g / (size-1) * 255);
-          data[i++] = Math.round(b / (size-1) * 255);
-        }
-    gl.texImage3D(gl.TEXTURE_3D, 0, gl.RGB, size, size, size, 0, gl.RGB, gl.UNSIGNED_BYTE, data);
-    this.lutSize = size;
+    const d = new Uint8Array(size**3 * 3); let i=0;
+    for (let b=0;b<size;b++) for (let g=0;g<size;g++) for (let r=0;r<size;r++) {
+      d[i++]=Math.round(r/(size-1)*255);
+      d[i++]=Math.round(g/(size-1)*255);
+      d[i++]=Math.round(b/(size-1)*255);
+    }
+    gl.texImage3D(gl.TEXTURE_3D, 0, gl.RGB, size, size, size, 0, gl.RGB, gl.UNSIGNED_BYTE, d);
     return tex;
   }
 
-  loadLutFromCube(cubeText) {
+  loadLut(cubeText) {
     const lines = cubeText.split(/\r?\n/);
-    let size = 0;
-    const entries = [];
-    for (const line of lines) {
-      const t = line.trim();
+    let size = 0; const vals = [];
+    for (const l of lines) {
+      const t = l.trim();
       if (t.startsWith('LUT_3D_SIZE')) { size = parseInt(t.split(/\s+/)[1]); continue; }
-      if (t === '' || t.startsWith('#') || t.startsWith('TITLE') || t.startsWith('DOMAIN')) continue;
-      const parts = t.split(/\s+/).map(Number);
-      if (parts.length === 3 && !isNaN(parts[0])) entries.push(...parts);
+      if (!t || t.startsWith('#') || /^[A-Z]/.test(t)) continue;
+      const p = t.split(/\s+/).map(Number);
+      if (p.length===3 && !isNaN(p[0])) vals.push(...p);
     }
-    if (!size || entries.length !== size * size * size * 3) throw new Error('Invalid .cube file');
+    if (!size || vals.length !== size**3*3) throw new Error(`Bad .cube (size=${size}, entries=${vals.length/3})`);
     const gl = this.gl;
     gl.activeTexture(gl.TEXTURE1);
     gl.bindTexture(gl.TEXTURE_3D, this.lutTex);
-    const data = new Uint8Array(entries.map(v => Math.round(Math.min(Math.max(v, 0), 1) * 255)));
-    gl.texImage3D(gl.TEXTURE_3D, 0, gl.RGB, size, size, size, 0, gl.RGB, gl.UNSIGNED_BYTE, data);
+    gl.texImage3D(gl.TEXTURE_3D, 0, gl.RGB, size, size, size, 0, gl.RGB, gl.UNSIGNED_BYTE,
+      new Uint8Array(vals.map(v => Math.round(Math.max(0,Math.min(1,v))*255))));
     this.lutSize = size;
-    gl.uniform1f(this.uniforms['u_lut_size'], size);
-    gl.uniform1i(this.uniforms['u_use_lut'], 1);
+    this.filters.add('lut');
   }
 
   clearLut() {
-    this.lutTex = this._createIdentityLut(2);
-    const gl = this.gl;
-    gl.uniform1i(this.uniforms['u_use_lut'], 0);
-    gl.uniform1f(this.uniforms['u_lut_size'], 2);
+    this.lutTex  = this._identityLut(2);
+    this.lutSize = 2;
+    this.filters.delete('lut');
   }
 
-  setCropRect(sx, sy, sw, sh) { this.cropRect = [sx, sy, sw, sh]; }
-
-  _applyUniforms() {
-    const gl = this.gl, u = this.uniforms, s = this.gradeState, f = this.filters;
-    gl.uniform1f(u['u_brightness'], s.brightness);
-    gl.uniform1f(u['u_contrast'],   s.contrast);
-    gl.uniform1f(u['u_saturation'], s.saturation);
-    gl.uniform1f(u['u_hue'],        s.hue);
-    gl.uniform1f(u['u_exposure'],   s.exposure);
-    gl.uniform1f(u['u_lift'],       s.lift);
-    gl.uniform1f(u['u_gain'],       s.gain);
-    gl.uniform1f(u['u_lut_mix'],    s.lutMix);
+  _pushUniforms() {
+    const { gl, uloc: u, grade: g, filters: f } = this;
+    gl.uniform1f(u['u_brightness'], g.brightness);
+    gl.uniform1f(u['u_contrast'],   g.contrast);
+    gl.uniform1f(u['u_saturation'], g.saturation);
+    gl.uniform1f(u['u_hue'],        g.hue);
+    gl.uniform1f(u['u_exposure'],   g.exposure);
+    gl.uniform1f(u['u_lift'],       g.lift);
+    gl.uniform1f(u['u_gain'],       g.gain);
+    gl.uniform1f(u['u_lut_mix'],    g.lutMix);
     gl.uniform1f(u['u_lut_size'],   this.lutSize);
-    gl.uniform1i(u['u_use_lut'],    this.lutSize > 0 && f.has('lut') ? 1 : 0);
+    gl.uniform1i(u['u_use_lut'],    f.has('lut') ? 1 : 0);
     gl.uniform1i(u['u_grayscale'],  f.has('grayscale') ? 1 : 0);
     gl.uniform1i(u['u_sepia'],      f.has('sepia')     ? 1 : 0);
     gl.uniform1i(u['u_invert'],     f.has('invert')    ? 1 : 0);
     gl.uniform1i(u['u_vignette'],   f.has('vignette')  ? 1 : 0);
     gl.uniform1i(u['u_sharpen'],    f.has('sharpen')   ? 1 : 0);
-    gl.uniform4fv(u['u_crop'],      this.cropRect);
+    gl.uniform4fv(u['u_crop'],      this.crop);
   }
 
+  // ─── DRAW — called every RAF tick ────────────────────────────────
+  // NOTE: Does NOT touch canvas.width / canvas.height.
   drawVideoFrame(video) {
+    if (video.readyState < 2) return; // no frame ready yet
     const gl = this.gl;
-    const vw = video.videoWidth  || 1280;
-    const vh = video.videoHeight || 720;
-    const outW = parseInt(document.getElementById('out-w').value) || vw;
-    const outH = parseInt(document.getElementById('out-h').value) || vh;
-
-    if (this.canvas.width !== outW || this.canvas.height !== outH) {
-      this.canvas.width = outW; this.canvas.height = outH;
-      gl.viewport(0, 0, outW, outH);
-    }
-
+    // Upload current video frame as texture
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, this.vidTex);
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, video);
@@ -807,509 +846,236 @@ class WebGLEngine {
     gl.activeTexture(gl.TEXTURE1);
     gl.bindTexture(gl.TEXTURE_3D, this.lutTex);
 
-    this._applyUniforms();
+    this._pushUniforms();
     gl.drawArrays(gl.TRIANGLES, 0, 6);
-
-    // FPS counter
-    this.frameCount++;
-    const now = performance.now();
-    if (now - this.lastFpsTime > 1000) {
-      this.fps = Math.round(this.frameCount * 1000 / (now - this.lastFpsTime));
-      this.frameCount = 0;
-      this.lastFpsTime = now;
-      const badge = document.getElementById('fps-badge');
-      if (badge) badge.textContent = this.fps + 'fps · WebGL2';
-    }
   }
 
   resetGrade() {
-    this.gradeState = { brightness:1, contrast:1, saturation:1, hue:0, exposure:0, lift:0, gain:1, lutMix:1 };
+    this.grade = { brightness:1, contrast:1, saturation:1, hue:0, exposure:0, lift:0, gain:1, lutMix:1 };
     this.filters.clear();
-    [['f-bright',1],['f-contrast',1],['f-sat',1],['f-hue',0],['f-exp',0],['f-lift',0],['f-gain',1],['lut-mix',1]].forEach(([id,v]) => {
-      const el = document.getElementById(id); if (el) el.value = v;
-    });
-    document.querySelectorAll('.flt-badge').forEach(b => b.classList.remove('on'));
-    updateGradeLabels();
+    // sync sliders
+    [['f-bright',1],['f-contrast',1],['f-sat',1],['f-hue',0],
+     ['f-exp',0],['f-lift',0],['f-gain',1],['lut-mix',1]
+    ].forEach(([id,v]) => { const el=document.getElementById(id); if(el) el.value=v; });
+    document.querySelectorAll('.pill').forEach(p => p.classList.remove('on'));
+    syncGradeLabels();
   }
 }
 
-// ═══════════════════════════════════════════════════════════════════
-// AudioEngine — Web Audio API: waveform, spectrogram, EQ, gate
-// ═══════════════════════════════════════════════════════════════════
+/* ─────────────────────────────────────────────────────────────────
+   AudioEngine — Web Audio waveform + EQ
+───────────────────────────────────────────────────────────────── */
 class AudioEngine {
-  constructor(videoEl) {
-    this.ctx    = null;
-    this.src    = null;
-    this.gain   = null;
-    this.analyser = null;
-    this.bassEq = null;
-    this.trebleEq = null;
-    this.gate   = null;
-    this.videoEl = videoEl;
-    this.rafId  = null;
-    this.waveCanvas   = document.getElementById('waveform-canvas');
-    this.spectCanvas  = document.getElementById('spectrogram-canvas');
-    this.wCtx   = this.waveCanvas.getContext('2d');
-    this.sCtx   = this.spectCanvas.getContext('2d');
-    this.rmsHistory = [];
+  constructor() {
+    this.ctx = null; this.src = null; this.gain = null;
+    this.bass = null; this.treble = null; this.analyser = null;
+    this.rafId = null; this.vid = null;
   }
 
-  init() {
-    if (this.ctx) return; // already initialised
-    this.ctx = new (window.AudioContext || window.webkitAudioContext)();
-    this.src = this.ctx.createMediaElementSource(this.videoEl);
-
-    this.bassEq = this.ctx.createBiquadFilter();
-    this.bassEq.type = 'lowshelf';
-    this.bassEq.frequency.value = 200;
-
-    this.trebleEq = this.ctx.createBiquadFilter();
-    this.trebleEq.type = 'highshelf';
-    this.trebleEq.frequency.value = 5000;
-
-    this.gain = this.ctx.createGain();
-
-    this.analyser = this.ctx.createAnalyser();
-    this.analyser.fftSize = 2048;
-    this.analyser.smoothingTimeConstant = 0.8;
-
-    // Chain: src → bass → treble → gain → analyser → destination
-    this.src.connect(this.bassEq);
-    this.bassEq.connect(this.trebleEq);
-    this.trebleEq.connect(this.gain);
-    this.gain.connect(this.analyser);
-    this.analyser.connect(this.ctx.destination);
-
-    document.getElementById('chip-audio-sr').textContent = 'SR: ' + this.ctx.sampleRate + 'Hz';
-    this._startDraw();
+  // Call once per session (not per file load — MediaElementSource is one-time per element)
+  attach(videoEl) {
+    if (this.ctx) return; // already attached — safe to call multiple times
+    try {
+      this.ctx     = new (window.AudioContext || window.webkitAudioContext)();
+      this.src     = this.ctx.createMediaElementSource(videoEl);
+      this.bass    = this.ctx.createBiquadFilter();
+      this.bass.type = 'lowshelf'; this.bass.frequency.value = 200;
+      this.treble  = this.ctx.createBiquadFilter();
+      this.treble.type = 'highshelf'; this.treble.frequency.value = 5000;
+      this.gain    = this.ctx.createGain();
+      this.analyser= this.ctx.createAnalyser();
+      this.analyser.fftSize = 2048; this.analyser.smoothingTimeConstant = 0.8;
+      this.src.connect(this.bass);
+      this.bass.connect(this.treble);
+      this.treble.connect(this.gain);
+      this.gain.connect(this.analyser);
+      this.analyser.connect(this.ctx.destination);
+      this.vid = videoEl;
+      document.getElementById('chip-audio-sr').textContent = 'SR: ' + this.ctx.sampleRate + 'Hz';
+      this._draw();
+    } catch(e) { /* no audio track or AudioContext blocked */ }
   }
 
-  setGainDb(db) {
-    if (!this.gain) return;
-    this.gain.gain.value = Math.pow(10, db / 20);
-  }
+  setGain(db)    { if(this.gain)   this.gain.gain.value = Math.pow(10, db/20); }
+  setBass(db)    { if(this.bass)   this.bass.gain.value = db; }
+  setTreble(db)  { if(this.treble) this.treble.gain.value = db; }
 
-  setNoiseGateDb(db) {
-    // Simulated noise gate via DynamicsCompressor
-    if (!this.ctx) return;
-    // db === -80 means OFF
-  }
-
-  setBassDb(db)   { if (this.bassEq)   this.bassEq.gain.value   = db; }
-  setTrebleDb(db) { if (this.trebleEq) this.trebleEq.gain.value = db; }
-
-  _startDraw() {
-    const buf      = new Uint8Array(this.analyser.frequencyBinCount);
-    const freqBuf  = new Uint8Array(this.analyser.frequencyBinCount);
-    const wCvs     = this.waveCanvas;
-    const sCvs     = this.spectCanvas;
-    const wCtx     = this.wCtx;
-    const sCtx     = this.sCtx;
-    const draw = () => {
-      this.rafId = requestAnimationFrame(draw);
-      // ── Waveform ────────────────────────────────────────────────
-      this.analyser.getByteTimeDomainData(buf);
-      wCvs.width = wCvs.offsetWidth; wCvs.height = wCvs.offsetHeight;
-      const W = wCvs.width, H = wCvs.height;
-      wCtx.fillStyle = '#0a0a0a'; wCtx.fillRect(0, 0, W, H);
-      wCtx.strokeStyle = '#61afef'; wCtx.lineWidth = 1.5;
-      wCtx.beginPath();
-      const sliceW = W / buf.length;
-      buf.forEach((v, i) => {
-        const x = i * sliceW;
-        const y = (v / 128.0) * H / 2;
-        i === 0 ? wCtx.moveTo(x, y) : wCtx.lineTo(x, y);
-      });
-      wCtx.stroke();
-
-      // RMS calculation
-      let sumSq = 0;
-      buf.forEach(v => { const n = (v-128)/128; sumSq += n*n; });
-      const rms = Math.sqrt(sumSq / buf.length);
-      const rmsDb = rms > 0.001 ? Math.round(20 * Math.log10(rms)) : -Infinity;
-      document.getElementById('chip-audio-rms').textContent = 'RMS: ' + (isFinite(rmsDb) ? rmsDb + 'dB' : '-∞');
-
-      // ── Spectrogram ─────────────────────────────────────────────
-      this.analyser.getByteFrequencyData(freqBuf);
-      sCvs.width = sCvs.offsetWidth; sCvs.height = sCvs.offsetHeight;
-      const sW = sCvs.width, sH = sCvs.height;
-      sCtx.fillStyle = '#0a0a0a'; sCtx.fillRect(0, 0, sW, sH);
-      const barW = sW / freqBuf.length;
-      freqBuf.forEach((v, i) => {
-        const h = (v / 255) * sH;
-        const hue = 220 - (v / 255) * 180;
-        sCtx.fillStyle = `hsl(${hue},90%,50%)`;
-        sCtx.fillRect(i * barW, sH - h, Math.max(barW - 0.5, 0.5), h);
-      });
-    };
-    draw();
-  }
-
-  destroy() {
-    if (this.rafId) cancelAnimationFrame(this.rafId);
-    if (this.ctx) { this.ctx.close(); this.ctx = null; }
-  }
-}
-
-// ═══════════════════════════════════════════════════════════════════
-// Timeline — frame-accurate scrubbing
-// ═══════════════════════════════════════════════════════════════════
-class Timeline {
-  constructor(videoEl) {
-    this.vid      = videoEl;
-    this.rafId    = null;
-    this.glEngine = null;
-    this.seekThrottle = null;
-    this.FPS_ESTIMATE  = 30; // updated on load
-    this.pendingSeek   = null;
-    this._bindSeek();
-  }
-
-  _bindSeek() {
-    const bar = document.getElementById('seek-bar');
-    bar.addEventListener('input', () => {
-      const t = (bar.value / 10000) * (this.vid.duration || 0);
-      this._seekTo(t);
-    });
-  }
-
-  _seekTo(t) {
-    // Throttle to 40ms (≈25 seeks/s) for smooth UI without janking
-    if (this.seekThrottle) { this.pendingSeek = t; return; }
-    this._doSeek(t);
-    this.seekThrottle = setTimeout(() => {
-      this.seekThrottle = null;
-      if (this.pendingSeek !== null) {
-        this._doSeek(this.pendingSeek);
-        this.pendingSeek = null;
-      }
-    }, 40);
-  }
-
-  _doSeek(t) {
-    this.vid.currentTime = t;
-  }
-
-  _nudge(dir) {
-    const frameDur = 1 / this.FPS_ESTIMATE;
-    const target   = Math.max(0, Math.min(this.vid.duration, this.vid.currentTime + dir * frameDur));
-    this._doSeek(target);
-    // listen for seeked to draw that exact frame
-    this.vid.addEventListener('seeked', () => {
-      if (this.glEngine) this.glEngine.drawVideoFrame(this.vid);
-    }, { once: true });
-  }
-
-  nudgeBack()    { this._nudge(-1); }
-  nudgeForward() { this._nudge(+1); }
-
-  startRAF(glEngine) {
-    this.glEngine = glEngine;
+  _draw() {
+    const wCvs = document.getElementById('waveform-canvas');
+    const sCvs = document.getElementById('spectrogram-canvas');
+    const wCtx = wCvs.getContext('2d');
+    const sCtx = sCvs.getContext('2d');
+    const td = new Uint8Array(this.analyser.frequencyBinCount);
+    const fd = new Uint8Array(this.analyser.frequencyBinCount);
     const tick = () => {
       this.rafId = requestAnimationFrame(tick);
-      if (this.vid.readyState >= 2) {
-        glEngine.drawVideoFrame(this.vid);
-        // update seek bar & timecode
-        const dur = this.vid.duration || 0;
-        if (!isNaN(dur) && dur > 0) {
-          document.getElementById('seek-bar').value = Math.floor((this.vid.currentTime / dur) * 10000);
-          document.getElementById('time-disp').textContent =
-            fmtTime(this.vid.currentTime) + ' / ' + fmtTime(dur);
-        }
-      }
+      // Waveform
+      this.analyser.getByteTimeDomainData(td);
+      wCvs.width = wCvs.offsetWidth || 200; wCvs.height = wCvs.offsetHeight || 72;
+      const W = wCvs.width, H = wCvs.height;
+      wCtx.fillStyle = '#0F1115'; wCtx.fillRect(0,0,W,H);
+      wCtx.strokeStyle = '#3B82F6'; wCtx.lineWidth = 1.5; wCtx.beginPath();
+      const sw = W / td.length;
+      td.forEach((v,i) => { const x=i*sw, y=(v/128)*H/2; i?wCtx.lineTo(x,y):wCtx.moveTo(x,y); });
+      wCtx.stroke();
+      // RMS
+      let s=0; td.forEach(v=>{const n=(v-128)/128;s+=n*n;});
+      const rms=Math.sqrt(s/td.length);
+      const rmsDb=rms>0.001?Math.round(20*Math.log10(rms)):-Infinity;
+      const rmsEl=document.getElementById('chip-audio-rms');
+      if(rmsEl) rmsEl.textContent='RMS: '+(isFinite(rmsDb)?rmsDb+'dB':'-∞');
+      // Spectrogram
+      this.analyser.getByteFrequencyData(fd);
+      sCvs.width = sCvs.offsetWidth || 200; sCvs.height = sCvs.offsetHeight || 52;
+      const sW=sCvs.width, sH=sCvs.height;
+      sCtx.fillStyle='#0F1115'; sCtx.fillRect(0,0,sW,sH);
+      const bw=sW/fd.length;
+      fd.forEach((v,i)=>{
+        const h=(v/255)*sH, hue=220-(v/255)*180;
+        sCtx.fillStyle=`hsl(${hue},85%,55%)`;
+        sCtx.fillRect(i*bw, sH-h, Math.max(bw-.5,.5), h);
+      });
     };
     tick();
   }
-
-  stopRAF() {
-    if (this.rafId) { cancelAnimationFrame(this.rafId); this.rafId = null; }
-  }
 }
 
-// ═══════════════════════════════════════════════════════════════════
-// FFmpegEngine — lazy-loaded, single-threaded with multi-thread hint
-// ═══════════════════════════════════════════════════════════════════
+/* ─────────────────────────────────────────────────────────────────
+   FFmpegEngine — lazy-loaded, auto-detects multi-thread
+───────────────────────────────────────────────────────────────── */
 class FFmpegEngine {
-  constructor() {
-    this.ffmpeg   = null;
-    this.loading  = false;
-    this.ready    = false;
-    this.aborted  = false;
-  }
+  constructor() { this.ff=null; this.ready=false; this.loading=false; this.aborted=false; }
 
   async load() {
     if (this.ready)   return true;
     if (this.loading) return false;
     this.loading = true;
-    setStatus('Loading FFmpeg.wasm (~10–30 s first time)…');
-    showProgress(0);
-
+    setStatus('Loading FFmpeg.wasm (~10–30s first time)…');
+    showProg(0);
     try {
-      // Dynamic ESM import from CDN
-      const { FFmpeg } = await import('https://esm.sh/@ffmpeg/ffmpeg@0.12.10');
+      const { FFmpeg }    = await import('https://esm.sh/@ffmpeg/ffmpeg@0.12.10');
       const { toBlobURL } = await import('https://esm.sh/@ffmpeg/util@0.12.1');
-
-      this.ffmpeg = new FFmpeg();
-      this.ffmpeg.on('log',      ({ message }) => setStatus('[ffmpeg] ' + message.slice(0, 80)));
-      this.ffmpeg.on('progress', ({ progress, time }) => {
-        showProgress(Math.min(progress * 100, 99));
+      this.ff = new FFmpeg();
+      this.ff.on('log',      ({message}) => setStatus('[ffmpeg] ' + message.slice(0,90)));
+      this.ff.on('progress', ({progress}) => showProg(Math.min(progress*100, 99)));
+      const mt  = typeof SharedArrayBuffer !== 'undefined' && self.crossOriginIsolated;
+      const pkg = mt ? '@ffmpeg/core-mt@0.12.6' : '@ffmpeg/core@0.12.6';
+      const base = `https://esm.sh/${pkg}/dist/esm`;
+      await this.ff.load({
+        coreURL: await toBlobURL(`${base}/ffmpeg-core.js`,   'text/javascript'),
+        wasmURL: await toBlobURL(`${base}/ffmpeg-core.wasm`, 'application/wasm'),
+        ...(mt ? { workerURL: await toBlobURL(`${base}/ffmpeg-core.worker.js`,'text/javascript') } : {})
       });
-
-      // Try multi-thread core (requires COOP+COEP headers)
-      const useMT = typeof SharedArrayBuffer !== 'undefined' && crossOriginIsolated;
-      const coreName = useMT ? '@ffmpeg/core-mt@0.12.6' : '@ffmpeg/core@0.12.6';
-      const baseURL  = `https://esm.sh/${coreName}/dist/esm`;
-
-      setStatus(`Loading ${useMT ? 'multi-thread' : 'single-thread'} FFmpeg core…`);
-
-      await this.ffmpeg.load({
-        coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`,   'text/javascript'),
-        wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
-        ...(useMT ? { workerURL: await toBlobURL(`${baseURL}/ffmpeg-core.worker.js`, 'text/javascript') } : {})
-      });
-
       this.ready = true;
       document.getElementById('btn-kill-ffmpeg').style.display = '';
-      setStatus(`FFmpeg ready (${useMT ? '⚡ multi-thread' : 'single-thread'}).`);
+      setStatus(`FFmpeg ready · ${mt?'⚡ multi-thread':'single-thread'}`);
       return true;
-    } catch (e) {
-      setStatus('FFmpeg load failed: ' + e.message, true);
-      this.loading = false;
-      return false;
-    } finally {
-      hideProgress();
-    }
-  }
-
-  async exportMP4(canvasEl, videoEl, preset, onProgress) {
-    if (!await this.load()) return;
-    const { fetchFile } = await import('https://esm.sh/@ffmpeg/util@0.12.1');
-    const ff = this.ffmpeg;
-    this.aborted = false;
-
-    try {
-      setStatus('Staging source for FFmpeg VFS…');
-      // Strategy: record canvas via MediaRecorder → WebM → FFmpeg → MP4
-      const webmBlob = await this._captureCanvas(canvasEl, videoEl);
-      if (this.aborted) return;
-
-      showProgress(30);
-      setStatus('Writing WebM to VFS…');
-      await ff.writeFile('input.webm', await fetchFile(webmBlob));
-
-      showProgress(50);
-      setStatus('Encoding MP4 with libx264…');
-      await ff.exec([
-        '-i', 'input.webm',
-        '-c:v', 'libx264', '-preset', preset,
-        '-crf', '23', '-movflags', '+faststart',
-        '-c:a', 'aac', '-b:a', '128k',
-        '-pix_fmt', 'yuv420p',
-        'output.mp4'
-      ]);
-
-      if (this.aborted) { this._cleanup(ff, ['input.webm','output.mp4']); return; }
-
-      showProgress(90);
-      const data = await ff.readFile('output.mp4');
-      const url  = BlobManager.create(new Blob([data.buffer], { type: 'video/mp4' }));
-      dlLink(url, 'studio-export.mp4');
-
-      this._cleanup(ff, ['input.webm', 'output.mp4']);
-      setStatus('MP4 exported successfully ✓');
-    } catch (e) {
-      setStatus('FFmpeg export error: ' + e.message, true);
-      this._cleanup(ff, ['input.webm', 'output.mp4']);
-    } finally {
-      hideProgress();
-    }
-  }
-
-  async exportGIF(canvasEl, videoEl) {
-    if (!await this.load()) return;
-    const { fetchFile } = await import('https://esm.sh/@ffmpeg/util@0.12.1');
-    const ff = this.ffmpeg;
-    this.aborted = false;
-
-    try {
-      setStatus('Capturing canvas for GIF…');
-      const webmBlob = await this._captureCanvas(canvasEl, videoEl, 8);
-      showProgress(40);
-      setStatus('Generating GIF palette + render…');
-      await ff.writeFile('input.webm', await fetchFile(webmBlob));
-      await ff.exec(['-i','input.webm','-vf','fps=12,scale=480:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse','output.gif']);
-
-      const data = await ff.readFile('output.gif');
-      const url  = BlobManager.create(new Blob([data.buffer], { type: 'image/gif' }));
-      dlLink(url, 'studio-export.gif');
-      this._cleanup(ff, ['input.webm','output.gif']);
-      setStatus('GIF exported ✓');
     } catch(e) {
-      setStatus('GIF error: ' + e.message, true);
-    } finally { hideProgress(); }
+      setStatus('FFmpeg load failed: ' + e.message, true);
+      this.loading = false; return false;
+    } finally { hideProg(); }
   }
 
-  _captureCanvas(canvasEl, videoEl, durationOverride) {
-    return new Promise((resolve, reject) => {
-      const dur = durationOverride || Math.min(videoEl.duration || 10, 60); // cap at 60s
-      const stream = canvasEl.captureStream(30);
-      // add audio if available
-      try {
-        const ac = new AudioContext();
-        const src = ac.createMediaElementSource(videoEl);
-        const dest = ac.createMediaStreamDestination();
-        src.connect(dest); src.connect(ac.destination);
-        dest.stream.getAudioTracks().forEach(t => stream.addTrack(t));
-      } catch(_) {}
+  async exportMP4(canvas, videoEl, preset) {
+    if (!await this.load()) return;
+    const { fetchFile } = await import('https://esm.sh/@ffmpeg/util@0.12.1');
+    this.aborted = false;
+    try {
+      const blob = await this._captureCanvas(canvas, videoEl);
+      if (this.aborted) return;
+      showProg(35); setStatus('Encoding MP4 H.264…');
+      await this.ff.writeFile('in.webm', await fetchFile(blob));
+      await this.ff.exec(['-i','in.webm','-c:v','libx264','-preset',preset,
+        '-crf','23','-movflags','+faststart','-c:a','aac','-b:a','128k','-pix_fmt','yuv420p','out.mp4']);
+      if (this.aborted) { this._clean(['in.webm','out.mp4']); return; }
+      showProg(92);
+      const data = await this.ff.readFile('out.mp4');
+      const url  = BlobMgr.create(new Blob([data.buffer],{type:'video/mp4'}));
+      dlLink(url,'studio-export.mp4');
+      setTimeout(()=>BlobMgr.revoke(url), 30000);
+      this._clean(['in.webm','out.mp4']);
+      setStatus('MP4 exported ✓');
+    } catch(e) { setStatus('FFmpeg error: '+e.message, true); this._clean(['in.webm','out.mp4']); }
+    finally { hideProg(); }
+  }
 
+  async exportGIF(canvas, videoEl) {
+    if (!await this.load()) return;
+    const { fetchFile } = await import('https://esm.sh/@ffmpeg/util@0.12.1');
+    this.aborted = false;
+    try {
+      const blob = await this._captureCanvas(canvas, videoEl, 8);
+      showProg(40); setStatus('Generating GIF palette…');
+      await this.ff.writeFile('in.webm', await fetchFile(blob));
+      await this.ff.exec(['-i','in.webm',
+        '-vf','fps=12,scale=480:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse',
+        'out.gif']);
+      const data = await this.ff.readFile('out.gif');
+      const url  = BlobMgr.create(new Blob([data.buffer],{type:'image/gif'}));
+      dlLink(url,'studio-export.gif');
+      setTimeout(()=>BlobMgr.revoke(url), 30000);
+      this._clean(['in.webm','out.gif']);
+      setStatus('GIF exported ✓');
+    } catch(e) { setStatus('GIF error: '+e.message, true); } finally { hideProg(); }
+  }
+
+  _captureCanvas(canvas, videoEl, dur) {
+    return new Promise((res, rej) => {
+      const d = dur || Math.min(videoEl.duration||10, 60);
+      const stream = canvas.captureStream(30);
       const mime = MediaRecorder.isTypeSupported('video/webm;codecs=vp9')
         ? 'video/webm;codecs=vp9' : 'video/webm';
-      const mr = new MediaRecorder(stream, { mimeType: mime });
-      const chunks = [];
-      mr.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
-      mr.onstop = () => resolve(new Blob(chunks, { type: 'video/webm' }));
-      mr.onerror = reject;
+      const mr = new MediaRecorder(stream, {mimeType: mime});
+      const ch = [];
+      mr.ondataavailable = e => { if(e.data.size>0) ch.push(e.data); };
+      mr.onstop = () => res(new Blob(ch,{type:'video/webm'}));
+      mr.onerror = rej;
       mr.start(100);
-      videoEl.currentTime = 0;
-      videoEl.play();
-      setTimeout(() => { mr.stop(); videoEl.pause(); }, dur * 1000 + 500);
-      setStatus(`Recording ${dur}s canvas → WebM…`);
+      videoEl.currentTime = 0; videoEl.play();
+      setStatus(`Recording ${d}s canvas → WebM…`);
+      setTimeout(()=>{ mr.stop(); videoEl.pause(); }, d*1000+500);
     });
   }
 
-  _cleanup(ff, files) {
-    files.forEach(f => { try { ff.deleteFile(f); } catch(_) {} });
-  }
-
-  abort() { this.aborted = true; setStatus('Export aborted.'); hideProgress(); }
-
-  terminate() {
-    if (this.ffmpeg) { try { this.ffmpeg.terminate(); } catch(_) {} this.ffmpeg = null; }
-    this.ready = false; this.loading = false;
-    document.getElementById('btn-kill-ffmpeg').style.display = 'none';
-    setStatus('FFmpeg instance terminated. Memory freed.');
+  _clean(files) { files.forEach(f=>{try{this.ff.deleteFile(f);}catch(_){}}) }
+  abort()       { this.aborted=true; setStatus('Export aborted.'); hideProg(); }
+  terminate()   {
+    if(this.ff){try{this.ff.terminate();}catch(_){} this.ff=null;}
+    this.ready=false; this.loading=false;
+    document.getElementById('btn-kill-ffmpeg').style.display='none';
+    setStatus('FFmpeg terminated. Memory freed.');
   }
 }
 
-// ═══════════════════════════════════════════════════════════════════
-// Reverse: frame-capture then backward playback
-// ═══════════════════════════════════════════════════════════════════
-async function captureReverse(videoEl, glEngine) {
-  setStatus('Capturing frames for reverse…');
-  const dur    = videoEl.duration;
-  const N      = Math.min(180, Math.floor(dur * 15)); // 15fps * dur, max 180
-  const frames = [];
-
-  for (let i = 0; i < N; i++) {
-    if (reverseAbort) break;
-    const t = (i / (N - 1)) * dur;
-    await new Promise(res => {
-      videoEl.currentTime = t;
-      videoEl.addEventListener('seeked', () => {
-        const cvs = document.createElement('canvas');
-        cvs.width = glEngine.canvas.width;
-        cvs.height = glEngine.canvas.height;
-        // Draw the GL canvas into this offscreen canvas
-        cvs.getContext('2d').drawImage(glEngine.canvas, 0, 0);
-        frames.push(cvs);
-        res();
-      }, { once: true });
-    });
-    showProgress((i / N) * 50);
-  }
-  if (reverseAbort) { hideProgress(); setStatus('Reverse cancelled.'); return; }
-
-  setStatus('Playing reverse…');
-  let idx = frames.length - 1;
-  function playBack() {
-    if (idx < 0 || reverseAbort) { hideProgress(); setStatus('Reverse complete.'); return; }
-    glEngine.gl.bindTexture(glEngine.gl.TEXTURE_2D, glEngine.vidTex);
-    // Upload offscreen canvas as texture
-    glEngine.gl.texImage2D(glEngine.gl.TEXTURE_2D, 0, glEngine.gl.RGB, glEngine.gl.RGB, glEngine.gl.UNSIGNED_BYTE, frames[idx--]);
-    glEngine.gl.drawArrays(glEngine.gl.TRIANGLES, 0, 6);
-    showProgress(50 + ((frames.length - idx) / frames.length) * 50);
-    setTimeout(playBack, 1000 / 15);
-  }
-  playBack();
+/* ─────────────────────────────────────────────────────────────────
+   Helpers
+───────────────────────────────────────────────────────────────── */
+function fmtT(s) {
+  if (isNaN(s)||!isFinite(s)) return '0:00.000';
+  return Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0')+'.'+String(Math.floor((s%1)*1000)).padStart(3,'0');
 }
-
-// ═══════════════════════════════════════════════════════════════════
-// Frame extraction — frame-accurate via seeked event
-// ═══════════════════════════════════════════════════════════════════
-async function extractFrames(videoEl, glEngine, count = 12) {
-  setStatus(`Extracting ${count} frames…`);
-  const dur   = videoEl.duration;
-  const strip = document.getElementById('frame-strip');
-  strip.innerHTML = '';
-
-  for (let i = 0; i < count; i++) {
-    const t = (i / (count - 1)) * dur;
-    await new Promise(res => {
-      videoEl.currentTime = t;
-      videoEl.addEventListener('seeked', () => {
-        glEngine.drawVideoFrame(videoEl);
-        // Snapshot from GL canvas
-        addThumb(glEngine.canvas, fmtTime(videoEl.currentTime), strip);
-        res();
-      }, { once: true });
-    });
-    showProgress((i / count) * 100);
-  }
-  hideProgress();
-  setStatus(`${count} frames extracted. Click to download.`);
+function dlLink(url, name) { const a=document.createElement('a'); a.href=url; a.download=name; a.click(); }
+function setStatus(txt, isErr=false) {
+  const el=document.getElementById('status-bar'); if(!el) return;
+  el.textContent=txt; el.className='status-pill'+(isErr?' err':'');
 }
-
-function addThumb(sourceCanvas, label, strip) {
-  const ratio = sourceCanvas.width / sourceCanvas.height;
-  const h = 52, w = Math.round(h * ratio);
-  const thumb = document.createElement('canvas');
-  thumb.width = w; thumb.height = h;
-  thumb.getContext('2d').drawImage(sourceCanvas, 0, 0, w, h);
-  thumb.title = `${label} — click to download`;
-  thumb.addEventListener('click', () => {
-    thumb.toBlob(blob => {
-      const url = BlobManager.create(blob);
-      dlLink(url, `frame-${label.replace(/[:.]/g, '-')}.png`);
-      setTimeout(() => BlobManager.revoke(url), 5000);
-    }, 'image/png');
-  });
-  strip.prepend(thumb);
+function showProg(pct) {
+  document.getElementById('progress-wrap').classList.add('show');
+  document.getElementById('progress-fill').style.width=Math.min(pct,100)+'%';
+  document.getElementById('progress-pct').textContent=Math.round(pct)+'%';
 }
-
-// ═══════════════════════════════════════════════════════════════════
-// Utility helpers
-// ═══════════════════════════════════════════════════════════════════
-function fmtTime(s) {
-  if (isNaN(s)) return '0:00.000';
-  const m   = Math.floor(s / 60);
-  const sec = Math.floor(s % 60);
-  const ms  = Math.floor((s % 1) * 1000);
-  return `${m}:${String(sec).padStart(2,'0')}.${String(ms).padStart(3,'0')}`;
+function hideProg() {
+  document.getElementById('progress-wrap').classList.remove('show');
+  document.getElementById('progress-fill').style.width='0%';
 }
-
-function dlLink(url, name) {
-  const a = document.createElement('a');
-  a.href = url; a.download = name; a.click();
+function cropUV(vw, vh, ratioStr) {
+  if (ratioStr==='free') return [0,0,1,1];
+  const [rw,rh]=ratioStr.split(':').map(Number), t=rw/rh, s=vw/vh;
+  let sw,sh;
+  if (s>t) { sh=1; sw=t/s; } else { sw=1; sh=s/t; }
+  return [(1-sw)/2,(1-sh)/2,sw,sh];
 }
-
-function setStatus(txt, isErr = false) {
-  const el = document.getElementById('status-bar');
-  if (!el) return;
-  el.textContent = txt;
-  el.className = 's-status' + (isErr ? ' err' : '');
-}
-
-function showProgress(pct) {
-  document.getElementById('progress-wrap').classList.add('visible');
-  document.getElementById('progress-fill').style.width = Math.min(pct, 100) + '%';
-  document.getElementById('progress-pct').textContent  = Math.round(pct) + '%';
-}
-function hideProgress() {
-  document.getElementById('progress-wrap').classList.remove('visible');
-  document.getElementById('progress-fill').style.width = '0%';
-}
-
-function updateGradeLabels() {
+function syncGradeLabels() {
   [['f-bright','v-bright',v=>Number(v).toFixed(2)],
    ['f-contrast','v-contrast',v=>Number(v).toFixed(2)],
    ['f-sat','v-sat',v=>Number(v).toFixed(2)],
@@ -1318,335 +1084,433 @@ function updateGradeLabels() {
    ['f-lift','v-lift',v=>(v>=0?'+':'')+Number(v).toFixed(3)],
    ['f-gain','v-gain',v=>Number(v).toFixed(2)],
    ['lut-mix','v-lut-mix',v=>Number(v).toFixed(2)],
-  ].forEach(([sid,vid,fmt]) => {
-    const s = document.getElementById(sid), v = document.getElementById(vid);
-    if (s && v) v.textContent = fmt(s.value);
-  });
+  ].forEach(([s,v,f])=>{ const se=document.getElementById(s),ve=document.getElementById(v); if(se&&ve)ve.textContent=f(se.value); });
 }
 
-// Crop UV rect from video dims + target ratio
-function computeCropUV(videoW, videoH, ratioStr) {
-  if (ratioStr === 'free') return [0, 0, 1, 1];
-  const [rw, rh] = ratioStr.split(':').map(Number);
-  const target   = rw / rh;
-  const src      = videoW / videoH;
-  let sw, sh;
-  if (src > target) { sh = 1; sw = target / src; }
-  else              { sw = 1; sh = src / target; }
-  return [(1 - sw) / 2, (1 - sh) / 2, sw, sh];
-}
-
-// ═══════════════════════════════════════════════════════════════════
-// Main — init & event bindings
-// ═══════════════════════════════════════════════════════════════════
-let glEngine, audioEngine, timeline, ffmpegEngine;
+/* ─────────────────────────────────────────────────────────────────
+   Reverse Simulation — captures N frames then plays backwards
+───────────────────────────────────────────────────────────────── */
 let reverseAbort = false;
-let mediaRec = null, mediaRecChunks = [];
+async function runReverse(videoEl, glEngine) {
+  reverseAbort = false;
+  const dur = videoEl.duration;
+  const N = Math.min(150, Math.floor(dur*15));
+  const buf = [];
+  setStatus(`Capturing ${N} frames for reverse…`);
+  for (let i=0;i<N;i++) {
+    if (reverseAbort) break;
+    await new Promise(res=>{
+      videoEl.currentTime = (i/(N-1))*dur;
+      videoEl.addEventListener('seeked',()=>{
+        const cvs=document.createElement('canvas');
+        cvs.width=glEngine.canvas.width; cvs.height=glEngine.canvas.height;
+        // draw processed GL output into offscreen canvas
+        cvs.getContext('2d').drawImage(glEngine.canvas,0,0);
+        buf.push(cvs); res();
+      },{once:true});
+    });
+    showProg((i/N)*50);
+  }
+  if (reverseAbort) { hideProg(); setStatus('Reverse cancelled.'); return; }
+  let idx = buf.length-1;
+  setStatus(`Playing reverse (${buf.length} frames)…`);
+  const gl=glEngine.gl;
+  function playBack() {
+    if (idx<0||reverseAbort) { hideProg(); setStatus('Reverse complete.'); return; }
+    // upload offscreen canvas as video texture
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, glEngine.vidTex);
+    gl.texImage2D(gl.TEXTURE_2D,0,gl.RGB,gl.RGB,gl.UNSIGNED_BYTE,buf[idx--]);
+    gl.drawArrays(gl.TRIANGLES,0,6);
+    showProg(50+((buf.length-idx)/buf.length)*50);
+    setTimeout(playBack, 1000/15);
+  }
+  playBack();
+}
 
-// Init engines
+/* ─────────────────────────────────────────────────────────────────
+   Frame extraction
+───────────────────────────────────────────────────────────────── */
+async function extractFrames(videoEl, glEngine, count=12) {
+  const dur=videoEl.duration, strip=document.getElementById('frame-strip');
+  strip.innerHTML=''; setStatus(`Extracting ${count} frames…`);
+  for (let i=0;i<count;i++) {
+    await new Promise(res=>{
+      videoEl.currentTime=(i/(count-1))*dur;
+      videoEl.addEventListener('seeked',()=>{
+        glEngine.drawVideoFrame(videoEl);
+        addThumb(glEngine.canvas, fmtT(videoEl.currentTime), strip);
+        res();
+      },{once:true});
+    });
+    showProg((i/count)*100);
+  }
+  hideProg(); setStatus(`${count} frames extracted · click any thumbnail to download.`);
+}
+
+function addThumb(src, label, strip) {
+  const r=src.width/src.height, h=50, w=Math.round(h*r);
+  const t=document.createElement('canvas'); t.width=w; t.height=h;
+  t.getContext('2d').drawImage(src,0,0,w,h);
+  t.title=label+' — click to download';
+  t.addEventListener('click',()=>{
+    t.toBlob(blob=>{
+      const url=BlobMgr.create(blob); dlLink(url,`frame-${label.replace(/[:.]/g,'-')}.png`);
+      setTimeout(()=>BlobMgr.revoke(url),5000);
+    },'image/png');
+  });
+  strip.prepend(t);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   MAIN — Instantiate + Wire Up
+═══════════════════════════════════════════════════════════════════ */
 const canvas   = document.getElementById('gl-canvas');
 const videoEl  = document.getElementById('vid-el');
+const audioEng = new AudioEngine();
+let glEngine   = null;
+let ffEng      = new FFmpegEngine();
+let rafId      = null;
+let mrec       = null; let mrecChunks = [];
+let seekThrottle = null; let pendingSeek = null;
+let fpsCount=0, fpsLast=performance.now();
 
-try {
-  glEngine     = new WebGLEngine(canvas);
-  setStatus('WebGL2 shader engine ready. Drop a video to begin.');
-} catch(e) {
-  setStatus('WebGL2 init failed: ' + e.message, true);
-  document.getElementById('fps-badge').textContent = 'WebGL2 not supported';
-}
-
-ffmpegEngine = new FFmpegEngine();
-timeline     = new Timeline(videoEl);
-audioEngine  = new AudioEngine(videoEl);
-
-// ── File Load ─────────────────────────────────────────────────────
+// ── File Load ──────────────────────────────────────────────────────
 function handleFile(file) {
-  if (!file || !file.type.startsWith('video/')) {
-    setStatus('Please select a valid video file.', true); return;
-  }
-  timeline.stopRAF();
-  audioEngine.destroy();
-  // init fresh AudioEngine (must init AFTER user gesture)
-  audioEngine = new AudioEngine(videoEl);
-
-  const url = BlobManager.create(file);
+  if (!file||!file.type.startsWith('video/')) { setStatus('Please select a valid video file.', true); return; }
+  stopRAF();
+  const url = BlobMgr.create(file);
+  // Remove previous src url eventually
+  videoEl.pause();
+  videoEl.removeAttribute('src');
   videoEl.src = url;
 
   videoEl.addEventListener('loadedmetadata', () => {
-    // update chips
-    document.getElementById('source-chips').style.display  = 'flex';
-    document.getElementById('chip-name').textContent = '📄 ' + file.name.slice(0, 20);
-    document.getElementById('chip-size').textContent = '💾 ' + (file.size/1024/1024).toFixed(1) + 'MB';
-    document.getElementById('chip-dims').textContent = `📐 ${videoEl.videoWidth}×${videoEl.videoHeight}`;
-    document.getElementById('chip-dur').textContent  = '⏱ ' + fmtTime(videoEl.duration);
-    document.getElementById('vp-overlay').classList.add('hidden');
+    const vw = videoEl.videoWidth||1280, vh = videoEl.videoHeight||720;
 
-    // Compute default crop
-    const crop = computeCropUV(videoEl.videoWidth, videoEl.videoHeight, document.getElementById('ratio-sel').value);
-    glEngine.setCropRect(...crop);
+    /* ── CRITICAL FIX: Set canvas dimensions BEFORE creating WebGLEngine ──
+       Changing canvas.width/height after context creation resets WebGL state.
+       We set them here ONCE, then WebGLEngine._setup() calls gl.viewport() correctly. */
+    canvas.width  = vw;
+    canvas.height = vh;
 
-    // Init audio (user gesture already happened via file pick)
-    try { audioEngine.init(); } catch(_) {}
+    // Re-create WebGL engine at the correct canvas size
+    glEngine = new WebGLEngine(canvas);
 
-    // Auto set output dims to video dims if user hasn't changed
-    const ratioSel = document.getElementById('ratio-sel').value;
-    if (ratioSel !== 'free') {
-      const [rw,rh] = ratioSel.split(':').map(Number);
-      document.getElementById('out-w').value = videoEl.videoWidth;
-      document.getElementById('out-h').value = Math.round(videoEl.videoWidth * rh / rw);
+    // Set crop UV based on current ratio selection
+    const crop = cropUV(vw, vh, document.getElementById('ratio-sel').value);
+    glEngine.crop = crop;
+
+    // Attach audio engine (idempotent — only attaches once per video element)
+    audioEng.attach(videoEl);
+
+    // Update source chips
+    document.getElementById('source-chips').style.display = 'flex';
+    document.getElementById('chip-name').textContent = '📄 '+file.name.slice(0,22);
+    document.getElementById('chip-size').textContent = '💾 '+(file.size/1024/1024).toFixed(1)+'MB';
+    document.getElementById('chip-dims').textContent = `📐 ${vw}×${vh}`;
+    document.getElementById('chip-dur').textContent  = '⏱ '+fmtT(videoEl.duration);
+    document.getElementById('vp-idle').classList.add('gone');
+
+    // Auto-update output res fields to video native
+    document.getElementById('out-w').value = vw;
+    document.getElementById('out-h').value = vh;
+    // Update out-h based on ratio
+    const ratioVal = document.getElementById('ratio-sel').value;
+    if (ratioVal !== 'free') {
+      const [rw,rh]=ratioVal.split(':').map(Number);
+      document.getElementById('out-h').value = Math.round(vw*rh/rw);
     }
 
-    // start render loop
-    timeline.startRAF(glEngine);
-    setStatus('Loaded: ' + file.name);
-  }, { once: true });
+    startRAF();
+    setStatus(`Loaded: ${file.name} · ${vw}×${vh} · ${fmtT(videoEl.duration)}`);
+  }, {once:true});
 }
 
-const dropZone = document.getElementById('drop-zone');
-const fileInp  = document.getElementById('file-input');
-dropZone.addEventListener('click', () => fileInp.click());
-fileInp.addEventListener('change', e => handleFile(e.target.files[0]));
-dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
-dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
-dropZone.addEventListener('drop', e => {
-  e.preventDefault(); dropZone.classList.remove('drag-over');
-  handleFile(e.dataTransfer.files[0]);
-});
+function startRAF() {
+  stopRAF();
+  const tick = () => {
+    rafId = requestAnimationFrame(tick);
+    if (!glEngine||!videoEl.src) return;
+    glEngine.drawVideoFrame(videoEl);
+    // FPS counter
+    fpsCount++;
+    const now=performance.now();
+    if (now-fpsLast>1000) {
+      const fps=Math.round(fpsCount*1000/(now-fpsLast));
+      fpsCount=0; fpsLast=now;
+      const el=document.getElementById('fps-badge'); if(el) el.textContent=fps+'fps · WebGL2';
+    }
+    // Seek bar + timecode
+    const dur=videoEl.duration;
+    if (!isNaN(dur)&&dur>0) {
+      document.getElementById('seek-bar').value = Math.floor((videoEl.currentTime/dur)*10000);
+      document.getElementById('time-disp').textContent = fmtT(videoEl.currentTime)+' / '+fmtT(dur);
+    }
+  };
+  tick();
+}
+function stopRAF() { if(rafId){cancelAnimationFrame(rafId);rafId=null;} }
+
+// ── File Input Events ──────────────────────────────────────────────
+const dropEl  = document.getElementById('drop-zone');
+const fileInp = document.getElementById('file-input');
+dropEl.addEventListener('click', ()=>fileInp.click());
+fileInp.addEventListener('change', e=>handleFile(e.target.files[0]));
+dropEl.addEventListener('dragover', e=>{ e.preventDefault(); dropEl.classList.add('drag'); });
+dropEl.addEventListener('dragleave', ()=>dropEl.classList.remove('drag'));
+dropEl.addEventListener('drop', e=>{ e.preventDefault(); dropEl.classList.remove('drag'); handleFile(e.dataTransfer.files[0]); });
 
 // ── Transport ──────────────────────────────────────────────────────
-document.getElementById('btn-play').addEventListener('click', () => {
+document.getElementById('btn-play').addEventListener('click', ()=>{ videoEl.play(); setStatus('Playing…'); });
+document.getElementById('btn-pause').addEventListener('click', ()=>{ videoEl.pause(); setStatus('Paused at '+fmtT(videoEl.currentTime)); });
+document.getElementById('btn-rewind').addEventListener('click', ()=>{ videoEl.currentTime=0; });
+document.getElementById('btn-mute').addEventListener('click', function(){
+  videoEl.muted=!videoEl.muted; this.textContent=videoEl.muted?'🔊':'🔇';
+});
+
+// Frame step (frame-accurate via seeked event)
+function nudge(dir) {
   if (!videoEl.src) return;
-  videoEl.play(); setStatus('Playing…');
-});
-document.getElementById('btn-pause').addEventListener('click', () => {
-  videoEl.pause(); setStatus('Paused at ' + fmtTime(videoEl.currentTime));
-});
-document.getElementById('btn-rewind').addEventListener('click', () => {
-  videoEl.currentTime = 0; setStatus('Rewound.');
-});
-document.getElementById('btn-frame-back').addEventListener('click', () => {
-  videoEl.pause(); timeline.nudgeBack();
-});
-document.getElementById('btn-frame-fwd').addEventListener('click', () => {
-  videoEl.pause(); timeline.nudgeForward();
-});
-document.getElementById('btn-mute').addEventListener('click', function() {
-  videoEl.muted = !videoEl.muted;
-  this.textContent = videoEl.muted ? '🔊' : '🔇';
+  videoEl.pause();
+  videoEl.currentTime = Math.max(0, Math.min(videoEl.duration, videoEl.currentTime + dir/30));
+  videoEl.addEventListener('seeked', ()=>{ if(glEngine) glEngine.drawVideoFrame(videoEl); }, {once:true});
+}
+document.getElementById('btn-frame-back').addEventListener('click', ()=>nudge(-1));
+document.getElementById('btn-frame-fwd' ).addEventListener('click', ()=>nudge(+1));
+
+// Keyboard shortcuts
+document.addEventListener('keydown', e=>{
+  if (['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName)) return;
+  if (e.key===',') nudge(-1);
+  if (e.key==='.') nudge(+1);
+  if (e.key===' ') { e.preventDefault(); videoEl.paused?videoEl.play():videoEl.pause(); }
 });
 
-// Keyboard: , / . for frame step
-document.addEventListener('keydown', e => {
-  if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
-  if (e.key === ',') { videoEl.pause(); timeline.nudgeBack(); }
-  if (e.key === '.') { videoEl.pause(); timeline.nudgeForward(); }
-  if (e.key === ' ') { e.preventDefault(); videoEl.paused ? videoEl.play() : videoEl.pause(); }
+// ── Seek bar with 40ms throttle ────────────────────────────────────
+document.getElementById('seek-bar').addEventListener('input', function() {
+  const t = (this.value/10000)*(videoEl.duration||0);
+  if (seekThrottle) { pendingSeek=t; return; }
+  videoEl.currentTime=t;
+  seekThrottle=setTimeout(()=>{
+    seekThrottle=null;
+    if (pendingSeek!==null) { videoEl.currentTime=pendingSeek; pendingSeek=null; }
+  }, 40);
 });
 
-// ── Speed ───────────────────────────────────────────────────────────
-document.getElementById('speed-sl').addEventListener('input', function() {
-  document.getElementById('speed-val').textContent = parseFloat(this.value).toFixed(1) + '×';
-  videoEl.playbackRate = parseFloat(this.value);
+// ── Speed ──────────────────────────────────────────────────────────
+document.getElementById('speed-sl').addEventListener('input', function(){
+  document.getElementById('speed-val').textContent=parseFloat(this.value).toFixed(1)+'×';
+  videoEl.playbackRate=parseFloat(this.value);
 });
 
-// ── Ratio → crop UV + out-h ────────────────────────────────────────
-document.getElementById('ratio-sel').addEventListener('change', function() {
-  if (videoEl.videoWidth) {
-    const crop = computeCropUV(videoEl.videoWidth, videoEl.videoHeight, this.value);
-    glEngine.setCropRect(...crop);
-    if (this.value !== 'free') {
-      const [rw,rh] = this.value.split(':').map(Number);
-      document.getElementById('out-h').value = Math.round(parseInt(document.getElementById('out-w').value) * rh / rw);
-    }
+// ── Aspect ratio ──────────────────────────────────────────────────
+document.getElementById('ratio-sel').addEventListener('change', function(){
+  if (!videoEl.videoWidth) return;
+  const crop=cropUV(videoEl.videoWidth,videoEl.videoHeight,this.value);
+  if(glEngine) glEngine.crop=crop;
+  if (this.value!=='free') {
+    const [rw,rh]=this.value.split(':').map(Number);
+    document.getElementById('out-h').value=Math.round(parseInt(document.getElementById('out-w').value)*rh/rw);
   }
 });
 
-// ── Grade Sliders ───────────────────────────────────────────────────
-[
-  ['f-bright','brightness'],['f-contrast','contrast'],['f-sat','saturation'],
-  ['f-hue','hue'],['f-exp','exposure'],['f-lift','lift'],['f-gain','gain']
-].forEach(([id, key]) => {
-  document.getElementById(id).addEventListener('input', function() {
-    if (glEngine) glEngine.gradeState[key] = parseFloat(this.value);
-    updateGradeLabels();
+// ── Reverse toggle ─────────────────────────────────────────────────
+document.getElementById('toggle-reverse').addEventListener('change', function(){
+  document.getElementById('btn-reverse').style.display=this.checked?'':'none';
+});
+document.getElementById('btn-reverse').addEventListener('click', async()=>{
+  if(!videoEl.src||!glEngine) return;
+  stopRAF();
+  await runReverse(videoEl, glEngine);
+  startRAF();
+});
+
+// ── Grade sliders ──────────────────────────────────────────────────
+[['f-bright','brightness'],['f-contrast','contrast'],['f-sat','saturation'],
+ ['f-hue','hue'],['f-exp','exposure'],['f-lift','lift'],['f-gain','gain']
+].forEach(([id,key])=>{
+  document.getElementById(id).addEventListener('input',function(){
+    if(glEngine) glEngine.grade[key]=parseFloat(this.value);
+    syncGradeLabels();
+  });
+});
+document.getElementById('lut-mix').addEventListener('input',function(){
+  if(glEngine) glEngine.grade.lutMix=parseFloat(this.value);
+  syncGradeLabels();
+});
+document.getElementById('btn-reset-grade').addEventListener('click',()=>{ if(glEngine) glEngine.resetGrade(); });
+
+// ── Filter pills ───────────────────────────────────────────────────
+document.querySelectorAll('.pill[data-f]').forEach(pill=>{
+  pill.addEventListener('click',function(){
+    const f=this.dataset.f;
+    if(!glEngine) return;
+    if(glEngine.filters.has(f)){glEngine.filters.delete(f);this.classList.remove('on');}
+    else{glEngine.filters.add(f);this.classList.add('on');}
   });
 });
 
-document.getElementById('lut-mix').addEventListener('input', function() {
-  if (glEngine) glEngine.gradeState.lutMix = parseFloat(this.value);
-  updateGradeLabels();
-});
-
-document.getElementById('btn-reset-grade').addEventListener('click', () => {
-  if (glEngine) glEngine.resetGrade();
-});
-
-// ── Filter Badges ───────────────────────────────────────────────────
-document.querySelectorAll('.flt-badge').forEach(badge => {
-  badge.addEventListener('click', function() {
-    const f = this.dataset.f;
-    if (glEngine.filters.has(f)) { glEngine.filters.delete(f); this.classList.remove('on'); }
-    else                          { glEngine.filters.add(f);    this.classList.add('on'); }
-    setStatus('Filters: ' + (glEngine.filters.size ? [...glEngine.filters].join(', ') : 'none'));
-  });
-});
-
-// ── LUT File ────────────────────────────────────────────────────────
-const lutDropEl = document.getElementById('lut-drop');
-const lutFileEl = document.getElementById('lut-file');
-lutDropEl.addEventListener('click', () => lutFileEl.click());
-lutFileEl.addEventListener('change', e => {
-  const f = e.target.files[0];
-  if (!f) return;
-  const r = new FileReader();
-  r.onload = evt => {
+// ── LUT ────────────────────────────────────────────────────────────
+const lutDropEl=document.getElementById('lut-drop'), lutFileEl=document.getElementById('lut-file');
+lutDropEl.addEventListener('click',()=>lutFileEl.click());
+lutFileEl.addEventListener('change',e=>{
+  const f=e.target.files[0]; if(!f) return;
+  new FileReader().addEventListener('load', evt=>{
     try {
-      glEngine.loadLutFromCube(evt.target.result);
-      glEngine.filters.add('lut');
+      if(!glEngine){setStatus('Load a video first.',true);return;}
+      glEngine.loadLut(evt.target.result);
       lutDropEl.classList.add('loaded');
-      lutDropEl.textContent = '✓ LUT: ' + f.name;
-      setStatus('LUT loaded: ' + f.name + ' (' + glEngine.lutSize + '³)');
-    } catch(err) {
-      setStatus('LUT parse error: ' + err.message, true);
-    }
-  };
-  r.readAsText(f);
+      lutDropEl.textContent='✓ '+f.name+' ('+glEngine.lutSize+'³)';
+      setStatus('LUT loaded: '+f.name);
+    } catch(err){setStatus('LUT error: '+err.message,true);}
+  }); new FileReader().readAsText(f);
+  // workaround: read with a fresh reader
+  const r=new FileReader(); r.onload=ev=>{
+    try{if(!glEngine)return;glEngine.loadLut(ev.target.result);
+      lutDropEl.classList.add('loaded');
+      lutDropEl.textContent='✓ '+f.name+' ('+glEngine.lutSize+'³)';
+      setStatus('LUT loaded: '+f.name);
+    }catch(er){setStatus('LUT error: '+er.message,true);}
+  }; r.readAsText(f);
 });
-lutDropEl.addEventListener('dragover', e => { e.preventDefault(); lutDropEl.style.borderColor = '#61afef'; });
-lutDropEl.addEventListener('dragleave', () => { lutDropEl.style.borderColor = ''; });
-lutDropEl.addEventListener('drop', e => {
-  e.preventDefault(); lutDropEl.style.borderColor = '';
-  lutFileEl.files = e.dataTransfer.files;
-  lutFileEl.dispatchEvent(new Event('change'));
+lutDropEl.addEventListener('dragover',e=>{e.preventDefault();lutDropEl.style.borderColor='var(--accent)';});
+lutDropEl.addEventListener('dragleave',()=>{lutDropEl.style.borderColor='';});
+lutDropEl.addEventListener('drop',e=>{
+  e.preventDefault();lutDropEl.style.borderColor='';
+  const f=e.dataTransfer.files[0]; if(!f) return;
+  const r=new FileReader(); r.onload=ev=>{
+    try{if(!glEngine)return;glEngine.loadLut(ev.target.result);
+      lutDropEl.classList.add('loaded');
+      lutDropEl.textContent='✓ '+f.name;
+      setStatus('LUT loaded: '+f.name);
+    }catch(er){setStatus('LUT error: '+er.message,true);}
+  }; r.readAsText(f);
 });
-
-document.getElementById('btn-clear-lut').addEventListener('click', () => {
-  glEngine.clearLut(); glEngine.filters.delete('lut');
+document.getElementById('btn-clear-lut').addEventListener('click',()=>{
+  if(glEngine){glEngine.clearLut();}
   lutDropEl.classList.remove('loaded');
-  lutDropEl.innerHTML = 'Drop a .cube LUT file here<br><span style="color:#333;font-size:.68rem">Standard 3D LUT · identity passthrough by default</span>';
+  lutDropEl.innerHTML='Drop a <strong>.cube</strong> LUT file here<br><span style="color:var(--text-3);font-size:.67rem">Standard 3D LUT · 16³ / 32³ / 64³</span>';
   setStatus('LUT cleared.');
 });
 
-// ── Audio Controls ──────────────────────────────────────────────────
-document.getElementById('audio-gain').addEventListener('input', function() {
-  const db = parseFloat(this.value);
-  document.getElementById('v-gain-db').textContent = (db >= 0 ? '+' : '') + db + 'dB';
-  audioEngine.setGainDb(db);
+// ── Audio controls ─────────────────────────────────────────────────
+document.getElementById('audio-gain').addEventListener('input',function(){
+  const db=parseFloat(this.value);
+  document.getElementById('v-gain-db').textContent=(db>=0?'+':'')+db+'dB';
+  audioEng.setGain(db);
 });
-document.getElementById('noise-gate').addEventListener('input', function() {
-  const db = parseFloat(this.value);
-  document.getElementById('v-gate').textContent = db <= -79 ? 'OFF' : db + 'dB';
-  audioEngine.setNoiseGateDb(db);
+document.getElementById('noise-gate').addEventListener('input',function(){
+  const db=parseFloat(this.value);
+  document.getElementById('v-gate').textContent=db<=-79?'OFF':db+'dB';
 });
-document.getElementById('eq-bass').addEventListener('input', function() {
-  document.getElementById('v-bass').textContent = (this.value >= 0 ? '+' : '') + this.value + 'dB';
-  audioEngine.setBassDb(parseFloat(this.value));
+document.getElementById('eq-bass').addEventListener('input',function(){
+  document.getElementById('v-bass').textContent=(this.value>=0?'+':'')+this.value+'dB';
+  audioEng.setBass(parseFloat(this.value));
 });
-document.getElementById('eq-treble').addEventListener('input', function() {
-  document.getElementById('v-treble').textContent = (this.value >= 0 ? '+' : '') + this.value + 'dB';
-  audioEngine.setTrebleDb(parseFloat(this.value));
-});
-
-// ── Snapshot ────────────────────────────────────────────────────────
-document.getElementById('btn-snapshot').addEventListener('click', () => {
-  if (!videoEl.src) return;
-  addThumb(canvas, fmtTime(videoEl.currentTime), document.getElementById('frame-strip'));
-  setStatus('Frame captured at ' + fmtTime(videoEl.currentTime));
+document.getElementById('eq-treble').addEventListener('input',function(){
+  document.getElementById('v-treble').textContent=(this.value>=0?'+':'')+this.value+'dB';
+  audioEng.setTreble(parseFloat(this.value));
 });
 
-// ── Extract Frames ──────────────────────────────────────────────────
-document.getElementById('btn-extract-frames').addEventListener('click', async () => {
-  if (!videoEl.src) return;
-  videoEl.pause();
+// ── Capture + Extract ──────────────────────────────────────────────
+document.getElementById('btn-snapshot').addEventListener('click',()=>{
+  if(!glEngine||!videoEl.src) return;
+  addThumb(canvas, fmtT(videoEl.currentTime), document.getElementById('frame-strip'));
+  setStatus('Frame captured at '+fmtT(videoEl.currentTime));
+});
+document.getElementById('btn-extract-frames').addEventListener('click', async()=>{
+  if(!videoEl.src||!glEngine) return;
+  videoEl.pause(); stopRAF();
   await extractFrames(videoEl, glEngine, 12);
-  timeline.startRAF(glEngine);
+  startRAF();
 });
 
-// ── Reverse ─────────────────────────────────────────────────────────
-document.getElementById('btn-reverse').addEventListener('click', async () => {
-  if (!videoEl.src) return;
-  reverseAbort = false;
-  videoEl.pause(); timeline.stopRAF();
-  await captureReverse(videoEl, glEngine);
-});
+// ── Export ────────────────────────────────────────────────────────
+document.getElementById('btn-export').addEventListener('click', async()=>{
+  if(!videoEl.src){setStatus('Load a video first.',true);return;}
+  const fmt=document.getElementById('export-fmt').value;
+  const preset=document.getElementById('export-quality').value;
+  document.getElementById('btn-export').style.display='none';
+  document.getElementById('btn-stop-export').style.display='';
 
-// ── Export ─────────────────────────────────────────────────────────
-document.getElementById('btn-export').addEventListener('click', async () => {
-  if (!videoEl.src) { setStatus('Load a video first.', true); return; }
-  const fmt     = document.getElementById('export-fmt').value;
-  const preset  = document.getElementById('export-quality').value;
-
-  document.getElementById('btn-export').style.display      = 'none';
-  document.getElementById('btn-stop-export').style.display = '';
-
-  if (fmt === 'png') {
-    canvas.toBlob(blob => {
-      const url = BlobManager.create(blob);
-      dlLink(url, 'frame.png');
-      setTimeout(() => BlobManager.revoke(url), 5000);
+  if (fmt==='png') {
+    canvas.toBlob(blob=>{
+      const url=BlobMgr.create(blob); dlLink(url,'frame.png');
+      setTimeout(()=>BlobMgr.revoke(url),5000);
       setStatus('Frame PNG downloaded.');
-    }, 'image/png');
+    },'image/png');
     resetExportBtns();
-  } else if (fmt === 'webm-mr') {
-    mediaRecChunks = [];
-    const stream = canvas.captureStream(30);
-    mediaRec = new MediaRecorder(stream, { mimeType: 'video/webm' });
-    mediaRec.ondataavailable = e => { if (e.data.size > 0) mediaRecChunks.push(e.data); };
-    mediaRec.onstop = () => {
-      const blob = new Blob(mediaRecChunks, { type: 'video/webm' });
-      const url  = BlobManager.create(blob);
-      dlLink(url, 'studio-export.webm');
-      setTimeout(() => BlobManager.revoke(url), 30000);
-      setStatus('WebM saved (' + (blob.size/1024/1024).toFixed(1) + ' MB)');
+  } else if (fmt==='webm-mr') {
+    mrecChunks=[];
+    const stream=canvas.captureStream(30);
+    mrec=new MediaRecorder(stream,{mimeType:'video/webm'});
+    mrec.ondataavailable=e=>{if(e.data.size>0)mrecChunks.push(e.data);};
+    mrec.onstop=()=>{
+      const blob=new Blob(mrecChunks,{type:'video/webm'});
+      const url=BlobMgr.create(blob); dlLink(url,'studio-export.webm');
+      setTimeout(()=>BlobMgr.revoke(url),30000);
+      setStatus('WebM saved ('+(blob.size/1024/1024).toFixed(1)+'MB)');
       resetExportBtns();
     };
-    mediaRec.start(100);
-    videoEl.currentTime = 0; videoEl.play();
+    mrec.start(100); videoEl.currentTime=0; videoEl.play();
     setStatus('⏺ Recording canvas to WebM…');
-  } else if (fmt === 'mp4-ffmpeg') {
-    await ffmpegEngine.exportMP4(canvas, videoEl, preset);
-    resetExportBtns();
-  } else if (fmt === 'gif-ffmpeg') {
-    await ffmpegEngine.exportGIF(canvas, videoEl);
-    resetExportBtns();
+  } else if (fmt==='mp4-ffmpeg') {
+    await ffEng.exportMP4(canvas, videoEl, preset); resetExportBtns();
+  } else if (fmt==='gif-ffmpeg') {
+    await ffEng.exportGIF(canvas, videoEl); resetExportBtns();
   }
 });
 
-document.getElementById('btn-stop-export').addEventListener('click', () => {
-  if (mediaRec && mediaRec.state !== 'inactive') { mediaRec.stop(); videoEl.pause(); }
-  ffmpegEngine.abort();
-  resetExportBtns();
+document.getElementById('btn-stop-export').addEventListener('click',()=>{
+  if(mrec&&mrec.state!=='inactive'){mrec.stop();videoEl.pause();}
+  ffEng.abort(); resetExportBtns();
 });
-
-function resetExportBtns() {
-  document.getElementById('btn-export').style.display      = '';
-  document.getElementById('btn-stop-export').style.display = 'none';
+function resetExportBtns(){
+  document.getElementById('btn-export').style.display='';
+  document.getElementById('btn-stop-export').style.display='none';
 }
 
-// ── Memory Manager ──────────────────────────────────────────────────
-document.getElementById('btn-gc').addEventListener('click', () => {
-  BlobManager.revokeAll();
-  setStatus('All tracked URLs revoked.');
-});
-document.getElementById('btn-kill-ffmpeg').addEventListener('click', () => {
-  ffmpegEngine.terminate();
-  ffmpegEngine = new FFmpegEngine();
+// ── Memory manager ─────────────────────────────────────────────────
+document.getElementById('btn-gc').addEventListener('click',()=>{BlobMgr.revokeAll();setStatus('All tracked URLs revoked.');});
+document.getElementById('btn-kill-ffmpeg').addEventListener('click',()=>{ffEng.terminate();ffEng=new FFmpegEngine();});
+
+// Heap estimate
+setInterval(()=>{
+  const m=performance.memory;
+  if(!m)return;
+  const u=(m.usedJSHeapSize/1024/1024).toFixed(0), t=(m.totalJSHeapSize/1024/1024).toFixed(0);
+  const el=document.getElementById('chip-heap'); if(el) el.textContent=`Heap: ${u}/${t}MB`;
+},2000);
+
+// ── Mobile tab switcher ────────────────────────────────────────────
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    this.classList.add('active');
+    // On mobile, hide all tab-pane siblings in sidebars, show target
+    const targets=(this.dataset.target||'').split(',').map(s=>s.trim());
+    // Hide all cards
+    document.querySelectorAll('.sidebar .card').forEach(c=>{
+      if (window.innerWidth<=900) c.style.display='none';
+    });
+    // Show target cards
+    targets.forEach(id=>{
+      const el=document.getElementById(id); if(el) el.style.display='flex';
+    });
+  });
 });
 
-// ── Heap estimate (performance.memory when available) ───────────────
-function updateHeapChip() {
-  const m = performance.memory;
-  if (!m) { document.getElementById('chip-heap').textContent = 'Heap: API n/a'; return; }
-  const used  = (m.usedJSHeapSize  / 1024 / 1024).toFixed(0);
-  const total = (m.totalJSHeapSize / 1024 / 1024).toFixed(0);
-  document.getElementById('chip-heap').textContent = `Heap: ${used}/${total} MB`;
+// On desktop, always show all cards
+function handleResize() {
+  if (window.innerWidth>900) {
+    document.querySelectorAll('.sidebar .card').forEach(c=>c.style.display='');
+  }
 }
-setInterval(updateHeapChip, 2000);
-updateHeapChip();
+window.addEventListener('resize', handleResize);
 
-// initial label sync
-updateGradeLabels();
-setStatus('WebGL2 ready · Web Audio ready · FFmpeg.wasm on-demand · Zero upload');
+syncGradeLabels();
+setStatus('WebGL2 · Web Audio · FFmpeg.wasm on-demand · Zero upload · ← drop a video to start');
 </script>
 </body>
 </html>
