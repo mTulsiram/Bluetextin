@@ -1,0 +1,3 @@
+## 2026-08-03 - [Optimizing Client-Side Catalog Search Engine]
+**Learning:** Performing multiple lowercase conversions, substring lookups, and DOM re-renders on every single keystroke creates significant input lag, especially with 500+ items. Debouncing the search input by 150ms and pre-computing properties (such as categories, icons, lowercased strings) drastically reduces DOM thrashing and layout thrashing.
+**Action:** Implement pre-computation of lowercase properties (`_titleLower`, `_descLower`, `_keywordsLower`) and categories during catalog fetch mapping, and debounce input event handlers.

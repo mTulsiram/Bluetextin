@@ -484,12 +484,12 @@
       const query = (searchInput ? searchInput.value : "").toLowerCase().trim();
       
       const filtered = allItems.filter(item => {
-        const cat = getCategory(item.url);
-        if (currentCategory !== "all" && cat !== currentCategory) return false;
+        if (currentCategory !== "all" && item._category !== currentCategory) return false;
         if (!query) return true;
-        return (item.title || "").toLowerCase().includes(query) ||
-               (item.description || "").toLowerCase().includes(query) ||
-               (item.keywords || "").toLowerCase().includes(query);
+        // Optimized O(1) attribute access using pre-computed lowercased properties
+        return item._titleLower.includes(query) ||
+               item._descLower.includes(query) ||
+               item._keywordsLower.includes(query);
       });
 
       if (countIndicator) {
@@ -521,25 +521,16 @@
       }
 
       viewport.innerHTML = pageItems.map(item => {
-        const cat = getCategory(item.url);
-        let icon = "📄";
-        if (cat === "tools") icon = "🛠️";
-        else if (cat === "games") icon = "🎮";
-        else if (cat === "videos") icon = "🎥";
-        else if (cat === "software") icon = "💻";
-        else if (cat === "tutorials") icon = "📚";
-        else if (cat === "education") icon = "🎓";
-
         return `
           <article class="tool-card">
             <a href="${item.url}" class="tool-card-link">
               <div class="tool-card-header">
-                <span class="tool-icon" aria-hidden="true">${icon}</span>
+                <span class="tool-icon" aria-hidden="true">${item._icon}</span>
                 <h3 class="tool-title">${item.title}</h3>
               </div>
               <p class="tool-desc">${item.description || "Client-side utility tool."}</p>
               <div class="tool-card-footer">
-                <span class="tool-tag">${cat}</span>
+                <span class="tool-tag">${item._category}</span>
                 <span class="tool-action">Launch &rarr;</span>
               </div>
             </a>
@@ -558,10 +549,15 @@
       });
     });
 
+    // Performance Optimization: Debounce search input to prevent redundant layout reflows and filter iterations
+    let debounceTimer;
     if (searchInput) {
       searchInput.addEventListener("input", () => {
-        currentPage = 1;
-        render();
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => {
+          currentPage = 1;
+          render();
+        }, 150);
       });
     }
 
@@ -589,7 +585,28 @@
         return res.json();
       })
       .then(data => {
-        allItems = data.filter(item => item && item.url && item.url !== "/" && !item.url.endsWith("/index.html"));
+        allItems = data
+          .filter(item => item && item.url && item.url !== "/" && !item.url.endsWith("/index.html"))
+          .map(item => {
+            // Precompute properties once during load instead of per filtering and rendering cycle
+            const cat = getCategory(item.url);
+            let icon = "📄";
+            if (cat === "tools") icon = "🛠️";
+            else if (cat === "games") icon = "🎮";
+            else if (cat === "videos") icon = "🎥";
+            else if (cat === "software") icon = "💻";
+            else if (cat === "tutorials") icon = "📚";
+            else if (cat === "education") icon = "🎓";
+
+            return {
+              ...item,
+              _category: cat,
+              _icon: icon,
+              _titleLower: (item.title || "").toLowerCase(),
+              _descLower: (item.description || "").toLowerCase(),
+              _keywordsLower: (item.keywords || "").toLowerCase()
+            };
+          });
         render();
       })
       .catch(err => {
