@@ -1,18 +1,48 @@
 {
-  "generatedAt": "2026-08-01T12:57:18.810Z",
-  "startedAt": "2026-08-01T12:57:17.565Z",
-  "durationMs": 1248,
+  "generatedAt": "2026-08-04T06:45:14.562Z",
+  "startedAt": "2026-08-04T06:44:12.200Z",
+  "durationMs": 62362,
   "ok": true,
   "steps": [
     {
+      "name": "Bundle CSS Styles",
+      "ok": true,
+      "durationMs": 4
+    },
+    {
+      "name": "Normalize Legal Pages",
+      "ok": true,
+      "durationMs": 7
+    },
+    {
+      "name": "Generate Index Pages",
+      "ok": true,
+      "durationMs": 103
+    },
+    {
       "name": "Inject Header & Footer",
       "ok": true,
-      "durationMs": 1229
+      "durationMs": 247
+    },
+    {
+      "name": "Generate Search Index",
+      "ok": true,
+      "durationMs": 254
+    },
+    {
+      "name": "Generate Translation Catalog",
+      "ok": true,
+      "durationMs": 61693
+    },
+    {
+      "name": "Generate Sitemap",
+      "ok": true,
+      "durationMs": 40
     }
   ],
   "outputs": {
     "searchIndexEntries": 413,
-    "translationPages": 591,
+    "translationPages": 413,
     "sitemapUrlCount": 413
   }
 }

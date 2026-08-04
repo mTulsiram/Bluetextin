@@ -452,6 +452,14 @@
   // -------------------------------------------------------------------------
   // 6. Catalog Engine (Pagination, Search & Category Filtering)
   // -------------------------------------------------------------------------
+  function debounce(fn, delay) {
+    let timeout;
+    return function (...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => fn.apply(this, args), delay);
+    };
+  }
+
   function initCatalogEngine() {
     const searchInput = document.getElementById("homepage-search-input");
     const viewport = document.getElementById("homepage-tools-viewport");
@@ -487,9 +495,10 @@
         const cat = getCategory(item.url);
         if (currentCategory !== "all" && cat !== currentCategory) return false;
         if (!query) return true;
-        return (item.title || "").toLowerCase().includes(query) ||
-               (item.description || "").toLowerCase().includes(query) ||
-               (item.keywords || "").toLowerCase().includes(query);
+        // Use precomputed lowercased properties for optimized search matching performance
+        return (item._titleLower || "").includes(query) ||
+               (item._descLower || "").includes(query) ||
+               (item._keywordsLower || "").includes(query);
       });
 
       if (countIndicator) {
@@ -559,10 +568,10 @@
     });
 
     if (searchInput) {
-      searchInput.addEventListener("input", () => {
+      searchInput.addEventListener("input", debounce(() => {
         currentPage = 1;
         render();
-      });
+      }, 150));
     }
 
     if (prevBtn) {
@@ -589,7 +598,15 @@
         return res.json();
       })
       .then(data => {
-        allItems = data.filter(item => item && item.url && item.url !== "/" && !item.url.endsWith("/index.html"));
+        // Pre-compute lowercased properties for faster searching/filtering performance
+        allItems = data
+          .filter(item => item && item.url && item.url !== "/" && !item.url.endsWith("/index.html"))
+          .map(item => {
+            item._titleLower = (item.title || "").toLowerCase();
+            item._descLower = (item.description || "").toLowerCase();
+            item._keywordsLower = (item.keywords || "").toLowerCase();
+            return item;
+          });
         render();
       })
       .catch(err => {
