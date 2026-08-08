@@ -487,9 +487,10 @@
         const cat = getCategory(item.url);
         if (currentCategory !== "all" && cat !== currentCategory) return false;
         if (!query) return true;
-        return (item.title || "").toLowerCase().includes(query) ||
-               (item.description || "").toLowerCase().includes(query) ||
-               (item.keywords || "").toLowerCase().includes(query);
+        // Optimization: Use pre-computed lowercase properties to avoid redundant CPU-intensive operations on every key press
+        return item._titleLower.includes(query) ||
+               item._descLower.includes(query) ||
+               item._keywordsLower.includes(query);
       });
 
       if (countIndicator) {
@@ -559,9 +560,14 @@
     });
 
     if (searchInput) {
+      let debounceTimeout;
       searchInput.addEventListener("input", () => {
         currentPage = 1;
-        render();
+        // Optimization: Debounce inputs by 150ms to prevent heavy UI rendering and reflows on every key press
+        clearTimeout(debounceTimeout);
+        debounceTimeout = setTimeout(() => {
+          render();
+        }, 150);
       });
     }
 
@@ -589,7 +595,15 @@
         return res.json();
       })
       .then(data => {
-        allItems = data.filter(item => item && item.url && item.url !== "/" && !item.url.endsWith("/index.html"));
+        // Optimization: Pre-compute lowercased search properties once during catalog load to optimize filtering runtime performance
+        allItems = data
+          .filter(item => item && item.url && item.url !== "/" && !item.url.endsWith("/index.html"))
+          .map(item => ({
+            ...item,
+            _titleLower: (item.title || "").toLowerCase(),
+            _descLower: (item.description || "").toLowerCase(),
+            _keywordsLower: (item.keywords || "").toLowerCase()
+          }));
         render();
       })
       .catch(err => {
