@@ -487,9 +487,10 @@
         const cat = getCategory(item.url);
         if (currentCategory !== "all" && cat !== currentCategory) return false;
         if (!query) return true;
-        return (item.title || "").toLowerCase().includes(query) ||
-               (item.description || "").toLowerCase().includes(query) ||
-               (item.keywords || "").toLowerCase().includes(query);
+        // Optimization: Use pre-computed lowercased properties for O(1) string access and zero new allocations in the filter loop
+        return (item._titleLower || "").includes(query) ||
+               (item._descLower || "").includes(query) ||
+               (item._keywordsLower || "").includes(query);
       });
 
       if (countIndicator) {
@@ -558,11 +559,21 @@
       });
     });
 
+    // Helper: Debounce function to limit execution frequency of heavy operations (like DOM updates and filtering)
+    function debounce(func, wait) {
+      let timeout;
+      return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+      };
+    }
+
     if (searchInput) {
-      searchInput.addEventListener("input", () => {
+      // Optimization: Wrap the filter render inside a 150ms debounce to prevent layout thrashing on fast keystrokes
+      searchInput.addEventListener("input", debounce(() => {
         currentPage = 1;
         render();
-      });
+      }, 150));
     }
 
     if (prevBtn) {
@@ -589,7 +600,15 @@
         return res.json();
       })
       .then(data => {
-        allItems = data.filter(item => item && item.url && item.url !== "/" && !item.url.endsWith("/index.html"));
+        allItems = data
+          .filter(item => item && item.url && item.url !== "/" && !item.url.endsWith("/index.html"))
+          .map(item => {
+            // Optimization: Pre-compute lowercased properties on catalog load once
+            item._titleLower = (item.title || "").toLowerCase();
+            item._descLower = (item.description || "").toLowerCase();
+            item._keywordsLower = (item.keywords || "").toLowerCase();
+            return item;
+          });
         render();
       })
       .catch(err => {
