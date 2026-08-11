@@ -1,0 +1,3 @@
+## 2026-08-11 - [Search Catalog Pre-computation and Input Debounce]
+**Learning:** Performing lowercasing on all search catalog items (titles, descriptions, keywords) inside the synchronous filtering loop is extremely heavy on CPU and GC allocation when the catalog has hundreds of entries. Additionally, handling the `input` event synchronously triggers immediate DOM reflows / filters on every single keystroke.
+**Action:** Pre-compute lowercased properties (`_titleLower`, `_descLower`, `_keywordsLower`) during fetch catalog parse once, and wrap the input handler in a 150ms debounce to prevent layout thrashing.
