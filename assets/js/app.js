@@ -483,13 +483,14 @@
     function render() {
       const query = (searchInput ? searchInput.value : "").toLowerCase().trim();
       
+      // Performance Optimization (⚡ Bolt): Use pre-computed lowercase search fields and cached category
       const filtered = allItems.filter(item => {
-        const cat = getCategory(item.url);
+        const cat = item._category;
         if (currentCategory !== "all" && cat !== currentCategory) return false;
         if (!query) return true;
-        return (item.title || "").toLowerCase().includes(query) ||
-               (item.description || "").toLowerCase().includes(query) ||
-               (item.keywords || "").toLowerCase().includes(query);
+        return item._titleLower.includes(query) ||
+               item._descLower.includes(query) ||
+               item._keywordsLower.includes(query);
       });
 
       if (countIndicator) {
@@ -521,7 +522,7 @@
       }
 
       viewport.innerHTML = pageItems.map(item => {
-        const cat = getCategory(item.url);
+        const cat = item._category;
         let icon = "📄";
         if (cat === "tools") icon = "🛠️";
         else if (cat === "games") icon = "🎮";
@@ -558,10 +559,15 @@
       });
     });
 
+    let searchDebounceTimer = null;
     if (searchInput) {
+      // Performance Optimization (⚡ Bolt): 150ms input debounce to prevent redundant reflows on rapid keystrokes
       searchInput.addEventListener("input", () => {
-        currentPage = 1;
-        render();
+        clearTimeout(searchDebounceTimer);
+        searchDebounceTimer = setTimeout(() => {
+          currentPage = 1;
+          render();
+        }, 150);
       });
     }
 
@@ -589,7 +595,16 @@
         return res.json();
       })
       .then(data => {
-        allItems = data.filter(item => item && item.url && item.url !== "/" && !item.url.endsWith("/index.html"));
+        // Performance Optimization (⚡ Bolt): Pre-compute category and lowercase fields once on load
+        allItems = data
+          .filter(item => item && item.url && item.url !== "/" && !item.url.endsWith("/index.html"))
+          .map(item => ({
+            ...item,
+            _category: getCategory(item.url),
+            _titleLower: (item.title || "").toLowerCase(),
+            _descLower: (item.description || "").toLowerCase(),
+            _keywordsLower: (item.keywords || "").toLowerCase()
+          }));
         render();
       })
       .catch(err => {
