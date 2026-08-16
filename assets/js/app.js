@@ -487,9 +487,10 @@
         const cat = getCategory(item.url);
         if (currentCategory !== "all" && cat !== currentCategory) return false;
         if (!query) return true;
-        return (item.title || "").toLowerCase().includes(query) ||
-               (item.description || "").toLowerCase().includes(query) ||
-               (item.keywords || "").toLowerCase().includes(query);
+        // Optimization: Use pre-computed lowercased properties to avoid repeated allocations
+        return (item._titleLower || "").includes(query) ||
+               (item._descLower || "").includes(query) ||
+               (item._keywordsLower || "").includes(query);
       });
 
       if (countIndicator) {
@@ -558,11 +559,21 @@
       });
     });
 
+    // Simple debounce utility to prevent unnecessary layout reflows on fast typing
+    function debounce(fn, delay) {
+      let timeoutId;
+      return function (...args) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => fn.apply(this, args), delay);
+      };
+    }
+
     if (searchInput) {
-      searchInput.addEventListener("input", () => {
+      // 150ms debounce prevents filtering 500+ items and triggering DOM reflows on every keystroke
+      searchInput.addEventListener("input", debounce(() => {
         currentPage = 1;
         render();
-      });
+      }, 150));
     }
 
     if (prevBtn) {
@@ -589,7 +600,15 @@
         return res.json();
       })
       .then(data => {
-        allItems = data.filter(item => item && item.url && item.url !== "/" && !item.url.endsWith("/index.html"));
+        allItems = data
+          .filter(item => item && item.url && item.url !== "/" && !item.url.endsWith("/index.html"))
+          .map(item => ({
+            ...item,
+            // Pre-compute lowercased strings once on load to avoid repeated string conversions during search filtering
+            _titleLower: (item.title || "").toLowerCase(),
+            _descLower: (item.description || "").toLowerCase(),
+            _keywordsLower: (item.keywords || "").toLowerCase()
+          }));
         render();
       })
       .catch(err => {
