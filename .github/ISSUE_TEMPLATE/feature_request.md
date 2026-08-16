@@ -1,9 +1,10 @@
 ---
 name: Feature Request
 about: Suggest an idea or a new tool for BlueTEXT.in
-title: '[FEATURE] '
+title: "[FEATURE] "
 labels: enhancement
 assignees: ''
+
 ---
 
 **Is your feature request related to a problem? Please describe.**
