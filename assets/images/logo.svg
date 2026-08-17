@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" fill="none">
+  <!-- Solid Royal Blue Square with rounded corners -->
+  <rect width="512" height="512" rx="112" fill="#0052cc"/>
+  
+  <!-- Stylized Bold White B -->
+  <path d="M154 112H276C343 112 384 148 384 200C384 236 358 261 322 271C368 281 399 312 399 358C399 415 353 451 276 451H154V112ZM220 173V240H266C297 240 318 225 318 204C318 184 297 173 266 173H220ZM220 297V389H271C307 389 333 374 333 343C333 312 307 297 271 297H220Z" fill="#ffffff"/>
+  
+  <!-- Yellow Accent Dot -->
+  <circle cx="379" cy="389" r="28" fill="#ffe500"/>
+</svg>

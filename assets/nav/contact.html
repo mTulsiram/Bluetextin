@@ -3,28 +3,160 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Contact BlueTEXT.in — email, Discord, GitHub, social media, and support options.">
-  <title>Contact | BlueTEXT</title>
-    <link rel="stylesheet" href="/assets/css/main.css">
+  <meta name="description" content="Contact BlueTEXT.in — email admin@bluetext.in, Google Form, GitHub Issues, Discussions, Discord community, and support options.">
+  <title>Contact Us | BlueTEXT.in</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
   <script src="/assets/js/app.js" defer></script>
+  <style>
+    .contact-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: rgba(32, 213, 155, 0.12);
+      color: #20d59b;
+      border: 1px solid rgba(32, 213, 155, 0.25);
+    }
+    .contact-card-highlight {
+      background: var(--bt-bg-secondary, #111722);
+      border: 1px solid var(--bt-border-color, #26364d);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-card-highlight:hover {
+      transform: translateY(-3px);
+      border-color: #20d59b !important;
+      box-shadow: 0 10px 30px rgba(32, 213, 155, 0.1);
+    }
+    .contact-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      flex-shrink: 0;
+    }
+    .contact-form-box {
+      background: var(--bt-bg-secondary, #111722);
+      border: 1px solid var(--bt-border-color, #26364d);
+      border-radius: 1rem;
+      padding: 2rem;
+    }
+    .form-control-custom, .form-select-custom {
+      background: rgba(10, 13, 20, 0.7);
+      border: 1px solid #26364d;
+      border-radius: 0.5rem;
+      color: #ebf2ff;
+      padding: 0.65rem 0.9rem;
+      font-size: 0.9rem;
+      width: 100%;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .form-control-custom:focus, .form-select-custom:focus {
+      background: rgba(10, 13, 20, 0.9);
+      border-color: #20d59b;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(32, 213, 155, 0.2);
+      color: #fff;
+    }
+    .btn-brand-primary {
+      background: #20d59b;
+      color: #04140c;
+      font-weight: 700;
+      border: none;
+      border-radius: 0.5rem;
+      padding: 0.7rem 1.5rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.15s;
+    }
+    .btn-brand-primary:hover {
+      background: #2be8ab;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 15px rgba(32, 213, 155, 0.35);
+      color: #04140c;
+    }
+    .btn-brand-outline {
+      background: transparent;
+      border: 1px solid #26364d;
+      color: #9cb1d1;
+      border-radius: 0.5rem;
+      padding: 0.65rem 1.2rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+    .btn-brand-outline:hover {
+      border-color: #20d59b;
+      color: #fff;
+      background: rgba(32, 213, 155, 0.08);
+    }
+    .copy-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ebf2ff;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .copy-btn:hover {
+      background: #20d59b;
+      color: #04140c;
+      border-color: #20d59b;
+    }
+    .gform-container {
+      position: relative;
+      width: 100%;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      border: 1px solid #26364d;
+      background: #0d131d;
+    }
+  </style>
 </head>
 <body>
   <div id="header-component"><!-- HEADER_START -->
 <!-- =========================================================================
-     BlueTEXT.in — Clean Semantic Header Component
-     Sections: 1. Brand Logo | 2. Main Navigation | 3. User Actions (Donate/Login/Clear Cache/Theme)
+     BlueTEXT.in — Wondershare-Grade Mega Menu Semantic Header Component
+     Sections: 1. Brand Logo | 2. Mega Menu Navigation | 3. User Actions
      ========================================================================= -->
+
+<!-- Global Accessible Skip Link for Screen Readers & Keyboard Users (WCAG 2.2 AA / Section 508) -->
+<a href="#main-content" class="skip-link" style="position:fixed;top:-100px;left:12px;z-index:10000;">Skip to main content</a>
 
 <header class="hdr" role="banner">
   <div class="hdr-container">
     
-    <!-- 1. Brand / Logo -->
+    <!-- 1. Brand / Logo (B on Blue + BlueTEXT.in) -->
     <a class="brand" href="/" aria-label="BlueTEXT.in Homepage">
-      <svg class="brand-logo" width="24" height="24" viewBox="0 0 28 28" aria-hidden="true" focusable="false">
-        <rect width="28" height="28" rx="7" fill="currentColor"></rect>
-        <path d="M8 7H15.5C18.3 7 20.3 8.5 20.3 10.9C20.3 12.4 19.5 13.6 18.1 14.2C19.9 14.7 21 16 21 17.8C21 20.5 18.8 22 15.8 22H8V7ZM11.2 9.6V13.1H15.2C16.4 13.1 17.1 12.4 17.1 11.3C17.1 10.2 16.4 9.6 15.2 9.6H11.2ZM11.2 15.5V19.4H15.7C17 19.4 17.8 18.7 17.8 17.5C17.8 16.3 16.9 15.5 15.7 15.5H11.2Z" fill="#ffffff"></path>
+      <svg class="brand-logo" width="34" height="34" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="border-radius:9px;flex-shrink:0;box-shadow:0 2px 8px rgba(0,82,204,0.28);">
+        <!-- Royal Blue Rounded Tile -->
+        <rect width="100" height="100" rx="22" fill="#0052cc"/>
+        <!-- Stylized White B -->
+        <path d="M30 22H54C67 22 75 29 75 39C75 46 70 51 63 53C72 55 78 61 78 70C78 81 69 88 54 88H30V22ZM43 34V47H52C58 47 62 44 62 40C62 36 58 34 52 34H43ZM43 58V76H53C60 76 65 73 65 67C65 61 60 58 53 58H43Z" fill="#ffffff"/>
+        <!-- Yellow Accent Dot -->
+        <circle cx="74" cy="76" r="5.5" fill="#ffe500"/>
       </svg>
-      <span>BlueTEXT.in</span>
+      <span class="brand-name"><span class="b-word">Blue</span><span class="t-word">TEXT</span><span class="in-pill">.in</span></span>
     </a>
 
     <!-- Mobile Navigation Toggle Button -->
@@ -32,77 +164,180 @@
       <span class="nav-toggle-icon" aria-hidden="true">☰</span>
     </button>
 
-    <!-- 2. Primary Navigation Links with Subcategory Dropdowns -->
+    <!-- 2. Primary Navigation Links with Mega Dropdowns -->
     <nav class="nav-menu" id="nav-menu" aria-label="Primary Navigation">
       <button class="nav-menu-close" aria-label="Close navigation menu">&times; Close Menu</button>
-      <div class="nav-dropdown">
-        <a href="/pages/tools/" class="nav-link">Tools ▾</a>
-        <div class="dropdown-menu">
-          <a href="/pages/tools/">All Tools</a>
-          <a href="/pages/tools/coding/">Coding</a>
-          <a href="/pages/tools/converters/">Converters</a>
-          <a href="/pages/tools/data/">Data</a>
-          <a href="/pages/tools/images/">Images</a>
-          <a href="/pages/tools/lifestyle/">Lifestyle</a>
-          <a href="/pages/tools/math/">Math</a>
-          <a href="/pages/tools/miscellaneous/">Miscellaneous</a>
-          <a href="/pages/tools/network/">Network</a>
-          <a href="/pages/tools/office/">Office</a>
-          <a href="/pages/tools/utilities/">Utilities</a>
-          <a href="/pages/tools/videos/">Videos</a>
+      
+      <!-- FEATURED TOOLS MEGA MENU -->
+      <div class="nav-dropdown nav-mega-dropdown">
+        <a href="/pages/tools/" class="nav-link" aria-haspopup="true" aria-expanded="false">Featured Tools <span class="dropdown-caret">&#9662;</span></a>
+        <div class="mega-menu-panel">
+          <div class="mega-menu-header">
+            <div class="mega-menu-tag">All-in-One Client-Side Suite</div>
+            <div class="mega-menu-subtitle">Zero data leaves your browser • 100% private &amp; hardware accelerated</div>
+          </div>
+          
+          <div class="mega-menu-grid">
+            
+            <!-- Column 1: Video & Creativity -->
+            <div class="mega-col">
+              <div class="mega-col-title">🎥 Video &amp; Creativity</div>
+              <ul class="mega-item-list">
+                <li>
+                  <a href="/pages/tools/videos/video-canvas-engineering-studio.html" class="mega-item">
+                    <span class="mega-item-title">Video Canvas Studio <span class="item-badge hot">Pro</span></span>
+                    <span class="mega-item-desc">Multi-track NLE video editor, filters &amp; WebCodecs</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/pages/tools/videos/index.html" class="mega-item">
+                    <span class="mega-item-title">Video Converters</span>
+                    <span class="mega-item-desc">MP4, GIF, audio extractor &amp; screen recorder</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/pages/tools/images/index.html" class="mega-item">
+                    <span class="mega-item-title">Images &amp; Graphics Lab</span>
+                    <span class="mega-item-desc">Compressor, resizer, SVG optimizer &amp; color palettes</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Column 2: Developer & Coding -->
+            <div class="mega-col">
+              <div class="mega-col-title">💻 Developer &amp; Coding</div>
+              <ul class="mega-item-list">
+                <li>
+                  <a href="/pages/tools/coding/index.html" class="mega-item">
+                    <span class="mega-item-title">Coding Workbench</span>
+                    <span class="mega-item-desc">JSON formatter, regex tester, SQL &amp; JWT debugger</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/pages/tools/data/index.html" class="mega-item">
+                    <span class="mega-item-title">Data &amp; Formats</span>
+                    <span class="mega-item-desc">CSV, XML, Base64, UUID &amp; Hash generators</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/pages/tools/network/index.html" class="mega-item">
+                    <span class="mega-item-title">Network &amp; Security</span>
+                    <span class="mega-item-desc">DNS analyzer, subnet calculator, SSL &amp; port tools</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Column 3: Converters & Utilities -->
+            <div class="mega-col">
+              <div class="mega-col-title">⚡ Converters &amp; Office</div>
+              <ul class="mega-item-list">
+                <li>
+                  <a href="/pages/tools/converters/index.html" class="mega-item">
+                    <span class="mega-item-title">Universal Converters</span>
+                    <span class="mega-item-desc">Unit, timestamp, currency &amp; numerical converters</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/pages/tools/office/index.html" class="mega-item">
+                    <span class="mega-item-title">Office &amp; Text Suite</span>
+                    <span class="mega-item-desc">Word counter, markdown editor, PDF &amp; diff viewer</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/pages/tools/math/index.html" class="mega-item">
+                    <span class="mega-item-title">Math &amp; Financial</span>
+                    <span class="mega-item-desc">Interest, loan calculators, matrix &amp; stats tools</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Column 4: Solutions & Highlights -->
+            <div class="mega-col mega-col-featured">
+              <div class="mega-col-title">✨ Highlights</div>
+              <ul class="mega-item-list">
+                <li>
+                  <a href="/pages/games/index.html" class="mega-item">
+                    <span class="mega-item-title">🎮 Retro Games Hub</span>
+                    <span class="mega-item-desc">Arcade, puzzles, chess &amp; word games</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/pages/tutorials/index.html" class="mega-item">
+                    <span class="mega-item-title">📚 Tutorial Academy</span>
+                    <span class="mega-item-desc">Web dev, backend, security &amp; design guides</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/pages/tools/lifestyle/index.html" class="mega-item">
+                    <span class="mega-item-title">🌱 Lifestyle Tools</span>
+                    <span class="mega-item-desc">Health, time management &amp; utilities</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+          <div class="mega-menu-footer">
+            <a href="/pages/tools/" class="mega-footer-link">View All 500+ Tools &amp; Utilities &rarr;</a>
+          </div>
         </div>
       </div>
 
+      <!-- SOFTWARE DROPDOWN -->
       <div class="nav-dropdown">
-        <a href="/pages/games/" class="nav-link">Games ▾</a>
+        <a href="/pages/software/" class="nav-link">Software <span class="dropdown-caret">&#9662;</span></a>
         <div class="dropdown-menu">
-          <a href="/pages/games/">All Games</a>
-          <a href="/pages/games/arcade/">Arcade</a>
-          <a href="/pages/games/board/">Board</a>
-          <a href="/pages/games/cards/">Cards</a>
-          <a href="/pages/games/puzzles/">Puzzles</a>
-          <a href="/pages/games/word/">Word</a>
-        </div>
-      </div>
-
-      <div class="nav-dropdown">
-        <a href="/pages/software/" class="nav-link">Software ▾</a>
-        <div class="dropdown-menu">
-          <a href="/pages/software/">All Software</a>
-          <a href="/pages/software/android/productivity/">Android Productivity</a>
-          <a href="/pages/software/android/utility/">Android Utilities</a>
-          <a href="/pages/software/apple/productivity/">Apple Productivity</a>
-          <a href="/pages/software/apple/utility/">Apple Utilities</a>
-          <a href="/pages/software/linux/games/">Linux Games</a>
+          <a href="/pages/software/">All Software Catalog</a>
+          <a href="/pages/software/windows/productivity/">Windows Productivity</a>
+          <a href="/pages/software/windows/games/">Windows Games</a>
           <a href="/pages/software/linux/productivity/">Linux Productivity</a>
           <a href="/pages/software/linux/utility/">Linux Utilities</a>
-          <a href="/pages/software/windows/games/">Windows Games</a>
-          <a href="/pages/software/windows/productivity/">Windows Productivity</a>
-          <a href="/pages/software/windows/utility/">Windows Utilities</a>
+          <a href="/pages/software/android/productivity/">Android Productivity</a>
+          <a href="/pages/software/apple/productivity/">Apple Productivity</a>
         </div>
       </div>
 
+      <!-- TUTORIALS DROPDOWN -->
       <div class="nav-dropdown">
-        <a href="/pages/tutorials/" class="nav-link">Tutorials ▾</a>
+        <a href="/pages/tutorials/" class="nav-link">Tutorials <span class="dropdown-caret">&#9662;</span></a>
         <div class="dropdown-menu">
           <a href="/pages/tutorials/">All Tutorials</a>
-          <a href="/pages/tutorials/backend/">Backend</a>
-          <a href="/pages/tutorials/design/">Design</a>
-          <a href="/pages/tutorials/programming/">Programming</a>
-          <a href="/pages/tutorials/security/">Security</a>
-          <a href="/pages/tutorials/web-dev/">Web Dev</a>
+          <a href="/pages/tutorials/web-dev/">Web Development</a>
+          <a href="/pages/tutorials/backend/">Backend Engineering</a>
+          <a href="/pages/tutorials/security/">Security &amp; Encryption</a>
+          <a href="/pages/tutorials/design/">Design &amp; UI/UX</a>
+          <a href="/pages/tutorials/programming/">Programming Languages</a>
         </div>
       </div>
 
+      <!-- EDUCATION DROPDOWN -->
       <div class="nav-dropdown">
-        <a href="/pages/education/" class="nav-link">Education ▾</a>
+        <a href="/pages/education/" class="nav-link">Education <span class="dropdown-caret">&#9662;</span></a>
         <div class="dropdown-menu">
-          <a href="/pages/education/">All Education</a>
-          <a href="/pages/education/finance/">Finance</a>
-          <a href="/pages/education/humanities/">Humanities</a>
+          <a href="/pages/education/">All Educational Modules</a>
+          <a href="/pages/education/finance/">Financial Literacy</a>
+          <a href="/pages/education/math/">Mathematics</a>
+          <a href="/pages/education/science/">Science &amp; Tech</a>
           <a href="/pages/education/languages/">Languages</a>
-          <a href="/pages/education/math/">Math</a>
-          <a href="/pages/education/science/">Science</a>
+          <a href="/pages/education/humanities/">Humanities</a>
+        </div>
+      </div>
+
+      <!-- ABOUT & COMMUNITY DROPDOWN -->
+      <div class="nav-dropdown">
+        <a href="/assets/nav/about.html" class="nav-link">About <span class="dropdown-caret">&#9662;</span></a>
+        <div class="dropdown-menu">
+          <a href="/assets/nav/about.html">About BlueTEXT.in</a>
+          <a href="https://bluetextwiki.atlassian.net/wiki/company-hub/" target="_blank" rel="noopener noreferrer">Company Hub &amp; Wiki ↗</a>
+          <a href="/assets/nav/contact.html">Contact Us &amp; Form</a>
+          <a href="/support.html">💖 Supporters Wall</a>
+          <a href="https://github.com/mTulsiram/Bluetextin/discussions" target="_blank" rel="noopener noreferrer">Community Discussions ↗</a>
+          <a href="https://github.com/mTulsiram/Bluetextin/issues" target="_blank" rel="noopener noreferrer">Bug Tracker &amp; Issues ↗</a>
+          <a href="/assets/nav/privacy.html">Privacy &amp; Security</a>
         </div>
       </div>
 
@@ -136,135 +371,247 @@
 
 
 <!-- MODALS_END -->
-  <main class="container py-4" id="main-content">
-    <h1 class="mb-2">Get In Touch</h1>
-    <p class="text-body-secondary mb-4">We're always happy to hear from our users. Whether you have a question, a tool suggestion, or just want to say hello, feel free to reach out.</p>
 
-    <div class="row g-4">
-      <!-- Left: Send a Message -->
-      <div class="col-12 col-lg-8">
-        <section>
-          <h2 class="h4 mb-3">Send a Message</h2>
-          <p>Use any of the channels below — we respond to all genuine inquiries within 2–3 business days. Discord and Twitter typically get faster responses.</p>
+  <main class="container py-5" id="main-content">
+    
+    <!-- Hero Header -->
+    <div class="text-center mb-5">
+      <div class="contact-hero-badge mb-2">
+        <span>⚡</span> Direct Support &amp; Community Hub
+      </div>
+      <h1 class="display-5 fw-bold mb-3">Get In Touch with BlueTEXT.in</h1>
+      <p class="lead text-body-secondary mx-auto" style="max-width: 680px;">
+        Have a question, feedback, feature proposal, or tool suggestion? Reach out via our official channels or submit the contact form below.
+      </p>
+    </div>
 
-          <h3 class="h5 mt-4">📧 Email</h3>
-          <p><strong><a href="mailto:codeon@bluetext.in">codeon@bluetext.in</a></strong></p>
-          <p class="text-body-secondary">For support, bug reports, feedback, tool suggestions, and collaboration inquiries.</p>
-
-          <h3 class="h5 mt-4">💬 Community</h3>
-          <ul class="list-unstyled d-grid gap-1">
-            <li>🎮 <a href="https://discord.gg/6gNUAaHaPw" target="_blank" rel="noopener noreferrer">Discord Server</a> — Live community chat</li>
-            <li>🐦 <a href="https://twitter.com/Tulsiram_Methre" target="_blank" rel="noopener noreferrer">Twitter / X</a> — Quick updates and replies</li>
-            <li>💬 <a href="https://bluetextin.slack.com" target="_blank" rel="noopener noreferrer">Slack Workspace</a> — Team channel</li>
-          </ul>
-
-          <h3 class="h5 mt-4">🔧 Bug Reports &amp; Feature Requests</h3>
-          <p>Found a bug or want a new tool? Please open an issue on our <a href="https://github.com/CodeOnYT/Bluetextin" target="_blank" rel="noopener noreferrer">GitHub repository</a>.</p>
-
-          <h3 class="h5 mt-4">🌐 Social Media</h3>
-          <ul class="list-unstyled d-grid gap-1">
-            <li>💼 <a href="https://linkedin.com/in/tulsiram-methre" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-            <li>🐦 <a href="https://twitter.com/Tulsiram_Methre" target="_blank" rel="noopener noreferrer">Twitter / X</a></li>
-            <li>📸 <a href="https://instagram.com/CodeOnOriginal" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-            <li>👍 <a href="https://facebook.com/CodeOnYT" target="_blank" rel="noopener noreferrer">Facebook</a></li>
-            <li>💬 <a href="https://discord.gg/6gNUAaHaPw" target="_blank" rel="noopener noreferrer">Discord</a></li>
-            <li>👽 <a href="https://reddit.com/user/BlueTEXTin" target="_blank" rel="noopener noreferrer">Reddit</a></li>
-            <li>🎥 <a href="https://www.youtube.com/@CodeOn" target="_blank" rel="noopener noreferrer">YouTube — CodeOn Channel</a></li>
-            <li>📺 <a href="https://twitch.tv/codeonyt" target="_blank" rel="noopener noreferrer">Twitch</a></li>
-            <li>📌 <a href="https://pinterest.com/CodeOnYT" target="_blank" rel="noopener noreferrer">Pinterest</a></li>
-          </ul>
-
-          <h3 class="h5 mt-4">💝 Support the Project</h3>
-          <ul class="list-unstyled d-grid gap-1">
-            <li>☕ <a href="https://www.buymeacoffee.com/BlueTEXT.in" target="_blank" rel="noopener noreferrer"><strong>Buy Me A Coffee</strong></a> — Preferred direct support</li>
-            <li>🤝 <a href="https://www.patreon.com/BlueTEXT" target="_blank" rel="noopener noreferrer">Patreon</a> — Monthly support</li>
-            <li>💖 <a href="https://ko-fi.com/bluetextin" target="_blank" rel="noopener noreferrer">Ko-fi</a> — One-time support</li>
-            <li>🗞️ <a href="https://bluetextin.stck.me" target="_blank" rel="noopener noreferrer">Newsletter</a></li>
-            <li>UPI: <code>Bluetext.in@UPI</code></li>
-          </ul>
-
-          <h3 class="h5 mt-4">🛠️ More Links</h3>
-          <ul class="list-unstyled d-grid gap-1">
-            <li>🧪 <a href="https://orcid.org/0009-0007-8869-1617" target="_blank" rel="noopener noreferrer">ORCID</a></li>
-            <li>💻 <a href="https://github.com/CodeOnYT" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-            <li>💬 <a href="https://bluetextin.slack.com" target="_blank" rel="noopener noreferrer">Slack</a></li>
-            <li>c/codeon: c/codeon</li>
-            <li>in/tulsiram-methre: <a href="https://linkedin.com/in/tulsiram-methre" target="_blank" rel="noopener noreferrer">linkedin.com/in/tulsiram-methre</a></li>
-            <li>tulsiram09: tulsiram09</li>
-          </ul>
-
-          <h3 class="h5 mt-4">🏷️ BlueTEXT.in Metadata</h3>
-          <ul class="list-unstyled d-grid gap-1">
-            <li><strong>Location:</strong> HYDERABAD</li>
-            <li><strong>Website:</strong> <a href="https://www.bluetext.in" target="_blank" rel="noopener noreferrer">https://www.bluetext.in</a></li>
-          </ul>
-
-          <h3 class="h5 mt-4">📝 Website Logs</h3>
-          <p class="small text-body-secondary mb-0"><em>Last updated: Sat Mar 28 2026 12:54:59 GMT+0530 (India Standard Time)</em></p>
-        </section>
+    <!-- Quick Channels Row -->
+    <div class="row g-3 mb-5">
+      <!-- 1. Official Email -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="contact-card-highlight h-100 d-flex flex-column justify-content-between">
+          <div>
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <div class="contact-icon-box" style="color: #20d59b;">📧</div>
+              <button class="copy-btn" onclick="navigator.clipboard.writeText('admin@bluetext.in'); this.innerText='Copied!'; setTimeout(()=>this.innerText='Copy', 2000);">Copy</button>
+            </div>
+            <h2 class="h5 fw-bold mb-1">Official Email</h2>
+            <p class="small text-body-secondary mb-2">Direct communications, partnerships &amp; enterprise.</p>
+          </div>
+          <div>
+            <a href="mailto:admin@bluetext.in" class="fw-semibold text-break" style="color: #20d59b;">admin@bluetext.in</a>
+          </div>
+        </div>
       </div>
 
-      <!-- Right: Contact Details card -->
-      <div class="col-12 col-lg-4">
-        <aside class="card shadow-sm h-100">
-          <div class="card-body">
-            <h3 class="card-title h5 mb-3">Contact Details</h3>
-            <ul class="list-unstyled d-grid gap-3 mb-3">
-              <li class="d-flex gap-2">
-                <span aria-hidden="true">📧</span>
-                <div>
-                  <strong>Email</strong><br>
-                  <a href="mailto:codeon@bluetext.in">codeon@bluetext.in</a>
+      <!-- 2. GitHub Discussions -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="contact-card-highlight h-100 d-flex flex-column justify-content-between">
+          <div>
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <div class="contact-icon-box" style="color: #a855f7;">💬</div>
+              <span class="badge bg-purple text-light" style="font-size: 0.7rem; background:#8b5cf6;">Community</span>
+            </div>
+            <h2 class="h5 fw-bold mb-1">GitHub Discussions</h2>
+            <p class="small text-body-secondary mb-2">Ask questions, share ideas, and join community threads.</p>
+          </div>
+          <div>
+            <a href="https://github.com/mTulsiram/Bluetextin/discussions" target="_blank" rel="noopener noreferrer" class="btn-brand-outline w-100 justify-content-center">Join Discussions ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. GitHub Issues -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="contact-card-highlight h-100 d-flex flex-column justify-content-between">
+          <div>
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <div class="contact-icon-box" style="color: #3ea1ff;">🔧</div>
+              <span class="badge bg-primary text-light" style="font-size: 0.7rem;">Tracker</span>
+            </div>
+            <h2 class="h5 fw-bold mb-1">GitHub Issues</h2>
+            <p class="small text-body-secondary mb-2">Report bugs, defects, and request new tools.</p>
+          </div>
+          <div>
+            <a href="https://github.com/mTulsiram/Bluetextin/issues" target="_blank" rel="noopener noreferrer" class="btn-brand-outline w-100 justify-content-center">Open Issue ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Discord Community -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="contact-card-highlight h-100 d-flex flex-column justify-content-between">
+          <div>
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <div class="contact-icon-box" style="color: #5865F2;">🎮</div>
+              <span class="badge bg-success text-light" style="font-size: 0.7rem;">Live Chat</span>
+            </div>
+            <h2 class="h5 fw-bold mb-1">Discord Server</h2>
+            <p class="small text-body-secondary mb-2">Real-time chat with fellow creators and developers.</p>
+          </div>
+          <div>
+            <a href="https://discord.gg/6gNUAaHaPw" target="_blank" rel="noopener noreferrer" class="btn-brand-outline w-100 justify-content-center">Join Discord ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Form & Info Section -->
+    <div class="row g-4 mb-5">
+      <!-- Left: Contact & Google Form Integration -->
+      <div class="col-12 col-lg-7">
+        <div class="contact-form-box">
+          <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-2">
+            <div>
+              <h2 class="h4 fw-bold mb-1">Send a Message</h2>
+              <p class="small text-body-secondary mb-0">Fill out this quick form or use the Google Form directly.</p>
+            </div>
+            <div>
+              <a href="https://forms.gle/BluetextContact" id="btn-open-gform" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-info">
+                <span>📋</span> Open Google Form ↗
+              </a>
+            </div>
+          </div>
+
+          <form id="contact-form" onsubmit="event.preventDefault(); handleContactSubmit();">
+            <div class="row g-3 mb-3">
+              <div class="col-12 col-sm-6">
+                <label for="c-name" class="form-label small fw-semibold">Your Name *</label>
+                <input type="text" id="c-name" class="form-control-custom" placeholder="Tulsiram Methre" required>
+              </div>
+              <div class="col-12 col-sm-6">
+                <label for="c-email" class="form-label small fw-semibold">Your Email Address *</label>
+                <input type="email" id="c-email" class="form-control-custom" placeholder="name@example.com" required>
+              </div>
+            </div>
+
+            <div class="row g-3 mb-3">
+              <div class="col-12 col-sm-6">
+                <label for="c-category" class="form-label small fw-semibold">Topic Category *</label>
+                <select id="c-category" class="form-select-custom" required>
+                  <option value="General Inquiry">General Inquiry / Question</option>
+                  <option value="Feature Request">Tool / Feature Suggestion</option>
+                  <option value="Bug Report">Bug / Issue Report</option>
+                  <option value="Collaboration">Collaboration / Business</option>
+                  <option value="Sponsorship">Sponsorship / Donation</option>
+                </select>
+              </div>
+              <div class="col-12 col-sm-6">
+                <label for="c-subject" class="form-label small fw-semibold">Subject *</label>
+                <input type="text" id="c-subject" class="form-control-custom" placeholder="Brief summary" required>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label for="c-message" class="form-label small fw-semibold">Your Message *</label>
+              <textarea id="c-message" rows="5" class="form-control-custom" placeholder="Write your message here in detail..." required></textarea>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+              <button type="submit" id="c-submit-btn" class="btn-brand-primary">
+                <span>🚀</span> Send Message
+              </button>
+              <span class="small text-body-secondary" id="c-status-msg">
+                Direct to: <strong>admin@bluetext.in</strong>
+              </span>
+            </div>
+          </form>
+
+          <!-- Embedded Google Form Container (Optional Toggle) -->
+          <div class="mt-4 pt-3 border-top border-secondary border-opacity-25">
+            <details>
+              <summary class="small text-body-secondary" style="cursor: pointer;">
+                <strong>Prefer Google Forms?</strong> Click to open embedded submission form
+              </summary>
+              <div class="mt-3 gform-container">
+                <div class="p-3 text-center">
+                  <p class="small text-body-secondary mb-2">You can submit feedback, tool requests, and surveys directly via Google Forms.</p>
+                  <a href="https://docs.google.com/forms/d/e/1FAIpQLSe-sample/viewform?usp=sf_link" id="google-form-direct-link" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-success">
+                    Open Dedicated Google Feedback Form ↗
+                  </a>
                 </div>
+              </div>
+            </details>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right: Creator Info & Social Networks -->
+      <div class="col-12 col-lg-5">
+        <aside class="d-flex flex-column gap-3">
+          
+          <!-- Creator & Location Card -->
+          <div class="contact-card-highlight">
+            <h3 class="h5 fw-bold mb-3">About the Project</h3>
+            <ul class="list-unstyled d-grid gap-2 mb-0 small">
+              <li class="d-flex gap-2">
+                <span>📍</span>
+                <div><strong>Location:</strong> Hyderabad, Telangana, India</div>
               </li>
               <li class="d-flex gap-2">
-                <span aria-hidden="true">📺</span>
-                <div>
-                  <strong>YouTube</strong><br>
-                  <a href="https://www.youtube.com/@CodeOn" target="_blank" rel="noopener noreferrer">CodeOn (700+ Subscribers | 590k+ Views)</a>
-                </div>
+                <span>🌐</span>
+                <div><strong>Website:</strong> <a href="https://bluetext.in" target="_blank" rel="noopener noreferrer" style="color:#20d59b;">https://bluetext.in</a></div>
               </li>
               <li class="d-flex gap-2">
-                <span aria-hidden="true">🐦</span>
-                <div>
-                  <strong>Twitter / X</strong><br>
-                  <a href="https://twitter.com/Tulsiram_Methre" target="_blank" rel="noopener noreferrer">@Tulsiram_Methre</a>
-                </div>
+                <span>⏱️</span>
+                <div><strong>Response Time:</strong> Typically within 24–48 hours</div>
               </li>
               <li class="d-flex gap-2">
-                <span aria-hidden="true">💼</span>
-                <div>
-                  <strong>LinkedIn</strong><br>
-                  <a href="https://linkedin.com/in/tulsiram-methre" target="_blank" rel="noopener noreferrer">in/tulsiram-methre</a>
-                </div>
-              </li>
-              <li class="d-flex gap-2">
-                <span aria-hidden="true">💻</span>
-                <div>
-                  <strong>GitHub</strong><br>
-                  <a href="https://github.com/CodeOnYT" target="_blank" rel="noopener noreferrer">CodeOnYT</a>
-                </div>
-              </li>
-              <li class="d-flex gap-2">
-                <span aria-hidden="true">📍</span>
-                <div>
-                  <strong>Location</strong><br>
-                  HYDERABAD
-                </div>
+                <span>🔒</span>
+                <div><strong>Privacy:</strong> 100% client-side privacy, zero user tracking</div>
               </li>
             </ul>
-            <p class="small text-body-secondary mb-0">Most inquiries get a response within 2–3 business days. Discord is fastest for community questions.</p>
           </div>
+
+          <!-- Social Links Grid -->
+          <div class="contact-card-highlight">
+            <h3 class="h6 fw-bold mb-3 text-uppercase text-body-secondary" style="letter-spacing: 0.05em; font-size: 0.75rem;">Connect on Social Platforms</h3>
+            <div class="row row-cols-2 g-2 small">
+              <div class="col">
+                <a href="https://twitter.com/Tulsiram_Methre" target="_blank" rel="noopener noreferrer" class="btn-brand-outline w-100 py-1">🐦 Twitter / X</a>
+              </div>
+              <div class="col">
+                <a href="https://linkedin.com/in/tulsiram-methre" target="_blank" rel="noopener noreferrer" class="btn-brand-outline w-100 py-1">💼 LinkedIn</a>
+              </div>
+              <div class="col">
+                <a href="https://github.com/mTulsiram/Bluetextin" target="_blank" rel="noopener noreferrer" class="btn-brand-outline w-100 py-1">💻 GitHub</a>
+              </div>
+              <div class="col">
+                <a href="https://www.youtube.com/@CodeOn" target="_blank" rel="noopener noreferrer" class="btn-brand-outline w-100 py-1">🎥 YouTube</a>
+              </div>
+              <div class="col">
+                <a href="https://discord.gg/6gNUAaHaPw" target="_blank" rel="noopener noreferrer" class="btn-brand-outline w-100 py-1">💬 Discord</a>
+              </div>
+              <div class="col">
+                <a href="https://instagram.com/CodeOnOriginal" target="_blank" rel="noopener noreferrer" class="btn-brand-outline w-100 py-1">📸 Instagram</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Support / Donations -->
+          <div class="contact-card-highlight" style="border-color: rgba(234, 179, 8, 0.3);">
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <span style="font-size: 1.2rem;">💖</span>
+              <h3 class="h6 fw-bold mb-0">Support the Platform</h3>
+            </div>
+            <p class="small text-body-secondary mb-3">BlueTEXT.in is free and ad-supported. Your sponsorship helps keep hosting and tool servers active.</p>
+            <div class="d-flex flex-wrap gap-2">
+              <a href="https://www.buymeacoffee.com/BlueTEXT.in" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-warning fw-bold">☕ Buy Me A Coffee</a>
+              <a href="/support.html" class="btn btn-sm btn-outline-light">Supporters Wall</a>
+            </div>
+          </div>
+
         </aside>
       </div>
     </div>
 
-    <p class="mt-4"><a href="/">← Back to Home</a></p>
   </main>
+
   <div id="footer-component"><!-- FOOTER_START -->
 <!-- =========================================================================
      BlueTEXT.in — Clean Semantic Footer Component
-     Sections: 1. Brand & Compliance Notice | 2. Navigation & Legal Links
+     Sections: 1. Brand & Compliance Notice | 2. Structured Links & Legal
      ========================================================================= -->
 
 <footer class="ftr" role="contentinfo">
@@ -272,18 +619,31 @@
 
     <!-- 1. Brand & Privacy Compliance -->
     <div class="ftr-brand">
-      <span class="ftr-logo">BlueTEXT.in</span>
-      <span class="ftr-compliance">© 2026. Client-side execution. Zero tracker policy.</span>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <svg class="brand-logo" width="30" height="30" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="border-radius:7px;flex-shrink:0;">
+          <rect width="100" height="100" rx="22" fill="#0052cc"/>
+          <path d="M30 22H54C67 22 75 29 75 39C75 46 70 51 63 53C72 55 78 61 78 70C78 81 69 88 54 88H30V22ZM43 34V47H52C58 47 62 44 62 40C62 36 58 34 52 34H43ZM43 58V76H53C60 76 65 73 65 67C65 61 60 58 53 58H43Z" fill="#ffffff"/>
+          <circle cx="74" cy="76" r="5.5" fill="#ffe500"/>
+        </svg>
+        <span class="ftr-logo"><span class="b-word">Blue</span><span class="t-word">TEXT</span><span class="in-pill">.in</span></span>
+      </div>
+      <p style="font-size:0.82rem;color:var(--muted);max-width:320px;line-height:1.45;margin-top:0.4rem;">
+        Empowering creators &amp; engineers with 500+ client-side web tools. Hardware-accelerated, zero-server privacy.
+      </p>
+      <span class="ftr-compliance">© 2026 BlueTEXT.in • Hyderabad, India • All rights reserved.</span>
     </div>
 
     <!-- 2. Footer Utility Links -->
     <nav class="ftr-nav" aria-label="Footer Navigation">
+      <a href="/pages/tools/videos/video-canvas-engineering-studio.html" class="ftr-link">🎬 Video Studio</a>
+      <a href="/pages/tools/" class="ftr-link">🛠️ Tools</a>
+      <a href="/pages/games/" class="ftr-link">🎮 Games</a>
       <a href="/assets/nav/about.html" class="ftr-link">About</a>
       <a href="/assets/nav/contact.html" class="ftr-link">Contact</a>
-      <a href="/support.html" class="ftr-link ftr-link-highlight">💖 Donate</a>
-      <a href="https://github.com/mTulsiram/bluetext/issues/new?template=bug_report.md" class="ftr-link" target="_blank" rel="noopener noreferrer">Report Bug</a>
-      <a href="https://github.com/mTulsiram/bluetext/issues/new?template=feature_request.md" class="ftr-link" target="_blank" rel="noopener noreferrer">Suggest Feature</a>
-      <a href="/assets/nav/privacy.html" class="ftr-link">Privacy</a>
+      <a href="https://bluetextwiki.atlassian.net/wiki/company-hub/" class="ftr-link" target="_blank" rel="noopener noreferrer">Company Hub ↗</a>
+      <a href="https://github.com/mTulsiram/Bluetextin/issues" class="ftr-link" target="_blank" rel="noopener noreferrer">Report Bug ↗</a>
+      <a href="https://github.com/mTulsiram/Bluetextin/discussions" class="ftr-link" target="_blank" rel="noopener noreferrer">Discussions ↗</a>
+      <a href="/assets/nav/privacy.html" class="ftr-link">Privacy Policy</a>
       <a href="/assets/nav/terms.html" class="ftr-link">Terms</a>
       <a href="/assets/nav/security.html" class="ftr-link">Security</a>
       <a href="/assets/nav/accessibility.html" class="ftr-link">Accessibility</a>
@@ -292,6 +652,26 @@
   </div>
 </footer>
 <!-- FOOTER_END --></div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  </body>
+
+  <script>
+    function handleContactSubmit() {
+      const name = document.getElementById('c-name').value.trim();
+      const email = document.getElementById('c-email').value.trim();
+      const cat = document.getElementById('c-category').value;
+      const sub = document.getElementById('c-subject').value.trim();
+      const msg = document.getElementById('c-message').value.trim();
+      
+      const body = `Name: ${name}\nEmail: ${email}\nCategory: ${cat}\n\nMessage:\n${msg}`;
+      const mailtoUrl = `mailto:admin@bluetext.in?subject=${encodeURIComponent('[' + cat + '] ' + sub)}&body=${encodeURIComponent(body)}`;
+      
+      // Open user's email client
+      window.location.href = mailtoUrl;
+      
+      const status = document.getElementById('c-status-msg');
+      if (status) {
+        status.innerHTML = '<span style="color:#20d59b;font-weight:600;">✓ Email client opened! Ready to send to admin@bluetext.in</span>';
+      }
+    }
+  </script>
+</body>
 </html>

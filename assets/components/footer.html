@@ -1,6 +1,6 @@
 <!-- =========================================================================
      BlueTEXT.in — Clean Semantic Footer Component
-     Sections: 1. Brand & Compliance Notice | 2. Navigation & Legal Links
+     Sections: 1. Brand & Compliance Notice | 2. Structured Links & Legal
      ========================================================================= -->
 
 <footer class="ftr" role="contentinfo">
@@ -8,18 +8,31 @@
 
     <!-- 1. Brand & Privacy Compliance -->
     <div class="ftr-brand">
-      <span class="ftr-logo">BlueTEXT.in</span>
-      <span class="ftr-compliance">© 2026. Client-side execution. Zero tracker policy.</span>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <svg class="brand-logo" width="30" height="30" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="border-radius:7px;flex-shrink:0;">
+          <rect width="100" height="100" rx="22" fill="#0052cc"/>
+          <path d="M30 22H54C67 22 75 29 75 39C75 46 70 51 63 53C72 55 78 61 78 70C78 81 69 88 54 88H30V22ZM43 34V47H52C58 47 62 44 62 40C62 36 58 34 52 34H43ZM43 58V76H53C60 76 65 73 65 67C65 61 60 58 53 58H43Z" fill="#ffffff"/>
+          <circle cx="74" cy="76" r="5.5" fill="#ffe500"/>
+        </svg>
+        <span class="ftr-logo"><span class="b-word">Blue</span><span class="t-word">TEXT</span><span class="in-pill">.in</span></span>
+      </div>
+      <p style="font-size:0.82rem;color:var(--muted);max-width:320px;line-height:1.45;margin-top:0.4rem;">
+        Empowering creators &amp; engineers with 500+ client-side web tools. Hardware-accelerated, zero-server privacy.
+      </p>
+      <span class="ftr-compliance">© 2026 BlueTEXT.in • Hyderabad, India • All rights reserved.</span>
     </div>
 
     <!-- 2. Footer Utility Links -->
     <nav class="ftr-nav" aria-label="Footer Navigation">
+      <a href="/pages/tools/videos/video-canvas-engineering-studio.html" class="ftr-link">🎬 Video Studio</a>
+      <a href="/pages/tools/" class="ftr-link">🛠️ Tools</a>
+      <a href="/pages/games/" class="ftr-link">🎮 Games</a>
       <a href="/assets/nav/about.html" class="ftr-link">About</a>
       <a href="/assets/nav/contact.html" class="ftr-link">Contact</a>
-      <a href="/support.html" class="ftr-link ftr-link-highlight">💖 Donate</a>
-      <a href="https://github.com/mTulsiram/bluetext/issues/new?template=bug_report.md" class="ftr-link" target="_blank" rel="noopener noreferrer">Report Bug</a>
-      <a href="https://github.com/mTulsiram/bluetext/issues/new?template=feature_request.md" class="ftr-link" target="_blank" rel="noopener noreferrer">Suggest Feature</a>
-      <a href="/assets/nav/privacy.html" class="ftr-link">Privacy</a>
+      <a href="https://bluetextwiki.atlassian.net/wiki/company-hub/" class="ftr-link" target="_blank" rel="noopener noreferrer">Company Hub ↗</a>
+      <a href="https://github.com/mTulsiram/Bluetextin/issues" class="ftr-link" target="_blank" rel="noopener noreferrer">Report Bug ↗</a>
+      <a href="https://github.com/mTulsiram/Bluetextin/discussions" class="ftr-link" target="_blank" rel="noopener noreferrer">Discussions ↗</a>
+      <a href="/assets/nav/privacy.html" class="ftr-link">Privacy Policy</a>
       <a href="/assets/nav/terms.html" class="ftr-link">Terms</a>
       <a href="/assets/nav/security.html" class="ftr-link">Security</a>
       <a href="/assets/nav/accessibility.html" class="ftr-link">Accessibility</a>

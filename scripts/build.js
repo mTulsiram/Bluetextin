@@ -193,18 +193,36 @@ ${body}
 
 async function generateIndexPages() {
   function buildIndexHtml({ title, description, breadcrumb, children, relDepth }) {
-    const assetBase = "../".repeat(relDepth);
-
-    const cards = children.map(({ href, label }) => `
-      <li>
-        <a href="${href}">${label}</a>
-      </li>`).join("");
+    const cards = children.map(({ href, label }) => {
+      const isSubdir = href.endsWith("/");
+      let icon = "🛠️";
+      if (isSubdir) icon = "📁";
+      else if (href.includes("video")) icon = "🎥";
+      else if (href.includes("code") || href.includes("json") || href.includes("sql") || href.includes("regex")) icon = "💻";
+      else if (href.includes("game")) icon = "🎮";
+      else if (href.includes("convert")) icon = "⚡";
+      
+      return `
+      <article class="tool-card">
+        <a href="${escapeHtml(href)}" class="tool-card-link">
+          <div class="tool-card-header">
+            <span class="tool-icon" aria-hidden="true">${icon}</span>
+            <h3 class="tool-title">${escapeHtml(label)}</h3>
+          </div>
+          <p class="tool-desc">${isSubdir ? "Browse all specialized tools in this section." : "Client-side utility with instant in-browser processing."}</p>
+          <div class="tool-card-footer">
+            <span class="tool-tag">${isSubdir ? "Category" : "Utility"}</span>
+            <span class="tool-action">Open &rarr;</span>
+          </div>
+        </a>
+      </article>`;
+    }).join("\n");
 
     const crumbHtml = breadcrumb.map((c, i) => {
       if (i === breadcrumb.length - 1) {
-        return `      <li>${c.label}</li>`;
+        return `      <li>${escapeHtml(c.label)}</li>`;
       }
-      return `      <li><a href="${c.href}">${c.label}</a></li>`;
+      return `      <li><a href="${escapeHtml(c.href)}">${escapeHtml(c.label)}</a></li>`;
     }).join("\n");
 
     return `<!DOCTYPE html>
@@ -212,9 +230,9 @@ async function generateIndexPages() {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="${description}">
+  <meta name="description" content="${escapeHtml(description)}">
   <meta name="robots" content="index,follow">
-  <title>${title} | BlueTEXT</title>
+  <title>${escapeHtml(title)} | BlueTEXT.in</title>
   <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" href="/assets/css/main.css">
   <script src="/assets/js/app.js" defer></script>
@@ -230,12 +248,14 @@ ${crumbHtml}
       </ol>
     </nav>
 
-    <h1>${title}</h1>
-    <p>${description}</p>
+    <section class="hero mb-4">
+      <h1>${escapeHtml(title)}</h1>
+      <p>${escapeHtml(description)}</p>
+    </section>
 
-    <ul>
-      ${cards}
-    </ul>
+    <section class="tools-grid">
+${cards}
+    </section>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START --><!-- FOOTER_END --></div>

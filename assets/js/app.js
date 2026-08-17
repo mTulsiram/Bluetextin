@@ -31,7 +31,8 @@
     try {
       savedTheme = localStorage.getItem(THEME_KEY);
     } catch (e) {}
-    const theme = savedTheme || getSystemTheme();
+    // Default to 'light' (Soft White eye-comfort theme)
+    const theme = savedTheme || "light";
     applyTheme(theme);
   }
 
@@ -127,6 +128,47 @@
         }
       });
     }
+
+    // Desktop Dropdown Grace Period Manager (prevents menus from closing during diagonal mouse movement)
+    function initDesktopDropdowns() {
+      const dropdowns = document.querySelectorAll(".nav-dropdown");
+      dropdowns.forEach(dd => {
+        let leaveTimer = null;
+
+        dd.addEventListener("mouseenter", () => {
+          clearTimeout(leaveTimer);
+          dropdowns.forEach(other => {
+            if (other !== dd) other.classList.remove("is-open");
+          });
+          dd.classList.add("is-open");
+        });
+
+        dd.addEventListener("mouseleave", () => {
+          leaveTimer = setTimeout(() => {
+            dd.classList.remove("is-open");
+          }, 260); // 260ms grace window for smooth diagonal movements
+        });
+
+        dd.addEventListener("focusin", () => {
+          clearTimeout(leaveTimer);
+          dd.classList.add("is-open");
+        });
+
+        dd.addEventListener("focusout", (e) => {
+          if (!dd.contains(e.relatedTarget)) {
+            dd.classList.remove("is-open");
+          }
+        });
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".nav-dropdown")) {
+          dropdowns.forEach(dd => dd.classList.remove("is-open"));
+        }
+      });
+    }
+
+    initDesktopDropdowns();
 
     // Add Scroll to Top & Scroll to Bottom Floating Dock
     if (!document.getElementById("scroll-nav-dock")) {
@@ -471,6 +513,15 @@
     function getCategory(url) {
       if (!url) return "other";
       if (url.startsWith("/pages/tools/videos/")) return "videos";
+      if (url.startsWith("/pages/tools/coding/")) return "coding";
+      if (url.startsWith("/pages/tools/converters/")) return "converters";
+      if (url.startsWith("/pages/tools/data/")) return "data";
+      if (url.startsWith("/pages/tools/images/")) return "images";
+      if (url.startsWith("/pages/tools/math/")) return "math";
+      if (url.startsWith("/pages/tools/network/")) return "network";
+      if (url.startsWith("/pages/tools/office/")) return "office";
+      if (url.startsWith("/pages/tools/lifestyle/")) return "lifestyle";
+      if (url.startsWith("/pages/tools/utilities/")) return "utilities";
       if (url.startsWith("/pages/tools/")) return "tools";
       if (url.startsWith("/pages/games/")) return "games";
       if (url.startsWith("/pages/software/")) return "software";
@@ -480,14 +531,20 @@
       return "other";
     }
 
+    function matchCategory(itemCat, selectedCat, itemUrl) {
+      if (selectedCat === "all") return true;
+      if (selectedCat === itemCat) return true;
+      if (selectedCat === "tools" && itemUrl && itemUrl.startsWith("/pages/tools/")) return true;
+      return false;
+    }
+
     function render() {
       const query = (searchInput ? searchInput.value : "").toLowerCase().trim();
       
       const filtered = allItems.filter(item => {
         const cat = getCategory(item.url);
-        if (currentCategory !== "all" && cat !== currentCategory) return false;
+        if (!matchCategory(cat, currentCategory, item.url)) return false;
         if (!query) return true;
-        // Optimization: Use pre-computed lowercased properties to avoid repeated allocations
         return (item._titleLower || "").includes(query) ||
                (item._descLower || "").includes(query) ||
                (item._keywordsLower || "").includes(query);
@@ -614,10 +671,75 @@
       .catch(err => {
         viewport.innerHTML = `<div class="empty-state"><p>Failed to load catalog.</p></div>`;
       });
+
+    // Global keyboard shortcut: Ctrl+K or Cmd+K to focus search input
+    document.addEventListener("keydown", (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+        if (searchInput) {
+          e.preventDefault();
+          searchInput.focus();
+          searchInput.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }
+    });
   }
 
   // -------------------------------------------------------------------------
-  // 7. Boot App
+  // 7. Global Consent & Privacy Management (GDPR, CCPA, DPDP Act, PIPL)
+  // -------------------------------------------------------------------------
+  const CONSENT_KEY = "bt_consent_v1";
+
+  function initConsentBanner() {
+    let consent;
+    try {
+      consent = localStorage.getItem(CONSENT_KEY);
+    } catch (e) {}
+
+    if (consent) return; // Already made choice
+
+    const banner = document.createElement("aside");
+    banner.id = "consent-banner";
+    banner.className = "consent-banner";
+    banner.setAttribute("role", "dialog");
+    banner.setAttribute("aria-live", "polite");
+    banner.setAttribute("aria-label", "Privacy and Local Storage Preferences");
+
+    banner.innerHTML = `
+      <div class="consent-content">
+        <div class="consent-title">
+          <span>🛡️</span> <strong>Privacy &amp; Local Storage Preferences</strong>
+        </div>
+        <p class="consent-desc">
+          BlueTEXT.in operates with a strict <strong>zero-tracking</strong> policy. We do not sell personal data or track you across third-party websites. Local storage is strictly used for client-side tool state, themes, and offline execution in compliance with EU GDPR, US CCPA/CPRA, India DPDP Act 2023, and China PIPL.
+        </p>
+      </div>
+      <div class="consent-actions">
+        <button type="button" class="consent-btn consent-btn-secondary" id="consent-essential-btn">Essential Only</button>
+        <button type="button" class="consent-btn consent-btn-primary" id="consent-accept-btn">Accept All Local Features</button>
+      </div>
+    `;
+
+    document.body.appendChild(banner);
+
+    function setConsent(choice) {
+      try {
+        localStorage.setItem(CONSENT_KEY, JSON.stringify({
+          choice,
+          timestamp: new Date().toISOString(),
+          policyVersion: "2026.1"
+        }));
+      } catch (e) {}
+      banner.remove();
+    }
+
+    const acceptBtn = document.getElementById("consent-accept-btn");
+    const essentialBtn = document.getElementById("consent-essential-btn");
+    if (acceptBtn) acceptBtn.addEventListener("click", () => setConsent("all"));
+    if (essentialBtn) essentialBtn.addEventListener("click", () => setConsent("essential"));
+  }
+
+  // -------------------------------------------------------------------------
+  // 8. Boot App
   // -------------------------------------------------------------------------
   initTheme();
 
@@ -627,6 +749,7 @@
     initAuth();
     initDonate();
     initCatalogEngine();
+    initConsentBanner();
 
     const themeBtn = document.getElementById("theme-toggle-btn");
     if (themeBtn) themeBtn.addEventListener("click", toggleTheme);

@@ -1,18 +1,33 @@
 {
-  "generatedAt": "2026-08-01T12:57:18.810Z",
-  "startedAt": "2026-08-01T12:57:17.565Z",
-  "durationMs": 1248,
+  "generatedAt": "2026-08-17T12:01:01.231Z",
+  "startedAt": "2026-08-17T12:01:00.274Z",
+  "durationMs": 957,
   "ok": true,
   "steps": [
     {
+      "name": "Generate Index Pages",
+      "ok": true,
+      "durationMs": 138
+    },
+    {
       "name": "Inject Header & Footer",
       "ok": true,
-      "durationMs": 1229
+      "durationMs": 646
+    },
+    {
+      "name": "Generate Search Index",
+      "ok": true,
+      "durationMs": 125
+    },
+    {
+      "name": "Generate Sitemap",
+      "ok": true,
+      "durationMs": 38
     }
   ],
   "outputs": {
     "searchIndexEntries": 413,
-    "translationPages": 591,
+    "translationPages": 413,
     "sitemapUrlCount": 413
   }
 }

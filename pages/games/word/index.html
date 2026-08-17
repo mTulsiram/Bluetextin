@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Browse all word resources on BlueTEXT.">
   <meta name="robots" content="index,follow">
-  <title>Word | BlueTEXT</title>
+  <title>Word | BlueTEXT.in</title>
   <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" href="/assets/css/main.css">
   <script src="/assets/js/app.js" defer></script>
@@ -13,20 +13,27 @@
 <body>
   <div id="header-component"><!-- HEADER_START -->
 <!-- =========================================================================
-     BlueTEXT.in — Clean Semantic Header Component
-     Sections: 1. Brand Logo | 2. Main Navigation | 3. User Actions (Donate/Login/Clear Cache/Theme)
+     BlueTEXT.in — Wondershare-Grade Mega Menu Semantic Header Component
+     Sections: 1. Brand Logo | 2. Mega Menu Navigation | 3. User Actions
      ========================================================================= -->
+
+<!-- Global Accessible Skip Link for Screen Readers & Keyboard Users (WCAG 2.2 AA / Section 508) -->
+<a href="#main-content" class="skip-link" style="position:fixed;top:-100px;left:12px;z-index:10000;">Skip to main content</a>
 
 <header class="hdr" role="banner">
   <div class="hdr-container">
     
-    <!-- 1. Brand / Logo -->
+    <!-- 1. Brand / Logo (B on Blue + BlueTEXT.in) -->
     <a class="brand" href="/" aria-label="BlueTEXT.in Homepage">
-      <svg class="brand-logo" width="24" height="24" viewBox="0 0 28 28" aria-hidden="true" focusable="false">
-        <rect width="28" height="28" rx="7" fill="currentColor"></rect>
-        <path d="M8 7H15.5C18.3 7 20.3 8.5 20.3 10.9C20.3 12.4 19.5 13.6 18.1 14.2C19.9 14.7 21 16 21 17.8C21 20.5 18.8 22 15.8 22H8V7ZM11.2 9.6V13.1H15.2C16.4 13.1 17.1 12.4 17.1 11.3C17.1 10.2 16.4 9.6 15.2 9.6H11.2ZM11.2 15.5V19.4H15.7C17 19.4 17.8 18.7 17.8 17.5C17.8 16.3 16.9 15.5 15.7 15.5H11.2Z" fill="#ffffff"></path>
+      <svg class="brand-logo" width="34" height="34" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="border-radius:9px;flex-shrink:0;box-shadow:0 2px 8px rgba(0,82,204,0.28);">
+        <!-- Royal Blue Rounded Tile -->
+        <rect width="100" height="100" rx="22" fill="#0052cc"/>
+        <!-- Stylized White B -->
+        <path d="M30 22H54C67 22 75 29 75 39C75 46 70 51 63 53C72 55 78 61 78 70C78 81 69 88 54 88H30V22ZM43 34V47H52C58 47 62 44 62 40C62 36 58 34 52 34H43ZM43 58V76H53C60 76 65 73 65 67C65 61 60 58 53 58H43Z" fill="#ffffff"/>
+        <!-- Yellow Accent Dot -->
+        <circle cx="74" cy="76" r="5.5" fill="#ffe500"/>
       </svg>
-      <span>BlueTEXT.in</span>
+      <span class="brand-name"><span class="b-word">Blue</span><span class="t-word">TEXT</span><span class="in-pill">.in</span></span>
     </a>
 
     <!-- Mobile Navigation Toggle Button -->
@@ -34,77 +41,180 @@
       <span class="nav-toggle-icon" aria-hidden="true">☰</span>
     </button>
 
-    <!-- 2. Primary Navigation Links with Subcategory Dropdowns -->
+    <!-- 2. Primary Navigation Links with Mega Dropdowns -->
     <nav class="nav-menu" id="nav-menu" aria-label="Primary Navigation">
       <button class="nav-menu-close" aria-label="Close navigation menu">&times; Close Menu</button>
-      <div class="nav-dropdown">
-        <a href="/pages/tools/" class="nav-link">Tools ▾</a>
-        <div class="dropdown-menu">
-          <a href="/pages/tools/">All Tools</a>
-          <a href="/pages/tools/coding/">Coding</a>
-          <a href="/pages/tools/converters/">Converters</a>
-          <a href="/pages/tools/data/">Data</a>
-          <a href="/pages/tools/images/">Images</a>
-          <a href="/pages/tools/lifestyle/">Lifestyle</a>
-          <a href="/pages/tools/math/">Math</a>
-          <a href="/pages/tools/miscellaneous/">Miscellaneous</a>
-          <a href="/pages/tools/network/">Network</a>
-          <a href="/pages/tools/office/">Office</a>
-          <a href="/pages/tools/utilities/">Utilities</a>
-          <a href="/pages/tools/videos/">Videos</a>
+      
+      <!-- FEATURED TOOLS MEGA MENU -->
+      <div class="nav-dropdown nav-mega-dropdown">
+        <a href="/pages/tools/" class="nav-link" aria-haspopup="true" aria-expanded="false">Featured Tools <span class="dropdown-caret">&#9662;</span></a>
+        <div class="mega-menu-panel">
+          <div class="mega-menu-header">
+            <div class="mega-menu-tag">All-in-One Client-Side Suite</div>
+            <div class="mega-menu-subtitle">Zero data leaves your browser • 100% private &amp; hardware accelerated</div>
+          </div>
+          
+          <div class="mega-menu-grid">
+            
+            <!-- Column 1: Video & Creativity -->
+            <div class="mega-col">
+              <div class="mega-col-title">🎥 Video &amp; Creativity</div>
+              <ul class="mega-item-list">
+                <li>
+                  <a href="/pages/tools/videos/video-canvas-engineering-studio.html" class="mega-item">
+                    <span class="mega-item-title">Video Canvas Studio <span class="item-badge hot">Pro</span></span>
+                    <span class="mega-item-desc">Multi-track NLE video editor, filters &amp; WebCodecs</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/pages/tools/videos/index.html" class="mega-item">
+                    <span class="mega-item-title">Video Converters</span>
+                    <span class="mega-item-desc">MP4, GIF, audio extractor &amp; screen recorder</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/pages/tools/images/index.html" class="mega-item">
+                    <span class="mega-item-title">Images &amp; Graphics Lab</span>
+                    <span class="mega-item-desc">Compressor, resizer, SVG optimizer &amp; color palettes</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Column 2: Developer & Coding -->
+            <div class="mega-col">
+              <div class="mega-col-title">💻 Developer &amp; Coding</div>
+              <ul class="mega-item-list">
+                <li>
+                  <a href="/pages/tools/coding/index.html" class="mega-item">
+                    <span class="mega-item-title">Coding Workbench</span>
+                    <span class="mega-item-desc">JSON formatter, regex tester, SQL &amp; JWT debugger</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/pages/tools/data/index.html" class="mega-item">
+                    <span class="mega-item-title">Data &amp; Formats</span>
+                    <span class="mega-item-desc">CSV, XML, Base64, UUID &amp; Hash generators</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/pages/tools/network/index.html" class="mega-item">
+                    <span class="mega-item-title">Network &amp; Security</span>
+                    <span class="mega-item-desc">DNS analyzer, subnet calculator, SSL &amp; port tools</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Column 3: Converters & Utilities -->
+            <div class="mega-col">
+              <div class="mega-col-title">⚡ Converters &amp; Office</div>
+              <ul class="mega-item-list">
+                <li>
+                  <a href="/pages/tools/converters/index.html" class="mega-item">
+                    <span class="mega-item-title">Universal Converters</span>
+                    <span class="mega-item-desc">Unit, timestamp, currency &amp; numerical converters</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/pages/tools/office/index.html" class="mega-item">
+                    <span class="mega-item-title">Office &amp; Text Suite</span>
+                    <span class="mega-item-desc">Word counter, markdown editor, PDF &amp; diff viewer</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/pages/tools/math/index.html" class="mega-item">
+                    <span class="mega-item-title">Math &amp; Financial</span>
+                    <span class="mega-item-desc">Interest, loan calculators, matrix &amp; stats tools</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Column 4: Solutions & Highlights -->
+            <div class="mega-col mega-col-featured">
+              <div class="mega-col-title">✨ Highlights</div>
+              <ul class="mega-item-list">
+                <li>
+                  <a href="/pages/games/index.html" class="mega-item">
+                    <span class="mega-item-title">🎮 Retro Games Hub</span>
+                    <span class="mega-item-desc">Arcade, puzzles, chess &amp; word games</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/pages/tutorials/index.html" class="mega-item">
+                    <span class="mega-item-title">📚 Tutorial Academy</span>
+                    <span class="mega-item-desc">Web dev, backend, security &amp; design guides</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/pages/tools/lifestyle/index.html" class="mega-item">
+                    <span class="mega-item-title">🌱 Lifestyle Tools</span>
+                    <span class="mega-item-desc">Health, time management &amp; utilities</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+          <div class="mega-menu-footer">
+            <a href="/pages/tools/" class="mega-footer-link">View All 500+ Tools &amp; Utilities &rarr;</a>
+          </div>
         </div>
       </div>
 
+      <!-- SOFTWARE DROPDOWN -->
       <div class="nav-dropdown">
-        <a href="/pages/games/" class="nav-link">Games ▾</a>
+        <a href="/pages/software/" class="nav-link">Software <span class="dropdown-caret">&#9662;</span></a>
         <div class="dropdown-menu">
-          <a href="/pages/games/">All Games</a>
-          <a href="/pages/games/arcade/">Arcade</a>
-          <a href="/pages/games/board/">Board</a>
-          <a href="/pages/games/cards/">Cards</a>
-          <a href="/pages/games/puzzles/">Puzzles</a>
-          <a href="/pages/games/word/">Word</a>
-        </div>
-      </div>
-
-      <div class="nav-dropdown">
-        <a href="/pages/software/" class="nav-link">Software ▾</a>
-        <div class="dropdown-menu">
-          <a href="/pages/software/">All Software</a>
-          <a href="/pages/software/android/productivity/">Android Productivity</a>
-          <a href="/pages/software/android/utility/">Android Utilities</a>
-          <a href="/pages/software/apple/productivity/">Apple Productivity</a>
-          <a href="/pages/software/apple/utility/">Apple Utilities</a>
-          <a href="/pages/software/linux/games/">Linux Games</a>
+          <a href="/pages/software/">All Software Catalog</a>
+          <a href="/pages/software/windows/productivity/">Windows Productivity</a>
+          <a href="/pages/software/windows/games/">Windows Games</a>
           <a href="/pages/software/linux/productivity/">Linux Productivity</a>
           <a href="/pages/software/linux/utility/">Linux Utilities</a>
-          <a href="/pages/software/windows/games/">Windows Games</a>
-          <a href="/pages/software/windows/productivity/">Windows Productivity</a>
-          <a href="/pages/software/windows/utility/">Windows Utilities</a>
+          <a href="/pages/software/android/productivity/">Android Productivity</a>
+          <a href="/pages/software/apple/productivity/">Apple Productivity</a>
         </div>
       </div>
 
+      <!-- TUTORIALS DROPDOWN -->
       <div class="nav-dropdown">
-        <a href="/pages/tutorials/" class="nav-link">Tutorials ▾</a>
+        <a href="/pages/tutorials/" class="nav-link">Tutorials <span class="dropdown-caret">&#9662;</span></a>
         <div class="dropdown-menu">
           <a href="/pages/tutorials/">All Tutorials</a>
-          <a href="/pages/tutorials/backend/">Backend</a>
-          <a href="/pages/tutorials/design/">Design</a>
-          <a href="/pages/tutorials/programming/">Programming</a>
-          <a href="/pages/tutorials/security/">Security</a>
-          <a href="/pages/tutorials/web-dev/">Web Dev</a>
+          <a href="/pages/tutorials/web-dev/">Web Development</a>
+          <a href="/pages/tutorials/backend/">Backend Engineering</a>
+          <a href="/pages/tutorials/security/">Security &amp; Encryption</a>
+          <a href="/pages/tutorials/design/">Design &amp; UI/UX</a>
+          <a href="/pages/tutorials/programming/">Programming Languages</a>
         </div>
       </div>
 
+      <!-- EDUCATION DROPDOWN -->
       <div class="nav-dropdown">
-        <a href="/pages/education/" class="nav-link">Education ▾</a>
+        <a href="/pages/education/" class="nav-link">Education <span class="dropdown-caret">&#9662;</span></a>
         <div class="dropdown-menu">
-          <a href="/pages/education/">All Education</a>
-          <a href="/pages/education/finance/">Finance</a>
-          <a href="/pages/education/humanities/">Humanities</a>
+          <a href="/pages/education/">All Educational Modules</a>
+          <a href="/pages/education/finance/">Financial Literacy</a>
+          <a href="/pages/education/math/">Mathematics</a>
+          <a href="/pages/education/science/">Science &amp; Tech</a>
           <a href="/pages/education/languages/">Languages</a>
-          <a href="/pages/education/math/">Math</a>
-          <a href="/pages/education/science/">Science</a>
+          <a href="/pages/education/humanities/">Humanities</a>
+        </div>
+      </div>
+
+      <!-- ABOUT & COMMUNITY DROPDOWN -->
+      <div class="nav-dropdown">
+        <a href="/assets/nav/about.html" class="nav-link">About <span class="dropdown-caret">&#9662;</span></a>
+        <div class="dropdown-menu">
+          <a href="/assets/nav/about.html">About BlueTEXT.in</a>
+          <a href="https://bluetextwiki.atlassian.net/wiki/company-hub/" target="_blank" rel="noopener noreferrer">Company Hub &amp; Wiki ↗</a>
+          <a href="/assets/nav/contact.html">Contact Us &amp; Form</a>
+          <a href="/support.html">💖 Supporters Wall</a>
+          <a href="https://github.com/mTulsiram/Bluetextin/discussions" target="_blank" rel="noopener noreferrer">Community Discussions ↗</a>
+          <a href="https://github.com/mTulsiram/Bluetextin/issues" target="_blank" rel="noopener noreferrer">Bug Tracker &amp; Issues ↗</a>
+          <a href="/assets/nav/privacy.html">Privacy &amp; Security</a>
         </div>
       </div>
 
@@ -149,48 +259,159 @@
       </ol>
     </nav>
 
-    <h1>Word</h1>
-    <p>Browse all word resources on BlueTEXT.</p>
+    <section class="hero mb-4">
+      <h1>Word</h1>
+      <p>Browse all word resources on BlueTEXT.</p>
+    </section>
 
-    <ul>
-      
-      <li>
-        <a href="anagram-scramble.html">Anagram Scramble</a>
-      </li>
-      <li>
-        <a href="crossword-puzzle.html">Crossword Puzzle</a>
-      </li>
-      <li>
-        <a href="geo-quiz-map.html">Geo Quiz Map</a>
-      </li>
-      <li>
-        <a href="hangman-classic.html">Hangman Classic</a>
-      </li>
-      <li>
-        <a href="riddle-me-this.html">Riddle Me This</a>
-      </li>
-      <li>
-        <a href="scrabble-helper-game.html">Scrabble Helper Game</a>
-      </li>
-      <li>
-        <a href="trivia-quiz.html">Trivia Quiz</a>
-      </li>
-      <li>
-        <a href="typing-speed-racer.html">Typing Speed Racer</a>
-      </li>
-      <li>
-        <a href="word-search-grid.html">Word Search Grid</a>
-      </li>
-      <li>
-        <a href="wordle-clone.html">Wordle Clone</a>
-      </li>
-    </ul>
+    <section class="tools-grid">
+
+      <article class="tool-card">
+        <a href="anagram-scramble.html" class="tool-card-link">
+          <div class="tool-card-header">
+            <span class="tool-icon" aria-hidden="true">🛠️</span>
+            <h3 class="tool-title">Anagram Scramble</h3>
+          </div>
+          <p class="tool-desc">Client-side utility with instant in-browser processing.</p>
+          <div class="tool-card-footer">
+            <span class="tool-tag">Utility</span>
+            <span class="tool-action">Open &rarr;</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="tool-card">
+        <a href="crossword-puzzle.html" class="tool-card-link">
+          <div class="tool-card-header">
+            <span class="tool-icon" aria-hidden="true">🛠️</span>
+            <h3 class="tool-title">Crossword Puzzle</h3>
+          </div>
+          <p class="tool-desc">Client-side utility with instant in-browser processing.</p>
+          <div class="tool-card-footer">
+            <span class="tool-tag">Utility</span>
+            <span class="tool-action">Open &rarr;</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="tool-card">
+        <a href="geo-quiz-map.html" class="tool-card-link">
+          <div class="tool-card-header">
+            <span class="tool-icon" aria-hidden="true">🛠️</span>
+            <h3 class="tool-title">Geo Quiz Map</h3>
+          </div>
+          <p class="tool-desc">Client-side utility with instant in-browser processing.</p>
+          <div class="tool-card-footer">
+            <span class="tool-tag">Utility</span>
+            <span class="tool-action">Open &rarr;</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="tool-card">
+        <a href="hangman-classic.html" class="tool-card-link">
+          <div class="tool-card-header">
+            <span class="tool-icon" aria-hidden="true">🛠️</span>
+            <h3 class="tool-title">Hangman Classic</h3>
+          </div>
+          <p class="tool-desc">Client-side utility with instant in-browser processing.</p>
+          <div class="tool-card-footer">
+            <span class="tool-tag">Utility</span>
+            <span class="tool-action">Open &rarr;</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="tool-card">
+        <a href="riddle-me-this.html" class="tool-card-link">
+          <div class="tool-card-header">
+            <span class="tool-icon" aria-hidden="true">🛠️</span>
+            <h3 class="tool-title">Riddle Me This</h3>
+          </div>
+          <p class="tool-desc">Client-side utility with instant in-browser processing.</p>
+          <div class="tool-card-footer">
+            <span class="tool-tag">Utility</span>
+            <span class="tool-action">Open &rarr;</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="tool-card">
+        <a href="scrabble-helper-game.html" class="tool-card-link">
+          <div class="tool-card-header">
+            <span class="tool-icon" aria-hidden="true">🎮</span>
+            <h3 class="tool-title">Scrabble Helper Game</h3>
+          </div>
+          <p class="tool-desc">Client-side utility with instant in-browser processing.</p>
+          <div class="tool-card-footer">
+            <span class="tool-tag">Utility</span>
+            <span class="tool-action">Open &rarr;</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="tool-card">
+        <a href="trivia-quiz.html" class="tool-card-link">
+          <div class="tool-card-header">
+            <span class="tool-icon" aria-hidden="true">🛠️</span>
+            <h3 class="tool-title">Trivia Quiz</h3>
+          </div>
+          <p class="tool-desc">Client-side utility with instant in-browser processing.</p>
+          <div class="tool-card-footer">
+            <span class="tool-tag">Utility</span>
+            <span class="tool-action">Open &rarr;</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="tool-card">
+        <a href="typing-speed-racer.html" class="tool-card-link">
+          <div class="tool-card-header">
+            <span class="tool-icon" aria-hidden="true">🛠️</span>
+            <h3 class="tool-title">Typing Speed Racer</h3>
+          </div>
+          <p class="tool-desc">Client-side utility with instant in-browser processing.</p>
+          <div class="tool-card-footer">
+            <span class="tool-tag">Utility</span>
+            <span class="tool-action">Open &rarr;</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="tool-card">
+        <a href="word-search-grid.html" class="tool-card-link">
+          <div class="tool-card-header">
+            <span class="tool-icon" aria-hidden="true">🛠️</span>
+            <h3 class="tool-title">Word Search Grid</h3>
+          </div>
+          <p class="tool-desc">Client-side utility with instant in-browser processing.</p>
+          <div class="tool-card-footer">
+            <span class="tool-tag">Utility</span>
+            <span class="tool-action">Open &rarr;</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="tool-card">
+        <a href="wordle-clone.html" class="tool-card-link">
+          <div class="tool-card-header">
+            <span class="tool-icon" aria-hidden="true">🛠️</span>
+            <h3 class="tool-title">Wordle Clone</h3>
+          </div>
+          <p class="tool-desc">Client-side utility with instant in-browser processing.</p>
+          <div class="tool-card-footer">
+            <span class="tool-tag">Utility</span>
+            <span class="tool-action">Open &rarr;</span>
+          </div>
+        </a>
+      </article>
+    </section>
   </main>
 
   <div id="footer-component"><!-- FOOTER_START -->
 <!-- =========================================================================
      BlueTEXT.in — Clean Semantic Footer Component
-     Sections: 1. Brand & Compliance Notice | 2. Navigation & Legal Links
+     Sections: 1. Brand & Compliance Notice | 2. Structured Links & Legal
      ========================================================================= -->
 
 <footer class="ftr" role="contentinfo">
@@ -198,18 +419,31 @@
 
     <!-- 1. Brand & Privacy Compliance -->
     <div class="ftr-brand">
-      <span class="ftr-logo">BlueTEXT.in</span>
-      <span class="ftr-compliance">© 2026. Client-side execution. Zero tracker policy.</span>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <svg class="brand-logo" width="30" height="30" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="border-radius:7px;flex-shrink:0;">
+          <rect width="100" height="100" rx="22" fill="#0052cc"/>
+          <path d="M30 22H54C67 22 75 29 75 39C75 46 70 51 63 53C72 55 78 61 78 70C78 81 69 88 54 88H30V22ZM43 34V47H52C58 47 62 44 62 40C62 36 58 34 52 34H43ZM43 58V76H53C60 76 65 73 65 67C65 61 60 58 53 58H43Z" fill="#ffffff"/>
+          <circle cx="74" cy="76" r="5.5" fill="#ffe500"/>
+        </svg>
+        <span class="ftr-logo"><span class="b-word">Blue</span><span class="t-word">TEXT</span><span class="in-pill">.in</span></span>
+      </div>
+      <p style="font-size:0.82rem;color:var(--muted);max-width:320px;line-height:1.45;margin-top:0.4rem;">
+        Empowering creators &amp; engineers with 500+ client-side web tools. Hardware-accelerated, zero-server privacy.
+      </p>
+      <span class="ftr-compliance">© 2026 BlueTEXT.in • Hyderabad, India • All rights reserved.</span>
     </div>
 
     <!-- 2. Footer Utility Links -->
     <nav class="ftr-nav" aria-label="Footer Navigation">
+      <a href="/pages/tools/videos/video-canvas-engineering-studio.html" class="ftr-link">🎬 Video Studio</a>
+      <a href="/pages/tools/" class="ftr-link">🛠️ Tools</a>
+      <a href="/pages/games/" class="ftr-link">🎮 Games</a>
       <a href="/assets/nav/about.html" class="ftr-link">About</a>
       <a href="/assets/nav/contact.html" class="ftr-link">Contact</a>
-      <a href="/support.html" class="ftr-link ftr-link-highlight">💖 Donate</a>
-      <a href="https://github.com/mTulsiram/bluetext/issues/new?template=bug_report.md" class="ftr-link" target="_blank" rel="noopener noreferrer">Report Bug</a>
-      <a href="https://github.com/mTulsiram/bluetext/issues/new?template=feature_request.md" class="ftr-link" target="_blank" rel="noopener noreferrer">Suggest Feature</a>
-      <a href="/assets/nav/privacy.html" class="ftr-link">Privacy</a>
+      <a href="https://bluetextwiki.atlassian.net/wiki/company-hub/" class="ftr-link" target="_blank" rel="noopener noreferrer">Company Hub ↗</a>
+      <a href="https://github.com/mTulsiram/Bluetextin/issues" class="ftr-link" target="_blank" rel="noopener noreferrer">Report Bug ↗</a>
+      <a href="https://github.com/mTulsiram/Bluetextin/discussions" class="ftr-link" target="_blank" rel="noopener noreferrer">Discussions ↗</a>
+      <a href="/assets/nav/privacy.html" class="ftr-link">Privacy Policy</a>
       <a href="/assets/nav/terms.html" class="ftr-link">Terms</a>
       <a href="/assets/nav/security.html" class="ftr-link">Security</a>
       <a href="/assets/nav/accessibility.html" class="ftr-link">Accessibility</a>
