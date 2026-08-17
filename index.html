@@ -371,6 +371,85 @@
       box-shadow: 0 4px 12px rgba(62, 161, 255, 0.3);
     }
 
+    [data-theme="light"] .chip-btn-premium.active {
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    }
+
+    /* Premium Footer Overrides */
+    .ftr {
+      background: rgba(255, 255, 255, 0.02) !important;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+      margin-top: 5rem;
+      padding: 4rem 0 !important;
+    }
+
+    [data-theme="light"] .ftr {
+      background: rgba(255, 255, 255, 0.6) !important;
+      border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+    }
+
+    .ftr-container {
+      max-width: 1200px !important;
+      margin: 0 auto;
+      display: grid !important;
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+      padding: 0 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .ftr-container { grid-template-columns: 1fr; text-align: center; }
+      .ftr-brand { align-items: center; }
+      .ftr-nav { justify-content: center; }
+    }
+
+    .ftr-logo {
+      font-size: 1.5rem !important;
+    }
+
+    .ftr-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-content: flex-start;
+      justify-content: flex-end;
+    }
+
+    .ftr-link {
+      color: #94a3b8 !important;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    [data-theme="light"] .ftr-link {
+      color: #64748b !important;
+    }
+
+    .ftr-link:hover {
+      color: #3ea1ff !important;
+      text-decoration: none !important;
+      transform: translateY(-2px);
+    }
+
+    .ftr-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: #3ea1ff;
+      transition: width 0.3s ease;
+    }
+
+    .ftr-link:hover::after {
+      width: 100%;
+    }
+
   </style>
 </head>
 <body>

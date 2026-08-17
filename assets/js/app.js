@@ -134,19 +134,43 @@
       const dropdowns = document.querySelectorAll(".nav-dropdown");
       dropdowns.forEach(dd => {
         let leaveTimer = null;
+        const navLink = dd.querySelector('.nav-link');
+        if (navLink) {
+          navLink.addEventListener('click', (e) => {
+            // Prevent default link navigation if it has a dropdown
+            if (dd.querySelector('.dropdown-menu, .mega-menu-panel')) {
+              e.preventDefault();
+            }
+            if (dd.classList.contains('is-open') && dd.dataset.pinned === "true") {
+              dd.classList.remove('is-open');
+              dd.dataset.pinned = "false";
+            } else {
+              dropdowns.forEach(other => {
+                other.classList.remove("is-open");
+                other.dataset.pinned = "false";
+              });
+              dd.classList.add('is-open');
+              dd.dataset.pinned = "true";
+            }
+          });
+        }
 
         dd.addEventListener("mouseenter", () => {
           clearTimeout(leaveTimer);
-          dropdowns.forEach(other => {
-            if (other !== dd) other.classList.remove("is-open");
-          });
-          dd.classList.add("is-open");
+          if (dd.dataset.pinned !== "true") {
+            dropdowns.forEach(other => {
+              if (other !== dd && other.dataset.pinned !== "true") other.classList.remove("is-open");
+            });
+            dd.classList.add("is-open");
+          }
         });
 
         dd.addEventListener("mouseleave", () => {
-          leaveTimer = setTimeout(() => {
-            dd.classList.remove("is-open");
-          }, 260); // 260ms grace window for smooth diagonal movements
+          if (dd.dataset.pinned !== "true") {
+            leaveTimer = setTimeout(() => {
+              dd.classList.remove("is-open");
+            }, 260); // 260ms grace window for smooth diagonal movements
+          }
         });
 
         dd.addEventListener("focusin", () => {
@@ -155,7 +179,7 @@
         });
 
         dd.addEventListener("focusout", (e) => {
-          if (!dd.contains(e.relatedTarget)) {
+          if (!dd.contains(e.relatedTarget) && dd.dataset.pinned !== "true") {
             dd.classList.remove("is-open");
           }
         });
@@ -163,7 +187,10 @@
 
       document.addEventListener("click", (e) => {
         if (!e.target.closest(".nav-dropdown")) {
-          dropdowns.forEach(dd => dd.classList.remove("is-open"));
+          dropdowns.forEach(dd => {
+            dd.classList.remove("is-open");
+            dd.dataset.pinned = "false";
+          });
         }
       });
     }
