@@ -30,7 +30,9 @@
     let savedTheme;
     try {
       savedTheme = localStorage.getItem(THEME_KEY);
-    } catch (e) {}
+    } catch (e) {
+      console.warn("Failed to read theme from localStorage:", e);
+    }
     // Default to 'light' (Soft White eye-comfort theme)
     const theme = savedTheme || "light";
     applyTheme(theme);
@@ -42,7 +44,9 @@
     applyTheme(next);
     try {
       localStorage.setItem(THEME_KEY, next);
-    } catch (e) {}
+    } catch (e) {
+      console.warn("Failed to save theme to localStorage:", e);
+    }
   }
 
   // -------------------------------------------------------------------------
@@ -393,6 +397,7 @@
     try {
       return localStorage.getItem(AUTH_KEY);
     } catch (e) {
+      console.warn("Failed to read auth key from localStorage:", e);
       return null;
     }
   }
@@ -426,7 +431,11 @@
         const signoutBtn = document.getElementById("auth-signout-btn");
         if (signoutBtn) {
           signoutBtn.addEventListener("click", () => {
-            try { localStorage.removeItem(AUTH_KEY); } catch (e) {}
+            try {
+              localStorage.removeItem(AUTH_KEY);
+            } catch (e) {
+              console.warn("Failed to remove auth key from localStorage:", e);
+            }
             updateAuthUI();
             closeModal();
           });
@@ -498,7 +507,11 @@
         e.preventDefault();
         const email = document.getElementById("auth-email").value.trim();
         if (email) {
-          try { localStorage.setItem(AUTH_KEY, email); } catch (err) {}
+          try {
+            localStorage.setItem(AUTH_KEY, email);
+          } catch (err) {
+            console.warn("Failed to save auth key to localStorage:", err);
+          }
           updateAuthUI();
           closeModal();
         }
@@ -508,7 +521,11 @@
         e.preventDefault();
         const email = document.getElementById("signup-email").value.trim();
         if (email) {
-          try { localStorage.setItem(AUTH_KEY, email); } catch (err) {}
+          try {
+            localStorage.setItem(AUTH_KEY, email);
+          } catch (err) {
+            console.warn("Failed to save auth key to localStorage:", err);
+          }
           updateAuthUI();
           closeModal();
         }
@@ -726,7 +743,9 @@
     let consent;
     try {
       consent = localStorage.getItem(CONSENT_KEY);
-    } catch (e) {}
+    } catch (e) {
+      console.warn("Failed to read consent from localStorage:", e);
+    }
 
     if (consent) return; // Already made choice
 
@@ -761,7 +780,9 @@
           timestamp: new Date().toISOString(),
           policyVersion: "2026.1"
         }));
-      } catch (e) {}
+      } catch (e) {
+        console.warn("Failed to save consent to localStorage:", e);
+      }
       banner.remove();
     }
 
