@@ -34,7 +34,9 @@
       if (confirmSignout) {
         try {
           localStorage.removeItem(AUTH_KEY);
-        } catch (e) {}
+        } catch (e) {
+          console.warn("Failed to remove auth key from localStorage:", e);
+        }
         updateAuthUI();
       }
     } else {
@@ -42,7 +44,9 @@
       if (email && email.trim()) {
         try {
           localStorage.setItem(AUTH_KEY, email.trim());
-        } catch (e) {}
+        } catch (e) {
+          console.warn("Failed to save auth key to localStorage:", e);
+        }
         updateAuthUI();
       }
     }
