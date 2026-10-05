@@ -235,7 +235,7 @@
       localStorage.clear();
       sessionStorage.clear();
     } catch (e) {
-      console.warn("Failed to clear storage:", e);
+      console.warn("Failed to clear web storage:", e);
     }
 
     if ("caches" in window) {
@@ -243,7 +243,7 @@
         const keys = await caches.keys();
         await Promise.all(keys.map((k) => caches.delete(k)));
       } catch (e) {
-        console.warn("Failed to clear caches:", e);
+        console.warn("Failed to clear CacheStorage:", e);
       }
     }
 

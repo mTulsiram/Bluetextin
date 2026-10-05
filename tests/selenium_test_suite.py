@@ -82,5 +82,35 @@ class BlueTextWebTestSuite(unittest.TestCase):
             self.driver.get(self.base_url + rel)
             self.assertIn("BlueTEXT", self.driver.title, f"Page {rel} title should contain BlueTEXT")
 
+    def test_05_converter_engine_sanitize_value(self):
+        # Navigate to a page that loads converter-engine.js or open homepage and load script
+        self.driver.get(self.base_url + "/pages/tools/converters/physical-dimension-studio.html")
+        time.sleep(0.5)
+
+        test_cases = [
+            # (input_val, expected_val)
+            (12.3456789, 12.345679),      # standard float rounded to 6 decimal places
+            (10, 10),                     # integer value
+            ("42.12345678", 42.123457),   # float string parsed and rounded
+            ("1.500000", 1.5),            # trailing zeros stripped by Number()
+            (0, 0),                       # zero integer
+            ("0.0000000", 0),             # string zero
+            (-12.3456789, -12.345679),    # negative float rounded
+            (-5, -5),                     # negative integer
+            (0.0000001, 0),               # small float below 6 decimal precision rounds to 0
+            (0.000006, 0.000006),         # 6th decimal float precision preserved
+            ("0.0000006", 0.000001),      # string representation with 7th decimal > 5 rounds up
+        ]
+
+        for input_val, expected_val in test_cases:
+            res = self.driver.execute_script("return window.ConverterEngine.sanitizeValue(arguments[0]);", input_val)
+            self.assertEqual(res, expected_val, f"ConverterEngine.sanitizeValue({input_val!r}) should return {expected_val!r}, got {res!r}")
+
+        # Test NaN handling for non-numeric input
+        nan_inputs = ["abc", None, "invalid"]
+        for input_val in nan_inputs:
+            is_nan = self.driver.execute_script("return Number.isNaN(window.ConverterEngine.sanitizeValue(arguments[0]));", input_val)
+            self.assertTrue(is_nan, f"ConverterEngine.sanitizeValue({input_val!r}) should return NaN")
+
 if __name__ == "__main__":
     unittest.main()
