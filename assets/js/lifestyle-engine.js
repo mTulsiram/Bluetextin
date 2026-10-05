@@ -1,3 +1,6 @@
+if (typeof window === 'undefined') {
+  var window = typeof globalThis !== 'undefined' ? globalThis : global;
+}
 
 window.LifestyleEngine = {
   mifflinStJeor: function(weight, height, age, gender) {
@@ -16,3 +19,7 @@ window.LifestyleEngine = {
     return 163.205 * Math.log10(waist + hip - neck) - 97.684 * Math.log10(height) - 78.387;
   }
 };
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = window.LifestyleEngine;
+}
