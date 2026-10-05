@@ -23,7 +23,9 @@
     let savedTheme;
     try {
       savedTheme = localStorage.getItem(THEME_KEY);
-    } catch (e) {}
+    } catch (e) {
+      console.warn("Failed to read theme from localStorage:", e);
+    }
     const theme = savedTheme || getSystemTheme();
     applyTheme(theme);
   }
@@ -34,7 +36,9 @@
     applyTheme(next);
     try {
       localStorage.setItem(THEME_KEY, next);
-    } catch (e) {}
+    } catch (e) {
+      console.warn("Failed to save theme to localStorage:", e);
+    }
   }
 
   // -------------------------------------------------------------------------
@@ -71,20 +75,26 @@
     try {
       localStorage.clear();
       sessionStorage.clear();
-    } catch (e) {}
+    } catch (e) {
+      console.warn("Failed to clear storage:", e);
+    }
 
     if ("caches" in window) {
       try {
         const keys = await caches.keys();
         await Promise.all(keys.map((k) => caches.delete(k)));
-      } catch (e) {}
+      } catch (e) {
+        console.warn("Failed to clear caches:", e);
+      }
     }
 
     if ("serviceWorker" in navigator) {
       try {
         const regs = await navigator.serviceWorker.getRegistrations();
         await Promise.all(regs.map((r) => r.unregister()));
-      } catch (e) {}
+      } catch (e) {
+        console.warn("Failed to unregister service workers:", e);
+      }
     }
 
     window.location.reload(true);
