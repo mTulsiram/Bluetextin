@@ -7,7 +7,12 @@ window.LifestyleEngine = {
     return 10 * weight + 6.25 * height - 5 * age - 161;
   },
   duboisBSA: function(weight, height) {
-    return 0.007184 * Math.pow(weight, 0.425) * Math.pow(height, 0.725);
+    const w = Number(weight);
+    const h = Number(height);
+    if (isNaN(w) || isNaN(h) || w <= 0 || h <= 0) {
+      return 0;
+    }
+    return 0.007184 * Math.pow(w, 0.425) * Math.pow(h, 0.725);
   },
   usNavyBodyFat: function(waist, neck, hip, height, gender) {
     if (gender === 'male') {
