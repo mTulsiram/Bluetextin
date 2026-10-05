@@ -1,3 +1,6 @@
+if (typeof window === 'undefined') {
+  global.window = typeof global.window !== 'undefined' ? global.window : {};
+}
 
 window.OfficeEngine = {
   diffText: function(a, b) {
@@ -9,3 +12,7 @@ window.OfficeEngine = {
     };
   }
 };
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = window.OfficeEngine;
+}
