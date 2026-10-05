@@ -230,20 +230,26 @@
     try {
       localStorage.clear();
       sessionStorage.clear();
-    } catch (e) {}
+    } catch (e) {
+      console.warn("Failed to clear web storage:", e);
+    }
 
     if ("caches" in window) {
       try {
         const keys = await caches.keys();
         await Promise.all(keys.map((k) => caches.delete(k)));
-      } catch (e) {}
+      } catch (e) {
+        console.warn("Failed to clear CacheStorage:", e);
+      }
     }
 
     if ("serviceWorker" in navigator) {
       try {
         const regs = await navigator.serviceWorker.getRegistrations();
         await Promise.all(regs.map((r) => r.unregister()));
-      } catch (e) {}
+      } catch (e) {
+        console.warn("Failed to unregister service workers:", e);
+      }
     }
 
     window.location.reload(true);
