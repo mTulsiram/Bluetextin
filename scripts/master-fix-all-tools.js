@@ -2808,6 +2808,9 @@ const TOOLS = [
       <div id="pres-slide" style="border-radius:8px;padding:2rem;min-height:250px;border:1px solid #444;display:flex;flex-direction:column;justify-content:center;"></div>
     </div>`,
     js: `
+    function escapeHtml(str) {
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
     const themes = {
       dark: {bg:'#1e1e1e',title:'#61afef',text:'#d4d4d4'},
       blue: {bg:'#003366',title:'#ffffff',text:'#cce0ff'},
@@ -2817,10 +2820,11 @@ const TOOLS = [
       const title = document.getElementById('pres-title').value || 'Untitled Slide';
       const content = document.getElementById('pres-content').value;
       const theme = themes[document.getElementById('pres-theme').value];
-      const bullets = content.split('\\n').filter(l => l.trim()).map(l => '<div style="padding:4px 0;color:' + theme.text + '">' + l.trim() + '</div>').join('');
+      const safeTitle = escapeHtml(title);
+      const bullets = content.split('\\n').filter(l => l.trim()).map(l => '<div style="padding:4px 0;color:' + theme.text + '">' + escapeHtml(l.trim()) + '</div>').join('');
       document.getElementById('pres-slide').style.background = theme.bg;
       document.getElementById('pres-slide').innerHTML =
-        '<div style="font-size:1.5rem;font-weight:bold;color:' + theme.title + ';border-bottom:2px solid ' + theme.title + ';padding-bottom:0.5rem;margin-bottom:1rem">' + title + '</div>' + bullets;
+        '<div style="font-size:1.5rem;font-weight:bold;color:' + theme.title + ';border-bottom:2px solid ' + theme.title + ';padding-bottom:0.5rem;margin-bottom:1rem">' + safeTitle + '</div>' + bullets;
       setStatus('Slide preview rendered.');
     });`
   },
