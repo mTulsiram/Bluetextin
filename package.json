@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "node scripts/build.js",
-    "test": "python tests/run_local_health_checks.py",
+    "test": "node --test tests/*.test.js && python tests/run_local_health_checks.py",
     "lint": "node --check scripts/build.js && python -m py_compile server.py tests/run_health_checks.py tests/run_local_health_checks.py tests/run_enterprise_suite.py tests/selenium_test_suite.py"
   },
   "devDependencies": {
