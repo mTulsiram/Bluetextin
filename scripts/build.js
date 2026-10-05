@@ -472,39 +472,42 @@ ${cards}
     }
   }
 
-  let seeded = 0;
+  // Generate statically-defined top-level pages concurrently
+  const seededResults = await Promise.all(
+    STATIC_PAGES.map(async (page) => {
+      const filePath = path.join(ROOT, page.file);
+      const dir = path.dirname(filePath);
+      let children = page.staticChildren;
 
-  // Generate statically-defined top-level pages
-  for (const page of STATIC_PAGES) {
-    const filePath = path.join(ROOT, page.file);
-    const dir = path.dirname(filePath);
-    let children = page.staticChildren;
+      if (children.length === 0) {
+        const found = await fs.readdir(dir, { withFileTypes: true }).catch(() => []);
+        children = found
+          .filter((e) => (e.isDirectory() || (e.isFile() && e.name.endsWith(".html"))) && e.name !== "index.html" && !e.name.startsWith("."))
+          .map((e) => ({
+            href: e.isDirectory() ? `${e.name}/` : e.name,
+            label: titleCase(e.name.replace(/\.html$/, ""))
+          }));
+      }
 
-    if (children.length === 0) {
-      const found = (await fs.readdir(dir, { withFileTypes: true }).catch(() => []));
-      children = found
-        .filter((e) => (e.isDirectory() || (e.isFile() && e.name.endsWith(".html"))) && e.name !== "index.html" && !e.name.startsWith("."))
-        .map((e) => ({
-          href: e.isDirectory() ? `${e.name}/` : e.name,
-          label: titleCase(e.name.replace(/\.html$/, ""))
-        }));
-    }
+      const html = buildIndexHtml({
+        title: page.title,
+        description: page.description,
+        breadcrumb: page.breadcrumb,
+        children,
+        relDepth: page.relDepth
+      });
 
-    const html = buildIndexHtml({
-      title: page.title,
-      description: page.description,
-      breadcrumb: page.breadcrumb,
-      children,
-      relDepth: page.relDepth
-    });
+      await fs.mkdir(dir, { recursive: true });
+      const changed = await writeIfChanged(filePath, html);
+      if (changed) {
+        console.log(`  Seeded: ${page.file} (${children.length} links)`);
+        return 1;
+      }
+      return 0;
+    })
+  );
 
-    await fs.mkdir(dir, { recursive: true });
-    const changed = await writeIfChanged(filePath, html);
-    if (changed) {
-      console.log(`  Seeded: ${page.file} (${children.length} links)`);
-      seeded++;
-    }
-  }
+  const seeded = seededResults.reduce((sum, count) => sum + count, 0);
 
   // Auto-fill all remaining empty indexes under pages/
   const pagesDir = path.join(ROOT, "pages");
