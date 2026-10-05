@@ -18,6 +18,8 @@ window.ConverterEngine = {
         osc.stop();
         audioCtx.close();
       }, duration);
-    } catch(e) {}
+    } catch(e) {
+      console.warn("AudioContext playback error:", e);
+    }
   }
 };
